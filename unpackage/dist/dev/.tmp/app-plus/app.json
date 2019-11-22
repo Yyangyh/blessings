@@ -1,0 +1,61 @@
+{
+  "pages": [
+    "pages/login/login",
+    "pages/index/index",
+    "pages/index/classroom",
+    "pages/index/home",
+    "pages/index/user",
+    "pages/subindex/notice",
+    "pages/subindex/index_class",
+    "pages/login/forget",
+    "pages/login/message_login",
+    "pages/login/reg"
+  ],
+  "window": {
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "uni-app",
+    "navigationBarBackgroundColor": "#F8F8F8",
+    "backgroundColor": "#F8F8F8"
+  },
+  "tabBar": {
+    "color": "#999999",
+    "selectedColor": "#000000",
+    "borderStyle": "black",
+    "backgroundColor": "#ffffff",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "iconPath": "static/image/index/index.png",
+        "selectedIconPath": "static/image/index/indexHL.png",
+        "text": "幸福时光"
+      },
+      {
+        "pagePath": "pages/index/classroom",
+        "iconPath": "static/image/index/room.png",
+        "selectedIconPath": "static/image/index/roomHL.png",
+        "text": "幸福课堂"
+      },
+      {
+        "pagePath": "pages/index/home",
+        "iconPath": "static/image/index/home.png",
+        "selectedIconPath": "static/image/index/homeHL.png",
+        "text": "幸福家风"
+      },
+      {
+        "pagePath": "pages/index/user",
+        "iconPath": "static/image/index/user.png",
+        "selectedIconPath": "static/image/index/userHL.png",
+        "text": "个人中心"
+      }
+    ]
+  },
+  "nvueCompiler": "uni-app",
+  "renderer": "auto",
+  "splashscreen": {
+    "alwaysShowBeforeRender": true,
+    "autoclose": false
+  },
+  "appname": "blessings",
+  "compilerVersion": "2.4.2",
+  "usingComponents": {}
+}

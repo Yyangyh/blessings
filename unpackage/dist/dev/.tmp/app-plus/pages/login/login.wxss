@@ -1,0 +1,133 @@
+
+page{
+	padding-top: 0;
+}
+.bg{
+	/* height: 100%;
+	width: 100%; */
+}
+.bg .back{
+	height: 100%;
+	width: 100%;
+	position: fixed;
+	z-index: 1;
+}
+.content{
+	width: 100%;
+	position: absolute;
+	z-index: 99;
+}
+.uni-input-placeholder{
+	color: #C5C5C5;
+}
+.logo{
+	text-align: center;
+	font-size: 42rpx;
+	color: #fff;
+	padding-top: 90rpx;
+	margin: 54rpx 0;
+}
+.logo image{
+	width: 258rpx;
+	height: 202rpx;
+}
+.box{
+	padding-top: 86rpx;
+	background: #FFFFFF;
+	border-radius: 20rpx;
+	margin-left: 8%;
+	width: 84%;
+	height: 550rpx;
+}
+.box .logo_ipt{
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	/* justify-content: center; */
+	-webkit-align-content: center;
+	    -ms-flex-line-pack: center;
+	        align-content: center;
+	-webkit-box-align: center;
+	-webkit-align-items: center;
+	    -ms-flex-align: center;
+	        align-items: center;
+	background: #F5F5F5;
+	border-radius: 10rpx;
+	height: 100rpx;
+	font-size: 28rpx;
+	margin: 0 38rpx 30rpx 38rpx;
+}
+.box .logo_ipt text{
+	margin: 0 20rpx;
+}
+.box .logo_ipt input{
+	-webkit-box-flex: 2;
+	-webkit-flex-grow: 2;
+	    -ms-flex-positive: 2;
+	        flex-grow: 2;
+	font-size: 28rpx;
+}
+.box .logo_ipt image{
+	width: 30rpx;
+	height: 42rpx;
+}
+.logo_test{
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-pack: justify;
+	-webkit-justify-content: space-between;
+	    -ms-flex-pack: justify;
+	        justify-content: space-between;
+	padding: 0 44rpx;
+	font-size: 24rpx;
+	color: #666666;
+}
+button{
+	
+	/* width: 88%; */
+	
+	margin:30rpx 40rpx;
+}
+.message{
+	text-align: center;
+	color: #000;
+	font-size: 30rpx;
+}
+.other{
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	font-size: 28rpx;
+	-webkit-box-align: center;
+	-webkit-align-items: center;
+	    -ms-flex-align: center;
+	        align-items: center;
+	-webkit-box-pack: center;
+	-webkit-justify-content: center;
+	    -ms-flex-pack: center;
+	        justify-content: center;
+	margin-top: 50rpx;
+}
+.other .line{
+	width: 120rpx;
+	height: 1rpx;
+	border-bottom: 1rpx solid #fff;
+}
+.other .other_test{
+	margin: 0 20rpx;
+	color: #fff;
+	font-size: 24rpx;
+}
+.mode{
+	text-align: center;
+	margin-top: 20rpx;
+}
+.mode image{
+	width: 80rpx;
+	height: 80rpx;
+}
+

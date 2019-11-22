@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+    <head>
+        <meta charset="UTF-8" />
+        <script>
+            var coverSupport = 'CSS' in window && typeof CSS.supports === 'function' && (CSS.supports('top: env(a)') ||
+                CSS.supports('top: constant(a)'))
+            document.write(
+                '<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0' +
+                (coverSupport ? ', viewport-fit=cover' : '') + '" />')
+        </script>
+        <title>View</title>
+        <style>
+            * {
+                -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+                -webkit-tap-highlight-color: transparent;
+            }
+
+            input[type="search"]::-webkit-search-cancel-button {
+                display: none;
+            }
+        </style>
+        <script>
+            var __wxConfig = {"debug":false,"appname":"blessings","entryPagePath":"pages/login/login.html","page":{"pages/login/login.html":{"window":{"navigationBarTitleText":"登录","titleNView":false,"usingComponents":{}}},"pages/index/index.html":{"window":{"navigationBarTitleText":"幸福时光","titleNView":false,"usingComponents":{"search":"/pages/common/index_search"}}},"pages/index/classroom.html":{"window":{"navigationBarTitleText":"幸福课堂","titleNView":false,"usingComponents":{"search":"/pages/common/index_search"}}},"pages/index/home.html":{"window":{"navigationBarTitleText":"幸福家风","titleNView":false,"usingComponents":{}}},"pages/index/user.html":{"window":{"navigationBarTitleText":"个人中心","titleNView":false,"usingComponents":{}}},"pages/subindex/notice.html":{"window":{"navigationBarTitleText":"系统通知","titleNView":false,"usingComponents":{"returns":"/pages/common/returns"}}},"pages/subindex/index_class.html":{"window":{"navigationBarTitleText":"分类列表","titleNView":false,"usingComponents":{}}},"pages/login/forget.html":{"window":{"navigationBarTitleText":"忘记密码","usingComponents":{}}},"pages/login/message_login.html":{"window":{"navigationBarTitleText":"短信登录","usingComponents":{}}},"pages/login/reg.html":{"window":{"navigationBarTitleText":"注册","usingComponents":{}}}},"global":{"window":{"navigationBarTextStyle":"black","navigationBarTitleText":"uni-app","navigationBarBackgroundColor":"#F8F8F8","backgroundColor":"#F8F8F8"}},"tabBar":{"color":"#999999","selectedColor":"#000000","backgroundColor":"#ffffff","borderStyle":"black","list":[{"pagePath":"pages/index/index.html","iconPath":"static/image/index/index.png","selectedIconPath":"static/image/index/indexHL.png","text":"幸福时光"},{"pagePath":"pages/index/classroom.html","iconPath":"static/image/index/room.png","selectedIconPath":"static/image/index/roomHL.png","text":"幸福课堂"},{"pagePath":"pages/index/home.html","iconPath":"static/image/index/home.png","selectedIconPath":"static/image/index/homeHL.png","text":"幸福家风"},{"pagePath":"pages/index/user.html","iconPath":"static/image/index/user.png","selectedIconPath":"static/image/index/userHL.png","text":"个人中心"}],"position":"bottom"},"networkTimeout":{"request":60000,"connectSocket":60000,"uploadFile":60000,"downloadFile":60000},"platform":"devtools","pages":["pages/login/login","pages/index/index","pages/index/classroom","pages/index/home","pages/index/user","pages/subindex/notice","pages/subindex/index_class","pages/login/forget","pages/login/message_login","pages/login/reg"],"nvueCompiler":"uni-app","renderer":"auto","splashscreen":{"alwaysShowBeforeRender":true,"autoclose":false},"compilerVersion":"2.4.2","usingComponents":{}}
+        </script>
+        <script>
+            var __id__ = '';
+            window.__dispatchGenerateFunc__ = function(page) {
+                __id__ = page;
+                document.title = page;
+                // window.history.pushState('', '', page);
+                var wxss = page.replace('.html', '.wxss')
+                if (
+                    typeof __wxAppCode__ !== 'undefined' &&
+                    __wxAppCode__.hasOwnProperty(wxss)
+                ) {
+                    var setCssToHead = __wxAppCode__[wxss]
+                    typeof setCssToHead === 'function' && setCssToHead()
+                    document.dispatchEvent(new CustomEvent("generateFuncReady", {
+                        detail: {
+                            generateFunc: $gwx(page.replace('.html', '.wxml'))
+                        }
+                    }));
+                } else {
+                    plus.webview.currentWebview().setJsFile('_www/' + page.replace('.html', '.js'));
+                }
+            };
+        </script>
+        <script src="__uniappes6.js"></script>
+        <script src="uniapp://ready"></script>
+    </head>
+
+    <body>
+        <div></div>
+    </body>
+
+</html>
