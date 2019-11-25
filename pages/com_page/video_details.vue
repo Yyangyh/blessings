@@ -15,39 +15,191 @@
 			</view>
 		</view>
 		
+		<view class="">
+			 <video id="myVideo" :src="play_url"  @ended='play_end()'  enable-danmu  controls></video>
+		</view>
+		<view class="video_tab">
+			<view class="tab_list" :class="{test_show:test_show === 0}" @tap="test_show = 0">
+				课程介绍
+			</view>
+			<view class="tab_list" :class="{test_show:test_show === 1}" @tap="test_show = 1">
+				目录
+			</view>
+			<view class="tab_list" :class="{test_show:test_show === 2}" @tap="test_show = 2">
+				评价
+			</view>
+			<view class="tab_list" :class="{test_show:test_show === 3}" @tap="test_show = 3">
+				推荐
+			</view>
+		</view>
 		
-		<view class="video_top">
+		<view v-show="test_show == 0">
+			<view class="video_top">
+				<view class="video_explain">
+					<view class="ex_one">
+						{{video_data.long_title}}
+					</view>
+					<view class="ex_two">
+						<image src="/static/image/com_page/stars.png" mode="widthFix" v-for="(item,index) in video_data.stars_num" :key='index'></image>
+						<text>{{video_data.evaluate}}分</text>
+						<text>{{video_data.view}}次观看</text>
+					</view>
+					<view class="ex_three">
+						￥{{video_data.v_price}}
+					</view>
+					<view class="ex_four" @tap="play_integral()">
+						领取积分
+					</view>
+				</view>
+			</view>
+			
+			<view class="video_mid">
+				<view class="discount">
+					<view class="dis_one">
+						<image src="../../static/image/com_page/discount.png" mode="widthFix"></image>
+						<text>优惠券</text>
+					</view>
+					<view class="dis_two" @tap="coupon_show = !coupon_show">
+						<text>领券</text>
+						<image src="../../static/image/index/go.png" mode="widthFix"></image>
+					</view>
+				</view>
+				<view class="mid_test">
+					讲师介绍
+				</view>
+				<view class="mid_tutor">
+					<view class="tu_one">
+						<image :src="video_data.head_pic" mode="widthFix"></image>
+						<view class="tu_name">
+							<view class="">
+								{{video_data.name}}
+							</view>
+							<view class="">
+								{{video_data.position}}
+							</view>
+						</view>
+					</view>
+					<view class="tu_two">
+						<image src="../../static/image/index/go.png" mode="widthFix"></image>
+					</view>
+				</view>
+			</view>
+			
+			<view class="cou_details">
+				课程详情
+			</view>
+			<rich-text :nodes="video_data.video_content"></rich-text>
+		</view>
+		<view class="catalog_box" v-show="test_show == 1">
+			<view class="catalog_test">
+				目录
+			</view>
+			<view class="catalog" v-for="(item,index) in catalog_data" :key='item.id' @click="chiose_video(index)">
+				<image v-if="indexs == index"  src="../../static/image/com_page/video_HL.png" mode="widthFix"></image>
+				<image  v-else src="../../static/image/com_page/video.png" mode="widthFix"></image>
+				<text>{{item.name}}</text>
+			</view>
+		</view>
+		<view v-show="test_show == 2">
+			<view class="user_top">
+				<view class="">
+					用户评论
+				</view>
+				<view class="">
+					全部
+				</view>
+			</view>
+			<view class="user_comment" v-for="(item,index) in comments" :key='item.id'>
+				<view class="user">
+					<image class="user_img"  :src="APIconfig.api_img +item.avatar" mode="widthFix"></image>
+					<view class="user_test" >
+						<view>{{item.username}}</view>
+						<text>{{service.Test(item.created_at)}}</text>
+					</view>
+					<view class="user_star">
+						<image v-for="(item,index) in item.rating_num" src="/static/image/com_page/stars.png" mode="widthFix"></image>
+						
+					</view>
+				</view>
+				<view class="com_content">
+					<view class="content_test">
+						<view class="">
+							{{item.content}}
+						</view>
+					</view>
+					<!-- <view class="content_img">
+						<image v-for="(item,index) in comments.images" :key='index' :src="item" mode=""></image>
+					</view>
+					 -->
+				</view>
+			</view>
+		</view>
+		<view v-show="test_show == 3">
+			
+		</view>
+		
+		<view class="collect" :class="show===false ? 'none' : show===true ? 'show' : ''">
+			<image :src="tips_img" mode="widthFix"></image>
 			<view class="">
-				 <video id="myVideo" :src="video_data.v_url" @error="videoErrorCallback" :danmu-list="danmuList" enable-danmu danmu-btn controls></video>
+				{{tips_test}}
 			</view>
-			<view class="video_tab">
-				<view class="tab_list" :class="{test_show:test_show === 0}" @tap="test_show = 0">
-					课程介绍
-				</view>
-				<view class="tab_list" :class="{test_show:test_show === 1}" @tap="test_show = 1">
-					目录
-				</view>
-				<view class="tab_list" :class="{test_show:test_show === 2}" @tap="test_show = 2">
-					评价
-				</view>
-				<view class="tab_list" :class="{test_show:test_show === 3}" @tap="test_show = 3">
-					推荐
-				</view>
+		</view>
+		
+		<view class="mask_black" v-show="coupon_show == true" @tap="coupon_show = false">
+			<!-- 遮罩层 层级888 -->
+		</view>
+		
+		<view class="coupon_box" :class="coupon_show===false ? 'coupon_none' : coupon_show===true ? 'coupon_show' : ''">
+			<view class="box_top">
+				<text>优惠券</text>
+				<image src="../../static/image/com_page/close.png" mode="widthFix"  @tap="coupon_show = false"></image>
 			</view>
-			<view class="video_explain">
-				<view class="ex_one">
-					{{video_data.long_title}}
+			<view class="box_mid">
+				领券
+			</view>
+			<view class="coupon_list">
+				<scroll-view  scroll-y="true" class="scroll-y">
+					<view class="list_box" v-for="(item,index) in coupon_data" :key='item.id'>
+						<view class="box_left">
+							<view class="left_top">
+								<view class="top_one">
+									￥{{item.number}}
+								</view>
+								<view class="top_two">
+									<view class="">
+										{{item.cname}}
+									</view>
+									<view class="">
+										满减 满{{item.max}}减{{item.number}}
+									</view>
+								</view>
+							</view>
+							<view class="left_bottom">
+								有效期：{{service.Test(item.start_time)}}至{{service.Test(item.end_time)}}
+							</view>
+						</view>
+						<view class="box_right" :class="{receive:!item.coupon_id}" @tap="getCoupon(item.cid,item.coupon_id,index)">
+							{{item.coupon_id>0? '已领取' : '立即领取'}}
+						</view>
+					</view>
+				</scroll-view>
+			</view>
+		</view>
+		
+		<view class="video_bottom">
+			<view class="bot_left">
+				￥{{video_data.v_price}}
+			</view>
+			<view class="bot_right">
+				<view class="bot_col" @tap="collect()" >
+					<image v-show="collects == 0" src="../../static/image/com_page/collect.png" mode="widthFix"></image>
+					<image v-show="collects == 1" src="../../static/image/com_page/collect_HL.png" mode="widthFix"></image>
+					<view class="">
+						收藏
+					</view>
 				</view>
-				<view class="ex_two">
-					<image src="/static/image/com_page/stars.png" mode="widthFix" v-for="(item,index) in video_data.stars_num" :key='index'></image>
-					<text>{{video_data.evaluate}}</text>
-					<text>{{video_data.view}}次观看</text>
-				</view>
-				<view class="ex_three">
-					￥{{video_data.v_price}}
-				</view>
-				<view class="ex_four">
-					领取积分
+				<view class="bot_buy">
+					立即购买
 				</view>
 			</view>
 		</view>
@@ -56,27 +208,139 @@
 </template>
 
 <script>
+	import collect_img from '../../static/image/com_page/collect_HL.png'
+	import integral_img from '../../static/image/com_page/integral.png'
 	export default{
 		data() {
 			return {
 				video_data:'',
-				test_show:0
+				test_show:0,
+				catalog_data:'',
+				play_url:'',
+				indexs:0,
+				show:false,
+				collects:'',
+				tips_test:'',
+				tips_img:'',
+				coupon_data:'',
+				coupon_show:false,
+				comments:''
+			}
+		},
+		methods:{
+			chiose_video(index){ //选择目录播放
+				this.indexs = index
+				this.play_url = this.service.analysis_url(this.catalog_data[index].video_url)
+			},
+			play_end(){ //播放结束时
+				this.indexs ++
+				this.play_url = this.service.analysis_url(this.catalog_data[this.indexs].video_url)
+			},
+			collect(){ //视频收藏
+				this.service.entire(this,'post',this.APIconfig.api_root.com_page.v_collect,{ 
+					video_id:this.id,
+					userid:this.$store.state.user.id,
+					mobile:this.$store.state.user.mobile,
+					c_type:this.collects == 1? 0 : 1
+				},function(self,res){
+					self.tips_test = res.msg
+					self.tips_img = collect_img
+					self.show = true
+					setTimeout(function() {
+						self.show = false
+					}, 1500);
+					if(res.code == 0){
+						self.collects == 1? self.collects = 0 : self.collects = 1
+					}
+				})
+			},
+			play_integral(){ //领取积分
+				this.service.entire(this,'post',this.APIconfig.api_root.com_page.v_integral,{
+					video_id:this.id,
+					userid:this.$store.state.user.id,
+					mobile:this.$store.state.user.mobile,
+					section_id:1
+				},function(self,res){
+					self.tips_test = res.msg
+					self.tips_img = integral_img
+					self.show = true
+					setTimeout(function() {
+						self.show = false
+					}, 1500);
+				})
+			},
+			getCoupon(id,cid,index){//领取优惠券
+				console.log(id,cid)
+				if(!cid){
+					this.service.entire(this,'post',this.APIconfig.api_root.com_page.v_getCoupon,{ //领取优惠券
+						userid:this.$store.state.user.id,
+						coupon_id:id
+					},function(self,res){
+						uni.showToast({
+							icon:'none',
+							title:res.msg
+						})
+						if(res.code == 0){
+							self.coupon_data[index].coupon_id = id
+							
+						}
+					})
+				}
 			}
 		},
 		onLoad(e) {
-			this.service.entire(this,'post',this.APIconfig.api_root.com_page.VideoDetail,{
+			this.id = e.id
+			this.service.entire(this,'post',this.APIconfig.api_root.com_page.VideoDetail,{ //视频详情
 				video_id:e.id,
 				userid:this.$store.state.user.id,
 				mobile:this.$store.state.user.mobile,
 			},function(self,res){
+				self.play_url = self.service.analysis_url(res.data.video.v_url)
 				self.video_data = res.data.video
-				self.video_data.stars_num = new Array(Number(self.video_data.evaluate)) 
+				self.collects = res.data.video.collect
+				self.video_data.stars_num = new Array(Number(self.video_data.evaluate))
+			})
+			
+			this.service.entire(this,'post',this.APIconfig.api_root.com_page.catalogue,{ //视频目录
+				video_id:e.id,
+			},function(self,res){
+				self.catalog_data = res.data.video_list
+			})
+			
+			this.service.entire(this,'post',this.APIconfig.api_root.com_page.v_coupon,{ //优惠券列表
+				userid:this.$store.state.user.id,
+				mobile:this.$store.state.user.mobile,
+			},function(self,res){
+				self.coupon_data = res.data.coupon
+			})
+			
+			this.service.entire(this,'post',this.APIconfig.api_root.com_page.v_evaluate,{ //用户评论
+				userid:this.$store.state.user.id,
+				video_id:e.id,
+				page:1,
+				limit:2
+			},function(self,res){
+				self.comments = res.data.data
+				for (let s of self.comments) {
+					s.rating_num = new Array(Number(s.grade))
+				}
+			})
+			this.service.entire(this,'post',this.APIconfig.api_root.com_page.v_recommend,{ //用户评论
+				userid:this.$store.state.user.id,
+				video_id:e.id,
+				page:1,
+				limit:2
+			},function(self,res){
+				
 			})
 		}
 	}
 </script>
 
 <style lang="less">
+	.content{
+		padding-bottom: 120rpx;
+	}
 	.content_top{
 		position: fixed;
 		z-index: 999;
@@ -108,47 +372,55 @@
 			padding-right: 10rpx;
 		}
 	}
+	.video_tab{
+		background: #F6F6F6;
+		text-align: center;
+		display: flex;
+		justify-content: space-between;
+		color: #999;
+		.tab_list{
+			width: 25%;
+			height: 100rpx;
+			line-height: 100rpx;
+			font-size: 28rpx;
+			border-bottom: 2rpx solid #F6F6F6;
+		}
+	}
 	.video_top {
 		font-size: 28rpx;
-		.video_tab{
-			background: #F6F6F6;
+		
+	}
+	.test_show{
+		border-bottom-color: #D80000 !important;
+		color: #000000;
+	}
+	.video_explain {
+		position: relative;
+		padding: 30rpx 22rpx;
+		border-bottom: 20rpx solid #F6F6F6;
+		
+		.ex_two{
+			margin: 15rpx 0;
+		}
+		.ex_three{
+			color: #D80000;
+			font-size: 32rpx;
+		}
+		.ex_four{
+			position: absolute;
+			right: 0;
+			bottom: 30rpx;
+			background: linear-gradient(135deg,rgba(247,76,74,1),rgba(245,110,106,1));
+			color: #fff;
+			font-size: 24rpx;
 			text-align: center;
-			display: flex;
-			justify-content: space-between;
-			color: #999;
-			.tab_list{
-				width: 25%;
-				height: 100rpx;
-				line-height: 100rpx;
-				font-size: 28rpx;
-				border-bottom: 2rpx solid #F6F6F6;
-			}
+			height: 50rpx;
+			line-height: 50rpx;
+			width: 143rpx;
+			border-top-left-radius: 50rpx;
+			border-bottom-left-radius: 50rpx;
 		}
-		.video_explain {
-			position: relative;
-			padding: 30rpx 22rpx;
-			.ex_two{
-				margin: 15rpx 0;
-			}
-			.ex_three{
-				color: #D80000;
-				font-size: 32rpx;
-			}
-			.ex_four{
-				position: absolute;
-				right: 0;
-				bottom: 30rpx;
-				background: linear-gradient(135deg,rgba(247,76,74,1),rgba(245,110,106,1));
-				color: #fff;
-				font-size: 24rpx;
-				text-align: center;
-				height: 50rpx;
-				line-height: 50rpx;
-				width: 143rpx;
-				border-top-left-radius: 50rpx;
-				border-bottom-left-radius: 50rpx;
-			}
-		}
+		
 		image{
 			height: 25rpx;
 			width: 25rpx;
@@ -159,12 +431,307 @@
 			color: #999999;
 		}
 	}
-	.test_show{
-		border-bottom-color: #D80000 !important;
-		color: #000000;
-	}
 	
+	.video_mid{
+		font-size: 24rpx;
+		.discount{
+			height: 90rpx;
+			margin: 0 20rpx;
+			border-bottom: 2rpx solid #F4F4F4;
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			.dis_one{
+				image{
+					margin-right: 20rpx;
+					height: 32rpx;
+					width: 32rpx;
+				}
+			}
+			.dis_two{
+				image{
+					height: 22rpx;
+					width: 22rpx;
+					margin-left: 16rpx;
+				}
+			}
+			view{
+				display: flex;
+				align-items: center;
+			}
+		}
+		.mid_test{
+			padding: 30rpx 20rpx;
+		}
+		.mid_tutor{
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			padding: 0rpx 20rpx 35rpx 20rpx;
+			.tu_one{
+				display: flex;
+				align-items: center;
+				image{
+					height: 88rpx;
+					width: 88rpx;
+					margin-right: 27rpx;
+					border-radius: 50%;
+				}
+				.tu_name{
+					view:nth-of-type(1){
+						font-size: 28rpx;
+					}
+					view:nth-of-type(2){
+						color: #999999;
+					}
+				}
+			}
+			.tu_two{
+				image{
+					height: 22rpx;
+					width: 22rpx;
+				}
+			}
+		}
+	}
+	.cou_details{
+		font-size: 28rpx;
+		height: 96rpx;
+		line-height: 96rpx;
+		background: #F6F6F6;
+		padding: 0 20rpx;
+	}
+	.video_bottom{
+		width: 100%;
+		background: #fff;
+		position: fixed;
+		left: 0;
+		bottom: 0;
+		box-sizing: border-box;
+		height: 120rpx;
+		padding: 0 21rpx;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		.bot_left{
+			color: #D80000;
+			font-size: 32rpx;
+		}
+		.bot_right{
+			display: flex;
+			align-items: center;
+			.bot_col{
+				text-align: center;	
+				font-size: 24rpx;
+				color: #999999;
+				margin-right: 33rpx;
+			}
+			.bot_buy{
+				background: #D80000;
+				text-align: center;
+				border-radius: 40rpx;
+				color: #fff;
+				font-size: 28rpx;
+				height: 80rpx;
+				line-height: 80rpx;
+				width: 343rpx;
+			}
+		}
+		image{
+			height: 44rpx;
+			width: 44rpx;
+		}
+	}
 	video{
 		width: 100%;
+	}
+	.collect{
+		padding: 20rpx 20rpx;
+		background: rgba(0,0,0,.7);
+		font-size: 24rpx;
+		color: #fff;
+		text-align: center;
+		position: fixed;
+		left: 50%;
+		top: 50%;
+		transform: translate(-50%,-50%);
+		image{
+			height: 45rpx;
+			width: 45rpx;
+		}
+		view{
+		}
+	}
+	.none{
+		display: none;
+	}
+	.show{
+		display: block;
+	}
+	.catalog_box{
+		padding: 30rpx 20rpx;
+		font-size: 28rpx;
+		.catalog{
+			margin: 30rpx 0;
+		}
+		image{
+			height: 27rpx;
+			width: 39rpx;
+			margin-right: 35rpx;
+		}
+	}
+	.coupon_box{
+		position: fixed;
+		width: 100%;
+		box-sizing: border-box;
+		padding: 20rpx;
+		bottom: 0;
+		left: 0;
+		min-height: 600rpx;
+		z-index: 998;
+		background: #fff;
+		transform: translateY(100%);
+		transition: .3s;
+		.box_top{
+			display: flex;
+			justify-content: space-between;
+			font-size: 28rpx;
+			font-weight: 600;
+			&:before {
+			    content: " ";
+			    width: 40rpx;
+			}
+			image{
+				height: 40rpx;
+				width: 40rpx;
+			}
+		}
+		.box_mid{
+			font-size: 24rpx;
+			color: #999999;
+		}
+		
+		.coupon_list{
+			font-size: 24rpx;
+			color: #fff;
+			.scroll-y{
+				height: 560rpx;
+				.list_box{
+					background: url('../../static/image/com_page/coupon.png') no-repeat;
+					background-size: 100% 100%;
+					position: relative;
+					padding: 33rpx 22rpx;
+					margin-top: 20rpx;
+					.box_left{
+						.left_top{
+							display: flex;
+							align-items: center;
+							.top_one{
+								font-size: 48rpx;
+								color: #D80000;
+								margin-right: 38rpx;
+							}
+						}
+						.left_bottom{
+							margin-top: 24rpx;
+						}
+					}
+					.box_right{
+						position: absolute;
+						width: 170rpx;
+						height: 65rpx;
+						border-radius: 65rpx;
+						line-height: 65rpx;
+						text-align: center;
+						top: 50%;
+						transform: translateY(-50%);
+						right: 30rpx;
+					}
+					.receive{
+						background: #D80000;
+					}
+				}
+			}
+		}
+		
+	}
+	.coupon_none{
+		transform: translateY(100%) !important;
+	}
+	.coupon_show{
+		transform: translateY(0) !important;
+	}
+	.user_top {
+		display: flex;
+		justify-content: space-between;
+		font-weight: bold;
+		font-size: 28rpx;
+		padding: 20rpx;
+		view{
+			&:nth-of-type(2){
+				color: #EF7C38;
+			}
+		}
+		
+	}
+	.user_comment {
+		background: #fff;
+		border-bottom: 2rpx solid #EEEEEE;
+		padding: 20rpx 30rpx;
+		.user {
+			display: flex;
+			align-items: center;
+			margin: 20rpx 0;
+			.user_img {
+				width: 90rpx;
+				height: 90rpx;
+				border-radius: 50%;
+			}
+			.user_test {
+				margin: 0 20rpx;
+				font-size: 32rpx;
+				view {
+					font-weight: bold;
+					color: #333333;
+					font-size: 28rpx;
+				}
+				text {
+					font-size: 24rpx;
+					color: #999999;
+					
+				}
+			}
+			.user_star {
+				align-self: flex-start;
+				font-size: 24rpx;
+				color: #333333;
+				image {
+					height: 26rpx;
+					width: 26rpx;
+				}
+			}
+		}
+		.com_content {
+			.content_test view {
+				font-size: 24rpx;
+				color: #666666;
+				display: -webkit-box;
+				-webkit-box-orient: vertical;
+				-webkit-line-clamp: 2;
+				overflow: hidden;
+			}
+			.content_img image {
+				height: 120rpx;
+				width: 120rpx;
+				margin-right: 16rpx;
+				margin-top: 30rpx;
+			}
+			.more {
+				font-size: 32rpx;
+				color: #666666;
+				margin: 20rpx 0;
+			}
+			
+		}
 	}
 </style>

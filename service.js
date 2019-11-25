@@ -41,8 +41,42 @@ const jump = function(url) {
 	})
 }
 
+const analysis_url = function(video_url){
+	
+	video_url = video_url.replace(/luU3/gi, 'http')
+	video_url = video_url.replace(/IKXG/gi, ':')
+	video_url = video_url.replace(/SuJl/gi, '?')
+	video_url = video_url.replace(/IXSh/gi, '&')
+	video_url = video_url.replace(/IKsg/gi, '/')
+	video_url = video_url.replace(/'oXgs/gi, '=')
+	video_url = video_url.replace(/oXgs/gi, '=')
+	video_url = video_url.replace(/XISKH5dImd/gi, 'bkt.clouddn.com')
+	video_url = video_url.replace(/JSIk5/gi, '.')
+	video_url = video_url.replace(/jKd5/gi, '-')
+	return video_url
+}
+
+const Test = function(time) { //时间戳转换
+	let t = time
+	let NewDtime = new Date(parseInt(t));
+	return formatDate(NewDtime);
+}
+function formatDate(dt) { 
+	let year = dt.getFullYear();
+	let month = dt.getMonth() + 1;
+	let date = dt.getDate();
+	if (month < 10) {
+		month = "0" + month;
+	}
+	if (date < 10) {
+		date = "0" + date;
+	}
+	return year + "-" + month + "-" + date;
+}
 export default{
 	entire,
 	returns,
-	jump
+	jump,
+	analysis_url,
+	Test
 }

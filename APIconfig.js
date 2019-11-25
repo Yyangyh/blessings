@@ -19,6 +19,13 @@ const api_root = {
 	com_page:{
 		videoList: api+'/api/videohome/videoList',//幸福时光视频列表
 		VideoDetail: api+'/api/videohome/VideoDetail',//视频详情
+		catalogue: api+'/api/videohome/catalogue',//视频目录
+		v_collect: api+'/api/videohome/collect',//视频收藏
+		v_integral: api+'/api/videohome/integral',//领取积分
+		v_coupon: api+'/api/videohome/coupon',//优惠券列表
+		v_getCoupon: api+'/api/videohome/getCoupon',//领取优惠券
+		v_evaluate: api+'/api/videohome/evaluate',//视频评价展示列表
+		v_recommend: api+'/api/videohome/recommend',//视频推荐
 	}
 }
 
