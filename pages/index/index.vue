@@ -15,13 +15,47 @@
 		</view>
 		
 		<view class="index_tab">
+			<view class="tab_list">
+				<image src='../../static/image/index/index_tab1.png'></image>
+				<view class="">课程视频</view>
+			</view>
+			<view class="tab_list">
+				<image src='../../static/image/index/index_tab2.png'></image>
+				<view class="">音频</view>
+			</view>
+			<view class="tab_list">
+				<image src='../../static/image/index/index_tab3.png'></image>
+				<view class="">文章</view>
+			</view>
+			<view class="tab_list">
+				<image src='../../static/image/index/index_tab4.png'></image>
+				<view class="">分类</view>
+			</view>
+			<view class="tab_list">
+				<image src='../../static/image/index/index_tab5.png'></image>
+				<view class="">学习记录</view>
+			</view>
+			<view class="tab_list">
+				<image src='../../static/image/index/index_tab6.png'></image>
+				<view class="">商城</view>
+			</view>
+			<view class="tab_list">
+				<image src='../../static/image/index/index_tab7.png'></image>
+				<view class="">幸福测评</view>
+			</view>
+			<view class="tab_list"  @tap="toactivity">
+				<image src='../../static/image/index/index_tab8.png'></image>
+				<view class="">活动发布</view>
+			</view>
+		</view>
+		<!-- <view class="index_tab">
 			<view class="tab_list" v-for="(item,index) in class_top" :key='item.id' @tap="jump('../com_page/index_class?id='+item.id)">
 				<image :src="APIconfig.api_img + item.cl_image" mode="widthFix"></image>
 				<view class="">
 					{{item.cl_name}}
 				</view>
 			</view>
-		</view>
+		</view> -->
 		
 		<block v-for="(item,index) in class_list" :key='item.id'>
 			<view class="video_box" v-if="index == 0">
@@ -132,11 +166,16 @@
 			})
 		},
 		methods: {
-			jump(url){
+			// jump(url){
+			// 	uni.navigateTo({
+			// 		url:url
+			// 	})
+			// }
+			toactivity(){
 				uni.navigateTo({
-					url:url
+					url:'/pages/activity/activity',
 				})
-			}
+			},
 		}
 	}
 </script>
