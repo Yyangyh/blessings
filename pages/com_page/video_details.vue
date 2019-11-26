@@ -16,7 +16,7 @@
 		</view>
 		
 		<view class="">
-			 <video id="myVideo" :src="play_url"  @ended='play_end()'  enable-danmu  controls></video>
+			 <video id="myVideo" :src="play_url"  @play='play_start()' @ended='play_end()'  enable-danmu  controls></video>
 		</view>
 		<view class="video_tab">
 			<view class="tab_list" :class="{test_show:test_show === 0}" @tap="test_show = 0">
@@ -134,8 +134,37 @@
 				</view>
 			</view>
 		</view>
+		
 		<view v-show="test_show == 3">
-			
+			<view class="user_top">
+				<view class="">
+					相关课程推荐
+				</view>
+			</view>
+			<view class="vider_content">
+				<view class="content_list" v-for="(item,index) in recommend_video" :key='item.id'  @tap="service.jump('./video_details?id='+item.id)">
+					<view class="list_img_box">
+						<image :src="item.v_pic" mode="aspectFill"></image>
+					</view>
+					<view class="list_right">
+						<view class="list_one">
+							{{item.long_title}}
+						</view>
+						<view class="list_two">
+							{{item.view}}次观看
+						</view>
+						<view class="list_three">
+							<view class="">
+								{{item.is_free == 0? '￥'+item.v_price : '免费'}}
+								
+							</view>
+							<view class="" v-if="item.is_free_vip == 1">
+								VIP免费
+							</view>
+						</view>
+					</view>
+				</view>
+			</view>
 		</view>
 		
 		<view class="collect" :class="show===false ? 'none' : show===true ? 'show' : ''">
@@ -224,10 +253,24 @@
 				tips_img:'',
 				coupon_data:'',
 				coupon_show:false,
-				comments:''
+				comments:'',
+				recommend_video:'',
+				play_store:false
 			}
 		},
 		methods:{
+			play_start(){ //添加视频阅读量 
+				if(this.play_store == false){
+					this.play_store = true
+					this.service.entire(this,'post',this.APIconfig.api_root.com_page.v_playCount,{
+						video_id:this.id,
+						userid:this.$store.state.user.id,
+					},function(self,res){
+						
+					})
+				}
+				
+			},
 			chiose_video(index){ //选择目录播放
 				this.indexs = index
 				this.play_url = this.service.analysis_url(this.catalog_data[index].video_url)
@@ -325,13 +368,13 @@
 					s.rating_num = new Array(Number(s.grade))
 				}
 			})
-			this.service.entire(this,'post',this.APIconfig.api_root.com_page.v_recommend,{ //用户评论
+			this.service.entire(this,'post',this.APIconfig.api_root.com_page.v_recommend,{ //推荐视频
 				userid:this.$store.state.user.id,
 				video_id:e.id,
 				page:1,
 				limit:2
 			},function(self,res){
-				
+				self.recommend_video = res.data.video_list
 			})
 		}
 	}
@@ -734,4 +777,48 @@
 			
 		}
 	}
+	.vider_content{
+		padding: 0 20rpx;
+		font-size: 24rpx;
+		image{
+			width: 268rpx;
+			height: 179rpx;
+			margin-right: 29rpx;
+		}
+		.content_list{
+			display: flex;
+			margin-bottom: 30rpx;
+		}
+		.content_list .list_right{
+			display: flex;
+			flex-direction: column;
+			justify-content: space-between;
+			padding-bottom: 30rpx;
+			.list_two {
+			    color: #999999;
+			    margin: 5px 0;
+			}
+			.list_three{
+				display: flex;
+				justify-content: space-between;
+				color: #D80000;
+				font-size: 28rpx;
+				view:nth-of-type(2){
+					background: #000000;
+					font-size: 24rpx;
+					color: #FFFFFF;
+					height: 20rpx;
+					padding: 10rpx;
+					line-height: 20rpx;
+					border-radius: 20rpx;
+				}
+			}
+		}
+	}
+	
+	
+	
+	
+	
+	
 </style>
