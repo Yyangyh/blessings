@@ -5,14 +5,13 @@
 		</view>
 		<view class="content_top">
 			<view class="top_returns" @tap="service.returns()">
-				<image src="../../static/image/com_page/returns.png" mode="widthFix"></image>
+				<image src="/static/image/com_page/returns.png" mode="widthFix"></image>
 			</view>
 			<view class="top_search">
-				<input type="text" value="" placeholder="请输入关键词搜索" />
+				{{title}}
 			</view>
-			<view class="top_img" @click="jump('../com_page/notice')">
-				<image src="/static/image/index/news.png" mode="widthFix"></image>
-				<view></view>
+			<view class="top_img" @tap="service.jump('../com_page/notice')">
+				<image src="/static/image/com_page/search.png" mode="widthFix"></image>
 			</view>
 		</view>
 		
@@ -23,10 +22,8 @@
 				</view>
 				<image class="all_img" :class="show===false ? 'tran_none' : show===true ? 'tran_show' : ''" src="../../static/image/index/down.png" mode="widthFix"></image>
 			</view>
-			<view class="">
-				免费音频
-			</view>
-			<view class="">
+			
+			<view class="list_all">
 				收听多
 			</view>
 		</view>
@@ -39,7 +36,24 @@
 				全部
 			</view>
 			<view class="down_list" v-for="(item,index) in top_class" :key="item.id">
-				{{item.cl_name}}
+				{{item.name}}
+			</view>
+		</view>
+		
+		<view class="shopp_tab">
+			<view class="tab_list" v-for="(item,index) in shopp_list" :key='item.id'>
+				<view class="">
+					<image :src="item" mode="widthFix"></image>
+				</view>
+				<view class="">
+					
+				</view>
+				<view class="">
+					
+				</view>
+				<view class="">
+					
+				</view>
 			</view>
 		</view>
 		
@@ -53,21 +67,29 @@
 				data:'',
 				show:false,
 				top_class:'',
-				video_list:''
+				title:'',
+				shopp_list:''
 			}
 		},
 		onLoad(e) {
-			this.service.entire(this,'get',this.APIconfig.api_root.com_page.videoList,{
-				type:e.type
+			this.title = e.title
+			this.service.entire(this,'post',this.APIconfig.api_root.subhome.s_index,{ //商品列表
+				category_id:e.id,
+				page:1
 			},function(self,res){
-				self.top_class = res.data.top_class
-				self.video_list = res.data.video_list
+				self.shopp_list = res.data.data
+			})
+			this.service.entire(this,'post',this.APIconfig.api_root.subhome.s_category,{ //分类
+				pid:e.id,
+				page:1
+			},function(self,res){
+				self.top_class = res.data
 			})
 		}
 	}
 </script>
 
-<style>
+<style lang="scss">
 	.content {
 		padding-top: calc(205rpx + var(--status-bar-height));
 	}
@@ -92,27 +114,13 @@
 	.content_top .top_search{
 		flex-grow: 2;
 		height: 65rpx;
-		border-radius: 65rpx;
-		display: flex;
-		align-items: center;
-		padding-left: 40rpx;
-		background: #EEEEEE;
+		line-height: 65rpx;
+		text-align: center;
+		font-weight:500;
+		font-size: 32rpx;
 	}
-	.content_top view input{
-		font-size: 24rpx;
-	}
-	.content_top .top_img{
-		position: relative;
-	}
-	.content_top .top_img view{
-		position: absolute;
-		right: 0;
-		top: 0;
-		height: 10rpx;
-		width: 10rpx;
-		border-radius: 50%;
-		background: #D80000;
-	}
+	
+	
 	.content_top image{
 		height: 50rpx;
 		width: 50rpx;
@@ -128,7 +136,7 @@
 		background: #F6F6F7;
 		color: #666666;
 		font-size: 28rpx;
-		height: 100rpx;
+		
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
@@ -137,11 +145,16 @@
 	.tab_list view{
 		height: 100rpx;
 		line-height: 100rpx;
+		
 	}
 	.tab_list .list_all{
 		display: flex;
 		align-items: center;
-		color: #D80000;
+		justify-content: center;
+		width: 50%;
+		view{
+			color: #D80000;
+		}
 	}
 	.all_img{
 		transition: .3s;
@@ -162,8 +175,8 @@
 		top: calc(var(--status-bar-height) + 205rpx);
 		left: 0;
 		width: 100%;
-		z-index: 998;
 		box-sizing: border-box;
+		z-index: 998;
 		display: flex;
 		flex-wrap: wrap;
 		justify-content: space-between;
@@ -195,5 +208,4 @@
 	.down_box .down_list:nth-of-type(1){
 		color: #D80000;
 	}
-	
 </style>

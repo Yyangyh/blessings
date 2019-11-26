@@ -84,6 +84,16 @@
 			}
 		},
 		{
+			"path": "pages/subhome/home_com",
+			"style": {
+				"navigationBarTitleText": "产品列表",
+				"app-plus":{
+					"titleNView":false
+				}
+			}
+		},
+		
+		{
 			"path": "pages/login/forget",
 			"style": {
 				"navigationBarTitleText": "忘记密码"

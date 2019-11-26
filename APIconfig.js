@@ -26,6 +26,11 @@ const api_root = {
 		v_getCoupon: api+'/api/videohome/getCoupon',//领取优惠券
 		v_evaluate: api+'/api/videohome/evaluate',//视频评价展示列表
 		v_recommend: api+'/api/videohome/recommend',//视频推荐
+		v_playCount: api+'/api/videohome/playCount',//添加阅读量 用户播放后发起
+	},
+	subhome:{
+		s_index: api+'/api/search/index',//商品列表
+		s_category: api+'/api/good/category',//分类列表
 	}
 }
 
