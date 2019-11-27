@@ -123,8 +123,27 @@
 		{
 			"path": "pages/activity/activity",
 			"style": {
-				"navigationBarBackgroundColor": "#FFFFFF",//背景颜色
-				"navigationBarTitleText": "活动"
+				"navigationBarTitleText": "活动",
+				"app-plus":{
+					"titleNView":false
+				}
+			}
+		},
+		{
+			"path": "pages/activity/particulars",
+			"style": {
+				"navigationBarTitleText": "活动详情",
+				"app-plus":{
+					"titleNView":false
+				}
+			}
+		},{
+			"path": "pages/activity/apply",
+			"style": {
+				"navigationBarTitleText": "立即报名",
+				"app-plus":{
+					"titleNView":false
+				}
 			}
 		}
 	],
