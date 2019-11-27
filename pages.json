@@ -84,6 +84,15 @@
 			}
 		},
 		{
+			"path": "pages/com_page/shopp_cart",
+			"style": {
+				"navigationBarTitleText": "购物车",
+				"app-plus":{
+					"titleNView":false
+				}
+			}
+		},
+		{
 			"path": "pages/subhome/home_com",
 			"style": {
 				"navigationBarTitleText": "产品列表",

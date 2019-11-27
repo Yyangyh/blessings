@@ -41,18 +41,18 @@
 		</view>
 		
 		<view class="shopp_tab">
-			<view class="tab_list" v-for="(item,index) in shopp_list" :key='item.id'>
-				<view class="">
-					<image :src="item" mode="widthFix"></image>
+			<view class="shopp_list" v-for="(item,index) in shopp_list" :key='item.id'>
+				<view class="list_one">
+					<image :src="item.images" mode="widthFix"></image>
 				</view>
-				<view class="">
-					
+				<view class="list_two">
+					{{item.title}}
 				</view>
-				<view class="">
-					
+				<view class="list_three">
+					已售{{item.sales_count}}
 				</view>
-				<view class="">
-					
+				<view class="list_four">
+					￥{{item.price}}
 				</view>
 			</view>
 		</view>
@@ -105,27 +105,26 @@
 		align-items: center;
 		height: 105rpx;
 		padding: 0 20rpx;
-	}
-	.content_top .top_returns image{
-		height: 31rpx;
-		width: 31rpx;
-		padding-right: 10rpx;
-	}
-	.content_top .top_search{
-		flex-grow: 2;
-		height: 65rpx;
-		line-height: 65rpx;
-		text-align: center;
-		font-weight:500;
-		font-size: 32rpx;
+		image{
+			height: 50rpx;
+			width: 50rpx;
+			margin-left: 10rpx;
+		}
+		.top_returns image{
+			height: 31rpx;
+			width: 31rpx;
+			padding-right: 10rpx;
+		}
+		.top_search{
+			flex-grow: 2;
+			height: 65rpx;
+			line-height: 65rpx;
+			text-align: center;
+			font-weight:500;
+			font-size: 32rpx;
+		}
 	}
 	
-	
-	.content_top image{
-		height: 50rpx;
-		width: 50rpx;
-		margin-left: 10rpx;
-	}
 	.tab_list{
 		position: fixed;
 		z-index: 999;
@@ -136,24 +135,22 @@
 		background: #F6F6F7;
 		color: #666666;
 		font-size: 28rpx;
-		
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
-		padding: 0 50rpx;
-	}
-	.tab_list view{
-		height: 100rpx;
-		line-height: 100rpx;
-		
-	}
-	.tab_list .list_all{
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		width: 50%;
 		view{
-			color: #D80000;
+			height: 100rpx;
+			line-height: 100rpx;
+			
+		}
+		.list_all{
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			width: 50%;
+			view{
+				color: #D80000;
+			}
 		}
 	}
 	.all_img{
@@ -192,20 +189,54 @@
 	.mask_show{
 		transform: translateY(0%);
 	}
-	.down_box .down_list{
-		width: 180rpx;
-		height: 60rpx;
-		line-height: 60rpx;
-		border-radius: 60rpx;
-		background: #F1F1F1;
-		text-align: center;
-		margin-bottom: 30rpx;
+	.down_box {
+		&:after {
+		    content: ""; 
+		    width:180rpx;
+		}
+		.down_list{
+			width: 180rpx;
+			height: 60rpx;
+			line-height: 60rpx;
+			border-radius: 60rpx;
+			background: #F1F1F1;
+			text-align: center;
+			margin-bottom: 30rpx;
+			&:nth-of-type(1){
+				color: #D80000;
+			}
+		}
 	}
-	.down_box:after { 
-	    content: ""; 
-	    width:180rpx;
-	} 
-	.down_box .down_list:nth-of-type(1){
-		color: #D80000;
+	.shopp_tab{
+		display: flex;
+		padding: 10rpx;
+		.shopp_list{
+			width: 50%;
+			font-size: 24rpx;
+			padding: 0 10rpx;
+			image{
+				width: 100%;
+			}
+			view{
+				padding: 0 10rpx;
+			}
+			.list_one{
+				padding: 0;
+			}
+			.list_two{
+				display: -webkit-box;
+				-webkit-box-orient: vertical;
+				-webkit-line-clamp: 2;
+				overflow: hidden;
+			}
+			.list_three{
+				color: #999999;
+				margin: 12rpx 0;
+			}
+			.list_four{
+				color: #D80000;
+				font-size: 28rpx;
+			}
+		}
 	}
 </style>

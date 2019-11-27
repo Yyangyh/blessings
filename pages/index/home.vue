@@ -7,7 +7,7 @@
 			<view class="top_search">
 				<input type="text" value="" placeholder="请输入关键词搜索" />
 			</view>
-			<view class="top_img" @click="jump('../com_page/notice')">
+			<view class="top_img" @click="service.jump('../com_page/shopp_cart')">
 				<image src="/static/image/index/shopp.png" mode="widthFix"></image>
 				<view></view>
 			</view>
