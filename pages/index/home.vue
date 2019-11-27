@@ -58,6 +58,7 @@
 				<view class="name">{{itemo.title}}</view>
 				<view style="color:#D80000;font-size: 30upx">{{itemo.price}}</view>
 			</view> -->
+			
 		</view>
 		<view class="all">
 			<view class="top">

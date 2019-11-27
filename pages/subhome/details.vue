@@ -3,22 +3,23 @@
 		<view class="status_bar">
 			
 		</view>
-		<returns :titles='title'></returns>
+		<view class="top">
+			<image src="../../static/image/com_page/returns.png" @tap="service.returns()" mode="widthFix"></image>
+			<text>产品详情</text>
+			<image src='../../static/image/subhome/share.png'></image>
+		</view>
 		<view class="worp">
-			<image src="../../static/image/subhome/big.png"></image>
-			<view class="name">管理魂丨家庭式管理系统</view>
+			<image :src="goods.images"></image>
+			<view class="name">{{goods.title}}</view>
 			<view class="evaluate">
-				<view class="start">
-					<image src="../../static/image/subhome/start.png"></image>
-					<image src="../../static/image/subhome/start.png"></image>
-					<image src="../../static/image/subhome/start.png"></image>
-					<image src="../../static/image/subhome/start.png"></image>
-					<image src="../../static/image/subhome/start.png"></image>
+				<view class="start"  v-if="isLoad">
+					<image src="../../static/image/subhome/start.png" mode="widthFix" v-for="(item,index) in goods.comments_score" :key='index'></image>
 				</view>
-				<text>5.0</text>
-				<text>已售111件</text>
+				
+				<text>{{goods.comments_score}}</text>
+				<text>已售{{goods.sales_count}}件</text>
 			</view>
-			<view class="price">￥2980.0</view>
+			<view class="price">{{goods.price}}</view>
 		</view>
 		<view class="worp">
 			<view class="line">
@@ -41,53 +42,51 @@
 				<view class="l-right"></view>
 			</view>
 		</view>
-	<!-- 	<view class="worp">
-			<view class="top">
-				<text>评论（100条）</text>
-				<text>全部</text>
-			</view>
-			<view class="comment">
-				<view class="c-left">
-					<image src="../../static/image/subhome/photo.png" mode=""></image>
-					<text>小小纹~</text>
+		<view class="p-t">活动详情</view>
+		<image class="image" src='../../static/image/index/xq.png'></image>
+		<view class="shopping">
+			<view class="to">
+				<view class="cart">
+					<image src="../../static/image/subhome/cart.png" mode=""></image>
+					<view>购物车</view>
 				</view>
-				<view class="c-right">
-					<view class="start">
-						<image src="../../static/image/subhome/start.png"></image>
-						<image src="../../static/image/subhome/start.png"></image>
-						<image src="../../static/image/subhome/start.png"></image>
-						<image src="../../static/image/subhome/start.png"></image>
-						<image src="../../static/image/subhome/start.png"></image>
-					</view>
-					<view>2019-05-01</view>
+				<view class="collect">
+					<image src="../../static/image/subhome/heart%20.png"></image>
+					<view>收藏</view>
 				</view>
 			</view>
-			<text class="type">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ex aliquam?</text>
-		</view> -->
+			<view class="btn">
+				<button type="default">加入购物车</button>
+				<button type="default">立即购买</button>
+			</view>
+		</view>
 	</view>
 </template>
 
 <script>
-	import returns from '../common/returns.vue'
 	export default{
-		components:{
-			returns
-		},
 		data(){
 			return{
 				title:'产品详情',
+				goods:'',
+				content_app:'',
+				isLoad: false,
+				
 			}
 		},
 		methods:{
 			
 		},
 		onLoad(e){
-			console.log(this.$store.state)
-			console.log(e)
 			this.service.entire(this,'post',this.APIconfig.api_root.subhome.s_detail,{
-				goods_id:e.id
+				goods_id:e.id,
+				user_id:this.$store.state.user.id,
+				isLoad:true
 			},function(self,res){
-				console.log(res)
+				console.log(res.data.goods.comments_score)
+				self.goods = res.data.goods
+				self.goods.stars_num = new Array(Number(res.data.goods.comments_score_star))
+				self.isLoad = true
 			})
 		},
 		onShow(){
@@ -101,6 +100,29 @@
 		width: 100%;
 		height: 100vh;
 		background-color: #F6F6F6;
+		.top{
+			position: fixed;
+			width: 100%;
+			box-sizing: border-box;
+			top: var(--status-bar-height);
+			left: 0;
+			display: flex;
+			height: 105rpx;
+			padding: 0 30rpx;
+			font-size: 32rpx;
+			justify-content: space-between;
+			align-items: center;
+			background-color: #FFFFFF;
+			image:first-child{
+				width: 31rpx;
+				height: 31rpx;
+			}
+			image:last-child{
+				width: 50rpx;
+				height: 50rpx;
+			}
+		}
+		
 		.worp{
 			width: 100%;
 			background-color: #FFFFFF;
@@ -234,6 +256,75 @@
 				font-size: 24rpx;
 				color: #333333;
 				margin: 20rpx 30rpx;
+			}
+		}
+		.p-t{
+			font-size: 28rpx;
+		}
+		.image{
+			margin-top: 30rpx;
+			width: 100%;
+			height: 988rpx;
+		}
+		.shopping{
+			width: 100%;
+			background: #FFFFFF;
+			display: flex;
+			justify-content: space-between;
+			position: fixed;
+			bottom: 0;
+			
+			.to{
+				display: flex;
+				margin: 0 30rpx;
+				.cart{
+					margin-right:10rpx ;
+					image{
+						width: 44rpx;
+						height: 44rpx;
+					}
+					view{
+						color:#999999;
+						font-size: 24rpx;
+						margin:-5rpx ;
+					}
+				}
+				.collect{
+					image{
+						width: 44rpx;
+						height: 44rpx;
+					}
+					view{
+						color:#999999;
+						font-size: 24rpx;
+						text-align: center;
+						margin:-5rpx ;
+					}
+				}
+			}
+			.btn{
+				display: flex;
+				margin-right:30rpx ;
+				button:first-child{
+					font-size: 30rpx;
+					color:#FFFFFF;
+					background-color: #EF7C38;
+					text-align: center;
+					width: 263rpx;
+					height: 80rpx;
+					line-height: 80rpx;
+					border-radius: 50rpx 0 0 50rpx;
+				}
+				button:last-child{
+					font-size: 30rpx;
+					color:#FFFFFF;
+					background-color: #D80000;
+					text-align: center;
+					width: 263rpx;
+					height: 80rpx;
+					line-height: 80rpx;
+					border-radius:0 50rpx 50rpx 0;
+				}
 			}
 		}
 	}
