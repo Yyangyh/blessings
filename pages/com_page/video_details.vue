@@ -39,11 +39,13 @@
 					<view class="ex_one">
 						{{video_data.long_title}}
 					</view>
+					
 					<view class="ex_two">
 						<image src="/static/image/com_page/stars.png" mode="widthFix" v-for="(item,index) in video_data.stars_num" :key='index'></image>
 						<text>{{video_data.evaluate}}分</text>
 						<text>{{video_data.view}}次观看</text>
 					</view>
+					
 					<view class="ex_three">
 						￥{{video_data.v_price}}
 					</view>
@@ -118,7 +120,6 @@
 					</view>
 					<view class="user_star">
 						<image v-for="(item,index) in item.rating_num" src="/static/image/com_page/stars.png" mode="widthFix"></image>
-						
 					</view>
 				</view>
 				<view class="com_content">
@@ -341,7 +342,9 @@
 				self.play_url = self.service.analysis_url(res.data.video.v_url)
 				self.video_data = res.data.video
 				self.collects = res.data.video.collect
+				
 				self.video_data.stars_num = new Array(Number(self.video_data.evaluate))
+				
 			})
 			
 			this.service.entire(this,'post',this.APIconfig.api_root.com_page.catalogue,{ //视频目录
