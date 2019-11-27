@@ -31,6 +31,7 @@ const api_root = {
 	subhome:{
 		s_index: api+'/api/search/index',//商品列表
 		s_category: api+'/api/good/category',//分类列表
+		s_detail: api+'/api/good/detail',//获取商品详情
 	}
 }
 

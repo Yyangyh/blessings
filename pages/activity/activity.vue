@@ -57,11 +57,7 @@
 			}
 		},
 		methods:{
-			// toparticulars(){
-			// 	uni.navigateTo({
-			// 		url:'/pages/activity/particulars',
-			// 	})
-			// },
+			
 		}
 	}
 </script>

@@ -136,6 +136,14 @@
 					"titleNView":false
 				}
 			}
+		},{
+			"path": "pages/subhome/details",
+			"style": {
+				"navigationBarTitleText": "产品详情",
+				"app-plus":{
+					"titleNView":false
+				}
+			}
 		}
 	],
 	"globalStyle": {
