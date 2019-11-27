@@ -104,8 +104,8 @@
 					}
 					if(all != '')this.allPrice = all.reduce((n,m) => n+m)
 				}
-				this.service.entire(this,'post',this.service.api_root.threeLayers.Stock,{
-					token:uni.getStorageSync('token'),
+				this.service.entire(this,'post',this.APIconfig.api_root.com_page.c_Stock,{
+					user_id:this.$store.state.user.id,
 					id:this.data[index].id,
 					goods_id:this.data[index].goods_id,
 					stock:this.data[index].stock
@@ -157,8 +157,8 @@
 						all.push(s.id)
 					}
 				}
-				this.service.entire(this,'get',this.service.api_root.threeLayers.Delete,{
-					token:uni.getStorageSync('token'),
+				this.service.entire(this,'get',this.APIconfig.api_root.com_page.c_Delete,{
+					user_id:this.$store.state.user.id,
 					id:all.join(',')
 				},function(self,res){
 					console.log(res)
@@ -203,13 +203,16 @@
 			
 		},
 		onReady() {  //获取购物车列表
-			this.service.entire(this,'post',this.service.api_root.threeLayers.Index,{token:uni.getStorageSync('token')},function(self,res){
+			this.service.entire(this,'post',this.APIconfig.api_root.com_page.c_Index,{
+				user_id:this.$store.state.user.id
+			},function(self,res){
 				console.log(res.data)
-				let list = res.data
+				
+				let list = res.data.data
 				for (let s of list) {
 					s.choice = false
 				}
-				self.data = res.data
+				self.data = list
 				
 			})
 		}
@@ -217,7 +220,7 @@
 	
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 	.content{
 		
 	}
@@ -234,14 +237,18 @@
 		padding: 0 30rpx;
 		box-shadow: 0 0 5px #ccc;
 		font-size: 32rpx;
-	}
-	.top image{
-		height: 40rpx;
-		width: 40rpx;
-	}
-	.top text:nth-of-type(1){
-		font-size: 40rpx;
-		font-weight: bold;
+		image{
+			height: 40rpx;
+			width: 40rpx;
+		}
+		text:nth-of-type(1){
+			font-size: 32rpx;
+			font-weight: bold;
+		}
+		text:nth-of-type(2){
+			font-size: 28rpx;
+			color: #666666;
+		}
 	}
 	.show{
 		color: #1D9DFF;
@@ -258,54 +265,54 @@
 		align-items: center;
 		padding: 0 40rpx;
 		margin-bottom: 60rpx;
+		image{
+			width: 220rpx;
+			height: 142rpx;
+			margin: 0 20rpx 0 10rpx;
+		}
+		.tab_right{
+			/* width: 100%; */
+			flex-grow: 2;
+			.test_one{
+				font-size: 28rpx;
+				color: #666666;
+			}
+			.test_two{
+				font-size: 24rpx;
+				color: #333333;
+				margin: 9rpx 0 17rpx 0;
+			}
+			.test_three{
+				display: flex;
+				justify-content: space-between;
+				/* width: 100%; */
+				.test_left{
+					color: #FF431D;
+					font-size: 36rpx;
+				}
+				.test_right{
+					font-size: 30rpx;
+					text{
+						display: inline-block;
+						color: #999999;
+						border: 2rpx solid #999999;
+						border-radius: 8rpx;
+						width: 52rpx;
+						height: 36rpx;
+						line-height: 36rpx;
+						text-align: center;
+					}
+					view{
+						display: inline-block;
+						width: 60rpx;
+						text-align: center;
+					}
+				}
+			}
+		}
 	}
 	
-	.tab_list .tab_right{
-		/* width: 100%; */
-		flex-grow: 2;
-	}
-	.tab_list .tab_right .test_one{
-		font-size: 28rpx;
-		color: #666666;
-	}
-	.tab_list .tab_right .test_two{
-		font-size: 24rpx;
-		color: #333333;
-		margin: 9rpx 0 17rpx 0;
-	}
-	.tab_list .tab_right .test_three{
-		display: flex;
-		justify-content: space-between;
-		/* width: 100%; */
-	}
-	.tab_list .tab_right .test_three .test_left{
-		color: #FF431D;
-		font-size: 36rpx;
-	}
-	.tab_list .tab_right .test_three .test_right{
-		font-size: 30rpx;
-	}
-	.tab_list .tab_right .test_three .test_right text{
-		display: inline-block;
-		color: #999999;
-		border: 2rpx solid #999999;
-		border-radius: 8rpx;
-		width: 52rpx;
-		height: 36rpx;
-		line-height: 36rpx;
-		text-align: center;
-	}
 	
-	.tab_list .tab_right .test_three .test_right view{
-		display: inline-block;
-		width: 60rpx;
-		text-align: center;
-	}
-	.tab_list image{
-		width: 220rpx;
-		height: 142rpx;
-		margin: 0 20rpx 0 10rpx;
-	}
 	.tab_bottom {
 		position: fixed;
 		bottom: 0;
@@ -334,6 +341,9 @@
 	.tab_bottom .total text{
 		color: #FF431D;
 	}
+	.tab_bottom .total view view:nth-of-type(1){
+		font-size: 32rpx;
+	}
 	.tab_bottom .total view view:nth-of-type(2){
 		font-size: 24rpx;
 		text-align: right;
@@ -353,7 +363,7 @@
 		color: #666;
 	}
 	button{
-		background: #1D74FF;
+		background: #D80000;
 		color: #fff;
 		width: 224rpx;
 		height: 90rpx;

@@ -142,7 +142,7 @@
 				</view>
 			</view>
 			<view class="vider_content">
-				<view class="content_list" v-for="(item,index) in recommend_video" :key='item.id'  @tap="service.jump('./video_details?id='+item.id)">
+				<view class="content_list" v-for="(item,index) in recommend_video" :key='item.id'  @tap="$jump('./video_details?id='+item.id)">
 					<view class="list_img_box">
 						<image :src="item.v_pic" mode="aspectFill"></image>
 					</view>
@@ -242,6 +242,7 @@
 	export default{
 		data() {
 			return {
+				id:'',
 				video_data:'',
 				test_show:0,
 				catalog_data:'',

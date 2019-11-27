@@ -6,10 +6,6 @@
 			console.log('App Launch')
 			
 			
-			
-		},
-		onShow: function() {
-			
 			console.log('App Show')
 			
 			// #ifdef H5
@@ -33,6 +29,10 @@
 				    url: 'pages/login/login'
 				});
 			}
+			
+		},
+		onShow: function() {
+			
 		},
 		onHide: function() {
 			console.log('App Hide')

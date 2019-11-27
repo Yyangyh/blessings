@@ -9,6 +9,12 @@ Vue.prototype.APIconfig = APIconfig
 Vue.prototype.service = service
 Vue.prototype.$store = store
 
+Vue.prototype.$jump = function(url){
+	console.log(url)
+	uni.navigateTo({
+		url:url
+	})
+}
 
 Vue.config.productionTip = false
  

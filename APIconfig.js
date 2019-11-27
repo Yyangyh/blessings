@@ -1,5 +1,5 @@
-const api = ''
-// const api ='http://0318.t1.nethhw188.com'
+// const api = ''
+const api ='http://0318.t1.nethhw188.com'
 const api_img ='http://0318.t1.nethhw188.com'
 
 const api_root = {
@@ -27,11 +27,17 @@ const api_root = {
 		v_evaluate: api+'/api/videohome/evaluate',//视频评价展示列表
 		v_recommend: api+'/api/videohome/recommend',//视频推荐
 		v_playCount: api+'/api/videohome/playCount',//添加阅读量 用户播放后发起
+		c_Index: api+'/api/cart/Index',//购物车列表
+		c_Stock: api+'/api/cart/Stock',//购物车数量保存
+		c_Delete: api+'/api/cart/Delete',//购物车删除
 	},
 	subhome:{
 		s_index: api+'/api/search/index',//商品列表
 		s_category: api+'/api/good/category',//分类列表
 		s_detail: api+'/api/good/detail',//获取商品详情
+	},
+	subuser:{
+		s_order: api+'/api/order/index',//商城订单列表
 	}
 }
 

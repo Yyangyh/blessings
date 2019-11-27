@@ -58,7 +58,7 @@
 		<view class="p-t">活动详情</view>
 		<image class="image" src='../../static/image/index/xq.png'></image>
 		<view class="underway">
-			<button type="default" @tap="service.jump('./apply')">立即报名</button>
+			<button type="default" @tap="$jump('./apply')">立即报名</button>
 			<button type="default">邀请好友</button>
 		</view>
 		<view class="finish">

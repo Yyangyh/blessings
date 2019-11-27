@@ -102,11 +102,11 @@
 /******/
 /******/
 /******/ 		// mini-css-extract-plugin CSS loading
-/******/ 		var cssChunks = {"pages/common/index_search":1,"pages/common/returns":1};
+/******/ 		var cssChunks = {"pages/common/index_search":1,"pages/common/returns":1,"components/uni-load-more/uni-load-more":1};
 /******/ 		if(installedCssChunks[chunkId]) promises.push(installedCssChunks[chunkId]);
 /******/ 		else if(installedCssChunks[chunkId] !== 0 && cssChunks[chunkId]) {
 /******/ 			promises.push(installedCssChunks[chunkId] = new Promise(function(resolve, reject) {
-/******/ 				var href = "" + ({"pages/common/index_search":"pages/common/index_search","pages/common/returns":"pages/common/returns"}[chunkId]||chunkId) + ".wxss";
+/******/ 				var href = "" + ({"pages/common/index_search":"pages/common/index_search","pages/common/returns":"pages/common/returns","components/uni-load-more/uni-load-more":"components/uni-load-more/uni-load-more"}[chunkId]||chunkId) + ".wxss";
 /******/ 				var fullhref = __webpack_require__.p + href;
 /******/ 				var existingLinkTags = document.getElementsByTagName("link");
 /******/ 				for(var i = 0; i < existingLinkTags.length; i++) {

@@ -7,7 +7,7 @@
 			<view class="top_search">
 				<input type="text" value="" placeholder="请输入关键词搜索" />
 			</view>
-			<view class="top_img" @click="service.jump('../com_page/shopp_cart')">
+			<view class="top_img" @click="$jump('../com_page/shopp_cart')">
 				<image src="/static/image/index/shopp.png" mode="widthFix"></image>
 				<view></view>
 			</view>
@@ -22,7 +22,7 @@
 			</swiper>
 		</view>
 		<view class="subject">
-			<view class="classify" v-for="(item,index) in category" :key='item.id' @tap="service.jump('../subhome/home_com?id='+item.id+'&title='+item.name)">
+			<view class="classify" v-for="(item,index) in category" :key='item.id' @tap="$jump('../subhome/home_com?id='+item.id+'&title='+item.name)">
 				<image :src="item.icon"></image>
 				<view>{{item.name}}</view>
 			</view>
@@ -65,7 +65,7 @@
 				<view class="top2">全部</view>
 			</view>
 		<view class="allB">
-			<view class="product" v-for="(it,ind) in recommend " :key="it.id" @tap="service.jump('/pages/subhome/details?id='+it.id+'&title='+it.title)">
+			<view class="product" v-for="(it,ind) in recommend " :key="it.id" @tap="$jump('/pages/subhome/details?id='+it.id+'&title='+it.title)">
 				<view class="">
 					<image :src="it.images" mode="widthFix"></image>
 				</view>

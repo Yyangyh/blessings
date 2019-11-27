@@ -10,7 +10,7 @@
 			<view class="top_search">
 				{{title}}
 			</view>
-			<view class="top_img" @tap="service.jump('../com_page/notice')">
+			<view class="top_img" @tap="$jump('../com_page/notice')">
 				<image src="/static/image/com_page/search.png" mode="widthFix"></image>
 			</view>
 		</view>
@@ -44,7 +44,7 @@
 		
 				
 		<view class="vider_content">
-			<view class="content_list" v-for="(item,index) in video_list" :key='item.id' @tap="service.jump('./video_details?id='+item.id)">
+			<view class="content_list" v-for="(item,index) in video_list" :key='item.id' @tap="$jump('./video_details?id='+item.id)">
 				<view class="list_img_box">
 					<image :src="item.v_slide" mode="widthFix"></image>
 				</view>

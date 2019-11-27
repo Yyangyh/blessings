@@ -1,63 +1,218 @@
-
-.content {
-	padding-top: 0;
+@charset "UTF-8";
+/**
+ * 这里是uni-app内置的常用样式变量
+ *
+ * uni-app 官方扩展插件及插件市场（https://ext.dcloud.net.cn）上很多三方插件均使用了这些样式变量
+ * 如果你是插件开发者，建议你使用scss预处理，并在插件代码中直接使用这些变量（无需 import 这个文件），方便用户通过搭积木的方式开发整体风格一致的App
+ *
+ */
+/**
+ * 如果你是App开发者（插件使用者），你可以通过修改这些变量来定制自己的插件主题，实现自定义主题功能
+ *
+ * 如果你的项目同样使用了scss预处理，你也可以直接在你的 scss 代码中使用如下变量，同时无需 import 这个文件
+ */
+/* 颜色变量 */
+/* 行为相关颜色 */
+/* 文字基本颜色 */
+/* 背景颜色 */
+/* 边框颜色 */
+/* 尺寸变量 */
+/* 文字尺寸 */
+/* 图片尺寸 */
+/* Border Radius */
+/* 水平间距 */
+/* 垂直间距 */
+/* 透明度 */
+/* 文章场景相关 */
+.content .swiper_box {
+  padding: 0 20rpx;
 }
-.content_top{
-	position: fixed;
-	top: var(--status-bar-height);
-	left: 0;
-	width: 100%;
-	background: #FFFFFF;
-	z-index: 99;
-	-webkit-box-sizing: border-box;
-	        box-sizing: border-box;
-	display: -webkit-box;
-	display: -webkit-flex;
-	display: -ms-flexbox;
-	display: flex;
-	-webkit-box-align: center;
-	-webkit-align-items: center;
-	    -ms-flex-align: center;
-	        align-items: center;
-	height: 105rpx;
-	padding: 0 20rpx;
+.content .swiper_box image {
+    width: 100%;
 }
-.content_top .top_search{
-	-webkit-box-flex: 2;
-	-webkit-flex-grow: 2;
-	    -ms-flex-positive: 2;
-	        flex-grow: 2;
-	height: 65rpx;
-	border-radius: 65rpx;
-	display: -webkit-box;
-	display: -webkit-flex;
-	display: -ms-flexbox;
-	display: flex;
-	-webkit-box-align: center;
-	-webkit-align-items: center;
-	    -ms-flex-align: center;
-	        align-items: center;
-	padding-left: 40rpx;
-	background: #EEEEEE;
+.content .subject {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-justify-content: space-around;
+      -ms-flex-pack: distribute;
+          justify-content: space-around;
 }
-.content_top view input{
-	font-size: 24rpx;
+.content .subject .classify {
+    margin: 41rpx 0;
+    width: 25%;
+    text-align: center;
 }
-.content_top .top_img{
-	position: relative;
+.content .subject .classify image {
+      width: 85rpx;
+      height: 85rpx;
 }
-.content_top .top_img view{
-	position: absolute;
-	right: -4rpx;
-	top: -4rpx;
-	height: 10rpx;
-	width: 10rpx;
-	border-radius: 50%;
-	background: #D80000;
+.content .subject .classify view {
+      font-size: 24rpx;
 }
-.content_top image{
-	height: 50rpx;
-	width: 50rpx;
-	margin-left: 10rpx;
+.content .propulsion {
+  background-color: #F6F6F6;
+  padding-bottom: 30rpx;
+  padding-top: 20rpx;
+}
+.content .propulsion .top {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+        -ms-flex-align: center;
+            align-items: center;
+    margin: 0 20rpx;
+    padding-bottom: 24rpx;
+}
+.content .propulsion .top image {
+      width: 31rpx;
+      height: 31rpx;
+      margin: 0rpx 10rpx 0 0;
+}
+.content .propulsion .commodity_box {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+}
+.content .propulsion .commodity_box .commodity {
+      width: 50%;
+      margin-left: 22rpx;
+      padding: 0 10rpx;
+}
+.content .propulsion .commodity_box .commodity .pages {
+        width: 341rpx;
+        height: 231rpx;
+        margin: 0 0 10rpx 0;
+}
+.content .propulsion .commodity_box .commodity .pages image {
+          width: 100%;
+          height: 100%;
+}
+.content .propulsion .commodity_box .commodity .name {
+        font-size: 23rpx;
+        padding-right: 10rpx;
+        margin: 8rpx 0;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 2;
+        overflow: hidden;
+}
+.content .all .top {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  padding: 29rpx 22rpx 20rpx 22rpx;
+}
+.content .all .top .top1 {
+    font-size: 28rpx;
+}
+.content .all .top .top2 {
+    font-size: 23rpx;
+    color: #EF7C38;
+}
+.content .all .allB {
+  width: 100%;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-wrap: wrap;
+      -ms-flex-wrap: wrap;
+          flex-wrap: wrap;
+  -webkit-justify-content: space-around;
+      -ms-flex-pack: distribute;
+          justify-content: space-around;
+  padding: 0 20rpx;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+.content .all .allB .product {
+    width: 50%;
+    padding: 10rpx;
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+}
+.content .all .allB .product .name {
+      font-size: 23rpx;
+      margin: 8rpx 0;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 2;
+      overflow: hidden;
+}
+.content .all .allB .product image {
+      width: 341rpx;
+}
+.content_top {
+  position: fixed;
+  top: var(--status-bar-height);
+  left: 0;
+  width: 100%;
+  background: #FFFFFF;
+  z-index: 99;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 105rpx;
+  padding: 0 20rpx;
+}
+.content_top .top_search {
+  -webkit-box-flex: 2;
+  -webkit-flex-grow: 2;
+      -ms-flex-positive: 2;
+          flex-grow: 2;
+  height: 65rpx;
+  border-radius: 65rpx;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding-left: 40rpx;
+  background: #EEEEEE;
+}
+.content_top view input {
+  font-size: 24rpx;
+}
+.content_top .top_img {
+  position: relative;
+}
+.content_top .top_img view {
+  position: absolute;
+  right: -4rpx;
+  top: -4rpx;
+  height: 10rpx;
+  width: 10rpx;
+  border-radius: 50%;
+  background: #D80000;
+}
+.content_top image {
+  height: 50rpx;
+  width: 50rpx;
+  margin-left: 10rpx;
 }
 

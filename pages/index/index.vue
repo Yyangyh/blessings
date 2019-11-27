@@ -15,11 +15,11 @@
 		</view>
 		
 		<view class="index_tab">
-			<view class="tab_list"  @tap="service.jump('../com_page/index_class?type=1')">
+			<view class="tab_list"  @tap="$jump('../com_page/index_class?type=1')">
 				<image src='../../static/image/index/index_tab1.png'></image>
 				<view class="">课程视频</view>
 			</view>
-			<view class="tab_list"  @tap="service.jump('../com_page/index_class?type=2')">
+			<view class="tab_list"  @tap="$jump('../com_page/index_class?type=2')">
 				<image src='../../static/image/index/index_tab2.png'></image>
 				<view class="">音频</view>
 			</view>
@@ -63,18 +63,18 @@
 					<view class="box_left">
 						{{item.cl_name}}
 					</view>
-					<view class="box_right"  @tap="service.jump('../com_page/video_class?id='+item.id+'&title='+item.cl_name)">
+					<view class="box_right"  @tap="$jump('../com_page/video_class?id='+item.id+'&title='+item.cl_name)">
 						全部
 					</view>
 				</view>
 				<view class="vider_content">
 					<scroll-view  scroll-x="true" class="scroll-Y">
-						<view class="content_list" v-for="(items,indexs) in item.video_list" :key='items.id' @tap="service.jump('../com_page/video_details?id='+item.id)">
+						<view class="content_list" v-for="(items,indexs) in item.video_list" :key='items.id' @tap="$jump('../com_page/video_details?id='+items.id)">
 							<view class="list_img_box">
 								<image :src="items.v_slide" mode="widthFix"></image>
 							</view>
 							<view class="list_one">
-								{{items.long_title}}
+								{{items.long_title}}{{items.id}}
 							</view>
 							<view class="list_two">
 								{{items.view}}次观看
@@ -99,18 +99,18 @@
 					<view class="box_left">
 						{{item.cl_name}}
 					</view>
-					<view class="box_right"  @tap="service.jump('../com_page/video_class?id='+item.id+'&title='+item.cl_name)">
+					<view class="box_right"  @tap="$jump('../com_page/video_class?id='+item.id+'&title='+item.cl_name)">
 						全部
 					</view>
 				</view>
 				<view class="vider_content">
-					<view class="content_list" v-for="(items,indexs) in item.video_list" :key='items.id'  @tap="service.jump('../com_page/video_details?id='+item.id)">
+					<view class="content_list" v-for="(items,indexs) in item.video_list" :key='items.id'  @tap="$jump('../com_page/video_details?id='+items.id)">
 						<view class="list_img_box">
 							<image :src="items.v_slide" mode="widthFix"></image>
 						</view>
-						<view class="list_right">
+						<view class="list_right">A
 							<view class="list_one">
-								{{items.long_title}}
+								{{items.long_title}}{{items.id}}
 							</view>
 							<view class="list_two">
 								{{items.view}}次观看
@@ -159,7 +159,7 @@
 			this.service.entire(this,'post',this.APIconfig.api_root.index.index,{
 				userid:this.$store.state.user.id
 			},function(self,res){
-				console.log(res)
+				console.log(JSON.stringify(res.data.class_list))
 				self.swiper_list = res.data.slide
 				self.class_top = res.data.class_top
 				self.class_list = res.data.class_list

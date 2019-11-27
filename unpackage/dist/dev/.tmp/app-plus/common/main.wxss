@@ -26,6 +26,21 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /*每个页面公共css */
 page {
 	/* height: 100%;
@@ -61,6 +76,7 @@ page {
 	opacity: 0.3;
 	top: 0;
 	left: 0;
-	z-index: 998;
+	z-index: 888;
 }
+
 

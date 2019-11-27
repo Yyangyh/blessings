@@ -9,7 +9,7 @@
 			  <text @click="cur=1" class="two" :class="{active:cur==1}">往期活动</text>
 		</view>
 		  <view class="boxs" v-show="cur==0">
-			  <view class="worp" @tap="service.jump('./particulars')">
+			  <view class="worp" @tap="$jump('./particulars')">
 				 <image src="../../static/image/index/huo1.png"></image>
 				 <view class="theme">让爱回家|高分孩子·智慧父母一大型公益巡讲</view>
 				 <view class="line">
@@ -19,7 +19,7 @@
 				  </view>
 				  <view class="price">￥100.0</view>
 			  </view>
-			  <view class="worp"  @tap="service.jump('./particulars')">
+			  <view class="worp"  @tap="$jump('./particulars')">
 				  <view class="line">
 					  <image src="../../static/image/index/time.png"></image>
 					  <text class="theme">6月27日 </text>
@@ -64,7 +64,7 @@
 
 <style lang='scss'>
 	.content{
-		background: #F2F2F2;
+		background: #F6F6F7;
 		height: 100vh;
 		width: 100%;
 		.allorder{

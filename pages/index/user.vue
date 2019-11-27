@@ -208,12 +208,12 @@
 					<view class="tab_top">
 						商城订单
 					</view>
-					<view class="more"  @click="jump('../subuser/mall_order?status=-1')">
+					<view class="more"  @click="$jump('../subuser/s_order?status=-1')">
 						查看更多
 					</view>
 				</view>
 				<view class="tab_box">
-					<view class="tab_list"  @click="jump('../subuser/mall_order?status=1')">
+					<view class="tab_list"  @click="$jump('../subuser/s_order?status=1')">
 						<image src="../../static/image/index/shopp_img1.png" mode="widthFix"></image>
 						<view class="">
 							待付款
@@ -222,7 +222,7 @@
 							<text v-if="order_status[1].count != 0">{{order_status[1].count}}</text>
 						</block> -->
 					</view>
-					<view class="tab_list" @click="jump('../subuser/mall_order?status=2')">
+					<view class="tab_list" @click="$jump('../subuser/s_order?status=2')">
 						<image src="../../static/image/index/shopp_img2.png" mode="widthFix"></image>
 						<view class="">
 							待发货
@@ -231,7 +231,7 @@
 							<text v-if="order_status[2].count != 0">{{order_status[2].count}}</text>
 						</block> -->
 					</view>
-					<view class="tab_list" @click="jump('../subuser/mall_order?status=3')">
+					<view class="tab_list" @click="$jump('../subuser/s_order?status=3')">
 						<image src="../../static/image/index/shopp_img3.png" mode="widthFix"></image>
 						<view class="">
 							待收货
@@ -240,7 +240,7 @@
 							<text v-if="order_status[3].count != 0">{{order_status[3].count}}</text>
 						</block> -->
 					</view>
-					<view class="tab_list" @click="jump('../subuser/mall_order?status=4')">
+					<view class="tab_list" @click="$jump('../subuser/s_order?status=4')">
 						<image src="../../static/image/index/shopp_img4.png" mode="widthFix"></image>
 						<view class="">
 							已完成
@@ -249,7 +249,7 @@
 							<text v-if="order_status[4].count != 0">{{order_status[4].count}}</text>
 						</block> -->
 					</view>
-					<view class="tab_list" @click="jump('../subuser/refund')">
+					<view class="tab_list" @click="$jump('../subuser/refund')">
 						<image src="../../static/image/index/shopp_img5.png" mode="widthFix"></image>
 						<view class="">
 							退款
@@ -317,8 +317,6 @@
 			</view>
 			
 		</view>
-		
-		
 		
 	</view>
 </template>

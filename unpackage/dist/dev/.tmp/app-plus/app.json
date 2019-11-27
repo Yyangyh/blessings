@@ -1,15 +1,24 @@
 {
   "pages": [
-    "pages/login/login",
     "pages/index/index",
+    "pages/login/login",
     "pages/index/classroom",
     "pages/index/home",
     "pages/index/user",
-    "pages/subindex/notice",
-    "pages/subindex/index_class",
+    "pages/com_page/notice",
+    "pages/com_page/index_class",
+    "pages/com_page/video_class",
+    "pages/com_page/video_details",
+    "pages/com_page/shopp_cart",
+    "pages/subhome/home_com",
+    "pages/subuser/s_order",
     "pages/login/forget",
     "pages/login/message_login",
-    "pages/login/reg"
+    "pages/login/reg",
+    "pages/activity/activity",
+    "pages/activity/particulars",
+    "pages/activity/apply",
+    "pages/subhome/details"
   ],
   "window": {
     "navigationBarTextStyle": "black",
