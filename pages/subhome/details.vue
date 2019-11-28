@@ -35,7 +35,7 @@
 			<hr />
 			<view class="line">
 				<view class="l-left">
-					<image src="../../static/image/subhome/freight.png" mode=""></image>
+					<image src="../../static/image/subhome/freight.png" mode="widthFix"></image>
 					<text>运费：</text>
 					<view>{{is_freight_free == 1 ? '包邮' : freight_price}}</view>
 				</view>
@@ -43,15 +43,15 @@
 			</view>
 		</view>
 		<view class="p-t">活动详情</view>
-		<image class="image" src='../../static/image/index/xq.png'></image>
+		<image class="image" src='../../static/image/index/xq.png' mode="widthFix"></image>
 		<view class="shopping">
 			<view class="to">
 				<view class="cart">
-					<image src="../../static/image/subhome/cart.png" mode=""></image>
+					<image src="../../static/image/subhome/cart.png" mode="widthFix"></image>
 					<view>购物车</view>
 				</view>
 				<view class="collect">
-					<image src="../../static/image/subhome/heart%20.png"></image>
+					<image src="../../static/image/subhome/heart%20.png" mode="widthFix"></image>
 					<view>收藏</view>
 				</view>
 			</view>
@@ -101,11 +101,13 @@
 <style lang="scss">
 	.content{
 		width: 100%;
-		height: 100vh;
+		// height: 100vh;
 		background-color: #F6F6F6;
+		padding-bottom: 130rpx;
 		.top{
 			position: fixed;
 			width: 100%;
+			z-index: 886;
 			box-sizing: border-box;
 			top: var(--status-bar-height);
 			left: 0;
@@ -144,7 +146,7 @@
 			.name{
 				font-size: 28rpx;
 				font-weight:500;
-				margin: 20rpx 0 0 20rpx;
+				padding: 0 20rpx;
 			}
 			.evaluate{
 				display: flex;
@@ -262,25 +264,27 @@
 		}
 		.p-t{
 			font-size: 28rpx;
+			margin-left: 20rpx;
 		}
 		.image{
 			margin-top: 30rpx;
 			width: 100%;
-			height: 988rpx;
+			// height: 988rpx;
 		}
 		.shopping{
 			width: 100%;
 			background: #FFFFFF;
 			display: flex;
 			justify-content: space-around;
+			align-items: center;
 			position: fixed;
 			bottom: 0;
-			
+			height: 126rpx;
 			.to{
 				display: flex;
 				margin: 0 30rpx;
 				.cart{
-					padding-right:10rpx ;
+					padding-right:20rpx ;
 					image{
 						width: 44rpx;
 						height: 44rpx;
@@ -292,22 +296,22 @@
 					}
 				}
 				.collect{
+					text-align: center;
 					image{
 						width: 44rpx;
 						height: 44rpx;
-						margin-left:10rpx ;
+						// margin-left:10rpx ;
 					}
 					view{
 						color:#999999;
 						font-size: 24rpx;
-						text-align: center;
 						margin-left:-5rpx ;
 					}
 				}
 			}
 			.btn{
 				display: flex;
-				margin-right:30rpx ;
+				margin-right:20rpx ;
 				button:first-child{
 					font-size: 30rpx;
 					color:#FFFFFF;
