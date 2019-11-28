@@ -1,7 +1,5 @@
 {
   "navigationBarTitleText": "产品详情",
   "titleNView": false,
-  "usingComponents": {
-    "returns": "/pages/common/returns"
-  }
+  "usingComponents": {}
 }

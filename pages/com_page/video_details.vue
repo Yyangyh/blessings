@@ -193,19 +193,22 @@
 						<view class="box_left">
 							<view class="left_top">
 								<view class="top_one">
-									￥{{item.number}}
+									￥{{item.discount_value}}
 								</view>
 								<view class="top_two">
 									<view class="">
-										{{item.cname}}
+										{{item.name}}
 									</view>
 									<view class="">
-										满减 满{{item.max}}减{{item.number}}
+										满减 满{{Number(item.where_order_price)}}减{{Number(item.discount_value)}}
 									</view>
 								</view>
 							</view>
-							<view class="left_bottom">
-								有效期：{{service.Test(item.start_time)}}至{{service.Test(item.end_time)}}
+							<view class="left_bottom" v-if="item.expire_type == 0"> <!--时间戳要10位的秒级时间戳-->
+								有效期：{{service.Test(Date.parse(new Date())/1000)}}至{{service.Test(Date.parse(new Date())/1000 + item.expire_hour*3600)}}
+							</view>
+							<view class="left_bottom" v-else>
+								有效期：{{service.Test(item.fixed_time_start)}}至{{service.Test(item.fixed_time_end)}}
 							</view>
 						</view>
 						<view class="box_right" :class="{receive:!item.coupon_id}" @tap="getCoupon(item.cid,item.coupon_id,index)">
@@ -656,6 +659,7 @@
 		.box_mid{
 			font-size: 24rpx;
 			color: #999999;
+			padding-bottom: 20rpx;
 		}
 		
 		.coupon_list{
@@ -668,7 +672,7 @@
 					background-size: 100% 100%;
 					position: relative;
 					padding: 33rpx 22rpx;
-					margin-top: 20rpx;
+					margin-bottom: 20rpx;
 					.box_left{
 						.left_top{
 							display: flex;

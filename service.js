@@ -53,11 +53,13 @@ const analysis_url = function(video_url){
 	video_url = video_url.replace(/XISKH5dImd/gi, 'bkt.clouddn.com')
 	video_url = video_url.replace(/JSIk5/gi, '.')
 	video_url = video_url.replace(/jKd5/gi, '-')
+	
 	return video_url
 }
 
 const Test = function(time) { //时间戳转换
-	let t = time
+	let t
+	String(time).length == 10 ? t = time*1000 : t = time
 	let NewDtime = new Date(parseInt(t));
 	return formatDate(NewDtime);
 }

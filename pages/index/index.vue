@@ -159,7 +159,7 @@
 			this.service.entire(this,'post',this.APIconfig.api_root.index.index,{
 				userid:this.$store.state.user.id
 			},function(self,res){
-				console.log(JSON.stringify(res.data.class_list))
+				
 				self.swiper_list = res.data.slide
 				self.class_top = res.data.class_top
 				self.class_list = res.data.class_list

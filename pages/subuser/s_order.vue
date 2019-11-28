@@ -286,6 +286,7 @@
 		position: fixed;
 		top: calc(var(--status-bar-height) + 105rpx) ;
 		left: 0;
+		padding: 0 20rpx;
 		box-sizing: border-box;
 		font-size: 30rpx;
 		display: flex;
