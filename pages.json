@@ -161,6 +161,22 @@
 					"titleNView":false
 				}
 			}
+		},{
+			"path": "pages/subclass/textual",
+			"style": {
+				"navigationBarTitleText": "导师考证",
+				"app-plus":{
+					"titleNView":false
+				}
+			}
+		},{
+			"path": "pages/subclass/applyFor",
+			"style": {
+				"navigationBarTitleText": "申请",
+				"app-plus":{
+					"titleNView":false
+				}
+			}
 		}
 	],
 	"globalStyle": {

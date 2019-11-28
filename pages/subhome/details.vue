@@ -37,7 +37,7 @@
 				<view class="l-left">
 					<image src="../../static/image/subhome/freight.png" mode=""></image>
 					<text>运费：</text>
-					<view>包邮</view>
+					<view>{{is_freight_free == 1 ? '包邮' : freight_price}}</view>
 				</view>
 				<view class="l-right"></view>
 			</view>
@@ -69,9 +69,9 @@
 			return{
 				title:'产品详情',
 				goods:'',
-				content_app:'',
 				isLoad: false,
-				
+				is_freight_free:'',
+				freight_price:'',
 			}
 		},
 		methods:{
@@ -83,10 +83,13 @@
 				user_id:this.$store.state.user.id,
 				isLoad:true
 			},function(self,res){
-				console.log(res.data.goods.comments_score)
+				console.log(res.data.goods.freight_free.is_freight_free)
+				console.log(res)
 				self.goods = res.data.goods
 				self.goods.stars_num = new Array(Number(res.data.goods.comments_score_star))
 				self.isLoad = true
+				self.is_freight_free = res.data.goods.freight_free.is_freight_free
+				self.freight_price = res.data.goods.freight_free.freight_price
 			})
 		},
 		onShow(){
@@ -134,7 +137,7 @@
 			hr{
 				height:1rpx;
 				border: none;
-				border-top:1px solid #F4F4F4;
+				border-top:1rpx solid #F4F4F4;
 				width: 97%;
 				margin: 0 auto;
 			}
@@ -169,7 +172,6 @@
 			.line{
 				display: flex;
 				justify-content: space-between;
-				// margin-top: 30rpx;
 				padding: 30rpx 20rpx;
 				align-items: center;
 				.l-left{
@@ -270,7 +272,7 @@
 			width: 100%;
 			background: #FFFFFF;
 			display: flex;
-			justify-content: space-between;
+			justify-content: space-around;
 			position: fixed;
 			bottom: 0;
 			
@@ -278,7 +280,7 @@
 				display: flex;
 				margin: 0 30rpx;
 				.cart{
-					margin-right:10rpx ;
+					padding-right:10rpx ;
 					image{
 						width: 44rpx;
 						height: 44rpx;
@@ -286,19 +288,20 @@
 					view{
 						color:#999999;
 						font-size: 24rpx;
-						margin:-5rpx ;
+						margin-left:-5rpx ;
 					}
 				}
 				.collect{
 					image{
 						width: 44rpx;
 						height: 44rpx;
+						margin-left:10rpx ;
 					}
 					view{
 						color:#999999;
 						font-size: 24rpx;
 						text-align: center;
-						margin:-5rpx ;
+						margin-left:-5rpx ;
 					}
 				}
 			}

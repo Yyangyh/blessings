@@ -16,7 +16,7 @@
 					</view>
 				</view>
 			</view>
-			<view class="title_bottom">
+			<view class="title_bottom" @tap="$jump('../subclass/textual')">
 				<image :src="APIconfig.api_img + advertising.cl_image" mode="widthFix"></image>
 			</view>
 		</view>
