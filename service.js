@@ -3,6 +3,7 @@ const entire = function(self,type,url,data,func){
 		url:url,
 		data:data,
 		method:type,
+		header:{'X-Requested-With':'xmlhttprequest','Content-Type':'application/x-www-form-urlencoded'},
 		success(res) {
 			let res_list = res.data
 			if(res_list.code == -400){

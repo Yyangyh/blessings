@@ -30,11 +30,16 @@ const api_root = {
 		c_Index: api+'/api/cart/Index',//购物车列表
 		c_Stock: api+'/api/cart/Stock',//购物车数量保存
 		c_Delete: api+'/api/cart/Delete',//购物车删除
+		
 	},
 	subhome:{
 		s_index: api+'/api/search/index',//商品列表
 		s_category: api+'/api/good/category',//分类列表
 		s_detail: api+'/api/good/detail',//获取商品详情
+		s_receive: api+'/api/coupon/receive',//领取优惠券
+		s_SpecType: api+'/api/good/SpecType',//商品规格详情查询
+		s_SpecDetail: api+'/api/good/SpecDetail',//商品规格详情价格查询
+		s_Save: api+'/api/cart/Save',//加入购物车
 	},
 	subuser:{
 		s_order: api+'/api/order/index',//商城订单列表
