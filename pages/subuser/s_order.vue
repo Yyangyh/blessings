@@ -147,7 +147,8 @@
 					content: '是否确定删除订单？',
 					success: function (res) {
 						if (res.confirm) {
-							that.service.entire(that, 'get', that.service.api_root.subuser.Delete_order, {
+							that.service.entire(that, 'get', that.APIconfig.api_root.subuser.s_delete, {
+								user_id: this.$store.state.user.id,
 								id:id
 							}, function(self, res) {
 								uni.showToast({
@@ -230,6 +231,7 @@
 	}
 	.mall_box {
 		font-size: 30rpx;
+		padding-top: 30rpx;
 	}
 	.refund {
 		/* 退款 */
@@ -267,7 +269,7 @@
 		font-weight: bold;
 		color: #333333;
 		background: #fff;
-		box-shadow: 0px 2rpx 4rpx 0px rgba(0, 0, 0, 0.1);
+		// box-shadow: 0px 2rpx 4rpx 0px rgba(0, 0, 0, 0.1);
 	}
 
 	.top image {
@@ -293,18 +295,22 @@
 		justify-content: space-between;
 		align-items: center;
 		height: 105rpx;
+		box-shadow:0rpx 4rpx 8rpx 0rpx rgba(0, 0, 0, 0.1);
 		.top_list {
 			padding: 0 20rpx;
-			height: 44rpx;
+			height:100%;
+			display: flex;
+			align-items: center;
+			box-sizing: border-box;
+			border-bottom: 6rpx solid #fff;
 			line-height: 44rpx;
-			border-radius: 44rpx;
 		}
 	}
 
 
 	.show {
-		color: #fff;
-		background: #1D9DFF;
+		color: #D80000;
+		border-bottom-color:  #D80000 !important;
 	}
 
 	.mall_box .box_bottom {

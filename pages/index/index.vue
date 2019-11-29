@@ -134,6 +134,8 @@
 </template>
 
 <script>
+
+	import { mapState } from 'vuex'
 	import search from '../common/index_search.vue'
 	export default {
 		components:{
@@ -148,8 +150,17 @@
 				duration: 500,
 				class_top:'',
 				class_list:'',
+				msg:'holle'
 			}
 		},
+		// computed: {
+		//   // localComputed () { /* ... */ },
+		//   // 使用对象展开运算符将此对象混入到外部对象中
+		//   ...mapState({
+		// 	  name:'name'
+		//   }),
+		
+		// },	
 		
 		onLoad() {
 		 

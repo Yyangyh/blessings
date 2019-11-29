@@ -27,7 +27,7 @@
 					<image src="../../static/image/subhome/juan.png" mode=""></image>
 					<text>优惠券</text>
 				</view>
-				<view class="l-right">
+				<view class="l-right" @tap="show = true">
 					<text>领劵</text>
 					<image src='../../static/image/index/go.png'></image>
 				</view>
@@ -46,7 +46,7 @@
 		<image class="image" src='../../static/image/index/xq.png' mode="widthFix"></image>
 		<view class="shopping">
 			<view class="to">
-				<view class="cart">
+				<view class="cart" @tap="$jump('../com_page/shopp_cart')">
 					<image src="../../static/image/subhome/cart.png" mode="widthFix"></image>
 					<view>购物车</view>
 				</view>
@@ -56,10 +56,89 @@
 				</view>
 			</view>
 			<view class="btn">
-				<button type="default">加入购物车</button>
-				<button type="default">立即购买</button>
+				<button type="default" @click="show = 1,type = 'cart'">加入购物车</button>
+				<button type="default"  @click="show = 1,type = 'goods'">立即购买</button>
 			</view>
 		</view>
+		
+		<view class="mask_black" v-show="show == 1 || show === true" @click="show = 0">
+			<!-- 遮罩层 -->
+		</view>
+		
+		<view class="discount_box"  :class="show===false ? 'mask_none' : show===true ? 'mask_show' : ''">
+			<view class="box_top">
+				优惠详情
+			</view>
+			<view class="box_list">
+				<scroll-view  scroll-y="true" class="scroll-Y">
+					<view class="cou_list" v-for="(item,index) in coupon" :key='item.id'>
+						<view class="cou_test">
+							<view class="cou_left">
+								<view class="left_one">
+									￥<text>{{item.discount_value}}</text>{{item.type == 1?'折':'元'}}
+								</view>
+								<view class="left_two">
+									{{item.use_limit_type_name}}
+								</view>
+								<!-- <view class="left_two">
+									有效期：{{item.fixed_time_start}}至{{item.fixed_time_end}}
+								</view> -->
+							</view>
+							
+							<view class="cou_right" :class="{already:item.is_operable == 0}" @click="receive(index)">
+								{{item.is_operable == 0?'已领取':'领取'}}
+							</view>
+						</view>
+					</view>
+				</scroll-view>
+			</view>
+			<!-- <button @click="finish()">完成</button> -->
+		</view>
+		
+		
+		
+		
+		<view class="mask_white" :class="show===0 ? 'mask_none' : show===1 ? 'mask_show' : ''">
+			<view class="wh_top">
+				<image :src="goods.images" mode="aspectFill"></image>
+				<view class="wh_right">
+					<view class="wh_test1">
+						￥{{price}}
+					</view>
+					<view class="wh_test2">
+						库存{{inventory}}
+					</view>
+					<view class="wh_test3">
+						选择 规格 数量
+					</view>
+				</view>
+			</view>
+		
+			<view class="norms">
+				<view class="norms_list" v-for="(item,index) in choose_list" :key='item.id'>
+					<view class="norms_test">
+						{{item.name}}
+					</view>
+					<view class="norms_box">
+						<button v-for="(items,indexs) in item.value" :key='indexs' :disabled="items.disabled" :class="{norms_show:items.show == true,disabled:items.disabled}"
+						 @click="choose(index,indexs)">{{items.name}}</button>
+					</view>
+				</view>
+			</view>
+			<view class="wh_bottom">
+				<view class="">
+					购买数量
+				</view>
+				<view class="change">
+					<text class="reduce" @click="change_num('reduce')">-</text>
+					<text class="num">{{num}}</text>
+					<text class="plus" @click="change_num('plus')">+</text>
+				</view>
+			</view>
+			<button class="save" @click="save()">确定</button>
+			<image class="close" src="../../static/image/secondary/close2.png" mode="widthFix" @click="show = 0"></image>
+		</view>
+		
 	</view>
 </template>
 
@@ -72,24 +151,176 @@
 				isLoad: false,
 				is_freight_free:'',
 				freight_price:'',
+				show:0,
+				coupon:'',
+				num:1,
+				choose_list:[],
+				price:'',
+				inventory:'',
+				type:'',
+				id:'',
+				index_list:0,
+				spec:[]
 			}
 		},
 		methods:{
+			receive(index){//领取优惠券
+				this.service.entire(this,'post',this.APIconfig.api_root.subhome.s_receive,{
+					coupon_id:this.coupon[index].id,
+					user_id:this.$store.state.user.id
+				},function(self,res){
+					if(res.code == 0){
+						self.coupon[index].is_operable = 0
+					}else{
+						uni.showToast({
+							icon:'none',
+							title:res.msg
+						})
+					}
+				})
+			},
+			change_num(type){ //改变购买数量
+				if(type == 'reduce'){
+					this.num == 1 ? this.num = 1 : this.num--
+				}else{
+					this.num++
+				}
+			},
+			choose(index, indexs) { //选择规格
+				// console.log(this.index_list,index)
+				
+				let data = this.choose_list
+				
+				if(index == this.index_list){ //同级选择
+					
+					this.index_list == data.length - 1? this.index_list = index : this.index_list = index + 1 //记录index
+					for (let s of data[index].value) {
+						s.show = false
+					}
+					data[index].value[indexs].show = true
+					this.choose_list = JSON.parse(JSON.stringify(data))
+					
+					this.spec[index] = {  
+						type: data[index].name,
+						value: data[index].value[indexs].name
+					}
+					console.log(JSON.stringify(this.spec))
+					if(index == data.length -1){ //最后一步，请求商品库存
+						this.service.entire(this,'post',this.APIconfig.api_root.subhome.s_SpecDetail,{
+							id: this.id,
+							spec: this.spec
+						},function(self,res){
+							console.log(res)
+							self.price = res.data.price
+							self.inventory = res.data.inventory
+							
+						})
+						return
+					}
+				}else if(index < this.index_list){  //向上选择
+					this.spec.length = index
+					for (let i = index; i < data.length; i++) {
+						for (let k of data[i].value) {
+							k.show = false
+						}
+					}
+					for (let i = index + 1; i < data.length; i++) {
+						for (let k of data[i].value) {
+							k.disabled = true
+						}
+					}
+					data[index].value[indexs].show = true
+					data[index].value[indexs].disabled = false
+					this.choose_list = JSON.parse(JSON.stringify(data))
+					
+					this.spec.push({
+						type: data[index].name,
+						value: data[index].value[indexs].name
+					})
+					this.index_list = this.spec.length
+					
+				}
+				console.log(this.spec)
+				this.service.entire(this, 'post', this.APIconfig.api_root.subhome.s_SpecType, {
+					id: this.id,
+					spec: this.spec
+				}, function(self, res) {
+					console.log(res)
+					if (res.code == 0) {
+						let res_data = res.data
+						for (let k of res_data) {
+							for (let s of data[self.index_list].value) {
+								if(k == s.name) s.disabled = false
+							}
+						}
+						
+						self.choose_list = data
+					}
+				})
+				// console.log(this.index_list,index)
 			
+			},
+			save() { //确定
+					
+					if(this.type == 'cart'){
+						this.service.entire(this, 'post', this.APIconfig.api_root.subhome.s_Save, {
+							goods_id: this.id,
+							stock: this.num,
+							spec: this.spec,
+							user_id:this.$store.state.user.id,
+						}, function(self, res) {
+							if (res.code == 0) {
+								uni.showToast({
+									icon:'none',
+									title:'成功加入购物车！'
+								})
+								self.show = 0
+							}
+						})
+					}else{
+						let data = {
+							id:this.id,
+							type:'goods',
+							num:this.num,
+							spec:this.spec
+						}
+						uni.navigateTo({
+							url: '../com_page/s_order?data='+JSON.stringify(data)
+						})
+					}
+					
+				}
 		},
 		onLoad(e){
+			this.id = e.id
 			this.service.entire(this,'post',this.APIconfig.api_root.subhome.s_detail,{
 				goods_id:e.id,
 				user_id:this.$store.state.user.id,
 				isLoad:true
 			},function(self,res){
-				console.log(res.data.goods.freight_free.is_freight_free)
-				console.log(res)
+				
 				self.goods = res.data.goods
 				self.goods.stars_num = new Array(Number(res.data.goods.comments_score_star))
 				self.isLoad = true
 				self.is_freight_free = res.data.goods.freight_free.is_freight_free
 				self.freight_price = res.data.goods.freight_free.freight_price
+				self.coupon =  res.data.plugins_coupon_data
+				
+				self.price = res.data.goods.price
+				self.inventory = res.data.goods.inventory
+				let list = res.data.goods.specifications.choose
+				if(list != ''){
+					for (let s of list) {
+						for (let k of s.value) {
+							k.show = false
+							k.disabled = true
+						}
+					}
+					for (let s of list[0].value) {
+						s.disabled = false
+					}
+				}
+				self.choose_list = list
 			})
 		},
 		onShow(){
@@ -100,6 +331,7 @@
 
 <style lang="scss">
 	.content{
+		overflow: hidden;
 		width: 100%;
 		// height: 100vh;
 		background-color: #F6F6F6;
@@ -334,5 +566,222 @@
 				}
 			}
 		}
+		
+		.discount_box{
+			position: fixed;
+			bottom: 0;
+			left: 0;
+			width: 100%;
+			min-height: 760rpx;
+			background: #fff;
+			z-index: 999;
+			transition: .3s;
+			transform: translateY(100%);
+			button{
+				position: absolute;
+				bottom: 0;
+				left: 0;
+				width: 100%;
+				font-size: 30rpx;
+				color: #fff;
+				background: #1D74FF;
+			}
+			.box_top{
+				text-align: center;
+				font-size: 28rpx;
+				padding: 20rpx 0;
+				color: #333333;
+			}
+			.box_list{
+				height: 560rpx;
+				.scroll-Y{
+					height: 660rpx;
+					.cou_list{
+						/* position: relative; */
+						background: url('../../static/image/com_page/coupon_blue.png') no-repeat;
+						background-size: 100% 100%;
+						width: 710rpx;
+						height: 182rpx;
+						display: flex;
+						align-items: center;
+						margin: 0 auto;
+						margin-top: 30rpx;
+						color: #1D9DFF;
+						.cou_test{
+							/* position: absolute; */
+							width: 100%;
+							display: flex;
+							align-items: center;
+							justify-content: space-between;
+							padding: 0 40rpx;
+							.cou_left{
+								color: #1D9DFF;
+								font-size: 28rpx;
+								text{
+									font-size:48rpx;
+									margin-right: 16rpx;
+								}
+								.left_two{
+									font-size: 24rpx;
+								}
+								
+							}
+							.cou_right{
+								width: 142rpx;
+								height: 60rpx;
+								line-height: 60rpx;
+								border-radius: 60rpx;
+								text-align: center;
+								font-size: 30rpx;
+								color: #FFFFFF;
+								background: #1D9DFF;
+							}
+							
+						}
+						image{
+							width: 45rpx;
+							height: 45rpx;
+						}
+					}
+				}
+			}
+		}
+		.mask_none{
+			transform: translateY(100%) !important;
+		}
+		.mask_show{
+			transform: translateY(0) !important;
+		}
+		.already{
+			background: #999999 !important;
+		}
+		
+		
+		.mask_white {
+			position: fixed;
+			padding: 20rpx;
+			background: #fff;
+			box-sizing: border-box;
+			width: 100%;
+			min-height: 884rpx;
+			bottom: 0;
+			left: 0;
+			z-index: 999;
+			transition: .2s;
+			transform: translateY(100%);
+			.wh_top {
+				display: flex;
+				align-items: flex-end;
+				color: #333333;
+				font-size: 24rpx;
+				margin-bottom: 28rpx;
+				image {
+					width: 250rpx;
+					height: 160rpx;
+					margin-right: 22rpx;
+				}
+				.wh_right{
+					.wh_test1 {
+						color: #FF431D;
+						font-size: 36rpx;
+					}
+					.wh_test2 {
+						color: #999999;
+						font-size: 24rpx;
+						margin: 7rpx 0 8rpx 0;
+					}
+				}
+			}
+			.save {
+				background: #D80000;
+				color: #fff;
+				height: 80rpx;
+				line-height: 80rpx;
+				border-radius: 80rpx;
+				position: absolute;
+				bottom: 20rpx;
+				left: 2%;
+				width: 96%;
+			}
+			.norms_test {
+				margin: 0rpx 0 18rpx 0;
+				font-size: 30rpx;
+				
+			}
+			button {
+				display: inline-block;
+				background: #F1F1F1;
+				color: #333333;
+				font-size: 28rpx;
+				height: 60rpx;
+				line-height: 60rpx;
+				padding: 0 34rpx;
+				text-align: center;
+				margin-bottom: 26rpx;
+				margin-right: 20rpx;
+				border-radius: 10rpx;
+			
+			}
+			.wh_bottom {
+				display: flex;
+				justify-content: space-between;
+				padding: 34rpx 0;
+				border-top: 2rpx solid #F1F1F1;
+				font-size: 30rpx;
+				.change {
+					display: flex;
+					align-items: center;
+				}
+				.reduce {
+					display: inline-block;
+					background: #F3F3F3;
+					height: 54rpx;
+					line-height: 54rpx;
+					text-align: center;
+					width: 74rpx;
+					color: #999999;
+					font-size: 46rpx;
+					border-radius: 10rpx;
+				}
+				.num {
+					background: #E8E8E8;
+					font-size: 30rpx;
+					display: inline-block;
+					height: 54rpx;
+					line-height: 54rpx;
+					border-radius: 10rpx;
+					width: 74rpx;
+					text-align: center;
+					margin: 0 4rpx;
+				}
+				.plus {
+					background: #E8E8E8;
+					font-size: 46rpx;
+					display: inline-block;
+					height: 54rpx;
+					line-height: 54rpx;
+					color: #999999;
+					width: 74rpx;
+					text-align: center;
+					border-radius: 10rpx;
+				}
+			}
+			.close {
+				height: 40rpx;
+				width: 40rpx;
+				position: absolute !important;
+				top: 12rpx;
+				right: 12rpx;
+			}
+			.norms_show {
+				background: #1D9DFF !important;
+				color: #fff !important;
+			}
+			
+			.disabled {
+				opacity: 0.5;
+			}
+		}
+		
 	}
 </style>

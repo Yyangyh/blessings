@@ -30,14 +30,31 @@ const api_root = {
 		c_Index: api+'/api/cart/Index',//购物车列表
 		c_Stock: api+'/api/cart/Stock',//购物车数量保存
 		c_Delete: api+'/api/cart/Delete',//购物车删除
+		buy_index: api+'/api/buy/index',//确认商品信息信息
+		buy_add: api+'/api/buy/add',//提交订单
+		order_pay: api+'/api/order/pay',//订单支付
+		
 	},
 	subhome:{
 		s_index: api+'/api/search/index',//商品列表
 		s_category: api+'/api/good/category',//分类列表
 		s_detail: api+'/api/good/detail',//获取商品详情
+		s_receive: api+'/api/coupon/receive',//领取优惠券
+		s_SpecType: api+'/api/good/SpecType',//商品规格详情查询
+		s_SpecDetail: api+'/api/good/SpecDetail',//商品规格详情价格查询
+		s_Save: api+'/api/cart/Save',//加入购物车
 	},
 	subuser:{
 		s_order: api+'/api/order/index',//商城订单列表
+		s_delete: api+'/api/order/delete',//订单删除
+		address_index: api+'/api/useraddress/index',//获取用收货地址列表
+		address_delete: api+'/api/useraddress/delete',//收货地址删除
+		address_setdefault: api+'/api/useraddress/setdefault',//设置默认收货地址
+		threeuser:{
+			region_index: api+'/api/region/index',//获取省市区三级
+			address_save: api+'/api/useraddress/save',//用户地址保存
+			address_detail: api+'/api/useraddress/detail',//收货地址详情
+		}
 	}
 }
 

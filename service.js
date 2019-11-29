@@ -3,6 +3,7 @@ const entire = function(self,type,url,data,func){
 		url:url,
 		data:data,
 		method:type,
+		header:{'X-Requested-With':'xmlhttprequest','Content-Type':'application/x-www-form-urlencoded'},
 		success(res) {
 			let res_list = res.data
 			if(res_list.code == -400){
@@ -21,6 +22,146 @@ const entire = function(self,type,url,data,func){
 			}
 		}
 	})
+}
+
+const order = function(ref, self, url, wxUrl) { //支付调用
+	// console.log(self.payment_name)
+	uni.showToast({
+		icon: "none",
+		title: ref.msg
+	})
+	if (self.payment_name == 'Alipay') {
+		//当选择支付宝支付时
+		// #ifndef  APP-PLUS
+		uni.showToast({
+			icon: 'none',
+			title: '只能在APP内选择支付宝支付'
+		})
+		return
+		// #endif
+
+		uni.showToast({
+			icon: 'none',
+			title: '支付宝支付暂未开放'
+		})
+		return
+	} else if (self.payment_name == 'Weixin') { //当选择微信支付时
+		// #ifdef H5  
+
+		let ua = navigator.userAgent.toLowerCase();
+		if (ua.match(/MicroMessenger/i) == "micromessenger") { //判断是否是在微信内置浏览器打开
+			let appId = ref.data.data.appId
+			let timeStamp = ref.data.data.timeStamp
+			let nonceStr = ref.data.data.nonceStr
+			let package_id = ref.data.data.package
+			let signType = ref.data.data.signType
+			let paySign = ref.data.data.paySign
+			console.log(signType)
+
+			function onBridgeReady(appId, timeStamp, nonceStr, package_id, signType, paySign) {
+				WeixinJSBridge.invoke(
+					'getBrandWCPayRequest', {
+						"appId": appId, //公众号名称，由商户传入     
+						"timeStamp": timeStamp, //时间戳，自1970年以来的秒数     
+						"nonceStr": nonceStr, //随机串     
+						"package": package_id,
+						"signType": signType, //微信签名方式：     
+						"paySign": paySign //微信签名 
+					},
+					function(res) {
+						if (res.err_msg == "get_brand_wcpay_request:ok") {
+							if(url.split('/index/').length == 2){
+								uni.switchTab({
+								    url: url
+								});
+							}else{
+								uni.redirectTo({
+									url: url
+								})
+							}
+							
+							// 使用以上方式判断前端返回,微信团队郑重提示：
+							//res.err_msg将在用户支付成功后返回ok，但并不保证它绝对可靠。
+						}
+					});
+			}
+			if (typeof WeixinJSBridge == "undefined") {
+				if (document.addEventListener) {
+					document.addEventListener('WeixinJSBridgeReady', onBridgeReady, false);
+				} else if (document.attachEvent) {
+					document.attachEvent('WeixinJSBridgeReady', onBridgeReady);
+					document.attachEvent('onWeixinJSBridgeReady', onBridgeReady);
+				}
+			} else {
+				onBridgeReady(appId, timeStamp, nonceStr, package_id, signType, paySign);
+			}
+		} else { //普通浏览器微信支付
+			let string = encodeURI('http://wx.huanqiutongmall.com/h5/#/' + wxUrl)
+			window.location.href = ref.data.data + '&redirect_url=' + string
+		}
+		// #endif  
+
+
+		// #ifdef  APP-PLUS
+		uni.requestPayment({
+			provider: 'wxpay',
+			orderInfo: ref.data.data, //微信、支付宝订单数据
+			success: function(ref) {
+				if(url.split('/index/').length == 2){
+					uni.switchTab({
+					    url: url
+					});
+				}else{
+					uni.redirectTo({
+						url: url
+					})
+				}
+			},
+			fail: function(err) {
+				console.log('fail:' + JSON.stringify(err));
+			}
+		});
+		// #endif
+	} else if (self.payment_name == 'WalletPay') { //选择钱包支付时
+		setTimeout(function() {
+			if(url.split('/index/').length == 2){
+				uni.switchTab({
+				    url: url
+				});
+			}else{
+				uni.redirectTo({
+					url: url
+				})
+			}
+		}, 1500)
+	} else if (self.payment_name == 'BtPay') { //选择版通支付时
+
+		setTimeout(function() {
+			if(url.split('/index/').length == 2){
+				uni.switchTab({
+				    url: url
+				});
+			}else{
+				uni.redirectTo({
+					url: url
+				})
+			}
+		}, 1500)
+
+	} else if (self.payment_name == '') { //积分支付时
+		setTimeout(function() {
+			if(url.split('/index/').length == 2){
+				uni.switchTab({
+				    url: url
+				});
+			}else{
+				uni.redirectTo({
+					url: url
+				})
+			}
+		}, 1500)
+
+	}
 }
 
 const returns = function(that) {
@@ -80,5 +221,6 @@ export default{
 	returns,
 	jump,
 	analysis_url,
-	Test
+	Test,
+	order
 }

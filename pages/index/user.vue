@@ -140,7 +140,7 @@
 						收藏
 					</view>
 				</view>
-				<view class="tab_list" @click="jump('../subuser/address')">
+				<view class="tab_list" @click="$jump('../subuser/address')">
 					<image src="../../static/image/index/other_img7.png" mode="widthFix"></image>
 					<view class="">
 						收货地址

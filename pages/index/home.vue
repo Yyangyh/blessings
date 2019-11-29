@@ -66,7 +66,7 @@
 				<view class="top2">全部</view>
 			</view>
 		<view class="allB">
-			<view class="product" v-for="(it,ind) in recommend " :key="it.id" @tap="$jump('/pages/subhome/details?id='+it.id+'&title='+it.title)">
+			<view class="product" v-for="(it,ind) in recommend " :key="it.id" @tap="$jump('/pages/subhome/details?id='+it.id)">
 				<view class="">
 					<image :src="it.images" mode="widthFix"></image>
 				</view>
