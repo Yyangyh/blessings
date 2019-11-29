@@ -93,6 +93,15 @@
 			}
 		},
 		{
+			"path": "pages/com_page/s_order",
+			"style": {
+				"navigationBarTitleText": "购物车",
+				"app-plus":{
+					"titleNView":false
+				}
+			}
+		},
+		{
 			"path": "pages/subhome/home_com",
 			"style": {
 				"navigationBarTitleText": "产品列表",
@@ -105,6 +114,24 @@
 			"path": "pages/subuser/s_order",
 			"style": {
 				"navigationBarTitleText": "订单列表",
+				"app-plus":{
+					"titleNView":false
+				}
+			}
+		},
+		{
+			"path": "pages/subuser/address",
+			"style": {
+				"navigationBarTitleText": "地址列表",
+				"app-plus":{
+					"titleNView":false
+				}
+			}
+		},
+		{
+			"path": "pages/subuser/threeuser/add_addto",
+			"style": {
+				"navigationBarTitleText": "地址管理",
 				"app-plus":{
 					"titleNView":false
 				}

@@ -285,7 +285,7 @@
 							spec:this.spec
 						}
 						uni.navigateTo({
-							url: '../threeLayers/order?data='+JSON.stringify(data)
+							url: '../com_page/s_order?data='+JSON.stringify(data)
 						})
 					}
 					
