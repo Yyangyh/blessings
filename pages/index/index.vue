@@ -23,23 +23,23 @@
 				<image src='../../static/image/index/index_tab2.png'></image>
 				<view class="">音频</view>
 			</view>
-			<view class="tab_list">
+			<view class="tab_list" @tap="$jump()">
 				<image src='../../static/image/index/index_tab3.png'></image>
 				<view class="">文章</view>
 			</view>
-			<view class="tab_list">
+			<view class="tab_list" @tap="$jump()">
 				<image src='../../static/image/index/index_tab4.png'></image>
 				<view class="">分类</view>
 			</view>
-			<view class="tab_list">
+			<view class="tab_list" @tap="$jump()">
 				<image src='../../static/image/index/index_tab5.png'></image>
 				<view class="">学习记录</view>
 			</view>
-			<view class="tab_list">
+			<view class="tab_list" @tap="$jump()">
 				<image src='../../static/image/index/index_tab6.png'></image>
 				<view class="">商城</view>
 			</view>
-			<view class="tab_list">
+			<view class="tab_list" @tap="$jump()">
 				<image src='../../static/image/index/index_tab7.png'></image>
 				<view class="">幸福测评</view>
 			</view>

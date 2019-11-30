@@ -213,6 +213,40 @@
 					"titleNView":false
 				}
 			}
+		},{
+			"path": "pages/subclass/audit",
+			"style": {
+				"navigationBarTitleText": "审核中",
+				"app-plus":{
+					"titleNView":false
+				}
+			}
+		},
+		{
+			"path": "pages/subclass/repetition",
+			"style": {
+				"navigationBarTitleText": "审核中",
+				"app-plus":{
+					"titleNView":false
+				}
+			}
+		},
+		{
+			"path": "pages/subclass/certificate",
+			"style": {
+				"navigationBarTitleText": "我的证书",
+				"app-plus":{
+					"titleNView":false
+				}
+			}
+		},{
+			"path": "pages/evaluating/evaluating",
+			"style": {
+				"navigationBarTitleText": "我的测评",
+				"app-plus":{
+					"titleNView":false
+				}
+			}
 		}
 	],
 	"globalStyle": {
