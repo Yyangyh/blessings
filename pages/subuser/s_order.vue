@@ -60,7 +60,7 @@
 					</view>
 					<view  v-for="(items,indexs) in item.items" :key='indexs'>
 						<!-- 加多一个盒子套住评论 -->
-						<view class="list_middle" @click="jump('threeuser/order_details?id='+item.id)">
+						<view class="list_middle" @click="jump('threeuser/s_order_details?id='+item.id)">
 							<view class="">
 								<image :src="items.images" mode="aspectFill"></image>
 							</view>
@@ -94,7 +94,7 @@
 								<!-- <view class="bottom3" v-if='item.status == 3' @click="jump('/pages/threeLayers/logistics?id='+item.express_id+'&number='+item.express_number)">
 									查看物流
 								</view> -->
-								<view class="bottom3" @click="jump('threeuser/order_details?id='+item.id)">
+								<view class="bottom3" @click="jump('threeuser/s_order_details?id='+item.id)">
 									详情
 								</view>
 								

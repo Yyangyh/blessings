@@ -68,9 +68,9 @@
 				<text>商品小计</text>
 				<text>￥{{data.total_price}}</text>
 			</view>
-			<view class="list">
+			<view class="list" v-if="extension">
 				<text>运费</text>
-				<text>免邮</text>
+				<text class="list_red">{{extension[0].tips}}</text>
 			</view>
 			<view class="list">
 				<text>优惠券</text>
@@ -121,15 +121,16 @@
 			</view>
 			<view class="box_list">
 				<scroll-view  scroll-y="true" class="scroll-Y">
-					<view class="cou_list" v-for="(item,index) in coupon_list" :key='index' @click="discount_choice(index)">
+					<view class="cou_list" v-for="(item,index) in coupon_list" :key='index'>
 						<block v-if="item.coupon">
-							<view class="cou_test">
+							<view class="cou_test"  @tap="discount_choice(index)">
 								<view class="cou_left">
 									<view class="left_one">
 										￥<text>{{item.coupon.discount_value}}</text>{{item.coupon.type == 1?'折':'元'}}
 									</view>
 									<view class="left_two">
-										{{item.coupon.use_limit_type_name}}
+										<text>{{item.coupon.use_limit_type_name}}</text>
+										<text>{{item.coupon.name}}</text>
 									</view>
 									<view class="left_two">
 										<view class="">
@@ -141,10 +142,14 @@
 									</view>
 								</view>
 								<image v-show="item.choice" src="/static/image/com_page/chiose.png" mode="widthFix"></image>
+								
+							</view>
+							<view class="cou_mask" v-if="data.total_price <= item.coupon.where_order_price">
+								
 							</view>
 						</block>
 						<block v-else>
-							<view class="cou_test">
+							<view class="cou_test"  @tap="discount_choice(index)">
 								<view class="">
 									{{item.not_coupon}}
 								</view>
@@ -177,7 +182,8 @@
 				require_data:'',
 				coupon_list:'',
 				show:false,
-				recording:'未选择'
+				recording:'未选择',
+				extension:''
 			}
 		},
 		components:{
@@ -232,7 +238,12 @@
 						for (let s of coupon_data) {
 							s.choice = false
 						}
-						console.log(coupon_data)
+						if(res.data.plugins_coupon_data.coupon_choice != ''){
+							for (let s of coupon_data) {
+								if(s.id == res.data.plugins_coupon_data.coupon_choice.id) s.choice = true
+							}
+							
+						}
 						self.coupon_list = coupon_data
 					}
 					if(!res.data.base.address){
@@ -242,6 +253,7 @@
 					}
 					self.address = res.data.base.address
 					self.shopp = res.data.goods_list
+					self.extension = res.data.extension_data
 					let data = res.data.payment_list
 					console.log(self.shopp)
 					for (let s of data) {
@@ -496,6 +508,7 @@
 			justify-content: space-between;
 			align-items: center;
 			border-bottom: 2rpx solid #F2F2F2;
+			
 			view{
 				display: flex;
 				align-items: center;
@@ -506,6 +519,9 @@
 				height: 45rpx;
 				width: 45rpx;
 				margin-left: 10rpx;
+			}
+			.list_red{
+				color: #FF431D;
 			}
 		}
 	}
@@ -588,7 +604,7 @@
 		width: 100%;
 		min-height: 860rpx;
 		background: #fff;
-		z-index: 999;
+		z-index: 900;
 		transition: .3s;
 		transform: translateY(100%);
 		.box_top{
@@ -600,7 +616,6 @@
 		.box_list{
 			height: 660rpx;
 			.cou_list{
-				/* position: relative; */
 				background: url('../../static/image/com_page/coupon_blue.png') no-repeat;
 				background-size: 100% 100%;
 				width: 710rpx;
@@ -610,9 +625,11 @@
 				margin: 0 auto;
 				margin-top: 30rpx;
 				color: #1D9DFF;
+				position: relative;
 				.cou_test{
 					/* position: absolute; */
 					width: 100%;
+					height: 100%;
 					display: flex;
 					align-items: center;
 					justify-content: space-between;
@@ -625,7 +642,9 @@
 							margin-right: 16rpx;
 						}
 						.left_two{
-							font-size: 24rpx;
+							text{
+								font-size: 24rpx;
+							}
 						}
 					}
 					.cou_right{
@@ -639,10 +658,18 @@
 						background: #1D9DFF;
 					}
 				}
+				
 				image{
 					width: 45rpx;
 					height: 45rpx;
 				}
+			}
+			.cou_mask{
+				position: absolute;
+				z-index: 999;
+				height: 182rpx;
+				width: 100%;
+				background: rgba(255,255,255,.6);
 			}
 			
 		}

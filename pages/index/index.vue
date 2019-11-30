@@ -74,7 +74,7 @@
 								<image :src="items.v_slide" mode="widthFix"></image>
 							</view>
 							<view class="list_one">
-								{{items.long_title}}{{items.id}}
+								{{items.long_title}}
 							</view>
 							<view class="list_two">
 								{{items.view}}次观看
@@ -108,9 +108,9 @@
 						<view class="list_img_box">
 							<image :src="items.v_slide" mode="widthFix"></image>
 						</view>
-						<view class="list_right">A
+						<view class="list_right">
 							<view class="list_one">
-								{{items.long_title}}{{items.id}}
+								{{items.long_title}}
 							</view>
 							<view class="list_two">
 								{{items.view}}次观看
