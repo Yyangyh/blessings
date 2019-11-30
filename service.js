@@ -3,7 +3,7 @@ const entire = function(self,type,url,data,func){
 		url:url,
 		data:data,
 		method:type,
-		header:{'X-Requested-With':'xmlhttprequest','Content-Type':'application/x-www-form-urlencoded'},
+		 header:{'X-Requested-With':'xmlhttprequest','Content-Type':'application/json'},
 		success(res) {
 			let res_list = res.data
 			if(res_list.code == -400){
@@ -175,12 +175,7 @@ const returns = function(that) {
 	// #endif
 }
 
-const jump = function(url) {
-	console.log(url)
-	uni.navigateTo({
-		url:url
-	})
-}
+
 
 const analysis_url = function(video_url){
 	
@@ -218,9 +213,9 @@ function formatDate(dt) {
 }
 export default{
 	entire,
+	order,
 	returns,
-	jump,
 	analysis_url,
-	Test,
-	order
+	Test
+
 }

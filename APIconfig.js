@@ -54,6 +54,7 @@ const api_root = {
 			region_index: api+'/api/region/index',//获取省市区三级
 			address_save: api+'/api/useraddress/save',//用户地址保存
 			address_detail: api+'/api/useraddress/detail',//收货地址详情
+			s_order_detail: api+'/api/order/detail',//商城订单详情
 		}
 	}
 }

@@ -138,6 +138,15 @@
 			}
 		},
 		{
+			"path": "pages/subuser/threeuser/s_order_details",
+			"style": {
+				"navigationBarTitleText": "订单详情",
+				"app-plus":{
+					"titleNView":false
+				}
+			}
+		},
+		{
 			"path": "pages/login/forget",
 			"style": {
 				"navigationBarTitleText": "忘记密码"

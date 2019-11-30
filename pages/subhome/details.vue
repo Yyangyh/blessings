@@ -204,7 +204,7 @@
 						type: data[index].name,
 						value: data[index].value[indexs].name
 					}
-					console.log(JSON.stringify(this.spec))
+					// console.log(JSON.stringify(this.spec))
 					if(index == data.length -1){ //最后一步，请求商品库存
 						this.service.entire(this,'post',this.APIconfig.api_root.subhome.s_SpecDetail,{
 							id: this.id,
