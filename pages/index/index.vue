@@ -39,7 +39,7 @@
 				<image src='../../static/image/index/index_tab6.png'></image>
 				<view class="">商城</view>
 			</view>
-			<view class="tab_list" @tap="$jump()">
+			<view class="tab_list" @tap="$jump('../evaluating/evaluating')">
 				<image src='../../static/image/index/index_tab7.png'></image>
 				<view class="">幸福测评</view>
 			</view>
