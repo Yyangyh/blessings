@@ -144,7 +144,7 @@
 								<image v-show="item.choice" src="/static/image/com_page/chiose.png" mode="widthFix"></image>
 								
 							</view>
-							<view class="cou_mask" v-if="data.total_price <= item.coupon.where_order_price">
+							<view class="cou_mask" v-if="Number(data.total_price) <= Number(item.coupon.where_order_price)">
 								
 							</view>
 						</block>
@@ -636,7 +636,7 @@
 					padding: 0 40rpx;
 					.cou_left{
 						color: #1D9DFF;
-						font-size: 28rpx;
+						font-size: 24rpx;
 						text{
 							font-size:48rpx;
 							margin-right: 16rpx;

@@ -55,6 +55,10 @@ const api_root = {
 			address_save: api+'/api/useraddress/save',//用户地址保存
 			address_detail: api+'/api/useraddress/detail',//收货地址详情
 			s_order_detail: api+'/api/order/detail',//商城订单详情
+			s_order_collect: api+'/api/order/collect',//商城订单确认收货
+			s_order_cancel: api+'/api/order/cancel',//商城订单取消
+			s_order_aftersale: api+'/api/orderaftersale/aftersale',//商城订单取消
+			s_ueditor_index: api+'/api/ueditor/index',//商城订单取消
 		}
 	}
 }
