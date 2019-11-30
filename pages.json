@@ -238,6 +238,23 @@
 					"titleNView":false
 				}
 			}
+		},
+		{
+			"path": "pages/evaluating/result",
+			"style": {
+				"navigationBarTitleText": "我的测评",
+				"app-plus":{
+					"titleNView":false
+				}
+			}
+		},{
+			"path": "pages/evaluating/topic",
+			"style": {
+				"navigationBarTitleText": "我的测评",
+				"app-plus":{
+					"titleNView":false
+				}
+			}
 		}
 	],
 	"globalStyle": {
