@@ -129,9 +129,27 @@
 			}
 		},
 		{
+			"path": "pages/subuser/s_refund",
+			"style": {
+				"navigationBarTitleText": "退款",
+				"app-plus":{
+					"titleNView":false
+				}
+			}
+		},
+		{
 			"path": "pages/subuser/threeuser/add_addto",
 			"style": {
 				"navigationBarTitleText": "地址管理",
+				"app-plus":{
+					"titleNView":false
+				}
+			}
+		},
+		{
+			"path": "pages/subuser/threeuser/s_refund_details",
+			"style": {
+				"navigationBarTitleText": "退款详情",
 				"app-plus":{
 					"titleNView":false
 				}
@@ -222,7 +240,10 @@
 					"titleNView":false
 				}
 			}
+<<<<<<< HEAD
 
+=======
+>>>>>>> 62468cbc9238a88308ca64cf8fd5e5d6f7001e34
 		},{
 			"path": "pages/subclass/audit",
 			"style": {
@@ -274,7 +295,13 @@
 					"titleNView":false
 				}
 			}
+<<<<<<< HEAD
 
+=======
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 62468cbc9238a88308ca64cf8fd5e5d6f7001e34
 		},{
 			"path": "pages/subuser/brokerage/brokerage",
 			"style": {
@@ -299,9 +326,16 @@
 					"titleNView":false
 				}
 			}
+<<<<<<< HEAD
 
 
 
+=======
+=======
+>>>>>>> 3bd7ebd3161e9bf5469d233ab817efd5b031eb88
+>>>>>>> 389d56479c2a88e1c6e596edd5205fc73b7e070a
+>>>>>>> 47ba7f8ad00a8ddb4f7b7644ff6fa24dbdbd1f22
+>>>>>>> 62468cbc9238a88308ca64cf8fd5e5d6f7001e34
 		}
 	],
 	"globalStyle": {

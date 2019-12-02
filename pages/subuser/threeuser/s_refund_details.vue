@@ -4,7 +4,7 @@
 			<!-- 这里是状态栏 -->
 		</view>
 		<returns :titles='title'></returns>
-		<view class="order_top">
+	<!-- 	<view class="order_top">
 			<view class="" v-if="data.status == 2">
 				买家已付款
 			</view>
@@ -18,7 +18,7 @@
 				等待买家付款
 			</view>
 			<image src="../../../static/image/threeLayers/box.png" mode="widthFix"></image>
-		</view>
+		</view> -->
 		<view class="order_position">
 			<view class="">
 				<image src="../../../static/image/threeLayers/position.png" mode="widthFix"></image>
@@ -59,36 +59,36 @@
 		</view>
 		
 		<view class="order">
-			<view class="order_num" v-for="(item,index) in data_list" :key='item.id' >
-				<view class="num_one" @tap="$jump('../../subhome/details?id='+item.goods_id)">
-					<image :src="item.images" mode="widthFix"></image>
+			<view class="order_num"  >
+				<view class="num_one" @click="detailed(goods.goods_id,goods.type)">
+					<image :src="goods.images" mode="widthFix"></image>
 				</view>
-				<view class="num_two" @tap="$jump('../../subhome/details?id='+item.goods_id)">
+				<view class="num_two" @click="detailed(goods.goods_id,goods.type)">
 					<view class="">
-						{{item.title}}
+						{{goods.title}}
 					</view>
 					<view class="specs">
-						<text v-for="(items,indexs) in data_list[index].spec" :key='indexs'>{{items.type}}：{{items.value}}</text>
+						
 					</view>
 				</view>
 				<view class="num_three">
 					<view class="">
-						￥{{item.price}}
+						￥{{goods.price}}
 					</view>
 					<view class="">
-						数量：X{{item.buy_number}}
+						数量：X{{goods.buy_number}}
 					</view>
 					
 				</view>
 				
-				<view class="order_handle" v-if="data.status == 2 || data.status == 3 || data.status == 4">
+				<view class="order_handle">
 					
-					<text v-if="item.orderaftersale == null"  @click="jump('./s_order_refund?id='+ item.id+'&oid='+item.order_id)">{{data.status == 4?'申请售后':'退款/退货'}}</text>
+					<text v-if="new_aftersale_data == null"  @click="jump('/pages/threeLayers/refund?id='+data.items.id +'&oid='+data.id)">{{data.status == 4?'申请售后':'退款/退货'}}</text>
 					<block v-else>
-						<text v-if="item.orderaftersale.status == 3">退款完成</text>
-						<text v-else-if="item.orderaftersale.status == 4"  @click="jump('./s_order_refund?id='+ item.id+'&oid='+item.order_id)">已拒绝</text>
-						<text v-else-if="item.orderaftersale.status == 5"  @click="jump('./s_order_refund?id='+ item.id+'&oid='+item.order_id)">已取消</text>
-						<text v-else @click="cancel_return(item.orderaftersale.id)">退款/退货中</text>
+						<text v-if="new_aftersale_data.status == 3">退款完成</text>
+						<text v-else-if="new_aftersale_data.status == 4"  @click="jump('/pages/threeLayers/refund?id='+data.items.id +'&oid='+data.id)">已拒绝</text>
+						<text v-else-if="new_aftersale_data.status == 5"  @click="jump('/pages/threeLayers/refund?id='+data.items.id +'&oid='+data.id)">已取消</text>
+						<text v-else @click="cancel_return(data.id)">退款/退货中</text>
 					</block>
 					
 				</view>
@@ -132,42 +132,13 @@
 				</view>
 			</view> -->
 		</view>
-
-
-		<view class="order_bottom" v-if="data.status == 1">
-			<!-- <text>修改地址</text> -->
-			<text @click="cancel()">取消订单</text>
-			<text class="or_pay" @click="show = !show">付款</text>
-		</view>
 		
-		<view class="order_bottom" v-else-if="data.status == 3">
-			<!-- <text>修改地址</text>
-			<text>取消订单</text> -->
-			<text class="or_pay" @click="determine()">确定收货</text>
-		</view>
 		
-		<view class="mask" v-if="show" @click="show = !show">
 
-		</view>
-		<view class="mask_box" :class="show===false ? 'mask_none' : show===true ? 'mask_show' : ''">
-			<image class="close" src="../../../static/image/index/close.png" mode="widthFix" @click="show = !show"></image>
-			<view class="box_top">
-				支付方式
-			</view>
-			<view class="pa_box">
-				<view class="box_list" v-for="(item,index) in pay_list" :key='item.id' @click="choice(index)">
-					<view class="list_top">
-						<image :src="item.logo" mode="widthFix"></image>
-						<view class="">
-							{{item.name}}
-						</view>
-					</view>
-					<image v-show="item.choice" class="choice" src="../../../static/image/com_page/chiose.png" mode="widthFix"></image>
-				</view>
-			</view>
-			<button @click="payment()">立即支付</button>
-
-		</view>
+		
+		
+	
+		
 	</view>
 </template>
 
@@ -186,7 +157,8 @@
 				show: false,
 				payment_id: '',
 				payment_name: '',
-
+				goods:'',
+				new_aftersale_data:''
 			}
 		},
 		methods: {
@@ -194,33 +166,6 @@
 				uni.navigateTo({
 					url: url
 				})
-			},
-			determine(){//确定收货
-				let that = this
-				uni.showModal({
-				    title: '提示',
-				    content: '是否确定收货？',
-				    success: function (res) {
-				        if (res.confirm) {
-				            that.service.entire(that,'post',that.APIconfig.api_root.subuser.threeuser.s_order_collect,{
-								id:that.data.id,
-								user_id: this.$store.state.user.id,
-							},function(self,res){
-								uni.showToast({
-									icon:'none',
-									title:res.msg
-								})
-				            	if(res.code == 0){
-									setTimeout(function(){
-										self.service.returns()
-									},1500)
-								}
-				            })
-				        } else if (res.cancel) {
-				           return
-				        }
-				    }
-				});
 			},
 			cancel_return(id){//取消退款申请
 				let that = this
@@ -246,91 +191,33 @@
 				    }
 				});
 			},
-			cancel(){//取消订单
-				let that = this
-				uni.showModal({
-				    title: '提示',
-				    content: '是否确定取消？',
-				    success: function (res) {
-				        if (res.confirm) {
-				            that.service.entire(that,'post', that.APIconfig.api_root.subuser.threeuser.s_order_cancel,{
-								id:that.data.id,
-								user_id: that.$store.state.user.id,
-							},function(self,res){
-								uni.showToast({
-									icon:'none',
-									title:res.msg
-								})
-				            	if(res.code == 0){
-									setTimeout(function(){
-										self.service.returns()
-									},1500)
-								}
-				            })
-				        } else if (res.cancel) {
-				           return
-				        }
-				    }
-				});
-				
-				
-			},
 			
-			choice(index) {
-				for (let s of this.pay_list) {
-					s.choice = false
-				}
-				this.pay_list[index].choice = true
-				this.pay_list = JSON.parse(JSON.stringify(this.pay_list))
-				this.payment_id = this.pay_list[index].id
-				this.payment_name = this.pay_list[index].payment
-			},
-			payment() {
-				//提交
-				let  that = this
-				if (!this.payment_id) {
-					uni.showToast({
-						icon: 'none',
-						title: '请选择支付方式'
+			detailed( id, type) {
+				if (type == 3) {
+					uni.navigateTo({  //版通
+						url: '../../subindex/edition_details?id=' + id
 					})
-					return
+				} else if (type == 2) { //文创
+					uni.navigateTo({
+						url: '../../subindex/edition_details?id=' + id
+					})
+				} else {
+					uni.navigateTo({ //特色
+						url: '../../subindex/product_detailed?id=' + id + '&type=' + type
+					})
 				}
-				uni.showModal({
-				    title: '提示',
-				    content: '是否确定支付？',
-				    success: function (res) {
-				        if (res.confirm) {
-				            that.service.entire(that,'post',that.APIconfig.api_root.com_page.order_pay, {
-				            	user_id: that.$store.state.user.id,
-				            	id: that.data.id,
-				            	payment_id: that.payment_id
-				            }, function(self, ref) {
-				            	self.service.order(ref,self,'../s_order?status=-1','pages/subuser/s_order?status=-1')
-				            	
-				            })
-				        } else if (res.cancel) {
-				           return
-				        }
-				    }
-				});
-				
-
-			}
+			},
 		},
 		onLoad(options) {
-			this.service.entire(this, 'post', this.APIconfig.api_root.subuser.threeuser.s_order_detail, {
-				id: options.id,
-				user_id: this.$store.state.user.id,
+			this.service.entire(this, 'get', this.service.api_root.threeLayers.Aftersale, {
+				oid: options.oid,
+				did: options.did
 			}, function(self, res) {
-				self.data = res.data
-				self.data_list = res.data.items
-				if(res.data.payment_list){
-					let data = res.data.payment_list
-					for (let s of data) {
-						s.choice = false
-					}
-					self.pay_list = data
-				}
+				self.data = res.data.order
+				self.goods = res.data.goods
+				self.new_aftersale_data = res.data.new_aftersale_data
+				
+				
 				
 				
 			})
@@ -496,7 +383,7 @@
 		font-size: 24rpx;
 		color: #808080;
 		margin-bottom: 30rpx;
-		padding-bottom: 20rpx;
+		padding-bottom: 10rpx;
 	}
 
 	.order_news text {

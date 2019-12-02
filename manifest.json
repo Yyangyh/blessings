@@ -85,8 +85,17 @@
             "disableHostCheck" : true,
             "proxy" : {
                 "/api" : {
+<<<<<<< HEAD
                     "target" : "http://192.168.0.195:8990",
+=======
+<<<<<<< HEAD
+                    // "target" : "http://192.168.0.195:8900?s=",
+                    "target" : "http://192.168.0.70:8888?s=",
+=======
+                    "target" : "http://192.168.0.195:8900?s=",
+>>>>>>> 62468cbc9238a88308ca64cf8fd5e5d6f7001e34
                     // "target" : "http://192.168.0.225:160",
+>>>>>>> 47ba7f8ad00a8ddb4f7b7644ff6fa24dbdbd1f22
                     "changeOrigin" : true,
                     "secure" : false
                 }

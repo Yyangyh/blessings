@@ -1,6 +1,14 @@
 const api = ''
+<<<<<<< HEAD
+// const api ='http://192.168.0.1:9999'
+=======
 // const api ='http://192.168.0.195:8900?s='
+<<<<<<< HEAD
 const api_img ='http://192.168.0.195:8990'
+=======
+>>>>>>> 47ba7f8ad00a8ddb4f7b7644ff6fa24dbdbd1f22
+const api_img ='http://192.168.0.195:8900?s='
+>>>>>>> 62468cbc9238a88308ca64cf8fd5e5d6f7001e34
 
 const api_root = {
 	login:{
@@ -50,6 +58,7 @@ const api_root = {
 		address_index: api+'/api/useraddress/index',//获取用收货地址列表
 		address_delete: api+'/api/useraddress/delete',//收货地址删除
 		address_setdefault: api+'/api/useraddress/setdefault',//设置默认收货地址
+		s_aftersale_list: api+'/api/orderaftersale/index',//商城退款列表
 		threeuser:{
 			region_index: api+'/api/region/index',//获取省市区三级
 			address_save: api+'/api/useraddress/save',//用户地址保存
@@ -57,8 +66,9 @@ const api_root = {
 			s_order_detail: api+'/api/order/detail',//商城订单详情
 			s_order_collect: api+'/api/order/collect',//商城订单确认收货
 			s_order_cancel: api+'/api/order/cancel',//商城订单取消
-			s_order_aftersale: api+'/api/orderaftersale/aftersale',//商城订单取消
-			s_ueditor_index: api+'/api/ueditor/index',//商城订单取消
+			s_order_aftersale: api+'/api/orderaftersale/aftersale',//售后页面
+			s_ueditor_index: api+'/api/ueditor/index',//售后申请凭证图片上传
+			s_aftersale_create: api+'/api/orderaftersale/create',//售后提交申请
 		}
 	},
 	subindex:{
