@@ -249,6 +249,10 @@
 					"titleNView":false
 				}
 			}
+<<<<<<< HEAD
+
+=======
+>>>>>>> 62468cbc9238a88308ca64cf8fd5e5d6f7001e34
 		},{
 			"path": "pages/subclass/audit",
 			"style": {
@@ -300,6 +304,16 @@
 					"titleNView":false
 				}
 			}
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+
+=======
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 62468cbc9238a88308ca64cf8fd5e5d6f7001e34
+>>>>>>> c9e2c874562a9a45d0a60f0c6fb8f170afdea1f3
 		},{
 			"path": "pages/subuser/brokerage/brokerage",
 			"style": {
@@ -324,6 +338,19 @@
 					"titleNView":false
 				}
 			}
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+
+
+
+=======
+=======
+>>>>>>> 3bd7ebd3161e9bf5469d233ab817efd5b031eb88
+>>>>>>> 389d56479c2a88e1c6e596edd5205fc73b7e070a
+>>>>>>> 47ba7f8ad00a8ddb4f7b7644ff6fa24dbdbd1f22
+>>>>>>> 62468cbc9238a88308ca64cf8fd5e5d6f7001e34
+>>>>>>> c9e2c874562a9a45d0a60f0c6fb8f170afdea1f3
 		}
 	],
 	"globalStyle": {

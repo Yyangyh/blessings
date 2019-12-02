@@ -1,7 +1,15 @@
 const api = ''
 
 // const api ='http://192.168.0.195:8900?s='
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+const api_img ='http://192.168.0.195:8990'
+=======
+>>>>>>> 47ba7f8ad00a8ddb4f7b7644ff6fa24dbdbd1f22
+>>>>>>> c9e2c874562a9a45d0a60f0c6fb8f170afdea1f3
 const api_img ='http://192.168.0.195:8900?s='
+>>>>>>> 62468cbc9238a88308ca64cf8fd5e5d6f7001e34
 
 const api_root = {
 	login:{
@@ -66,8 +74,8 @@ const api_root = {
 		}
 	},
 	subindex:{
-		s_test:api+'api/test/getPaper',//通过试卷id获取试卷信息
-		s_test_classify:api+'api/test/getPaperCategory',//幸福评测分类或分类下数据获取
+		s_test:api+'/api/test/getPaper',//通过试卷id获取试卷信息
+		s_test_classify:api+'/api/test/getPaperCategory',//幸福评测分类或分类下数据获取
 		
 	}
 }
