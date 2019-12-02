@@ -156,6 +156,15 @@
 			}
 		},
 		{
+			"path": "pages/subuser/threeuser/s_comment_order",
+			"style": {
+				"navigationBarTitleText": "评论",
+				"app-plus":{
+					"titleNView":false
+				}
+			}
+		},
+		{
 			"path": "pages/subuser/threeuser/s_refund_details",
 			"style": {
 				"navigationBarTitleText": "退款详情",

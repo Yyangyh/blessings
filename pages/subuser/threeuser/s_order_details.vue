@@ -204,7 +204,7 @@
 				        if (res.confirm) {
 				            that.service.entire(that,'post',that.APIconfig.api_root.subuser.threeuser.s_order_collect,{
 								id:that.data.id,
-								user_id: this.$store.state.user.id,
+								user_id: that.$store.state.user.id,
 							},function(self,res){
 								uni.showToast({
 									icon:'none',
