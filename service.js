@@ -211,11 +211,28 @@ function formatDate(dt) {
 	}
 	return year + "-" + month + "-" + date;
 }
+
+const loading = function(title){
+	uni.showLoading({
+		title: title,
+		mask: true
+	});
+	let times = setTimeout(function() {
+		uni.hideLoading()
+		uni.showToast({
+			icon: 'none',
+			title: '网络请求错误，请稍后再试'
+		})
+		return
+	}, 10000)
+	return times
+}
+
 export default{
 	entire,
 	order,
 	returns,
 	analysis_url,
-	Test
-
+	Test,
+	loading
 }

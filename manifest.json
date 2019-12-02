@@ -85,8 +85,8 @@
             "disableHostCheck" : true,
             "proxy" : {
                 "/api" : {
-                    "target" : "http://0318.t1.nethhw188.com",
-                    // "target" : "http://192.168.0.225:160",
+                    // "target" : "http://192.168.0.195:8900?s=",
+                    "target" : "http://192.168.0.70:8888?s=",
                     "changeOrigin" : true,
                     "secure" : false
                 }

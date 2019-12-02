@@ -249,7 +249,7 @@
 							<text v-if="order_status[4].count != 0">{{order_status[4].count}}</text>
 						</block> -->
 					</view>
-					<view class="tab_list" @click="$jump('../subuser/refund')">
+					<view class="tab_list" @click="$jump('../subuser/s_refund')">
 						<image src="../../static/image/index/shopp_img5.png" mode="widthFix"></image>
 						<view class="">
 							退款

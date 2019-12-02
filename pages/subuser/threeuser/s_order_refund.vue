@@ -5,7 +5,7 @@
 		</view>
 		<returns :titles='title'></returns>
 		<view class="order">
-			<view class="order_num">
+			<view class="order_num"  v-if="goods_data">
 				<view class="num_one">
 					<image :src="type == 1?goods_data.items.images:goods_data.thumb" mode="aspectFill"></image>
 				</view>
@@ -106,7 +106,7 @@
 				<view class="image_list">
 					<view class="image_box" v-for="(item,index) in image_list" >
 						<image class="img" :src="item" mode="aspectFill" :key='index'></image>
-						<image class="close" @click="deletes(index)" src="../../static/image/secondary/close2.png" mode=""></image>
+						<image class="close" @click="deletes(index)" src="../../../static/image/com_page/close.png" mode="widthFix"></image>
 					</view>
 					<view class="add" :class="{add_show:add_show == 2}" @click="add_image()">
 						+
@@ -169,18 +169,24 @@
 				    count: 1, //默认9
 				    sourceType: ['album'], //从相册选择
 				    success: function (res) {
+						let times = that.service.loading('上传中')
 						uni.uploadFile({
 						    url: that.APIconfig.api_root.subuser.threeuser.s_ueditor_index,
 						    filePath: res.tempFilePaths[0],
 						    name: 'upfile',
 						    formData: {
 						      user_id: that.$store.state.user.id,
+							  action:'uploadimage',
+							  path_type:that.data.editor_path_type
 						    },
 						    success: (ref) => {
+								uni.hideLoading()
+								clearTimeout(times)
+								
 						        if(JSON.parse(ref.data).code == 0){
-									// console.log(JSON.parse(ref.data))
+									console.log(JSON.parse(ref.data))
 									 that.image_list.push(res.tempFilePaths[0])
-									 that.images.push(JSON.parse(ref.data).data.file)
+									 that.images.push(JSON.parse(ref.data).data.url)
 									 if(that.image_list.length == 3)that.add_show = 2
 								}
 						    }
@@ -193,12 +199,13 @@
 				this.images.splice(index,1)
 				if(this.image_list.length < 3)this.add_show = 1
 			},
-			ascertain(){
+			ascertain(){ //提交
 				let data = new Object()
 				if(this.show == 1) data.number = this.num
 				data.price = this.price
 				data.images = this.images
 				data.type = this.show
+				data.user_id = this.$store.state.user.id
 				if(this.show == 0)data.reason = this.return_only[this.reason] 
 				if(this.show == 1)data.reason = this.return_money[this.reason] 
 				if(data.reason =='请选择' || this.price =='' || this.msg.length < 5 || this.images.length == 0){
@@ -210,7 +217,7 @@
 				}
 				data.msg = this.msg
 				let arr_value = Object.values(data)
-				if(arr_value.indexOf(undefined) != -1 || arr_value.indexOf(undefined)  != -1){
+				if(arr_value.indexOf(undefined) != -1){
 					uni.showToast({
 						icon:'none',
 						title:'请完整填写退款信息'
@@ -220,7 +227,7 @@
 				data.order_id = this.oid
 				data.order_detail_id = this.id
 				let url
-				this.type == 1? url = this.service.api_root.threeLayers.Create :url = this.service.api_root.threeLayers.group_Create
+				this.type == 1? url = this.APIconfig.api_root.subuser.threeuser.s_aftersale_create :url = this.service.api_root.threeLayers.group_Create
 				this.service.entire(this,'post',url,data,function(self,res){
 					uni.showToast({
 						icon:'none',
@@ -264,7 +271,6 @@
 					oid:e.oid,
 				},function(self,res){
 					self.data = res.data
-					
 					self.goods_data = res.data.goods[0]
 					self.num = 1
 					self.order_data = res.data.order.order

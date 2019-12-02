@@ -129,9 +129,27 @@
 			}
 		},
 		{
+			"path": "pages/subuser/s_refund",
+			"style": {
+				"navigationBarTitleText": "退款",
+				"app-plus":{
+					"titleNView":false
+				}
+			}
+		},
+		{
 			"path": "pages/subuser/threeuser/add_addto",
 			"style": {
 				"navigationBarTitleText": "地址管理",
+				"app-plus":{
+					"titleNView":false
+				}
+			}
+		},
+		{
+			"path": "pages/subuser/threeuser/s_refund_details",
+			"style": {
+				"navigationBarTitleText": "退款详情",
 				"app-plus":{
 					"titleNView":false
 				}
@@ -222,8 +240,6 @@
 					"titleNView":false
 				}
 			}
-<<<<<<< HEAD
-=======
 		},{
 			"path": "pages/subclass/audit",
 			"style": {
@@ -275,7 +291,6 @@
 					"titleNView":false
 				}
 			}
->>>>>>> 3bd7ebd3161e9bf5469d233ab817efd5b031eb88
 		}
 	],
 	"globalStyle": {
