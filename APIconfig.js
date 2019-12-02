@@ -1,9 +1,6 @@
 const api = ''
-<<<<<<< HEAD
-// const api ='http://192.168.0.1:9999'
-=======
+
 // const api ='http://192.168.0.195:8900?s='
->>>>>>> 47ba7f8ad00a8ddb4f7b7644ff6fa24dbdbd1f22
 const api_img ='http://192.168.0.195:8900?s='
 
 const api_root = {
@@ -65,6 +62,7 @@ const api_root = {
 			s_order_aftersale: api+'/api/orderaftersale/aftersale',//售后页面
 			s_ueditor_index: api+'/api/ueditor/index',//售后申请凭证图片上传
 			s_aftersale_create: api+'/api/orderaftersale/create',//售后提交申请
+			s_order_getexpinfo: api+'/api/order/getexpinfo',//商城物流
 		}
 	},
 	subindex:{

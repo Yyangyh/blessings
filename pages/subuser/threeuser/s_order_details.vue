@@ -51,7 +51,7 @@
 			<!--  -->
 			
 			<view class="news_four" >
-				<view class="" @click="jump('/pages/threeLayers/logistics?id='+data.express_id+'&number='+data.express_number)">
+				<view class="" @click="jump('./logistics?id='+data.express_id+'&number='+data.express_number)">
 					<image src="../../../static/image/threeLayers/contact.png" mode="widthFix"></image>
 					<text>查看物流</text>
 				</view>
