@@ -11,45 +11,19 @@
 		</view>
 		<!-- 幸福测评 -->
 		<view class="box" v-show="cur==0">
-			<view class="tergum" @tap="$jump('./topic')">
-				<view class="terLeft">
-					<view>默契大作战</view>
-					<view>666888人已测</view>
+			<view class="tergum" v-for="(item,index) in dataList" :key='item.id' @tap="$jump('./topic')">
+				<view class="worp">
+					<view class="terLeft">
+						<view>{{item.name}}</view>
+						<view>{{item.total_do}}人已测</view>
+					</view>
+					<view class="terRight">
+						<text>开始测试</text>
+						<image src="../../static/image/index/go1.png" mode='widthFix'></image>
+					</view>
 				</view>
-				<view class="terRight">
-					<text>开始测试</text>
-					<image src="../../static/image/index/go1.png"></image>
-				</view>
-			</view>
-			<view class="tergum1">
-				<view class="terLeft">
-					<view>魅力值测试</view>
-					<view>666888人已测</view>
-				</view>
-				<view class="terRight">
-					<text>开始测试</text>
-					<image src="../../static/image/index/go1.png"></image>
-				</view>
-			</view>
-			<view class="tergum2">
-				<view class="terLeft">
-					<view>安全感测试</view>
-					<view>666888人已测</view>
-				</view>
-				<view class="terRight">
-					<text>开始测试</text>
-					<image src="../../static/image/index/go1.png"></image>
-				</view>
-			</view>
-			<view class="tergum3">
-				<view class="terLeft">
-					<view>默契大作战</view>
-					<view>666888人已测</view>
-				</view>
-				<view class="terRight">
-					<text>开始测试</text>
-					<image src="../../static/image/index/go1.png"></image>
-				</view>
+				<image class="Image" :src='item.img_url' mode=" aspectFill"></image>
+				
 			</view>
 		</view>
 		<!-- 问卷调查 -->
@@ -97,7 +71,7 @@
 			<button type="default">提交问卷</button>
 		</view>
 		<!-- 测评记录 -->
-		<view class="box" v-show="cur==2">
+		<!-- <view class="box" v-show="cur==2">
 			<view class="tergum"  @tap="$jump('./result')">
 				<view class="terLeft">
 					<view>默契大作战</view>
@@ -138,7 +112,7 @@
 					<image src="../../static/image/index/go1.png"></image>
 				</view>
 			</view>
-		</view>
+		</view> -->
 	</view>
 </template>
 
@@ -152,6 +126,7 @@
 			return{
 				title:'我的测评',
 				cur:0,
+				dataList:[],
 			}
 		},
 		onShow() {
@@ -159,6 +134,7 @@
 				
 			},function(self,res){
 				console.log(res)
+				self.dataList =res.data
 			})
 		}
 	}
@@ -187,39 +163,63 @@
 			width: 100%;
 			height: 100vh;
 			background-color: #FFFFFF;
-			padding-top: 20rpx;
+			padding: 20rpx 20rpx 0 20rpx;
+			box-sizing: border-box;
 			.tergum{
-				width: 710rpx;
+				// width: 100%;
 				height: 170rpx;
-				background: url(../../static/image/evaluating/cur1.png) no-repeat;
-				background-size: 100% 100%;
-				margin: 0 auto;
-				display: flex;
-				align-items: center;
-				justify-content: space-between;
-				padding: 0 53rpx 0 44rpx;
-				.terLeft{
-					view:first-child{
-						font-size: 32rpx;
-						color: #FFFFFF;
-					}
-					view:last-child{
-						margin-top: 10rpx;
-						font-size: 24rpx;
-						color: #FFFFFF;
-					}
+				// background: url(../../static/image/evaluating/cur1.png) no-repeat;
+				// background-size: 100% 100%;
+				// margin:0 auto;
+				// display: flex;
+				// align-items: center;
+				// justify-content: space-between;
+				padding: 0 20rpx;
+				position: relative;
+				z-index: 100;
+				.Image{
+					width: 710rpx;
+					height: 170rpx;
+					top:0;
+					left: 0;
+					position: absolute;
+					z-index: 99;
+				
+					
 				}
-				.terRight{
+				.worp{
+					position:absolute;
+					top: 50%;
+					transform: translateY(-50%);
+					width: 100%;
+					z-index: 111;
+					box-sizing: border-box;
 					display: flex;
 					align-items: center;
-					image{
-						width: 20rpx;
-						height:20rpx;
-						margin: 0 50rpx 0 10rpx;
+					justify-content: space-between;
+					.terLeft{
+						view:first-child{
+							font-size: 32rpx;
+							color: #333333;
+						}
+						view:last-child{
+							margin-top: 10rpx;
+							font-size: 24rpx;
+							color: #FFFFFF;
+						}
 					}
-					text{
-						font-size: 24rpx;
-						color: #FFFFFF;
+					.terRight{
+						display: flex;
+						align-items: center;
+						image{
+							width: 20rpx;
+							height:20rpx;
+							margin: 0 50rpx 0 10rpx;
+						}
+						text{
+							font-size: 24rpx;
+							color: #FFFFFF;
+						}
 					}
 				}
 			}

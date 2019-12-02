@@ -10,7 +10,7 @@
 				     哪种游戏?
 			</view>
 			<view class="option">A.中国象棋</view>
-			<view class="option">B.赛马</view>
+			<view class="option" @click="choose">B.赛马</view>
 			<view class="btn">下一题</view>
 		</view>
 	</view>
@@ -25,6 +25,12 @@
 		data(){
 			return{
 				title:'我的测评',
+				
+			}
+		},
+		methods:{
+			choose(){
+				
 			}
 		}
 	}
