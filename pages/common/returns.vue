@@ -62,7 +62,7 @@
 		width: 40rpx;
 	}
 	.top text:nth-of-type(2){
-		width: 40rpx;
+		width: 90rpx;
 		display: inline-block;
 	}
 </style>

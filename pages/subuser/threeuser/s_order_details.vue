@@ -60,10 +60,10 @@
 		
 		<view class="order">
 			<view class="order_num" v-for="(item,index) in data_list" :key='item.id' >
-				<view class="num_one" @click="detailed(item.goods_id,item.type)">
+				<view class="num_one" @tap="$jump('../../subhome/details?id='+item.goods_id)">
 					<image :src="item.images" mode="widthFix"></image>
 				</view>
-				<view class="num_two" @click="detailed(item.goods_id,item.type)">
+				<view class="num_two" @tap="$jump('../../subhome/details?id='+item.goods_id)">
 					<view class="">
 						{{item.title}}
 					</view>
@@ -83,11 +83,11 @@
 				
 				<view class="order_handle" v-if="data.status == 2 || data.status == 3 || data.status == 4">
 					
-					<text v-if="item.orderaftersale == null"  @click="jump('/pages/threeLayers/refund?id='+ item.id+'&oid='+item.order_id)">{{data.status == 4?'申请售后':'退款/退货'}}</text>
+					<text v-if="item.orderaftersale == null"  @click="jump('./s_order_refund?id='+ item.id+'&oid='+item.order_id)">{{data.status == 4?'申请售后':'退款/退货'}}</text>
 					<block v-else>
 						<text v-if="item.orderaftersale.status == 3">退款完成</text>
-						<text v-else-if="item.orderaftersale.status == 4"  @click="jump('/pages/threeLayers/refund?id='+ item.id+'&oid='+item.order_id)">已拒绝</text>
-						<text v-else-if="item.orderaftersale.status == 5"  @click="jump('/pages/threeLayers/refund?id='+ item.id+'&oid='+item.order_id)">已取消</text>
+						<text v-else-if="item.orderaftersale.status == 4"  @click="jump('./s_order_refund?id='+ item.id+'&oid='+item.order_id)">已拒绝</text>
+						<text v-else-if="item.orderaftersale.status == 5"  @click="jump('./s_order_refund?id='+ item.id+'&oid='+item.order_id)">已取消</text>
 						<text v-else @click="cancel_return(item.orderaftersale.id)">退款/退货中</text>
 					</block>
 					
@@ -162,7 +162,7 @@
 							{{item.name}}
 						</view>
 					</view>
-					<image v-show="item.choice" class="choice" src="../../../static/image/threeLayers/choice.png" mode="widthFix"></image>
+					<image v-show="item.choice" class="choice" src="../../../static/image/com_page/chiose.png" mode="widthFix"></image>
 				</view>
 			</view>
 			<button @click="payment()">立即支付</button>
@@ -202,14 +202,17 @@
 				    content: '是否确定收货？',
 				    success: function (res) {
 				        if (res.confirm) {
-				            that.service.entire(that,'get',that.service.api_root.subuser.threeuser.Collect,{id:that.data.id},function(self,res){
+				            that.service.entire(that,'post',that.APIconfig.api_root.subuser.threeuser.s_order_collect,{
+								id:that.data.id,
+								user_id: this.$store.state.user.id,
+							},function(self,res){
 								uni.showToast({
 									icon:'none',
 									title:res.msg
 								})
 				            	if(res.code == 0){
 									setTimeout(function(){
-										self.common.returns(self)
+										self.service.returns()
 									},1500)
 								}
 				            })
@@ -250,14 +253,17 @@
 				    content: '是否确定取消？',
 				    success: function (res) {
 				        if (res.confirm) {
-				            that.service.entire(that,'get',that.service.api_root.subuser.threeuser.Cancel,{id:that.data.id},function(self,res){
+				            that.service.entire(that,'post', that.APIconfig.api_root.subuser.threeuser.s_order_cancel,{
+								id:that.data.id,
+								user_id: that.$store.state.user.id,
+							},function(self,res){
 								uni.showToast({
 									icon:'none',
 									title:res.msg
 								})
 				            	if(res.code == 0){
 									setTimeout(function(){
-										self.common.returns(self)
+										self.service.returns()
 									},1500)
 								}
 				            })
@@ -269,21 +275,7 @@
 				
 				
 			},
-			detailed( id, type) {
-				if (type == 3) {
-					uni.navigateTo({  //版通
-						url: '../../subindex/edition_details?id=' + id
-					})
-				} else if (type == 2) { //文创
-					uni.navigateTo({
-						url: '../../subindex/edition_details?id=' + id
-					})
-				} else {
-					uni.navigateTo({ //特色
-						url: '../../subindex/product_detailed?id=' + id + '&type=' + type
-					})
-				}
-			},
+			
 			choice(index) {
 				for (let s of this.pay_list) {
 					s.choice = false
@@ -308,12 +300,12 @@
 				    content: '是否确定支付？',
 				    success: function (res) {
 				        if (res.confirm) {
-				            that.service.entire(that, 'post', that.service.api_root.threeLayers.Pay, {
-				            	token: uni.getStorageSync('token'),
+				            that.service.entire(that,'post',that.APIconfig.api_root.com_page.order_pay, {
+				            	user_id: that.$store.state.user.id,
 				            	id: that.data.id,
 				            	payment_id: that.payment_id
 				            }, function(self, ref) {
-				            	self.common.order(ref,self,'../mall_order?status=-1','pages/subuser/mall_order?status=-1')
+				            	self.service.order(ref,self,'../s_order?status=-1','pages/subuser/s_order?status=-1')
 				            	
 				            })
 				        } else if (res.cancel) {

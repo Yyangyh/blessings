@@ -147,8 +147,8 @@
 					content: '是否确定删除订单？',
 					success: function (res) {
 						if (res.confirm) {
-							that.service.entire(that, 'get', that.APIconfig.api_root.subuser.s_delete, {
-								user_id: this.$store.state.user.id,
+							that.service.entire(that, 'post', that.APIconfig.api_root.subuser.s_delete, {
+								user_id: that.$store.state.user.id,
 								id:id
 							}, function(self, res) {
 								uni.showToast({
