@@ -1,6 +1,6 @@
 const api = ''
-// const api ='http://0318.t1.nethhw188.com'
-const api_img ='http://0318.t1.nethhw188.com'
+// const api ='http://192.168.0.195:8900?s='
+const api_img ='http://192.168.0.195:8900?s='
 
 const api_root = {
 	login:{
@@ -56,6 +56,11 @@ const api_root = {
 			address_detail: api+'/api/useraddress/detail',//收货地址详情
 			s_order_detail: api+'/api/order/detail',//商城订单详情
 		}
+	},
+	subindex:{
+		s_test:api+'api/test/getPaper',//通过试卷id获取试卷信息
+		s_test_classify:api+'api/test/getPaperCategory',//幸福评测分类或分类下数据获取
+		
 	}
 }
 

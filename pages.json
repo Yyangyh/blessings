@@ -240,7 +240,7 @@
 				}
 			}
 		},{
-			"path": "pages/evaluating/evaluating",
+			"path": "pages/subindex/evaluating",
 			"style": {
 				"navigationBarTitleText": "我的测评",
 				"app-plus":{
@@ -249,7 +249,7 @@
 			}
 		},
 		{
-			"path": "pages/evaluating/result",
+			"path": "pages/subindex/result",
 			"style": {
 				"navigationBarTitleText": "我的测评",
 				"app-plus":{
@@ -257,9 +257,33 @@
 				}
 			}
 		},{
-			"path": "pages/evaluating/topic",
+			"path": "pages/subindex/topic",
 			"style": {
 				"navigationBarTitleText": "我的测评",
+				"app-plus":{
+					"titleNView":false
+				}
+			}
+		},{
+			"path": "pages/subuser/brokerage/brokerage",
+			"style": {
+				"navigationBarTitleText": "我的佣金",
+				"app-plus":{
+					"titleNView":false
+				}
+			}
+		},{
+			"path": "pages/subuser/brokerage/invite",
+			"style": {
+				"navigationBarTitleText": "我的邀码",
+				"app-plus":{
+					"titleNView":false
+				}
+			}
+		},{
+			"path": "pages/subuser/brokerage/sales",
+			"style": {
+				"navigationBarTitleText": "分销佣金",
 				"app-plus":{
 					"titleNView":false
 				}
