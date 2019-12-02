@@ -153,6 +153,13 @@
 				title:'我的测评',
 				cur:0,
 			}
+		},
+		onShow() {
+			this.service.entire(this,'post',this.APIconfig.api_root.subindex.s_test_classify,{
+				
+			},function(self,res){
+				console.log(res)
+			})
 		}
 	}
 </script>

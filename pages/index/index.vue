@@ -39,7 +39,7 @@
 				<image src='../../static/image/index/index_tab6.png'></image>
 				<view class="">商城</view>
 			</view>
-			<view class="tab_list" @tap="$jump('../evaluating/evaluating')">
+			<view class="tab_list" @tap="$jump('../subindex/evaluating')">
 				<image src='../../static/image/index/index_tab7.png'></image>
 				<view class="">幸福测评</view>
 			</view>
@@ -170,18 +170,12 @@
 			this.service.entire(this,'post',this.APIconfig.api_root.index.index,{
 				userid:this.$store.state.user.id
 			},function(self,res){
-				
 				self.swiper_list = res.data.slide
 				self.class_top = res.data.class_top
 				self.class_list = res.data.class_list
 			})
 		},
 		methods: {
-			// jump(url){
-			// 	uni.navigateTo({
-			// 		url:url
-			// 	})
-			// }
 			toactivity(){
 				uni.navigateTo({
 					url:'/pages/activity/activity',

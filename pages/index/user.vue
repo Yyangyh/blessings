@@ -77,7 +77,7 @@
 						服务商
 					</view>
 				</view>
-				<view class="tab_list"  @click="jump('../subuser/register')">
+				<view class="tab_list"  @tap="$jump('../brokerage/brokerage')">
 					<image src="../../static/image/index/commission.png" mode="widthFix"></image>
 					<view class="">
 						佣金

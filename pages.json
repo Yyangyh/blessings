@@ -267,7 +267,7 @@
 				}
 			}
 		},{
-			"path": "pages/evaluating/evaluating",
+			"path": "pages/subindex/evaluating",
 			"style": {
 				"navigationBarTitleText": "我的测评",
 				"app-plus":{
@@ -276,7 +276,7 @@
 			}
 		},
 		{
-			"path": "pages/evaluating/result",
+			"path": "pages/subindex/result",
 			"style": {
 				"navigationBarTitleText": "我的测评",
 				"app-plus":{
@@ -284,13 +284,44 @@
 				}
 			}
 		},{
-			"path": "pages/evaluating/topic",
+			"path": "pages/subindex/topic",
 			"style": {
 				"navigationBarTitleText": "我的测评",
 				"app-plus":{
 					"titleNView":false
 				}
 			}
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+		},{
+			"path": "pages/subuser/brokerage/brokerage",
+			"style": {
+				"navigationBarTitleText": "我的佣金",
+				"app-plus":{
+					"titleNView":false
+				}
+			}
+		},{
+			"path": "pages/subuser/brokerage/invite",
+			"style": {
+				"navigationBarTitleText": "我的邀码",
+				"app-plus":{
+					"titleNView":false
+				}
+			}
+		},{
+			"path": "pages/subuser/brokerage/sales",
+			"style": {
+				"navigationBarTitleText": "分销佣金",
+				"app-plus":{
+					"titleNView":false
+				}
+			}
+=======
+>>>>>>> 3bd7ebd3161e9bf5469d233ab817efd5b031eb88
+>>>>>>> 389d56479c2a88e1c6e596edd5205fc73b7e070a
+>>>>>>> 47ba7f8ad00a8ddb4f7b7644ff6fa24dbdbd1f22
 		}
 	],
 	"globalStyle": {
