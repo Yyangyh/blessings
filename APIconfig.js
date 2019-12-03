@@ -75,7 +75,7 @@ const api_root = {
 	subindex:{
 		s_test:api+'/api/test/getPaper',//通过试卷id获取试卷信息
 		s_test_classify:api+'/api/test/getPaperCategory',//幸福评测分类或分类下数据获取
-		
+		s_test_Result:api+'/api/test/examUserTestResult',//用户测验
 	}
 }
 

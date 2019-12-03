@@ -8,10 +8,10 @@
 			  <text @click="cur=0" class="one" :class="{active:cur==0}">幸福测评</text>
 			  <text @click="cur=1" class="two" :class="{active:cur==1}">调查问卷</text>
 			  <text @click="cur=2" class="three" :class="{active:cur==2}">测评记录</text>
-		</view>
+		</view
 		<!-- 幸福测评 -->
 		<view class="box" v-show="cur==0">
-			<view class="tergum" v-for="(item,index) in dataList" :key='item.id' @tap="$jump('./topic')">
+			<view class="tergum" v-for="(item,index) in dataList" :key='item.id' @tap="$jump('./listbox?id='+item.id+'&name='+item.name)">
 				<view class="worp">
 					<view class="terLeft">
 						<view>{{item.name}}</view>
@@ -164,9 +164,14 @@
 			padding: 20rpx 20rpx 0 20rpx;
 			box-sizing: border-box;
 			.tergum{
+<<<<<<< HEAD
+				height: 170rpx;
+				padding: 0 20rpx;
+=======
 				
 				height: 170rpx;
 				margin-bottom: 33rpx;
+>>>>>>> 301f42509d2b44dd8c1cad14baaf9cb4eaf4d150
 				position: relative;
 				z-index: 100;
 				.Image{
@@ -176,8 +181,6 @@
 					left: 0;
 					position: absolute;
 					z-index: 99;
-				
-					
 				}
 				.worp{
 					position:absolute;
