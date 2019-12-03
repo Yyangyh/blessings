@@ -143,7 +143,6 @@
 <style lang="scss">
 	.content{
 		width: 100%;
-		height: 100vh;
 		background-color: #F6F6F7;
 		.allorder{
 			width: 100%;
@@ -161,13 +160,18 @@
 		}
 		.box{
 			width: 100%;
-			height: 100vh;
 			background-color: #FFFFFF;
 			padding: 20rpx 20rpx 0 20rpx;
 			box-sizing: border-box;
 			.tergum{
+<<<<<<< HEAD
 				height: 170rpx;
 				padding: 0 20rpx;
+=======
+				
+				height: 170rpx;
+				margin-bottom: 33rpx;
+>>>>>>> 301f42509d2b44dd8c1cad14baaf9cb4eaf4d150
 				position: relative;
 				z-index: 100;
 				.Image{
@@ -188,10 +192,11 @@
 					display: flex;
 					align-items: center;
 					justify-content: space-between;
+					padding: 0 20rpx;
 					.terLeft{
 						view:first-child{
 							font-size: 32rpx;
-							color: #333333;
+							color: #fff;
 						}
 						view:last-child{
 							margin-top: 10rpx;
@@ -205,7 +210,6 @@
 						image{
 							width: 20rpx;
 							height:20rpx;
-							margin: 0 50rpx 0 10rpx;
 						}
 						text{
 							font-size: 24rpx;

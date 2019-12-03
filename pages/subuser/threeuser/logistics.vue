@@ -26,7 +26,7 @@
 		},
 		
 		onLoad(e) {
-			this.service.entire(this,'get',this.APIconfig.api_root.subuser.threeuser.s_order_getexpinfo,{
+			this.service.entire(this,'post',this.APIconfig.api_root.subuser.threeuser.s_order_getexpinfo,{
 				express_id:e.id,
 				express_number:e.number,
 			},function(self,res){
