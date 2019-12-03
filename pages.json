@@ -324,6 +324,30 @@
 					"titleNView":false
 				}
 			}
+		},{
+			"path": "pages/subuser/brokerage/withdraw",
+			"style": {
+				"navigationBarTitleText": "佣金提现",
+				"app-plus":{
+					"titleNView":false
+				}
+			}
+		},{
+			"path": "pages/subindex/listbox",
+			"style": {
+				"navigationBarTitleText":"测评列表",
+				"app-plus":{
+					"titleNView":false
+				}
+			}
+		},{
+			"path": "pages/subuser/member/member",
+			"style": {
+				"navigationBarTitleText": "会员中心",
+				"app-plus":{
+					"titleNView":false
+				}
+			}
 		}
 	],
 	"globalStyle": {
