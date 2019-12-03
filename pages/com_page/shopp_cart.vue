@@ -132,10 +132,11 @@
 			singleElection(index){//单选
 				this.data[index].choice = !this.data[index].choice
 				if(this.data[index].choice == true){ //全选
+					let arr_choice = []
 					for (let s of this.data) {
-						if(s.choice == false) return
+						arr_choice.push(s.choice)
 					}
-					this.checked = true
+					if(arr_choice.indexOf(false) == -1) this.checked = true
 				}
 				if(this.data[index].choice == false){ //非全选
 					for (let s of this.data) {
@@ -143,11 +144,13 @@
 					}
 				}
 				let all = []
+				
 				for (let s of this.data) {
 					if(s.choice == true){
 						all.push(s.stock * s.price)
 					}
 				}
+				console.log(all)
 				all != '' ? this.allPrice = all.reduce((n,m) => n+m) :this.allPrice = 0
 			},
 			deletes(){  //删除
@@ -195,7 +198,7 @@
 					type:'cart'
 				}
 				uni.navigateTo({
-					url:'./order?data='+JSON.stringify(data)
+					url:'./s_order?data='+JSON.stringify(data)
 				})
 				
 				

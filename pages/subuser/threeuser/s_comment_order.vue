@@ -51,9 +51,9 @@
 
 						<view class="pic_box" v-for="(items,indexs) in image_list[index]">
 							<image :src="items" mode="aspectFill" :key='indexs'></image>
-							<image class="close" @click="deletes(index,indexs)" src="../../static/image/secondary/close2.png" mode=""></image>
+							<image class="close" @click="deletes(index,indexs)" src="/static/image/com_page/close.png" mode="widthFix"></image>
 						</view>
-						<image src="../../static/image/addpic.png" mode="" @click="add_image(index)"></image>
+						<image src="/static/image/subuser/addpic.png" mode="" @click="add_image(index)"></image>
 
 					</view>
 				</view>
@@ -111,7 +111,6 @@
 			},
 			submit() { // 提交评论
 				if(this.rating.length==0){
-					console.log(33);
 					uni.showToast({
 						icon:'none',
 						title:'请选择评分'
@@ -119,7 +118,6 @@
 					return
 				}
 				if(this.content.length == 0){
-					console.log('哦');
 					uni.showToast({
 						icon:'none',
 						title:'请输入详细评论'
@@ -129,7 +127,7 @@
 				var temp = this.content.every((val,ind)=>{
 					return val !=''
 				})
-				console.log(temp);
+				// console.log(temp);
 				if(!temp){
 					uni.showToast({
 						icon:'none',
@@ -137,53 +135,54 @@
 					})
 					return
 				}else{
-					if(this.type == 1){
-						this.submits({url:this.service.api_root.threeLayers.goods_Comment})
-					}else if(this.type == 2){
-						this.submits({url:this.service.api_root.subindex.threeindex.comments})
-					}else if(this.type == 3){
-						this.submits({url:this.service.api_root.subuser.Ctripspot_comment})
-					}
+					this.submits({url:this.APIconfig.api_root.subuser.threeuser.s_order_commentssave})
 				}
-				console.log('可以吗');
 				
 			},
 			submits(e){
 				// 封装提交评论clog
 				// console.log(e.url);
-				this.service.entire(this, 'post',e.url, {
+				let data = {
 					goods_id: this.goodsId, //商品id
 					id: this.id, // 订单id
 					rating: this.rating, // 星级
 					content: this.content, // textarea
 					images: this.images, // 上传的图片
-				}, function(self, res) {
-					console.log(res);
+					user_id: this.$store.state.user.id,
+				}
+				console.log(data)
+				this.service.entire(this, 'post',e.url,data, function(self, res) {
+					
+					uni.showToast({
+						title: res.msg
+					});
 					if (res.code == 0) {
-						uni.showToast({
-							title: res.msg
-						});
+						
 						setTimeout(() => {
 							uni.navigateTo({
-								url: '/pages/threeLayers/comment_success?id=' + self.id+'&type='+self.type
+								url: './s_comment_success?id=' + self.id
 							})
-						}, 2000)
+						}, 1000)
 					}
 					})
 			},
 			add_image(i) { // 上传图片
 				console.log(i);
 				let that = this
+				let path_type = 'order_comments-'+that.$store.state.user.id+'-'+that.id
+				console.log(path_type)
 				uni.chooseImage({
 					count: 1, //默认9
 					sourceType: ['album'], //从相册选择
 					success: function(res) {
 						uni.uploadFile({
-							url: that.service.api_root.common.upload_image,
+							url: that.APIconfig.api_root.subuser.threeuser.s_ueditor_index,
 							filePath: res.tempFilePaths[0],
-							name: 'file',
+							name: 'upfile',
 							formData: {
-								token: uni.getStorageSync('token')
+								action:'uploadimage',
+								path_type:path_type,
+								user_id: that.$store.state.user.id,
 							},
 							success: (ref) => {
 								console.log(ref, 'll')
@@ -194,12 +193,12 @@
 										var arr = [];
 										var file = []
 										arr.push(res.tempFilePaths[0])
-										file.push(JSON.parse(ref.data).data.file)
+										file.push(JSON.parse(ref.data).data.url)
 										that.image_list[i] = [...arr]
 										that.images[i] = [...file]
 									} else {
 										that.image_list[i].push(res.tempFilePaths[0])
-										that.images[i].push(JSON.parse(ref.data).data.file)
+										that.images[i].push(JSON.parse(ref.data).data.url)
 									}
 									that.image_list = JSON.parse(JSON.stringify(that.image_list))
 									// console.log(that.image_list);
@@ -220,11 +219,10 @@
 		onLoad(options) {
 			// type:1商品评论 type:2 积分评论  type3 景点评论  积分订单里面没有的goods_id
 			this.type = options.type
-			if (options.type == 1) {
 				this.id = options.id // 订单id
-				this.service.entire(this, 'post', this.service.api_root.subuser.threeuser.Order_detail, {
+				this.service.entire(this, 'post', this.APIconfig.api_root.subuser.threeuser.s_order_detail, {
 					id: options.id,
-					token: uni.getStorageSync('token')
+					user_id: this.$store.state.user.id,
 				}, function(self, res) {
 					console.log(res.data.items);
 					self.data = res.data.items;
@@ -235,36 +233,6 @@
 
 					// console.log(self.data,self.id,self.goodsId);
 				})
-			}else if (options.type == 2){
-				this.id = options.id // 订单id
-				this.service.entire(this, 'post', this.service.api_root.subuser.threeuser.int_OrderDetail, {
-					orderid: options.id,
-					token: uni.getStorageSync('token')
-				}, function(self, res) {
-					console.log(res);
-					self.data.push(res.data.order) 
-					self.goodsId.push(self.data[0].goods_id); // 获取商品id 
-					// for (var i = 0; i < self.data.length; i++) {
-					// 	self.goodsId.push(self.data[i].goods_id); // 获取商品id .data.items
-					// }
-					console.log(self.goodsId);
-				})
-			}else if (options.type == 3){  // 景点门票评论
-				this.id = options.id // 订单id
-				this.service.entire(this, 'get', this.service.api_root.subuser.threeuser.scen_orders_Detail, {
-					orderid: options.id,
-					token: uni.getStorageSync('token')
-				}, function(self, res) {
-					self.goodsId.push(res.data.scenic_spot_id); // 景点门票商品id
-					let msg = {
-						images:res.data.thumb,
-						title:res.data.ctrip_date_info.ResourceList[0].Name,
-						buy_number:res.data.total
-					}
-					self.data.push(msg)
-					
-				})
-			}
 				
 
 		},

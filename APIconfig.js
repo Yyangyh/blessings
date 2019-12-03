@@ -44,6 +44,10 @@ const api_root = {
 		s_SpecType: api+'/api/good/SpecType',//商品规格详情查询
 		s_SpecDetail: api+'/api/good/SpecDetail',//商品规格详情价格查询
 		s_Save: api+'/api/cart/Save',//加入购物车
+		g_lists: api+'/api/groupgoods/lists',//拼团列表
+		threehome:{
+			g_Detail: api+'/api/groupgoods/Detail',//拼团商品详情
+		}
 	},
 	subuser:{
 		s_order: api+'/api/order/index',//商城订单列表
@@ -60,9 +64,12 @@ const api_root = {
 			s_order_collect: api+'/api/order/collect',//商城订单确认收货
 			s_order_cancel: api+'/api/order/cancel',//商城订单取消
 			s_order_aftersale: api+'/api/orderaftersale/aftersale',//售后页面
-			s_ueditor_index: api+'/api/ueditor/index',//售后申请凭证图片上传
+			s_ueditor_index: api+'/api/ueditor/index',//图片上传
 			s_aftersale_create: api+'/api/orderaftersale/create',//售后提交申请
 			s_order_getexpinfo: api+'/api/order/getexpinfo',//商城物流
+			s_order_commentssave: api+'/api/order/commentssave',//商城订单评论提交
+			s_good_Comments: api+'/api/good/Comments',//商城商品评论列表
+			
 		}
 	},
 	subindex:{

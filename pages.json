@@ -111,6 +111,24 @@
 			}
 		},
 		{
+			"path": "pages/subhome/assemble",
+			"style": {
+				"navigationBarTitleText": "拼团",
+				"app-plus":{
+					"titleNView":false
+				}
+			}
+		},
+		{
+			"path": "pages/subhome/threehome/group_products",
+			"style": {
+				"navigationBarTitleText": "商品详情",
+				"app-plus":{
+					"titleNView":false
+				}
+			}
+		},
+		{
 			"path": "pages/subuser/s_order",
 			"style": {
 				"navigationBarTitleText": "订单列表",
@@ -157,6 +175,25 @@
 		},
 		{
 			"path": "pages/subuser/threeuser/s_comment_order",
+			"style": {
+				"navigationBarTitleText": "评论",
+				"app-plus":{
+					"titleNView":false
+				}
+			}
+		},
+		{
+			"path": "pages/subuser/threeuser/s_comment_list",
+			"style": {
+				"navigationBarTitleText": "评论列表",
+				"app-plus":{
+					"titleNView":false
+				}
+			}
+		},
+		
+		{
+			"path": "pages/subuser/threeuser/s_comment_success",
 			"style": {
 				"navigationBarTitleText": "评论",
 				"app-plus":{
