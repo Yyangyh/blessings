@@ -42,6 +42,37 @@
 				<view class="l-right"></view>
 			</view>
 		</view>
+		<view class="user_top">
+			<view class="">
+				用户评论
+			</view>
+			<view class="" @tap="$jump('../subuser/threeuser/s_comment_list'+'?goods_id='+id)">
+				全部
+			</view>
+		</view>
+		<view class="user_comment" v-for="(item,index) in comment_data" :key='item.id'>
+			<view class="user">
+				<image class="user_img"  :src="item.user.avatar" mode="widthFix"></image>
+				<view class="user_test" >
+					<view>{{item.user.user_name_view}}</view>
+					<text>{{item.add_time_date}}</text>
+				</view>
+				<view class="user_star">
+					<image v-for="(item,index) in item.rating_num" src="/static/image/com_page/stars.png" mode="widthFix"></image>
+				</view>
+			</view>
+			<view class="com_content">
+				<view class="content_test">
+					<view class="">
+						{{item.content}}
+					</view>
+				</view>
+				<view class="content_img">
+					<image v-for="(items,indexs) in item.images" :key='index' :src="items" mode=""></image>
+				</view>
+				
+			</view>
+		</view>
 		<view class="p-t">活动详情</view>
 		<image class="image" src='../../static/image/index/xq.png' mode="widthFix"></image>
 		<view class="shopping">
@@ -160,7 +191,8 @@
 				type:'',
 				id:'',
 				index_list:0,
-				spec:[]
+				spec:[],
+				comment_data:''
 			}
 		},
 		methods:{
@@ -296,7 +328,6 @@
 			this.service.entire(this,'post',this.APIconfig.api_root.subhome.s_detail,{
 				goods_id:e.id,
 				user_id:this.$store.state.user.id,
-				isLoad:true
 			},function(self,res){
 				
 				self.goods = res.data.goods
@@ -306,6 +337,10 @@
 				self.freight_price = res.data.goods.freight_free.freight_price
 				self.coupon =  res.data.plugins_coupon_data
 				
+				self.comment_data = res.data.goods.comments
+				for (let s of self.comment_data) {
+					s.rating_num = new Array(Number(s.rating))
+				}
 				self.price = res.data.goods.price
 				self.inventory = res.data.goods.inventory
 				let list = res.data.goods.specifications.choose
@@ -492,6 +527,80 @@
 				font-size: 24rpx;
 				color: #333333;
 				margin: 20rpx 30rpx;
+			}
+		}
+		.user_top {
+			background: #fff;
+			display: flex;
+			justify-content: space-between;
+			font-weight: bold;
+			font-size: 28rpx;
+			padding: 20rpx;
+			view{
+				&:nth-of-type(2){
+					color: #EF7C38;
+				}
+			}
+			
+		}
+		.user_comment {
+			background: #fff;
+			border-bottom: 2rpx solid #EEEEEE;
+			padding: 20rpx 30rpx;
+			.user {
+				display: flex;
+				align-items: center;
+				margin: 20rpx 0;
+				.user_img {
+					width: 90rpx;
+					height: 90rpx;
+					border-radius: 50%;
+				}
+				.user_test {
+					margin: 0 20rpx;
+					font-size: 32rpx;
+					view {
+						font-weight: bold;
+						color: #333333;
+						font-size: 28rpx;
+					}
+					text {
+						font-size: 24rpx;
+						color: #999999;
+						
+					}
+				}
+				.user_star {
+					align-self: flex-start;
+					font-size: 24rpx;
+					color: #333333;
+					image {
+						height: 26rpx;
+						width: 26rpx;
+					}
+				}
+			}
+			.com_content {
+				.content_test view {
+					font-size: 24rpx;
+					color: #666666;
+					display: -webkit-box;
+					-webkit-box-orient: vertical;
+					-webkit-line-clamp: 2;
+					overflow: hidden;
+				}
+				.content_img image {
+					height: 120rpx;
+					width: 120rpx;
+					margin-right: 16rpx;
+					margin-top: 30rpx;
+				}
+				.more {
+					font-size: 32rpx;
+					color: #666666;
+					margin: 20rpx 0;
+				}
+				
 			}
 		}
 		.p-t{

@@ -30,7 +30,7 @@
 				<image src="../../static/image/index/school.png"></image>
 				<view>家风学堂</view>
 			</view>
-			<view class="classify">
+			<view class="classify" @tap="$jump('../subhome/assemble')">
 				<image src="../../static/image/index/assemble.png"></image>
 				<view>拼团</view>
 			</view>

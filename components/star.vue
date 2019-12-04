@@ -13,11 +13,11 @@
 		data(){
 			return{
 				imgList:[
-					{src:'../../static/image/star1.png'},
-					{src:'../../static/image/star1.png'},
-					{src:'../../static/image/star1.png'},
-					{src:'../../static/image/star1.png'},
-					{src:'../../static/image/star1.png'}
+					{src:'/static/image/subuser/star1.png'},
+					{src:'/static/image/subuser/star1.png'},
+					{src:'/static/image/subuser/star1.png'},
+					{src:'/static/image/subuser/star1.png'},
+					{src:'/static/image/subuser/star1.png'}
 				],
 				active:-1, // 评分等级文字变色
 				level:['1分','2分','3分','4分','5分'],
@@ -28,10 +28,10 @@
 			choose(index){ // 选择星级
 			// this.rating = []
 				for (var j = 0; j<this.imgList.length;j++) {
-					this.imgList[j].src = '../../static/image/star1.png'
+					this.imgList[j].src = '/static/image/subuser/star1.png'
 				}
 				for (var i = 0; i<=index; i++) {
-					this.imgList[i].src = '../../static/image/star2.png'
+					this.imgList[i].src = '/static/image/com_page/stars.png'
 					this.amount = this.level[i]
 					this.active = i
 				}
