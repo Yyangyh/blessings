@@ -49,7 +49,7 @@
 			</view>
 		</view>
 		
-		<view class="user_vip"  @click="jump('../subuser/threeuser/open_member')">
+		<view class="user_vip"  @tap="$jump('../subuser/member/member')">
 			<view class="vip_one">
 				<image src="../../static/image/index/vip.png" mode="widthFix"></image>
 				<view class="">
@@ -147,7 +147,7 @@
 					</view>
 				</view>
 				
-				<view class="tab_list" @click="jump('../subuser/settled')">
+				<view class="tab_list" @tap="$jump('../subuser/relation/relation')">
 					<image src="../../static/image/index/other_img8.png" mode="widthFix"></image>
 					<view class="">
 						亲情号

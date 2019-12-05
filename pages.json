@@ -458,6 +458,30 @@
 					"titleNView":false
 				}
 			}
+		},{
+			"path": "pages/subuser/member/upgrade",
+			"style": {
+				"navigationBarTitleText": "积分升级",
+				"app-plus":{
+					"titleNView":false
+				}
+			}
+		},{
+			"path": "pages/subuser/relation/relation",
+			"style": {
+				"navigationBarTitleText": "亲情号",
+				"app-plus":{
+					"titleNView":false
+				}
+			}
+		},{
+			"path": "pages/subuser/relation/record",
+			"style": {
+				"navigationBarTitleText": "分享记录",
+				"app-plus":{
+					"titleNView":false
+				}
+			}
 		}
 	],
 	"globalStyle": {
