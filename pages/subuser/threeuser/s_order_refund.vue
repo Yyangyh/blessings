@@ -11,7 +11,7 @@
 				</view>
 				<view class="num_two">
 					<view class="">
-						{{goods_data.items.title}}
+						{{type == 1?goods_data.items.title:goods_data.title}}
 					</view>
 					<view class="specs">
 						<text v-for="(item,indexs) in goods_data.spec" :key='indexs'>{{item.type}}：{{item.value}}</text>
@@ -227,7 +227,7 @@
 				data.order_id = this.oid
 				data.order_detail_id = this.id
 				let url
-				this.type == 1? url = this.APIconfig.api_root.subuser.threeuser.s_aftersale_create :url = this.service.api_root.threeLayers.group_Create
+				this.type == 1? url = this.APIconfig.api_root.subuser.threeuser.s_aftersale_create :url = this.APIconfig.api_root.subuser.threeuser.g_Create
 				this.service.entire(this,'post',url,data,function(self,res){
 					uni.showToast({
 						icon:'none',
@@ -267,11 +267,13 @@
 			}else{//拼团订单
 				this.type = 2
 				this.oid = e.oid
-				this.service.entire(this,'get',this.service.api_root.threeLayers.group_Aftersale,{
+				this.service.entire(this,'get',this.APIconfig.api_root.subuser.threeuser.g_Aftersale,{
 					oid:e.oid,
+					user_id: this.$store.state.user.id,
 				},function(self,res){
 					self.data = res.data
 					self.goods_data = res.data.goods[0]
+					console.log(self.goods_data)
 					self.num = 1
 					self.order_data = res.data.order.order
 					console.log(self.order_data)

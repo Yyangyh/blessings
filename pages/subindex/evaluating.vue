@@ -164,14 +164,9 @@
 			padding: 20rpx 20rpx 0 20rpx;
 			box-sizing: border-box;
 			.tergum{
-<<<<<<< HEAD
 				height: 170rpx;
 				padding: 0 20rpx;
-=======
-				
-				height: 170rpx;
 				margin-bottom: 33rpx;
->>>>>>> 301f42509d2b44dd8c1cad14baaf9cb4eaf4d150
 				position: relative;
 				z-index: 100;
 				.Image{

@@ -129,6 +129,52 @@
 			}
 		},
 		{
+			"path": "pages/subhome/threehome/my_group",
+			"style": {
+				"navigationBarTitleText": "我的团",
+				"app-plus":{
+					"titleNView":false
+				}
+			}
+		},
+		{
+			"path": "pages/subhome/threehome/operation",
+			"style": {
+				"navigationBarTitleText": "拼团操作",
+				"app-plus":{
+					"titleNView":false
+				}
+			}
+		},
+		{
+			"path": "pages/subhome/threehome/group_order",
+			"style": {
+				"navigationBarTitleText": "订单详情",
+				"app-plus":{
+					"titleNView":false
+				}
+			}
+		},
+		
+		{
+			"path": "pages/subuser/assemble_refund",
+			"style": {
+				"navigationBarTitleText": "退款订单",
+				"app-plus":{
+					"titleNView":false
+				}
+			}
+		},
+		{
+			"path": "pages/subuser/assemble_order",
+			"style": {
+				"navigationBarTitleText": "订单列表",
+				"app-plus":{
+					"titleNView":false
+				}
+			}
+		},
+		{
 			"path": "pages/subuser/s_order",
 			"style": {
 				"navigationBarTitleText": "订单列表",
@@ -159,6 +205,24 @@
 			"path": "pages/subuser/threeuser/add_addto",
 			"style": {
 				"navigationBarTitleText": "地址管理",
+				"app-plus":{
+					"titleNView":false
+				}
+			}
+		},
+		{
+			"path": "pages/subuser/threeuser/ass_refund_details",
+			"style": {
+				"navigationBarTitleText": "订单详情",
+				"app-plus":{
+					"titleNView":false
+				}
+			}
+		},
+		{
+			"path": "pages/subuser/threeuser/assembleDetails",
+			"style": {
+				"navigationBarTitleText": "订单详情",
 				"app-plus":{
 					"titleNView":false
 				}

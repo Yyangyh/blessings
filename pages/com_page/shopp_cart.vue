@@ -132,10 +132,7 @@
 			singleElection(index){//单选
 				this.data[index].choice = !this.data[index].choice
 				if(this.data[index].choice == true){ //全选
-					let arr_choice = []
-					for (let s of this.data) {
-						arr_choice.push(s.choice)
-					}
+					let arr_choice = this.data.map(x => x.choice)
 					if(arr_choice.indexOf(false) == -1) this.checked = true
 				}
 				if(this.data[index].choice == false){ //非全选
@@ -216,7 +213,6 @@
 					s.choice = false
 				}
 				self.data = list
-				
 			})
 		}
 	}
