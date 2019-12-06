@@ -17,11 +17,11 @@
 			<view class="" v-else-if="data.status == 1">
 				等待买家付款
 			</view>
-			<image src="../../../static/image/threeLayers/box.png" mode="widthFix"></image>
+			<image src="/static/image/subuser/box.png" mode="widthFix"></image>
 		</view>
 		<view class="order_position">
 			<view class="">
-				<image src="../../../static/image/threeLayers/position.png" mode="widthFix"></image>
+				<image src="/static/image/subuser/position.png" mode="widthFix"></image>
 			</view>
 			<view class="posi_one">
 				<view class="">
@@ -52,7 +52,7 @@
 			
 			<view class="news_four" >
 				<view class="" @click="jump('./logistics?id='+data.express_id+'&number='+data.express_number)">
-					<image src="../../../static/image/threeLayers/contact.png" mode="widthFix"></image>
+					<image src="/static/image/subuser/logistics.png" mode="widthFix"></image>
 					<text>查看物流</text>
 				</view>
 			</view>
@@ -224,20 +224,24 @@
 			},
 			cancel_return(id){//取消退款申请
 				let that = this
+				console.log(id)
 				uni.showModal({
 				    title: '提示',
 				    content: '是否取消退款/退货申请？',
 				    success: function (res) {
 				        if (res.confirm) {
-				            that.service.entire(that,'get',that.service.api_root.subuser.threeuser.AftersaleCancel,{id:id},function(self,res){
+				            that.service.entire(that,'post',that.APIconfig.api_root.subuser.threeuser.s_cancel,{
+								id:id,
+								user_id: that.$store.state.user.id,
+							},function(self,res){
 								uni.showToast({
 									icon:'none',
 									title:res.msg
 								})
 				            	if(res.code == 0){
 									setTimeout(function(){
-										self.common.returns(self)
-									},1500)
+										self.service.returns()
+									},1000)
 								}
 				            })
 				        } else if (res.cancel) {
@@ -357,7 +361,7 @@
 		color: #FFFFFF;
 		height: 200rpx;
 		padding: 0 72rpx;
-		background: linear-gradient(-38deg, rgba(100, 197, 249, 1), rgba(62, 143, 243, 1));
+		background:linear-gradient(90deg,#E41217,#FD7160);
 	}
 
 	.order_top image {
@@ -382,8 +386,8 @@
 	}
 
 	.order_position image {
-		height: 76rpx;
-		width: 76rpx;
+		height: 41rpx;
+		width: 31rpx;
 		margin-right: 30rpx;
 	}
 

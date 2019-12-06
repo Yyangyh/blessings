@@ -60,7 +60,7 @@
 			this.service.entire(this,'get',this.APIconfig.api_root.com_page.videoList,{
 				type:e.type
 			},function(self,res){
-				self.top_class = res.data.top_class
+				self.top_class = res.data.top_list
 				self.video_list = res.data.video_list
 			})
 		}

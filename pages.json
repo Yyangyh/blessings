@@ -147,6 +147,15 @@
 			}
 		},
 		{
+			"path": "pages/subhome/threehome/group_details",
+			"style": {
+				"navigationBarTitleText": "团详情",
+				"app-plus":{
+					"titleNView":false
+				}
+			}
+		},
+		{
 			"path": "pages/subhome/threehome/group_order",
 			"style": {
 				"navigationBarTitleText": "订单详情",
@@ -196,6 +205,15 @@
 			"path": "pages/subuser/s_refund",
 			"style": {
 				"navigationBarTitleText": "退款",
+				"app-plus":{
+					"titleNView":false
+				}
+			}
+		},
+		{
+			"path": "pages/subuser/threeuser/return_goods",
+			"style": {
+				"navigationBarTitleText": "填写退货信息",
 				"app-plus":{
 					"titleNView":false
 				}

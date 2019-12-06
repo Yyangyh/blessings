@@ -33,9 +33,9 @@
 				<view class="bottom_list" v-for="(item,index) in data" :key='item.id'  @click="$jump('threeuser/assembleDetails?id='+item.id+'&temid='+item.teamid)">
 					<view class="list_top">
 						<view class="top1">
-							<image src="../../static/image/secondary/shop.png" mode="widthFix"></image>
-							<text>店铺名字</text>
-							<image src="../../static/image/go.png" mode="widthFix"></image>
+							<image src="/static/image/subuser/logo.png" mode="widthFix"></image>
+							<text>五福家庭</text>
+							<!-- <image src="../../static/image/go.png" mode="widthFix"></image> -->
 						</view>
 						
 						<view class="top2 refund" v-if="item.status == -1">
@@ -62,12 +62,12 @@
 						<image :src="item.thumb" mode="aspectFill"></image>
 						<view class="middle1">
 							<view class="">{{item.title}}</view>
-							<view>套装</view>
+							<!-- <view>套装</view> -->
 						</view>
 						<view class="middle2">x{{item.goodsnum}}</view>
 					</view>
 					<view class="list_bottom">
-						<!-- <view class="bottom1">
+						<!-- <view class="bottom_ash">
 							支付方式：在线支付
 						</view> -->
 						<view class="bottom2">
@@ -206,19 +206,18 @@
 		color: #333333;
 		background: #fff;
 		box-shadow:0px 2rpx 4rpx 0px rgba(0, 0, 0, 0.1);
+		image{
+			height: 40rpx;
+			width: 40rpx;
+		}
+		text:nth-of-type(2){
+			/* width: 40rpx; */
+			font-size: 28rpx;
+			color: #666;
+			font-weight: 400;
+			display: inline-block;
+		}
 	}
-	.top image{
-		height: 40rpx;
-		width: 40rpx;
-	}
-	.top text:nth-of-type(2){
-		/* width: 40rpx; */
-		font-size: 28rpx;
-		color: #666;
-		font-weight: 400;
-		display: inline-block;
-	}
-	
 	.box_top {
 		background: #fff;
 		width: 100%;
@@ -248,85 +247,96 @@
 		color: #D80000;
 		border-bottom-color:  #D80000 !important;
 	}
-	.mall_box .box_bottom{
-		background: #fff;
-		
-	}
-	.mall_box .box_bottom .bottom_list{
-		padding: 20rpx;
-		background: #fff;
-		border-radius:20rpx;
-		margin: 0 20rpx 32rpx 20rpx;
-		box-shadow:0px 0rpx 20rpx 0px rgba(0, 0, 0, 0.1);
-	}
-	.mall_box .box_bottom .bottom_list .list_top{
-		display: flex;
-		justify-content: space-between;
-		
-	}
-	.mall_box .box_bottom .bottom_list .list_top .top1{
-		display: flex;
-		align-items: center;
-	}
-	.mall_box .box_bottom .bottom_list .list_top .top1 text{
-		margin: 0 20rpx;
-		font-weight: 400;
-		color: #999999;
-	}
-	.mall_box .box_bottom .bottom_list .list_top .top1 image{
-		height: 30rpx;
-		width: 30rpx;
-	}
-	.mall_box .box_bottom .bottom_list .list_top .top2{
-		/* color: #999999; */
-		font-size: 32rpx;
-		font-weight: bold;
-	}
-	.mall_box .box_bottom .bottom_list .list_middle{
-		display: flex;
-		align-items: center;
-		margin-top: 30rpx;
-	}
-	.mall_box .box_bottom .bottom_list .list_middle .middle1{
-		font-size: 24rpx;
-		color: #999999;
-	}
-	.mall_box .box_bottom .bottom_list .list_middle .middle1 view:nth-of-type(1){
-		font-size: 28rpx;
-		font-weight: bold;
-	}
-	.mall_box .box_bottom .bottom_list .list_middle .middle2{
-		font-size: 26rpx;
-		color: #999999;
-		flex-grow: 2;
-		text-align: right;
-	}
-	.mall_box .box_bottom .bottom_list .list_middle image{
-		height: 122rpx;
-		width: 122rpx;
-		margin-right: 20rpx;
-	}
-	.mall_box .box_bottom  .bottom_list .list_bottom{
-		text-align: right;
-		font-size: 24rpx;
-		color: #999999;
-	}
-	.mall_box .box_bottom  .bottom_list .list_bottom .bottom2{
-		margin: 10rpx 0;
-	}
-	.mall_box .box_bottom  .bottom_list .list_bottom .bottom2 text{
-		font-weight: bold;
-		margin-left: 10rpx;
-	}
-	.mall_box .box_bottom  .bottom_list .list_bottom .bottom3{
-		display: inline-block;
-		width: 154rpx;
-		height: 52rpx;
-		line-height: 52rpx;
-		border-radius: 52rpx;
-		/* border: 2rpx solid #1D74FF; */
-		background: #1D9DFF;
-		color: #fff;
-		text-align: center;
+	.mall_box{
+		.box_bottom{
+			background: #fff;
+			.bottom_list{
+				padding: 20rpx;
+				background: #fff;
+				border-radius:20rpx;
+				margin: 0 20rpx 32rpx 20rpx;
+				box-shadow:0px 0rpx 20rpx 0px rgba(0, 0, 0, 0.1);
+				.list_top{
+					display: flex;
+					justify-content: space-between;
+					.top1{
+						display: flex;
+						align-items: center;
+						text{
+							margin: 0 8rpx;
+							font-weight: 600;
+							color: #3D3D3D;
+						}
+						image{
+							height: 30rpx;
+							width: 30rpx;
+						}
+					}
+					.top2{
+						font-size: 28rpx;
+					}
+				}
+				.list_middle{
+					display: flex;
+					align-items: center;
+					margin-top: 30rpx;
+					.middle1{
+						font-size: 24rpx;
+						color: #999999;
+						view:nth-of-type(1){
+							font-size: 28rpx;
+							font-weight: bold;
+						}
+					}
+					.middle2{
+						font-size: 26rpx;
+						color: #999999;
+						flex-grow: 2;
+						text-align: right;
+					}
+					image{
+						height: 122rpx;
+						width: 122rpx;
+						margin-right: 20rpx;
+					}
+				}
+				.list_bottom{
+					text-align: right;
+					font-size: 24rpx;
+					color: #999999;
+					.bottom2{
+						margin: 10rpx 0;
+						text{
+							font-weight: bold;
+							margin-left: 10rpx;
+						}
+					}
+					.bottom3 {
+						display: inline-block;
+						width: 154rpx;
+						height: 52rpx;
+						line-height: 52rpx;
+						border-radius: 52rpx;
+						background: #fff;
+						color: #D80000;
+						border: 2rpx solid #D80000;
+						text-align: center;
+						margin-left: 20rpx;
+					}
+					.bottom_ash{
+						display: inline-block;
+						padding: 0 20rpx;
+						height: 52rpx;
+						line-height: 52rpx;
+						border-radius: 52rpx;
+						background: #fff;
+						color: #666666;
+						border: 2rpx solid #666666;
+						text-align: center;
+						margin-left: 20rpx;
+					}
+				}
+			}
+		}
 	}
 </style>

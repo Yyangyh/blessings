@@ -165,7 +165,7 @@
 			box-sizing: border-box;
 			.tergum{
 				height: 170rpx;
-				padding: 0 20rpx;
+				
 				margin-bottom: 33rpx;
 				position: relative;
 				z-index: 100;

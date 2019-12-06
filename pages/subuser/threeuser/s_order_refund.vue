@@ -19,10 +19,10 @@
 				</view>
 				<view class="num_three">
 					<view class="">
-						￥{{goods_data.price}}
+						￥{{price}}
 					</view>
 					<view class="">
-						数量：X{{type == 1?goods_data.buy_number_count:goods_data.groupnum}}
+						数量：X{{type == 1?data.returned_data.returned_quantity:goods_data.groupnum}}
 					</view>
 					
 				</view>
@@ -160,7 +160,7 @@
 					this.num == 1? this.num = 1 : this.num --
 					
 				}else{
-					this.num == this.goods_data.buy_number_count?this.num = this.goods_data.buy_number_count :this.num ++
+					this.num == this.data.returned_data.returned_quantity?this.num = this.data.returned_data.returned_quantity :this.num ++
 				}
 			},
 			add_image(){
@@ -257,12 +257,11 @@
 				},function(self,res){
 					self.data = res.data
 					self.goods_data = res.data.order_data
-					self.num = res.data.order_data.buy_number_count
+					self.num = res.data.returned_data.returned_quantity
 					self.order_data = res.data.order_data
-					self.price = res.data.order_data.pay_price
+					self.price = res.data.returned_data.refund_price
 					self.return_only.push(...res.data.return_only_money_reason)
 					self.return_money.push(...res.data.return_money_goods_reason)
-					console.log(self.return_money)
 				})
 			}else{//拼团订单
 				this.type = 2

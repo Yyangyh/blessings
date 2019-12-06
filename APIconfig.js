@@ -51,6 +51,7 @@ const api_root = {
 			g_ConfirmDetail: api+'/api/groupgoods/ConfirmDetail',//拼团订单确定
 			g_Confirm: api+'/api/groupgoods/Confirm',//确认订单（生成订单号）-拼团商品
 			g_pay: api+'/api/groupgoods/pay',//确认订单（生成订单号）-拼团商品
+			g_TeamsDetail: api+'/api/groupgoods/GroupsGoodsTeamsDetail',//团详情
 		}
 	},
 	subuser:{
@@ -75,6 +76,9 @@ const api_root = {
 			s_order_getexpinfo: api+'/api/order/getexpinfo',//商城物流
 			s_order_commentssave: api+'/api/order/commentssave',//商城订单评论提交
 			s_good_Comments: api+'/api/good/Comments',//商城商品评论列表
+			s_Aftersale: api+'/api/order/Aftersale',//商城申请退货订单详情
+			s_cancel: api+'/api/orderaftersale/cancel',//商城售后取消
+			
 			g_OrderDetail: api+'/api/groupgoods/OrderDetail',//拼团订单详情
 			g_Collect: api+'/api/groupgoods/Collect',//拼团订单确认收货
 			g_Aftersale: api+'/api/groupgoods/Aftersale',//拼团申请售后订单详情
