@@ -71,7 +71,7 @@
 					<scroll-view  scroll-x="true" class="scroll-Y">
 						<view class="content_list" v-for="(items,indexs) in item.video_list" :key='items.id' @tap="$jump('../com_page/video_details?id='+items.id)">
 							<view class="list_img_box">
-								<image :src="items.v_slide" mode="widthFix"></image>
+								<image :src="items.v_slide" mode="scaleToFill"></image>
 							</view>
 							<view class="list_one">
 								{{items.long_title}}
@@ -106,7 +106,7 @@
 				<view class="vider_content">
 					<view class="content_list" v-for="(items,indexs) in item.video_list" :key='items.id'  @tap="$jump('../com_page/video_details?id='+items.id)">
 						<view class="list_img_box">
-							<image :src="items.v_slide" mode="widthFix"></image>
+							<image :src="items.v_slide" mode="scaleToFill"></image>
 						</view>
 						<view class="list_right">
 							<view class="list_one">

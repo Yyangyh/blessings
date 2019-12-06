@@ -21,10 +21,10 @@
 				</view>
 			</view>
 			<view class="more">
-				<image src="../../static/image/threeLayers/right.png" mode="widthFix"></image>
+				<image src="/static/image/index/go.png" mode="widthFix"></image>
 			</view>
 			<view class="bg">
-				<image src="../../static/image/threeLayers/void.png" mode="widthFix"></image>
+				<image src="/static/image/com_page/void.png" mode="widthFix"></image>
 			</view>
 		</view>
 		<!-- 空隙 -->
@@ -54,22 +54,17 @@
 		<!-- 空隙 -->
 		<!-- <view class="void"></view> -->
 		<!-- 空隙 -->
-		<view class="message">
-			<view class="">
-				备注：
-			</view>
-			<textarea value="" maxlength="50" placeholder="选填 买家留言（50字以内）" />
-		</view>
+
 		<!-- 空隙 -->
 		<view class="void"></view>
 		<!-- 空隙 -->
 		<view class="recording">
 			<view class="list">
 				<text>商品小计</text>
-				<text>￥{{data.total_price}}</text>
+				<text class="list_red">￥{{data.total_price}}</text>
 			</view>
 			<view class="list" v-if="extension">
-				<text>运费</text>
+				<text >运费</text>
 				<text class="list_red">{{extension[0].tips}}</text>
 			</view>
 			<view class="list">
@@ -476,23 +471,7 @@
 	}
 	
 	
-	.message{
-		width:100%;
-		height: 200rpx;
-		padding: 20rpx 0;
-		display: flex;
-		justify-content: flex-start;
-		align-items: flex-start;
-		view{
-			margin-left: 5%;
-			font-size: 32rpx;
-			color: #333333;
-		}
-		textarea{
-			height: 160rpx;
-			margin-top: 6rpx;
-		}
-	}
+	
 	.recording{
 		width: 100%;
 		font-size: 32rpx;
@@ -502,6 +481,8 @@
 		align-items: center;
 		flex-direction: column;
 		.list{
+			font-size: 24rpx;
+			color: #999;
 			width: 90%;
 			height: 100rpx;
 			display: flex;
@@ -520,13 +501,15 @@
 				width: 45rpx;
 				margin-left: 10rpx;
 			}
+			
 			.list_red{
 				color: #FF431D;
+				font-size: 28rpx;
 			}
 		}
 	}
 	.payment{
-		font-size: 30rpx;
+		font-size: 28rpx;
 		padding: 20rpx;
 		image{
 			height: 52rpx;

@@ -59,7 +59,7 @@
 							
 							<view>
 								
-								<view class="bottom4" v-if="item.type == 1  && item.status == 1" @click="jump('threeuser/return_goods?id='+item.id)">
+								<view class="bottom_ash" v-if="item.type == 1  && item.status == 1" @click="jump('threeuser/return_goods?id='+item.id)">
 									填写退货信息
 								</view>
 								<view class="bottom3" @click="jump('threeuser/s_refund_details?oid='+item.order_id+'&did='+item.order_data.items.id)">
@@ -148,7 +148,7 @@
 	}
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 	.mall_box {
 		font-size: 30rpx;
 
@@ -191,164 +191,130 @@
 		color: #333333;
 		background: #fff;
 		box-shadow: 0px 2rpx 4rpx 0px rgba(0, 0, 0, 0.1);
+		image {
+			height: 40rpx;
+			width: 40rpx;
+		}
+		text:nth-of-type(2) {
+			width: 40rpx;
+			display: inline-block;
+		}
 	}
 
-	.top image {
-		height: 40rpx;
-		width: 40rpx;
+
+	.mall_box{
+		.box_top {
+			display: flex;
+			justify-content: space-between;
+			padding: 0 20rpx;
+			margin: 28rpx 0 40rpx 0;
+			.top_list {
+				padding: 0 20rpx;
+				height: 44rpx;
+				line-height: 44rpx;
+				border-radius: 44rpx;
+			}
+		}
+		.box_bottom {
+			background: #fff;
+			padding-top: 20rpx;
+			.bottom_list {
+				padding: 20rpx;
+				background: #fff;
+				border-radius: 20rpx;
+				margin: 0 20rpx 32rpx 20rpx;
+				box-shadow: 0px 0rpx 20rpx 0px rgba(0, 0, 0, 0.1);
+				.list_top {
+					display: flex;
+					justify-content: space-between;
+					.top1 {
+						display: flex;
+						align-items: center;
+						.own{
+							color: #D9011C;
+						}
+						image {
+							height: 30rpx;
+							width: 30rpx;
+						}
+					}
+					.top2 {
+						font-size: 28rpx;
+						color: #D9011C;
+					}
+				}
+				.list_middle {
+					display: flex;
+					align-items: center;
+					margin-top: 30rpx;
+					.middle1 {
+						font-size: 24rpx;
+						color: #999999;
+						view:nth-of-type(1) {
+							font-size: 28rpx;
+							font-weight: bold;
+							display: -webkit-box;
+							-webkit-box-orient: vertical;
+							-webkit-line-clamp: 2;
+							overflow: hidden;
+						}
+					}
+					.middle2 {
+						font-size: 26rpx;
+						color: #999999;
+						flex-grow: 2;
+						text-align: right;
+					}
+					image {
+						height: 122rpx;
+						width: 122rpx;
+						margin-right: 20rpx;
+					}
+					
+				}
+				.list_bottom {
+					text-align: right;
+					font-size: 24rpx;
+					color: #999999;
+					.bottom2 {
+						text-align: right;
+						margin: 10rpx 0;
+						text {
+							font-weight: bold;
+							margin-left: 10rpx;
+						}
+					}
+					.bottom3 {
+						display: inline-block;
+						width: 154rpx;
+						height: 52rpx;
+						line-height: 52rpx;
+						border-radius: 52rpx;
+						background: #fff;
+						color: #D80000;
+						border: 2rpx solid #D80000;
+						text-align: center;
+						margin-left: 20rpx;
+					}
+					.bottom_ash{
+						display: inline-block;
+						padding: 0 20rpx;
+						height: 52rpx;
+						line-height: 52rpx;
+						border-radius: 52rpx;
+						background: #fff;
+						color: #666666;
+						border: 2rpx solid #666666;
+						text-align: center;
+						margin-left: 20rpx;
+					}
+				}
+			}
+			
+		}
 	}
 
-	.top text:nth-of-type(2) {
-		width: 40rpx;
-		display: inline-block;
-	}
-
-	.mall_box .box_top {
-		display: flex;
-		justify-content: space-between;
-		padding: 0 20rpx;
-		margin: 28rpx 0 40rpx 0;
-	}
-
-	.mall_box .box_top .top_list {
-		padding: 0 20rpx;
-		height: 44rpx;
-		line-height: 44rpx;
-		border-radius: 44rpx;
-	}
-
-	.show {
-		color: #fff;
-		background: #1D9DFF;
-	}
-
-	.mall_box .box_bottom {
-		background: #fff;
-		padding-top: 20rpx;
-	}
-
-	.mall_box .box_bottom .bottom_list {
-		padding: 20rpx;
-		background: #fff;
-		border-radius: 20rpx;
-		margin: 0 20rpx 32rpx 20rpx;
-		box-shadow: 0px 0rpx 20rpx 0px rgba(0, 0, 0, 0.1);
-	}
-
-	.mall_box .box_bottom .bottom_list .list_top {
-		display: flex;
-		justify-content: space-between;
-
-	}
-
-	.mall_box .box_bottom .bottom_list .list_top .top1 {
-		display: flex;
-		align-items: center;
-	}
-
-	.mall_box .box_bottom .bottom_list .list_top .top1 text {
-		margin: 0 20rpx;
-		font-weight: 400;
-		color: #999999;
-	}
-	.mall_box .box_bottom .bottom_list .list_top .top1 .own{
-		color: #D9011C;
-	}
-	.mall_box .box_bottom .bottom_list .list_top .top1 image {
-		height: 30rpx;
-		width: 30rpx;
-	}
-
-	.mall_box .box_bottom .bottom_list .list_top .top2 {
-		/* color: #999999; */
-		font-size: 28rpx;
-		color: #D9011C;
-		/* font-weight: bold; */
-	}
-
-	.mall_box .box_bottom .bottom_list .list_middle {
-		display: flex;
-		align-items: center;
-		margin-top: 30rpx;
-		
-	}
-
-	.mall_box .box_bottom .bottom_list .list_middle .middle1 {
-		font-size: 24rpx;
-		color: #999999;
-	}
-
-	.mall_box .box_bottom .bottom_list .list_middle .middle1 view:nth-of-type(1) {
-		font-size: 28rpx;
-		font-weight: bold;
-		display: -webkit-box;
-		-webkit-box-orient: vertical;
-		-webkit-line-clamp: 2;
-		overflow: hidden;
-	}
-
-	.mall_box .box_bottom .bottom_list .list_middle .middle2 {
-		font-size: 26rpx;
-		color: #999999;
-		flex-grow: 2;
-		text-align: right;
-	}
-
-	.mall_box .box_bottom .bottom_list .list_middle image {
-		height: 122rpx;
-		width: 122rpx;
-		margin-right: 20rpx;
-	}
-
-	.mall_box .box_bottom .bottom_list .list_bottom {
-		text-align: right;
-		font-size: 24rpx;
-		color: #999999;
-	}
-
-	.mall_box .box_bottom .bottom_list .list_bottom .bottom2 {
-		text-align: right;
-		margin: 10rpx 0;
-	}
-
-	.mall_box .box_bottom .bottom_list .list_bottom .bottom2 text {
-		font-weight: bold;
-		margin-left: 10rpx;
-	}
-
-	/* 	.mall_box .box_bottom  .bottom_list .list_bottom .bottom3{
-		display: inline-block;
-		width: 154rpx;
-		height: 52rpx;
-		line-height: 52rpx;
-		border-radius: 52rpx;
-		background: #1D9DFF;
-		color: #fff;
-		text-align: center;
-		margin-left: 20rpx;
-	} */
-	.bottom3 {
-		display: inline-block;
-		width: 154rpx;
-		height: 52rpx;
-		line-height: 52rpx;
-		border-radius: 52rpx;
-		background: #1D9DFF;
-		color: #fff;
-		text-align: center;
-		margin-left: 20rpx;
-	}
-	.bottom4 {
-		display: inline-block;
-		width: 184rpx;
-		height: 52rpx;
-		line-height: 52rpx;
-		border-radius: 52rpx;
-		background: #1D9DFF;
-		color: #fff;
-		text-align: center;
-		margin-left: 20rpx;
-	}
+	
 	.bottom_one{
 		/* display: flex;
 		justify-content: space-between; */

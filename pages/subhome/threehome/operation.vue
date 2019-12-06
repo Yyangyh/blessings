@@ -14,7 +14,7 @@
 					{{data.title}}
 				</view>
 				<view class="people">
-					<image src="../../../static/image/threeLayers/people.png" mode="widthFix"></image>
+					<image src="/static/image/subhome/team.png" mode="widthFix"></image>
 					{{data.groupnum}}人成团
 				</view>
 				<view class="price">
@@ -35,7 +35,7 @@
 			<view class="crowd_content">
 				<view class="step">
 					<view class="icon">
-						<image src="../../../static/image/threeLayers/wallet.png" mode="widthFix"></image>
+						<image src="/static/image/subhome/wallet.png" mode="widthFix"></image>
 					</view>
 					<view class="write">
 						<text>下单</text>
@@ -44,10 +44,10 @@
 				</view>
 				<view class="step">
 					<view class="arrow">
-						<image src="../../../static/image/icon/arrow.png" mode="scaleToFill"></image>
+						<image src="/static/image/index/go.png" mode="scaleToFill"></image>
 					</view>
 					<view class="icon">
-						<image src="../../../static/image/threeLayers/invite.png" mode="widthFix"></image>
+						<image src="/static/image/subhome/invite.png" mode="widthFix"></image>
 					</view>
 					<view class="write">
 						<text>邀请</text>
@@ -56,10 +56,10 @@
 				</view>
 				<view class="step">
 					<view class="arrow">
-						<image src="../../../static/image/icon/arrow.png" mode="scaleToFill"></image>
+						<image src="/static/image/index/go.png" mode="scaleToFill"></image>
 					</view>
 					<view class="icon">
-						<image src="../../../static/image/threeLayers/full.png" mode="widthFix"></image>
+						<image src="/static/image/subhome/full.png" mode="widthFix"></image>
 					</view>
 					<view class="write">
 						<text>人满</text>
@@ -342,7 +342,7 @@
 	}
 	.btn2{
 		color: #FFFFFF;
-		background-color: #1E9DFF;
+		background-color: #D80000;
 	}
 	.more{
 		width: 100%;

@@ -209,11 +209,13 @@
 	}
 	.shopp_tab{
 		display: flex;
+		flex-wrap: wrap;
 		padding: 10rpx;
 		.shopp_list{
 			width: 50%;
 			font-size: 24rpx;
 			padding: 0 10rpx;
+			box-sizing: border-box;
 			image{
 				width: 100%;
 			}

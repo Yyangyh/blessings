@@ -21,10 +21,10 @@
 			</view>
 
 			<view class="more">
-				<image src="../../../static/image/threeLayers/right.png" mode="widthFix"></image>
+				<image src="/static/image/index/go.png" mode="widthFix"></image>
 			</view>
 			<view class="bg">
-				<image src="../../../static/image/threeLayers/void.png" mode="widthFix"></image>
+				<image src="/static/image/com_page/void.png" mode="widthFix"></image>
 			</view>
 		</view>
 		<!-- 空隙 -->
@@ -54,12 +54,6 @@
 		<!-- 空隙 -->
 		<view class="void"></view>
 		<!-- 空隙 -->
-		<view class="message">
-			<view class="">
-				备注：
-			</view>
-			<textarea value="" maxlength="50" placeholder="选填 买家留言（50字以内）" />
-			</view>
 		<!-- 空隙 -->
 		<view class="void"></view>
 		<!-- 空隙 -->
@@ -372,23 +366,6 @@
 		font-size: 24rpx;
 		color: #666666;
 	}
-	.message{
-		width:100%;
-		height: 200rpx;
-		padding: 20rpx 0;
-		display: flex;
-		justify-content: flex-start;
-		align-items: flex-start;
-	}
-	.message view{
-		margin-left: 5%;
-		font-size: 32rpx;
-		color: #333333;
-	}
-	.message textarea{
-		height: 150rpx;
-		margin-top: 6rpx;
-	}
 	.recording{
 		/* width: 100%; */
 		font-size: 32rpx;
@@ -402,10 +379,16 @@
 	.list{
 		width: 100%;
 		height: 100rpx;
+		color: #999999;
+		font-size: 24rpx;
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
 		border-bottom: 2rpx solid #F2F2F2;
+	}
+	.list text:nth-of-type(2){
+		color: #D80000;
+		font-size: 28rpx;
 	}
 	.pay{
 		width: 100%;
@@ -435,10 +418,12 @@
 	}
 	.btn button{
 		border-radius: 45rpx;
+		background: #D80000;
+		font-size: 32rpx;
 	}
 	
 	.payment{
-		font-size: 30rpx;
+		font-size: 28rpx;
 		padding: 20rpx;
 	}
 	.payment image{

@@ -21,7 +21,7 @@
 		</view> -->
 		<view class="order_position">
 			<view class="">
-				<image src="../../../static/image/threeLayers/position.png" mode="widthFix"></image>
+				<image src="/static/image/subuser/position.png" mode="widthFix"></image>
 			</view>
 			<view class="posi_one">
 				<view class="">
@@ -51,7 +51,7 @@
 			<!--  -->
 			
 			<view class="news_four" >
-				<view class="" @click="jump('/pages/threeLayers/logistics?id='+data.express_id+'&number='+data.express_number)">
+				<view class="" @click="jump('./logistics?id='+data.express_id+'&number='+data.express_number)">
 					<image src="../../../static/image/threeLayers/contact.png" mode="widthFix"></image>
 					<text>查看物流</text>
 				</view>
@@ -82,7 +82,6 @@
 				</view>
 				
 				<view class="order_handle">
-					
 					<text v-if="new_aftersale_data == null"  @click="jump('/pages/threeLayers/refund?id='+data.items.id +'&oid='+data.id)">{{data.status == 4?'申请售后':'退款/退货'}}</text>
 					<block v-else>
 						<text v-if="new_aftersale_data.status == 3">退款完成</text>
@@ -174,15 +173,18 @@
 				    content: '是否取消退款/退货申请？',
 				    success: function (res) {
 				        if (res.confirm) {
-				            that.service.entire(that,'get',that.service.api_root.subuser.threeuser.AftersaleCancel,{id:id},function(self,res){
+				            that.service.entire(that,'post',that.APIconfig.api_root.subuser.threeuser.s_cancel,{
+								id:id,
+								user_id: that.$store.state.user.id,
+							},function(self,res){
 								uni.showToast({
 									icon:'none',
 									title:res.msg
 								})
 				            	if(res.code == 0){
 									setTimeout(function(){
-										self.common.returns(self)
-									},1500)
+										self.service.returns()
+									},1000)
 								}
 				            })
 				        } else if (res.cancel) {
@@ -191,34 +193,16 @@
 				    }
 				});
 			},
-			
-			detailed( id, type) {
-				if (type == 3) {
-					uni.navigateTo({  //版通
-						url: '../../subindex/edition_details?id=' + id
-					})
-				} else if (type == 2) { //文创
-					uni.navigateTo({
-						url: '../../subindex/edition_details?id=' + id
-					})
-				} else {
-					uni.navigateTo({ //特色
-						url: '../../subindex/product_detailed?id=' + id + '&type=' + type
-					})
-				}
-			},
 		},
 		onLoad(options) {
-			this.service.entire(this, 'get', this.service.api_root.threeLayers.Aftersale, {
+			this.service.entire(this, 'get', this.APIconfig.api_root.subuser.threeuser.s_Aftersale, {
 				oid: options.oid,
-				did: options.did
+				did: options.did,
+				user_id:this.$store.state.user.id
 			}, function(self, res) {
 				self.data = res.data.order
 				self.goods = res.data.goods
 				self.new_aftersale_data = res.data.new_aftersale_data
-				
-				
-				
 				
 			})
 		}
@@ -269,8 +253,8 @@
 	}
 
 	.order_position image {
-		height: 76rpx;
-		width: 76rpx;
+		height: 41rpx;
+		width: 31rpx;
 		margin-right: 30rpx;
 	}
 
@@ -342,7 +326,7 @@
 	.order .order_handle text {
 		display: inline-block;
 		text-align: center;
-		width: 160rpx;
+		padding: 0 20rpx;
 		height: 66rpx;
 		font-size: 28rpx;
 		color: #333;
