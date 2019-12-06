@@ -71,10 +71,10 @@
 		
 		<view class="user_top_list">
 			<view class="user_tab">
-				<view class="tab_list" @click="jump('../subuser/threeuser/open_member')">
+				<view class="tab_list" @tap="$jump('../subuser/distribution/distribution')">
 					<image src="../../static/image/index/service.png" mode="widthFix"></image>
 					<view class="">
-						服务商
+						分销商
 					</view>
 				</view>
 				<view class="tab_list"  @tap="$jump('../subuser/brokerage/brokerage')">
@@ -103,14 +103,14 @@
 				其他服务
 			</view>
 			<view class="tab_box">
-				<view class="tab_list"  @click="jump('../subuser/momey')">
+				<view class="tab_list"   @tap="$jump('../subuser/study')">
 				<!-- <view class="tab_list"> -->
 					<image src="../../static/image/index/other_img1.png" mode="widthFix"></image>
 					<view class="">
-						学习记录
+						我的学习
 					</view>
 				</view>
-				<view class="tab_list"  @click="jump('../subuser/distribution')">
+				<view class="tab_list"  @tap="$jump('../subuser/activitys/activitys')">
 					<image src="../../static/image/index/other_img2.png" mode="widthFix"></image>
 					<view class="">
 						我的活动

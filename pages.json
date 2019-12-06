@@ -539,6 +539,54 @@
 					"titleNView":false
 				}
 			}
+		},{
+			"path": "pages/subuser/conversion/exchange",
+			"style": {
+				"navigationBarTitleText": "兑换中心",
+				"app-plus":{
+					"titleNView":false
+				}
+			}
+		},{
+			"path": "pages/subuser/activitys/activitys",
+			"style": {
+				"navigationBarTitleText": "我的活动",
+				"app-plus":{
+					"titleNView":false
+				}
+			}
+		},{
+			"path": "pages/subuser/activitys/tessera",
+			"style": {
+				"navigationBarTitleText": "入场卷",
+				"app-plus":{
+					"titleNView":false
+				}
+			}
+		},{
+			"path": "pages/subuser/study",
+			"style": {
+				"navigationBarTitleText": "我的学习",
+				"app-plus":{
+					"titleNView":false
+				}
+			}
+		},{
+			"path": "pages/subuser/distribution/distribution",
+			"style": {
+				"navigationBarTitleText": "分销商",
+				"app-plus":{
+					"titleNView":false
+				}
+			}
+		},{
+			"path": "pages/subuser/distribution/application",
+			"style": {
+				"navigationBarTitleText": "立即申请",
+				"app-plus":{
+					"titleNView":false
+				}
+			}
 		}
 	],
 	"globalStyle": {
