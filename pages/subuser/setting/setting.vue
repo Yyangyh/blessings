@@ -1,0 +1,95 @@
+<template>
+	<view class="content">
+		<view class="status_bar">
+						
+		</view >
+		<returns :titles='title'></returns>	
+		<view class="line" @tap="$jump('./cellPhone')">
+			<view class="l_left">
+				<image src='/static/image/subuser/set-1.png' mode="widthFix"></image>
+				<text>修改手机号码</text>
+			</view>
+			<image class="l_right" src='/static/image/index/go.png' mode="widthFix"></image>
+		</view>
+		<hr />
+		<view class="line" @tap="$jump('./password')">
+			<view class="l_left">
+				<image src='/static/image/subuser/set-2.png' mode="widthFix"></image>
+				<text>修改密码</text>
+			</view>
+			<image class="l_right" src='/static/image/index/go.png' mode="widthFix"></image>
+		</view>
+		<!-- <hr />
+		<view class="line">
+			<view class="l_left">
+				<image src='/static/image/subuser/set-3.png' mode="widthFix"></image>
+				<text>二级密码</text>
+			</view>
+			<image class="l_right" src='/static/image/index/go.png' mode="widthFix"></image>
+		</view>
+		<hr />
+		<view class="line">
+			<view class="l_left">
+				<image src='/static/image/subuser/set-4.png' mode="widthFix"></image>
+				<text>重置二级密码</text>
+			</view>
+			<image class="l_right" src='/static/image/index/go.png' mode="widthFix"></image>
+		</view> -->
+		<hr />
+		<view class="line">
+			<view class="l_left">
+				<image src='/static/image/subuser/set-5.png' mode="widthFix"></image>
+				<text>版本</text>
+			</view>
+			<view class="l_right"></view>
+		</view>
+		
+	</view>
+</template>
+
+<script>
+	import returns from '../../common/returns.vue'
+	export default{
+		components:{
+			returns
+		},
+		data(){
+			return{
+				title:'设置',
+				
+			}
+		},
+	}
+</script>
+
+<style lang="scss">
+	hr{
+		height:1rpx;
+		border: none;
+		border-top:1px solid #F4F4F4;
+		width: 96%;
+		margin: 0 auto;
+	}
+	.line{
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		padding: 30rpx 20rpx;
+		.l_left{
+			display: flex;
+			align-items: center;
+			image{
+				width: 34rpx;
+				height: 34rpx;
+				margin-right: 10rpx;
+			}
+			text{
+				font-size: 24rpx;
+			}
+		}
+		.l_right{
+			width: 18rpx;
+			height: 22rpx;
+		}
+	}
+</style>

@@ -36,7 +36,7 @@
 								<view>
 									<text>号码</text>
 									<input type="text" placeholder="请输入手机号码">
-								</view>
+								</view> 
 								<image src="/static/image/subuser/tongxunlu.png"></image>
 							</view>
 						
@@ -51,9 +51,9 @@
 <script>
 	import returns from '../../common/returns.vue'
 	export default{
-		components:{
-			returns
-		},
+		// components:{
+		// 	returns
+		// },
 		data(){
 			return{
 				title:'亲情号',

@@ -5,11 +5,11 @@
 		</view>
 		<view class="user_top">
 			<view class="top_one">
-				<image src="../../static/image/index/set.png" mode="widthFix"></image>
+				<image src="../../static/image/index/set.png" mode="widthFix" @tap="$jump('../subuser/setting/setting')"></image>
 				<image src="../../static/image/index/user_news.png" mode="widthFix"></image>
 			</view>
 			<view class="top_two">
-				<view class="two_left">
+				<view class="two_left" @tap="$jump('../subuser/personage/personage')">
 					<image src="../../static/image/index/state_user.png" mode="widthFix"></image>
 				</view>
 				<view class="two_mid">
@@ -77,7 +77,7 @@
 						服务商
 					</view>
 				</view>
-				<view class="tab_list"  @tap="$jump('../brokerage/brokerage')">
+				<view class="tab_list"  @tap="$jump('../subuser/brokerage/brokerage')">
 					<image src="../../static/image/index/commission.png" mode="widthFix"></image>
 					<view class="">
 						佣金
@@ -122,7 +122,7 @@
 						我的测评
 					</view>
 				</view>
-				<view class="tab_list"  @click="jump('../subuser/user_edition')">
+				<view class="tab_list"  @tap="$jump('../subuser/conversion/conversion')">
 					<image src="../../static/image/index/other_img4.png" mode="widthFix"></image>
 					<view class="">
 						优惠券
@@ -134,7 +134,7 @@
 						实名认证
 					</view>
 				</view> -->
-				<view class="tab_list" @click="jump('../subuser/collect')">
+				<view class="tab_list" @tap="$jump('../subuser/collect')">
 					<image src="../../static/image/index/other_img6.png" mode="widthFix"></image>
 					<view class="">
 						收藏
@@ -264,12 +264,12 @@
 					<view class="tab_top">
 						拼团订单
 					</view>
-					<view class="more"  @click="$jump('../subuser/assemble_order?status=0')">
+					<view class="more"  @click="jump('../subuser/assemble_order?status=0')">
 						查看更多
 					</view>
 				</view>
 				<view class="tab_box">
-					<view class="tab_list"  @click="$jump('../subuser/assemble_order?status=1')">
+					<view class="tab_list"  @click="jump('../subuser/assemble_order?status=1')">
 						<image src="../../static/image/index/group_img1.png" mode="widthFix"></image>
 						<view class="">
 							待付款
@@ -278,7 +278,7 @@
 							<text v-if="order_status[1].count != 0">{{order_status[1].count}}</text>
 						</block> -->
 					</view>
-					<view class="tab_list" @click="$jump('../subuser/assemble_order?status=2')">
+					<view class="tab_list" @click="jump('../subuser/assemble_order?status=2')">
 						<image src="../../static/image/index/group_img2.png" mode="widthFix"></image>
 						<view class="">
 							待发货
@@ -287,7 +287,7 @@
 							<text v-if="order_status[2].count != 0">{{order_status[2].count}}</text>
 						</block> -->
 					</view>
-					<view class="tab_list" @click="$jump('../subuser/assemble_order?status=3')">
+					<view class="tab_list" @click="jump('../subuser/assemble_order?status=3')">
 						<image src="../../static/image/index/group_img3.png" mode="widthFix"></image>
 						<view class="">
 							待收货
@@ -296,7 +296,7 @@
 							<text v-if="order_status[3].count != 0">{{order_status[3].count}}</text>
 						</block> -->
 					</view>
-					<view class="tab_list" @click="$jump('../subuser/assemble_order?status=4')">
+					<view class="tab_list" @click="jump('../subuser/assemble_order?status=4')">
 						<image src="../../static/image/index/group_img4.png" mode="widthFix"></image>
 						<view class="">
 							已完成
@@ -305,7 +305,7 @@
 							<text v-if="order_status[4].count != 0">{{order_status[4].count}}</text>
 						</block> -->
 					</view>
-					<view class="tab_list" @click="$jump('../subuser/assemble_refund')">
+					<view class="tab_list" @click="jump('../subuser/assemble_refund')">
 						<image src="../../static/image/index/group_img5.png" mode="widthFix"></image>
 						<view class="">
 							退款
