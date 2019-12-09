@@ -5,7 +5,7 @@ const store = new Vuex.Store({
     state: {
 		hasLogin:false,
 		user:'',
-		name:'三三三'
+		token:''
 	},
     mutations: {
 		change_login(state){
@@ -17,6 +17,9 @@ const store = new Vuex.Store({
 		state_user(state,data){
 			console.log(data)
 			state.user = data
+		},
+		state_token(state,data){
+			state.token = data
 		}
 	},
     actions: {}

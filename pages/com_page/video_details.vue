@@ -16,7 +16,13 @@
 		</view>
 		
 		<view class="">
-			 <video id="myVideo" :src="play_url"  @play='play_start()' @ended='play_end()'  enable-danmu  controls></video>
+			 <video id="myVideo" :src="play_url" :autoplay='true'   
+			 @pause='pause' 
+			 @timeupdate='timeupdate'
+			 @play='play_start' 
+			 @ended='play_end'  
+			 enable-danmu  controls  :poster='poster'>
+			 </video>
 		</view>
 		<view class="video_tab">
 			<view class="tab_list" :class="{test_show:test_show === 0}" @tap="test_show = 0">
@@ -43,7 +49,7 @@
 					<view class="ex_two">
 						<image src="/static/image/com_page/stars.png" mode="widthFix" v-for="(item,index) in video_data.stars_num" :key='index'></image>
 						<text>{{video_data.evaluate}}分</text>
-						<text>{{video_data.view}}次观看</text>
+						<text>{{video_data.view}}次{{type == 1? '观看':'收听'}}</text>
 					</view>
 					
 					<view class="ex_three">
@@ -152,7 +158,7 @@
 							{{item.long_title}}
 						</view>
 						<view class="list_two">
-							{{item.view}}次观看
+							{{item.view}}次{{item.type == 1? '观看':'收听'}}
 						</view>
 						<view class="list_three">
 							<view class="">
@@ -247,6 +253,7 @@
 		data() {
 			return {
 				id:'',
+				type:'',
 				video_data:'',
 				test_show:0,
 				catalog_data:'',
@@ -260,11 +267,19 @@
 				coupon_show:false,
 				comments:'',
 				recommend_video:'',
-				play_store:false
+				play_store:false,
+				poster:''
 			}
 		},
 		methods:{
-			play_start(){ //添加视频阅读量 
+			pause(e){
+				// console.log(e)
+			},
+			timeupdate(e){
+				// console.log(e)
+			},
+			play_start(e){ //添加视频阅读量 
+				// console.log(e)
 				if(this.play_store == false){
 					this.play_store = true
 					this.service.entire(this,'post',this.APIconfig.api_root.com_page.v_playCount,{
@@ -280,7 +295,8 @@
 				this.indexs = index
 				this.play_url = this.service.analysis_url(this.catalog_data[index].video_url)
 			},
-			play_end(){ //播放结束时
+			play_end(e){ //播放结束时
+				// console.log(e)
 				this.indexs ++
 				this.play_url = this.service.analysis_url(this.catalog_data[this.indexs].video_url)
 			},
@@ -314,7 +330,7 @@
 					self.show = true
 					setTimeout(function() {
 						self.show = false
-					}, 1500);
+					}, 1500)
 				})
 			},
 			getCoupon(id,cid,index){//领取优惠券
@@ -338,6 +354,7 @@
 		},
 		onLoad(e) {
 			this.id = e.id
+			this.type = e.type
 			this.service.entire(this,'post',this.APIconfig.api_root.com_page.VideoDetail,{ //视频详情
 				video_id:e.id,
 				userid:this.$store.state.user.id,
@@ -346,13 +363,13 @@
 				self.play_url = self.service.analysis_url(res.data.video.v_url)
 				self.video_data = res.data.video
 				self.collects = res.data.video.collect
-				
-				self.video_data.stars_num = new Array(Number(self.video_data.evaluate))
-				
+				self.poster = res.data.video.v_pic
+				if(self.video_data.evaluate)self.video_data.stars_num = new Array(Number(self.video_data.evaluate))
 			})
 			
 			this.service.entire(this,'post',this.APIconfig.api_root.com_page.catalogue,{ //视频目录
 				video_id:e.id,
+				user_id:this.$store.state.user.id,
 			},function(self,res){
 				self.catalog_data = res.data.video_list
 			})

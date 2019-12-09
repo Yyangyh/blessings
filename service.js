@@ -1,4 +1,5 @@
 const entire = function(self,type,url,data,func){
+	if(self.$store.state.hasLogin === true) data.token = self.$store.state.token
 	uni.request({
 		url:url,
 		data:data,
@@ -6,17 +7,9 @@ const entire = function(self,type,url,data,func){
 		 header:{'X-Requested-With':'xmlhttprequest','Content-Type':'application/json'},
 		success(res) {
 			let res_list = res.data
-			if(res_list.code == -400){
-				uni.showToast({
-					icon:'none',
-					title:'登录失效，请重新登录'
-				})
-				self.$store.commit('logout')
-				setTimeout(function(){
-					uni.redirectTo({
-						url:'/pages/login/login'
-					})
-				},1500)
+			if(res_list.code == 9){ //token过期时替换重新请求
+				self.$store.commit('state_token',res_list.data.token)
+				entire(self,type,url,data,func)
 			}else{
 				func(self,res_list)
 			}

@@ -30,8 +30,10 @@
 		<view class="questionnaire" v-show="cur==1">
 			<view class="title">您对五福家庭的满意程度</view>
 			<view class="line">
-				<view class="question">
-					<view class="circle">
+				<view class="question" @tap="que_show = 0">
+					<view class="circle" :class="{circle_red:que_show == 0}">
+						<view class="circle_entity"  :class="{entity_red:que_show == 0}">
+						</view>
 					</view>
 					<text>
 						十分满意
@@ -39,6 +41,8 @@
 				</view>
 				<view class="question">
 					<view class="circle">
+						<view class="circle_entity">
+						</view>
 					</view>
 					<text class="tetes">
 						满意
@@ -48,6 +52,8 @@
 			<view class="line">
 				<view class="question">
 					<view class="circle">
+						<view class="circle_entity">
+						</view>
 					</view>
 					<text>
 						一般
@@ -55,6 +61,8 @@
 				</view>
 				<view class="question">
 					<view class="circle">
+						<view class="circle_entity">
+						</view>
 					</view>
 					<text>
 						不满意
@@ -127,6 +135,7 @@
 				title:'我的测评',
 				cur:0,
 				dataList:[],
+				que_show:0
 			}
 		},
 		onShow() {
@@ -135,6 +144,12 @@
 			},function(self,res){
 				console.log(res)
 				self.dataList =res.data
+			})
+			
+			this.service.entire(this,'post',this.APIconfig.api_root.subindex.s_qtn_getQtn,{
+				id:5
+			},function(self,res){
+				console.log(res)
 			})
 		}
 	}
@@ -338,12 +353,29 @@
 					display: flex;
 					align-items: center;
 					.circle{
-						width: 24rpx;
-						height: 24rpx;
+						width: 28rpx;
+						height: 28rpx;
+						box-sizing: border-box;
 						background-color: #FFFFFF;
-						border: 2rpx solid #999999;
+						border: 1rpx solid #999999;
+						display: flex;
+						align-items: center;
+						justify-content: center;
 						border-radius: 50%;
 						margin-right: 10rpx;
+						.circle_entity{
+							height: 16rpx;
+							width: 16rpx;
+							border-radius: 50%;
+							background: #fff;
+							display: inline-block;
+						}
+						.entity_red{
+							background: #D80000;
+						}
+					}
+					.circle_red{
+						border-color: #D80000;
 					}
 					text{
 						font-size: 24rpx;

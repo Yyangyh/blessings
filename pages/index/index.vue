@@ -69,7 +69,7 @@
 				</view>
 				<view class="vider_content">
 					<scroll-view  scroll-x="true" class="scroll-Y">
-						<view class="content_list" v-for="(items,indexs) in item.video_list" :key='items.id' @tap="$jump('../com_page/video_details?id='+items.id)">
+						<view class="content_list" v-for="(items,indexs) in item.video_list" :key='items.id' @tap="$jump('../com_page/video_details?id='+items.id + '&type='+items.type)">
 							<view class="list_img_box">
 								<image :src="items.v_slide" mode="scaleToFill"></image>
 							</view>
@@ -77,7 +77,7 @@
 								{{items.long_title}}
 							</view>
 							<view class="list_two">
-								{{items.view}}次观看
+								{{items.view}}次{{items.type == 1? '观看':'收听'}}
 							</view>
 							<view class="list_three">
 								<view class="">
@@ -104,7 +104,7 @@
 					</view>
 				</view>
 				<view class="vider_content">
-					<view class="content_list" v-for="(items,indexs) in item.video_list" :key='items.id'  @tap="$jump('../com_page/video_details?id='+items.id)">
+					<view class="content_list" v-for="(items,indexs) in item.video_list" :key='items.id'  @tap="$jump('../com_page/video_details?id='+items.id + '&type='+items.type)">
 						<view class="list_img_box">
 							<image :src="items.v_slide" mode="scaleToFill"></image>
 						</view>
@@ -113,7 +113,7 @@
 								{{items.long_title}}
 							</view>
 							<view class="list_two">
-								{{items.view}}次观看
+								{{items.view}}次{{items.type == 1? '观看':'收听'}}
 							</view>
 							<view class="list_three">
 								<view class="">

@@ -43,6 +43,32 @@
 			</view>
 		</view>
 		
+		<view class="vider_content_two">
+			<view class="vider_content">
+				<view class="content_list" v-for="(item,index) in video_list" :key='item.id'  @tap="$jump('../com_page/video_details?id='+item.id)">
+					<view class="list_img_box">
+						<image :src="item.v_slide" mode="scaleToFill"></image>
+					</view>
+					<view class="list_right">
+						<view class="list_one">
+							{{item.long_title}}
+						</view>
+						<view class="list_two">
+							{{item.view}}次观看
+						</view>
+						<view class="list_three">
+							<view class="">
+								{{item.is_free == 0? '￥'+item.group_price : '免费'}}
+								
+							</view>
+							<view class="" v-if="item.is_free_vip == 1">
+								VIP免费
+							</view>
+						</view>
+					</view>
+				</view>
+			</view>
+		</view>
 	</view>
 </template>
 
@@ -67,7 +93,7 @@
 	}
 </script>
 
-<style>
+<style lang="scss">
 	.content {
 		padding-top: calc(205rpx + var(--status-bar-height));
 	}
@@ -83,40 +109,40 @@
 		align-items: center;
 		height: 105rpx;
 		padding: 0 20rpx;
-	}
-	.content_top .top_returns image{
-		height: 31rpx;
-		width: 31rpx;
-		padding-right: 10rpx;
-	}
-	.content_top .top_search{
-		flex-grow: 2;
-		height: 65rpx;
-		border-radius: 65rpx;
-		display: flex;
-		align-items: center;
-		padding-left: 40rpx;
-		background: #EEEEEE;
-	}
-	.content_top view input{
-		font-size: 24rpx;
-	}
-	.content_top .top_img{
-		position: relative;
-	}
-	.content_top .top_img view{
-		position: absolute;
-		right: 0;
-		top: 0;
-		height: 10rpx;
-		width: 10rpx;
-		border-radius: 50%;
-		background: #D80000;
-	}
-	.content_top image{
-		height: 50rpx;
-		width: 50rpx;
-		margin-left: 10rpx;
+		.top_returns image{
+			height: 31rpx;
+			width: 31rpx;
+			padding-right: 10rpx;
+		}
+		.top_search{
+			flex-grow: 2;
+			height: 65rpx;
+			border-radius: 65rpx;
+			display: flex;
+			align-items: center;
+			padding-left: 40rpx;
+			background: #EEEEEE;
+		}
+		view input{
+			font-size: 24rpx;
+		}
+		.top_img{
+			position: relative;
+			view{
+				position: absolute;
+				right: 0;
+				top: 0;
+				height: 10rpx;
+				width: 10rpx;
+				border-radius: 50%;
+				background: #D80000;
+			}
+		}
+		image{
+			height: 50rpx;
+			width: 50rpx;
+			margin-left: 10rpx;
+		}
 	}
 	.tab_list{
 		position: fixed;
@@ -133,15 +159,15 @@
 		justify-content: space-between;
 		align-items: center;
 		padding: 0 50rpx;
-	}
-	.tab_list view{
-		height: 100rpx;
-		line-height: 100rpx;
-	}
-	.tab_list .list_all{
-		display: flex;
-		align-items: center;
-		color: #D80000;
+		view{
+			height: 100rpx;
+			line-height: 100rpx;
+		}
+		.list_all{
+			display: flex;
+			align-items: center;
+			color: #D80000;
+		}
 	}
 	.all_img{
 		transition: .3s;
@@ -157,6 +183,7 @@
 		width: 19rpx;
 		margin-left: 14rpx;
 	}
+	
 	.down_box{
 		position: fixed;
 		top: calc(var(--status-bar-height) + 205rpx);
@@ -172,6 +199,23 @@
 		background: #FFFFFF;
 		font-size: 28rpx;
 		padding: 40rpx 20rpx;
+		.down_list{
+			width: 180rpx;
+			height: 60rpx;
+			line-height: 60rpx;
+			border-radius: 60rpx;
+			background: #F1F1F1;
+			text-align: center;
+			margin-bottom: 30rpx;
+		}
+		&:after {
+		    content: ""; 
+		    width:180rpx;
+		} 
+		.down_list:nth-of-type(1){
+			color: #D80000;
+		}
+		
 	}
 	.mask_none{
 		transform: translateY(-100%);
@@ -179,21 +223,41 @@
 	.mask_show{
 		transform: translateY(0%);
 	}
-	.down_box .down_list{
-		width: 180rpx;
-		height: 60rpx;
-		line-height: 60rpx;
-		border-radius: 60rpx;
-		background: #F1F1F1;
-		text-align: center;
-		margin-bottom: 30rpx;
+	.vider_content_two{
+		border-bottom: 6rpx solid #F1F1F1;
+		.vider_content{
+			padding: 0 20rpx;
+			font-size: 24rpx;
+			image{
+				width: 268rpx;
+				height: 179rpx;
+				margin-right: 29rpx;
+			}
+			.content_list{
+				display: flex;
+				margin: 30rpx 0;
+				.list_right{
+					display: flex;
+					flex-direction: column;
+					justify-content: space-between;
+					padding-bottom: 30rpx;
+					.list_three{
+						display: flex;
+						justify-content: space-between;
+						color: #D80000;
+						font-size: 28rpx;
+						view:nth-of-type(2){
+							background: #000000;
+							font-size: 24rpx;
+							color: #FFFFFF;
+							height: 20rpx;
+							padding: 10rpx;
+							line-height: 20rpx;
+							border-radius: 20rpx;
+						}
+					}
+				}
+			}
+		}
 	}
-	.down_box:after { 
-	    content: ""; 
-	    width:180rpx;
-	} 
-	.down_box .down_list:nth-of-type(1){
-		color: #D80000;
-	}
-	
 </style>
