@@ -217,7 +217,7 @@
 								有效期：{{service.Test(item.fixed_time_start)}}至{{service.Test(item.fixed_time_end)}}
 							</view>
 						</view>
-						<view class="box_right" :class="{receive:!item.coupon_id}" @tap="getCoupon(item.cid,item.coupon_id,index)">
+						<view class="box_right" :class="{receive:!item.coupon_id}" @tap="getCoupon(item.c_id,item.id,index)">
 							{{item.coupon_id>0? '已领取' : '立即领取'}}
 						</view>
 					</view>
@@ -237,7 +237,7 @@
 						收藏
 					</view>
 				</view>
-				<view class="bot_buy">
+				<view class="bot_buy" @tap="$jump('./v_order?id='+id)">
 					立即购买
 				</view>
 			</view>
@@ -301,12 +301,16 @@
 				this.play_url = this.service.analysis_url(this.catalog_data[this.indexs].video_url)
 			},
 			collect(){ //视频收藏
+			
+				let times = this.service.loading()
 				this.service.entire(this,'post',this.APIconfig.api_root.com_page.v_collect,{ 
 					video_id:this.id,
 					userid:this.$store.state.user.id,
 					mobile:this.$store.state.user.mobile,
 					c_type:this.collects == 1? 0 : 1
 				},function(self,res){
+					uni.hideLoading()
+					clearTimeout(times)
 					self.tips_test = res.msg
 					self.tips_img = collect_img
 					self.show = true
@@ -319,12 +323,15 @@
 				})
 			},
 			play_integral(){ //领取积分
+				let times = this.service.loading()
 				this.service.entire(this,'post',this.APIconfig.api_root.com_page.v_integral,{
 					video_id:this.id,
 					userid:this.$store.state.user.id,
 					mobile:this.$store.state.user.mobile,
 					section_id:1
 				},function(self,res){
+					uni.hideLoading()
+					clearTimeout(times)
 					self.tips_test = res.msg
 					self.tips_img = integral_img
 					self.show = true
@@ -802,7 +809,7 @@
 			
 		}
 	}
-	.vider_content{
+	.vider_content{	
 		padding: 0 20rpx;
 		font-size: 24rpx;
 		image{

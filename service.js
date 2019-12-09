@@ -1,5 +1,12 @@
 const entire = function(self,type,url,data,func){
-	if(self.$store.state.hasLogin === true) data.token = self.$store.state.token
+	if(self.$store.state.hasLogin === true){
+		 data.token = self.$store.state.token
+	}else if(self.$store.state.hasLogin === false){
+		uni.reLaunch({
+			url:'/pages/login/login.vue'
+		})
+	}
+	
 	uni.request({
 		url:url,
 		data:data,
@@ -10,6 +17,10 @@ const entire = function(self,type,url,data,func){
 			if(res_list.code == 9){ //token过期时替换重新请求
 				self.$store.commit('state_token',res_list.data.token)
 				entire(self,type,url,data,func)
+			}else if(res_list.code == 10){
+				uni.navigateTo({
+					url:'/pages/login/login.vue'
+				})
 			}else{
 				func(self,res_list)
 			}
@@ -205,7 +216,7 @@ function formatDate(dt) {
 	return year + "-" + month + "-" + date;
 }
 
-const loading = function(title){
+const loading = function(title){ //加载层
 	uni.showLoading({
 		title: title,
 		mask: true

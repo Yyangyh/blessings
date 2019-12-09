@@ -71,7 +71,7 @@
 					<scroll-view  scroll-x="true" class="scroll-Y">
 						<view class="content_list" v-for="(items,indexs) in item.video_list" :key='items.id' @tap="$jump('../com_page/video_details?id='+items.id + '&type='+items.type)">
 							<view class="list_img_box">
-								<image :src="items.v_slide" mode="scaleToFill"></image>
+								<image :src="items.v_pic" mode="scaleToFill"></image>
 							</view>
 							<view class="list_one">
 								{{items.long_title}}
@@ -81,7 +81,7 @@
 							</view>
 							<view class="list_three">
 								<view class="">
-									{{items.is_free == 0? '￥'+items.group_price : '免费'}}
+									{{items.is_free == 0? '￥'+items.v_price : '免费'}}
 									
 								</view>
 								<view class="" v-if="items.is_free_vip == 1">
@@ -106,7 +106,7 @@
 				<view class="vider_content">
 					<view class="content_list" v-for="(items,indexs) in item.video_list" :key='items.id'  @tap="$jump('../com_page/video_details?id='+items.id + '&type='+items.type)">
 						<view class="list_img_box">
-							<image :src="items.v_slide" mode="scaleToFill"></image>
+							<image :src="items.v_pic" mode="scaleToFill"></image>
 						</view>
 						<view class="list_right">
 							<view class="list_one">
@@ -117,7 +117,7 @@
 							</view>
 							<view class="list_three">
 								<view class="">
-									{{items.is_free == 0? '￥'+items.group_price : '免费'}}
+									{{items.is_free == 0? '￥'+items.v_price : '免费'}}
 									
 								</view>
 								<view class="" v-if="items.is_free_vip == 1">

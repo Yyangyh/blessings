@@ -27,100 +27,34 @@
 			</view>
 		</view>
 		<!-- 问卷调查 -->
-		<view class="questionnaire" v-show="cur==1">
-			<view class="title">您对五福家庭的满意程度</view>
+		<view class="questionnaire" v-show="cur==1" v-if="voucher">
+			<view class="title">{{voucher[0].name}}</view>
 			<view class="line">
-				<view class="question" @tap="que_show = 0">
-					<view class="circle" :class="{circle_red:que_show == 0}">
-						<view class="circle_entity"  :class="{entity_red:que_show == 0}">
+				<view class="question" v-for="(item,index) in voucher[0].answer"  @tap="que_show = index">
+					<view class="circle" :class="{circle_red:que_show == index}">
+						<view class="circle_entity"  :class="{entity_red:que_show == index}">
 						</view>
 					</view>
 					<text>
-						十分满意
-					</text>
-				</view>
-				<view class="question">
-					<view class="circle">
-						<view class="circle_entity">
-						</view>
-					</view>
-					<text class="tetes">
-						满意
+						{{item.name}}
 					</text>
 				</view>
 			</view>
-			<view class="line">
-				<view class="question">
-					<view class="circle">
-						<view class="circle_entity">
-						</view>
-					</view>
-					<text>
-						一般
-					</text>
-				</view>
-				<view class="question">
-					<view class="circle">
-						<view class="circle_entity">
-						</view>
-					</view>
-					<text>
-						不满意
-					</text>
-				</view>
-			</view>
-			<view class="opinion">您对五福家庭有什么建议</view>
-			<form >
-				<textarea name="" id="" cols="30" rows="10"></textarea>
-			</form>
+			<view class="opinion">{{voucher[1].name}}</view>
+			<textarea v-model="opinion_test" name="" id="" cols="30" rows="10"></textarea>
 			<view class="ganxie">
 				十分感谢您对这次调查的支持！
 			</view>
-			<button type="default">提交问卷</button>
+			<button type="default" @tap="submit">提交问卷</button>
 		</view>
 		<!-- 测评记录 -->
-		<!-- <view class="box" v-show="cur==2">
-			<view class="tergum"  @tap="$jump('./result')">
-				<view class="terLeft">
-					<view>默契大作战</view>
-					<view>666888人已测</view>
-				</view>
-				<view class="terRight">
-					<text>查看结果</text>
-					<image src="../../static/image/index/go1.png"></image>
-				</view>
+		<view class="line_record"  v-show="cur==2"  v-for="(item,index) in record_data" @tap="$jump('./result?id='+item.id)">
+			<view class="l-left">{{item.name}}</view>
+			<view class="l-right">
+				<text>查看结果</text>
+				<image src='../../static/image/index/go1.png'></image>
 			</view>
-			<view class="tergum1">
-				<view class="terLeft">
-					<view>魅力值测试</view>
-					<view>666888人已测</view>
-				</view>
-				<view class="terRight">
-					<text>查看结果</text>
-					<image src="../../static/image/index/go1.png"></image>
-				</view>
-			</view>
-			<view class="tergum2">
-				<view class="terLeft">
-					<view>安全感测试</view>
-					<view>666888人已测</view>
-				</view>
-				<view class="terRight">
-					<text>查看结果</text>
-					<image src="../../static/image/index/go1.png"></image>
-				</view>
-			</view>
-			<view class="tergum3">
-				<view class="terLeft">
-					<view>默契大作战</view>
-					<view>666888人已测</view>
-				</view>
-				<view class="terRight">
-					<text>查看结果</text>
-					<image src="../../static/image/index/go1.png"></image>
-				</view>
-			</view>
-		</view> -->
+		</view>
 	</view>
 </template>
 
@@ -135,21 +69,51 @@
 				title:'我的测评',
 				cur:0,
 				dataList:[],
-				que_show:0
+				que_show:0,
+				voucher:'',
+				opinion_test:'',
+				record_data:''
+			}
+		},
+		methods:{
+			submit(){
+				let data = []
+				data.push(this.voucher[0].answer[this.que_show].psqq_id)
+				data.push(this.opinion_test)
+				console.log(data)
+				this.service.entire(this,'post',this.APIconfig.api_root.subindex.s_qtn_submitQtn,{ //提交问券调查
+					qtn_id :5,
+					user_id:this.$store.state.user.id,
+					data:data
+				},function(self,res){
+					console.log(res)
+					uni.showToast({
+						icon:'none',
+						title:res.msg
+					})
+				})
 			}
 		},
 		onShow() {
-			this.service.entire(this,'post',this.APIconfig.api_root.subindex.s_test_classify,{
+			this.service.entire(this,'post',this.APIconfig.api_root.subindex.s_test_classify,{//幸福评测列表
 				
 			},function(self,res){
 				console.log(res)
 				self.dataList =res.data
 			})
 			
-			this.service.entire(this,'post',this.APIconfig.api_root.subindex.s_qtn_getQtn,{
+			this.service.entire(this,'post',this.APIconfig.api_root.subindex.s_qtn_getQtn,{//问券调查
 				id:5
 			},function(self,res){
 				console.log(res)
+				self.voucher = res.data.question
+			})
+			
+			this.service.entire(this,'post',this.APIconfig.api_root.subindex.s_examList,{//获取用户的评测记录列表
+				user_id:this.$store.state.user.id,
+			},function(self,res){
+				console.log(res)
+				self.record_data = res.data
 			})
 		}
 	}
@@ -334,6 +298,28 @@
 				}
 			}
 		}
+		.line_record{
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			background-color: #FFFFFF;
+			padding: 20rpx;
+			margin-top:30rpx ;
+			.l-left{
+				font-size: 28rpx;
+			}
+			.l-right{
+				font-size: 28rpx;
+				color:#666666;
+				display: flex;
+				align-items: center;
+				image{
+					width: 35rpx;
+					height: 34rpx;
+					margin-left: 10rpx;
+				}
+			}
+		}
 		.questionnaire{
 			width: 100%;
 			height: 1334rpx;
@@ -348,10 +334,14 @@
 				display: flex;
 				align-items: center;
 				justify-content: space-between;
+				flex-wrap: wrap;
 				margin: 30rpx 158rpx 0 127rpx;
+				// width: 100%;
 				.question{
 					display: flex;
 					align-items: center;
+					height: 50rpx;
+					width: 50%;
 					.circle{
 						width: 28rpx;
 						height: 28rpx;

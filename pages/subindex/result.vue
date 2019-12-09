@@ -61,16 +61,28 @@
 			}
 		},
 		onLoad(e) {
-			this.service.entire(this,'post',this.APIconfig.api_root.subindex.s_test_Result,{
-				paper_id:e.id,
-				user_id:this.$store.state.user.id,
-				data:JSON.parse(e.data),
-			},function(self,res){
-				console.log(res)
-				console.log(res.code)
-				self.result_data = res.data.result_des
-				self.recommend = res.data.recommend
-			})
+			if(e.data){
+				this.service.entire(this,'post',this.APIconfig.api_root.subindex.s_test_Result,{
+					paper_id:e.id,
+					user_id:this.$store.state.user.id,
+					data:JSON.parse(e.data),
+				},function(self,res){
+					console.log(res)
+					console.log(res.code)
+					self.result_data = res.data.result_des
+					self.recommend = res.data.recommend
+				})
+			}else{
+				this.service.entire(this,'post',this.APIconfig.api_root.subindex.s_lookSignExam,{
+					id:e.id,
+				},function(self,res){
+					console.log(res)
+					console.log(res.code)
+					self.result_data = res.data.res_des
+					self.recommend = res.data.recommend
+				})
+			}
+			
 		}
 	}
 </script>

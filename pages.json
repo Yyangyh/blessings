@@ -93,6 +93,15 @@
 			}
 		},
 		{
+			"path": "pages/com_page/v_order",
+			"style": {
+				"navigationBarTitleText": "订单详情",
+				"app-plus":{
+					"titleNView":false
+				}
+			}
+		},
+		{
 			"path": "pages/com_page/s_order",
 			"style": {
 				"navigationBarTitleText": "购物车",

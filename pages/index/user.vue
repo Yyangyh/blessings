@@ -10,11 +10,11 @@
 			</view>
 			<view class="top_two">
 				<view class="two_left" @tap="$jump('../subuser/personage/personage')">
-					<image src="../../static/image/index/state_user.png" mode="widthFix"></image>
+					<image :src="APIconfig.api_img+user.avatar" mode="widthFix"></image>
 				</view>
 				<view class="two_mid">
 					<view class="mid_top">
-						牛哄哄
+						{{user.username}}
 					</view>
 					<view class="mid_bottom">
 						<image src="../../static/image/index/member.png" mode="widthFix"></image>
@@ -32,7 +32,7 @@
 			<view class="top_three">
 				<view class="three_list">
 					<view class="">
-						0.00
+						{{user.money}}
 					</view>
 					<view class="">
 						余额
@@ -40,7 +40,7 @@
 				</view>
 				<view class="three_list">
 					<view class="">
-						0
+						{{user.integral}}
 					</view>
 					<view class="">
 						积分
@@ -264,12 +264,12 @@
 					<view class="tab_top">
 						拼团订单
 					</view>
-					<view class="more"  @click="jump('../subuser/assemble_order?status=0')">
+					<view class="more"  @click="$jump('../subuser/assemble_order?status=0')">
 						查看更多
 					</view>
 				</view>
 				<view class="tab_box">
-					<view class="tab_list"  @click="jump('../subuser/assemble_order?status=1')">
+					<view class="tab_list"  @click="$jump('../subuser/assemble_order?status=1')">
 						<image src="../../static/image/index/group_img1.png" mode="widthFix"></image>
 						<view class="">
 							待付款
@@ -278,7 +278,7 @@
 							<text v-if="order_status[1].count != 0">{{order_status[1].count}}</text>
 						</block> -->
 					</view>
-					<view class="tab_list" @click="jump('../subuser/assemble_order?status=2')">
+					<view class="tab_list" @click="$jump('../subuser/assemble_order?status=2')">
 						<image src="../../static/image/index/group_img2.png" mode="widthFix"></image>
 						<view class="">
 							待发货
@@ -287,7 +287,7 @@
 							<text v-if="order_status[2].count != 0">{{order_status[2].count}}</text>
 						</block> -->
 					</view>
-					<view class="tab_list" @click="jump('../subuser/assemble_order?status=3')">
+					<view class="tab_list" @click="$jump('../subuser/assemble_order?status=3')">
 						<image src="../../static/image/index/group_img3.png" mode="widthFix"></image>
 						<view class="">
 							待收货
@@ -296,7 +296,7 @@
 							<text v-if="order_status[3].count != 0">{{order_status[3].count}}</text>
 						</block> -->
 					</view>
-					<view class="tab_list" @click="jump('../subuser/assemble_order?status=4')">
+					<view class="tab_list" @click="$jump('../subuser/assemble_order?status=4')">
 						<image src="../../static/image/index/group_img4.png" mode="widthFix"></image>
 						<view class="">
 							已完成
@@ -305,7 +305,7 @@
 							<text v-if="order_status[4].count != 0">{{order_status[4].count}}</text>
 						</block> -->
 					</view>
-					<view class="tab_list" @click="jump('../subuser/assemble_refund')">
+					<view class="tab_list" @click="$jump('../subuser/assemble_refund')">
 						<image src="../../static/image/index/group_img5.png" mode="widthFix"></image>
 						<view class="">
 							退款
@@ -322,9 +322,19 @@
 </template>
 
 <script>
+	export default{
+		data() {
+			return {
+				user:this.$store.state.user
+			}
+		},
+		onShow() {
+			
+		}
+	}
 </script>
 
-<style>
+<style lang="scss">
 	page{
 		background: #F1F1F1;
 	}
@@ -357,6 +367,7 @@
 		height: 100rpx;
 		width: 100rpx;
 		margin-right: 25rpx;
+		border-radius: 50%;
 	}
 	.user_top .top_two .two_mid{
 		height: 90rpx;

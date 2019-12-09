@@ -177,7 +177,8 @@
 						    formData: {
 						      user_id: that.$store.state.user.id,
 							  action:'uploadimage',
-							  path_type:that.data.editor_path_type
+							  path_type:that.data.editor_path_type,
+							  token:that.$store.state.token
 						    },
 						    success: (ref) => {
 								uni.hideLoading()
