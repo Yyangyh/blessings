@@ -30,7 +30,7 @@
 				</view> -->
 			</view>
 			<view class="top_three">
-				<view class="three_list">
+				<view class="three_list" @tap="$jump('../subuser/balance')">
 					<view class="">
 						0.00
 					</view>
@@ -38,7 +38,7 @@
 						余额
 					</view>
 				</view>
-				<view class="three_list">
+				<view class="three_list"  @tap="$jump('../subuser/integral/integral')">
 					<view class="">
 						0
 					</view>
@@ -89,7 +89,7 @@
 						导师考证
 					</view>
 				</view>
-				<view class="tab_list" @click="jump('../subuser/coupon')">
+				<view class="tab_list" @tap="$jump('../subuser/signIn')">
 					<image src="../../static/image/index/sign.png" mode="widthFix"></image>
 					<view class="">
 						签到

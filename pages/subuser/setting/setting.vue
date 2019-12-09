@@ -43,7 +43,7 @@
 			</view>
 			<view class="l_right"></view>
 		</view>
-		
+		<button type="default" >退出登录</button>
 	</view>
 </template>
 
@@ -91,5 +91,16 @@
 			width: 18rpx;
 			height: 22rpx;
 		}
+	}
+	button{
+		width:680rpx;
+		height:80rpx;
+		background:rgba(216,0,0,1);
+		border-radius:40rpx;
+		font-size: 32rpx;
+		line-height: 80rpx;
+		color:#FFFFFF;
+		text-align: center;
+		margin: 50rpx auto 0;
 	}
 </style>
