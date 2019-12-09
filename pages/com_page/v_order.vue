@@ -5,48 +5,25 @@
 		</view>
 		<returns :titles='title'></returns>
 		
-		<view class="top_add">
-			<view class="name" v-if="show_add == 1"  @click="$jump('../subuser/address')">
-				<view class="info">
-					<text>{{address.name}}</text>
-					<text>{{address.tel}}</text>
-				</view>
-				<view class="address">
-					{{address.province_name}}{{address.city_name}}{{address.county_name}}{{address.address}}
-				</view>
-			</view>
-			<view class="name" v-else-if="show_add == 0 " @click="$jump('../subuser/address')">
-				<view class="">
-					未设置收货地址，请设置
-				</view>
-			</view>
-			<view class="more">
-				<image src="/static/image/index/go.png" mode="widthFix"></image>
-			</view>
-			<view class="bg">
-				<image src="/static/image/com_page/void.png" mode="widthFix"></image>
-			</view>
-		</view>
+	
 		<!-- 空隙 -->
 		<view class="void"></view>
 		<!-- 空隙 -->
-		<view class="commodity" v-for="(item,index) in shopp" :key='item.id'>
-			<view class="left">
-				<image :src="item.images" mode="widthFix"></image>
-			</view>
-			<view class="right">
-				<view class="title">
-					<text>{{item.title}}</text>
+		
+		<view class="vider_content">
+			<view class="content_list" @tap="$jump('./video_details?id='+item.id)">
+				<view class="list_img_box">
+					<image :src="data.v_pic" mode="aspectFill"></image>
 				</view>
-				<view class="button" v-if="item.spec">
-					<text v-for="(items,indexs) in item.spec" :key='indexs'>{{items.type}}：{{items.value}}</text>
-				</view>
-				<view class="price">
-					<view class="momey">
-						￥{{item.price}}
+				<view class="list_right">
+					<view class="list_one">
+						{{data.long_title}}
 					</view>
-					<view class="number">
-						数量：x{{item.stock}}
+					<view class="list_two">
+						{{data.view}}次{{data.type == 1? '观看':'收听'}}
+					</view>
+					<view class="list_three">
+						￥{{data.v_price}}
 					</view>
 				</view>
 			</view>
@@ -61,17 +38,13 @@
 		<view class="recording">
 			<view class="list">
 				<text>商品小计</text>
-				<text class="list_red">￥{{data.total_price}}</text>
-			</view>
-			<view class="list" v-if="extension">
-				<text >运费</text>
-				<text class="list_red">{{extension[0].tips}}</text>
+				<text class="list_red">￥{{data.v_price}}</text>
 			</view>
 			<view class="list">
 				<text>优惠券</text>
 				<view class="discount" v-if="coupon_list != ''" @click="show = !show">
 					<text>{{recording}}</text>
-					<image src="../../static/image/com_page/discount.png" mode="widthFix"></image>
+					<image src="/static/image/com_page/discount.png" mode="widthFix"></image>
 				</view>
 				
 				<text v-else>无</text>
@@ -88,7 +61,7 @@
 			<view class="pa_box">
 				<view class="box_list"  v-for="(item,index) in payment"  :key='item.id' @click="choice(index)">
 					<view class="list_top">
-						<image :src="item.logo" mode="widthFix"></image>
+						<image :src="APIconfig.api_img+item.logo" mode="widthFix"></image>
 						<view class="">
 							{{item.name}}
 						</view>
@@ -101,7 +74,7 @@
 		
 		<view class="pay">
 			<view class="paying">
-				需支付：<text>￥{{data.actual_price}}</text>
+				需支付：<text>￥{{data.v_price}}</text>
 			</view>
 			<view class="btn">
 				<button @click="payments()">支付订单</button>
@@ -167,18 +140,13 @@
 			return {
 				title:'确认订单',
 				data:[],
-				address:'',
-				shopp:'',
-				payment:'',
-				indexs:'',
+				payment:'213',
 				id:'',
 				payment_id:'',
-				show_add:3,
 				require_data:'',
 				coupon_list:'',
 				show:false,
 				recording:'未选择',
-				extension:''
 			}
 		},
 		components:{
@@ -217,35 +185,21 @@
 				this.Index()
 			},
 			Index(){ //下单时间确定
-				this.service.entire(this,'post',this.APIconfig.api_root.com_page.buy_index,this.require_data,function(self,res){//订单信息
-					self.data = res.data.base
-					if(res.data.plugins_coupon_data.coupon_list != ''){
+				this.service.entire(this,'post',this.APIconfig.api_root.com_page.v_orderDetail,this.require_data,function(self,res){//订单信息
+					self.data = res.data.video
+					console.log(res.data.coupon)
+					if(res.data.coupon != ''){
 						let not_coupon = {
 							not_coupon:'不使用'
 						}
-						let coupon_data = res.data.plugins_coupon_data.coupon_list
+						let coupon_data = res.data.coupon
 						coupon_data.push(not_coupon)
 						for (let s of coupon_data) {
 							s.choice = false
 						}
-						if(res.data.plugins_coupon_data.coupon_choice != ''){
-							for (let s of coupon_data) {
-								if(s.id == res.data.plugins_coupon_data.coupon_choice.id) s.choice = true
-							}
-							
-						}
 						self.coupon_list = coupon_data
 					}
-					if(!res.data.base.address){
-						self.show_add = 0
-					}else{
-						self.show_add = 1
-					}
-					self.address = res.data.base.address
-					self.shopp = res.data.goods_list
-					self.extension = res.data.extension_data
-					let data = res.data.payment_list
-					console.log(self.shopp)
+					let data = res.data.pay_type
 					for (let s of data) {
 						s.choice = false
 					}
@@ -255,13 +209,6 @@
 			},
 			payments(){  //提交
 				let that = this
-				if(!this.address){
-					uni.showToast({
-						icon:'none',
-						title:'请添加收货地址'
-					})
-					return
-				}
 				if(!this.payment_id){
 					uni.showToast({
 						icon:'none',
@@ -278,8 +225,7 @@
 				            // console.log('用户点击确定');
 							let data = {
 								user_id: that.$store.state.user.id,
-								address_id:that.address.id,
-								payment_id:that.payment_id,
+								payment:that.payment_name,
 							}
 							let data_list = Object.assign(data,that.require_data)
 							that.service.entire(that,'post',that.APIconfig.api_root.com_page.buy_add,data_list,function(self,res){
@@ -309,27 +255,12 @@
 				
 			}
 		},
-		onLoad(options) {
-			console.log(JSON.parse(options.data))
-			this.options = JSON.parse(options.data)
-			let options_data = JSON.parse(options.data)
-			let require_data
-			console.log()
-			if(options_data.type == 'cart'){   //从购物车进来
-				require_data = {
-					user_id: this.$store.state.user.id,
-					ids:options_data.id,
-					buy_type:options_data.type,
-				}
-			}else{
-				require_data = {  //直接购买
-					user_id: this.$store.state.user.id,
-					goods_id:options_data.id,
-					stock:options_data.num,
-					spec:options_data.spec,
-					buy_type:options_data.type,
-				}
-			
+		onLoad(e) {
+			console.log(e)
+			let require_data = {
+				userid: this.$store.state.user.id,
+				video_id:e.id,
+				section_id:0
 			}
 			this.require_data = require_data
 		},
@@ -349,119 +280,34 @@
 		height: 10rpx;
 		background: #F2F2F2;
 	}
-	.top_add{
-		width: 100%;
-		padding: 0;
-		margin: 0;
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
-		position: relative;
-		.name{
-			width: 90%;
-			padding: 40rpx 0;
-			font-size: 30rpx;
-			color: #000;
+	
+	
+	.vider_content{
+		padding: 0 20rpx;
+		font-size: 24rpx;
+		image{
+			width: 268rpx;
+			height: 179rpx;
+			margin-right: 29rpx;
+		}
+		.content_list{
 			display: flex;
-			justify-content: center;
-			align-items: center;
-			flex-direction: column;
-			.info{
-				width: 90%;
+			margin-bottom: 30rpx;
+			padding-top: 20rpx;
+			.list_right{
 				display: flex;
+				flex-direction: column;
 				justify-content: space-between;
-				align-items: center;
-			}
-			.address{
-				width: 90%;
-				margin-top: 10rpx;
-				font-size: 28rpx;
-				color: #666666;
-			}
-		}
-		.more{
-			width: 28rpx;
-			/* height: 28rpx; */
-			margin-right: 20rpx;
-			image{
-				width: 28rpx;
-				height: 28rpx;
-			}
-		}
-		.bg{
-			width: 100%;
-			position: absolute;
-			bottom: 0;
-			image{
-				width: 100%;
-				height: 10rpx;
-			}
-		}
-	}
-	
-	
-	
-	.commodity{
-		width: 100%;
-		display: flex;
-		justify-content: space-between;
-		align-content: center;
-		padding-top: 30rpx;
-		padding-bottom: 24rpx;
-		border-bottom: 10rpx solid #F2F2F2;
-		.left{
-			width: 30%;
-			padding: 0 5%;
-			display: flex;
-			align-items: center;
-			justify-content: center;
-			image{
-				width: 220rpx;
-				height: 142rpx;
-			}
-		}
-		.right{
-			width: 65%;
-			margin-right: 5%;
-			display: flex;
-			justify-content: flex-start;
-			align-items: flex-start;
-			flex-direction: column;
-			.title{
-				font-size: 30rpx;
-				color: #333333;
-				/* font-weight: bold; */
-			}
-			.button{
-				color: #808080;
-				display: flex;
-				justify-content: flex-start;
-				align-items: flex-start;
-				flex-wrap: wrap;
-				text{
-					margin-right: 10rpx;
-					margin-bottom: 10rpx;
-					font-size: 24rpx;
-					display: block;
-					padding: 10rpx 8rpx;
-					background: #F1F1F1;
+				padding-bottom: 30rpx;
+				.list_two {
+				    color: #999999;
+				    margin: 5px 0;
+				}
+				.list_three{
+					color: #D80000;
+					font-size: 28rpx;
 				}
 			}
-			.price{
-				width: 100%;
-				display: flex;
-				justify-content: space-between;
-				align-items: flex-start;
-				.momey{
-					font-size: 36rpx;
-					color: #FF431D;
-				}
-				.number{
-					font-size: 24rpx;
-					color: #666666;
-				}
-			}
-			
 		}
 	}
 	

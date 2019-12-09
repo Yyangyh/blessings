@@ -118,6 +118,7 @@
 							// uni.setStorageSync('user',JSON.stringify())
 							that.$store.commit('change_login')
 							that.$store.commit('state_user',data.data.memberInfo)
+							that.$store.commit('state_token',data.token)
 							// #ifdef H5
 							// 	先判断是否在h5打开，再判断是否是在微信浏览器打开
 								let ua = navigator.userAgent.toLowerCase();

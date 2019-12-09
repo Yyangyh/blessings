@@ -16,7 +16,13 @@
 		</view>
 		
 		<view class="">
-			 <video id="myVideo" :src="play_url"  @play='play_start()' @ended='play_end()'  enable-danmu  controls></video>
+			 <video id="myVideo" :src="play_url" :autoplay='true'   
+			 @pause='pause' 
+			 @timeupdate='timeupdate'
+			 @play='play_start' 
+			 @ended='play_end'  
+			 enable-danmu  controls  :poster='poster'>
+			 </video>
 		</view>
 		<view class="video_tab">
 			<view class="tab_list" :class="{test_show:test_show === 0}" @tap="test_show = 0">
@@ -43,7 +49,7 @@
 					<view class="ex_two">
 						<image src="/static/image/com_page/stars.png" mode="widthFix" v-for="(item,index) in video_data.stars_num" :key='index'></image>
 						<text>{{video_data.evaluate}}分</text>
-						<text>{{video_data.view}}次观看</text>
+						<text>{{video_data.view}}次{{type == 1? '观看':'收听'}}</text>
 					</view>
 					
 					<view class="ex_three">
@@ -152,7 +158,7 @@
 							{{item.long_title}}
 						</view>
 						<view class="list_two">
-							{{item.view}}次观看
+							{{item.view}}次{{item.type == 1? '观看':'收听'}}
 						</view>
 						<view class="list_three">
 							<view class="">
@@ -211,7 +217,7 @@
 								有效期：{{service.Test(item.fixed_time_start)}}至{{service.Test(item.fixed_time_end)}}
 							</view>
 						</view>
-						<view class="box_right" :class="{receive:!item.coupon_id}" @tap="getCoupon(item.cid,item.coupon_id,index)">
+						<view class="box_right" :class="{receive:!item.coupon_id}" @tap="getCoupon(item.c_id,item.id,index)">
 							{{item.coupon_id>0? '已领取' : '立即领取'}}
 						</view>
 					</view>
@@ -231,7 +237,7 @@
 						收藏
 					</view>
 				</view>
-				<view class="bot_buy">
+				<view class="bot_buy" @tap="$jump('./v_order?id='+id)">
 					立即购买
 				</view>
 			</view>
@@ -247,6 +253,7 @@
 		data() {
 			return {
 				id:'',
+				type:'',
 				video_data:'',
 				test_show:0,
 				catalog_data:'',
@@ -260,11 +267,19 @@
 				coupon_show:false,
 				comments:'',
 				recommend_video:'',
-				play_store:false
+				play_store:false,
+				poster:''
 			}
 		},
 		methods:{
-			play_start(){ //添加视频阅读量 
+			pause(e){
+				// console.log(e)
+			},
+			timeupdate(e){
+				// console.log(e)
+			},
+			play_start(e){ //添加视频阅读量 
+				// console.log(e)
 				if(this.play_store == false){
 					this.play_store = true
 					this.service.entire(this,'post',this.APIconfig.api_root.com_page.v_playCount,{
@@ -280,17 +295,22 @@
 				this.indexs = index
 				this.play_url = this.service.analysis_url(this.catalog_data[index].video_url)
 			},
-			play_end(){ //播放结束时
+			play_end(e){ //播放结束时
+				// console.log(e)
 				this.indexs ++
 				this.play_url = this.service.analysis_url(this.catalog_data[this.indexs].video_url)
 			},
 			collect(){ //视频收藏
+			
+				let times = this.service.loading()
 				this.service.entire(this,'post',this.APIconfig.api_root.com_page.v_collect,{ 
 					video_id:this.id,
 					userid:this.$store.state.user.id,
 					mobile:this.$store.state.user.mobile,
 					c_type:this.collects == 1? 0 : 1
 				},function(self,res){
+					uni.hideLoading()
+					clearTimeout(times)
 					self.tips_test = res.msg
 					self.tips_img = collect_img
 					self.show = true
@@ -303,18 +323,21 @@
 				})
 			},
 			play_integral(){ //领取积分
+				let times = this.service.loading()
 				this.service.entire(this,'post',this.APIconfig.api_root.com_page.v_integral,{
 					video_id:this.id,
 					userid:this.$store.state.user.id,
 					mobile:this.$store.state.user.mobile,
 					section_id:1
 				},function(self,res){
+					uni.hideLoading()
+					clearTimeout(times)
 					self.tips_test = res.msg
 					self.tips_img = integral_img
 					self.show = true
 					setTimeout(function() {
 						self.show = false
-					}, 1500);
+					}, 1500)
 				})
 			},
 			getCoupon(id,cid,index){//领取优惠券
@@ -338,6 +361,7 @@
 		},
 		onLoad(e) {
 			this.id = e.id
+			this.type = e.type
 			this.service.entire(this,'post',this.APIconfig.api_root.com_page.VideoDetail,{ //视频详情
 				video_id:e.id,
 				userid:this.$store.state.user.id,
@@ -346,13 +370,13 @@
 				self.play_url = self.service.analysis_url(res.data.video.v_url)
 				self.video_data = res.data.video
 				self.collects = res.data.video.collect
-				
-				self.video_data.stars_num = new Array(Number(self.video_data.evaluate))
-				
+				self.poster = res.data.video.v_pic
+				if(self.video_data.evaluate)self.video_data.stars_num = new Array(Number(self.video_data.evaluate))
 			})
 			
 			this.service.entire(this,'post',this.APIconfig.api_root.com_page.catalogue,{ //视频目录
 				video_id:e.id,
+				user_id:this.$store.state.user.id,
 			},function(self,res){
 				self.catalog_data = res.data.video_list
 			})
@@ -785,7 +809,7 @@
 			
 		}
 	}
-	.vider_content{
+	.vider_content{	
 		padding: 0 20rpx;
 		font-size: 24rpx;
 		image{

@@ -44,7 +44,7 @@
 				if(this.numer ==''){
 					uni.showToast({
 						icon:'none',
-						title:'请原则您的答案'
+						title:'请选择您的答案'
 					})
 					return
 				}
@@ -58,15 +58,11 @@
 					this.item = this.questionList[id];
 				}else{
 					this.data.push(this.numer);
-					this.service.entire(this,'post',this.APIconfig.api_root.subindex.s_test_Result,{
-						paper_id:this.id,
-						user_id:this.$store.state.user.id,
-						data:this.data,
-					},function(self,res){
-						console.log(res)
-						console.log(res.code)
-						// if(res.code)
+					let data = JSON.stringify(this.data)
+					uni.redirectTo({
+						url:'./result?id='+this.id+'&data='+data
 					})
+					
 					
 				}
 				/* var data = {
