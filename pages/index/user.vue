@@ -10,7 +10,7 @@
 			</view>
 			<view class="top_two">
 				<view class="two_left" @tap="$jump('../subuser/personage/personage')">
-					<image :src="APIconfig.api_img+user.avatar" mode="widthFix"></image>
+					<image :src="user.avatar" mode="widthFix"></image>
 				</view>
 				<view class="two_mid">
 					<view class="mid_top">

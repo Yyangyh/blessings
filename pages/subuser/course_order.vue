@@ -35,29 +35,18 @@
 							<!-- <image src="/static/image/index/go.png" mode="widthFix"></image> -->
 						</view>
 		
-						<view class="top2 refund" v-if="item.status == 7">
-							{{item.status_name}}
+						<view class="top2 refund" v-if="item.state == 0">
+							未支付
 						</view>
-						<view class="top2 obligation" v-if="item.status == 1">
-							{{item.status_name}}
+						<view class="top2 obligation" v-if="item.state == 1">
+							已支付
 						</view>
-						<view class="top2 stayGoods" v-if="item.status == 2">
-							{{item.status_name}}
-						</view>
-						<view class="top2 stayComment" v-if="item.status == 3">
-							{{item.status_name}}
-						</view>
-						<view class="top2 stayComment" v-if="item.status == 4">
-							{{item.status_name}}
-						</view>
-						<view class="top2 refund" v-if="item.status == 5">
-							{{item.status_name}}
-						</view>
+						
 					</view>
 					
 					<view class="list_middle" @click="jump('threeuser/s_order_details?id='+item.id)">
-						<view class="">
-							<image :src="item.video.v_pic" mode="widthFix"></image>
+						<view class="v_img">
+							<image :src="item.video.v_pic" mode="scaleToFill"></image>
 						</view>
 						<view class="middle1">
 							<view class="">{{item.video.title}}</view>
@@ -85,9 +74,6 @@
 								<view class="bottom_ash" v-if='item.status == 4 && item.user_is_comments ==0' @click="jump('threeuser/s_comment_order?id='+item.id)">
 									评论
 								</view>
-								<!-- <view class="bottom3" v-if='item.status == 3' @click="jump('/pages/threeLayers/logistics?id='+item.express_id+'&number='+item.express_number)">
-									查看物流
-								</view> -->
 								<view class="bottom3" @click="jump('threeuser/s_order_details?id='+item.id)">
 									详情
 								</view>
@@ -135,10 +121,8 @@
 						type:6,
 						video_type:1
 					},function(self,res){
-						console.log(res)
 						let data = self.data
 						data.push(...res.data.order_list)
-						
 						console.log(self.data);
 						self.page = page + 1
 						self.more = 'more'
@@ -205,21 +189,19 @@
 	}
 	.mall_box{
 		font-size: 30rpx;
-		padding-top: 30rpx;
 		.box_bottom {
 			background: #fff;
 			.bottom_list {
 				padding: 20rpx;
 				background: #fff;
-				border-radius: 20rpx;
-				margin: 0 20rpx 32rpx 20rpx;
-				box-shadow: 0px 0rpx 20rpx 0px rgba(0, 0, 0, 0.1);
+				border-bottom: 2rpx solid #EEEEEE;
 				.list_top {
 					display: flex;
 					justify-content: space-between;
 					.top1 {
 						display: flex;
 						align-items: center;
+						
 						text {
 							margin: 0 8rpx;
 							font-weight: 600;
@@ -232,30 +214,37 @@
 					}
 					.top2 {
 						font-size: 28rpx;
+						color: #D80000;
 					}
 					
 				}
 				.list_middle {
 					display: flex;
-					align-items: center;
+					// align-items: center;
 					margin-top: 30rpx;
+					.v_img{
+						height: 189rpx;
+						width: 268rpx;
+						margin-right: 15rpx;
+						image{
+							height: 100%;
+							width: 100%;
+							
+						}
+					}
 					.middle1 {
 						font-size: 24rpx;
 						color: #999999;
 						view:nth-of-type(1) {
 							font-size: 28rpx;
+							margin-bottom: 15rpx;
+							color: #000000;
 							font-weight: bold;
 							display: -webkit-box;
 							-webkit-box-orient: vertical;
 							-webkit-line-clamp: 2;
 							overflow: hidden;
 						}
-					}
-					.middle2 {
-						font-size: 26rpx;
-						color: #999999;
-						flex-grow: 2;
-						text-align: right;
 					}
 					image {
 						height: 122rpx;

@@ -41,10 +41,16 @@
 						title:res.msg
 					})
 					if(res.code==0){
-						self.service.returns()
+						self.$store.state.user.username = self.name
+						setTimeout(function() {
+							self.service.returns()
+						}, 1000);
 					}
 				})
 			}
+		},
+		onShow() {
+			console.log(this.$store.state.user)
 		}
 	}
 </script>
@@ -54,6 +60,7 @@
 		background-color: #F1F1F1;
 		width:690rpx;
 		height:80rpx;
+		font-size: 24rpx;
 		display: block;
 		margin:20rpx auto 0;
 		border-radius:10px;

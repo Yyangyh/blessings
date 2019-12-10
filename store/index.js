@@ -15,8 +15,10 @@ const store = new Vuex.Store({
 			state.hasLogin = false
 		},
 		state_user(state,data){
-			console.log(data)
 			state.user = data
+		},
+		user_username(state,data){
+			state.user.username = data
 		},
 		state_token(state,data){
 			state.token = data

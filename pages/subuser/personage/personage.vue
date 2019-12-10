@@ -11,8 +11,10 @@
 		</view>	
 		<view class="per_box">
 			<view class="box_top">
-				<image class="photo" src="/static/image/brokerage/photo.png" mode="widthFix"></image>
-				<view @click="reveal=true">修改头像></view>
+				<view class="photo_box">
+					<image class="photo" :src="user.avatar" mode="scaleToFill"></image>
+				</view>
+				<view @click="reveal">修改头像></view>
 			</view>
 			<view class="bank">
 				<view class="line" @tap="$jump('./alter')">
@@ -21,7 +23,7 @@
 						<text>昵称</text>
 					</view>
 					<view class="l_right">
-						<text>牛哄哄</text>
+						<text>{{user.username}}</text>
 						<image src='/static/image/index/go.png' mode="widthFix"></image>
 					</view>
 				</view>
@@ -43,25 +45,16 @@
 						<text>手机号码</text>
 					</view>
 					<view class="l_right">
-						<text>155123456578</text>
+						<text>{{user.mobile}}</text>
 						<image src='/static/image/index/go.png' mode="widthFix"></image>
 					</view>
 				</view>
 				<hr />
-				<button type="default">确认</button>
+				<button>确认</button>
 				<hr />
 			</view>
 		</view>
 		
-		<!-- 修改头像弹框 -->
-		<view class="mask_black" v-if="reveal">
-			
-		</view>
-		<view class="bk" v-if="reveal">
-			<view style="border-bottom: 1rpx solid#EEEEEE;border-radius:20rpx 20px 0 0">相机</view>
-			<view style='margin-bottom: 20rpx;border-radius:0 0 20rpx 20px'>相册</view>
-			<view style="border-radius:20px" @click="reveal=false">取消</view>
-		</view>
 	</view>
 </template>
 
@@ -70,11 +63,36 @@
 		export default{
 			data(){
 				return{
-					reveal:false
-					
+					user:this.$store.state.user
 				}
 			},
-			
+			methods:{
+				reveal(){
+					let that = this
+					uni.chooseImage({
+					    success: (chooseImageRes) => {
+					        const tempFilePaths = chooseImageRes.tempFilePaths;
+					        uni.uploadFile({
+					            url: this.APIconfig.api_root.subuser.s_member, 
+					            filePath: tempFilePaths[0],
+					            name: 'file',
+					            formData: {
+					                type:2,
+									user_id:that.$store.state.user.id
+					            },
+					            success: (res) => {
+					                console.log(tempFilePaths[0]);
+									let data =JSON.parse(res.data)
+									console.log(data)
+									if(data.code == 0){
+										that.user.avatar = tempFilePaths[0]
+									}
+					            }
+					        });
+					    }
+					});
+				}
+			}
 		}
 	</script>
 </script>
@@ -117,11 +135,17 @@
 			top:194rpx;
 			left:0;
 			.box_top{
-				.photo{
+				.photo_box{
 					width: 120rpx;
 					height: 120rpx;
 					display: block;
 					margin: -60rpx auto 0;
+					border-radius: 50%;
+					overflow: hidden;
+					.photo{
+						height: 100%;
+						width: 100%;
+					}
 				}
 				view{
 					font-size: 24rpx;
