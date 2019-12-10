@@ -26,12 +26,12 @@
 			</view>
 			<view class="witebox">
 				<view class="allorder">
-					  <text @click="cur=0" class="one" :class="{active:cur==0}">我邀请的</text>
-					  <text @click="cur=1" class="two" :class="{active:cur==1}">邀请我的</text>
-					   <text @click="cur=2" class="three" :class="{active:cur==2}">邀请记录</text>
+					  <text @click="Index(1)" class="one" :class="{active:cur==1}">我邀请的</text>
+					  <text @click="Index(2)" class="two" :class="{active:cur==2}">邀请我的</text>
+					   <text @click="cur=3" class="three" :class="{active:cur==3}">邀请记录</text>
 					   
 				</view>
-				<view class="box" v-show="cur==0">
+				<view class="box" v-show="cur==1">
 					<form >
 						<view class="add_box">
 							<view class="left_box">
@@ -42,16 +42,35 @@
 								<view class="right_box">
 									<view>
 										<text>号码</text>
-										<input type="text" placeholder="请输入手机号码">
+										<input type="text" placeholder="请输入手机号码" v-model="phone">
 									</view> 
 									<image src="/static/image/subuser/tongxunlu.png"></image>
 								</view>
 							
 						</view>
-						<button type="default">邀请好友</button>
+						<button type="default" @click="invite">邀请好友</button>
 					</form>
 				</view>
-				<view class="box" v-show="cur==1">
+				<view class="box" v-show="cur==2">
+					<form >
+						<view class="add_box" v-for="(item,index) in invateList" :key='item.id'>
+							<view class="left_box">
+								<image src="/static/image/subuser/tuoyuan.png"></image>
+								<image :src="item.avatar"></image>
+							</view>
+							<view class="right_box">
+								<view>
+									<text>号码</text>
+									<input disabled='disabled' type="text" :value="item.mobile" placeholder=" " >
+								</view> 
+								<image src="/static/image/subuser/tongxunlu.png"></image>
+							</view>
+						</view>
+						<button type="default" @click="relieve">确定解绑</button>
+					
+					</form>
+				</view>
+				<view class="box" v-show="cur==3">
 					<form >
 						<view class="add_box">
 							<view class="left_box">
@@ -68,7 +87,7 @@
 								</view>
 							
 						</view>
-						<button type="default">确认绑定</button>
+						<!-- <button type="default">邀请好友</button> -->
 					</form>
 				</view>
 			</view>
@@ -79,15 +98,72 @@
 <script>
 	import returns from '../../common/returns.vue'
 	export default{
-		// components:{
-		// 	returns
-		// },
 		data(){
 			return{
 				title:'亲情号',
 				reveal:false,
-				cur:0,
+				cur:1,
+				phone:'',
+				reveal:true,
+				photo:'',
+				invateList :'',
+				
 			}
+		},
+		methods:{
+			
+			invite(){
+				this.service.entire(this,'post',this.APIconfig.api_root.subuser.s_member_kinship,{//邀请好友
+					// user_id:this.$store.state.user.id,
+					// type:this.cur,
+					from_mobile:this.phone,
+					my_mobile:this.$store.state.user.mobile
+				},function(self,res){
+					console.log(res.data.invate)
+					
+				})
+				let tel = /^(13[0-9]|14[5|7]|15[0|1|2|3|5|6|7|8|9]|18[0|1|2|3|5|6|7|8|9])\d{8}$/.test(this.phone);
+				 if (this.phone == "" || this.name == "") {
+					 uni.showToast({
+						icon:'none',
+						title:'输入框不能为空!'
+					 })
+				}else if(!tel){
+				  uni.showToast({
+					icon:'none',
+					title:'请输入正确的11位手机号码!'
+				  })
+				}
+				console.log(this.phone)
+			},
+			Index(type){
+				this.cur = type;
+				this.service.entire(this,'post',this.APIconfig.api_root.subuser.s_member_kinshipLog,{
+					user_id:this.$store.state.user.id,
+					type:type,
+					mobile:this.$store.state.user.mobile
+				},function(self,res){
+					console.log(res)
+					self.invateList = res.data.invate
+					console.log(self.invateList)
+				})
+			},
+			relieve(){
+				uni.showModal({
+				    title: '提示',
+				    content: '确定解除此号码吗？',
+				    success: function (res) {
+				        if (res.confirm) {
+				            console.log('用户点击确定');
+				        } else if (res.cancel) {
+				            console.log('用户点击取消');
+				        }
+				    }
+				});
+			}
+		},
+		onShow() {
+			this.Index(1)
 		}
 	}
 </script>
@@ -206,11 +282,13 @@
 							width: 36rpx;
 							height: 36rpx;
 							margin-right: 33rpx;
+							border-radius: 50%;
 						}
 						image:last-child{
 							width: 100rpx;
 							height: 100rpx;
 							margin-right: 38rpx;
+							border-radius: 50%;
 						}
 					}
 					.right_box{
@@ -246,6 +324,20 @@
 					left: 51rpx;
 				}
 			}
+		}
+		.bk{
+			width:535rpx;
+			height:217rpx;
+			background:rgba(255,255,255,1);
+			border-radius:22rpx;
+			position: fixed;
+			left: 50%;
+			transform: translateX(-50%);
+			top:500rpx;
+			z-index: 900;
+			text-align: center;
+			font-size: 28rpx;
+			color:#FFFFFF;
 		}
 	}
 </style>
