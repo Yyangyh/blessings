@@ -5,9 +5,9 @@
 		</view >
 		<returns :titles='title'></returns>
 		<form >
-			<input type="text" placeholder="请输入新的昵称">
+			<input type="text" placeholder="请输入新的昵称" v-model="name">
 			<view class="text">昵称由汉字、字母、数字、符号组成</view>
-			<button type="default">保存</button>
+			<button  @click="preserve" >保存</button>
 		</form>
 		
 		
@@ -24,7 +24,26 @@
 		data(){
 			return{
 				title:'修改昵称',
-				reveal:false
+				reveal:false,
+				name:''
+			}
+		},
+		methods:{
+			preserve() {
+				this.service.entire(this,'post',this.APIconfig.api_root.subuser.s_member,{
+					user_id:this.$store.state.user.id,
+					nickname:this.name,
+					type:1
+				},function(self,res){
+					console.log(res)
+					uni.showToast({
+						icon:'none',
+						title:res.msg
+					})
+					if(res.code==0){
+						self.service.returns()
+					}
+				})
 			}
 		}
 	}

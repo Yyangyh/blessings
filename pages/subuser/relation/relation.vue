@@ -25,24 +25,52 @@
 				</view>
 			</view>
 			<view class="witebox">
-				<form >
-					<view class="add_box">
-						<view class="left_box">
-							<image src="/static/image/subuser/tuoyuan.png"></image>
-							<image src="/static/image/subuser/renxiang.png"></image>
-						</view>
-						
-							<view class="right_box">
-								<view>
-									<text>号码</text>
-									<input type="text" placeholder="请输入手机号码">
-								</view> 
-								<image src="/static/image/subuser/tongxunlu.png"></image>
+				<view class="allorder">
+					  <text @click="cur=0" class="one" :class="{active:cur==0}">我邀请的</text>
+					  <text @click="cur=1" class="two" :class="{active:cur==1}">邀请我的</text>
+					   <text @click="cur=2" class="three" :class="{active:cur==2}">邀请记录</text>
+					   
+				</view>
+				<view class="box" v-show="cur==0">
+					<form >
+						<view class="add_box">
+							<view class="left_box">
+								<!-- <image src="/static/image/subuser/tuoyuan.png"></image> -->
+								<image src="/static/image/subuser/renxiang.png"></image>
 							</view>
-						
-					</view>
-					<button type="default">一键添加</button>
-				</form>
+							
+								<view class="right_box">
+									<view>
+										<text>号码</text>
+										<input type="text" placeholder="请输入手机号码">
+									</view> 
+									<image src="/static/image/subuser/tongxunlu.png"></image>
+								</view>
+							
+						</view>
+						<button type="default">邀请好友</button>
+					</form>
+				</view>
+				<view class="box" v-show="cur==1">
+					<form >
+						<view class="add_box">
+							<view class="left_box">
+								<image src="/static/image/subuser/tuoyuan.png"></image>
+								<image src="/static/image/subuser/renxiang.png"></image>
+							</view>
+							
+								<view class="right_box">
+									<view>
+										<text>号码</text>
+										<input type="text" placeholder="请输入手机号码">
+									</view> 
+									<image src="/static/image/subuser/tongxunlu.png"></image>
+								</view>
+							
+						</view>
+						<button type="default">确认绑定</button>
+					</form>
+				</view>
 			</view>
 		</view>
 	</view>
@@ -57,7 +85,8 @@
 		data(){
 			return{
 				title:'亲情号',
-				reveal:false
+				reveal:false,
+				cur:0,
 			}
 		}
 	}
@@ -148,6 +177,23 @@
 				border-radius:25rpx;
 				margin: 50rpx auto;
 				position: relative;
+				.allorder{
+					width: 100%;
+					height: 100upx;
+					display: flex;
+					text-align: center;
+					line-height: 100upx;
+					font-size: 28upx;
+					border-bottom: 1rpx solid #A5A5A5;
+					text{
+						flex: 1;
+					}
+				}
+				.active{
+					color:#D80000;
+					border-bottom: 1rpx solid #D80000;
+				}
+				
 				.add_box{
 					display: flex;
 					// align-items: center;

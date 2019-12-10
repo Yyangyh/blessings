@@ -73,7 +73,8 @@
 					reveal:false
 					
 				}
-			}
+			},
+			
 		}
 	</script>
 </script>

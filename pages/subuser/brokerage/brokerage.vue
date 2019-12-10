@@ -50,14 +50,14 @@
 			</view>
 			
 			<view class="box">
-				<view class="box-list" style="border: 1rpx solid #EEEEEE;">
+				<view class="box-list" style="border: 1rpx solid #EEEEEE;"  @tap="$jump('./record')">
 					<image src="../../../static/image/brokerage/tixian.png" mode="widthFix"></image>
 					<view>
 						<view class="yj">提现记录</view>
 						<view class="toutcome">0笔</view>
 					</view>
 				</view>
-				<view class="box-list" style="border: 1rpx solid #EEEEEE;">
+				<view class="box-list" style="border: 1rpx solid #EEEEEE;"  @tap="$jump('./schoolfellow')">
 					<image src="../../../static/image/brokerage/tongxue.png" mode="widthFix"></image>
 					<view>
 						<view class="yj">我的同学</view>

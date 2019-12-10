@@ -90,7 +90,10 @@ const api_root = {
 			g_Create: api+'/api/groupgoods/Create',//拼团申请售后订单详情
 			g_AftersaleCancel: api+'/api/groupgoods/AftersaleCancel',//拼团申请售后订单详情
 			
-		}
+			
+			
+		},
+		s_member:api+'/api/member/updateUserInfo',//更新用户信息
 	},
 	subindex:{
 		s_test:api+'/api/test/getPaper',//通过试卷id获取试卷信息

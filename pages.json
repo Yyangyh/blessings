@@ -455,6 +455,22 @@
 				}
 			}
 		},{
+			"path": "pages/subuser/brokerage/schoolfellow",
+			"style": {
+				"navigationBarTitleText": "我的同学",
+				"app-plus":{
+					"titleNView":false
+				}
+			}
+		},{
+			"path": "pages/subuser/brokerage/record",
+			"style": {
+				"navigationBarTitleText": "提现记录",
+				"app-plus":{
+					"titleNView":false
+				}
+			}
+		},{
 			"path": "pages/subuser/brokerage/invite",
 			"style": {
 				"navigationBarTitleText": "我的邀码",
