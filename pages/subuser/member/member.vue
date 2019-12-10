@@ -108,7 +108,11 @@
 				title:'会员中心',
 				reveal:false
 			}
-		}
+		},
+		methods:{
+			
+		},
+		
 	}
 </script>
 
