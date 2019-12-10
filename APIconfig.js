@@ -65,6 +65,8 @@ const api_root = {
 		s_aftersale_list: api+'/api/orderaftersale/index',//商城退款列表
 		g_order_lists: api+'/api/groupgoods/orders',//拼团订单列表
 		g_AftersaleLists: api+'/api/groupgoods/AftersaleLists',//拼团退货退款申请列表
+		
+		v_orderList: api+'/api/videoorder/orderList',//视频订单查询列表
 		threeuser:{
 			region_index: api+'/api/region/index',//获取省市区三级
 			address_save: api+'/api/useraddress/save',//用户地址保存
@@ -80,6 +82,7 @@ const api_root = {
 			s_good_Comments: api+'/api/good/Comments',//商城商品评论列表
 			s_Aftersale: api+'/api/order/Aftersale',//商城申请退货订单详情
 			s_cancel: api+'/api/orderaftersale/cancel',//商城售后取消
+			
 			
 			g_OrderDetail: api+'/api/groupgoods/OrderDetail',//拼团订单详情
 			g_Collect: api+'/api/groupgoods/Collect',//拼团订单确认收货

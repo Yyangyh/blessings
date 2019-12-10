@@ -220,6 +220,15 @@
 			}
 		},
 		{
+			"path": "pages/subuser/course_order",
+			"style": {
+				"navigationBarTitleText": "课程订单",
+				"app-plus":{
+					"titleNView":false
+				}
+			}
+		},
+		{
 			"path": "pages/subuser/threeuser/return_goods",
 			"style": {
 				"navigationBarTitleText": "填写退货信息",

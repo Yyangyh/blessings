@@ -178,26 +178,26 @@
 				</view>
 				
 				<view class="tab_box">
-					<view class="tab_list" @click="jump('../subuser/scen_order?status=3')">
+					<view class="tab_list" @click="$jump('../subuser/course_order?status=3')">
 						<image src="../../static/image/index/video1.png" mode="widthFix"></image>
 						<view class="">
 							全部
 						</view>
 					</view>
-					<view class="tab_list">
-						<image src="../../static/image/index/video2.png" mode="widthFix"  @click="jump('../subuser/scen_order?status=0')"></image>
+					<view class="tab_list" @click="$jump('../subuser/course_order?status=0')">
+						<image src="../../static/image/index/video2.png" mode="widthFix" ></image>
 						<view class="">
 							待付款
 						</view>
 					</view>
-					<view class="tab_list" @click="jump('../subuser/scen_order?status=1')">
+					<view class="tab_list" @click="$jump('../subuser/course_order?status=1')">
 						<image src="../../static/image/index/video3.png" mode="widthFix"></image>
 						<view class="">
 							已完成
 						</view>
 					</view>
 					
-					<view class="tab_list" @click="jump('../subuser/scen_order?status=2')">
+					<view class="tab_list" @click="$jump('../subuser/course_order?status=2')">
 						<image src="../../static/image/index/video4.png" mode="widthFix"></image>
 						<view class="">
 							退款

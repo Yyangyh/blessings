@@ -205,7 +205,7 @@
 						self.more = 'noMore'
 						self.loadRecord = false
 						return
-					} 
+					}
 				})
 			}
 		},
@@ -229,10 +229,7 @@
 	.content{
 		padding-top:210rpx;
 	}
-	.mall_box {
-		font-size: 30rpx;
-		padding-top: 30rpx;
-	}
+	
 	.refund {
 		/* 退款 */
 		color: #666666;
@@ -312,6 +309,8 @@
 	}
 
 	.mall_box{
+		font-size: 30rpx;
+		padding-top: 30rpx;
 		.box_bottom {
 			background: #fff;
 			.bottom_list {
