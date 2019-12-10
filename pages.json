@@ -470,6 +470,14 @@
 				}
 			}
 		},{
+			"path": "pages/subuser/brokerage/order",
+			"style": {
+				"navigationBarTitleText": "分销订单",
+				"app-plus":{
+					"titleNView":false
+				}
+			}
+		},{
 			"path": "pages/subindex/listbox",
 			"style": {
 				"navigationBarTitleText":"测评列表",

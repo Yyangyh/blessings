@@ -43,7 +43,7 @@
 			</view>
 			<view class="l_right"></view>
 		</view>
-		<button type="default" >退出登录</button>
+		<button type="default">退出登录</button>
 	</view>
 </template>
 

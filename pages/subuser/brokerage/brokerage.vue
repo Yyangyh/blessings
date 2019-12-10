@@ -18,7 +18,7 @@
 				<text>1234</text>
 			</view>
 			<hr />
-			<view class="line1">
+			<view class="line1" @tap="$jump('./invite')">
 				<text class="">我的推广二维码</text>
 				<image src='../../../static/image/brokerage/QR.png' mode="widthFix"></image>
 			</view>
@@ -28,19 +28,19 @@
 					<view class="money">9999.99</view>
 					<view class="textss">可提现佣金（元）</view>
 				</view>
-				<view class="btn">提现佣金</view>
+				<view class="btn" @tap="$jump('./withdraw')">提现佣金</view>
 			</view>
 		</view>
 		<view class="classify">
 			<view class="box">
-				<view class="box-list" style="border: 1rpx solid #EEEEEE;">
+				<view class="box-list" style="border: 1rpx solid #EEEEEE;"  @tap="$jump('./sales')">
 					<image src="../../../static/image/brokerage/yongjin.png" mode="widthFix"></image>
 					<view>
 						<view class="yj">分销佣金</view>
 						<view class="toutcome">0.00元</view>
 					</view>
 				</view>
-				<view class="box-list" style="border: 1rpx solid #EEEEEE;">
+				<view class="box-list" style="border: 1rpx solid #EEEEEE;" @tap="$jump('./order')">
 					<image src="../../../static/image/brokerage/dingdan.png" mode="widthFix"></image>
 					<view>
 						<view class="yj">分销订单</view>
