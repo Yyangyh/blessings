@@ -139,7 +139,7 @@
 								<image v-show="item.choice" src="/static/image/com_page/chiose.png" mode="widthFix"></image>
 								
 							</view>
-							<view class="cou_mask" v-if="Number(data.total_price) <= Number(item.coupon.where_order_price)">
+							<view class="cou_mask" v-if="Number(data.total_price) < Number(item.coupon.where_order_price)">
 								
 							</view>
 						</block>

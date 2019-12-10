@@ -47,7 +47,7 @@
 			<view class="vider_content">
 				<view class="content_list" v-for="(item,index) in video_list" :key='item.id'  @tap="$jump('../com_page/video_details?id='+item.id)">
 					<view class="list_img_box">
-						<image :src="item.v_slide" mode="scaleToFill"></image>
+						<image :src="item.v_pic" mode="scaleToFill"></image>
 					</view>
 					<view class="list_right">
 						<view class="list_one">
@@ -58,7 +58,7 @@
 						</view>
 						<view class="list_three">
 							<view class="">
-								{{item.is_free == 0? '￥'+item.group_price : '免费'}}
+								{{item.is_free == 0? '￥'+item.v_price : '免费'}}
 								
 							</view>
 							<view class="" v-if="item.is_free_vip == 1">

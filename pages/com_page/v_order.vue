@@ -11,7 +11,7 @@
 		<!-- 空隙 -->
 		
 		<view class="vider_content">
-			<view class="content_list" @tap="$jump('./video_details?id='+item.id)">
+			<view class="content_list">
 				<view class="list_img_box">
 					<image :src="data.v_pic" mode="aspectFill"></image>
 				</view>
@@ -74,7 +74,7 @@
 		
 		<view class="pay">
 			<view class="paying">
-				需支付：<text>￥{{data.v_price}}</text>
+				需支付：<text>￥{{v_price}}</text>
 			</view>
 			<view class="btn">
 				<button @click="payments()">支付订单</button>
@@ -90,29 +90,30 @@
 			<view class="box_list">
 				<scroll-view  scroll-y="true" class="scroll-Y">
 					<view class="cou_list" v-for="(item,index) in coupon_list" :key='index'>
-						<block v-if="item.coupon">
+						<block v-if="item.name">
 							<view class="cou_test"  @tap="discount_choice(index)">
 								<view class="cou_left">
 									<view class="left_one">
-										￥<text>{{item.coupon.discount_value}}</text>{{item.coupon.type == 1?'折':'元'}}
+										￥<text>{{item.discount_value}}</text>元
 									</view>
 									<view class="left_two">
-										<text>{{item.coupon.use_limit_type_name}}</text>
-										<text>{{item.coupon.name}}</text>
+										<text>{{item.name}}</text>
+										<!-- <text>{{item.coupon.name}}</text> -->
 									</view>
 									<view class="left_two">
 										<view class="">
-											有效期：{{item.time_start_text}}
+											有效期：{{service.Test(item.time_start)}}
 										</view>
 										<view class="">
-											-{{item.time_end_text}}
+											-{{service.Test(item.time_end)}}
 										</view>
 									</view>
 								</view>
 								<image v-show="item.choice" src="/static/image/com_page/chiose.png" mode="widthFix"></image>
 								
 							</view>
-							<view class="cou_mask" v-if="Number(data.total_price) <= Number(item.coupon.where_order_price)">
+							
+							<view class="cou_mask" v-if="Number(data.v_price) < Number(item.where_order_price)">
 								
 							</view>
 						</block>
@@ -147,6 +148,7 @@
 				coupon_list:'',
 				show:false,
 				recording:'未选择',
+				v_price:''
 			}
 		},
 		components:{
@@ -172,25 +174,26 @@
 				this.show = false
 				this.coupon_list.forEach((item,index) => {
 					if(item.choice == true){
-						if(item.id){
-							this.require_data.coupon_id = this.coupon_list[index].id
-							this.coupon_list[index].coupon.type == 0?this.recording = '￥'+this.coupon_list[index].coupon.discount_value+'元':this.recording = '￥'+this.coupon_list[index].coupon.discount_value+'折'
+						if(item.cid){
+							this.require_data.coupon_id = this.coupon_list[index].cid
+							this.recording = '￥'+this.coupon_list[index].discount_value+'元'
+							this.v_price = this.v_price - this.coupon_list[index].discount_value
 						}else{
-							this.require_data.coupon_id = ''
+							this.require_data.coupon_id = 0
 							this.recording = '不使用'
 						}
 					}
 				})
 				console.log(this.require_data)
-				this.Index()
 			},
 			Index(){ //下单时间确定
 				this.service.entire(this,'post',this.APIconfig.api_root.com_page.v_orderDetail,this.require_data,function(self,res){//订单信息
 					self.data = res.data.video
+					self.v_price = res.data.video.v_price
 					console.log(res.data.coupon)
 					if(res.data.coupon != ''){
 						let not_coupon = {
-							not_coupon:'不使用'
+							not_coupon:'不使用'	
 						}
 						let coupon_data = res.data.coupon
 						coupon_data.push(not_coupon)
@@ -198,6 +201,7 @@
 							s.choice = false
 						}
 						self.coupon_list = coupon_data
+						console.log(self.coupon_list)
 					}
 					let data = res.data.pay_type
 					for (let s of data) {
@@ -224,20 +228,23 @@
 				        if (res.confirm) {
 				            // console.log('用户点击确定');
 							let data = {
-								user_id: that.$store.state.user.id,
-								payment:that.payment_name,
+								pay_type:that.payment_name
 							}
 							let data_list = Object.assign(data,that.require_data)
-							that.service.entire(that,'post',that.APIconfig.api_root.com_page.buy_add,data_list,function(self,res){
+							console.log(data_list)
+							// return
+							that.service.entire(that,'post',that.APIconfig.api_root.com_page.v_saveOrder,data_list,function(self,res){
 								console.log(res)
 								if(res.code == 0){
-									self.service.entire(self,'post',self.APIconfig.api_root.com_page.order_pay,{
-										user_id: that.$store.state.user.id,
-										id:res.data.order.id
-									},function(self,ref){
-										console.log(ref)
-										self.service.order(ref,self,'../subuser/s_order?status=-1','pages/subuser/s_order?status=-1')
-									})
+									
+									
+									// self.service.entire(self,'post',self.APIconfig.api_root.com_page.order_pay,{
+									// 	user_id: that.$store.state.user.id,
+									// 	id:res.data.order.id
+									// },function(self,ref){
+									// 	console.log(ref)
+									// 	self.service.order(ref,self,'../subuser/s_order?status=-1','pages/subuser/s_order?status=-1')
+									// })
 								}else{
 									uni.showToast({
 										icon:'none',
@@ -260,7 +267,8 @@
 			let require_data = {
 				userid: this.$store.state.user.id,
 				video_id:e.id,
-				section_id:0
+				section_id:0,
+				coupon_id:0
 			}
 			this.require_data = require_data
 		},
@@ -495,6 +503,7 @@
 				width: 100%;
 				background: rgba(255,255,255,.6);
 			}
+			
 			
 		}
 		button{

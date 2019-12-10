@@ -217,8 +217,8 @@
 								有效期：{{service.Test(item.fixed_time_start)}}至{{service.Test(item.fixed_time_end)}}
 							</view>
 						</view>
-						<view class="box_right" :class="{receive:!item.coupon_id}" @tap="getCoupon(item.c_id,item.id,index)">
-							{{item.coupon_id>0? '已领取' : '立即领取'}}
+						<view class="box_right" :class="{receive:!item.c_id}" @tap="getCoupon(item.id,item.c_id,index)">
+							{{item.c_id>0? '已领取' : '立即领取'}}
 						</view>
 					</view>
 				</scroll-view>
@@ -352,7 +352,7 @@
 							title:res.msg
 						})
 						if(res.code == 0){
-							self.coupon_data[index].coupon_id = id
+							self.coupon_data[index].c_id = id
 							
 						}
 					})
@@ -403,7 +403,8 @@
 				userid:this.$store.state.user.id,
 				video_id:e.id,
 				page:1,
-				limit:2
+				limit:2,
+				type:1
 			},function(self,res){
 				self.recommend_video = res.data.video_list
 			})

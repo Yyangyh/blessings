@@ -3,7 +3,7 @@ const entire = function(self,type,url,data,func){
 		 data.token = self.$store.state.token
 	}else if(self.$store.state.hasLogin === false){
 		uni.reLaunch({
-			url:'/pages/login/login.vue'
+			url:'/pages/login/login'
 		})
 	}
 	
@@ -11,7 +11,7 @@ const entire = function(self,type,url,data,func){
 		url:url,
 		data:data,
 		method:type,
-		 header:{'X-Requested-With':'xmlhttprequest','Content-Type':'application/json'},
+		header:{'X-Requested-With':'xmlhttprequest','Content-Type':'application/json'},
 		success(res) {
 			let res_list = res.data
 			if(res_list.code == 9){ //token过期时替换重新请求
@@ -19,8 +19,9 @@ const entire = function(self,type,url,data,func){
 				entire(self,type,url,data,func)
 			}else if(res_list.code == 10){
 				uni.navigateTo({
-					url:'/pages/login/login.vue'
+					url:'/pages/login/login'
 				})
+				
 			}else{
 				func(self,res_list)
 			}
