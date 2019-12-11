@@ -5,7 +5,7 @@
 		</view >
 		<view class="top">
 			<view class="image">
-				<image src="/static/image/com_page/returns.png" @tap="service.returns()" mode="widthFix"></image>
+				<image src="/static/image/com_page/returns.png" @tap="service.returns()" mode="widthFix" ></image>
 			</view>
 			<text>亲情号</text>
 			<text @tap="$jump('./record')">分享记录</text>
@@ -55,18 +55,20 @@
 					<form >
 						<view class="add_box" v-for="(item,index) in invateList" :key='item.id'>
 							<view class="left_box">
-								<image src="/static/image/subuser/tuoyuan.png"></image>
+								<view class="pagination">
+									<view v-show='true' @click="goFirst(index)" v-bind:class="{'classFirsta':item.is_enabled==0,'classFirstb':item.is_enabled==1}"></view>
+								</view>
 								<image :src="item.avatar"></image>
 							</view>
 							<view class="right_box">
 								<view>
 									<text>号码</text>
-									<input disabled='disabled' type="text" :value="item.mobile" placeholder=" " >
+									<input disabled='disabled' type="text" :value="item.mobile"  >
 								</view> 
 								<image src="/static/image/subuser/tongxunlu.png"></image>
 							</view>
 						</view>
-						<button type="default" @click="relieve">确定解绑</button>
+						<!-- <button type="default" @click="relieve">一键解绑</button> -->
 					
 					</form>
 				</view>
@@ -74,7 +76,7 @@
 					<form >
 						<view class="add_box">
 							<view class="left_box">
-								<image src="/static/image/subuser/tuoyuan.png"></image>
+								<!-- <image src="/static/image/subuser/tuoyuan.png"></image> -->
 								<image src="/static/image/subuser/renxiang.png"></image>
 							</view>
 							
@@ -107,11 +109,11 @@
 				reveal:true,
 				photo:'',
 				invateList :'',
-				
+				gotoFirst:true,
 			}
 		},
 		methods:{
-			
+				// 邀请好友
 			invite(){
 				this.service.entire(this,'post',this.APIconfig.api_root.subuser.s_member_kinship,{//邀请好友
 					// user_id:this.$store.state.user.id,
@@ -148,18 +150,38 @@
 					console.log(self.invateList)
 				})
 			},
-			relieve(){
-				uni.showModal({
-				    title: '提示',
-				    content: '确定解除此号码吗？',
-				    success: function (res) {
-				        if (res.confirm) {
-				            console.log('用户点击确定');
-				        } else if (res.cancel) {
-				            console.log('用户点击取消');
-				        }
-				    }
-				});
+			
+			goFirst(index){
+					// 请求绑定/取消接口
+				let times = this.service.loading()
+				this.service.entire(this,'post',this.APIconfig.api_root.subuser.s_member_bindKinship,{
+					from_mobile:this.invateList[index].mobile,
+					my_mobile:this.$store.state.user.mobile,
+					type:this.invateList[index].is_enabled==1?0:1
+				},function(self,res){
+					uni.hideToast()
+					clearTimeout(times)
+					console.log(res)
+					uni.showToast({
+						icon:'none',
+						title:res.msg
+					})
+					if(res.code==0){
+						if(self.invateList[index].is_enabled==1){
+							self.invateList[index].is_enabled=0
+							console.log(self.invateList)
+						}else if(self.invateList[index].is_enabled==0){
+							self.invateList[index].is_enabled=1
+							console.log(self.invateList)
+						}
+					}
+					
+				})
+				
+				
+				// this.invateList[0].is_enabled=1
+				// console.log(this.invateList[0].is_enabled)
+				
 			}
 		},
 		onShow() {
@@ -278,12 +300,12 @@
 						display: flex;
 						align-items: center;
 						padding-top: 54rpx;
-						image:first-child{
-							width: 36rpx;
-							height: 36rpx;
-							margin-right: 33rpx;
-							border-radius: 50%;
-						}
+						// image:first-child{
+						// 	width: 36rpx;
+						// 	height: 36rpx;
+						// 	margin-right: 33rpx;
+						// 	border-radius: 50%;
+						// }
 						image:last-child{
 							width: 100rpx;
 							height: 100rpx;
@@ -339,5 +361,21 @@
 			font-size: 28rpx;
 			color:#FFFFFF;
 		}
+	}
+	.left_box .classFirsta{
+		width: 36rpx;
+		height: 36rpx;
+		margin-right: 33rpx;
+		border-radius: 50%;
+		background: url(../../../static/image/subuser/tuoyuan.png);
+		background-size: 100% 100%;
+	}
+	.left_box .classFirstb{
+		width: 36rpx;
+		height: 36rpx;
+		margin-right: 33rpx;
+		border-radius: 50%;
+		background: url(../../../static/image/subuser/chosse.png);
+		background-size: 100% 100%;
 	}
 </style>

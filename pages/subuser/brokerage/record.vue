@@ -35,10 +35,11 @@
 		},
 		data(){
 			return{
-				title:'提现记录',
+				title:'提现明细',
 				cur:0
 			}
-		}
+		},
+		
 	}
 </script>
 

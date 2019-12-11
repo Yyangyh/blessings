@@ -96,6 +96,7 @@ const api_root = {
 		s_member:api+'/api/member/updateUserInfo',//更新用户信息
 		s_member_kinshipLog:api+'/api/member/kinshipLog',//亲情日志
 		s_member_kinship:api+'/api/member/kinship',//亲情号绑定发送邀请
+		s_member_bindKinship:api+'/api/member/bindKinship',//绑定/取消绑定
 	},
 	subindex:{
 		s_test:api+'/api/test/getPaper',//通过试卷id获取试卷信息
