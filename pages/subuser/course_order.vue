@@ -5,21 +5,21 @@
 		</view>
 		<returns :titles='title'></returns>
 		<view class="course_top">
-			<view class="top_one" @tap="top_show = 0" :class="{top_show:top_show == 0}">
+			<view class="top_one" @tap="chiose(1)" :class="{top_show:top_show == 1}">
 				课程视频
 			</view>
-			<view class="top_one" @tap="top_show = 1" :class="{top_show:top_show == 1}">
+			<view class="top_one" @tap="chiose(2)" :class="{top_show:top_show == 2}">
 				音频订单
 			</view>
 		</view>
 		<view class="course_mid">
-			<view class="mid_one" @tap="mid_show = 0" :class="{mid_show:mid_show == 0}">
+			<view class="mid_one" @tap="chiose_status(6)" :class="{mid_show:mid_show == 6}">
 				全部
 			</view>
-			<view class="mid_one" @tap="mid_show = 1" :class="{mid_show:mid_show == 1}">
+			<view class="mid_one" @tap="chiose_status(0)" :class="{mid_show:mid_show == 0}">
 				待付款
 			</view>
-			<view class="mid_one" @tap="mid_show = 2" :class="{mid_show:mid_show == 2}">
+			<view class="mid_one" @tap="chiose_status(1)" :class="{mid_show:mid_show == 1}">
 				已完成
 			</view>
 		</view>
@@ -102,29 +102,62 @@
 			data(){
 				return{
 					title:'课程订单',
-					top_show:0,
-					mid_show:0,
+					top_show:1,
+					mid_show:6,
 					data:[],
 					more: 'more',
 					page: 1,
-					loadRecord: true
+					loadRecord: true,
+					
 				}
 			},
 			methods:{
 				Index(){
-					let page = this.page
 					this.more = 'loading'
-					this.service.entire(this,'post',this.APIconfig.api_root.subuser.v_orderList,{
+					let data = {
 						userid:this.$store.state.user.id,
-						page:1,
+						page:this.page,
 						limit:10,
-						type:6,
-						video_type:1
-					},function(self,res){
+						type:this.mid_show,
+						video_type:this.top_show
+					}
+					this.uni_request(data)
+				},
+				chiose(type){ //音频视频切换
+					this.more = 'loading'
+					this.top_show = type
+					this.mid_show = 6
+					this.page = 1
+					this.data.length = 0
+					let data = {
+						userid:this.$store.state.user.id,
+						page:this.page,
+						limit:10,
+						type:this.mid_show,
+						video_type:this.top_show
+					}
+					this.uni_request(data)
+				},
+				chiose_status(type){ //订单状态切换
+					this.more = 'loading'
+					this.mid_show = type
+					this.page = 1
+					this.data.length = 0
+					let data = {
+						userid:this.$store.state.user.id,
+						page:this.page,
+						limit:10,
+						type:this.mid_show,
+						video_type:this.top_show
+					}
+					this.uni_request(data)
+				},
+				uni_request(data){
+					this.service.entire(this,'post',this.APIconfig.api_root.subuser.v_orderList,data,function(self,res){
 						let data = self.data
 						data.push(...res.data.order_list)
 						console.log(self.data);
-						self.page = page + 1
+						self.page += 1
 						self.more = 'more'
 						if (res.data.order_list.length < 10) {
 							self.more = 'noMore'
@@ -134,6 +167,7 @@
 						
 					})
 				}
+					
 			},
 			onShow() {
 				this.data.length = 0

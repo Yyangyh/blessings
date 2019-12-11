@@ -67,6 +67,12 @@ const api_root = {
 		g_AftersaleLists: api+'/api/groupgoods/AftersaleLists',//拼团退货退款申请列表
 		
 		v_orderList: api+'/api/videoorder/orderList',//视频订单查询列表
+		
+		
+		u_distribute: api+'/api/distribute/center',//我的佣金
+		u_index: api+'/api/distribute/index',//佣金分销订单
+		
+		
 		threeuser:{
 			region_index: api+'/api/region/index',//获取省市区三级
 			address_save: api+'/api/useraddress/save',//用户地址保存
