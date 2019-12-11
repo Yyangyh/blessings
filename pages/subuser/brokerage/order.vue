@@ -7,91 +7,61 @@
 		<view class="order_top">
 			<view class="top_box">
 				<view>待结算</view>
-				<view>0.00元</view>
+				<view>{{data.unsettle}}元</view>
 			</view>
 			<view  class="top_box">
 				<view>已结算</view>
-				<view>0.00元</view>
+				<view>{{data.settled}}元</view>
 			</view>
 			<view  class="top_box">
 				<view>已完成</view>
-				<view>0.00元</view>
+				<view>{{data.finnish}}元</view>
 			</view>
 		</view>
 		<view class="allorder">
-			  <text @click="cur=0" class="one" :class="{active:cur==0}">全部</text>
-			  <text @click="cur=1" class="two" :class="{active:cur==1}">待结算</text>
-			  <text @click="cur=2" class="three" :class="{active:cur==2}">已结算</text>
-			  <text @click="cur=3" class="four" :class="{active:cur==3}">完成</text>
+			  <text @click="Index(0)" class="one" :class="{active:cur==0}">全部</text>
+			  <text @click="Index(1)" class="two" :class="{active:cur==1}">待结算</text>
+			  <text @click="Index(2)" class="three" :class="{active:cur==2}">已结算</text>
+			  <text @click="Index(3)" class="four" :class="{active:cur==3}">完成</text>
 		</view>
-		<view class="box" v-show="cur==0">
+		<view class="box">
 			<!-- 订单一 -->
-			<view class="line" @click="reveal=true">
-				<view class="l_left">
-					<image src="../../../static/image/subhome/photo.png"></image>
-					<view class="left_text">
-						<view><text style="margin-right: 5rpx;">昵称:</text><text>牛哄哄</text></view>
-						<view style="margin-top: 5rpx;">DD20191009101213369202</view>
+			<block v-for="(item,index) in data_list" :key='item.id'>
+				<view class="line">
+					<view class="l_left">
+						<image src="../../../static/image/subhome/photo.png"></image>
+						<view class="left_text">
+							<view><text style="margin-right: 5rpx;">昵称:</text><text>{{item.avatar}}</text></view>
+							<view style="margin-top: 5rpx;">{{item.order_no}}</view>
+						</view>
+					</view>
+					<view class="middle"></view>
+					<view class="l_right">
+						<view>{{item.commission_money}}</view>
+						<view>{{item.status_text}}</view>
 					</view>
 				</view>
-				<view class="middle"></view>
-				<view class="l_right">
-					<view>+299.00</view>
-					<view>已结算</view>
-				</view>
-			</view>
-			<view class="particulars" v-if="reveal">
-				<view class="lines">
-					<view>订单号：</view>
-					<text>DD20191009101213369202</text>
-				</view>
-				<view class="lines">
-					<view>状态：</view>
-					<text>已结算</text>
-				</view>
-				<view class="lines">
-					<view>订单金额：</view>
-					<text>999.00元</text>
-				</view>
-				<view class="lines">
-					<view>分销金额：</view>
-					<text> 299.00元</text>
-				</view>
-			</view>
-			<!-- 订单二 -->
-			<view class="line" @click="reveal=true">
-				<view class="l_left">
-					<image src="../../../static/image/subhome/photo.png"></image>
-					<view class="left_text">
-						<view><text style="margin-right: 5rpx;">昵称:</text><text>牛哄哄</text></view>
-						<view style="margin-top: 5rpx;">DD20191009101213369202</view>
+				<view class="particulars">
+					<view class="lines">
+						<view>订单号：</view>
+						<text>{{item.order_no}}</text>
+					</view>
+					<view class="lines">
+						<view>状态：</view>
+						<text>{{item.status_text}}</text>
+					</view>
+					<view class="lines">
+						<view>订单金额：</view>
+						<text>{{item.pay_price}}</text>
+					</view>
+					<view class="lines">
+						<view>分销金额：</view>
+						<text>{{item.commission_money}}</text>
 					</view>
 				</view>
-				<view class="middle"></view>
-				<view class="l_right">
-					<view>+299.00</view>
-					<view>已结算</view>
-				</view>
-			</view>
-			<view class="particulars" v-if="reveal">
-				<view class="lines">
-					<view>订单号：</view>
-					<text>DD20191009101213369202</text>
-				</view>
-				<view class="lines">
-					<view>状态：</view>
-					<text>已结算</text>
-				</view>
-				<view class="lines">
-					<view>订单金额：</view>
-					<text>999.00元</text>
-				</view>
-				<view class="lines">
-					<view>分销金额：</view>
-					<text> 299.00元</text>
-				</view>
-			</view>
-			<view class="base">没有更多的数据了</view>
+			</block>
+			
+			
 		</view>
 	</view>
 </template>
@@ -107,8 +77,27 @@
 				title:'分销订单',
 				cur:0,
 				reveal:false,
+				data:'',
+				data_list:''
 			}
+		},
+		methods:{
+			Index(type){
+				this.cur = type
+				this.service.entire(this,'post',this.APIconfig.api_root.subuser.u_index,{
+					user_id:this.$store.state.user.id,
+					type:type
+				},function(self,res){
+					console.log(res)
+					self.data = res.data
+					self.data_list = res.data.order
+				})
+			}
+		},
+		onShow() {
+			Index(0)
 		}
+		
 	}
 </script>
 

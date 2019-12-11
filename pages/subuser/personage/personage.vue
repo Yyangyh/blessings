@@ -85,7 +85,10 @@
 									let data =JSON.parse(res.data)
 									console.log(data)
 									if(data.code == 0){
-										that.user.avatar = tempFilePaths[0]
+										let user_data = {
+											avatar:data.data.userinfo.avatar
+										}
+										that.$store.commit('set_user',user_data)
 									}
 					            }
 					        });

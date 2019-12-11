@@ -17,8 +17,10 @@ const store = new Vuex.Store({
 		state_user(state,data){
 			state.user = data
 		},
-		user_username(state,data){
-			state.user.username = data
+		set_user(state,data){ //更改用户信息
+			for (let s of Object.keys(data)) {
+				state.user[s] = data[s]
+			}
 		},
 		state_token(state,data){
 			state.token = data

@@ -6,11 +6,13 @@
 		<returns :titles='title'></returns>
 		<view class="worp">
 			<view class="top">
-				<image src='../../../static/image/brokerage/photo.png' mode="widthFix"></image>
+				<view class="img_box">
+					<image :src='user.avatar' mode="scaleToFill"></image>
+				</view>
 				<view class="msg">
-					<view>老胡</view>
-					<view>123456789012</view>
-					<view>推荐人：哪啊怒放</view>
+					<view>{{user.username}}</view>
+					<view>{{user.mobile}}</view>
+					<view v-if="data">推荐人：{{data.user.up_name}}</view>
 				</view>
 			</view>
 			<view class="line">
@@ -25,7 +27,7 @@
 			<hr />
 			<view class="line2">
 				<view>
-					<view class="money">9999.99</view>
+					<view class="money">{{data.can_cash}}</view>
 					<view class="textss">可提现佣金（元）</view>
 				</view>
 				<view class="btn" @tap="$jump('./withdraw')">提现佣金</view>
@@ -37,14 +39,14 @@
 					<image src="../../../static/image/brokerage/yongjin.png" mode="widthFix"></image>
 					<view>
 						<view class="yj">分销佣金</view>
-						<view class="toutcome">0.00元</view>
+						<view class="toutcome">{{data.total_commission}}元</view>
 					</view>
 				</view>
 				<view class="box-list" style="border: 1rpx solid #EEEEEE;" @tap="$jump('./order')">
 					<image src="../../../static/image/brokerage/dingdan.png" mode="widthFix"></image>
 					<view>
 						<view class="yj">分销订单</view>
-						<view class="toutcome">0笔</view>
+						<view class="toutcome">{{data.order_count}}笔</view>
 					</view>
 				</view>
 			</view>
@@ -54,14 +56,14 @@
 					<image src="../../../static/image/brokerage/tixian.png" mode="widthFix"></image>
 					<view>
 						<view class="yj">提现记录</view>
-						<view class="toutcome">0笔</view>
+						<view class="toutcome">{{data.cash_count}}笔</view>
 					</view>
 				</view>
 				<view class="box-list" style="border: 1rpx solid #EEEEEE;"  @tap="$jump('./schoolfellow')">
 					<image src="../../../static/image/brokerage/tongxue.png" mode="widthFix"></image>
 					<view>
 						<view class="yj">我的同学</view>
-						<view class="toutcome">0人</view>
+						<view class="toutcome">{{data.lower_count}}人</view>
 					</view>
 				</view>
 			</view>
@@ -78,8 +80,17 @@
 		data(){
 			return{
 				title:'我的佣金',
+				data:'',
+				user:this.$store.state.user
 			}
+		},
+		onShow() {
+			this.service.entire(this,'post',this.APIconfig.api_root.subuser.u_distribute,{user_id:this.$store.state.user.id},function(self,res){
+				console.log(self.$store.state.user)
+				self.data = res.data
+			})
 		}
+		
 	}
 </script>
 
@@ -102,10 +113,16 @@
 				height: 160rpx;
 				display: flex;
 				align-items: center;
-				image{
+				.img_box{
 					width: 100rpx;
 					height: 100rpx;
 					margin: 0 29rpx 0 34rpx; 
+					border-radius: 50%;
+					overflow: hidden;
+				}
+				image{
+					height: 100%;
+					width: 100%;
 				}
 				.msg{
 					font-size: 28rpx;

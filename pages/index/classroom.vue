@@ -155,6 +155,7 @@
 		flex-direction: column;
 		justify-content: space-between;
 		padding-bottom: 30rpx;
+		width: 100%;
 	}
 	.list_three{
 		display: flex;
