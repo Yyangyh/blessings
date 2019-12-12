@@ -276,7 +276,8 @@
 				comments:'',
 				recommend_video:'',
 				play_store:false,
-				poster:''
+				poster:'',
+				record_time:0
 			}
 		},
 		computed:{
@@ -301,8 +302,12 @@
 				// console.log(e)
 			},
 			timeupdate(e){
-				// console.log(e)
+				console.log(Math.ceil(e.detail.currentTime) % 10)
+				if(Math.ceil(e.detail.currentTime) % 10 == 0){ //10s记录一次
+					console.log(12)
+				}
 			},
+			
 			play_start(e){ //添加视频阅读量 
 				// console.log(e)
 				if(this.play_store == false){

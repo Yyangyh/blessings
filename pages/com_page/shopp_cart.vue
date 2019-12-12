@@ -157,11 +157,15 @@
 						all.push(s.id)
 					}
 				}
-				this.service.entire(this,'get',this.APIconfig.api_root.com_page.c_Delete,{
+				this.service.entire(this,'post',this.APIconfig.api_root.com_page.c_Delete,{
 					user_id:this.$store.state.user.id,
-					id:all.join(',')
+					id:all.join(','),
 				},function(self,res){
 					console.log(res)
+					uni.showToast({
+						icon:'none',
+						title:res.msg
+					})
 					if(res.code == 0){
 						let data = self.data
 						for(let i=data.length-1;i>=0;i--){  //倒序删除
