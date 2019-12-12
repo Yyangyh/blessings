@@ -12,28 +12,28 @@
 					<text>签到</text>
 				</view>
 				<view class="texts">
-					Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officia quia.
+					每天签到挣积分连续7天，奖励3分
 				</view>
 				<view class="title">
 					<view class="circle"></view>
 					<text>观看课程</text>
 				</view>
 				<view class="texts">
-					Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempore fugit labore at consequuntur excepturi vel aspernatur expedita reprehenderit magnam rem dignissimos id voluptas itaque reiciendis nobis. Saepe cum culpa excepturi?
+					收听音频可以获得1积分，观看视频可以获得1积分，积分数根据观看的时长来决定，不满一分钟则不计算（每个音频，视频只能获取一次） 
 				</view>
 				<view class="title">
 					<view class="circle"></view>
 					<text>分享</text>
 				</view>
 				<view class="texts">
-					Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima delectus fuga corrupti quos impedit vel nihil praesentium voluptatibus dolorem exercitationem.
+                分享视频可获得1积分，分享音频可获得1积分，分享文章可获得1积分（第一次分享有积分，再分享则无）
 				</view>
 				<view class="title">
 					<view class="circle"></view>
 					<text>邀请好友</text>
 				</view>
 				<view class="texts">
-					Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officia quia.
+                 成功激请一位学员可获得1积分
 				</view>
 			</view>
 		</view>
@@ -99,6 +99,7 @@
 				.texts{
 					font-size: 24rpx;
 					margin-bottom: 10rpx;
+					margin:10rpx 20rpx 10rpx 0;
 				}
 			}
 		}

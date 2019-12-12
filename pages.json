@@ -679,6 +679,22 @@
 					"titleNView":false
 				}
 			}
+		},{
+			"path": "pages/subindex/classify",
+			"style": {
+				"navigationBarTitleText": "分类",
+				"app-plus":{
+					"titleNView":false
+				}
+			}
+		},{
+			"path": "pages/subindex/article",
+			"style": {
+				"navigationBarTitleText": "文章",
+				"app-plus":{
+					"titleNView":false
+				}
+			}
 		}
 		
 	],

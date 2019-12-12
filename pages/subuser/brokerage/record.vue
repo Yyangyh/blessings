@@ -4,23 +4,23 @@
 					
 		</view >
 		<returns :titles='title'></returns>
-		<view class="allorder">
-			  <text @click="cur=0" class="one" :class="{active:cur==0}">全部</text>
+		<!-- <view class="allorder">
+			  <text @click="choise(0)" class="one" :class="{active:cur==0}">全部</text>
 			  <text @click="cur=1" class="two" :class="{active:cur==1}">待审核</text>
 			  <text @click="cur=2" class="three" :class="{active:cur==2}">待打款</text>
 			  <text @click="cur=3" class="four" :class="{active:cur==3}">已打款</text>
 			  <text @click="cur=4" class="five" :class="{active:cur==4}">无效</text>
-		</view>
+		</view> -->
 		<view class="box"  v-show="cur==0"> 
-			<view class="line">
+			<view class="line" v-for="(item,index) in dataList" :key='item.id'>
 				<view class="b_left">
-					<view class="tops">提现到微信</view>
-					<view class="middles"><text style="margin-right: 20rpx;">2019-06-19</text><text> 16:56</text></view>
-					<view class="bottoms"><text style="margin-right: 20rpx;">实际金额:10:00元  </text><text> 手续费:0.00元</text></view>
+					<view class="tops">{{item.title}}</view>
+					<view class="middles">{{item.time}}</view>
+					<view class="bottoms"><text style="margin-right: 20rpx;">实际金额:{{item.actual_money}}元  </text><text> 手续费:{{item.handling_fee}}元</text></view>
 				</view>
 				<view class="b_right">
-					<view>+￥10.00</view>
-					<view>申请中</view>
+					<view>{{item.desc_text}}</view>
+					<view>{{item.status_text}}</view>
 				</view>
 			</view>
 		</view>
@@ -36,30 +36,39 @@
 		data(){
 			return{
 				title:'提现明细',
-				cur:0
+				// cur:0,
+				dataList:''
 			}
 		},
 		
+		onShow() {
+			this.service.entire(this,'post',this.APIconfig.api_root.subuser.u_CashHistory,{
+				user_id:this.$store.state.user.id,
+			},function(self,res){
+				console.log(res)
+				self.dataList = res.data
+			})
+		}
 	}
 </script>
 
 <style lang="scss">
-	.allorder{
-		width: 100%;
-		height: 90upx;
-		display: flex;
-		text-align: center;
-		line-height: 90upx;
-		font-size: 24upx;
-		background-color: #F6F6F7;
-		margin-bottom: 30rpx;
-		text{
-			flex: 1;
-		}
-	}
-	.active{
-		color:#D80000;
-	}
+	// .allorder{
+	// 	width: 100%;
+	// 	height: 90upx;
+	// 	display: flex;
+	// 	text-align: center;
+	// 	line-height: 90upx;
+	// 	font-size: 24upx;
+	// 	background-color: #F6F6F7;
+	// 	margin-bottom: 30rpx;
+	// 	text{
+	// 		flex: 1;
+	// 	}
+	// }
+	// .active{
+	// 	color:#D80000;
+	// }
 	.line{
 		display: flex;
 		justify-content: space-between;

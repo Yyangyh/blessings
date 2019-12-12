@@ -5,10 +5,19 @@
 		</view>
 		<returns :titles='title'></returns>
 		<view class="allorder">
-			  <text @click="cur=0" class="one" :class="{active:cur==0}">课程视频</text>
-			  <text @click="cur=1" class="two" :class="{active:cur==1}">音频</text>
+			  <text @click="choise(1)" class="one" :class="{active:cur==1}">课程视频</text>
+			  <text @click="choise(2)" class="two" :class="{active:cur==2}">音频</text>
 		</view>
-		
+		<view class="box">
+			<view class="line" v-for='(item,index) in dataList' :key='item.id'>
+				<image class="l_left" src="../../static/image/index/vider_img1.png" mode="widthFix"></image>
+				<view class="l_right">
+					<view> 团队管理篇-《卓越领导修炼》免费系列课程</view>
+					<view class="middle">111次观看</view>
+					<view>已学习5%</view>
+				</view>
+			</view>
+		</view>
 	</view>
 </template>
 
@@ -20,10 +29,28 @@
 			},
 			data(){
 				return{
-					title:'我的学习',
-					cur:0
+					title:'学习记录',
+					cur:1,
+					dataList:'',
 				}
 			},
+			methods:{
+				choise(all){
+					console.log(all)
+					this.cur = all;
+					let data ={
+						user_id:this.$store.state.user.id,
+						type:all
+					}
+					this.service.entire(this,'post',this.APIconfig.api_root.subuser.u_getStutyPlan,data,function(self,res){
+						console.log(res)
+						self.dataList = res.data
+					})
+				}
+			},
+			onShow() {
+				this.choise(1)
+			}
 		}
 </script>
 
@@ -43,5 +70,31 @@
 	}
 	.active{
 		color:#D80000;
+	}
+	.line{
+		display: flex;
+		padding: 30rpx;
+		border-bottom:1rpx solid #EEEEEE;
+		align-items: center;
+		.l_left{
+			width:268rpx;
+			height:179rpx;
+			margin-right: 30rpx;
+		}
+		.l_right{
+			view:first-child{
+				font-size: 24rpx;
+			}
+			.middle{
+				font-size: 24rpx;
+				color:#999999;
+				margin: 10rpx 0;
+			}
+			view:last-child{
+				font-size: 28rpx;
+				color: #D80000;
+				font-weight: 500;
+			}
+		}
 	}
 </style>
