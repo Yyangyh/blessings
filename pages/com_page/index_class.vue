@@ -19,7 +19,7 @@
 		<view class="tab_list">
 			<view class="list_all" @tap="show = !show">
 				<view class="">
-					全部
+					{{v_test}}
 				</view>
 				<image class="all_img" :class="show===false ? 'tran_none' : show===true ? 'tran_show' : ''" src="../../static/image/index/down.png" mode="widthFix"></image>
 			</view>
@@ -35,10 +35,10 @@
 			<!-- 遮罩层 层级888 -->
 		</view>
 		<view class="down_box"  :class="show===false ? 'mask_none' : show===true ? 'mask_show' : ''" >
-			<view class="down_list">
+			<view class="down_list" @tap="chiose()">
 				全部
 			</view>
-			<view class="down_list" v-for="(item,index) in top_class" :key="item.id">
+			<view class="down_list" v-for="(item,index) in top_class" :key="item.id"  @tap="chiose(item.id,item.cl_name)">
 				{{item.cl_name}}
 			</view>
 		</view>
@@ -69,27 +69,87 @@
 				</view>
 			</view>
 		</view>
+		<uni-load-more :status="more"></uni-load-more>
 	</view>
 </template>
 
 <script>
+	import uniLoadMore from '../../components/uni-load-more/uni-load-more.vue'
 	export default{
+		components: {
+			uniLoadMore
+		},
 		data() {
 			return {
 				data:'',
-				show:false,
+				show:0,
 				top_class:'',
-				video_list:''
+				video_list:[],
+				type:'',
+				more: 'more',
+				page: 1,
+				loadRecord: true,
+				v_pid:'',
+				v_test:'全部'
+			}
+		},
+		methods:{
+			Index(){
+				this.more = 'loading'
+				let data = {
+					type:this.type,
+					limit:10,
+					page:this.page
+				}
+				if(this.v_pid) data.v_pid = this.v_pid
+				this.uni_request(data)
+			},
+			chiose(v_pid,test){
+				this.page = 1
+				this.loadRecord = true
+				let data = {
+					type:this.type,
+					limit:10,
+					page:this.page
+				}
+				if(v_pid){
+					data.v_pid = v_pid
+					this.v_pid = v_pid
+					this.v_test = test
+				}else{
+					this.v_pid = ''
+					this.v_test = '全部'
+				}
+				this.video_list.length = 0
+				
+				this.uni_request(data)
+				this.show = false
+			},
+			uni_request(data){
+				this.service.entire(this,'get',this.APIconfig.api_root.com_page.videoList,data,function(self,res){
+					self.top_class = res.data.top_list
+					let data = self.video_list
+					data.push(...res.data.video_list)
+					self.video_list = data
+					console.log(self.video_list);
+					self.page += 1
+					self.more = 'more'
+					if (res.data.video_list.length < 10) {
+						self.more = 'noMore'
+						self.loadRecord = false
+						return
+					}
+				})
 			}
 		},
 		onLoad(e) {
-			this.service.entire(this,'get',this.APIconfig.api_root.com_page.videoList,{
-				type:e.type
-			},function(self,res){
-				self.top_class = res.data.top_list
-				self.video_list = res.data.video_list
-			})
-		}
+			this.type = e.type
+			this.Index()
+		},
+		onReachBottom() {
+			if (this.loadRecord == false) return
+			this.Index()
+		},
 	}
 </script>
 

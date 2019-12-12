@@ -62,7 +62,7 @@
 			</view>
 			
 			<view class="video_mid">
-				<view class="discount">
+				<view class="discount" v-if="is_free">
 					<view class="dis_one">
 						<image src="../../static/image/com_page/discount.png" mode="widthFix"></image>
 						<text>优惠券</text>
@@ -119,13 +119,17 @@
 			</view>
 			<view class="user_comment" v-for="(item,index) in comments" :key='item.id'>
 				<view class="user">
-					<image class="user_img"  :src="APIconfig.api_img +item.avatar" mode="widthFix"></image>
-					<view class="user_test" >
-						<view>{{item.username}}</view>
-						<text>{{service.Test(item.created_at)}}</text>
+					<view class="user_one">
+						<image class="user_img"  :src="APIconfig.api_img +item.avatar" mode="widthFix"></image>
+						<view class="user_test" >
+							<view>{{item.username}}</view>
+						</view>
 					</view>
 					<view class="user_star">
-						<image v-for="(item,index) in item.rating_num" src="/static/image/com_page/stars.png" mode="widthFix"></image>
+						<view class="">
+							<image v-for="(item,index) in item.rating_num" src="/static/image/com_page/stars.png" mode="widthFix"></image>
+						</view>
+						<text>{{service.Test(item.created_at)}}</text>
 					</view>
 				</view>
 				<view class="com_content">
@@ -226,7 +230,7 @@
 		</view>
 		
 		<view class="video_bottom">
-			<view class="bot_left">
+			<view class="bot_left"  v-if="is_free">
 				￥{{video_data.v_price}}
 			</view>
 			<view class="bot_right">
@@ -237,8 +241,11 @@
 						收藏
 					</view>
 				</view>
-				<view class="bot_buy" @tap="$jump('./v_order?id='+id)">
+				<view class="bot_buy" @tap="$jump('./v_order?id='+id)"  v-if="is_free">
 					立即购买
+				</view>
+				<view class="bot_buy" v-else>
+					{{type == 1?'免费观看' : '免费悦听'}}
 				</view>
 			</view>
 		</view>
@@ -254,6 +261,7 @@
 			return {
 				id:'',
 				type:'',
+				data:'',
 				video_data:'',
 				test_show:0,
 				catalog_data:'',
@@ -269,6 +277,23 @@
 				recommend_video:'',
 				play_store:false,
 				poster:''
+			}
+		},
+		computed:{
+			is_free(){ //判断是否免费
+				if(this.video_data.is_free == 1){
+					return false
+				}else if(this.video_data.is_free == 0){
+					if(this.video_data.is_free_vip.indexOf(this.$store.state.user.level_id) == -1){
+						if(this.data.vorder.is_bay_all == 1){
+							return false
+						}else{
+							return true
+						}
+					}else{
+						return false
+					}
+				}
 			}
 		},
 		methods:{
@@ -367,10 +392,12 @@
 				userid:this.$store.state.user.id,
 				mobile:this.$store.state.user.mobile,
 			},function(self,res){
+				self.data = res.data
 				self.play_url = self.service.analysis_url(res.data.video.v_url)
 				self.video_data = res.data.video
 				self.collects = res.data.video.collect
 				self.poster = res.data.video.v_pic
+				
 				if(self.video_data.evaluate)self.video_data.stars_num = new Array(Number(self.video_data.evaluate))
 			})
 			
@@ -591,10 +618,13 @@
 		.bot_left{
 			color: #D80000;
 			font-size: 32rpx;
+			flex-grow: 2;
 		}
 		.bot_right{
 			display: flex;
 			align-items: center;
+			flex-grow: 2;
+			justify-content: center;
 			.bot_col{
 				text-align: center;	
 				font-size: 24rpx;
@@ -755,38 +785,43 @@
 		border-bottom: 2rpx solid #EEEEEE;
 		padding: 20rpx 30rpx;
 		.user {
-			display: flex;
-			align-items: center;
-			margin: 20rpx 0;
-			.user_img {
-				width: 90rpx;
-				height: 90rpx;
-				border-radius: 50%;
-			}
-			.user_test {
-				margin: 0 20rpx;
-				font-size: 32rpx;
-				view {
-					font-weight: bold;
-					color: #333333;
-					font-size: 28rpx;
+				display: flex;
+				// align-items: center;
+				justify-content: space-between;
+				margin: 20rpx 0;
+				.user_one{
+					display: flex;
+					.user_img {
+						width: 90rpx;
+						height: 90rpx;
+						border-radius: 50%;
+					}
+					.user_test {
+						margin: 0 20rpx;
+						font-size: 32rpx;
+						view {
+							font-weight: bold;
+							color: #333333;
+							font-size: 28rpx;
+						}
+						
+					}
 				}
-				text {
+				.user_star {
+					align-self: flex-start;
 					font-size: 24rpx;
-					color: #999999;
-					
+					color: #333333;
+					image {
+						height: 26rpx;
+						width: 26rpx;
+					}
+					text {
+						font-size: 24rpx;
+						color: #999999;
+						
+					}
 				}
 			}
-			.user_star {
-				align-self: flex-start;
-				font-size: 24rpx;
-				color: #333333;
-				image {
-					height: 26rpx;
-					width: 26rpx;
-				}
-			}
-		}
 		.com_content {
 			.content_test view {
 				font-size: 24rpx;
