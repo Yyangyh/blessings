@@ -7,34 +7,20 @@
 		<image class="black" src="../../static/image/subuser/blance.png"></image>
 		<view class="money">
 			<view>可用余额（元）</view>
-			<view>0.00</view>
+			<view>{{$store.state.user.money}}</view>
 		</view>
 		<view class="allorder">
-			<text @click="cur=0" class="one" :class="{active:cur==0}">全部</text>
-			<text @click="cur=1" class="two" :class="{active:cur==1}">收入</text>
-			<text @click="cur=2" class="three" :class="{active:cur==2}">支出</text>
+			<text @click="choise()" class="one" :class="{active:cur==2}">全部</text>
+			<text @click="choise(1)" class="two" :class="{active:cur==1}">收入</text>
+			<text @click="choise('0')" class="three" :class="{active:cur==0}">支出</text>
 		</view>
-		<view class="box"  v-show="cur==0">
-			<view class="line">
+		<view class="box"  >
+			<view class="line" v-for="(item,index) in dataList" :key ='item.id'>
 				<view class="l_left">
-					<view>在线支付</view>
-					<view>2018-05-23</view>
+					<view>{{item.title}}</view>
+					<view>{{item.time}}</view>
 				</view>
-				<view class="l_right">-200.00</view>
-			</view>
-			<view class="line">
-				<view class="l_left">
-					<view>在线支付</view>
-					<view>2018-05-23</view>
-				</view>
-				<view class="l_right">-15.00</view>
-			</view>
-			<view class="line">
-				<view class="l_left">
-					<view>后台充值</view>
-					<view>2018-05-23</view>
-				</view>
-				<view class="l_right">-50.00</view>
+				<view class="l_right">{{item.desc}}</view>
 			</view>
 		</view>
 	</view>
@@ -49,9 +35,29 @@
 			data(){
 				return{
 					title:'余额',
-					cur:0,
+					cur:'',
+					dataList:'',
 				}
 			},
+			methods:{
+				choise(all){
+					all? this.cur = all :this.cur = 2,
+					console.log(this.cur)
+					let data ={
+						user_id:this.$store.state.user.id,
+						page:1,
+						operation_type:all
+					}
+					this.service.entire(this,'post',this.APIconfig.api_root.subuser.u_balance_index,data,function(self,res){
+						console.log(res)
+						
+						self.dataList = res.data.data
+					})
+				}
+			},
+			onShow() {
+				this.choise()
+			}
 		}
 </script>
 
@@ -91,7 +97,7 @@
 			line-height: 100upx;
 			font-size: 28upx;
 			position: absolute;
-			top: 200rpx;
+			top: 300rpx;
 			left: 0;
 			border-bottom:1rpx solid #E9E9E9;
 			text{
@@ -105,7 +111,7 @@
 		.box{
 			width: 100%;
 			position: absolute;
-			top:300rpx;
+			top:400rpx;
 			left: 0;
 			.line{
 				display: flex;

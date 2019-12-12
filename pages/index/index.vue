@@ -27,7 +27,7 @@
 				<image src='../../static/image/index/index_tab3.png'></image>
 				<view class="">文章</view>
 			</view>
-			<view class="tab_list" @tap="$jump()">
+			<view class="tab_list" @tap="$jump('../subindex/classify')">
 				<image src='../../static/image/index/index_tab4.png'></image>
 				<view class="">分类</view>
 			</view>

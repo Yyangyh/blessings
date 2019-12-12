@@ -71,6 +71,14 @@ const api_root = {
 		
 		u_distribute: api+'/api/distribute/center',//我的佣金
 		u_index: api+'/api/distribute/index',//佣金分销订单
+		u_CashHistory:api+'/api/distribute/CashHistory',//提现明细
+		u_CommissionType:api+'/api/distribute/CommissionType',//分销佣金
+		u_cash:api+'/api/distribute/cash',//佣金提现
+		u_Subordinate:api+'/api/distribute/Subordinate',//我的同学
+		
+		u_balance_index:api+'/api/balance/index',//余额
+		u_getStutyPlan:api+'/api/videohome/getStutyPlan',//我的学习 /学习记录
+		u_integral_index:api+'/api/integral/index',//用户积分信息
 		
 		
 		threeuser:{

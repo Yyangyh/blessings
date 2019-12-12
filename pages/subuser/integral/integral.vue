@@ -10,21 +10,21 @@
 				<image src='../../../static/image/subuser/wenhao.png'></image>
 				<text>了解积分</text>
 			</view>
-			<view class="t-text1">12596</view>
+			<view class="t-text1">{{$store.state.user.integral}}</view>
 			<view class="t-text2">可用积分</view>
 		</view>
 		<view class="allorder">
-			<text @click="cur=0" class="one" :class="{active:cur==0}">积分明细</text>
-			<text @click="cur=1" class="two" :class="{active:cur==1}">积分收入</text>
-			<text @click="cur=2" class="three" :class="{active:cur==2}">积分支出</text>
+			<text @click="choise()" class="one" :class="{active:cur==2}">积分明细</text>
+			<text @click="choise(1)" class="two" :class="{active:cur==1}">积分收入</text>
+			<text @click="choise('0')" class="three" :class="{active:cur==0}">积分支出</text>
 		</view>
-		<view class="box" v-show="cur==0">
-			<view class="line">
+		<view class="box" >
+			<view class="line" v-for="(item,index) in dataList" :key ='item.id'>
 				<view class="l_left">
-					<view>签到</view>
-					<view>2018-05-23</view>
+					<view>{{item.title}}</view>
+					<view>{{item.time}}</view>
 				</view>
-				<view class="l_right">+100.00</view>
+				<view class="l_right">{{item.desc}}</view>
 			</view>
 		</view>
 	</view>
@@ -39,11 +39,28 @@
 		data(){
 			return{
 				title:'我的积分',
-				cur:0,
+				cur:'',
+				dataList:'',
 			}
 		},
 		methods:{
-			
+			choise(all){
+				all? this.cur = all :this.cur = 2,
+				console.log(this.cur)
+				let data ={
+					user_id:this.$store.state.user.id,
+					page:1,
+					type:all
+				}
+				this.service.entire(this,'post',this.APIconfig.api_root.subuser.u_integral_index,data,function(self,res){
+					console.log(res)
+					
+					self.dataList = res.data.data
+				})
+			}
+		},
+		onShow() {
+			this.choise()
 		}
 	}
 </script>

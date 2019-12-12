@@ -30,7 +30,7 @@
 					<view class="money">{{data.can_cash}}</view>
 					<view class="textss">可提现佣金（元）</view>
 				</view>
-				<view class="btn" @tap="$jump('./withdraw')">提现佣金</view>
+				<view class="btn" @tap="$jump('./withdraw?deposit='+data.can_cash)">提现佣金</view>
 			</view>
 		</view>
 		<view class="classify">
@@ -84,11 +84,13 @@
 				user:this.$store.state.user
 			}
 		},
+		
 		onShow() {
 			this.service.entire(this,'post',this.APIconfig.api_root.subuser.u_distribute,{user_id:this.$store.state.user.id},function(self,res){
 				console.log(self.$store.state.user)
 				self.data = res.data
 			})
+			
 		}
 		
 	}

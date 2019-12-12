@@ -7,22 +7,22 @@
 		<view class="w-top">
 			<view class="t-left">
 				<text>可提现佣金:</text>
-				<text>￥200.0</text>
+				<text>￥{{deposit}}</text>
 			</view>
-			<view class="t-right">全部提现</view>
+			<view class="t-right" @click="deposits">全部提现</view>
 		</view>
 		<view class="worp">
 			<view class="line">
-				<view class="l-top">提现金额</view>
+				<view class="l-top">提现到余额</view>
 				<form>
 					<view class="l-bottom">
 						<text class="">¥</text>
-						<input type="text" value="" placeholder="请输入提现金额" />
+						<input type="text" value="" placeholder="请输入提现金额" v-model="money"/>
 					</view>
 				</form>
 			</view>
 			<hr />
-			<view class="w-text">提现手续费3%：-￥6.0</view>
+			<!-- <view class="w-text">提现手续费3%：-￥6.0</view>
 			<view class="w-text1">提现方式</view>
 			<view class="means">
 				<view class="choice">
@@ -47,7 +47,8 @@
 				</view>
 				<image src='../../../static/image/brokerage/quan.png'></image>
 			</view>
-			<hr />
+			<hr /> -->
+			<button @click="extract">提现</button>
 		</view>
 	</view>
 </template>
@@ -61,7 +62,32 @@
 		data(){
 			return{
 				title:'佣金提现',
+				money:'',
+				deposit:'',
 			}
+		},
+		methods:{
+			extract(){
+				this.service.entire(this,'post',this.APIconfig.api_root.subuser.u_cash,{
+					user_id:this.$store.state.user.id,
+					money:this.money,
+				},function(self,res){
+					console.log(res)
+					uni.showToast({
+						icon:'none',
+						title:res.msg
+					})
+				})
+			},
+			deposits(){
+				this.money = this.deposit
+			}
+			
+		},
+		onLoad(e) {
+			//提现
+			console.log(e.deposit)
+			this.deposit = e.deposit
 		}
 	}
 </script>
@@ -100,6 +126,18 @@
 					margin-right: 20rpx;
 				}
 			}
+		}
+		button{
+			display: block;
+			width:692rpx;
+			height:80rpx;
+			background:rgba(216,0,0,1);
+			border-radius:40rpx;
+			color: #FFFFFF;
+			line-height: 80rpx;
+			text-align: center;
+			letter-spacing: 5rpx;
+			margin: 40rpx auto 0;
 		}
 		hr{
 			height:1rpx;
