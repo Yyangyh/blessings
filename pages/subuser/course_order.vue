@@ -74,7 +74,7 @@
 								<view class="bottom_ash" v-if='item.status == 4 && item.user_is_comments ==0' @click="jump('threeuser/s_comment_order?id='+item.id)">
 									评论
 								</view>
-								<view class="bottom3" @click="jump('threeuser/s_order_details?id='+item.id)">
+								<view class="bottom3" @click="$jump('threeuser/c_order_details?id='+item.id)">
 									详情
 								</view>
 								
@@ -127,6 +127,7 @@
 					this.more = 'loading'
 					this.top_show = type
 					this.mid_show = 6
+					this.loadRecord = true
 					this.page = 1
 					this.data.length = 0
 					let data = {
@@ -141,6 +142,7 @@
 				chiose_status(type){ //订单状态切换
 					this.more = 'loading'
 					this.mid_show = type
+					this.loadRecord = true
 					this.page = 1
 					this.data.length = 0
 					let data = {
@@ -168,6 +170,10 @@
 					})
 				}
 					
+			},
+			onLoad(e) {
+				this.mid_show = e.status
+				console.log(this.mid_show)
 			},
 			onShow() {
 				this.data.length = 0

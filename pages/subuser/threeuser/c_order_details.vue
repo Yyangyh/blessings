@@ -5,93 +5,32 @@
 		</view>
 		<returns :titles='title'></returns>
 		<view class="order_top">
-			<view class="" v-if="data.status == 2">
-				买家已付款
-			</view>
-			<view class="" v-else-if="data.status == 3">
-				等待买家收货
-			</view>
-			<view class="" v-else-if="data.status == 4">
-				已完成
-			</view>
-			<view class="" v-else-if="data.status == 1">
+			<view class="" v-if="data.state == 0">
 				等待买家付款
 			</view>
-			<image src="/static/image/subuser/box.png" mode="widthFix"></image>
-		</view>
-		<view class="order_position">
-			<view class="">
-				<image src="/static/image/subuser/position.png" mode="widthFix"></image>
+			<view class="" v-else-if="data.state == 1">
+				买家已付款
 			</view>
-			<view class="posi_one">
-				<view class="">
-					<text>{{data.receive_name}}</text>
-					<text>{{data.receive_tel}}</text>
-				</view>
-				<view class="">
-					地址：{{data.receive_province_name}}{{data.receive_city_name}}{{data.receive_county_name}}{{data.receive_address}}
-				</view>
-			</view>
+			<image src="/static/image/subuser/video.png" mode="widthFix"></image>
 		</view>
 		
-		<view class="order_news"  v-if='data.status == 3'>
-			<view class="news_one">
-				物流信息
-			</view>
-			<!--  -->
-			<view class="news_two" >
-				<text>快递公司：</text>
-				<text>{{data.express_name}}</text>
-			</view>
-			<view class="news_two">
-				<text>快递单号：</text>
-				<text>{{data.express_number}}</text>
-			</view>
 		
-			<!--  -->
-			
-			<view class="news_four" >
-				<view class="" @click="jump('./logistics?id='+data.express_id+'&number='+data.express_number)">
-					<image src="/static/image/subuser/logistics.png" mode="widthFix"></image>
-					<text>查看物流</text>
-				</view>
-			</view>
-		</view>
+		
 		
 		<view class="order">
-			<view class="order_num" v-for="(item,index) in data_list" :key='item.id' >
-				<view class="num_one" @tap="$jump('../../subhome/details?id='+item.goods_id)">
-					<image :src="item.images" mode="widthFix"></image>
+			<view class="order_num" @tap="$jump('../../com_page/video_details?id='+data.vid+'&type='+data.type)">
+				<view class="num_one">
+					<image :src="data.v_pic" mode="scaleToFill"></image>
 				</view>
-				<view class="num_two" @tap="$jump('../../subhome/details?id='+item.goods_id)">
-					<view class="">
-						{{item.title}}
+				<view class="num_two">
+					<view class="test_one">
+						{{data.title}}
 					</view>
-					<view class="specs">
-						<text v-for="(items,indexs) in data_list[index].spec" :key='indexs'>{{items.type}}：{{items.value}}</text>
+					<view class="test_two">
+						{{data.long_title}}
 					</view>
-				</view>
-				<view class="num_three">
-					<view class="">
-						￥{{item.price}}
-					</view>
-					<view class="">
-						数量：X{{item.buy_number}}
-					</view>
-					
 				</view>
 				
-				<view class="order_handle" v-if="data.status == 2 || data.status == 3 || data.status == 4">
-					
-					<text v-if="item.orderaftersale == null"  @click="jump('./s_order_refund?id='+ item.id+'&oid='+item.order_id)">{{data.status == 4?'申请售后':'退款/退货'}}</text>
-					<block v-else>
-						<text v-if="item.orderaftersale.status == 3">退款完成</text>
-						<text v-else-if="item.orderaftersale.status == 4"  @click="jump('./s_order_refund?id='+ item.id+'&oid='+item.order_id)">已拒绝</text>
-						<text v-else-if="item.orderaftersale.status == 5"  @click="jump('./s_order_refund?id='+ item.id+'&oid='+item.order_id)">已取消</text>
-						<text v-else @click="cancel_return(item.orderaftersale.id)">退款/退货中</text>
-					</block>
-					
-				</view>
 			</view>
 
 			<!--  -->
@@ -100,10 +39,10 @@
 			<!--  -->
 			<view class="order_total">
 				<view class="total_one">
-					订单总价
+					实付款
 				</view>
 				<view class="total_two">
-					<!-- ￥ -->{{data.describe}}
+					￥{{data.pay_price}}
 				</view>
 			</view>
 		</view>
@@ -112,18 +51,15 @@
 				订单信息
 			</view>
 			<!--  -->
-			<view class="news_two" v-if="data.status == 2">
-				<text>付款时间：</text>
-				<text>{{data.pay_time}}</text>
-			</view>
-			<view class="news_two" v-else>
-				<text>创建时间：</text>
-				<text>{{data.confirm_time}}</text>
+			
+			<view class="news_two">
+				<text>下单时间：</text>
+				<text>{{service.Test(data.created_at)}}</text>
 			</view>
 
-			<!--  -->
+			<!--  -->	
 			<view class="news_three">
-				订单编号：{{data.order_no}}
+				订单编号：{{data.order_sn}}
 			</view>
 			<!-- <view class="news_four">
 				<view class="">
@@ -140,11 +76,7 @@
 			<text class="or_pay" @click="show = !show">付款</text>
 		</view>
 		
-		<view class="order_bottom" v-else-if="data.status == 3">
-			<!-- <text>修改地址</text>
-			<text>取消订单</text> -->
-			<text class="or_pay" @click="determine()">确定收货</text>
-		</view>
+		
 		
 		<view class="mask" v-if="show" @click="show = !show">
 
@@ -195,34 +127,7 @@
 					url: url
 				})
 			},
-			determine(){//确定收货
-				let that = this
-				uni.showModal({
-				    title: '提示',
-				    content: '是否确定收货？',
-				    success: function (res) {
-				        if (res.confirm) {
-				            that.service.entire(that,'post',that.APIconfig.api_root.subuser.threeuser.s_order_collect,{
-								id:that.data.id,
-								user_id: that.$store.state.user.id,
-							},function(self,res){
-								uni.showToast({
-									icon:'none',
-									title:res.msg
-								})
-				            	if(res.code == 0){
-									setTimeout(function(){
-										self.service.returns()
-									},1500)
-								}
-				            })
-				        } else if (res.cancel) {
-				           return
-				        }
-				    }
-				});
-			},
-			cancel_return(id){//取消退款申请
+			cancel_return(id){
 				let that = this
 				console.log(id)
 				uni.showModal({
@@ -268,7 +173,7 @@
 				            	if(res.code == 0){
 									setTimeout(function(){
 										self.service.returns()
-									},1500)
+									},1000)
 								}
 				            })
 				        } else if (res.cancel) {
@@ -322,11 +227,11 @@
 			}
 		},
 		onLoad(options) {
-			this.service.entire(this, 'post', this.APIconfig.api_root.subuser.threeuser.s_order_detail, {
-				id: options.id,
+			this.service.entire(this, 'post', this.APIconfig.api_root.subuser.threeuser.v_videoorder, {
+				order_id: options.id,
 				user_id: this.$store.state.user.id,
 			}, function(self, res) {
-				self.data = res.data
+				self.data = res.data.orderDetail
 				self.data_list = res.data.items
 				if(res.data.payment_list){
 					let data = res.data.payment_list
@@ -399,36 +304,21 @@
 			position: relative;
 			height: 228rpx;
 			.num_two{
-				display: -webkit-box;
-				-webkit-box-orient: vertical;
-				-webkit-line-clamp: 3;
-				overflow: hidden;
-				height: 120rpx;
+				
 				flex-grow: 2;
-				.specs {
-					color: #808080;
-					display: flex;
-					justify-content: flex-start;
-					align-items: flex-start;
-					flex-wrap: wrap;
+				.test_one{
+					display: -webkit-box;
+					-webkit-box-orient: vertical;
+					-webkit-line-clamp: 1;
+					overflow: hidden;
 				}
-				.specs text {
-					margin-right: 10rpx;
-					margin-bottom: 10rpx;
+				.test_two{
+					display: -webkit-box;
+					-webkit-box-orient: vertical;
+					-webkit-line-clamp: 3;
+					overflow: hidden;
 					font-size: 24rpx;
-					display: block;
-					padding: 10rpx 8rpx;
-					background: #F1F1F1;
-				}
-			}
-			.num_three {
-				margin-left: 20rpx;
-				view {
-					white-space: nowrap;
-					&:nth-of-type(2) {
-						font-size: 24rpx;
-						color: #999999;
-					}
+					color: #666;
 				}
 			}
 		}
@@ -436,24 +326,6 @@
 			width: 220rpx;
 			height: 142rpx;
 			margin-right: 24rpx;
-		}
-		.order_handle {
-			text-align: right;
-			padding-bottom: 20rpx;
-			position: absolute;
-			right: 0;
-			bottom: 0;
-			text {
-				display: inline-block;
-				text-align: center;
-				width: 160rpx;
-				height: 66rpx;
-				font-size: 28rpx;
-				color: #333;
-				border: 2rpx solid #666666;
-				border-radius: 66rpx;
-				line-height: 66rpx;
-			}
 		}
 		.order_total {
 			display: flex;
@@ -492,13 +364,6 @@
 			height: 38rpx;
 			width: 40rpx;
 			margin-right: 10rpx;
-		}
-		.news_four view {
-			display: flex;
-			align-items: center;
-			justify-content: flex-end;
-			padding: 32rpx 0;
-			border-top: 2rpx solid #F1F1F1;
 		}
 	}
 
