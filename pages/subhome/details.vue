@@ -52,13 +52,18 @@
 		</view>
 		<view class="user_comment" v-for="(item,index) in comment_data" :key='item.id'>
 			<view class="user">
-				<image class="user_img"  :src="item.user.avatar" mode="widthFix"></image>
-				<view class="user_test" >
-					<view>{{item.user.user_name_view}}</view>
-					<text>{{item.add_time_date}}</text>
+				<view class="user_one">
+					<image class="user_img"  :src="item.user.avatar" mode="widthFix"></image>
+					<view class="user_test" >
+						<view>{{item.user.user_name_view}}</view>
+					</view>
 				</view>
 				<view class="user_star">
-					<image v-for="(item,index) in item.rating_num" src="/static/image/com_page/stars.png" mode="widthFix"></image>
+					
+					<view class="">
+						<image v-for="(item,index) in item.rating_num" src="/static/image/com_page/stars.png" mode="widthFix"></image>
+					</view>
+					<text>{{item.add_time_date}}</text>
 				</view>
 			</view>
 			<view class="com_content">
@@ -549,24 +554,24 @@
 			padding: 20rpx 30rpx;
 			.user {
 				display: flex;
-				align-items: center;
+				// align-items: center;
+				justify-content: space-between;
 				margin: 20rpx 0;
-				.user_img {
-					width: 90rpx;
-					height: 90rpx;
-					border-radius: 50%;
-				}
-				.user_test {
-					margin: 0 20rpx;
-					font-size: 32rpx;
-					view {
-						font-weight: bold;
-						color: #333333;
-						font-size: 28rpx;
+				.user_one{
+					display: flex;
+					.user_img {
+						width: 90rpx;
+						height: 90rpx;
+						border-radius: 50%;
 					}
-					text {
-						font-size: 24rpx;
-						color: #999999;
+					.user_test {
+						margin: 0 20rpx;
+						font-size: 32rpx;
+						view {
+							font-weight: bold;
+							color: #333333;
+							font-size: 28rpx;
+						}
 						
 					}
 				}
@@ -577,6 +582,11 @@
 					image {
 						height: 26rpx;
 						width: 26rpx;
+					}
+					text {
+						font-size: 24rpx;
+						color: #999999;
+						
 					}
 				}
 			}

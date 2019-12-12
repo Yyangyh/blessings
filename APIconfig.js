@@ -96,7 +96,7 @@ const api_root = {
 			g_Create: api+'/api/groupgoods/Create',//拼团申请售后订单详情
 			g_AftersaleCancel: api+'/api/groupgoods/AftersaleCancel',//拼团申请售后订单详情
 			
-			
+			v_videoorder: api+'/api/videoorder/getVideoOrderDetail',//视频订单详情
 			
 		},
 		s_member:api+'/api/member/updateUserInfo',//更新用户信息

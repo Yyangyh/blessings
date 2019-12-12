@@ -229,6 +229,15 @@
 			}
 		},
 		{
+			"path": "pages/subuser/threeuser/c_order_details",
+			"style": {
+				"navigationBarTitleText": "订单详情",
+				"app-plus":{
+					"titleNView":false
+				}
+			}
+		},
+		{
 			"path": "pages/subuser/threeuser/return_goods",
 			"style": {
 				"navigationBarTitleText": "填写退货信息",

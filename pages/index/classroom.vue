@@ -27,12 +27,12 @@
 				<view class="box_left">
 					{{item.cl_name}}
 				</view>
-				<view class="box_right">
+				<view class="box_right"  @tap="$jump('../com_page/video_class?id='+item.id+'&title='+item.cl_name)">
 					全部
 				</view>
 			</view>
 			<view class="vider_content">
-				<view class="content_list" v-for="(items,indexs) in item.list" :key='items.id'>
+				<view class="content_list" v-for="(items,indexs) in item.list" :key='items.id'  @tap="$jump('../com_page/video_details?id='+items.id + '&type='+items.type)">
 					<view class="list_img_box">
 						<image src="../../static/image/index/vider_img1.png" mode=""></image>
 					</view>
@@ -41,7 +41,7 @@
 							{{items.long_title}}
 						</view>
 						<view class="list_two">
-							{{items.view}}次观看
+							{{items.view}}次{{items.type == 1? '观看':'收听'}}
 						</view>
 						<view class="list_three">
 							<view class="">

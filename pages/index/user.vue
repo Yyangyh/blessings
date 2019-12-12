@@ -178,7 +178,7 @@
 				</view>
 				
 				<view class="tab_box">
-					<view class="tab_list" @click="$jump('../subuser/course_order?status=3')">
+					<view class="tab_list" @click="$jump('../subuser/course_order?status=6')">
 						<image src="../../static/image/index/video1.png" mode="widthFix"></image>
 						<view class="">
 							全部
@@ -197,12 +197,12 @@
 						</view>
 					</view>
 					
-					<view class="tab_list" @click="$jump('../subuser/course_order?status=2')">
+					<!-- <view class="tab_list" @click="$jump('../subuser/course_order?status=2')">
 						<image src="../../static/image/index/video4.png" mode="widthFix"></image>
 						<view class="">
 							退款
 						</view>
-					</view>
+					</view> -->
 				</view>
 				<view class="tab_top_box">
 					<view class="tab_top">
@@ -544,7 +544,7 @@
 		border-bottom: 2rpx solid #F2F2F2;
 	}
 	.user_middle .middle_tab .tab_box:nth-of-type(2) .tab_list{
-		width: 25%;
+		width: 33.3%;
 		position: relative;
 	}
 	.user_middle .middle_tab .tab_top_box:nth-of-type(5){
