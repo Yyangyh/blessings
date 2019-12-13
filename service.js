@@ -6,7 +6,6 @@ const entire = function(self,type,url,data,func){
 			url:'/pages/login/login'
 		})
 	}
-	
 	uni.request({
 		url:url,
 		data:data,
@@ -28,6 +27,44 @@ const entire = function(self,type,url,data,func){
 		}
 	})
 }
+
+const asy_entire = function(self,type,url,data,func){ //同步请求
+	if(self.$store.state.hasLogin === true){
+		 data.token = self.$store.state.token
+	}else if(self.$store.state.hasLogin === false){
+		uni.reLaunch({
+			url:'/pages/login/login'
+		})
+	}
+	 return new Promise((resolve, reject) => {
+	        uni.request({
+	        	url:url,
+	        	data:data,
+	        	method:type,
+	        	header:{'X-Requested-With':'xmlhttprequest','Content-Type':'application/json'},
+	        	success(res) {
+	        		let res_list = res.data
+	        		if(res_list.code == 9){ //token过期时替换重新请求
+	        			self.$store.commit('state_token',res_list.data.token)
+	        			entire(self,type,url,data,func)
+	        		}else if(res_list.code == 10){
+	        			uni.navigateTo({
+	        				url:'/pages/login/login'
+	        			})
+	        			
+	        		}else{
+	        			func(self,res_list)
+						
+	        		}
+					resolve('suc');
+	        	},
+				fail: (err) => {
+					reject('err')
+				}
+	        })
+	})
+}
+
 
 const order = function(ref, self, url, wxUrl) { //支付调用
 	// console.log(self.payment_name)
@@ -235,6 +272,7 @@ const loading = function(title){ //加载层
 
 export default{
 	entire,
+	asy_entire,
 	order,
 	returns,
 	analysis_url,

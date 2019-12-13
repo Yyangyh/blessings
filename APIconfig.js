@@ -36,6 +36,8 @@ const api_root = {
 		order_pay: api+'/api/order/pay',//订单支付
 		v_orderDetail: api+'/api/videohome/orderDetail',//视频订单详情
 		v_saveOrder: api+'/api/videoorder/saveOrder',//视频订单提交
+		v_playProcess: api+'/api/videohome/playProcess',//视频播放进度记录
+
 		
 	},
 	subhome:{

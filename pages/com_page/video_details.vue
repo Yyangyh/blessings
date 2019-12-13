@@ -21,7 +21,7 @@
 			 @timeupdate='timeupdate'
 			 @play='play_start' 
 			 @ended='play_end'  
-			 enable-danmu  controls  :poster='poster'>
+			 enable-danmu controls  :poster='poster'>
 			 </video>
 		</view>
 		<view class="video_tab">
@@ -94,7 +94,7 @@
 			</view>
 			
 			<view class="cou_details">
-				课程详情
+				课程详情 
 			</view>
 			<rich-text :nodes="video_data.video_content"></rich-text>
 		</view>
@@ -103,9 +103,14 @@
 				目录
 			</view>
 			<view class="catalog" v-for="(item,index) in catalog_data" :key='item.id' @click="chiose_video(index)">
-				<image v-if="indexs == index"  src="../../static/image/com_page/video_HL.png" mode="widthFix"></image>
-				<image  v-else src="../../static/image/com_page/video.png" mode="widthFix"></image>
-				<text>{{item.name}}</text>
+				<view class="play_status">
+					<image v-if="indexs === index"  src="../../static/image/com_page/video_HL.png" mode="widthFix"></image>
+					<image  v-else src="../../static/image/com_page/video.png" mode="widthFix"></image>
+					<text>{{item.name}}</text>
+				</view>
+				<view class="price_status">
+					{{}}
+				</view>
 			</view>
 		</view>
 		<view v-show="test_show == 2">
@@ -266,7 +271,7 @@
 				test_show:0,
 				catalog_data:'',
 				play_url:'',
-				indexs:0,
+				indexs:'',
 				show:false,
 				collects:'',
 				tips_test:'',
@@ -277,7 +282,8 @@
 				recommend_video:'',
 				play_store:false,
 				poster:'',
-				record_time:0
+				record_time:0,
+				recommend:false
 			}
 		},
 		computed:{
@@ -301,11 +307,30 @@
 			pause(e){
 				// console.log(e)
 			},
-			timeupdate(e){
-				console.log(Math.ceil(e.detail.currentTime) % 10)
-				if(Math.ceil(e.detail.currentTime) % 10 == 0){ //10s记录一次
-					console.log(12)
+			timeupdate(e){ //记录播放进度
+				// console.log(e.detail)
+				// console.log(this.indexs != '' && Math.ceil(e.detail.currentTime) % 10 == 0)
+				// console.log(this.indexs === 0)
+				// // console.log(Math.ceil(e.detail.currentTime) != this.record_time)
+				// console.log('分割线')
+				if(this.indexs || this.indexs === 0){
+					console.log(this.catalog_data)
+					if(Math.ceil(e.detail.currentTime) % 10 == 0){ //10s记录一次
+						if(Math.ceil(e.detail.currentTime) != this.record_time)	{
+							this.record_time += 10
+							this.service.entire(this,'post',this.APIconfig.api_root.com_page.v_playProcess,{
+								video_id:this.id,
+								user_id:this.$store.state.user.id,
+								section_id:this.catalog_data[this.indexs].id,
+								play_time:e.detail.currentTime,
+								s_process:e.detail.duration
+							},function(self,res){
+								console.log(res)
+							})
+						}
+					}
 				}
+				
 			},
 			
 			play_start(e){ //添加视频阅读量 
@@ -327,8 +352,22 @@
 			},
 			play_end(e){ //播放结束时
 				// console.log(e)
-				this.indexs ++
-				this.play_url = this.service.analysis_url(this.catalog_data[this.indexs].video_url)
+				// if(this.recommend == true){ //当宣传视频播放结束时
+				// 	this.indexs = 0
+				// 	this.recommend =false
+				// 	this.play_url = this.service.analysis_url(this.catalog_data[0].video_url)
+				// }else{
+				// 	this.indexs ++
+				// 	this.play_url = this.service.analysis_url(this.catalog_data[this.indexs].video_url)
+				// }
+				if(this.indexs){ //当宣传视频播放结束时
+					this.indexs ++
+					this.play_url = this.service.analysis_url(this.catalog_data[this.indexs].video_url)
+				}else{
+					this.indexs = 0
+					this.play_url = this.service.analysis_url(this.catalog_data[0].video_url)
+				}
+				
 			},
 			collect(){ //视频收藏
 			
@@ -387,32 +426,39 @@
 						}
 					})
 				}
+			},
+			async async_n(){ //需同步请求
+				await this.service.asy_entire(this,'post',this.APIconfig.api_root.com_page.VideoDetail,{ //视频详情
+					video_id:this.id,
+					userid:this.$store.state.user.id,
+					mobile:this.$store.state.user.mobile,
+				},function(self,res){
+					self.data = res.data
+					// if(res.data.video.v_url){
+						  // self.play_url = self.service.analysis_url(res.data.video.v_url)
+					// 	 self.recommend = true
+					// }
+					res.data.video.v_url ? self.play_url = self.service.analysis_url(res.data.video.v_url) : self.indexs = 0
+					self.video_data = res.data.video
+					self.collects = res.data.video.collect
+					self.poster = res.data.video.v_pic
+					if(self.video_data.evaluate)self.video_data.stars_num = new Array(Number(self.video_data.evaluate))
+				})
+				
+				await this.service.asy_entire(this,'post',this.APIconfig.api_root.com_page.catalogue,{ //视频目录
+					video_id:this.id,
+					user_id:this.$store.state.user.id,
+				},function(self,res){
+					self.catalog_data = res.data.video_list
+					// if( self.recommend == false) self.indexs = 0
+				})
+				
 			}
 		},
 		onLoad(e) {
 			this.id = e.id
 			this.type = e.type
-			this.service.entire(this,'post',this.APIconfig.api_root.com_page.VideoDetail,{ //视频详情
-				video_id:e.id,
-				userid:this.$store.state.user.id,
-				mobile:this.$store.state.user.mobile,
-			},function(self,res){
-				self.data = res.data
-				self.play_url = self.service.analysis_url(res.data.video.v_url)
-				self.video_data = res.data.video
-				self.collects = res.data.video.collect
-				self.poster = res.data.video.v_pic
-				
-				if(self.video_data.evaluate)self.video_data.stars_num = new Array(Number(self.video_data.evaluate))
-			})
-			
-			this.service.entire(this,'post',this.APIconfig.api_root.com_page.catalogue,{ //视频目录
-				video_id:e.id,
-				user_id:this.$store.state.user.id,
-			},function(self,res){
-				self.catalog_data = res.data.video_list
-			})
-			
+			this.async_n()
 			this.service.entire(this,'post',this.APIconfig.api_root.com_page.v_coupon,{ //优惠券列表
 				userid:this.$store.state.user.id,
 				mobile:this.$store.state.user.mobile,
@@ -683,12 +729,26 @@
 		font-size: 28rpx;
 		.catalog{
 			margin: 30rpx 0;
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			.play_status{
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+			}
+			.price_status{
+				color: #D80000;
+			}
+			
 		}
 		image{
 			height: 27rpx;
 			width: 39rpx;
-			margin-right: 35rpx;
+			margin-right: 30rpx;
 		}
+		
+		
 	}
 	.coupon_box{
 		position: fixed;
