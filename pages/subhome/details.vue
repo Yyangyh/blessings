@@ -24,12 +24,12 @@
 		<view class="worp">
 			<view class="line">
 				<view class="l-left">
-					<image src="../../static/image/subhome/juan.png" mode=""></image>
+					<image src="../../static/image/subhome/juan.png" mode="widthFix"></image>
 					<text>优惠券</text>
 				</view>
 				<view class="l-right" @tap="show = true">
 					<text>领劵</text>
-					<image src='../../static/image/index/go.png'></image>
+					<image src='../../static/image/index/go.png' mode="widthFix"></image>
 				</view>
 			</view>
 			<hr />

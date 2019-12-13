@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "分销商",
+  "usingComponents": {
+    "returns": "/pages/common/returns"
+  }
+}

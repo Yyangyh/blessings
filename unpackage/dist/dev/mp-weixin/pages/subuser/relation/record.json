@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "分享记录",
+  "usingComponents": {
+    "returns": "/pages/common/returns"
+  }
+}

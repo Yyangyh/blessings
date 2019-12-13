@@ -1,0 +1,101 @@
+
+.content{
+	/* padding-top: 0; */
+}
+.room_top{
+	padding: 0 20rpx;
+}
+.room_top image{
+	height: 350rpx;
+	width: 710rpx;
+}
+.room_title{
+	padding: 40rpx 20rpx;
+	border-bottom: 6rpx solid #F1F1F1;
+}
+.room_title .title_top{
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-box-pack: justify;
+	-webkit-justify-content: space-between;
+	        justify-content: space-between;
+	text-align: center;
+	font-size: 28rpx;
+	margin-bottom: 40rpx;
+}
+.room_title .title_top image{
+	height: 169rpx;
+	width: 343rpx;
+}
+.room_title .title_bottom image{
+	height: 150rpx;
+	width: 710rpx;
+}
+.v_box_top{
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-box-pack: justify;
+	-webkit-justify-content: space-between;
+	        justify-content: space-between;
+	padding: 0 20rpx;
+	font-size: 28rpx;
+	margin: 20rpx 0;
+}
+.v_box_top .box_right{
+	font-size: 24rpx;
+	color: #EF7C38;
+}
+.vider_content_two{
+	border-bottom: 6rpx solid #F1F1F1;
+}
+.vider_content_two .vider_content{
+	padding: 0 20rpx;
+	font-size: 24rpx;
+}
+.vider_content_two .vider_content image{
+	width: 268rpx;
+	height: 179rpx;
+	margin-right: 29rpx;
+}
+.vider_content_two .vider_content .content_list{
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+	margin: 30rpx 0;
+}
+.vider_content_two .vider_content .content_list .list_right{
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-box-orient: vertical;
+	-webkit-box-direction: normal;
+	-webkit-flex-direction: column;
+	        flex-direction: column;
+	-webkit-box-pack: justify;
+	-webkit-justify-content: space-between;
+	        justify-content: space-between;
+	padding-bottom: 30rpx;
+	width: 100%;
+}
+.list_three{
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-box-pack: justify;
+	-webkit-justify-content: space-between;
+	        justify-content: space-between;
+	color: #D80000;
+	font-size: 28rpx;
+}
+.list_three view:nth-of-type(2){
+	background: #000000;
+	font-size: 24rpx;
+	color: #FFFFFF;
+	height: 20rpx;
+	padding: 10rpx;
+	line-height: 20rpx;
+	border-radius: 20rpx;
+}
+

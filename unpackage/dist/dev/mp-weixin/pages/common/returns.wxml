@@ -1,0 +1,1 @@
+<view class="top data-v-3a62a54a"><view data-event-opts="{{[['tap',[['returns']]]]}}" class="top_enlarge data-v-3a62a54a" bindtap="__e"><image src="/static/image/com_page/returns.png" mode="widthFix" class="data-v-3a62a54a"></image></view><text class="data-v-3a62a54a">{{titles}}</text><text class="data-v-3a62a54a"></text></view>

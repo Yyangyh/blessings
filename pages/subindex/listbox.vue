@@ -8,7 +8,7 @@
 			<view class="l-left">{{item.name}}</view>
 			<view class="l-right">
 				<text>开始测试</text>
-				<image src='../../static/image/index/go1.png'></image>
+				<image src='../../static/image/index/go1.png' mode="widthFix"></image>
 			</view>
 		</view>
 		<!-- <view class="line">

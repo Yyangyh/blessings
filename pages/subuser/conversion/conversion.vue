@@ -50,7 +50,7 @@
 			
 		</view>
 		<view class="st" v-show="bur==1">
-			<image class="back" src='../../../static/image/com_page/juan.png'></image>
+			<image class="back" src='../../../static/image/com_page/juan.png' mode="widthFix"></image>
 			<view class="c-text">暂无优惠券</view>
 			<button type="default" @tap="$jump('./exchange')">兑换入口</button>
 		</view>

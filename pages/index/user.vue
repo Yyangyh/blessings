@@ -317,7 +317,10 @@
 			</view>
 			
 		</view>
-		
+		<view class="c_buttom">
+			<view @click="$jump('../subuser/abrief')">公司简介</view>
+			<view @click="$jump('../subuser/ContactUs')">联系我们</view>
+		</view>
 	</view>
 </template>
 
@@ -594,5 +597,11 @@
 		flex-direction: column;
 		align-items: center;
 		justify-content: center;	
+	}
+	.c_buttom{
+		display: flex;
+		font-size: 24rpx;
+		justify-content: space-around;
+		padding-bottom: 20rpx;
 	}
 </style>

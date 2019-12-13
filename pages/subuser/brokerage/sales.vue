@@ -11,7 +11,7 @@
 		<view class="worp">
 			<view class="line">
 				<view class="line-left">
-					<image src='../../../static/image/brokerage/s1.png'></image>
+					<image src='../../../static/image/brokerage/s1.png' mode="widthFix"></image>
 					<text>可提现佣金</text>
 				</view>
 				<view class="line-right">￥{{dataList.can_cash}}</view>

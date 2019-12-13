@@ -9,7 +9,7 @@
 			<view class="a-right">
 				<view class="theme">让爱回家|高分孩子·智慧父母一大型公益巡讲</view>
 				<view class="line">
-				  <image src="../../static/image/index/apply.png"></image>
+				  <image src="../../static/image/index/apply.png" mode="widthFix"></image>
 				  <text>已报名37人</text>
 				  <text>限1000人报名</text>
 				 </view>

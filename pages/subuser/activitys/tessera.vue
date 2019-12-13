@@ -5,7 +5,7 @@
 		</view>
 		<returns :titles='title'></returns>
 		<view class="back">
-			<image src="../../../static/image/subuser/tessera-back.png"></image>
+			<image src="../../../static/image/subuser/tessera-back.png" mode="widthFix"></image>
 			<view class="worp">
 				<view class="left">
 					<view>入</view>
