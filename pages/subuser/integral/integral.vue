@@ -4,10 +4,10 @@
 			
 		</view>
 		<returns :titles='title'></returns>
-		<image class='integralback' src="../../../static/image/subuser/integralback.png"></image>
+		<image class='integralback' src="../../../static/image/subuser/integralback.png" mode="widthFix"></image>
 		<view class="back_text">
 			<view class="rightjio"  @tap="$jump('./know')">
-				<image src='../../../static/image/subuser/wenhao.png'></image>
+				<image src='../../../static/image/subuser/wenhao.png' mode="widthFix"></image>
 				<text>了解积分</text>
 			</view>
 			<view class="t-text1">{{$store.state.user.integral}}</view>

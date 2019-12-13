@@ -10,17 +10,17 @@
 			<text>亲情号</text>
 			<text @tap="$jump('./record')">分享记录</text>
 		</view>
-		<image class="back" src="/static/image/subuser/relationback.png"></image>
+		<image class="back" src="/static/image/subuser/relationback.png" mode="widthFix"></image>
 		<view class="worp">
-			<image class="image" src="/static/image/subuser/home.png"></image>
+			<image class="image" src="/static/image/subuser/home.png" mode="widthFix"> </image>
 			<view class="title">亲情账号权益</view>
 			<view class="privilege">
 				<view class="pr_box">
-					<image src='/static/image/subuser/zu1.png'></image>
+					<image src='/static/image/subuser/zu1.png' mode="widthFix"></image>
 					<view>免费共享视频</view>
 				</view>
 				<view class="pr_box">
-					<image src='/static/image/subuser/zu2.png'></image>
+					<image src='/static/image/subuser/zu2.png' mode="widthFix"></image>
 					<view>免费共享音频</view>
 				</view>
 			</view>
@@ -36,7 +36,7 @@
 						<view class="add_box">
 							<view class="left_box">
 								<!-- <image src="/static/image/subuser/tuoyuan.png"></image> -->
-								<image src="/static/image/subuser/renxiang.png"></image>
+								<image src="/static/image/subuser/renxiang.png" mode="widthFix"></image>
 							</view>
 							
 								<view class="right_box">
@@ -44,7 +44,7 @@
 										<text>号码</text>
 										<input type="text" placeholder="请输入手机号码" v-model="phone">
 									</view> 
-									<image src="/static/image/subuser/tongxunlu.png"></image>
+									<image src="/static/image/subuser/tongxunlu.png" mode="widthFix"></image>
 								</view>
 							
 						</view>
@@ -65,7 +65,7 @@
 									<text>号码</text>
 									<input disabled='disabled' type="text" :value="item.mobile"  >
 								</view> 
-								<image src="/static/image/subuser/tongxunlu.png"></image>
+								<image src="/static/image/subuser/tongxunlu.png" mode="widthFix"></image>
 							</view>
 						</view>
 						<!-- <button type="default" @click="relieve">一键解绑</button> -->
@@ -77,7 +77,7 @@
 						<view class="add_box">
 							<view class="left_box">
 								<!-- <image src="/static/image/subuser/tuoyuan.png"></image> -->
-								<image src="/static/image/subuser/renxiang.png"></image>
+								<image src="/static/image/subuser/renxiang.png" mode="widthFix"></image>
 							</view>
 							
 								<view class="right_box">
@@ -85,7 +85,7 @@
 										<text>号码</text>
 										<input type="text" placeholder="请输入手机号码">
 									</view> 
-									<image src="/static/image/subuser/tongxunlu.png"></image>
+									<image src="/static/image/subuser/tongxunlu.png" mode="widthFix"></image>
 								</view>
 							
 						</view>

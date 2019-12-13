@@ -5,10 +5,10 @@
 		</view>
 		<returns :titles='title'></returns>
 		<view class="worp">
-			<image src="../../static/image/index/huo1.png"></image>
+			<image src="../../static/image/index/huo1.png" mode="widthFix"></image>
 			<view class="theme">让爱回家|高分孩子·智慧父母一大型公益巡讲</view>
 			<view class="line">
-			  <image src="../../static/image/index/apply.png"></image>
+			  <image src="../../static/image/index/apply.png" mode="widthFix"></image>
 			  <text>已报名37人</text>
 			  <text>限1000人报名</text>
 			 </view>
@@ -27,19 +27,19 @@
 		</view>
 		<view class="worp">
 			<view class="line">
-			  <image src="../../static/image/index/time.png"></image>
+			  <image src="../../static/image/index/time.png" mode="widthFix"></image>
 			  <text class="theme1">6月27日 </text>
 			  <text>星期三</text>
 			  <text>17:00-19:00</text>
 			</view>
 			<hr />
 			<view class="line">
-				<image src='../../static/image/index/site.png'></image>
+				<image src='../../static/image/index/site.png' mode="widthFix"></image>
 				<text class="theme1">广东省东莞市帝京国际酒店</text>
 			</view>
 			<hr />
 			<view class="line">
-				<image src='../../static/image/index/zhubanfang.png'></image>
+				<image src='../../static/image/index/zhubanfang.png' mode="widthFix"></image>
 				<text class="theme1">主办方：五福家庭教育</text>
 			</view>
 		</view>
@@ -50,13 +50,13 @@
 			</view>
 			<view class="personnel-list">
 				<view class="list">
-					<image src='../../static/image/index/per.png'></image>
+					<image src='../../static/image/index/per.png' mode="widthFix"></image>
 					<view>老胡</view>
 				</view>
 			</view>
 		</view> 
 		<view class="p-t">活动详情</view>
-		<image class="image" src='../../static/image/index/xq.png'></image>
+		<image class="image" src='../../static/image/index/xq.png' mode="widthFix"></image>
 		<view class="underway">
 			<button type="default" @tap="$jump('./apply')">立即报名</button>
 			<button type="default">邀请好友</button>

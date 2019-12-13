@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "幸福课堂",
+  "usingComponents": {
+    "search": "/pages/common/index_search"
+  }
+}

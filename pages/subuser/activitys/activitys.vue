@@ -9,7 +9,7 @@
 			  <text @click="cur=1" class="two" :class="{active:cur==1}">往期活动</text>
 		</view>
 		<view class="quan" @tap="$jump('./tessera')">
-			<image src='../../../static/image/index/sm.png'></image>
+			<image src='../../../static/image/index/sm.png' mode="widthFix"></image>
 			<view class="q_right">
 				<view>让爱回家|高分孩子·智慧父母一	大型公益巡讲</view>
 				<view>￥100.00</view>

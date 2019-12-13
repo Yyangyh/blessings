@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "文章",
+  "usingComponents": {
+    "returns": "/pages/common/returns"
+  }
+}

@@ -1,0 +1,103 @@
+.content {
+  width: 100%;
+  height: 100vh;
+  background-color: #F6F6F6;
+  position: relative;
+}
+.content .activitys {
+  background-color: #FFFFFF;
+  padding: 31rpx 25rpx 31rpx 31rpx;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+}
+.content .activitys image {
+  width: 275rpx;
+  height: 177rpx;
+  margin: 31rpx 31rpx 31rpx 0;
+}
+.content .activitys .a-right .theme {
+  font-size: 24rpx;
+  color: #333333;
+  margin: 20rpx 0 0rpx 0;
+}
+.content .activitys .a-right .line {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+          align-items: center;
+}
+.content .activitys .a-right .line image {
+  width: 32rpx;
+  height: 32rpx;
+  margin-left: -5rpx;
+}
+.content .activitys .a-right .line text {
+  font-size: 28rpx;
+  color: #666666;
+  margin-right: 6rpx;
+}
+.content .activitys .a-right .line .theme1 {
+  font-size: 24rpx;
+  color: #333333;
+}
+.content .activitys .a-right .price {
+  font-size: 25rpx;
+  font-weight: bold;
+  color: #D80000;
+  letter-spacing: 3rpx;
+}
+.content .information {
+  background-color: #FFFFFF;
+  width: 100%;
+  height: 70vh;
+  padding: 40rpx;
+  margin: 30rpx 0;
+}
+.content .information ._hr {
+  height: 1rpx;
+  border: none;
+  border-top: 1px solid #F4F4F4;
+  width: 96%;
+  margin: 0 100rpx 0 0;
+}
+.content .information view {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  font-size: 28rpx;
+  margin: 20rpx 0;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+          align-items: center;
+}
+.content .information button {
+  width: 600rpx;
+  height: 80rpx;
+  font-size: 30rpx;
+  color: #FFFFFF;
+  text-align: center;
+  line-height: 80rpx;
+  background-color: #D80000;
+  border: none;
+  border-radius: 40rpx;
+  letter-spacing: 10rpx;
+  margin: 30rpx 2rpx 0 28rpx;
+}
+.content .k {
+  width: 254rpx;
+  height: 106rpx;
+  color: #FFFFFF;
+  background: rgba(0, 0, 0, 0.5);
+  text-align: center;
+  line-height: 106rpx;
+  position: absolute;
+  top: 400rpx;
+  left: 0;
+  right: 0;
+  margin: auto;
+  display: none;
+}
+

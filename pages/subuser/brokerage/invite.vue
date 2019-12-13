@@ -5,7 +5,7 @@
 		</view>
 		<returns :titles='title'></returns>
 		<view class="pages">
-			<image src="../../../static/image/brokerage/yaoq.png" mode=""></image>
+			<image src="../../../static/image/brokerage/yaoq.png" mode="widthFix"></image>
 		</view>
 	</view>
 </template>

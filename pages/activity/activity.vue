@@ -10,10 +10,10 @@
 		</view>
 		  <view class="boxs" v-show="cur==0">
 			  <view class="worp" @tap="$jump('./particulars')">
-				 <image src="../../static/image/index/huo1.png"></image>
+				 <image src="../../static/image/index/huo1.png" mode="widthFix"></image>
 				 <view class="theme">让爱回家|高分孩子·智慧父母一大型公益巡讲</view>
 				 <view class="line">
-					  <image src="../../static/image/index/apply.png"></image>
+					  <image src="../../static/image/index/apply.png" mode="widthFix"></image>
 					  <text>已报名37人</text>
 					  <text>容限1000人报名</text>
 				  </view>
@@ -21,20 +21,20 @@
 			  </view>
 			  <view class="worp"  @tap="$jump('./particulars')">
 				  <view class="line">
-					  <image src="../../static/image/index/time.png"></image>
+					  <image src="../../static/image/index/time.png" mode="widthFix"></image>
 					  <text class="theme">6月27日 </text>
 					  <text>星期三</text>
 					  <text>17:00-19:00</text>
 				  </view>
 				  <hr />
 				  <view class="line">
-					  <image src='../../static/image/index/site.png'></image>
+					  <image src='../../static/image/index/site.png' mode="widthFix"></image>
 					  <text class="theme">广东省东莞市帝京国际酒店</text>
 				  </view>
-				 <image src="../../static/image/index/huo2.png"></image>
+				 <image src="../../static/image/index/huo2.png" mode="widthFix"></image>
 				  <view class="theme">让爱回家|高分孩子·智慧父母一大型公益巡讲</view>
 				  <view class="line">
-					  <image src="../../static/image/index/apply.png"></image>
+					  <image src="../../static/image/index/apply.png" mode="widthFix"></image>
 					  <text>已报名37人</text>
 					  <text>容限1000人报名</text>
 				   </view>

@@ -20,31 +20,31 @@
 				<view class="">课程视频</view>
 			</view>
 			<view class="tab_list"  @tap="$jump('../com_page/index_class?type=2')">
-				<image src='../../static/image/index/index_tab2.png'></image>
+				<image src='../../static/image/index/index_tab2.png' mode="widthFix"></image>
 				<view class="">音频</view>
 			</view>
 			<view class="tab_list" @tap="$jump()">
-				<image src='../../static/image/index/index_tab3.png'></image>
+				<image src='../../static/image/index/index_tab3.png' mode="widthFix"></image>
 				<view class="">文章</view>
 			</view>
 			<view class="tab_list" @tap="$jump('../subindex/classify')">
-				<image src='../../static/image/index/index_tab4.png'></image>
+				<image src='../../static/image/index/index_tab4.png' mode="widthFix"></image>
 				<view class="">分类</view>
 			</view>
 			<view class="tab_list" @tap="$jump()">
-				<image src='../../static/image/index/index_tab5.png'></image>
+				<image src='../../static/image/index/index_tab5.png' mode="widthFix"></image>
 				<view class="">学习记录</view>
 			</view>
 			<view class="tab_list" @tap="$jump()">
-				<image src='../../static/image/index/index_tab6.png'></image>
+				<image src='../../static/image/index/index_tab6.png' mode="widthFix"></image>
 				<view class="">商城</view>
 			</view>
 			<view class="tab_list" @tap="$jump('../subindex/evaluating')">
-				<image src='../../static/image/index/index_tab7.png'></image>
+				<image src='../../static/image/index/index_tab7.png' mode="widthFix"></image>
 				<view class="">幸福测评</view>
 			</view>
 			<view class="tab_list"  @tap="toactivity">
-				<image src='../../static/image/index/index_tab8.png'></image>
+				<image src='../../static/image/index/index_tab8.png' mode="widthFix"></image>
 				<view class="">活动发布</view>
 			</view>
 		</view>

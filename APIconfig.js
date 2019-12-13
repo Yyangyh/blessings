@@ -37,6 +37,10 @@ const api_root = {
 		v_orderDetail: api+'/api/videohome/orderDetail',//视频订单详情
 		v_saveOrder: api+'/api/videoorder/saveOrder',//视频订单提交
 		
+		c_msg_index:api+'/api/message/index',//用户消息
+		c_UnRead:api+'/api/message/UnRead',//未读总数
+		c_read:api+'/api/message/read',//消息未读->已读
+		
 	},
 	subhome:{
 		s_index: api+'/api/search/index',//商品列表

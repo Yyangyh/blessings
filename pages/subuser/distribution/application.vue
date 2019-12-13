@@ -22,8 +22,8 @@
 				<view class="lines">
 					<view class="l_felt">请上传营业执照</view>
 					<view class="l_right">
-						<image src="../../../static/image/subuser/photo.png"></image>
-						<image src='../../../static/image/index/go.png'></image>
+						<image src="../../../static/image/subuser/photo.png" mode="widthFix"></image>
+						<image src='../../../static/image/index/go.png' mode="widthFix"></image>
 					</view>
 				</view>
 			</view>
@@ -31,16 +31,16 @@
 				<view class="lines">
 					<view class="l_felt">法人身份证正面</view>
 					<view class="l_right">
-						<image src="../../../static/image/subuser/photo.png"></image>
-						<image src='../../../static/image/index/go.png'></image>
+						<image src="../../../static/image/subuser/photo.png" mode="widthFix"></image>
+						<image src='../../../static/image/index/go.png' mode="widthFix"></image>
 					</view>
 				</view>
 				<hr />
 				<view class="lines">
 					<view class="l_felt">法人身份证反面</view>
 					<view class="l_right">
-						<image src="../../../static/image/subuser/photo.png"></image>
-						<image src='../../../static/image/index/go.png'></image>
+						<image src="../../../static/image/subuser/photo.png" mode="widthFix"></image>
+						<image src='../../../static/image/index/go.png' mode="widthFix"></image>
 					</view>
 				</view>
 			</view>

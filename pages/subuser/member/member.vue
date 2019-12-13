@@ -13,14 +13,14 @@
 			</view>
 			<view class="explain">
 				<text>开通</text>
-				<image src='/static/image/subuser/VIP@2x.png'></image>
+				<image src='/static/image/subuser/VIP@2x.png' mode="widthFix"></image>
 				<text>即可尊享会员专属特权</text>
 			</view>
 		</view>
 		<view class="Package">
 			<view class="p-box1">
 				<view class="tu">
-					<image src='/static/image/subuser/box1.png'></image>
+					<image src='/static/image/subuser/box1.png' mode="widthFix"></image>
 					<text>推荐</text>
 				</view>
 				<view class="p-text1">
@@ -29,7 +29,7 @@
 				</view>
 				<view class="p-text2">￥198</view>
 				<view class="p-text3">
-					<image src='/static/image/subuser/tuijian.png'></image>
+					<image src='/static/image/subuser/tuijian.png' mode="widthFix"></image>
 					<text>立省20元</text>
 				</view>
 			</view>
@@ -40,7 +40,7 @@
 				</view>
 				<view class="p-text2">￥198</view>
 				<view class="p-text3">
-					<image src='/static/image/subuser/yituijian.png'></image>
+					<image src='/static/image/subuser/yituijian.png' mode="widthFix"></image>
 					<text>立省20元</text>
 				</view>
 			</view>
@@ -52,22 +52,22 @@
 			<text>50000积分可升级</text>
 			<text>VIP</text>
 		</view>
-		<image class="line" src="/static/image/subuser/line@2x.png"></image>
+		<image class="line" src="/static/image/subuser/line@2x.png" mode="widthFix"></image>
 		<view class="vip-center">
 			<image src='/static/image/subuser/davip.png'></image>
 			<text>专享权益</text>
 		</view>
 		<view class= "privilege">
 			<view class="pr-box">
-				<image src="/static/image/subuser/kecheng.png" mode=""></image>
+				<image src="/static/image/subuser/kecheng.png" mode="widthFix"></image>
 				<view>免费课程</view>
 			</view>
 			<view class="pr-box" >
-				<image src="/static/image/subuser/changting.png" mode=""></image>
+				<image src="/static/image/subuser/changting.png" mode="widthFix"></image>
 				<view>内容畅听</view>
 			</view>
 			<view class="pr-box">
-				<image src="/static/image/subuser/ticheng.png" mode=""></image>
+				<image src="/static/image/subuser/ticheng.png" mode="widthFix"></image>
 				<view>佣金提成</view>
 			</view>
 		</view>

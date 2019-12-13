@@ -29,7 +29,7 @@
 			<block v-for="(item,index) in data_list" :key='item.id'>
 				<view class="line">
 					<view class="l_left">
-						<image src="../../../static/image/subhome/photo.png"></image>
+						<image src="../../../static/image/subhome/photo.png" mode="widthFix"></image>
 						<view class="left_text">
 							<view><text style="margin-right: 5rpx;">昵称:</text><text>{{item.avatar}}</text></view>
 							<view style="margin-top: 5rpx;">{{item.order_no}}</view>

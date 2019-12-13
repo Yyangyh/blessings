@@ -704,6 +704,22 @@
 					"titleNView":false
 				}
 			}
+		},{
+			"path": "pages/subuser/abrief",
+			"style": {
+				"navigationBarTitleText": "公司简介",
+				"app-plus":{
+					"titleNView":false
+				}
+			}
+		},{
+			"path": "pages/subuser/ContactUs",
+			"style": {
+				"navigationBarTitleText": "联系我们",
+				"app-plus":{
+					"titleNView":false
+				}
+			}
 		}
 		
 	],

@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "导师考证",
+  "usingComponents": {
+    "returns": "/pages/common/returns"
+  }
+}

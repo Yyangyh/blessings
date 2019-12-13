@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "测评列表",
+  "usingComponents": {
+    "returns": "/pages/common/returns"
+  }
+}
