@@ -4,75 +4,75 @@
 			<!-- 这里是状态栏 -->
 		</view>
 		<returns :titles='title'></returns>
-		<image class="sign1" src='../../static/image/subuser/sign1.png'></image>
+		<image class="sign1" src='../../static/image/subuser/sign1.png' mode="widthFix"></image>
 		<view class="integral">
 			<view>612</view>
 			<view>签到积分</view>
 		</view>
 		<view class="singnBox">
 			<view class="state">已签到</view>
-			<image class="sign2" src="../../static/image/subuser/sign2.png"></image>
+			<image class="sign2" src="../../static/image/subuser/sign2.png" mode="widthFix"></image>
 			<view class="times">
 				<text>2</text>
 				<text>天</text>
 			</view>
 			<view class="time">
 				<view class="timebox">
-					<image src='../../static/image/subuser/qiandao.png'></image>
+					<image src='../../static/image/subuser/qiandao.png' mode="widthFix"></image>
 					<view>第1天</view>
 				</view>
 				<view class="gang">
 					
 				</view>
 				<view class="timebox">
-					<image src='../../static/image/subuser/qiandao.png'></image>
+					<image src='../../static/image/subuser/qiandao.png' mode="widthFix"></image>
 					<view>第2天</view>
 				</view>
 				<view class="gang">
 					
 				</view>
 				<view class="timebox">
-					<image src='../../static/image/subuser/qiandao.png'></image>
+					<image src='../../static/image/subuser/qiandao.png' mode="widthFix"></image>
 					<view>第3天</view>
 				</view>
 				<view class="gang">
 					
 				</view>
 				<view class="timebox">
-					<image src='../../static/image/subuser/qiandao.png'></image>
+					<image src='../../static/image/subuser/qiandao.png' mode="widthFix"></image>
 					<view>第4天</view>
 				</view>
 				<view class="gang">
 					
 				</view>
 				<view class="timebox">
-					<image src='../../static/image/subuser/qiandao.png'></image>
+					<image src='../../static/image/subuser/qiandao.png' mode="widthFix"></image>
 					<view>第5天</view>
 				</view>
 				<view class="gang">
 					
 				</view>
 				<view class="timebox">
-					<image src='../../static/image/subuser/qiandao.png'></image>
+					<image src='../../static/image/subuser/qiandao.png' mode="widthFix"></image>
 					<view>第6天</view>
 				</view>
 				<view class="gang">
 					
 				</view>
 				<view class="timebox">
-					<image src='../../static/image/subuser/qiandao.png'></image>
+					<image src='../../static/image/subuser/qiandao.png' mode="widthFix"></image>
 					<view>第7天</view>
 				</view>
 			</view>
 			<button type="default" @click="reveal=true">立即签到</button>
-			<view class="look">查看积分规则</view>
+			<view class="look" @tap="$jump('./integral/know')">查看积分规则</view>
 		</view>
 		<!-- 跳转 -->
 		<view class="mask_black" v-if="reveal">
 			
 		</view>
 		<view class="bk" v-if="reveal">
-			<image src='../../static/image/subuser/qiandao1.png'></image>
+			<image src='../../static/image/subuser/qiandao1.png' mode="widthFix"></image>
 			<view class="bk_text">
 				<view>签到成功</view>
 				<view>
