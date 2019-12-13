@@ -14,9 +14,10 @@
 				<image src="/static/image/com_page/share.png" mode="widthFix"></image>
 			</view>
 		</view>
-		
+		 <!--  -->
 		<view class="">
-			 <video id="myVideo" :src="play_url" :autoplay='true'   
+			 <video id="myVideo" :src="play_url"
+			 :autoplay='true'
 			 @pause='pause' 
 			 @timeupdate='timeupdate'
 			 @play='play_start' 
@@ -102,14 +103,14 @@
 			<view class="catalog_test">
 				目录
 			</view>
-			<view class="catalog" v-for="(item,index) in catalog_data" :key='item.id' @click="chiose_video(index)">
+			<view class="catalog" v-for="(item,index) in catalog_data" :key='item.id' @click="chiose_video(index,item.cou_is_free,item.id)">
 				<view class="play_status">
 					<image v-if="indexs === index"  src="../../static/image/com_page/video_HL.png" mode="widthFix"></image>
 					<image  v-else src="../../static/image/com_page/video.png" mode="widthFix"></image>
 					<text>{{item.name}}</text>
 				</view>
-				<view class="price_status">
-					{{}}
+				<view class="price_status" >
+					{{item.cou_is_free? '已学习'+item.section_plan : '￥'+item.v_price}}
 				</view>
 			</view>
 		</view>
@@ -301,20 +302,15 @@
 						return false
 					}
 				}
-			}
+			},
 		},
 		methods:{
 			pause(e){
 				// console.log(e)
 			},
 			timeupdate(e){ //记录播放进度
-				// console.log(e.detail)
-				// console.log(this.indexs != '' && Math.ceil(e.detail.currentTime) % 10 == 0)
-				// console.log(this.indexs === 0)
-				// // console.log(Math.ceil(e.detail.currentTime) != this.record_time)
-				// console.log('分割线')
 				if(this.indexs || this.indexs === 0){
-					console.log(this.catalog_data)
+					
 					if(Math.ceil(e.detail.currentTime) % 10 == 0){ //10s记录一次
 						if(Math.ceil(e.detail.currentTime) != this.record_time)	{
 							this.record_time += 10
@@ -332,7 +328,6 @@
 				}
 				
 			},
-			
 			play_start(e){ //添加视频阅读量 
 				// console.log(e)
 				if(this.play_store == false){
@@ -346,20 +341,24 @@
 				}
 				
 			},
-			chiose_video(index){ //选择目录播放
-				this.indexs = index
-				this.play_url = this.service.analysis_url(this.catalog_data[index].video_url)
+			chiose_video(index,cou_is_free,id){ //选择目录播放
+				if(cou_is_free == false){
+					uni.showModal({
+					    title: '提示',
+					    content: '是否购买该章节？',
+					    success: res =>{
+					        if (res.confirm) {
+								this.$jump('./v_order?id='+this.id+'&s_id='+id)
+							} 
+					    }
+					});
+				}else{
+					this.indexs = index
+					this.play_url = this.service.analysis_url(this.catalog_data[index].video_url)
+				}
+				
 			},
 			play_end(e){ //播放结束时
-				// console.log(e)
-				// if(this.recommend == true){ //当宣传视频播放结束时
-				// 	this.indexs = 0
-				// 	this.recommend =false
-				// 	this.play_url = this.service.analysis_url(this.catalog_data[0].video_url)
-				// }else{
-				// 	this.indexs ++
-				// 	this.play_url = this.service.analysis_url(this.catalog_data[this.indexs].video_url)
-				// }
 				if(this.indexs){ //当宣传视频播放结束时
 					this.indexs ++
 					this.play_url = this.service.analysis_url(this.catalog_data[this.indexs].video_url)
@@ -434,10 +433,6 @@
 					mobile:this.$store.state.user.mobile,
 				},function(self,res){
 					self.data = res.data
-					// if(res.data.video.v_url){
-						  // self.play_url = self.service.analysis_url(res.data.video.v_url)
-					// 	 self.recommend = true
-					// }
 					res.data.video.v_url ? self.play_url = self.service.analysis_url(res.data.video.v_url) : self.indexs = 0
 					self.video_data = res.data.video
 					self.collects = res.data.video.collect
@@ -449,8 +444,22 @@
 					video_id:this.id,
 					user_id:this.$store.state.user.id,
 				},function(self,res){
-					self.catalog_data = res.data.video_list
-					// if( self.recommend == false) self.indexs = 0
+					let data = res.data.video_list
+					for (let s of data) {//判断目录是否免费
+						s.cou_is_free = false
+					}
+					if(self.data.vorder.is_bay_all == 1){
+						for (let s of data) {
+							s.cou_is_free = true
+						}
+					}else if(self.data.vorder.is_bay_all == 0){
+						for (let s of data) {
+							if(self.data.vorder.section_all.indexOf(s.id) != -1) s.cou_is_free = true
+						}
+					}
+					console.log(data)
+					self.catalog_data = data
+					
 				})
 				
 			}

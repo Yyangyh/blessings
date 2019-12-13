@@ -270,6 +270,7 @@
 				section_id:0,
 				coupon_id:0
 			}
+			if(e.s_id) require_data.section_id = e.s_id
 			this.require_data = require_data
 		},
 		onShow() {
