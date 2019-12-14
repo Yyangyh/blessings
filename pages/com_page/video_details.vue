@@ -14,10 +14,10 @@
 				<image src="/static/image/com_page/share.png" mode="widthFix"></image>
 			</view>
 		</view>
-		 <!--  -->
+		 <!--  :autoplay='true' -->
 		<view class="">
 			 <video id="myVideo" :src="play_url"
-			 :autoplay='true'
+			:initial-time = 'initial_time'
 			 @pause='pause' 
 			 @timeupdate='timeupdate'
 			 @play='play_start' 
@@ -255,14 +255,18 @@
 				</view>
 			</view>
 		</view>
-		
+		<load v-if="false"></load>
 	</view>
 </template>
 
 <script>
 	import collect_img from '../../static/image/com_page/collect_HL.png'
 	import integral_img from '../../static/image/com_page/integral.png'
+	import load from '../common/load.vue'
 	export default{
+		components:{
+			load
+		},
 		data() {
 			return {
 				id:'',
@@ -284,7 +288,10 @@
 				play_store:false,
 				poster:'',
 				record_time:0,
-				recommend:false
+				load_show:false,
+				duration_time:'',
+				receive_status:false,
+				initial_time:0 //指定视频播放初始秒数
 			}
 		},
 		computed:{
@@ -309,24 +316,42 @@
 				// console.log(e)
 			},
 			timeupdate(e){ //记录播放进度
+				this.duration_time = e.detail.duration
 				if(this.indexs || this.indexs === 0){
-					
 					if(Math.ceil(e.detail.currentTime) % 10 == 0){ //10s记录一次
 						if(Math.ceil(e.detail.currentTime) != this.record_time)	{
-							this.record_time += 10
-							this.service.entire(this,'post',this.APIconfig.api_root.com_page.v_playProcess,{
-								video_id:this.id,
-								user_id:this.$store.state.user.id,
-								section_id:this.catalog_data[this.indexs].id,
-								play_time:e.detail.currentTime,
-								s_process:e.detail.duration
-							},function(self,res){
-								console.log(res)
-							})
+							this.record_time = Math.ceil(e.detail.currentTime)
+							this.record_play(e.detail.currentTime,e.detail.duration) //记录播放进度
+							let speed = Math.round((Math.ceil(e.detail.currentTime)/Math.ceil(e.detail.duration))*100)/100
+							if(speed > 0.8 && this.receive_status == false){ //当播放比例大于百分之80时自动领取章节积分
+								this.receive_int() //自动领取积分
+								this.receive_status = true
+							}
 						}
 					}
 				}
 				
+			},
+			record_play(currentTime,duration){//记录播放进度
+				this.service.entire(this,'post',this.APIconfig.api_root.com_page.v_playProcess,{
+					video_id:this.id,
+					user_id:this.$store.state.user.id,
+					section_id:this.catalog_data[this.indexs].id,
+					play_time:currentTime,
+					s_process:duration
+				},function(self,res){
+					console.log(res)
+				})
+			},
+			receive_int(){ //自动领取积分
+				this.service.entire(this,'post',this.APIconfig.api_root.com_page.v_integral,{
+					video_id:this.id,
+					userid:this.$store.state.user.id,
+					mobile:this.$store.state.user.mobile,
+					section_id:this.catalog_data[this.indexs].id
+				},function(self,res){
+					
+				})
 			},
 			play_start(e){ //添加视频阅读量 
 				// console.log(e)
@@ -359,8 +384,13 @@
 				
 			},
 			play_end(e){ //播放结束时
-				if(this.indexs){ //当宣传视频播放结束时
-					this.indexs ++
+				
+				if(this.indexs || this.indexs === 0){ //当宣传视频播放结束时
+					this.record_time = 0
+					this.record_play(this.duration_time,this.duration_time)
+					this.receive_status == false ? this.receive_int() : this.receive_status = false //播放结束时再判断一次是否领取积分
+					if(this.indexs === this.catalog_data.length - 1) return//当视频目录最后一个播放完毕时 
+					this.indexs++
 					this.play_url = this.service.analysis_url(this.catalog_data[this.indexs].video_url)
 				}else{
 					this.indexs = 0
@@ -445,19 +475,32 @@
 					user_id:this.$store.state.user.id,
 				},function(self,res){
 					let data = res.data.video_list
-					for (let s of data) {//判断目录是否免费
-						s.cou_is_free = false
-					}
-					if(self.data.vorder.is_bay_all == 1){
+					
+					if(self.is_free == false){//当视频免费时目录全免
 						for (let s of data) {
 							s.cou_is_free = true
 						}
-					}else if(self.data.vorder.is_bay_all == 0){
-						for (let s of data) {
-							if(self.data.vorder.section_all.indexOf(s.id) != -1) s.cou_is_free = true
+					}else{
+						for (let s of data) {//判断目录是否免费
+							s.cou_is_free = false
+						}
+						if(self.data.vorder.is_bay_all == 1){
+							for (let s of data) {
+								s.cou_is_free = true
+							}
+						}else if(self.data.vorder.is_bay_all == 0){
+							for (let s of data) {
+								if(self.data.vorder.section_all.indexOf(s.id) != -1 || s.v_price == 0) s.cou_is_free = true
+							}
 						}
 					}
-					console.log(data)
+					
+					if(res.data.video.new_play){  //当用户有历史播放记录时
+						console.log(data[res.play_index])
+						self.play_url = self.service.analysis_url(data[res.play_index].video_url)
+						self.initial_time = res.data.video.new_play.play_time
+					}
+					
 					self.catalog_data = data
 					
 				})
