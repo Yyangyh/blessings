@@ -22,25 +22,36 @@
 				</view>
 				<view class="l_right">{{item.desc}}</view>
 			</view>
+			<uni-load-more :status="more"></uni-load-more>
 		</view>
+		
 	</view>
 </template>
 
 <script>
 	import returns from '../common/returns.vue'
+	import uniLoadMore from '../../components/uni-load-more/uni-load-more.vue'
 		export default{
 			components:{
-				returns
+				returns,
+				uniLoadMore
 			},
 			data(){
 				return{
 					title:'余额',
 					cur:'',
-					dataList:'',
+					dataList:[],
+					more:'more',
+					page:1,
+					loadRecord: true
 				}
 			},
 			methods:{
 				choise(all){
+					this.more = 'loading'
+					this.dataList.length = 0
+					this.page = 1
+					this.loadRecord = true
 					all? this.cur = all :this.cur = 2,
 					console.log(this.cur)
 					let data ={
@@ -48,14 +59,36 @@
 						page:1,
 						operation_type:all
 					}
-					this.service.entire(this,'post',this.APIconfig.api_root.subuser.u_balance_index,data,function(self,res){
-						console.log(res)
-						
-						self.dataList = res.data.data
+					this.Index(data)
+					
+				},
+				loadMore(){
+					this.more = 'loading'
+					let data = {
+						user_id:this.$store.state.user.id,
+						page:this.page,
+						operation_type:this.cur
+					}
+					if(data.operation_type == 2) delete data.operation_type
+					this.Index(data)
+				},
+				Index(data){
+					this.service.entire(this,'post',this.APIconfig.api_root.subuser.u_integral_index,data,function(self,res){
+						self.dataList.push(...res.data.data)
+						self.page ++
+						self.more = 'more'
+						if(res.data.data.length < 10){
+							self.more = 'noMore'
+							self.loadRecord = false
+						}
 					})
 				}
 			},
-			onShow() {
+			onReachBottom() {
+				if (this.loadRecord == false) return
+				this.loadMore()
+			},
+			onLoad() {
 				this.choise()
 			}
 		}

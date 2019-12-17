@@ -34,7 +34,7 @@
 
 <script>
 	import returns from '../../common/returns.vue'
-	import uniLoadMore from '../../../components/uni-load-more/uni-load-more.vue'
+	import uniLoadMore from '../../../components/uni-load-more/uni-load-more.vue'//引进组件
 	export default{
 		components:{
 			returns,
@@ -45,56 +45,74 @@
 				title:'我的积分',
 				cur:'',
 				dataList:[],
+				//下面三个必须填写的初始值
 				more: 'more',
 				page: 1,
 				loadRecord: true
 			}
 		},
 		methods:{
+<<<<<<< HEAD
 			choise(all){
 				this.more = 'loading'
 				this.loadRecord = true
 				this.dataList.length = 0
 				this.page = 1
 				all? this.cur = all :this.cur = 2
+=======
+			choise(all){ //切换状态执行
+				this.more = 'loading' //加载状态
+				this.dataList.length = 0 //切换数据归零
+				this.page = 1 //初始页码为1
+				all? this.cur = all :this.cur = 2 //判断type值
+>>>>>>> 58434dac5e73586bcbe62aa22ae0d75bc5ba9151
 				let data ={
 					user_id:this.$store.state.user.id,
 					page:1,
 					type:all
 				}
 				console.log(data)
-				this.Index(data)
+				this.Index(data) //执行接口
 			},
+<<<<<<< HEAD
 			loadMore(){
 				this.more = 'loading'
+=======
+			loadMore(){//滚动到底部执行
+>>>>>>> 58434dac5e73586bcbe62aa22ae0d75bc5ba9151
 				let data = {
 					user_id:this.$store.state.user.id,
 					page:this.page,
 					type:this.cur
 				}
+<<<<<<< HEAD
 				
 				// if(data.type == 2) delete data.type;
 				if(data.type == 2) Reflect.deleteProperty(data, "type");
 				console.log(data)
 				this.Index(data)
+=======
+				if(data.type == 2) delete data.type
+				this.Index(data)//执行接口
+>>>>>>> 58434dac5e73586bcbe62aa22ae0d75bc5ba9151
 			},
-			Index(data){
+			Index(data){//这是最后一步 
 				this.service.entire(this,'post',this.APIconfig.api_root.subuser.u_integral_index,data,function(self,res){
 					self.dataList.push(...res.data.data)
-					self.page ++ 
+					self.page ++ //页码数+1
 					self.more = 'more'
-					if(res.data.data.length < 10){
+					if(res.data.data.length < 10){//判断是否还有下一页
 						self.more = 'noMore'
 						self.loadRecord = false
 					}
 				})
 			}
 		},
-		onReachBottom() {
+		onReachBottom() {//页面上拉。触低事件
 			if (this.loadRecord == false) return
 			this.loadMore()
 		},
-		onLoad() {
+		onLoad() { //页面只加载一回
 			this.choise()
 		}
 	}

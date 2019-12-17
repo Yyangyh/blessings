@@ -77,9 +77,11 @@
 				<view class="mid_test">
 					讲师介绍
 				</view>
-				<view class="mid_tutor">
+				<view class="mid_tutor" @tap="$jump('./introduce?techer_id='+video_data.techer_id)">
 					<view class="tu_one">
-						<image :src="video_data.head_pic" mode="widthFix"></image>
+						<view class="Image">
+							<image :src="video_data.head_pic" mode="scaleToFill"></image>
+						</view>
 						<view class="tu_name">
 							<view class="">
 								{{video_data.name}}
@@ -906,7 +908,6 @@
 		padding: 20rpx 30rpx;
 		.user {
 				display: flex;
-				// align-items: center;
 				justify-content: space-between;
 				margin: 20rpx 0;
 				.user_one{
@@ -1003,7 +1004,12 @@
 			}
 		}
 	}
-	
+	.Image{
+		width: 88rpx;
+		height: 88rpx;
+		border-radius: 50rpx;
+		margin-right: 20rpx;
+	}
 	
 	
 	

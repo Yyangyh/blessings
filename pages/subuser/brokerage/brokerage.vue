@@ -97,9 +97,14 @@
 </script>
 
 <style lang="scss">
+	page{
+		// width: 100%;
+		// height: 100%;
+		background-color: #F6F6F7;
+	}
 	.content{
 		width: 100%;
-		height: 100vh;
+		
 		background-color: #F6F6F7;
 		.worp{
 			background-color: #FFFFFF;

@@ -84,6 +84,15 @@
 			}
 		},
 		{
+			"path": "pages/com_page/introduce",
+			"style": {
+				"navigationBarTitleText": "讲师介绍",
+				"app-plus":{
+					"titleNView":false
+				}
+			}
+		},
+		{
 			"path": "pages/com_page/shopp_cart",
 			"style": {
 				"navigationBarTitleText": "购物车",

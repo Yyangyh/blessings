@@ -45,6 +45,7 @@ const api_root = {
 		v_orderDetail: api+'/api/videohome/orderDetail',//视频订单详情
 		v_saveOrder: api+'/api/videoorder/saveOrder',//视频订单提交
 		v_playProcess: api+'/api/videohome/playProcess',//视频播放进度记录
+		v_techerDetail:api+'/api/videohome/techerDetail',//作者详情
 
 		
 		c_msg_index:api+'/api/message/index',//用户消息
