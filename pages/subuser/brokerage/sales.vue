@@ -62,7 +62,7 @@
 			</view>
 			<view class="explain">买家确认订单后,立即获得分销佣金</view>
 			<view class="explain">注意:可用佣金 <text>1元</text>后才能申请提现</view>
-			<button class="btn" type="default">提现</button>
+			<button class="btn" type="default" @tap="$jump('./withdraw?deposit='+dataList.can_cash)">提现</button>
 		</view>
 	</view>
 </template>

@@ -94,8 +94,8 @@
 				})
 			}
 		},
-		onShow() {
-			Index(0)
+		onLoad() {
+			this.Index(0)
 		}
 		
 	}
