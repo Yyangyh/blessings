@@ -28,8 +28,10 @@
 			<view class="write">
 				<view class="msg1">
 					<text>性别</text>
-					<view>
-						<text>男</text>
+					<view class="msg1_picker">
+						<picker @change="Change" :value="index"  :range="array">
+							<view class="uni-input">{{array[index]}}</view>
+						</picker>
 						<image src="../../static/image/index/go.png" mode="widthFix"></image>
 					</view>
 				</view>
@@ -42,18 +44,23 @@
 				<hr />
 				<view class="msg1">
 					<text>申请类别</text>
-					<view>
-						<text>初级</text>
+					<view class="msg1_picker">
+						<picker @change="Change_grade" :value="grade_index"  range-key="text" :range="grade_list"  v-if="grade_list.length">
+							<view class="uni-input">{{grade_list[grade_index].text}}</view>
+						</picker>
 						<image src="../../static/image/index/go.png" mode="widthFix"></image>
 					</view>
 				</view>
 				<hr />
 				<view class="msg1">
 					<text>证件类别</text>
-					<view>
-						<text>家长证</text>
+					<view class="msg1_picker">
+						<picker @change="Change_apply" :value="apply_index"  range-key="text" :range="apply_list"  v-if="apply_list.length">
+							<view class="uni-input">{{apply_list[apply_index].text}}</view>
+						</picker>
 						<image src="../../static/image/index/go.png" mode="widthFix"></image>
 					</view>
+					
 				</view>
 				<hr />
 				<view class="msg2">
@@ -61,8 +68,9 @@
 					<textarea rows="2" cols="10" value="" placeholder="请填写详细地址" v-model="site"></textarea>
 				</view>
 			</view>
-			<button type="default"  @click="register()">立即申请</button>
+			<button  @click="register()">立即申请</button>
 		</form>
+		
 	</view>
 </template>
 
@@ -80,10 +88,28 @@
 				idCard:'',
 				text:'',
 				site:'',
+				index:0,
+				array: ['男', '女'],
+				grade_index:0,
+				grade_list:[],
+				apply_index:0,
+				apply_list:[]
 			}
 		},
 		methods:{
-			 register(){
+			Change(e){
+				console.log('picker发送选择改变，携带值为', e.target.value)
+				this.index = e.target.value
+			},
+			Change_grade(e){
+				console.log('picker发送选择改变，携带值为', e.target.value)
+				this.grade_index = e.target.value
+			},
+			Change_apply(e){
+				console.log('picker发送选择改变，携带值为', e.target.value)
+				this.apply_index = e.target.value
+			},
+			register(){
 				 let tel2 = /^(13[0-9]|14[5|7]|15[0|1|2|3|5|6|7|8|9]|18[0|1|2|3|5|6|7|8|9])\d{8}$/.test(this.phone);
 				 let idcard =  /^\d{15}(\d{2}[A-Za-z0-9])?$/.test(this.idCard);
 				 let nam = /^[\u4E00-\u9FA5]{2,4}$/.test(this.name);
@@ -108,7 +134,7 @@
 					 	title:'请您输入正确的名字!'
 					 })
 				 }
-			 }
+			}
 		},
 		onLoad() {
 			this.service.entire(this,'post',this.APIconfig.api_root.subclass.c_formData,{
@@ -124,15 +150,23 @@
 			},function(self,res){
 				console.log(res)
 			})
+		},
+		onShow() {
+			this.service.entire(this,'post',this.APIconfig.api_root.subclass.c_Index,{},function(self,res){
+				console.log(res)
+				self.grade_list = res.data.grade
+				self.apply_list = res.data.apply
+			})
 		}
 	}
 </script>
 
 <style lang="scss">
-	.content{
+	page{
 		background-color: #F6F6F6;
+	}
+	.content{
 		width: 100%;
-		height: 100vh;
 		hr{
 			height:1rpx;
 			border: none;
@@ -175,6 +209,7 @@
 				textarea{
 					width: 70%;
 					height:130rpx;
+					font-size: 28rpx;
 				}
 			}
 			.msg1{
@@ -186,12 +221,17 @@
 				image{
 					width: 16rpx;
 					height: 31rpx;
+					margin-left: 20rpx;
 				}
-				text{
-					margin-right:20rpx ;
+				.msg1_picker{
+					display: flex;
+					align-items: center;
 				}
 			}
 			view{
+				font-size: 24rpx;
+			}
+			input{
 				font-size: 24rpx;
 			}
 		}
@@ -203,6 +243,7 @@
 			color:#FFFFFF;
 			text-align: 32rpx;
 			line-height: 80rpx;
+			font-size: 28rpx;
 		}
 		.t3{
 			padding: 20rpx 30rpx;

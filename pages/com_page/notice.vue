@@ -5,7 +5,7 @@
 		</view>
 		<returns :titles='title'></returns>
 		<!-- 未读消息 -->
-		<view class="msg" v-for="(item,index) in dataList.data" :key = 'item.id' @tap="unfold(item.id,index)">
+		<view class="msg" v-for="(item,index) in dataList" :key = 'item.id' @tap="unfold(item.id,index)">
 			<view class="top">
 				<view class="t_top"> 
 					<image src="../../static/image/com_page/xit.png"></image>
@@ -18,27 +18,32 @@
 			</view>
 			<view class="times">{{item.add_time_date}}</view>
 		</view>
+		<uni-load-more :status="more"></uni-load-more>
 	</view>
 </template>
 
 <script>
 	import returns from '../common/returns.vue'
+	import uniLoadMore from '../../components/uni-load-more/uni-load-more.vue'
 	export default{
 		components:{
-			returns
+			returns,
+			uniLoadMore
 		},
 		data() {
 			return {
 				title:'系统通知',
-				dataList:'',
+				dataList:[],
 				msgs:'',
-				
+				more: 'more',
+				page: 1,
+				loadRecord: true
 			}
 		},
 		methods:{
-			unfold(id,index){
-				console.log(this.dataList.data[index].is_read)
-				this.dataList.data[index].is_read=1
+			unfold(id,index){ //读取信息
+				console.log(this.dataList[index].is_read)
+				this.dataList[index].is_read=1
 				this.msgs = index 
 				this.service.entire(this,'post',this.APIconfig.api_root.com_page.c_read,{
 					user_id:this.$store.state.user.id,
@@ -46,16 +51,29 @@
 				},function(self,res){
 					
 				})
+			},
+			loadMore(){
+				this.more = 'loading'
+				this.service.entire(this,'post',this.APIconfig.api_root.com_page.c_msg_index,{
+					user_id:this.$store.state.user.id,
+					page:this.page
+				},function(self,res){
+					self.dataList.push(...res.data.data)
+					self.page ++ 
+					self.more = 'more'
+					if(res.data.data.length < 10) {
+						self.loadRecord = false
+						self.more = 'noMore'
+					}
+				})
 			}
 		},
-		onShow() {
-			this.service.entire(this,'post',this.APIconfig.api_root.com_page.c_msg_index,{
-				user_id:this.$store.state.user.id,
-				
-			},function(self,res){
-				console.log(res)
-				self.dataList = res.data
-			})
+		onReachBottom() {
+			if (this.loadRecord == false) return
+			this.loadMore()
+		},
+		onLoad() {
+			this.loadMore()
 		}
 	}
 </script>
