@@ -28,7 +28,6 @@
 <style lang="scss">
 	.content{
 		width: 100%;
-		height: 100vh;
 		image{
 			width: 711rpx;
 			height: 1009rpx;

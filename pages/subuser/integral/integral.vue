@@ -53,6 +53,7 @@
 		methods:{
 			choise(all){
 				this.more = 'loading'
+				this.loadRecord = true
 				this.dataList.length = 0
 				this.page = 1
 				all? this.cur = all :this.cur = 2
@@ -65,13 +66,16 @@
 				this.Index(data)
 			},
 			loadMore(){
+				this.more = 'loading'
 				let data = {
 					user_id:this.$store.state.user.id,
 					page:this.page,
 					type:this.cur
 				}
 				
-				if(data.type == 2) delete data.type
+				// if(data.type == 2) delete data.type;
+				if(data.type == 2) Reflect.deleteProperty(data, "type");
+				console.log(data)
 				this.Index(data)
 			},
 			Index(data){

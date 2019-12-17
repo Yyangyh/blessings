@@ -11,7 +11,7 @@
 			  <text @click="cur=3" class="four" :class="{active:cur==3}">已打款</text>
 			  <text @click="cur=4" class="five" :class="{active:cur==4}">无效</text>
 		</view> -->
-		<view class="box"  v-show="cur==0"> 
+		<view class="box"> 
 			<view class="line" v-for="(item,index) in dataList" :key='item.id'>
 				<view class="b_left">
 					<view class="tops">{{item.title}}</view>
@@ -46,7 +46,7 @@
 				user_id:this.$store.state.user.id,
 			},function(self,res){
 				console.log(res)
-				self.dataList = res.data
+				self.dataList = res.data.data
 			})
 		}
 	}

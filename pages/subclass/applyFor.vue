@@ -110,7 +110,7 @@
 				this.apply_index = e.target.value
 			},
 			register(){
-				 let tel2 = /^(13[0-9]|14[5|7]|15[0|1|2|3|5|6|7|8|9]|18[0|1|2|3|5|6|7|8|9])\d{8}$/.test(this.phone);
+				
 				 let idcard =  /^\d{15}(\d{2}[A-Za-z0-9])?$/.test(this.idCard);
 				 let nam = /^[\u4E00-\u9FA5]{2,4}$/.test(this.name);
 				 if (this.phone == "" || this.name == ""||this.idCard ==""||this.text == ""||this.idCard ==""||this.site == "") {
@@ -118,38 +118,45 @@
 				 		icon:'none',
 						title:'输入框不能为空!'
 				 	})
-				 }else if(!tel2){
+					return false
+				 }else if(!(/^1[3-9][0-9]\d{8,11}$/.test(this.phone))){
 					 uni.showToast({
 					 	icon:'none',
 					 	title:'请输入正确的11位手机号码!'
 					 })
+					 return false
 				 }else if(!idcard){
 					 uni.showToast({
 					 	icon:'none',
 					 	title:'请输入正确的身份证号码!'
 					 })
+					 return false
 				 }else if(!nam){
 					 uni.showToast({
 					 	icon:'none',
 					 	title:'请您输入正确的名字!'
 					 })
+					 return false
 				 }
+				 let data = {
+				 	user_id:this.$store.state.user.id,
+				 	username:this.name,
+				 	mobile:this.phone,
+				 	id_card:this.idCard,
+				 	gender:this.index == 0? 1 : 2,
+				 	culture:this.text,
+				 	apply:this.grade_list[this.grade_index].id,
+				 	classify:this.apply_list[this.apply_index].id,
+				 	address:this.site,
+				 }
+				 console.log(data)
+				 this.service.entire(this,'post',this.APIconfig.api_root.subclass.c_formData,data,function(self,res){
+				 	console.log(res)
+				 })
 			}
 		},
 		onLoad() {
-			this.service.entire(this,'post',this.APIconfig.api_root.subclass.c_formData,{
-				// user_id:this.$store.state.user.id,
-				// username:this.name
-				// mobile:this.phone
-				// id_card:this.idCard
-				// gender:
-				// culture:this.text
-				// apply:
-				// classify:
-				// address:this.site
-			},function(self,res){
-				console.log(res)
-			})
+			
 		},
 		onShow() {
 			this.service.entire(this,'post',this.APIconfig.api_root.subclass.c_Index,{},function(self,res){
@@ -191,6 +198,7 @@
 					color: #FF431D;
 				}
 				input{
+					flex-grow: 2;
 					font-size: 28rpx;
 				}
 				

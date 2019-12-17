@@ -41,7 +41,6 @@
 <style lang="scss">
 	.content{
 		background-color: #F6F6F7;
-		height: 100vh;
 	}
 	.line{
 		display: flex;
