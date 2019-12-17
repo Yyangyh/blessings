@@ -11,7 +11,7 @@
 		
 		<view class="text1">学习打卡积分满10000分 </view>
 		<view class="text2">可立即申请证书</view>
-		<button type="default"  @tap="$jump('./applyFor')">立即申请</button>
+		<button type="default"  @tap="$jump('./applyFor')">再次申请</button>
 	</view>
 </template>
 
