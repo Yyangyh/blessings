@@ -83,6 +83,7 @@ const api_root = {
 		u_CommissionType:api+'/api/distribute/CommissionType',//分销佣金
 		u_cash:api+'/api/distribute/cash',//佣金提现
 		u_Subordinate:api+'/api/distribute/Subordinate',//我的同学
+		u_InviteCode:api+'/api/distribute/InviteCode',//邀请二维码
 		
 		u_balance_index:api+'/api/balance/index',//余额
 		u_getStutyPlan:api+'/api/videohome/getStutyPlan',//我的学习 /学习记录

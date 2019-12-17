@@ -28,7 +28,7 @@
 				<view class="allorder">
 					  <text @click="Index(1)" class="one" :class="{active:cur==1}">我邀请的</text>
 					  <text @click="Index(2)" class="two" :class="{active:cur==2}">邀请我的</text>
-					   <text @click="cur=3" class="three" :class="{active:cur==3}">邀请记录</text>
+					   <!-- <text @click="cur=3" class="three" :class="{active:cur==3}">邀请记录</text> -->
 					   
 				</view>
 				<view class="box" v-show="cur==1">
@@ -329,6 +329,9 @@
 							width: 33rpx;
 							height: 33rpx;
 							margin-top: 50rpx;
+						}
+						input{
+							font-size: 24rpx;
 						}
 					}
 				}

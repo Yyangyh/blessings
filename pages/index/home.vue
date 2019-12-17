@@ -36,28 +36,31 @@
 			</view>
 		</view>
 		<view class="propulsion">
-			<view class="top">
-				<image src='../../static/image/index/start.png'></image>
-				<text style="color:#D80000;font-size: 30upx;">新品上市</text>
-			</view>
+			
 			<view class="commodity_box">
-				<view class="commodity" v-for="(itemo,indexo) in new_goods " :key='itemo.id'>
-					
+				<view class="top">
+					<image src='../../static/image/index/start.png'></image>
+					<text style="color:#D80000;font-size: 30upx;">新品上市</text>
+				</view>
+				<view class="commodity" v-for="(itemo,indexo) in new_goods " :key='itemo.id' @tap="$jump('/pages/subhome/details?id='+itemo.id)">
 					<view class="pages"><image :src='itemo.images'></image></view>
 					<view class="name">{{itemo.title}}</view>
 					<view style="color:#D80000;font-size: 30upx">{{itemo.price}}</view>
 				</view>
 			</view>
 			
-			<!-- <view class="commodity" v-for="(itemo,indexo) in new_goods " :key='itemo.id'>
+			<view class="commodity_box">
 				<view class="top">
 					<image src='../../static/image/index/start.png'></image>
 					<text style="color:#EF7C38;font-size: 30upx;">超值拼团</text>
 				</view>
-				<view class="pages"><image :src='itemo.images'></image></view>
-				<view class="name">{{itemo.title}}</view>
-				<view style="color:#D80000;font-size: 30upx">{{itemo.price}}</view>
-			</view> -->
+				<view  class="commodity"  v-for="(itemo,indexo) in new_goods " :key='itemo.id'  @click="$jump('/pages/subhome/threehome/group_products?id='+itemo.id)">
+					<view class="pages"><image :src='itemo.images'></image></view>
+					<view class="name">{{itemo.title}}</view>
+					<view style="color:#D80000;font-size: 30upx">{{itemo.price}}</view>
+				</view>
+				
+			</view>
 			
 		</view>
 		<view class="all">
@@ -147,25 +150,24 @@ res
 		}
 		.propulsion{
 			background-color: #F6F6F6;
-			// display: flex;
+			display: flex;
 			padding-bottom: 30rpx;
 			padding-top: 20rpx;
-			.top{
-				display: flex;
-				align-items: center;
-				margin: 0 20rpx;
-				padding-bottom: 24rpx;
-				image{
-					width: 31upx;
-					height: 31upx;
-					margin:0upx 10upx 0 0;
-				}
-			}
 			.commodity_box{
-				display: flex;
+				.top{
+					display: flex;
+					align-items: center;
+					margin: 0 20rpx;
+					padding-bottom: 24rpx;
+					image{
+						width: 31upx;
+						height: 31upx;
+						margin:0upx 10upx 0 0;
+					}
+				}
 				.commodity{
-					width: 50%;
-					margin-left:22upx ;
+					// width: 50%;
+					// margin-left:22upx ;
 					padding: 0 10rpx;
 					.pages{
 						width: 341upx;
@@ -187,6 +189,8 @@ res
 					}
 				}
 			}
+				
+			
 			
 		}
 		.all{

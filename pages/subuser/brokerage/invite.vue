@@ -4,8 +4,11 @@
 					
 		</view>
 		<returns :titles='title'></returns>
+		<view class="back_img">
+			<image src="../../../static/image/brokerage/brokerage-back.png" mode="widthFix"></image>
+		</view>
 		<view class="pages">
-			<image src="../../../static/image/brokerage/yaoq.png" mode="widthFix"></image>
+			<image :src="APIconfig.api_img + code_img" mode="widthFix"></image>
 		</view>
 	</view>
 </template>
@@ -19,7 +22,16 @@
 		data(){
 			return{
 				title:'我的邀请码',
+				code_img:''
 			}
+		},
+		onShow() {
+			this.service.entire(this,'post',this.APIconfig.api_root.subuser.u_InviteCode,{
+				user_id:this.$store.state.user.id,
+				url:'http://192.168.0.166:8000/h5/#/pages/login/reg'
+			},function(self,res){
+				self.code_img = res.data.invite_code_img
+			})
 		}
 	}
 </script>
@@ -27,16 +39,30 @@
 <style lang="scss">
 	.content{
 		width: 100%;
-		height: 1334rpx;
-		background: url(../../../static/image/brokerage/brokerage-back.png) no-repeat;
-		background-size:100% 100%;
+		overflow-y: hidden;
+		// position: relative;
+		.back_img{
+			
+			position: fixed;
+			z-index: 80;
+			top: calc(105rpx + var(--status-bar-height));
+			left: 0;
+			width: 100%;
+			image{
+				
+				width: 100%;
+			}
+		}
 		.pages{
-			width:366rpx;
-			height:366rpx;
+			// padding: 10rpx;
 			background:rgba(255,255,255,1);
 			box-shadow:0px 8rpx 7rpx 1rpx rgba(51,174,244,0.25);
 			border-radius:10rpx;
-			margin: 666rpx 0 0 192rpx;
+			position: fixed;
+			left: 50%;
+			transform: translateX(-50%);
+			bottom: 200rpx;
+			z-index: 100;
 			image{
 				width: 342rpx;
 				height: 342rpx;

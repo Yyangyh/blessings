@@ -24,11 +24,11 @@
 			
 			
 			
-			if(this.$store.state.hasLogin == false){  //未登陆时跳转登陆页面
-				uni.reLaunch({
-				    url: 'pages/login/login'
-				});
-			}
+			// if(this.$store.state.hasLogin == false){  //未登陆时跳转登陆页面
+			// 	uni.reLaunch({
+			// 	    url: 'pages/login/login'
+			// 	});
+			// }
 			
 		},
 		onShow: function() {

@@ -16,7 +16,7 @@
 			<text @click="obtain()">{{verification}}</text>
 		</view>
 		<view class="ipt">
-			<input type="text" v-model="parent_id" value="" maxlength="4" placeholder="请输入邀请码"/>
+			<input type="text" v-model="parent_id" :disabled="parent_dis" value="" maxlength="4" placeholder="请输入邀请码"/>
 			<!-- <text @click="obtain()">{{verification}}</text> -->
 		</view>
 		<view class="ipt">
@@ -29,16 +29,16 @@
 		</view>
 		
 		
-		<view class="treaty" v-if="open_protocol == 1">
+		<!-- <view class="treaty" v-if="open_protocol == 1">
 			<label class="radio"><checkbox style="transform: scale(0.8);" :checked="checked" class="checkbox-3" @click="checked = !checked"></checkbox></label>
 			我已阅读并了解<text  @click="treaty_show = true">【注册须知】</text>
-		</view>
+		</view> -->
 		
-		<view class="Mask" v-show="treaty_show == true" @click="treaty_show = false">
-			<!-- 遮罩 -->
-		</view>
+		<!-- <view class="Mask" v-show="treaty_show == true" @click="treaty_show = false">
+			
+		</view> -->
 		
-		<view class="treaty_box"  v-show="treaty_show == true">
+		<!-- <view class="treaty_box"  v-show="treaty_show == true">
 			<view class="box_top">
 				注册须知
 			</view>
@@ -46,7 +46,7 @@
 				<rich-text :nodes='treaty'></rich-text>
 			</scroll-view>
 			<button  @click="treaty_show = false">我已阅读</button>
-		</view>
+		</view> -->
 		
 		<button class="red_button" @click="reg()">注册</button>
 		<view class="test" @click="jump('../login/login')">
@@ -68,11 +68,8 @@
 				verify:'',
 				username:'',
 				parent_id:'',
-				referrer:'',
-				treaty_show:false,
-				treaty:'',
-				open_protocol:'',
-				checked:false,
+				code:'',
+				parent_dis:false
 			}
 		},
 		methods:{
@@ -125,16 +122,7 @@
 			},
 			reg(){ //注册
 				let that = this
-				console.log(that.checked)
-				if(that.open_protocol == 1){
-					if(that.checked == false){
-						uni.showToast({
-							icon:'none',
-							title:'请阅读并同意注册须知'	
-						})
-						return
-					}
-				}
+				
 				if(!that.pwd && !that.parent_id && that.verify && that.username){
 					uni.showToast({
 						icon:'none',
@@ -167,7 +155,7 @@
 					repeat_password:that.pwds,
 					sms_code:that.verify,
 				}
-				if(that.referrer != '') data_list.referrer = that.referrer
+				if(that.parent_id != '') data_list.parent_id = that.parent_id
 				uni.request({
 					url:that.APIconfig.api_root.login.register,
 					method:'POST',
@@ -193,12 +181,9 @@
 		},
 		onLoad(options) {
 			
-			if(options.referrer){
-				uni.showToast({
-					icon:'none',
-					title:options.referrer
-				})
-				this.referrer = options.referrer
+			if(options.code){
+				this.parent_dis = true
+				this.parent_id = options.code
 			}
 		},
 		onShow() {
