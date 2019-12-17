@@ -6,7 +6,7 @@
 			</view>
 			<view class="top_img" @click="jump('/pages/com_page/notice')">
 				<image src="/static/image/index/news.png" mode="widthFix"></image>
-				<view></view>
+				<view v-if="$store.state.notice"></view>
 			</view>
 		</view>
 	</view>
@@ -16,6 +16,7 @@
 	export default{
 		data() {
 			return {
+				
 			}
 		},
 		methods:{
@@ -24,6 +25,9 @@
 					url:url
 				})
 			}
+		},
+		created(){
+			
 		}
 	}
 </script>

@@ -11,10 +11,10 @@
 					<image src="../../static/image/com_page/xit.png"></image>
 					<text>{{item.business_type_name}}消息</text>
 				</view>
-				<view class="t_right" v-show="item.is_read==0">1</view>
+				<view class="t_right" v-show="item.is_read == 0">1</view>
 			</view>
 			<view class="news">
-				{{item.title}} <text v-show="msgs==index">{{item.detail}}</text>
+				{{item.title}} <text v-show="msgs === index">{{item.detail}}</text>
 			</view>
 			<view class="times">{{item.add_time_date}}</view>
 		</view>
@@ -69,7 +69,7 @@
 		.msg{
 			background: #FFFFFF;
 			width: 100%;
-			height: 218rpx;
+			// height: 218rpx;
 			margin-top: 30rpx;
 			.top{
 				display: flex;
@@ -103,6 +103,9 @@
 				font-size: 24rpx;
 				color: #333333;
 				padding: 0 31rpx 0 81rpx;
+				text{
+					margin-left: 10rpx;
+				}
 			}
 			.times{
 				font-size: 24rpx;

@@ -9,7 +9,7 @@
 			</view>
 			<view class="top_img" @click="$jump('../com_page/shopp_cart')">
 				<image src="/static/image/index/shopp.png" mode="widthFix"></image>
-				<view></view>
+				<view v-if="cart_status"></view>
 			</view>
 		</view> 
 		<view class="swiper_box">
@@ -91,6 +91,7 @@ res
 				autoplay: true,
 				interval: 2000,
 				duration: 500,
+				cart_status:false
 			}
 		},
 		methods: {
@@ -99,6 +100,12 @@ res
 				}
 		},
 		onShow() {
+			this.service.entire(this,'post',this.APIconfig.api_root.com_page.c_Index,{ //查看购物车状态
+				user_id:this.$store.state.user.id
+			},function(self,res){
+				self.cart_status = res.data.data.length
+			})
+			
 			this.service.entire(this,'get',this.APIconfig.api_root.index.good_index,{
 				userid:this.$store.state.user.id
 			},function(self,res){

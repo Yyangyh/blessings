@@ -31,11 +31,11 @@
 				<image src='../../static/image/index/index_tab4.png' mode="widthFix"></image>
 				<view class="">分类</view>
 			</view>
-			<view class="tab_list" @tap="$jump()">
+			<view class="tab_list" @tap="$jump('../subuser/study')">
 				<image src='../../static/image/index/index_tab5.png' mode="widthFix"></image>
 				<view class="">学习记录</view>
 			</view>
-			<view class="tab_list" @tap="$jump()">
+			<view class="tab_list" @tap="jump('/pages/index/home')">
 				<image src='../../static/image/index/index_tab6.png' mode="widthFix"></image>
 				<view class="">商城</view>
 			</view>
@@ -43,7 +43,7 @@
 				<image src='../../static/image/index/index_tab7.png' mode="widthFix"></image>
 				<view class="">幸福测评</view>
 			</view>
-			<view class="tab_list"  @tap="toactivity">
+			<view class="tab_list"  @tap="$jump('/pages/activity/activity')">
 				<image src='../../static/image/index/index_tab8.png' mode="widthFix"></image>
 				<view class="">活动发布</view>
 			</view>
@@ -163,10 +163,10 @@
 		// },	
 		
 		onLoad() {
-		 
+		
 		},
 		onShow() {
-			
+			this.service.notice(this)
 			this.service.entire(this,'post',this.APIconfig.api_root.index.index,{
 				userid:this.$store.state.user.id
 			},function(self,res){
@@ -176,11 +176,11 @@
 			})
 		},
 		methods: {
-			toactivity(){
-				uni.navigateTo({
-					url:'/pages/activity/activity',
+			jump(url){
+				uni.switchTab({
+					url:url
 				})
-			},
+			}
 		}
 	}
 </script>

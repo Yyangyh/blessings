@@ -9,6 +9,10 @@ Vue.prototype.APIconfig = APIconfig
 Vue.prototype.service = service
 Vue.prototype.$store = store
 
+import Load from './pages/common/load.vue'
+
+Vue.component('Load',Load)
+
 Vue.prototype.$jump = function(url){
 	uni.navigateTo({
 		url:url

@@ -16,14 +16,15 @@
 		</view>
 		 <!--  :autoplay='true' -->
 		<view class="">
-			 <video id="myVideo" :src="play_url"
+			<video id="myVideo" :src="play_url"
+			:autoplay='true' 
 			:initial-time = 'initial_time'
-			 @pause='pause' 
-			 @timeupdate='timeupdate'
-			 @play='play_start' 
-			 @ended='play_end'  
-			 enable-danmu controls  :poster='poster'>
-			 </video>
+			@pause='pause' 
+			@timeupdate='timeupdate'
+			@play='play_start' 
+			@ended='play_end'  
+			enable-danmu controls  :poster='poster'>
+			</video>
 		</view>
 		<view class="video_tab">
 			<view class="tab_list" :class="{test_show:test_show === 0}" @tap="test_show = 0">
@@ -255,7 +256,7 @@
 				</view>
 			</view>
 		</view>
-		<load v-if="false"></load>
+		<load v-if="load_show"></load>
 	</view>
 </template>
 
@@ -288,7 +289,7 @@
 				play_store:false,
 				poster:'',
 				record_time:0,
-				load_show:false,
+				load_show:true,
 				duration_time:'',
 				receive_status:false,
 				initial_time:0 //指定视频播放初始秒数
@@ -497,12 +498,14 @@
 					
 					if(res.data.video.new_play){  //当用户有历史播放记录时
 						console.log(data[res.play_index])
+						self.indexs = res.play_index
 						self.play_url = self.service.analysis_url(data[res.play_index].video_url)
-						self.initial_time = res.data.video.new_play.play_time
+						let play_time = res.data.video.new_play.play_time
+						play_time > 10 ? self.initial_time = play_time - 10 : self.initial_time = play_time 
 					}
 					
 					self.catalog_data = data
-					
+					self.load_show = false
 				})
 				
 			}

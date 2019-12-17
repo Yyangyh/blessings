@@ -15,6 +15,8 @@ const entire = function(self,type,url,data,func){
 			let res_list = res.data
 			if(res_list.code == 9){ //token过期时替换重新请求
 				self.$store.commit('state_token',res_list.data.token)
+				self.$store.commit('state_user',res_list.data.userinfo)
+				console.log(self.$store.state.user)
 				entire(self,type,url,data,func)
 			}else if(res_list.code == 10){
 				uni.navigateTo({
@@ -46,6 +48,7 @@ const asy_entire = function(self,type,url,data,func){ //同步请求
 	        		let res_list = res.data
 	        		if(res_list.code == 9){ //token过期时替换重新请求
 	        			self.$store.commit('state_token',res_list.data.token)
+						self.$store.commit('state_user',res_list.data.userinfo)
 	        			entire(self,type,url,data,func)
 	        		}else if(res_list.code == 10){
 	        			uni.navigateTo({
@@ -176,33 +179,6 @@ const order = function(ref, self, url, wxUrl) { //支付调用
 				})
 			}
 		}, 1500)
-	} else if (self.payment_name == 'BtPay') { //选择版通支付时
-
-		setTimeout(function() {
-			if(url.split('/index/').length == 2){
-				uni.switchTab({
-				    url: url
-				});
-			}else{
-				uni.redirectTo({
-					url: url
-				})
-			}
-		}, 1500)
-
-	} else if (self.payment_name == '') { //积分支付时
-		setTimeout(function() {
-			if(url.split('/index/').length == 2){
-				uni.switchTab({
-				    url: url
-				});
-			}else{
-				uni.redirectTo({
-					url: url
-				})
-			}
-		}, 1500)
-
 	}
 }
 
@@ -217,7 +193,12 @@ const returns = function(that) {
 	// #endif
 }
 
-
+const notice = function(that) { //通知信息
+	console.log(that)
+	that.service.entire(that,'post',that.APIconfig.api_root.common.UnRead,{user_id:that.$store.state.user.id},function(self,res){
+		res.data.count == 0 ? self.$store.commit('notice_status',false) :  self.$store.commit('notice_status',true)
+	})
+}
 
 const analysis_url = function(video_url){
 	
@@ -277,5 +258,6 @@ export default{
 	returns,
 	analysis_url,
 	Test,
-	loading
+	loading,
+	notice
 }

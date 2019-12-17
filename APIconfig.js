@@ -4,6 +4,9 @@ const api = ''
 const api_img ='http://192.168.0.195:8990'
 
 const api_root = {
+	common:{
+		UnRead: api+'/api/message/UnRead',//消息未读总数
+	},
 	login:{
 		register: api+'/api/member/register',//注册
 		sendPhone: api+'/api/member/sendPhone',//发送验证码
@@ -40,7 +43,6 @@ const api_root = {
 
 		
 		c_msg_index:api+'/api/message/index',//用户消息
-		c_UnRead:api+'/api/message/UnRead',//未读总数
 		c_read:api+'/api/message/read',//消息未读->已读
 		
 	},

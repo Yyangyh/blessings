@@ -9,7 +9,7 @@
 		</view>
 		<view class="room_title">
 			<view class="title_top">
-				<view class="top_list" v-for="(item,index) in top_class" :key = 'item.id'>
+				<view class="top_list" v-for="(item,index) in top_class" :key = 'item.id'  @tap="$jump('../com_page/video_class?id='+item.id+'&title='+item.cl_name)">
 					<image :src="APIconfig.api_img + item.cl_image" mode="widthFix"></image>
 					<view class="">
 						{{item.cl_name}}
@@ -80,10 +80,11 @@
 			}
 		},
 		onShow() {
+			this.service.notice(this)
 			this.service.entire(this,'get',this.APIconfig.api_root.index.felicity_index,{
 				userid:this.$store.state.user.id
 			},function(self,res){
-				console.log(res)
+				// console.log(res)
 				self.advertising = res.data.advertising[0]
 				self.top_class = res.data.top_class
 				self.slide = res.data.slide

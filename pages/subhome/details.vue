@@ -241,7 +241,7 @@
 						type: data[index].name,
 						value: data[index].value[indexs].name
 					}
-					// console.log(JSON.stringify(this.spec))
+					console.log(this.spec)
 					if(index == data.length -1){ //最后一步，请求商品库存
 						this.service.entire(this,'post',this.APIconfig.api_root.subhome.s_SpecDetail,{
 							id: this.id,
@@ -298,7 +298,13 @@
 			
 			},
 			save() { //确定
-					
+					if(this.goods.spec_base.length != this.spec.length){
+						uni.showToast({
+							icon:'none',
+							title:'请选择商品规格！'
+						})
+						return
+					}
 					if(this.type == 'cart'){
 						this.service.entire(this, 'post', this.APIconfig.api_root.subhome.s_Save, {
 							goods_id: this.id,

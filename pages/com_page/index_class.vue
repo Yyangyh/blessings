@@ -146,6 +146,9 @@
 			this.type = e.type
 			this.Index()
 		},
+		onShow() {
+			this.service.notice(this)
+		},
 		onReachBottom() {
 			if (this.loadRecord == false) return
 			this.Index()

@@ -83,7 +83,7 @@
 						佣金
 					</view>
 				</view>
-				<view class="tab_list" @click="jump('../subuser/integral')">
+				<view class="tab_list"  @tap="$jump('../subclass/textual')">
 					<image src="../../static/image/index/tutor.png" mode="widthFix"></image>
 					<view class="">
 						导师考证
@@ -116,7 +116,7 @@
 						我的活动
 					</view>
 				</view>
-				<view class="tab_list" @click="jump('../subuser/commission')">
+				<view class="tab_list"  @tap="$jump('../subindex/evaluating')">
 					<image src="../../static/image/index/other_img3.png" mode="widthFix"></image>
 					<view class="">
 						我的测评
