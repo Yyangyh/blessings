@@ -20,6 +20,11 @@ const api_root = {
 		good_index: api+'/api/good/index',//商城首页
 		felicity_index: api+'/api/felicity/index',//幸福课堂首页数据
 	},
+	subclass:{
+		c_certificateList:api+'/api/Research/certificateList',//证书列表
+		c_formData:api+'/api/Research/formData',//提交证书申请
+		c_Index:api+'/api/Research/Index',//获取等级数据/证书分类
+	},
 	com_page:{
 		videoList: api+'/api/videohome/videoList',//幸福时光视频列表
 		VideoDetail: api+'/api/videohome/VideoDetail',//视频详情

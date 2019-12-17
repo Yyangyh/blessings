@@ -84,12 +84,9 @@
 		},
 		methods:{
 			 register(){
-				
 				 let tel2 = /^(13[0-9]|14[5|7]|15[0|1|2|3|5|6|7|8|9]|18[0|1|2|3|5|6|7|8|9])\d{8}$/.test(this.phone);
 				 let idcard =  /^\d{15}(\d{2}[A-Za-z0-9])?$/.test(this.idCard);
 				 let nam = /^[\u4E00-\u9FA5]{2,4}$/.test(this.name);
-				 // let si = /\u4e00-\u9fa5/.test(this.site);
-				 // let texts =/\u4e00-\u9fa5/ .test(this.text);
 				 if (this.phone == "" || this.name == ""||this.idCard ==""||this.text == ""||this.idCard ==""||this.site == "") {
 				 	uni.showToast({
 				 		icon:'none',
@@ -111,19 +108,22 @@
 					 	title:'请您输入正确的名字!'
 					 })
 				 }
-				 // else if(!si){
-					//  uni.showToast({
-					//  	icon:'none',
-					//  	title:'请您输入正确的地址!'
-					//  })
-				 // }
-				 // else if(!texts){
-					//  uni.showToast({
-					//  	icon:'none',
-					//  	title:'请您输入正确格式!'
-					//  })
-				 // }
 			 }
+		},
+		onLoad() {
+			this.service.entire(this,'post',this.APIconfig.api_root.subclass.c_formData,{
+				// user_id:this.$store.state.user.id,
+				// username:this.name
+				// mobile:this.phone
+				// id_card:this.idCard
+				// gender:
+				// culture:this.text
+				// apply:
+				// classify:
+				// address:this.site
+			},function(self,res){
+				console.log(res)
+			})
 		}
 	}
 </script>

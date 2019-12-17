@@ -397,6 +397,14 @@
 				}
 			}
 		},{
+			"path": "pages/subclass/textual.1",
+			"style": {
+				"navigationBarTitleText": "再次申请",
+				"app-plus":{
+					"titleNView":false
+				}
+			}
+		},{
 			"path": "pages/subclass/applyFor",
 			"style": {
 				"navigationBarTitleText": "申请",
@@ -424,6 +432,15 @@
 		},
 		{
 			"path": "pages/subclass/certificate",
+			"style": {
+				"navigationBarTitleText": "我的证书",
+				"app-plus":{
+					"titleNView":false
+				}
+			}
+		},
+		{
+			"path": "pages/subclass/certificateList",
 			"style": {
 				"navigationBarTitleText": "我的证书",
 				"app-plus":{
