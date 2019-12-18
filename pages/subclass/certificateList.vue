@@ -128,9 +128,7 @@
 	page{
 		background-color: #F6F6F7;
 	}
-<<<<<<< HEAD
 	
-=======
 	.content{
 		padding-bottom: 120rpx;
 	}
@@ -162,7 +160,7 @@
 			display: inline-block;
 		}
 	}
->>>>>>> ea2430d1398776b45e42ff31d553f6c2b28e2c99
+
 	.line{
 		display: flex;
 		align-items: center;
