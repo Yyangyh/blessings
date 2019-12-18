@@ -163,7 +163,7 @@
 		// },	
 		
 		onLoad() {
-		
+			console.log(this.$store.state.user)
 		},
 		onShow() {
 			this.service.notice(this)

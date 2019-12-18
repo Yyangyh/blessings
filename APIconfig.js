@@ -24,6 +24,8 @@ const api_root = {
 		c_certificateList:api+'/api/Research/certificateList',//证书列表
 		c_formData:api+'/api/Research/formData',//提交证书申请
 		c_Index:api+'/api/Research/Index',//获取等级数据/证书分类
+		c_certificateDel:api+'/api/Research/certificateDel',//证书删除
+		c_certificateImg:api+'/api/Research/certificateImg',//证书查看
 	},
 	com_page:{
 		videoList: api+'/api/videohome/videoList',//幸福时光视频列表

@@ -152,7 +152,7 @@
 			show(record,oldrecord){
 				this.aggregate = []
 				if(record == 1){
-					this.service.entire(this,'get',this.service.api_root.common.Region,{},function(self,res){
+					this.service.entire(this,'get',this.APIconfig.api_root.subuser.threeuser.region_index,{},function(self,res){
 						console.log(res)
 						self.city_id = []
 						console.log()
