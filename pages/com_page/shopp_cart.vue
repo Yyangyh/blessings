@@ -329,27 +329,41 @@
 		padding:0 40rpx;
 		height: 120rpx;
 		color: #666;
-	}
-	.alls{
-		font-size: 34rpx;
+		
+		.total{
+			display: flex;
+			text{
+				color: #FF431D;
+			}
+			view{
+				&:nth-of-type(1){
+					font-size: 32rpx;
+				}
+				&:nth-of-type(2){
+					font-size: 24rpx;
+					text-align: right;
+				}
+			}
+			
+		}
+		
 	}
 	.radio{
 		display: flex;
 		align-items: center;
 	}
-	.tab_bottom .total{
-		display: flex;
-		
+	.alls{
+		font-size: 34rpx;
 	}
-	.tab_bottom .total text{
-		color: #FF431D;
-	}
-	.tab_bottom .total view view:nth-of-type(1){
-		font-size: 32rpx;
-	}
-	.tab_bottom .total view view:nth-of-type(2){
-		font-size: 24rpx;
-		text-align: right;
+	button{
+		background: #D80000;
+		color: #fff;
+		width: 224rpx;
+		height: 90rpx;
+		line-height: 90rpx;
+		border-radius: 90rpx;
+		margin-left: 20rpx;
+		margin-right: 0rpx;
 	}
 	.tab_delete{
 		position: fixed;
@@ -365,14 +379,5 @@
 		height: 120rpx;
 		color: #666;
 	}
-	button{
-		background: #D80000;
-		color: #fff;
-		width: 224rpx;
-		height: 90rpx;
-		line-height: 90rpx;
-		border-radius: 90rpx;
-		margin-left: 20rpx;
-		margin-right: 0rpx;
-	}
+	
 </style>

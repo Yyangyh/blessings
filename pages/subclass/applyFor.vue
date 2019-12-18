@@ -151,7 +151,15 @@
 				 }
 				 console.log(data)
 				 this.service.entire(this,'post',this.APIconfig.api_root.subclass.c_formData,data,function(self,res){
-				 	console.log(res)
+				 	uni.showToast({
+				 		icon:'none',
+						title:res.msg
+				 	})
+					if(res.code == 0){
+						setTimeout(function(){
+							self.service.returns()
+						},1000)
+					}
 				 })
 			}
 		},
