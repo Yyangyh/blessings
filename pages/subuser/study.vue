@@ -8,13 +8,14 @@
 			  <text @click="choise(1)" class="one" :class="{active:cur==1}">课程视频</text>
 			  <text @click="choise(2)" class="two" :class="{active:cur==2}">音频</text>
 		</view>
+		
 		<view class="box">
 			<view class="line" v-for='(item,index) in dataList' :key='item.id'>
-				<image class="l_left" src="../../static/image/index/vider_img1.png" mode="widthFix"></image>
+				<image class="l_left" :src="item.v_pic" mode="scaleToFill"></image>
 				<view class="l_right">
-					<view> 团队管理篇-《卓越领导修炼》免费系列课程</view>
-					<view class="middle">111次观看</view>
-					<view>已学习5%</view>
+					<view> {{item.long_title}}</view>
+					<view class="middle">{{item.view}}次观看</view>
+					<view>已学习{{item.plan}}</view>
 				</view>
 			</view>
 		</view>

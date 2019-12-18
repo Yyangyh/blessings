@@ -39,9 +39,10 @@
 </script>
 
 <style lang="scss">
-	.content{
+	page{
 		background-color: #F6F6F7;
 	}
+	
 	.line{
 		display: flex;
 		align-items: center;
