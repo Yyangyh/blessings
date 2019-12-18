@@ -298,7 +298,7 @@
 			
 			},
 			save() { //确定
-			console.log(this.goods.spec_base)
+			console.log(this.goods)
 			console.log(this.spec)
 					if(this.goods.spec_base.length != this.spec.length){
 						uni.showToast({
