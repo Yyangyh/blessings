@@ -194,7 +194,6 @@ const returns = function(that) {
 }
 
 const notice = function(that) { //通知信息
-	console.log(that)
 	that.service.entire(that,'post',that.APIconfig.api_root.common.UnRead,{user_id:that.$store.state.user.id},function(self,res){
 		res.data.count == 0 ? self.$store.commit('notice_status',false) :  self.$store.commit('notice_status',true)
 	})

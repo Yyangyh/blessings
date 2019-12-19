@@ -18,30 +18,21 @@
 			</view>
 		</view>
 		<view class="Package">
-			<view class="p-box1">
-				<view class="tu">
+			
+			<view  :class="chiose_show === index?'p-box1':'p-box2'"  v-for="(item,index) in member_data" :key='item.id'  @tap="chiose_show = index">
+				<view class="tu" v-if="index === 0">
 					<image src='/static/image/subuser/box1.png' mode="widthFix"></image>
 					<text>推荐</text>
 				</view>
 				<view class="p-text1">
-					<text>VIP</text>
-					<text>￥178</text>
+					<text>{{item.name}}</text>
+					<text>￥{{item.consume - item.discounts}}</text>
 				</view>
-				<view class="p-text2">￥198</view>
+				<view class="p-text2">￥{{item.consume}}</view>
 				<view class="p-text3">
-					<image src='/static/image/subuser/tuijian.png' mode="widthFix"></image>
-					<text>立省20元</text>
-				</view>
-			</view>
-			<view class="p-box2">
-				<view class="p-text1">
-					<text>VIP</text>
-					<text>￥178</text>
-				</view>
-				<view class="p-text2">￥198</view>
-				<view class="p-text3">
-					<image src='/static/image/subuser/yituijian.png' mode="widthFix"></image>
-					<text>立省20元</text>
+					<image v-if="chiose_show === index" src='/static/image/subuser/tuijian.png' mode="widthFix"></image>
+					<image v-else src='/static/image/subuser/yituijian.png' mode="widthFix"></image>
+					<text>立省{{Number(item.discounts)}}元</text>
 				</view>
 			</view>
 		</view>
@@ -106,12 +97,24 @@
 		data(){
 			return{
 				title:'会员中心',
-				reveal:false
+				reveal:false,
+				member_data:'',
+				chiose_show:0
 			}
 		},
 		methods:{
 			
 		},
+		onLoad() {
+			
+		},
+		onShow() {
+			this.service.entire(this,'get',this.APIconfig.api_root.subuser.u_getNormolGrade,{},function(self,res){
+				console.log(res)
+				self.member_data = res.data
+			})
+			
+		}
 		
 	}
 </script>
@@ -176,9 +179,16 @@
 			background:rgba(255,242,223,1);
 			border:2rpx solid rgba(255,134,27,1);
 			border-radius:10rpx;
+			position: relative;
+			padding-top: 36rpx;
+			box-sizing: border-box;
 			.tu{
 				display: flex;
 				align-items: center;
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 100%;
 				image{
 					width: 72rpx;
 					height: 34rpx;
@@ -204,7 +214,6 @@
 				}
 			}
 			.p-text2{
-				
 				font-size: 24rpx;
 				color: #9A5A12;
 				text-decoration:line-through;
@@ -232,10 +241,32 @@
 			width:220rpx;
 			height:220rpx;
 			background-color:#F5F5F5;
-		
+			border:2rpx solid #F5F5F5;
 			border-radius:10rpx;
+			position: relative;
+			padding-top: 36rpx;
+			box-sizing: border-box;
+			.tu{
+				display: flex;
+				align-items: center;
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 100%;
+				image{
+					width: 72rpx;
+					height: 34rpx;
+					z-index: 100;
+				}
+				text{
+					font-size: 24rpx;
+					color: #FFFFFF;
+					margin-left: -65rpx;
+					z-index: 111;
+				}
+			}
 			.p-text1{
-				margin: 45rpx 0 15rpx;
+				margin: 15rpx 0;
 				text-align: center;
 				text:first-child{
 					font-size: 24rpx;
@@ -274,6 +305,7 @@
 	button{
 		width:700rpx;
 		height:80rpx;
+		line-height: 80rpx;
 		background:linear-gradient(-90deg,rgba(253,195,88,1) 0%,rgba(250,221,163,1) 100%);
 		border-radius:40rpx;
 		font-size: 28rpx;

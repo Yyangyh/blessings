@@ -84,7 +84,7 @@
 									{{items.is_free == 0? '￥'+items.v_price : '免费'}}
 									
 								</view>
-								<view class="" v-if="items.is_free_vip == 1">
+								<view class="" v-if="items.is_free_vip.indexOf($store.state.user.level_id) != -1">
 									VIP免费
 								</view>
 							</view>
@@ -118,9 +118,8 @@
 							<view class="list_three">
 								<view class="">
 									{{items.is_free == 0? '￥'+items.v_price : '免费'}}
-									
 								</view>
-								<view class="" v-if="items.is_free_vip == 1">
+								<view class="" v-if="items.is_free_vip.indexOf($store.state.user.level_id) != -1">
 									VIP免费
 								</view>
 							</view>

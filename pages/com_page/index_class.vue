@@ -12,7 +12,7 @@
 			</view>
 			<view class="top_img" @click="jump('../com_page/notice')">
 				<image src="/static/image/index/news.png" mode="widthFix"></image>
-				<view></view>
+				<view v-if="$store.state.notice"></view>
 			</view>
 		</view>
 		
@@ -21,13 +21,13 @@
 				<view class="">
 					{{v_test}}
 				</view>
-				<image class="all_img" :class="show===false ? 'tran_none' : show===true ? 'tran_show' : ''" src="../../static/image/index/down.png" mode="widthFix"></image>
+				<image class="all_img" :class="show===false ? 'tran_none' : show===true ? 'tran_show' : ''" src="/static/image/index/down.png" mode="widthFix"></image>
 			</view>
-			<view class="">
-				免费音频
+			<view  @tap="condition(1)" :class="{'red':keyword_show === 1}">
+				{{type == 1?'免费视频':'免费音频'}}
 			</view>
-			<view class="">
-				收听多
+			<view  @tap="condition(2)" :class="{'red':keyword_show === 2}">
+				{{type == 1?'观看多':'收听多'}}
 			</view>
 		</view>
 		
@@ -90,7 +90,8 @@
 				page: 1,
 				loadRecord: true,
 				v_pid:'',
-				v_test:'全部'
+				v_test:'全部',
+				keyword_show:''
 			}
 		},
 		methods:{
@@ -102,9 +103,13 @@
 					page:this.page
 				}
 				if(this.v_pid) data.v_pid = this.v_pid
+				if(this.is_free) data.is_free = this.is_free
+				if(this.view) data.view = this.view
 				this.uni_request(data)
 			},
+			
 			chiose(v_pid,test){
+				this.more = 'loading'
 				this.page = 1
 				this.loadRecord = true
 				let data = {
@@ -121,9 +126,34 @@
 					this.v_test = '全部'
 				}
 				this.video_list.length = 0
-				
+				if(this.is_free) data.is_free = this.is_free
+				if(this.view) data.view = this.view
 				this.uni_request(data)
 				this.show = false
+			},
+			condition(type){
+				this.more = 'loading'
+				this.page = 1
+				this.loadRecord = true
+				this.video_list.length = 0
+				let data = {
+					type:this.type,
+					limit:10,
+					page:this.page
+				}
+				this.keyword_show = type
+				if(this.v_pid) data.v_pid = this.v_pid
+				if(type == 1) {
+					data.is_free = 1
+					this.is_free = 1
+					this.view = ''
+				}
+				if(type == 2) {
+					data.view = 1
+					this.view = 1
+					this.is_free = ''
+				}
+				this.uni_request(data)
 			},
 			uni_request(data){
 				this.service.entire(this,'get',this.APIconfig.api_root.com_page.videoList,data,function(self,res){
@@ -229,6 +259,9 @@
 		.list_all{
 			display: flex;
 			align-items: center;
+			color: #D80000;
+		}
+		.red{
 			color: #D80000;
 		}
 	}

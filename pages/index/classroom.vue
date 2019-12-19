@@ -47,7 +47,7 @@
 							<view class="">
 								￥{{items.group_price}}
 							</view>
-							<view class="" v-if="items.is_free == 0">
+							<view class="" v-if="items.is_free_vip.indexOf($store.state.user.level_id) != -1">
 								VIP免费
 							</view>
 						</view>

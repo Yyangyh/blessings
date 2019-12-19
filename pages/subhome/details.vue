@@ -310,43 +310,41 @@
 			
 			},
 			save() { //确定
-			console.log(this.goods)
-			console.log(this.spec)
-					if(this.goods.spec_base.length != this.spec.length){
-						uni.showToast({
-							icon:'none',
-							title:'请选择商品规格！'
-						})
-						return
-					}
-					if(this.type == 'cart'){
-						this.service.entire(this, 'post', this.APIconfig.api_root.subhome.s_Save, {
-							goods_id: this.id,
-							stock: this.num,
-							spec: this.spec,
-							user_id:this.$store.state.user.id,
-						}, function(self, res) {
-							if (res.code == 0) {
-								uni.showToast({
-									icon:'none',
-									title:'成功加入购物车！'
-								})
-								self.show = 0
-							}
-						})
-					}else{
-						let data = {
-							id:this.id,
-							type:'goods',
-							num:this.num,
-							spec:this.spec
+				if(this.goods.specifications.choose.length != this.spec.length){
+					uni.showToast({
+						icon:'none',
+						title:'请选择商品规格！'
+					})
+					return
+				}
+				if(this.type == 'cart'){
+					this.service.entire(this, 'post', this.APIconfig.api_root.subhome.s_Save, {
+						goods_id: this.id,
+						stock: this.num,
+						spec: this.spec,
+						user_id:this.$store.state.user.id,
+					}, function(self, res) {
+						if (res.code == 0) {
+							uni.showToast({
+								icon:'none',
+								title:'成功加入购物车！'
+							})
+							self.show = 0
 						}
-						uni.navigateTo({
-							url: '../com_page/s_order?data='+JSON.stringify(data)
-						})
+					})
+				}else{
+					let data = {
+						id:this.id,
+						type:'goods',
+						num:this.num,
+						spec:this.spec
 					}
+					uni.navigateTo({
+						url: '../com_page/s_order?data='+JSON.stringify(data)
+					})
+				}
 					
-				},
+			},
 			collect(){ //商品收藏
 			
 				let times = this.service.loading()
