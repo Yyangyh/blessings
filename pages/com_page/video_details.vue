@@ -122,7 +122,7 @@
 				<view class="">
 					用户评论
 				</view>
-				<view class="">
+				<view class="" @tap="$jump('./comment')">
 					全部
 				</view>
 			</view>

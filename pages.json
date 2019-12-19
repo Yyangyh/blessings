@@ -763,6 +763,14 @@
 					"titleNView":false
 				}
 			}
+		},{
+			"path": "pages/com_page/comment",
+			"style": {
+				"navigationBarTitleText": "全部评论",
+				"app-plus":{
+					"titleNView":false
+				}
+			}
 		}
 		
 	],

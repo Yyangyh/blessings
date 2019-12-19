@@ -36,7 +36,8 @@
 				</view>
 			</view>
 		</view>
-		<button type="default" @click="reveal=true">
+		 <!-- @click="reveal=true" -->
+		<button type="default" @tap="$jump('./open_order')">
 			立即开通
 		</button>
 		<view class="upgrade">
