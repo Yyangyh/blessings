@@ -10,6 +10,7 @@
 			<hr />
 			<view class="msgs">应付金额：<text>60元</text></view>
 		</view>
+		
 	</view>
 </template>
 
@@ -26,6 +27,14 @@
 		},
 		methods:{
 			
+		},
+		onLoad(e) {
+			this.service.entire(this,'post',this.APIconfig.api_root.subuser.u_upUserGrade,{
+				user_id:this.$store.state.user.id,
+				level_id:e.id
+			},function(self,res){
+				console.log(res)
+			})
 		}
 	}
 </script>

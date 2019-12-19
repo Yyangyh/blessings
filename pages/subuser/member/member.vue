@@ -18,7 +18,6 @@
 			</view>
 		</view>
 		<view class="Package">
-			
 			<view  :class="chiose_show === index?'p-box1':'p-box2'"  v-for="(item,index) in member_data" :key='item.id'  @tap="chiose_show = index">
 				<view class="tu" v-if="index === 0">
 					<image src='/static/image/subuser/box1.png' mode="widthFix"></image>
@@ -37,7 +36,7 @@
 			</view>
 		</view>
 		 <!-- @click="reveal=true" -->
-		<button type="default" @tap="$jump('./open_order')">
+		<button type="default" @tap="$jump('./open_order?id='+member_data[chiose_show].id)">
 			立即开通
 		</button>
 		<view class="upgrade">
