@@ -93,6 +93,7 @@
 				for (let s of this.data_lsit) {
 					if(s.choice == true)all.push(s.aid)
 				}
+				
 				this.service.entire(this,'post',this.APIconfig.api_root.subclass.c_certificateDel,{
 					user_id:this.$store.state.user.id,
 					id_dels:all.join(','),

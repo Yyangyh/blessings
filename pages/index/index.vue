@@ -23,7 +23,7 @@
 				<image src='../../static/image/index/index_tab2.png' mode="widthFix"></image>
 				<view class="">音频</view>
 			</view>
-			<view class="tab_list" @tap="$jump()">
+			<view class="tab_list" @tap="$jump('../subindex/texts')">
 				<image src='../../static/image/index/index_tab3.png' mode="widthFix"></image>
 				<view class="">文章</view>
 			</view>

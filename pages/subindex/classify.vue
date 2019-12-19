@@ -4,19 +4,23 @@
 					
 		</view>
 		<returns :titles='title'></returns>
-		<view class="box_top">
-			<!-- <view class="top_list" :class="{show:show == -1}" @click="chiose(-1)">
-				课程视频
-			</view>
-			<view class="top_list" :class="{show:show == 1}" @click="chiose(1)">
-				音频
-			</view> -->
-			<view class="top_list" :class="{show:show == 2}" ><!-- @click="chiose(2)" -->
-				文章
-			</view>
-			
-			
+		<view class="allorder">
+			  <text @click="cur=0" class="one" :class="{active:cur==0}">课程视频</text>
+			  <text @click="cur=1" class="two" :class="{active:cur==1}">音频</text>
+			  <text @click="cur=2" class="three" :class="{active:cur==2}">文章</text>
 		</view>
+		 <view class="boxs" v-show="cur==0">
+			 <view class="allorders" >
+				 <view @click="bur=0" class="one" :class="{actives:bur==0}">幸福短片</view>
+				 <view @click="bur=1" class="two" :class="{actives:bur==1}">幸福直播</view>
+				 <view @click="bur=2" class="three" :class="{actives:bur==2}">名师讲堂</view>
+				 <view @click="bur=3" class="four" :class="{actives:bur==3}">偏差矫正</view>
+				 <view @click="bur=4" class="five" :class="{actives:bur==4}">状元养成</view>
+			 </view>
+			 <view class="b_right">
+				 
+			 </view>
+		 </view>
 	</view>
 </template>
 
@@ -29,40 +33,52 @@
 		data(){
 			return{
 				title:'分类',
-				show: 0,
+				cur:'',
+				bur:'',
 			}
 		}
 	}
 </script>
 
 <style lang="scss">
-	.box_top {
-		background: #fff;
+	page{
+		background-color: #F6F6F7;
+	}
+	.allorder{
 		width: 100%;
-		position: fixed;
-		top: calc(var(--status-bar-height) + 105rpx) ;
-		left: 0;
-		z-index: 888;
-		padding: 0 20rpx;
-		box-sizing: border-box;
-		font-size: 30rpx;
+		height: 100rpx;
 		display: flex;
-		justify-content: space-between;
-		align-items: center;
-		height: 105rpx;
-		box-shadow:0rpx 4rpx 8rpx 0rpx rgba(0, 0, 0, 0.1);
-		.top_list {
-			padding: 0 20rpx;
-			height:100%;
-			display: flex;
-			align-items: center;
-			box-sizing: border-box;
-			border-bottom: 6rpx solid #fff;
-			line-height: 44rpx;
+		text-align: center;
+		line-height: 100rpx;
+		font-size:28rpx;
+		// background-color: #F6F6F7;
+		text{
+			flex: 1;
 		}
 	}
-	.show {
-		color: #D80000;
-		border-bottom-color:  #D80000 !important;
+	.active{
+		color:#D80000;
+	}
+	.boxs{
+		display: flex;
+		background-color: #FFFFFF;
+		.allorders{
+			width: 25%;
+			line-height: 100rpx;
+			font-size:28rpx;
+			background-color: #F6F6F7;
+			border-bottom:1rpx solid #EEEEEE ;
+			text-align: center;
+			color: #333333;
+		}
+		.actives{
+			color:#D80000;
+			background-color: #FFFFFF;
+		}
+		.b_right{
+			background-color: #FFFFFF;
+			width: 75%;
+			
+		}
 	}
 </style>

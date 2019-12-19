@@ -6,7 +6,7 @@
 		<view class="top">
 			<image src="/static/image/com_page/returns.png" @tap="service.returns()" mode="widthFix"></image>
 			<text>收藏</text>
-			<text>编辑</text>
+			<text @tap="show = !show">{{show ? '完成':'编辑'}}</text>
 		</view>
 		<view class="allorder">
 			  <text @click="choise(1)" class="one"   :class="{active:cur==1}">课程视频</text>
@@ -16,7 +16,10 @@
 		</view>
 		<!-- 课程视频\音频-->
 		<view class="boxs" >
-			<view class="line" v-for="(item,index) in dataList.favor_list" :key='item.id'>
+			<view class="line" v-for="(item,index) in dataList" :key='item.id'>
+				<view class="tab_left"  style="transform: scale(0.8);" v-show="show">
+					<label  class="radio" @click="singleElection(index)"><radio value="r1" :checked="item.choice" /></label>
+				</view>	
 				<image class="l_left" :src="item.v_pic" mode="scaleToFill"></image>
 				<view class="l_right">
 					<view>{{item.long_title}}</view>
@@ -37,23 +40,15 @@
 						<view class="t_price">￥2980.0</view>
 					</view>
 				</view>
-				<!-- <view class="commodity">
-					<image src="../../static/image/index/page.png" mode="scaleToFill"></image>
-					<view class="texts">
-						<view class="t_name">管理魂丨家庭式管理系统</view>
-						<view class="t_sell">已售100件</view>
-						<view class="t_price">￥2980.0</view>
-					</view>
-				</view>
-				<view class="commodity">
-					<image src="../../static/image/index/page.png" mode="scaleToFill"></image>
-					<view class="texts">
-						<view class="t_name">管理魂丨家庭式管理系统</view>
-						<view class="t_sell">已售100件</view>
-						<view class="t_price">￥2980.0</view>
-					</view>
-				</view> -->
 			</view>
+		</view>
+		<!-- 全选 -->
+		<view class="tab_delete"  :class="show? 'show' : 'Noshow'">
+			<view class="alls" >
+				<label class="radio" @click="allElection()"><radio value="r1" :checked="checked" />全选</label>
+			</view>
+			
+			<button @click="deletes()">删除</button>
 		</view>
 	</view>
 </template>
@@ -67,6 +62,8 @@
 				cur:'',
 				dataList:'',
 				type:'',
+				show:false,
+				checked:false,
 			}
 		},
 		methods:{
@@ -82,12 +79,69 @@
 				this.Index(data)
 			},
 			Index(data){
-				
 				this.service.entire(this,'post',this.APIconfig.api_root.subuser.u_favor,data,function(self,res){
 					console.log(res)
-					self.dataList = res.data
+					res.data.favor_list.forEach(x => x.choice = false)
+					self.dataList = res.data.favor_list
+					// self.data_lsit = res.data
 				})
-			}
+			},
+			allElection(){ //全选
+				this.checked = !this.checked
+				if(this.checked == true){
+					let all = []
+					for (let s of this.dataList) {
+						s.choice = true
+					}
+				}else{
+					for (let s of this.dataList) {
+						s.choice = false
+					}
+				}
+			},
+			singleElection(index){//单选
+				this.dataList[index].choice = !this.dataList[index].choice
+				if(this.dataList[index].choice == true){ //全选
+					let arr_choice = this.dataList.map(x => x.choice)
+					if(arr_choice.indexOf(false) == -1) this.checked = true
+				}
+				if(this.dataList[index].choice == false){ //非全选
+				
+					for (let s of this.dataList) {
+						if(s.choice == false) this.checked = false
+					}
+				}
+			},
+			deletes(){  //删除
+					let all =[]
+					for (let s of this.dataList) {
+						console.log(s)
+						if(s.choice == true)all.push(s.video_id)
+					}
+					
+					console.log(this.dataList)
+					this.service.entire(this,'post',this.APIconfig.api_root.com_page.v_collect,{
+						userid:this.$store.state.user.id,
+						video_id:all.join(','),
+						c_type:0,
+						mobile:this.$store.state.user.mobile
+					},function(self,res){
+						console.log(res)
+						uni.showToast({
+							icon:'none',
+							title:res.msg
+						})
+						if(res.code == 0){
+							let data = self.dataList
+							for(let i = data.length - 1;i >= 0;i--){  //倒序删除
+								if(data[i].choice == true){
+									data.splice(i,1);
+								}
+							}
+						}
+					})
+				// },
+			},
 		},
 		onLoad() {
 			this.choise(1)
@@ -174,6 +228,40 @@
 			}
 		}
 	}
+	.tab_delete{
+		position: fixed;
+		bottom: 0;
+		left: 0;
+		width: 100%;
+		box-sizing: border-box;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		border-top: 2rpx solid #F1F1F1;
+		padding:0 40rpx;
+		height: 120rpx;
+		color: #666;
+		background: #fff;
+		transform: translateY(100%);
+		transition: .3s;
+		.alls{
+			font-size: 34rpx;
+			.radio{
+				display: flex;
+				align-items: center;
+			}
+		}
+		button{
+			background: #D80000;
+			color: #fff;
+			width: 224rpx;
+			height: 90rpx;
+			line-height: 90rpx;
+			border-radius: 90rpx;
+			margin-left: 20rpx;
+			margin-right: 0rpx;
+		}
+	}
 	.box_s{
 		display: flex;
 		flex-wrap:wrap;
@@ -201,6 +289,12 @@
 				}
 			}
 		}
+	}
+	.show{
+		transform: translateY(0);
+	}
+	.Noshow{
+		transform: translateY(100%);
 	}
 	
 </style>
