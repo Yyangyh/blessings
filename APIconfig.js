@@ -36,6 +36,7 @@ const api_root = {
 		v_coupon: api+'/api/videohome/coupon',//优惠券列表
 		v_getCoupon: api+'/api/videohome/getCoupon',//领取优惠券
 		v_evaluate: api+'/api/videohome/evaluate',//视频评价展示列表
+		v_putEvaluate: api+'/api/videohome/putEvaluate',//评价视频
 		v_recommend: api+'/api/videohome/recommend',//视频推荐
 		v_playCount: api+'/api/videohome/playCount',//添加阅读量 用户播放后发起
 		c_Index: api+'/api/cart/Index',//购物车列表

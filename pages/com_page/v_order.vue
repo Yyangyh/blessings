@@ -177,10 +177,11 @@
 						if(item.cid){
 							this.require_data.coupon_id = this.coupon_list[index].cid
 							this.recording = '￥'+this.coupon_list[index].discount_value+'元'
-							this.v_price = this.v_price - this.coupon_list[index].discount_value
+							this.v_price = this.data.v_price - this.coupon_list[index].discount_value
 						}else{
 							this.require_data.coupon_id = 0
 							this.recording = '不使用'
+							this.v_price = this.data.v_price
 						}
 					}
 				})
