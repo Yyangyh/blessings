@@ -238,6 +238,15 @@
 			}
 		},
 		{
+			"path": "pages/subuser/member/open_order",
+			"style": {
+				"navigationBarTitleText": "订单详情",
+				"app-plus":{
+					"titleNView":false
+				}
+			}
+		},
+		{
 			"path": "pages/subuser/threeuser/c_order_details",
 			"style": {
 				"navigationBarTitleText": "订单详情",

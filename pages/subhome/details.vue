@@ -331,7 +331,6 @@
 							})
 							self.show = 0
 						}
-<<<<<<< HEAD
 					})
 				}else{
 					let data = {
@@ -344,14 +343,8 @@
 						url: '../com_page/s_order?data='+JSON.stringify(data)
 					})
 				}
-				
-=======
-						uni.navigateTo({
-							url: '../com_page/s_order?data='+JSON.stringify(data)
-						})
-					}
 					
-				},
+			},
 			collect(){ //商品收藏
 			
 				let times = this.service.loading()
@@ -372,7 +365,6 @@
 						self.collects == 1? self.collects = 0 : self.collects = 1
 					}
 				})
->>>>>>> c986313142b59709540e38861cc3f1a07be8d557
 			}
 		},
 		onLoad(e){
