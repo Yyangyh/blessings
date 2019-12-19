@@ -128,6 +128,7 @@
 	page{
 		background-color: #F6F6F7;
 	}
+	
 	.content{
 		padding-bottom: 120rpx;
 	}
@@ -159,6 +160,7 @@
 			display: inline-block;
 		}
 	}
+
 	.line{
 		display: flex;
 		align-items: center;

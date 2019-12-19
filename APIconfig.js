@@ -63,6 +63,7 @@ const api_root = {
 		s_SpecDetail: api+'/api/good/SpecDetail',//商品规格详情价格查询
 		s_Save: api+'/api/cart/Save',//加入购物车
 		g_lists: api+'/api/groupgoods/lists',//拼团商品列表
+		s_Favor:api+'/api/good/Favor',//用户商品收藏
 		threehome:{
 			g_Detail: api+'/api/groupgoods/Detail',//拼团商品详情
 			g_teams: api+'/api/groupgoods/teams',//我的团
@@ -84,6 +85,8 @@ const api_root = {
 		
 		v_orderList: api+'/api/videoorder/orderList',//视频订单查询列表
 		
+		u_getNormolGrade:api+'/api/upgrade/getNormolGrade',//获取可升级正常会员等级
+		
 		
 		u_distribute: api+'/api/distribute/center',//我的佣金
 		u_index: api+'/api/distribute/index',//佣金分销订单
@@ -98,6 +101,7 @@ const api_root = {
 		u_integral_index:api+'/api/integral/index',//用户积分信息
 		u_getNormolGrade:api+'/api/upgrade/getNormolGrade',//获取可升级正常会员等级
 		
+		u_favor:api+'/api/videohome/favor',//收藏
 		
 		threeuser:{
 			region_index: api+'/api/region/index',//获取省市区三级

@@ -23,7 +23,14 @@
 				title:'积分升级',
 				reveal:false
 			}
-		}
+		},
+		// onShow() {
+		// 	this.service.entire(this,'get',this.APIconfig.api_root.subuser.u_getNormolGrade,{
+				
+		// 	},function(self,res){
+		// 		console.log(res)
+		// 	})
+		// },
 	}
 </script>
 

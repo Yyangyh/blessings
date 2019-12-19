@@ -86,8 +86,11 @@
 					<image src="../../static/image/subhome/cart.png" mode="widthFix"></image>
 					<view>购物车</view>
 				</view>
-				<view class="collect">
-					<image src="../../static/image/subhome/heart%20.png" mode="widthFix"></image>
+				<!-- 收藏 -->
+				<view class="collect"  @tap="collect()">
+					<!-- <image src="../../static/image/subhome/heart%20.png" mode="widthFix"></image> -->
+					<image v-show="collects == 0" src="../../static/image/com_page/collect.png" mode="widthFix"></image>
+					<image v-show="collects == 1" src="../../static/image/com_page/collect_HL.png" mode="widthFix"></image>
 					<view>收藏</view>
 				</view>
 			</view>
@@ -174,12 +177,18 @@
 			<button class="save" @click="save()">确定</button>
 			<image class="close" src="../../static/image/secondary/close2.png" mode="widthFix" @click="show = 0"></image>
 		</view>
-		
+		<load v-if="load_show"></load>
 	</view>
 </template>
 
 <script>
+	import collect_img from '../../static/image/com_page/collect_HL.png'
+	import integral_img from '../../static/image/com_page/integral.png'
+	import load from '../common/load.vue'
 	export default{
+		components:{
+			load
+		},
 		data(){
 			return{
 				title:'产品详情',
@@ -197,7 +206,10 @@
 				id:'',
 				index_list:0,
 				spec:[],
-				comment_data:''
+				comment_data:'',
+				collects:'',
+				load_show:true,
+				shows:false,
 			}
 		},
 		methods:{
@@ -319,6 +331,7 @@
 							})
 							self.show = 0
 						}
+<<<<<<< HEAD
 					})
 				}else{
 					let data = {
@@ -332,6 +345,34 @@
 					})
 				}
 				
+=======
+						uni.navigateTo({
+							url: '../com_page/s_order?data='+JSON.stringify(data)
+						})
+					}
+					
+				},
+			collect(){ //商品收藏
+			
+				let times = this.service.loading()
+				this.service.entire(this,'post',this.APIconfig.api_root.subhome.s_Favor,{ 
+					user_id:this.$store.state.user.id,
+					id:this.id
+				},function(self,res){
+					console.log(res)
+					uni.hideLoading()
+					clearTimeout(times)
+					self.tips_test = res.msg
+					self.tips_img = collect_img
+					self.shows = true
+					setTimeout(function() {
+						self.shows = false
+					}, 1500);
+					if(res.code == 0){
+						self.collects == 1? self.collects = 0 : self.collects = 1
+					}
+				})
+>>>>>>> c986313142b59709540e38861cc3f1a07be8d557
 			}
 		},
 		onLoad(e){
@@ -367,7 +408,9 @@
 					}
 				}
 				self.choose_list = list
+				self.load_show = false
 			})
+			
 		},
 		onShow(){
 			
