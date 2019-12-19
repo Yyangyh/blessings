@@ -96,6 +96,7 @@ const api_root = {
 		u_balance_index:api+'/api/balance/index',//余额
 		u_getStutyPlan:api+'/api/videohome/getStutyPlan',//我的学习 /学习记录
 		u_integral_index:api+'/api/integral/index',//用户积分信息
+		u_getNormolGrade:api+'/api/upgrade/getNormolGrade',//获取可升级正常会员等级
 		
 		
 		threeuser:{
