@@ -26,12 +26,12 @@
 		</view>
 		<view class="box">
 			<!-- 订单一 -->
-			<block v-for="(item,index) in data_list" :key='item.id'>
+			<view v-for="(item,index) in data_list" :key='item.id' @tap="unfold(item.id,index)">
 				<view class="line">
 					<view class="l_left">
-						<image src="../../../static/image/subhome/photo.png" mode="widthFix"></image>
+						<image :src= "APIconfig.api_img + item.avatar" mode="widthFix"></image>
 						<view class="left_text">
-							<view><text style="margin-right: 5rpx;">昵称:</text><text>{{item.avatar}}</text></view>
+							<view><text style="margin-right: 5rpx;">昵称:</text><text>{{item.username}}</text></view>
 							<view style="margin-top: 5rpx;">{{item.order_no}}</view>
 						</view>
 					</view>
@@ -41,7 +41,7 @@
 						<view>{{item.status_text}}</view>
 					</view>
 				</view>
-				<view class="particulars">
+				<view class="particulars" v-show="msgs === index">
 					<view class="lines">
 						<view>订单号：</view>
 						<text>{{item.order_no}}</text>
@@ -59,13 +59,10 @@
 						<text>{{item.commission_money}}</text>
 					</view>
 				</view>
-			</block>
-			
-			
+			</view>
 		</view>
 	</view>
 </template>
-
 <script>
 	import returns from '../../common/returns.vue'
 	export default{
@@ -78,7 +75,8 @@
 				cur:0,
 				reveal:false,
 				data:'',
-				data_list:''
+				data_list:'',
+				msgs:'',
 			}
 		},
 		methods:{
@@ -92,7 +90,12 @@
 					self.data = res.data
 					self.data_list = res.data.order
 				})
+			},
+			unfold(id,index){
+				
+				this.msgs = index;
 			}
+			
 		},
 		onLoad() {
 			this.Index(0)
@@ -102,10 +105,13 @@
 </script>
 
 <style lang="scss">
-	.content{
-		width: 100%;
-		height: 100vh;
+	page{
 		background: #F6F6F7;
+	}
+	// .content{
+	// 	width: 100%;
+	// 	height: 100vh;
+	// 	background: #F6F6F7;
 		.order_top{
 			width:750rpx;
 			height:158rpx;
@@ -151,6 +157,7 @@
 						width: 100rpx;
 						height: 100rpx;
 						margin-right: 24rpx;
+						border-radius: 50%;
 					}
 					.left_text{
 						view:first-child{
@@ -195,5 +202,5 @@
 			text-align: center;
 			margin-top: 31rpx;
 		}
-	}
+	// }
 </style>
