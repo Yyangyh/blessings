@@ -35,11 +35,11 @@
 			</view>
 		</view>
 		<view class="lack_img" v-else-if="comments.length === 0">
+			
+			<image  src="/static/image/com_page/lack.png" mode="widthFix"></image>
 			<view class="">
 				暂无评论
 			</view>
-			<image  src="/static/image/com_page/lack.png" mode="widthFix"></image>
-			
 		</view>
 		
 		<view class="mask_black" v-show="show"  @tap="show = !show">

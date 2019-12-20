@@ -10,7 +10,7 @@
 			</view>
 			<view class="top_two">
 				<view class="two_left" @tap="$jump('../subuser/personage/personage')">
-					<image :src="user.avatar" mode="widthFix"></image>
+					<image :src="user.avatar" mode="scaleToFill"></image>
 				</view>
 				<view class="two_mid">
 					<view class="mid_top">
@@ -366,11 +366,16 @@
 		padding-left: 54rpx;
 		font-size: 32rpx;
 	}
-	.user_top .top_two .two_left image{
+	.user_top .top_two .two_left{
 		height: 100rpx;
 		width: 100rpx;
 		margin-right: 25rpx;
 		border-radius: 50%;
+		overflow: hidden;
+	}
+	.user_top .top_two .two_left image{
+		height: 100%;
+		width: 100%;
 	}
 	.user_top .top_two .two_mid{
 		height: 90rpx;

@@ -50,7 +50,7 @@
 				全部
 			</view>
 		</view>
-		<view class="user_comment" v-for="(item,index) in comment_data" :key='item.id'>
+		<view class="user_comment" v-for="(item,index) in comment_data" :key='item.id' v-if="comment_data.length != 0">
 			<view class="user">
 				<view class="user_one">
 					<image class="user_img"  :src="item.user.avatar" mode="widthFix"></image>
@@ -75,7 +75,13 @@
 				<view class="content_img">
 					<image v-for="(items,indexs) in item.images" :key='index' :src="items" mode=""></image>
 				</view>
-				
+			</view>
+		</view>
+		<view class="lack_img" v-if="comment_data.length == 0">
+			
+			<image  src="/static/image/com_page/lack.png" mode="widthFix"></image>
+			<view class="">
+				暂无评论
 			</view>
 		</view>
 		<view class="p-t">活动详情</view>
@@ -654,12 +660,24 @@
 				
 			}
 		}
+		.lack_img{
+			text-align: center;
+			padding: 30rpx;
+			font-size: 28rpx;
+			color: #999;
+			background: #fff;
+			image{
+				height: 310rpx;
+				width: 310rpx;
+			}
+		}
 		.p-t{
 			font-size: 28rpx;
 			margin-left: 20rpx;
+			padding: 20rpx 0;
 		}
 		.image{
-			margin-top: 30rpx;
+			
 			width: 100%;
 			// height: 988rpx;
 		}

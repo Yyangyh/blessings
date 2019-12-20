@@ -5,8 +5,8 @@
 		</view >
 		<returns :titles='title'></returns>
 		<view class="allorder">
-			  <text @click="cur=0" class="one" :class="{active:cur==0}">一级</text>
-			  <text @click="cur=1" class="two" :class="{active:cur==1}">二级</text>
+			  <text @click="cur=0" class="one" :class="{active:cur==0}">直推</text>
+			  <text @click="cur=1" class="two" :class="{active:cur==1}">间推</text>
 		</view>
 		<!-- 一级 -->
 		<view class="box"  v-show="cur==0"> 

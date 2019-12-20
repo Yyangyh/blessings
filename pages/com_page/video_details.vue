@@ -126,7 +126,7 @@
 					全部
 				</view>
 			</view>
-			<view class="user_comment" v-for="(item,index) in comments" :key='item.id'>
+			<view class="user_comment" v-for="(item,index) in comments" :key='item.id' v-if="comments.length != 0">
 				<view class="user">
 					<view class="user_one">
 						<image class="user_img"  :src="APIconfig.api_img +item.avatar" mode="widthFix"></image>
@@ -151,6 +151,13 @@
 						<image v-for="(item,index) in comments.images" :key='index' :src="item" mode=""></image>
 					</view>
 					 -->
+				</view>
+			</view>
+			<view class="lack_img" v-if="comments.length == 0">
+				
+				<image  src="/static/image/com_page/lack.png" mode="widthFix"></image>
+				<view class="">
+					暂无评论
 				</view>
 			</view>
 		</view>
@@ -964,6 +971,16 @@
 				margin: 20rpx 0;
 			}
 			
+		}
+	}
+	.lack_img{
+		text-align: center;
+		padding-top: 30rpx;
+		font-size: 28rpx;
+		color: #999;
+		image{
+			height: 310rpx;
+			width: 310rpx;
 		}
 	}
 	.vider_content{	

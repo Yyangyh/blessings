@@ -17,7 +17,7 @@
 			</view>
 			<view class="line">
 				<text>我的邀请码:</text>
-				<text>1234</text>
+				<text>{{data.user.invite_code}}</text>
 			</view>
 			<hr />
 			<view class="line1" @tap="$jump('./invite')">
