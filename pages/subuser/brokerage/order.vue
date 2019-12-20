@@ -19,14 +19,14 @@
 			</view>
 		</view>
 		<view class="allorder">
-			  <text @click="Index(0)" class="one" :class="{active:cur==0}">全部</text>
-			  <text @click="Index(1)" class="two" :class="{active:cur==1}">待结算</text>
-			  <text @click="Index(2)" class="three" :class="{active:cur==2}">已结算</text>
-			  <text @click="Index(3)" class="four" :class="{active:cur==3}">完成</text>
+			  <text @click="Indexs(0)" class="one" :class="{active:cur==0}">全部</text>
+			  <text @click="Indexs(1)" class="two" :class="{active:cur==1}">待结算</text>
+			  <text @click="Indexs(2)" class="three" :class="{active:cur==2}">已结算</text>
+			  <text @click="Indexs(3)" class="four" :class="{active:cur==3}">完成</text>
 		</view>
 		<view class="box">
 			<!-- 订单一 -->
-			<view v-for="(item,index) in data_list" :key='item.id' @tap="unfold(item.id,index)">
+			<view v-for="(item,index) in dataList" :key='item.id' @tap="msgs = index">
 				<view class="line">
 					<view class="l_left">
 						<image :src= "APIconfig.api_img + item.avatar" mode="widthFix"></image>
@@ -61,44 +61,80 @@
 				</view>
 			</view>
 		</view>
+		<uni-load-more :status="more"></uni-load-more>
 	</view>
 </template>
 <script>
 	import returns from '../../common/returns.vue'
+	import uniLoadMore from '../../../components/uni-load-more/uni-load-more.vue'
 	export default{
 		components:{
-			returns
+			returns,
+			uniLoadMore
 		},
 		data(){
 			return{
 				title:'分销订单',
-				cur:0,
+				cur:'',
 				reveal:false,
 				data:'',
-				data_list:'',
+				dataList:[],
 				msgs:'',
+				more: 'more',
+				page: 1,
+				loadRecord: true
 			}
 		},
 		methods:{
-			Index(type){
-				this.cur = type
-				this.service.entire(this,'post',this.APIconfig.api_root.subuser.u_index,{
-					user_id:this.$store.state.user.id,
-					type:type
-				},function(self,res){
-					console.log(res)
-					self.data = res.data
-					self.data_list = res.data.order
-				})
-			},
-			unfold(id,index){
+			Indexs(type){ //切换状态执行
+				this.cur = type;//判断type值
+				this.more = 'loading' //加载状态
+				this.dataList.length = 0 //切换数据归零
+				this.page = 1 //初始页码为1
+				this.loadRecord = true
 				
-				this.msgs = index;
+				let data = {
+					user_id:this.$store.state.user.id,
+					type:type,
+					page:1,
+				}
+				this.Index(data)
+			},
+			loadMore(){//滚动到底部执行
+				this.more = 'loading'
+				let data = {
+					user_id:this.$store.state.user.id,
+					page:this.page,
+					type:this.cur
+				}
+				if(data.type == this.cur) Reflect.deleteProperty(data, "type");
+				console.log(this.cur)
+				this.Index(data)//执行接口
+			},
+			Index(data){
+				this.service.entire(this,'post',this.APIconfig.api_root.subuser.u_index,data,
+				function(self,res){
+					// console.log(res)
+					self.data = res.data
+					// self.dataList = res.data.order
+					
+					self.dataList.push(...res.data.order)
+					self.page ++ //页码数+1
+					self.more = 'more'
+					if(res.data.order.length < 10){//判断是否还有下一页
+						self.more = 'noMore'
+						self.loadRecord = false
+					}
+				})
 			}
 			
 		},
+		onReachBottom() {//页面上拉。触低事件
+			if (this.loadRecord == false) return
+			this.loadMore()
+		},
 		onLoad() {
-			this.Index(0)
+			this.Indexs(0)
 		}
 		
 	}
