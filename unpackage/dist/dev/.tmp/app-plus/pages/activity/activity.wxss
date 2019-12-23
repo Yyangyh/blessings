@@ -34,7 +34,6 @@
     height: 120rpx;
     display: -webkit-box;
     display: -webkit-flex;
-    display: -ms-flexbox;
     display: flex;
     text-align: center;
     line-height: 120rpx;
@@ -44,7 +43,6 @@
 .content .allorder text {
       -webkit-box-flex: 1;
       -webkit-flex: 1;
-          -ms-flex: 1;
               flex: 1;
 }
 .content .active {
@@ -74,11 +72,9 @@
 .content .boxs .worp .line {
       display: -webkit-box;
       display: -webkit-flex;
-      display: -ms-flexbox;
       display: flex;
       -webkit-box-align: center;
       -webkit-align-items: center;
-          -ms-flex-align: center;
               align-items: center;
       margin-left: 23rpx;
 }

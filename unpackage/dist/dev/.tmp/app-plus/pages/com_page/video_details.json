@@ -1,5 +1,7 @@
 {
   "navigationBarTitleText": "视频详情",
   "titleNView": false,
-  "usingComponents": {}
+  "usingComponents": {
+    "load": "/pages/common/load"
+  }
 }

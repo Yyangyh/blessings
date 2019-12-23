@@ -49,7 +49,7 @@
 					<view class="lines">
 						<view>状态：</view>
 						<text>{{item.status_text}}</text>
-					</view>
+					</view>m 
 					<view class="lines">
 						<view>订单金额：</view>
 						<text>{{item.pay_price}}</text>

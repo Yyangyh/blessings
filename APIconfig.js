@@ -1,6 +1,6 @@
-const api = ''
+// const api = ''
 
-// const api ='http://192.168.0.195:8900?s='
+const api ='http://192.168.0.195:8990'
 const api_img ='http://192.168.0.195:8990'
 
 const api_root = {

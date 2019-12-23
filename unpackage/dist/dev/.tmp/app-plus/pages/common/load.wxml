@@ -1,0 +1,1 @@
+<view class="load data-v-5e65897e"><view hidden="{{!(show)}}" class="load_box data-v-5e65897e"><image src="/static/image/common/load.gif" mode="widthFix" class="data-v-5e65897e"></image><view class="data-v-5e65897e">努力加载中...</view></view></view>
