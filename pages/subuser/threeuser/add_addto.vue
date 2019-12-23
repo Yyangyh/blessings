@@ -14,7 +14,7 @@
 		</view>
 		
 		<view class="list_city" @click="show = 1">
-			<text>所在地区</text>
+			<text style="">所在地区</text>
 			<!-- <input type="text" value=""   disabled/> -->
 			<view class="" v-for="(item,index) in county" :key='index'>
 				{{item}}
@@ -26,9 +26,9 @@
 		</view>
 		
 		<label class="checkbox">
-			<checkbox value="" :checked="checked"/>设为默认
+			<checkbox style="transform:scale(.8);" value="" :checked="checked"/>设为默认
 		</label>
-		<button type="primary" @click="preservation()">保存收货地址</button>
+		<button  @click="preservation()">保存收货地址</button>
 			
 			
 			
@@ -178,7 +178,7 @@
 		color: #999999;
 		margin: 30rpx auto;
 		padding-bottom: 30rpx;
-		border-bottom: 1rpx solid #999999;
+		border-bottom: 1rpx solid #EEEEEE;
 	}
 	.list{
 		width: 90%;
@@ -186,7 +186,7 @@
 		font-size: 28rpx;
 		color: #999999;
 		margin: 30rpx auto;
-		border-bottom: 1rpx solid #999999;
+		border-bottom: 1rpx solid #EEEEEE;
 		display: flex;
 		/* justify-content: center; */
 		align-items: center;
@@ -200,6 +200,8 @@
 	.checkbox{
 		width: 90%;
 		font-size: 28rpx;
+		display: flex;
+		align-items: center;
 		color: #999999;
 		margin: 30rpx 5%;
 	}
@@ -208,6 +210,7 @@
 		height: 90rpx;
 		line-height: 90rpx;
 		background: #BE1226;
+		color: #FFFFFF;
 		margin-top: 30rpx;
 		font-size: 30rpx;
 		border-radius: 45rpx;
