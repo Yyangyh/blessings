@@ -24,30 +24,51 @@
 				</view>
 			</view>
 		</view>
+		<uni-load-more :status="more"></uni-load-more>
 	</view>
 </template>
 
 <script>
 	import returns from '../../common/returns.vue'
+	import uniLoadMore from '../../../components/uni-load-more/uni-load-more.vue'
 	export default{
 		components:{
-			returns
+			returns,
+			uniLoadMore
 		},
 		data(){
 			return{
 				title:'提现明细',
 				// cur:0,
-				dataList:''
+				dataList:[],
+				more:'more',
+				page:1,
+				loadRecord: true
 			}
 		},
-		
-		onShow() {
-			this.service.entire(this,'post',this.APIconfig.api_root.subuser.u_CashHistory,{
-				user_id:this.$store.state.user.id,
-			},function(self,res){
-				console.log(res)
-				self.dataList = res.data
-			})
+		methods:{
+			loadMore(){
+				this.more = 'loading'
+				this.service.entire(this,'post',this.APIconfig.api_root.subuser.u_CashHistory,{
+					user_id:this.$store.state.user.id,
+					page:this.page
+				},function(self,res){
+					self.dataList.push(...res.data.data)
+					self.page ++
+					self.more = 'more'
+					if(res.data.data.length < 10){
+						self.more = 'noMore'
+						self.loadRecord = false
+					}
+				})
+			}
+		},
+		onReachBottom() {
+			if (this.loadRecord == false) return
+			this.loadMore()
+		},
+		onLoad() {
+			this.loadMore()
 		}
 	}
 </script>

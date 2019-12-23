@@ -15,7 +15,7 @@
 					<view v-if="data">推荐人：{{data.user.up_name}}</view>
 				</view>
 			</view>
-			<view class="line">
+			<view class="line" v-if="data">
 				<text>我的邀请码:</text>
 				<text>{{data.user.invite_code}}</text>
 			</view>

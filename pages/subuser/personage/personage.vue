@@ -72,6 +72,7 @@
 					uni.chooseImage({
 					    success: (chooseImageRes) => {
 					        const tempFilePaths = chooseImageRes.tempFilePaths;
+							let times = that.service.loading('上传中')
 					        uni.uploadFile({
 					            url: this.APIconfig.api_root.subuser.s_member, 
 					            filePath: tempFilePaths[0],
@@ -81,7 +82,8 @@
 									user_id:that.$store.state.user.id
 					            },
 					            success: (res) => {
-					                console.log(tempFilePaths[0]);
+									uni.hideLoading()
+					                clearTimeout(times)
 									let data =JSON.parse(res.data)
 									console.log(data)
 									if(data.code == 0){
