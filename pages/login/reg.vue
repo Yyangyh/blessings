@@ -16,7 +16,7 @@
 			<text @click="obtain()">{{verification}}</text>
 		</view>
 		<view class="ipt">
-			<input type="text" v-model="parent_id" :disabled="parent_dis" value="" maxlength="4" placeholder="请输入邀请码"/>
+			<input type="text" v-model="parent_id" :disabled="parent_dis" value="" maxlength="8" placeholder="请输入邀请码"/>
 			<!-- <text @click="obtain()">{{verification}}</text> -->
 		</view>
 		<view class="ipt">

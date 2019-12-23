@@ -28,24 +28,27 @@
 		</view>
 		<!-- 问卷调查 -->
 		<view class="questionnaire" v-show="cur==1" v-if="voucher">
-			<view class="title">{{voucher[0].name}}</view>
-			<view class="line">
-				<view class="question" v-for="(item,index) in voucher[0].answer"  @tap="que_show = index">
-					<view class="circle" :class="{circle_red:que_show == index}">
-						<view class="circle_entity"  :class="{entity_red:que_show == index}">
+			<image class="q_image" src="../../static/image/evaluating/back.png"></image>
+			<view class="q_content">
+				<view class="title">{{voucher[0].name}}</view>
+				<view class="line">
+					<view class="question" v-for="(item,index) in voucher[0].answer"  @tap="que_show = index">
+						<view class="circle" :class="{circle_red:que_show == index}">
+							<view class="circle_entity"  :class="{entity_red:que_show == index}">
+							</view>
 						</view>
+						<text>
+							{{item.name}}
+						</text>
 					</view>
-					<text>
-						{{item.name}}
-					</text>
 				</view>
+				<view class="opinion">{{voucher[1].name}}</view>
+				<textarea v-model="opinion_test" name="" id="" cols="30" rows="10"></textarea>
+				<view class="ganxie">
+					十分感谢您对这次调查的支持！
+				</view>
+				<button type="default" @tap="submit">提交问卷</button>
 			</view>
-			<view class="opinion">{{voucher[1].name}}</view>
-			<textarea v-model="opinion_test" name="" id="" cols="30" rows="10"></textarea>
-			<view class="ganxie">
-				十分感谢您对这次调查的支持！
-			</view>
-			<button type="default" @tap="submit">提交问卷</button>
 		</view>
 		<!-- 测评记录 -->
 		<view class="line_record"  v-show="cur==2"  v-for="(item,index) in record_data" @tap="$jump('./result?id='+item.id)">
@@ -195,8 +198,8 @@
 			.tergum1{
 				width: 710rpx;
 				height: 170rpx;
-				background: url(../../static/image/evaluating/cur2.png) no-repeat;
-				background-size: 100% 100%;
+				// background: url(../../static/image/evaluating/cur2.png) no-repeat;
+				// background-size: 100% 100%;
 				margin: 30rpx auto 0;
 				display: flex;
 				align-items: center;
@@ -230,8 +233,8 @@
 			.tergum2{
 				width: 710rpx;
 				height: 170rpx;
-				background: url(../../static/image/evaluating/cur3.png) no-repeat;
-				background-size: 100% 100%;
+				// background: url(../../static/image/evaluating/cur3.png) no-repeat;
+				// background-size: 100% 100%;
 				margin: 30rpx auto 0;
 				display: flex;
 				align-items: center;
@@ -265,8 +268,8 @@
 			.tergum3{
 				width: 710rpx;
 				height: 170rpx;
-				background: url(../../static/image/evaluating/cur4.png) no-repeat;
-				background-size: 100% 100%;
+				// background: url(../../static/image/evaluating/cur4.png) no-repeat;
+				// background-size: 100% 100%;
 				margin:30rpx auto 0;
 				display: flex;
 				align-items: center;
@@ -321,10 +324,23 @@
 			}
 		}
 		.questionnaire{
+			position: relative;
 			width: 100%;
 			height: 1334rpx;
-			background: url(../../static/image/evaluating/back.png) no-repeat;
-			background-size: 100% 100%;
+			.q_image{
+				width: 100%;
+				height: 1334rpx;
+				position:absolute ;
+				top:0;
+				left: 0;
+			}
+			.q_content{
+				position: absolute;
+				top:0;
+				left: 0;
+			}
+			// background: url(../../static/image/evaluating/back.png) no-repeat;
+			// background-size: 100% 100%;
 			.title{
 				font-size: 28rpx;
 				padding: 375rpx 0 0 128rpx;
@@ -383,7 +399,7 @@
 			textarea{
 				background-color: #FFFFFF;
 				display: block;
-				margin: 20rpx auto 0;
+				margin: 20rpx 0 0 50rpx;
 				width: 650rpx;
 				height: 280rpx;
 			}
