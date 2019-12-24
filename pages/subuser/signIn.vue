@@ -17,58 +17,23 @@
 				<text>天</text>
 			</view>
 			<view class="time">
-				<view class="timebox">
-					<image src='../../static/image/subuser/qiandao.png' mode="widthFix"></image>
-					<view>第1天</view>
-				</view>
-				<view class="gang">
-					
-				</view>
-				<view class="timebox">
-					<image src='../../static/image/subuser/qiandao.png' mode="widthFix"></image>
-					<view>第2天</view>
-				</view>
-				<view class="gang">
-					
-				</view>
-				<view class="timebox">
-					<image src='../../static/image/subuser/qiandao.png' mode="widthFix"></image>
-					<view>第3天</view>
-				</view>
-				<view class="gang">
-					
-				</view>
-				<view class="timebox">
-					<image src='../../static/image/subuser/qiandao.png' mode="widthFix"></image>
-					<view>第4天</view>
-				</view>
-				<view class="gang">
-					
-				</view>
-				<view class="timebox">
-					<image src='../../static/image/subuser/qiandao.png' mode="widthFix"></image>
-					<view>第5天</view>
-				</view>
-				<view class="gang">
-					
-				</view>
-				<view class="timebox">
-					<image src='../../static/image/subuser/qiandao.png' mode="widthFix"></image>
-					<view>第6天</view>
-				</view>
-				<view class="gang">
-					
-				</view>
-				<view class="timebox">
-					<image src='../../static/image/subuser/qiandao.png' mode="widthFix"></image>
-					<view>第7天</view>
-				</view>
+				<block v-for="(item,index) in data_list" :key='index'>
+					<view class="timebox">
+						<image v-if="item.is_sign == 1" src='/static/image/subuser/sign.png' mode="widthFix"></image>
+						<image v-else src='../../static/image/subuser/qiandao.png' mode="widthFix"></image>
+						<view>第{{index + 1}}天</view>
+					</view>
+					<view class="gang" v-if="index != data_list.length - 1">
+						
+					</view>
+				</block>
+				
 			</view>
-			<button type="default" @click="reveal=true">立即签到</button>
+			<button type="default" @click="sign">立即签到</button>
 			<view class="look" @tap="$jump('./integral/know')">查看积分规则</view>
 		</view>
 		<!-- 跳转 -->
-		<view class="mask_black" v-if="reveal">
+		<view class="mask_black" v-if="reveal" @tap="reveal = !reveal">
 			
 		</view>
 		<view class="bk" v-if="reveal">
@@ -76,9 +41,7 @@
 			<view class="bk_text">
 				<view>签到成功</view>
 				<view>
-					<text class="text1">签到成功，今日已领</text>
-					<text class="text2">5</text>
-					<text class="text1">积分</text>
+					{{msg}}
 				</view>
 			</view>
 		</view>
@@ -95,8 +58,48 @@
 				return{
 					title:'签到',
 					reveal:false,
+					data_list:'',
+					msg:''
 				}
 			},
+			methods:{
+				sign(){
+					let data = this.service.Test(Date.parse(new Date())/1000)
+					data = data.split('-')[2]
+					
+					
+					this.service.entire(this,'post',this.APIconfig.api_root.subuser.index_Week,{
+						user_id:this.$store.state.user.id
+					},function(self,res){
+						console.log(res)
+						if(res.code == 0){
+							self.reveal = true
+							self.msg = res.msg
+							for (let s of self.data_list) {
+								if(s.day == data) {
+									s.is_sign = 1
+									break
+								}
+								
+							}
+							console.log(self.data_list)
+						}else if(res.code == 1){
+							uni.showToast({
+								icon:'none',
+								title:res.msg
+							})
+						}
+					})
+				}
+			},
+			onShow() {
+				this.service.entire(this,'post',this.APIconfig.api_root.subuser.thisWeek,{
+					user_id:this.$store.state.user.id
+				},function(self,res){
+					console.log(res)
+					self.data_list = res.data.week_all
+				})
+			}
 		}
 </script>
 

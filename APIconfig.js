@@ -105,6 +105,9 @@ const api_root = {
 		
 		u_favor:api+'/api/videohome/favor',//收藏
 		
+		
+		thisWeek:api+'/api/signin/thisWeek',//签到列表
+		index_Week:api+'/api/Signin/index',//签到
 		threeuser:{
 			region_index: api+'/api/region/index',//获取省市区三级
 			address_save: api+'/api/useraddress/save',//用户地址保存
