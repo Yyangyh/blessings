@@ -24,10 +24,10 @@
 				<image class="all_img" :class="show===false ? 'tran_none' : show===true ? 'tran_show' : ''" src="/static/image/index/down.png" mode="widthFix"></image>
 			</view>
 			<view  @tap="condition(1)" :class="{'red':keyword_show === 1}">
-				{{type == 1?'免费视频':'免费音频'}}
+				{{req_data.type == 1?'免费视频':'免费音频'}}
 			</view>
 			<view  @tap="condition(2)" :class="{'red':keyword_show === 2}">
-				{{type == 1?'观看多':'收听多'}}
+				{{req_data.type == 1?'观看多':'收听多'}}
 			</view>
 		</view>
 		
@@ -85,84 +85,69 @@
 				show:0,
 				top_class:'',
 				video_list:[],
-				type:'',
 				more: 'more',
-				page: 1,
 				loadRecord: true,
 				v_pid:'',
 				v_test:'全部',
-				keyword_show:''
+				keyword_show:'',
+				req_data:{
+					type:'',
+					limit:10,
+					page:1
+				}
 			}
 		},
 		methods:{
 			Index(){
 				this.more = 'loading'
-				let data = {
-					type:this.type,
-					limit:10,
-					page:this.page
-				}
-				if(this.v_pid) data.v_pid = this.v_pid
-				if(this.is_free) data.is_free = this.is_free
-				if(this.view) data.view = this.view
-				this.uni_request(data)
+				this.uni_request(this.req_data)
 			},
 			
-			chiose(v_pid,test){
+			chiose(v_pid,test){ //二级分类选择
 				this.more = 'loading'
-				this.page = 1
+				this.req_data.page = 1
 				this.loadRecord = true
-				let data = {
-					type:this.type,
-					limit:10,
-					page:this.page
-				}
 				if(v_pid){
-					data.v_pid = v_pid
-					this.v_pid = v_pid
+					this.req_data.v_pid = v_pid
 					this.v_test = test
 				}else{
-					this.v_pid = ''
+					delete this.req_data.v_pid
 					this.v_test = '全部'
 				}
 				this.video_list.length = 0
-				if(this.is_free) data.is_free = this.is_free
-				if(this.view) data.view = this.view
-				this.uni_request(data)
+				this.uni_request(this.req_data)
 				this.show = false
 			},
-			condition(type){
+			condition(type){//条件选择
 				this.more = 'loading'
-				this.page = 1
+				this.req_data.page = 1
 				this.loadRecord = true
 				this.video_list.length = 0
-				let data = {
-					type:this.type,
-					limit:10,
-					page:this.page
+				if(this.keyword_show == type){
+					this.keyword_show = ''
+					delete this.req_data.view
+					delete this.req_data.is_free
+				}else{
+					this.keyword_show = type
+					if(type == 1) {
+						this.req_data.is_free = 1
+						delete this.req_data.view
+					}
+					if(type == 2) {
+						this.req_data.view = 1
+						delete this.req_data.is_free
+					}
 				}
-				this.keyword_show = type
-				if(this.v_pid) data.v_pid = this.v_pid
-				if(type == 1) {
-					data.is_free = 1
-					this.is_free = 1
-					this.view = ''
-				}
-				if(type == 2) {
-					data.view = 1
-					this.view = 1
-					this.is_free = ''
-				}
-				this.uni_request(data)
+				this.uni_request(this.req_data)
 			},
-			uni_request(data){
-				this.service.entire(this,'get',this.APIconfig.api_root.com_page.videoList,data,function(self,res){
+			uni_request(req_data){
+				this.service.entire(this,'get',this.APIconfig.api_root.com_page.videoList,req_data,function(self,res){
 					self.top_class = res.data.top_list
 					let data = self.video_list
 					data.push(...res.data.video_list)
 					self.video_list = data
 					console.log(self.video_list);
-					self.page += 1
+					self.req_data.page += 1
 					self.more = 'more'
 					if (res.data.video_list.length < 10) {
 						self.more = 'noMore'
@@ -173,7 +158,8 @@
 			}
 		},
 		onLoad(e) {
-			this.type = e.type
+			this.req_data.type = e.type
+			// this.type = e.type
 			this.Index()
 		},
 		onShow() {
