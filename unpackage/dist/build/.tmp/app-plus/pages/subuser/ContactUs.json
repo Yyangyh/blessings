@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "联系我们",
+  "titleNView": false,
+  "usingComponents": {
+    "returns": "/pages/common/returns"
+  }
+}

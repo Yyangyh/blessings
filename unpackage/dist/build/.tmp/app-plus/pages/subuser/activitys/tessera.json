@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "入场卷",
+  "titleNView": false,
+  "usingComponents": {
+    "returns": "/pages/common/returns"
+  }
+}

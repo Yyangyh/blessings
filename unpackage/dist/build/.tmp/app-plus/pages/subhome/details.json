@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "产品详情",
+  "titleNView": false,
+  "usingComponents": {
+    "load": "/pages/common/load"
+  }
+}

@@ -5,12 +5,12 @@
 		</view>
 		<returns :titles='title'></returns>
 		<view class="allorder">
-			  <text @click="cur=0" class="one" :class="{active:cur==0}">幸福测评</text>
-			  <text @click="cur=1" class="two" :class="{active:cur==1}">调查问卷</text>
-			  <text @click="cur=2" class="three" :class="{active:cur==2}">测评记录</text>
+			  <text @click="cur = 0" class="one" :class="{active:cur == 0}">幸福测评</text>
+			  <text @click="cur = 1" class="two" :class="{active:cur == 1}">调查问卷</text>
+			  <text @click="cur = 2" class="three" :class="{active:cur == 2}">测评记录</text>
 		</view
 		<!-- 幸福测评 -->
-		<view class="box" v-show="cur==0">
+		<view class="box" v-if="cur === 0">
 			<view class="tergum" v-for="(item,index) in dataList" :key='item.id' @tap="$jump('./listbox?id='+item.id+'&name='+item.name)">
 				<view class="worp">
 					<view class="terLeft">
@@ -27,12 +27,12 @@
 			</view>
 		</view>
 		<!-- 问卷调查 -->
-		<view class="questionnaire" v-show="cur==1" v-if="voucher">
+		<view class="questionnaire" v-if="cur === 1">
 			<image class="q_image" src="../../static/image/evaluating/back.png"></image>
 			<view class="q_content">
 				<view class="title">{{voucher[0].name}}</view>
 				<view class="line">
-					<view class="question" v-for="(item,index) in voucher[0].answer"  @tap="que_show = index">
+					<view class="question" v-for="(item,index) in voucher[0].answer" @tap="chiose(index)" >
 						<view class="circle" :class="{circle_red:que_show == index}">
 							<view class="circle_entity"  :class="{entity_red:que_show == index}">
 							</view>
@@ -51,7 +51,7 @@
 			</view>
 		</view>
 		<!-- 测评记录 -->
-		<view class="line_record"  v-show="cur==2"  v-for="(item,index) in record_data" @tap="$jump('./result?id='+item.id)">
+		<view class="line_record"  v-if="cur === 2"  v-for="(item,index) in record_data" @tap="$jump('./result?id='+item.id)">
 			<view class="l-left">{{item.name}}</view>
 			<view class="l-right">
 				<text>查看结果</text>
@@ -75,15 +75,19 @@
 				que_show:0,
 				voucher:'',
 				opinion_test:'',
-				record_data:''
+				record_data:'',
+				index:0
 			}
 		},
 		methods:{
+			chiose(index){
+				this.que_show = index
+			},
 			submit(){
 				let data = []
 				data.push(this.voucher[0].answer[this.que_show].psqq_id)
 				data.push(this.opinion_test)
-				console.log(data)
+				console.log(this.cur)
 				this.service.entire(this,'post',this.APIconfig.api_root.subindex.s_qtn_submitQtn,{ //提交问券调查
 					qtn_id :5,
 					user_id:this.$store.state.user.id,
@@ -98,6 +102,7 @@
 			}
 		},
 		onShow() {
+			console.log(this.cur)
 			this.service.entire(this,'post',this.APIconfig.api_root.subindex.s_test_classify,{//幸福评测列表
 				
 			},function(self,res){
@@ -123,6 +128,7 @@
 </script>
 
 <style lang="scss">
+	
 	.content{
 		width: 100%;
 		background-color: #F6F6F7;
@@ -150,21 +156,21 @@
 				
 				margin-bottom: 33rpx;
 				position: relative;
-				z-index: 100;
+				z-index: 80;
 				.Image{
 					width: 710rpx;
 					height: 170rpx;
 					top:0;
 					left: 0;
 					position: absolute;
-					z-index: 99;
+					z-index: 75;
 				}
 				.worp{
 					position:absolute;
 					top: 50%;
 					transform: translateY(-50%);
 					width: 100%;
-					z-index: 111;
+					z-index: 91;
 					box-sizing: border-box;
 					display: flex;
 					align-items: center;

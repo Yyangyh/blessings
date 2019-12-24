@@ -7,7 +7,7 @@
 		<image class="black" src="../../static/image/subuser/blance.png"></image>
 		<view class="money">
 			<view>可用余额（元）</view>
-			<view>{{$store.state.user.money}}</view>
+			<view>{{user.money}}</view>
 		</view>
 		<view class="allorder">
 			<text @click="choise()" class="one" :class="{active:cur==2}">全部</text>
@@ -39,6 +39,7 @@
 			data(){
 				return{
 					title:'余额',
+					user:this.$store.state.user,
 					cur:'',
 					dataList:[],
 					more:'more',

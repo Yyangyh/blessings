@@ -61,7 +61,7 @@
 		},
 		methods:{
 			signout(){
-				this.$store.commit('logout')
+				uni.clearStorage();
 				
 				uni.reLaunch({
 					url:'../../login/login'

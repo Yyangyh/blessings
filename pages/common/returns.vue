@@ -55,14 +55,14 @@
 		display: flex;
 		align-items: center;
 		height: 100%;
-		width: 90rpx;
+		width: 180rpx;
 	}
 	.top image{
 		height: 40rpx;
 		width: 40rpx;
 	}
 	.top text:nth-of-type(2){
-		width: 90rpx;
+		width: 180rpx;
 		display: inline-block;
 	}
 </style>

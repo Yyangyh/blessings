@@ -1,7 +1,7 @@
 const entire = function(self,type,url,data,func){
-	if(self.$store.state.hasLogin === true){
+	if(self.$store.state.token){
 		 data.token = self.$store.state.token
-	}else if(self.$store.state.hasLogin === false){
+	}else{
 		uni.reLaunch({
 			url:'/pages/login/login'
 		})
@@ -31,9 +31,9 @@ const entire = function(self,type,url,data,func){
 }
 
 const asy_entire = function(self,type,url,data,func){ //同步请求
-	if(self.$store.state.hasLogin === true){
+	if(self.$store.state.token){
 		 data.token = self.$store.state.token
-	}else if(self.$store.state.hasLogin === false){
+	}else{
 		uni.reLaunch({
 			url:'/pages/login/login'
 		})

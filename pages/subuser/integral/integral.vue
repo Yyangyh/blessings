@@ -10,7 +10,7 @@
 				<image src='../../../static/image/subuser/wenhao.png' mode="widthFix"></image>
 				<text>了解积分</text>
 			</view>
-			<view class="t-text1">{{$store.state.user.integral}}</view>
+			<view class="t-text1">{{user.integral}}</view>
 			<view class="t-text2">可用积分</view>
 		</view>
 		<view class="allorder">
@@ -44,6 +44,7 @@
 			return{
 				title:'我的积分',
 				cur:'',
+				user:this.$store.state.user,
 				dataList:[],
 				//下面三个必须填写的初始值
 				more: 'more',

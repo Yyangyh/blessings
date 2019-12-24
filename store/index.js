@@ -3,18 +3,11 @@ import Vuex from 'vuex'
 Vue.use(Vuex)
 const store = new Vuex.Store({
     state: {
-		hasLogin:false,
 		user:'',
 		token:'',
 		notice:false
 	},
     mutations: {
-		change_login(state){
-			state.hasLogin = true
-		},
-		logout(state){
-			state.hasLogin = false
-		},
 		state_user(state,data){
 			state.user = data
 		},

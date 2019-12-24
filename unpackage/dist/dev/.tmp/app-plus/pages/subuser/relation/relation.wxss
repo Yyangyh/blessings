@@ -1,5 +1,5 @@
 
-.top.data-v-3a62a54a{
+.top.data-v-6d9a5857{
 	height: 105rpx;
 	padding: 0 44rpx;
 	width: 100%;
@@ -23,7 +23,7 @@
 	background: #fff;
 	box-shadow:0px 2rpx 4rpx 0px rgba(0, 0, 0, 0.1);
 }
-.top_enlarge.data-v-3a62a54a{
+.top_enlarge.data-v-6d9a5857{
 	display: -webkit-box;
 	display: -webkit-flex;
 	display: flex;
@@ -31,14 +31,14 @@
 	-webkit-align-items: center;
 	        align-items: center;
 	height: 100%;
-	width: 90rpx;
+	width: 180rpx;
 }
-.top image.data-v-3a62a54a{
+.top image.data-v-6d9a5857{
 	height: 40rpx;
 	width: 40rpx;
 }
-.top text.data-v-3a62a54a:nth-of-type(2){
-	width: 90rpx;
+.top text.data-v-6d9a5857:nth-of-type(2){
+	width: 180rpx;
 	display: inline-block;
 }
 

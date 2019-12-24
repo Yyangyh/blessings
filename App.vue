@@ -23,7 +23,10 @@
 			// #endif
 			
 			
-			
+			if(uni.getStorageSync('state_token')){
+				this.$store.commit('state_user',uni.getStorageSync('state_user'))
+				this.$store.commit('state_token',uni.getStorageSync('state_token'))
+			}
 			// if(this.$store.state.hasLogin == false){  //未登陆时跳转登陆页面
 			// 	uni.reLaunch({
 			// 	    url: 'pages/login/login'

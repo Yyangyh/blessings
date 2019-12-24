@@ -1,6 +1,6 @@
 const api = ''
 
-// const api ='http://192.168.0.195:8900?s='
+// const api ='http://192.168.0.195:8990'
 const api_img ='http://192.168.0.195:8990'
 
 const api_root = {
@@ -15,10 +15,10 @@ const api_root = {
 		findPassword: api+'/api/member/findPassword',//找回密码验证
 		reset: api+'/api/member/reset',//重置密码
 	},
-	index:{
+	index:{ 
 		index: api+'/api/VideoHome/index',//首页
 		good_index: api+'/api/good/index',//商城首页
-		felicity_index: api+'/api/felicity/index',//幸福课堂首页数据
+		felicity_index: api+'/api/felicity/index',//幸福课堂首页数据 
 	},
 	subclass:{
 		c_certificateList:api+'/api/Research/certificateList',//证书列表

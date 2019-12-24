@@ -96,8 +96,10 @@
 					})
 					return
 				}, 10000)
+				console.log(that.APIconfig.api_root.login.login)
 				uni.request({
 					url:that.APIconfig.api_root.login.login,
+					// url:'http://wl.hhw778.com/api/user/Login',
 					method:'POST',
 					data:{
 						username:that.accounts,
@@ -108,6 +110,7 @@
 						uni.hideLoading()
 						clearTimeout(times)
 						console.log(res)
+						console.log(res)
 						let data = res.data 
 						uni.showToast({
 							icon:'none',
@@ -116,10 +119,11 @@
 						if(data.code == 0){
 							console.log(data.data.memberInfo)
 							// uni.setStorageSync('user',JSON.stringify())
-							that.$store.commit('change_login')
 							that.$store.commit('state_user',data.data.memberInfo)
 							that.$store.commit('state_token',data.token)
-							console.log(that.$store.state)
+							
+							uni.setStorageSync('state_user',data.data.memberInfo)
+							uni.setStorageSync('state_token',data.token)
 							// #ifdef H5
 							// 	先判断是否在h5打开，再判断是否是在微信浏览器打开
 								let ua = navigator.userAgent.toLowerCase();
@@ -138,6 +142,12 @@
 								});
 							},1000)
 						}
+					},
+					fail(res) {
+						console.log(res)
+					},
+					complete(res) {
+						console.log(res)
 					}
 				})
 			},

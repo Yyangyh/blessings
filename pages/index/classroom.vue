@@ -21,7 +21,7 @@
 			</view>
 		</view>
 		
-		
+		 
 		<view class="vider_content_two" v-for="(item,index) in cen_class" :key='item.id'>
 			<view class="v_box_top">
 				<view class="box_left">
@@ -34,7 +34,7 @@
 			<view class="vider_content">
 				<view class="content_list" v-for="(items,indexs) in item.list" :key='items.id'  @tap="$jump('../com_page/video_details?id='+items.id + '&type='+items.type)">
 					<view class="list_img_box">
-						<image src="../../static/image/index/vider_img1.png" mode="widthFix"></image>
+						<image :src="items.v_pic" mode="scaleToFill"></image>
 					</view>
 					<view class="list_right">
 						<view class="list_one">

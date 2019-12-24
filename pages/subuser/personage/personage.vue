@@ -3,9 +3,9 @@
 		<view class="status_bar">
 							
 		</view >
-		<view class="top">
+		<view class="top" @tap="service.returns()">
 			<view class="image">
-				<image src="/static/image/subuser/per-return.png" @tap="service.returns()" mode="widthFix"></image>
+				<image src="/static/image/subuser/per-return.png" mode="widthFix"></image>
 			</view>
 			<text>个人资料</text>
 		</view>	
@@ -16,7 +16,7 @@
 				</view>
 				<view @click="reveal">修改头像></view>
 			</view>
-			<view class="bank">
+			<view class="bank"> 
 				<view class="line" @tap="$jump('./alter')">
 					<view class="l_felt">
 						<image src="/static/image/subuser/nicheng.png" mode="widthFix"></image>
@@ -115,18 +115,22 @@
 			background:linear-gradient(49deg,rgba(245,110,106,1) 0%,rgba(247,76,74,1) 100%);
 			z-index: 99;
 			.image{
-				width:18rpx;
-				height:31rpx;
+				width:80rpx;
+				height:80rpx;
 				margin-left: 40rpx;
 				image{
-					width: 100%;
-					height: 100%;
+					width:18rpx;
+					height:31rpx;
 				}
 			}
 			text{
 				font-size: 32rpx;
 				margin: 0 auto;
 				color:#FFFFFF
+			}
+			&:after{
+				content: "";
+				width:80rpx;
 			}
 		}
 		.per_box{
@@ -137,7 +141,7 @@
 			margin-top: -20rpx;
 			z-index: 100;
 			position: absolute;
-			top:194rpx;
+			top: calc(var(--status-bar-height) + 194rpx);
 			left:0;
 			.box_top{
 				.photo_box{

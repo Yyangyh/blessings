@@ -266,12 +266,18 @@
 		font-weight: bold;
 		color: #333333;
 		background: #fff;
+		.top_enlarge{
+			display: flex;
+			align-items: center;
+			height: 100%;
+			width: 180rpx;
+		}
 		image {
 			height: 40rpx;
 			width: 40rpx;
 		}
 		text:nth-of-type(2) {
-			width: 40rpx;
+			width: 180rpx;
 			display: inline-block;
 		}
 	}

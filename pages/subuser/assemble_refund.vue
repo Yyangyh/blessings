@@ -186,14 +186,19 @@
 		background: #fff;
 		box-shadow: 0px 2rpx 4rpx 0px rgba(0, 0, 0, 0.1);
 	}
-
+	.top .top_enlarge{
+		display: flex;
+		align-items: center;
+		height: 100%;
+		width: 180rpx;
+	}
 	.top image {
 		height: 40rpx;
 		width: 40rpx;
 	}
 
 	.top text:nth-of-type(2) {
-		width: 40rpx;
+		width: 180rpx;
 		display: inline-block;
 	}
 

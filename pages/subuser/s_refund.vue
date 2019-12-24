@@ -191,6 +191,12 @@
 		color: #333333;
 		background: #fff;
 		box-shadow: 0px 2rpx 4rpx 0px rgba(0, 0, 0, 0.1);
+		.top_enlarge{
+			display: flex;
+			align-items: center;
+			height: 100%;
+			width: 180rpx;
+		}
 		image {
 			height: 40rpx;
 			width: 40rpx;
