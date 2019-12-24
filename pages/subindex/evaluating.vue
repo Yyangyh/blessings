@@ -341,6 +341,8 @@
 				left: 0;
 			}
 			.q_content{
+				width: 100%;
+				height:1334rpx ;
 				position: absolute;
 				top:0;
 				left: 0;

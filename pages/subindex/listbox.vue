@@ -48,11 +48,13 @@ import returns from '../common/returns.vue'
 </script>
 
 <style lang="scss">
-	.content{
+	// .content{
+	// 	background-color: #F6F6F7;
+	// 	width: 100%;
+	// 	height: 70vh;
+	page{
 		background-color: #F6F6F7;
-		width: 100%;
-		height: 70vh;
-		
+	}
 		.line{
 			display: flex;
 			align-items: center;
@@ -75,5 +77,5 @@ import returns from '../common/returns.vue'
 				}
 			}
 		}
-	}
+	// }
 </style>
