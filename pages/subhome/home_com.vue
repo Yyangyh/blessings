@@ -10,7 +10,7 @@
 			<view class="top_search">
 				{{title}}
 			</view>
-			<view class="top_img" @tap="$jump('../com_page/notice')">
+			<view class="top_img">
 				<image src="/static/image/com_page/search.png" mode="widthFix"></image>
 			</view>
 		</view>
@@ -18,13 +18,13 @@
 		<view class="tab_list">
 			<view class="list_all" @tap="show = !show">
 				<view class="">
-					全部
+					{{v_test}}
 				</view>
 				<image class="all_img" :class="show===false ? 'tran_none' : show===true ? 'tran_show' : ''" src="../../static/image/index/down.png" mode="widthFix"></image>
 			</view>
 			
-			<view class="list_all">
-				收听多
+			<view class="list_all"  @tap="condition()" :class="{'red':keyword_show === 1}">
+				销量多
 			</view>
 		</view>
 		
@@ -32,10 +32,10 @@
 			<!-- 遮罩层 层级888 -->
 		</view>
 		<view class="down_box"  :class="show===false ? 'mask_none' : show===true ? 'mask_show' : ''" >
-			<view class="down_list">
+			<view class="down_list"  @tap="chiose()">
 				全部
 			</view>
-			<view class="down_list" v-for="(item,index) in top_class" :key="item.id">
+			<view class="down_list" v-for="(item,index) in top_class" :key="item.id"  @tap="chiose(item.id,item.name)">
 				{{item.name}}
 			</view>
 		</view>
@@ -56,36 +56,101 @@
 				</view>
 			</view>
 		</view>
-		
+		<uni-load-more :status="more"></uni-load-more>
 	</view>
 </template>
 
 <script>
+	import uniLoadMore from '../../components/uni-load-more/uni-load-more.vue'
 	export default{
+		components: {
+			uniLoadMore
+		},
 		data() {
 			return {
+				id:'',
 				data:'',
 				show:false,
 				top_class:'',
 				title:'',
-				shopp_list:''
+				v_test:'全部',
+				keyword_show:'',
+				req_data:{
+					category_id:'',
+					page:1
+				},
+				shopp_list:[],
+				more: 'more',
+				loadRecord: true,
 			}
+		},
+		methods:{
+			Index(){
+				this.more = 'loading'
+				this.uni_request(this.req_data)
+			},
+			chiose(v_pid,test){ //二级分类选择
+				this.more = 'loading'
+				this.req_data.page = 1
+				this.loadRecord = true
+				if(v_pid){
+					this.req_data.category_id = v_pid
+					this.v_test = test
+				}else{
+					this.req_data.category_id = this.id
+					this.v_test = '全部'
+				}
+				this.shopp_list.length = 0
+				this.uni_request(this.req_data)
+				this.show = false
+			},
+			condition(type){//条件选择
+				this.more = 'loading'
+				this.req_data.page = 1
+				this.loadRecord = true
+				this.shopp_list.length = 0
+				if(this.keyword_show == 1){
+					this.keyword_show = ''
+					delete this.req_data.order_by_type
+				}else{
+					this.keyword_show = 1
+					this.req_data.order_by_type = 'desc'
+				}
+				this.uni_request(this.req_data)
+			},
+			uni_request(data){
+				this.service.entire(this,'post',this.APIconfig.api_root.subhome.s_index,data,function(self,res){
+					
+					let data = self.shopp_list
+					data.push(...res.data.data)
+					self.shopp_list = data
+					self.req_data.page += 1
+					self.more = 'more'
+					if (res.data.data.length < 10) {
+						self.more = 'noMore'
+						self.loadRecord = false
+						return
+					}
+				})
+			}
+			
 		},
 		onLoad(e) {
 			this.title = e.title
-			this.service.entire(this,'post',this.APIconfig.api_root.subhome.s_index,{ //商品列表
-				category_id:e.id,
-				page:1
-			},function(self,res){
-				self.shopp_list = res.data.data
-			})
+			this.id = e.id
+			this.req_data.category_id = e.id
+			this.Index()
 			this.service.entire(this,'post',this.APIconfig.api_root.subhome.s_category,{ //分类
 				pid:e.id,
 				page:1
 			},function(self,res){
 				self.top_class = res.data
 			})
-		}
+		},
+		onReachBottom() {
+			if (this.loadRecord == false) return
+			this.Index()
+		},
 	}
 </script>
 
@@ -151,6 +216,9 @@
 			view{
 				color: #D80000;
 			}
+		}
+		.red{
+			color: #D80000;
 		}
 	}
 	.all_img{

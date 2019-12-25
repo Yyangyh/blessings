@@ -31,6 +31,10 @@
   background: linear-gradient(180deg, #ff5d44, #ffa774);
   position: relative;
 }
+.content .mSg {
+    font-size: 28rpx;
+    color: #333333;
+}
 .content .sign1 {
     position: absolute;
     width: 578rpx;

@@ -54,8 +54,8 @@
 					<image src='../../static/image/index/start.png'></image>
 					<text style="color:#EF7C38;font-size: 30upx;">超值拼团</text>
 				</view>
-				<view  class="commodity"  v-for="(itemo,indexo) in new_goods " :key='itemo.id'  @click="$jump('/pages/subhome/threehome/group_products?id='+itemo.id)">
-					<view class="pages"><image :src='itemo.images'></image></view>
+				<view  class="commodity"  v-for="(itemo,indexo) in fight" :key='itemo.id'  @click="$jump('/pages/subhome/threehome/group_products?id='+itemo.id)">
+					<view class="pages"><image :src='APIconfig.api_img+itemo.thumb'></image></view>
 					<view class="name">{{itemo.title}}</view>
 					<view style="color:#D80000;font-size: 30upx">{{itemo.price}}</view>
 				</view>
@@ -88,6 +88,7 @@ res
 			return {
 				swiper_list: '',
 				new_goods:"",
+				fight:'',
 				recommend:"",
 				category:'',
 				indicatorDots: true,
@@ -118,6 +119,7 @@ res
 				self.class_top = res.data.class_top
 				self.class_list = res.data.class_list
 				self.new_goods = res.data.new_goods
+				self.fight = res.data.fight
 				self.recommend = res.data.recommend
 			})
 		}

@@ -101,9 +101,11 @@
 .content .box .line .l_left view:last-child {
         font-size: 24rpx;
         color: #A1A1A1;
+        margin-top: 10rpx;
 }
 .content .box .line .l_right {
         font-size: 30rpx;
         color: #0C0C0C;
+        margin-left: 20rpx;
 }
 

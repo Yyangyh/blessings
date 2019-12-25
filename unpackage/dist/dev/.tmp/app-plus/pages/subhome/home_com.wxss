@@ -103,6 +103,9 @@
 .tab_list .list_all view {
       color: #D80000;
 }
+.tab_list .red {
+    color: #D80000;
+}
 .all_img {
   -webkit-transition: .3s;
   transition: .3s;

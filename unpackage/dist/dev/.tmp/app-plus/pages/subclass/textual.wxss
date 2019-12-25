@@ -27,8 +27,6 @@
 .content {
   width: 100%;
   height: 1229rpx;
-  background: url(../../static/img/background.41d8dccb.png) no-repeat;
-  background-size: 100% 100%;
   font-size: 32rpx;
 }
 .content .top {
@@ -61,6 +59,21 @@
 }
 .content .top text:last-child {
       font-size: 28rpx;
+}
+.content .t_image {
+    width: 100%;
+    height: 1229rpx;
+    position: absolute;
+    top: calc(var(--status-bar-height) + 105rpx);
+    left: 0;
+    z-index: 888;
+}
+.content .t_text {
+    width: 100%;
+    position: absolute;
+    top: calc(var(--status-bar-height) + 105rpx);
+    left: 0;
+    z-index: 999;
 }
 .content .text1 {
     text-align: center;
