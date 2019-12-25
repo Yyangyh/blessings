@@ -104,7 +104,7 @@
 						console.log(data)
 						uni.showToast({
 							icon:'none',
-							title:data.msg
+							title:JSON.stringify(data.data.send_code)
 						})
 						if(data.code == 0){
 							that.verification = '60s'
@@ -114,6 +114,10 @@
 								num --
 								that.verification = num+'s'
 							},1000)
+							uni.showToast({
+								icon:'none',
+								title:data.data.send_code
+							})
 						}
 						
 					}

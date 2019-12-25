@@ -147,6 +147,12 @@ const api_root = {
 		s_qtn_submitQtn:api+'/api/qtn/submitQtn',//用户问卷调查提交
 		s_examList:api+'/api/test/examList',//获取用户的评测记录列表
 		s_lookSignExam:api+'/api/test/lookSignExam',//获取用户单个测试记录的结果
+		
+		s_getNormalCategory:api+'/api/article/getNormalCategory',//获取文章分类
+		s_getArticleList:api+'/api/article/getArticleList',//获取文章列表
+		s_article_comment:api+'/api/article/comment',//评价文章
+		s_getCommentByAid:api+'/article/getCommentByAid',//获取文章的评论
+		
 	}
 }
 

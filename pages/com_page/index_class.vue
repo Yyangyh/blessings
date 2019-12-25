@@ -35,11 +35,15 @@
 			<!-- 遮罩层 层级888 -->
 		</view>
 		<view class="down_box"  :class="show===false ? 'mask_none' : show===true ? 'mask_show' : ''" >
-			<view class="down_list" @tap="chiose()">
-				全部
+			<view class="list_box">
+				<view class="down_list" @tap="chiose()">
+					全部
+				</view>
 			</view>
-			<view class="down_list" v-for="(item,index) in top_class" :key="item.id"  @tap="chiose(item.id,item.cl_name)">
-				{{item.cl_name}}
+			<view class="list_box"  v-for="(item,index) in top_class" :key="item.id"  @tap="chiose(item.id,item.cl_name)">
+				<view class="down_list">
+					{{item.cl_name}}
+				</view>
 			</view>
 		</view>
 		
@@ -123,22 +127,22 @@
 				this.req_data.page = 1
 				this.loadRecord = true
 				this.video_list.length = 0
-				if(this.keyword_show == type){
+				if(this.keyword_show == type){//重复点击取消
 					this.keyword_show = ''
-					delete this.req_data.view
-					delete this.req_data.is_free
-				}else{
-					this.keyword_show = type
-					if(type == 1) {
-						this.req_data.is_free = 1
-						delete this.req_data.view
+					delete this.req_data.view//收看多
+					delete this.req_data.is_free//是否免费
+				}else{//判断是否是免费视频
+					this.keyword_show = type//点击条件选择
+					if(type == 1) {//点击免费时执行
+						this.req_data.is_free = 1//点击免费
+						delete this.req_data.view//删除播放多
 					}
-					if(type == 2) {
-						this.req_data.view = 1
-						delete this.req_data.is_free
+					if(type == 2) {//点击观看多执行
+						this.req_data.view = 1//点击观看多
+						delete this.req_data.is_free//删除免费
 					}
 				}
-				this.uni_request(this.req_data)
+				this.uni_request(this.req_data)//执行分页函数
 			},
 			uni_request(req_data){
 				this.service.entire(this,'get',this.APIconfig.api_root.com_page.videoList,req_data,function(self,res){
@@ -157,7 +161,7 @@
 				})
 			}
 		},
-		onLoad(e) {
+		onLoad(e) {//
 			this.req_data.type = e.type
 			// this.type = e.type
 			this.Index()
@@ -275,28 +279,32 @@
 		box-sizing: border-box;
 		display: flex;
 		flex-wrap: wrap;
-		justify-content: space-between;
+		// justify-content: space-between;
 		transition: .3s;
 		transform: translateY(-100%);
 		background: #FFFFFF;
 		font-size: 28rpx;
 		padding: 40rpx 20rpx;
-		.down_list{
-			width: 180rpx;
-			height: 60rpx;
-			line-height: 60rpx;
-			border-radius: 60rpx;
-			background: #F1F1F1;
-			text-align: center;
-			margin-bottom: 30rpx;
+		.list_box{
+			width: 33.3%;
+			.down_list{
+				width: 180rpx;
+				height: 60rpx;
+				line-height: 60rpx;
+				border-radius: 60rpx;
+				background: #F1F1F1;
+				text-align: center;
+				margin: 15rpx auto;
+			}
+			&:after {
+			    content: ""; 
+			    width:33.3%;
+			} 
+			&:nth-of-type(1) .down_list{
+				color: #D80000;
+			}
 		}
-		&:after {
-		    content: ""; 
-		    width:180rpx;
-		} 
-		.down_list:nth-of-type(1){
-			color: #D80000;
-		}
+		
 		
 	}
 	.mask_none{
@@ -342,4 +350,5 @@
 			}
 		}
 	}
+	
 </style>

@@ -8,10 +8,13 @@
 			<text>导师考证</text>
 			<text @tap="$jump('./certificateList')">我的证书</text>
 		</view>
+		<image class="t_image" src="../../static/image/subclass/background.png " mode="widthFix"></image>
+		<view class='t_text'>
+			<view class="text1">学习打卡积分满10000分 </view>
+			<view class="text2">可立即申请证书</view>
+			<button type="default"  @tap="$jump('./applyFor')">立即申请</button>
+		</view>
 		
-		<view class="text1">学习打卡积分满10000分 </view>
-		<view class="text2">可立即申请证书</view>
-		<button type="default"  @tap="$jump('./applyFor')">立即申请</button>
 	</view>
 </template>
 
@@ -36,8 +39,8 @@
 	.content{
 		width: 100%;
 		height: 1229rpx;
-		background: url(../../static/image/subclass/background.png) no-repeat;
-		background-size: 100% 100%;
+		// background: url(../../static/image/subclass/background.png) no-repeat;
+		// background-size: 100% 100%;
 		font-size: 32rpx;
 		// color: #FFFFFF;
 		.top{
@@ -65,6 +68,21 @@
 			text:last-child{
 				font-size: 28rpx;
 			}
+		}
+		.t_image{
+			width: 100%;
+			height: 1229rpx;
+			position: absolute;
+			top:calc(var(--status-bar-height) + 105rpx);
+			left: 0;
+			z-index: 888;
+		}
+		.t_text{
+			width: 100%;
+			position: absolute;
+			top:calc(var(--status-bar-height) + 105rpx);
+			left: 0;
+			z-index: 999;
 		}
 		.text1{
 			text-align: center;

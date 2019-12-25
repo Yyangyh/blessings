@@ -6,14 +6,13 @@
 		<returns :titles='title'></returns>
 		<image class="sign1" src='../../static/image/subuser/sign1.png' mode="widthFix"></image>
 		<view class="integral">
-			<view>612</view>
+			<view>{{data.sign_count}}</view>
 			<view>签到积分</view>
 		</view>
 		<view class="singnBox">
 			<view class="state">已签到</view>
 			<image class="sign2" src="../../static/image/subuser/sign2.png" mode="widthFix"></image>
-			<view class="times">
-				<text>2</text>
+			<view class="times">2</text>
 				<text>天</text>
 			</view>
 			<view class="time">
@@ -40,7 +39,7 @@
 			<image src='../../static/image/subuser/qiandao1.png' mode="widthFix"></image>
 			<view class="bk_text">
 				<view>签到成功</view>
-				<view>
+				<view class="mSg">
 					{{msg}}
 				</view>
 			</view>
@@ -59,7 +58,8 @@
 					title:'签到',
 					reveal:false,
 					data_list:'',
-					msg:''
+					msg:'',
+					data:''
 				}
 			},
 			methods:{
@@ -98,6 +98,7 @@
 				},function(self,res){
 					console.log(res)
 					self.data_list = res.data.week_all
+					self.data = res.data
 				})
 			}
 		}
@@ -109,6 +110,10 @@
 		height: 1229rpx;
 		background:linear-gradient(180deg,rgba(255,93,68,1),rgba(255,167,116,1));
 		position: relative;
+		.mSg{
+			font-size: 28rpx;
+			color: #333333;
+		}
 		.sign1{
 			position: absolute;
 			width: 578rpx;

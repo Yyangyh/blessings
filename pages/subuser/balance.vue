@@ -74,7 +74,7 @@
 					this.Index(data)
 				},
 				Index(data){
-					this.service.entire(this,'post',this.APIconfig.api_root.subuser.u_integral_index,data,function(self,res){
+					this.service.entire(this,'post',this.APIconfig.api_root.subuser.u_balance_index,data,function(self,res){
 						self.dataList.push(...res.data.data)
 						self.page ++
 						self.more = 'more'
@@ -161,11 +161,13 @@
 					view:last-child{
 						font-size: 24rpx;
 						color:#A1A1A1;
+						margin-top: 10rpx;
 					}
 				}
 				.l_right{
 					font-size: 30rpx;
 					color:#0C0C0C;
+					margin-left: 20rpx;;
 				}
 			}
 		}

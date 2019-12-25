@@ -124,7 +124,7 @@
 				this.uni_request(data)
 				this.show = false
 			},
-			uni_request(data){
+			uni_request(data){//请求接口
 				this.service.entire(this,'get',this.APIconfig.api_root.com_page.videoList,data,function(self,res){
 					self.top_class = res.data.top_list
 					let data = self.video_list
@@ -133,7 +133,7 @@
 					console.log(self.video_list);
 					self.page += 1
 					self.more = 'more'
-					if (res.data.video_list.length < 10) {
+					if (res.data.video_list.length < 10) {//判断是否还有下一页
 						self.more = 'noMore'
 						self.loadRecord = false
 						return
