@@ -53,10 +53,10 @@
 					user_id:this.$store.state.user.id,
 					page:this.page
 				},function(self,res){
-					self.dataList.push(...res.data.data)
+					self.dataList.push(...res.data)
 					self.page ++
 					self.more = 'more'
-					if(res.data.data.length < 10){
+					if(res.data.length < 10){
 						self.more = 'noMore'
 						self.loadRecord = false
 					}
