@@ -780,6 +780,14 @@
 					"titleNView":false
 				}
 			}
+		},{
+			"path": "pages/subindex/comment",
+			"style": {
+				"navigationBarTitleText": "全部评论",
+				"app-plus":{
+					"titleNView":false
+				}
+			}
 		}
 		
 	],

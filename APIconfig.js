@@ -151,8 +151,8 @@ const api_root = {
 		s_getNormalCategory:api+'/api/article/getNormalCategory',//获取文章分类
 		s_getArticleList:api+'/api/article/getArticleList',//获取文章列表
 		s_article_comment:api+'/api/article/comment',//评价文章
-		s_getCommentByAid:api+'/article/getCommentByAid',//获取文章的评论
-		
+		s_getCommentByAid:api+'/api/article/getCommentByAid',//获取文章的评论
+		s_getArticleDetail:api+'/api/article/getArticleDetail',//文章详情
 	}
 }
 

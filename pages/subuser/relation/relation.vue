@@ -8,7 +8,7 @@
 				<image src="/static/image/com_page/returns.png" @tap="service.returns()" mode="widthFix" ></image>
 			</view>
 			<text>亲情号</text>
-			<text @tap="$jump('./record')">分享记录</text>
+			<text @tap="$jump('./record')">共享资源</text>
 		</view>
 		<image class="back" src="/static/image/subuser/relationback.png" mode="widthFix"></image>
 		<view class="worp">
@@ -122,7 +122,10 @@
 					my_mobile:this.$store.state.user.mobile
 				},function(self,res){
 					console.log(res.data.invate)
-					
+					uni.showToast({
+						icon:'none',
+						title:res.msg
+					})
 				})
 				let tel = /^(13[0-9]|14[5|7]|15[0|1|2|3|5|6|7|8|9]|18[0|1|2|3|5|6|7|8|9])\d{8}$/.test(this.phone);
 				 if (this.phone == "" || this.name == "") {
@@ -157,7 +160,7 @@
 				this.service.entire(this,'post',this.APIconfig.api_root.subuser.s_member_bindKinship,{
 					from_mobile:this.invateList[index].mobile,
 					my_mobile:this.$store.state.user.mobile,
-					type:this.invateList[index].is_enabled==1?0:1
+					type:this.invateList[index].is_enabled==1
 				},function(self,res){
 					uni.hideToast()
 					clearTimeout(times)
@@ -174,6 +177,10 @@
 							self.invateList[index].is_enabled=1
 							console.log(self.invateList)
 						}
+						// uni.showToast({
+						// 	icon:'none',
+						// 	title:'邀请成功'
+						// })
 					}
 					
 				})

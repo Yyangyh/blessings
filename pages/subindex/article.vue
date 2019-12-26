@@ -9,27 +9,72 @@
 			<image src='../../static/image/subhome/share.png'></image>
 		</view>
 		<hr />
-		<view class="title_top">
-			<view class="t_left">
-				<view class="title">关于孩子早教很好的一篇文章</view>
-				<view class="times">2019-11-26</view>
-				<view class=" graded">
-					<view class="start">
-						<image src="../../static/image/subhome/start.png" mode="widthFix"></image>
-						<image src="../../static/image/subhome/start.png" mode="widthFix"></image>
-						<image src="../../static/image/subhome/start.png" mode="widthFix"></image>
-						<image src="../../static/image/subhome/start.png" mode="widthFix"></image>
-						<image src="../../static/image/subhome/start.png" mode="widthFix"></image>
+		<view>
+			<view class="title_top" >
+				<view class="t_left">
+					<view class="title">{{dataList.title}}</view>
+					<view class="times">{{dataList.add_time}}</view>
+					<view class=" graded">
+						<view class="start">
+							<image src="../../static/image/subhome/start.png" mode="widthFix"></image>
+							<image src="../../static/image/subhome/start.png" mode="widthFix"></image>
+							<image src="../../static/image/subhome/start.png" mode="widthFix"></image>
+							<image src="../../static/image/subhome/start.png" mode="widthFix"></image>
+							<image src="../../static/image/subhome/start.png" mode="widthFix"></image>
+						</view>
+						<view class="time">5.0</view>
+						<view class="time">{{dataList.access_count}}次观看</view>
 					</view>
-					<view class="time">5.0</view>
-					<view class="time">111次观看</view>
+				</view>
+				<image class="t_right" src="/static/image/subhome/heart.png" mode="widthFix"></image>
+			</view>
+			<rich-text :nodes="dataList.content"></rich-text>
+		</view>
+		<!-- 用户评论 -->
+		<view class="user_top">
+			<view class="">
+				用户评论
+			</view>
+			<view class="" @tap="$jump('./comment?id='+ id)">
+				
+				全部
+			</view>
+		</view>
+		<view class="user_comment" v-for="(item,index) in data_list" :key='item.id' v-if="data_list.length != 0">
+			 <!--  -->
+			<view class="user">
+				<view class="user_one">
+					<image class="user_img" :src="APIconfig.api_img +item.commenter.avatar" mode="widthFix"></image>
+					 <!--  -->
+					<view class="user_test" >
+						<view>{{item.create_time}}</view>
+						<!-- v-for="(item,index) in item.rating_num" -->
+					</view>
+				</view>
+				<view class="user_star">
+					<view class="">
+						<image  src="/static/image/com_page/stars.png" mode="widthFix"></image>
+						<!-- v-for="(item,index) in item.rating_num" -->
+					</view>
+					<text>{{item.content}}</text>
+				
 				</view>
 			</view>
-			<image class="t_right" src="/static/image/subhome/heart.png" mode="widthFix"></image>
+			<view class="com_content">
+				<view class="content_test">
+					<view class="">
+					
+						{{item.content}}
+					</view>
+				</view>
+			</view>
 		</view>
-		<view class="area">
-			<input type="text" placeholder="请发表你的评论">
-			<view class="send">发表</view>
+		<view class="lack_img"  v-if="data_list.length == 0">
+			<!-- -->
+			<image  src="/static/image/com_page/lack.png" mode="widthFix"></image>
+			<view class="">
+				暂无评论
+			</view>
 		</view>
 	</view>
 </template>
@@ -43,13 +88,138 @@
 		data(){
 			return{
 				title:'文章',
-				
+				dataList:'',
+				data_list:'',
+				show:false,
+				id:'',
 			}
+		},
+		methods:{
+			Index(){
+				this.service.entire(this,'get',this.APIconfig.api_root.subindex.s_getCommentByAid,{
+					// userid:this.$store.state.user.id,
+					aid:this.id,
+					// page:1,
+					// limit:20
+				},function(self,res){
+					console.log(res)
+					self.data_list = res.data
+					self.load_show = false
+				})
+			}
+		},
+		onLoad(e) {
+			this.id = e.id
+			this.service.entire(this,'get',this.APIconfig.api_root.subindex.s_getArticleDetail,{//获取文章
+				aid:e.id
+			},function(self,res){
+				console.log(res)
+				self.dataList = res.data
+			})
+			
+			this.service.entire(this,'get',this.APIconfig.api_root.subindex.s_getCommentByAid,{ //用户评论
+				aid:this.id,
+			},function(self,res){
+				self.data_list = res.data
+				for (let s of self.data_list) {
+					s.rating_num = new Array(Number(s.grade))
+				}
+			})
 		}
 	}
 </script>
 
 <style lang="scss">
+	.content{
+		padding-bottom:120rpx ;
+		.user_top {
+			display: flex;
+			justify-content: space-between;
+			font-weight: bold;
+			font-size: 28rpx;
+			padding: 20rpx;
+			view{
+				&:nth-of-type(2){
+					color: #EF7C38;
+				}
+			}
+			
+		}
+		.user_comment {
+			background: #fff;
+			border-bottom: 2rpx solid #EEEEEE;
+			padding: 20rpx 30rpx;
+			.user {
+					display: flex;
+					justify-content: space-between;
+					margin: 20rpx 0;
+					.user_one{
+						display: flex;
+						.user_img {
+							width: 90rpx;
+							height: 90rpx;
+							border-radius: 50%;
+						}
+						.user_test {
+							margin: 0 20rpx;
+							font-size: 32rpx;
+							view {
+								font-weight: bold;
+								color: #333333;
+								font-size: 28rpx;
+							}
+							
+						}
+					}
+					.user_star {
+						align-self: flex-start;
+						font-size: 24rpx;
+						color: #333333;
+						image {
+							height: 26rpx;
+							width: 26rpx;
+						}
+						text {
+							font-size: 24rpx;
+							color: #999999;
+							
+						}
+					}
+				}
+			.com_content {
+				.content_test view {
+					font-size: 24rpx;
+					color: #666666;
+					display: -webkit-box;
+					-webkit-box-orient: vertical;
+					-webkit-line-clamp: 2;
+					overflow: hidden;
+				}
+				.content_img image {
+					height: 120rpx;
+					width: 120rpx;
+					margin-right: 16rpx;
+					margin-top: 30rpx;
+				}
+				.more {
+					font-size: 32rpx;
+					color: #666666;
+					margin: 20rpx 0;
+				}
+				
+			}
+		}
+		.lack_img{
+			text-align: center;
+			padding-top: 30rpx;
+			font-size: 28rpx;
+			color: #999;
+			image{
+				height: 310rpx;
+				width: 310rpx;
+			}
+		}
+	}
 	.top{
 		position: fixed;
 		width: 100%;
@@ -109,43 +279,13 @@
 			.time{
 				font-size: 24rpx;
 				color: #999999;
-				margin-right:10rpx ;
+				margin-right:30rpx ;
 			}
 		}
 		.t_right{
 			width: 44rpx;
 			height: 44rpx;
 			margin:80rpx 30rpx 0 0;
-		}
-	}
-	.area{
-		width:100%;
-		height:120rpx;
-		background:pink;
-		display: flex;
-		align-items: center;
-		position: fixed;
-		bottom: 0;
-		input{
-			width:530rpx;
-			height:70rpx;
-			background:rgba(255,255,255,1);
-			border:1rpx solid rgba(153,153,153,1);
-			border-radius:35rpx;
-			font-size: 24rpx;
-			color:#999999;
-			padding-left: 31rpx;
-			margin:0 30rpx;
-		}
-		.send{
-			width:100rpx;
-			height:60rpx;
-			background:linear-gradient(90deg,rgba(247,76,74,1),rgba(245,110,106,1));
-			border-radius:10rpx;
-			font-size: 28rpx;
-			color: #FFFFFF;
-			text-align: center;
-			line-height: 60rpx;
 		}
 	}
 </style>

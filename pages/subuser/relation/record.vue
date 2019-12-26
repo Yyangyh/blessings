@@ -19,7 +19,7 @@
 		},
 		data(){
 			return{
-				title:'分享记录',
+				title:'共享资源',
 				cur:0,
 			}
 		}
