@@ -12,7 +12,7 @@
 		<view class="singnBox">
 			<view class="state">已签到</view>
 			<image class="sign2" src="../../static/image/subuser/sign2.png" mode="widthFix"></image>
-			<view class="times">2</text>
+			<view class="times">{{Sign_num}}</text>
 				<text>天</text>
 			</view>
 			<view class="time">
@@ -28,7 +28,8 @@
 				</block>
 				
 			</view>
-			<button type="default" @click="sign">立即签到</button>
+			<button type="default" @click="sign" v-if="if_sign === false">立即签到</button>
+			<button type="default" v-else-if="if_sign === true">已签到</button>
 			<view class="look" @tap="$jump('./integral/know')">查看积分规则</view>
 		</view>
 		<!-- 跳转 -->
@@ -53,27 +54,37 @@
 			components:{
 				returns
 			},
+			computed:{
+				Sign_num(){ //计算周签到总数
+					if(this.data_list){
+						var num = this.data_list.reduce(function (sum, s) {
+						  return sum + s.is_sign
+						}, 0)
+						return num
+					}
+				}
+			},
 			data(){
 				return{
 					title:'签到',
 					reveal:false,
 					data_list:'',
 					msg:'',
-					data:''
+					data:'',
+					if_sign:''
 				}
 			},
 			methods:{
 				sign(){
 					let data = this.service.Test(Date.parse(new Date())/1000)
 					data = data.split('-')[2]
-					
-					
 					this.service.entire(this,'post',this.APIconfig.api_root.subuser.index_Week,{
 						user_id:this.$store.state.user.id
 					},function(self,res){
 						console.log(res)
 						if(res.code == 0){
 							self.reveal = true
+							self.if_sign = true
 							self.msg = res.msg
 							for (let s of self.data_list) {
 								if(s.day == data) {
@@ -93,12 +104,20 @@
 				}
 			},
 			onShow() {
+				let data = this.service.Test(Date.parse(new Date())/1000)
+				data = data.split('-')[2]
 				this.service.entire(this,'post',this.APIconfig.api_root.subuser.thisWeek,{
 					user_id:this.$store.state.user.id
 				},function(self,res){
 					console.log(res)
 					self.data_list = res.data.week_all
 					self.data = res.data
+					for (let s of self.data_list) {
+						if(s.day == data) {
+							s.is_sign == 1 ? self.if_sign = true : self.if_sign = false
+						}
+						
+					}
 				})
 			}
 		}

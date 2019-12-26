@@ -53,6 +53,16 @@
       display: -webkit-flex;
       display: flex;
 }
+.user_comment .user .user_one .img_box {
+        width: 90rpx;
+        height: 90rpx;
+        border-radius: 50%;
+        overflow: hidden;
+}
+.user_comment .user .user_one .img_box .user_img {
+          width: 100%;
+          height: 100%;
+}
 .user_comment .user .user_one .user_img {
         width: 90rpx;
         height: 90rpx;
@@ -84,10 +94,6 @@
 .user_comment .com_content .content_test view {
     font-size: 24rpx;
     color: #666666;
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 2;
-    overflow: hidden;
 }
 .user_comment .com_content .content_img image {
     height: 120rpx;

@@ -129,7 +129,9 @@
 			<view class="user_comment" v-for="(item,index) in comments" :key='item.id' v-if="comments.length != 0">
 				<view class="user">
 					<view class="user_one">
-						<image class="user_img"  :src="APIconfig.api_img +item.avatar" mode="widthFix"></image>
+						<view class="img_box">
+							<image class="user_img"  :src="APIconfig.api_img +item.avatar" mode="scaleToFill"></image>
+						</view>
 						<view class="user_test" >
 							<view>{{item.username}}</view>
 						</view>
@@ -919,11 +921,17 @@
 				margin: 20rpx 0;
 				.user_one{
 					display: flex;
-					.user_img {
+					.img_box{
 						width: 90rpx;
 						height: 90rpx;
 						border-radius: 50%;
+						overflow: hidden;
+						.user_img {
+							width: 100%;
+							height: 100%;
+						}
 					}
+					
 					.user_test {
 						margin: 0 20rpx;
 						font-size: 32rpx;

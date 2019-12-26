@@ -9,7 +9,9 @@
 			<view class="user_comment" v-for="(item,index) in comments" :key='item.id'>
 				<view class="user">
 					<view class="user_one">
-						<image class="user_img"  :src="APIconfig.api_img +item.avatar" mode="widthFix"></image>
+						<view class="img_box">
+							<image class="user_img"  :src="APIconfig.api_img +item.avatar" mode="scaleToFill"></image>
+						</view>
 						<view class="user_test" >
 							<view>{{item.username}}</view>
 						</view>
@@ -143,6 +145,9 @@
 				},function(self,res){
 					console.log(res)
 					self.comments = res.data.data
+					for (let s of self.comments) {
+						s.rating_num = new Array(Number(s.grade))
+					}
 					self.load_show = false
 				})
 			}
@@ -177,6 +182,16 @@
 				margin: 20rpx 0;
 				.user_one{
 					display: flex;
+					.img_box{
+						width: 90rpx;
+						height: 90rpx;
+						border-radius: 50%;
+						overflow: hidden;
+						.user_img {
+							width: 100%;
+							height: 100%;
+						}
+					}
 					.user_img {
 						width: 90rpx;
 						height: 90rpx;
@@ -212,10 +227,10 @@
 			.content_test view {
 				font-size: 24rpx;
 				color: #666666;
-				display: -webkit-box;
-				-webkit-box-orient: vertical;
-				-webkit-line-clamp: 2;
-				overflow: hidden;
+				// display: -webkit-box;
+				// -webkit-box-orient: vertical;
+				// -webkit-line-clamp: 2;
+				// overflow: hidden;
 			}
 			.content_img image {
 				height: 120rpx;
