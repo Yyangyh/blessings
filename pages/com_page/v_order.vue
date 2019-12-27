@@ -238,7 +238,7 @@
 								console.log(res)
 								if(res.code == 0){
 									
-									
+									self.service.returns()
 									// self.service.entire(self,'post',self.APIconfig.api_root.com_page.order_pay,{
 									// 	user_id: that.$store.state.user.id,
 									// 	id:res.data.order.id

@@ -6,7 +6,7 @@
 		<search></search>
 		<view class="swiper_box">
 			<swiper class="swiper" :indicator-dots="indicatorDots" :autoplay="autoplay" :interval="interval" :duration="duration">
-				<swiper-item v-for="(item,index) in swiper_list" :key='item.id'>
+				<swiper-item v-for="(item,index) in swiper_list" :key='item.id' @tap="$jump('../com_page/video_details?'+item.event_value)">
 					<view class="swiper-item uni-bg-red">
 						<image :src="APIconfig.api_img + item.images_url" mode="widthFix"></image>
 					</view>
