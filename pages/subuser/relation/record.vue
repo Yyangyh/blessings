@@ -22,6 +22,14 @@
 				title:'共享资源',
 				cur:0,
 			}
+		},
+		onShow(){
+			this.service.entire(this,'post',this.APIconfig.api_root.subuser.s_getShareOrder,{
+				mobile:this.$store.state.user.mobile,
+				video_type:1
+			},function(self,res){
+				console.log(res)
+			})
 		}
 	}
 </script>

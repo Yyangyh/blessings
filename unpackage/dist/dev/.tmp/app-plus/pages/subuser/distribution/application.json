@@ -1,7 +1,0 @@
-{
-  "navigationBarTitleText": "立即申请",
-  "titleNView": false,
-  "usingComponents": {
-    "returns": "/pages/common/returns"
-  }
-}

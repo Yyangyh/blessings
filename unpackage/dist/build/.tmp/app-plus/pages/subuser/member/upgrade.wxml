@@ -1,1 +1,0 @@
-<view class="content"><view class="status_bar"></view><returns vue-id="1" titles="{{title}}" bind:__l="__l"></returns><view class="ug_top"><view>确定使用积分升级</view><view>50000</view></view><button type="default">确定</button></view>

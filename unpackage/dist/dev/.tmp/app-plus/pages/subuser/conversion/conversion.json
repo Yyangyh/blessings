@@ -1,7 +1,0 @@
-{
-  "navigationBarTitleText": "优惠券",
-  "titleNView": false,
-  "usingComponents": {
-    "returns": "/pages/common/returns"
-  }
-}

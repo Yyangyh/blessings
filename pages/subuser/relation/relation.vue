@@ -26,71 +26,73 @@
 			</view>
 			<view class="witebox">
 				<view class="allorder">
-					  <text @click="Index(1)" class="one" :class="{active:cur==1}">我邀请的</text>
+					  <text @click="Index(3)" class="three" :class="{active:cur==3}">邀请好友</text>
 					  <text @click="Index(2)" class="two" :class="{active:cur==2}">邀请我的</text>
-					   <!-- <text @click="cur=3" class="three" :class="{active:cur==3}">邀请记录</text> -->
+					   <text  @click="Index(1)" class="one" :class="{active:cur==1}">我的邀请</text>
 					   
 				</view>
-				<view class="box" v-show="cur==1">
-					<form >
-						<view class="add_box">
-							<view class="left_box">
-								<!-- <image src="/static/image/subuser/tuoyuan.png"></image> -->
-								<image src="/static/image/subuser/renxiang.png" mode="widthFix"></image>
+				<view v-for="(item,index) in invateList" :key='item.id'>
+					<view class="box" v-show="cur==3">
+						<form >
+							<view class="add_box">
+								<view class="left_box">
+									<!-- <image src="/static/image/subuser/tuoyuan.png"></image> -->
+									<image src="/static/image/subuser/renxiang.png" mode="widthFix"></image>
+								</view>
+								
+									<view class="right_box">
+										<view>
+											<text>号码</text>
+											<input type="text" placeholder="请输入手机号码" v-model="phone">
+										</view> 
+										<image src="/static/image/subuser/tongxunlu.png" mode="widthFix"></image>
+									</view>
+								
 							</view>
-							
+							<button type="default" @click="invite">邀请好友</button>
+						</form>
+					</view>
+					<view class="box" v-show="cur==2">
+						<form >
+							<view class="add_box" >
+								<view class="left_box">
+									<view class="pagination">
+										<view v-show='true' @click="goFirst(index)" v-bind:class="{'classFirsta':item.is_enabled==0,'classFirstb':item.is_enabled==1}"></view>
+									</view>
+									<image :src="item.avatar"></image>
+								</view>
 								<view class="right_box">
 									<view>
 										<text>号码</text>
-										<input type="text" placeholder="请输入手机号码" v-model="phone">
+										<input disabled='disabled' type="text" :value="item.mobile"  >
 									</view> 
 									<image src="/static/image/subuser/tongxunlu.png" mode="widthFix"></image>
 								</view>
-							
-						</view>
-						<button type="default" @click="invite">邀请好友</button>
-					</form>
-				</view>
-				<view class="box" v-show="cur==2">
-					<form >
-						<view class="add_box" v-for="(item,index) in invateList" :key='item.id'>
-							<view class="left_box">
-								<view class="pagination">
-									<view v-show='true' @click="goFirst(index)" v-bind:class="{'classFirsta':item.is_enabled==0,'classFirstb':item.is_enabled==1}"></view>
+							</view>
+							<!-- <button type="default" @click="relieve">一键解绑</button> -->
+						
+						</form>
+					</view>
+					<view class="box" v-show="cur==1">
+						<form >
+							<view class="add_box">
+								<view class="left_box">
+									<!-- <image src="/static/image/subuser/tuoyuan.png"></image> -->
+									<image class="phimg" :src="item.avatar" mode="widthFix"></image>
 								</view>
-								<image :src="item.avatar"></image>
+								
+									<view class="right_box">
+										<view>
+											<text>号码</text>
+											<input type="text" placeholder="请输入手机号码" :value="item.mobile">
+										</view> 
+										<image src="/static/image/subuser/tongxunlu.png" mode="widthFix"></image>
+									</view>
+								
 							</view>
-							<view class="right_box">
-								<view>
-									<text>号码</text>
-									<input disabled='disabled' type="text" :value="item.mobile"  >
-								</view> 
-								<image src="/static/image/subuser/tongxunlu.png" mode="widthFix"></image>
-							</view>
-						</view>
-						<!-- <button type="default" @click="relieve">一键解绑</button> -->
-					
-					</form>
-				</view>
-				<view class="box" v-show="cur==3">
-					<form >
-						<view class="add_box">
-							<view class="left_box">
-								<!-- <image src="/static/image/subuser/tuoyuan.png"></image> -->
-								<image src="/static/image/subuser/renxiang.png" mode="widthFix"></image>
-							</view>
-							
-								<view class="right_box">
-									<view>
-										<text>号码</text>
-										<input type="text" placeholder="请输入手机号码">
-									</view> 
-									<image src="/static/image/subuser/tongxunlu.png" mode="widthFix"></image>
-								</view>
-							
-						</view>
-						<!-- <button type="default">邀请好友</button> -->
-					</form>
+							<!-- <button type="default">邀请好友</button> -->
+						</form>
+					</view>
 				</view>
 			</view>
 		</view>
@@ -104,7 +106,7 @@
 			return{
 				title:'亲情号',
 				reveal:false,
-				cur:1,
+				cur:3,
 				phone:'',
 				reveal:true,
 				photo:'',
@@ -113,9 +115,9 @@
 			}
 		},
 		methods:{
-				// 邀请好友
+				
 			invite(){
-				this.service.entire(this,'post',this.APIconfig.api_root.subuser.s_member_kinship,{//邀请好友
+				this.service.entire(this,'post',this.APIconfig.api_root.subuser.s_member_kinship,{//邀请好友，发送邀请
 					// user_id:this.$store.state.user.id,
 					// type:this.cur,
 					from_mobile:this.phone,
@@ -143,7 +145,7 @@
 			},
 			Index(type){
 				this.cur = type;
-				this.service.entire(this,'post',this.APIconfig.api_root.subuser.s_member_kinshipLog,{
+				this.service.entire(this,'post',this.APIconfig.api_root.subuser.s_member_kinshipLog,{//亲情日志
 					user_id:this.$store.state.user.id,
 					type:type,
 					mobile:this.$store.state.user.mobile
@@ -157,7 +159,7 @@
 			goFirst(index){
 					// 请求绑定/取消接口
 				let times = this.service.loading()
-				this.service.entire(this,'post',this.APIconfig.api_root.subuser.s_member_bindKinship,{
+				this.service.entire(this,'post',this.APIconfig.api_root.subuser.s_member_bindKinship,{//绑定，取消绑定
 					from_mobile:this.invateList[index].mobile,
 					my_mobile:this.$store.state.user.mobile,
 					type:this.invateList[index].is_enabled==1
@@ -387,5 +389,10 @@
 		border-radius: 50%;
 		background: url(../../../static/image/subuser/chosse.png);
 		background-size: 100% 100%;
+	}
+	.phimg{
+		width: 100rpx;
+		height: 100rpx;
+		border-radius:50% ;
 	}
 </style>

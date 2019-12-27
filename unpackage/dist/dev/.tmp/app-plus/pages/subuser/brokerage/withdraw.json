@@ -1,7 +1,0 @@
-{
-  "navigationBarTitleText": "佣金提现",
-  "titleNView": false,
-  "usingComponents": {
-    "returns": "/pages/common/returns"
-  }
-}

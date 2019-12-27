@@ -1,1 +1,0 @@
-<view class="content"><view class="status_bar"></view><returns vue-id="1" titles="{{title}}" bind:__l="__l"></returns><view class="worp"><image src="../../../static/image/subuser/dis-back.png"></image><button type="default" data-event-opts="{{[['tap',[['$jump',['./application']]]]]}}" bindtap="__e">立即申请</button></view></view>

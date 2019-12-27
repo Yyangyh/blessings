@@ -1,7 +1,0 @@
-{
-  "navigationBarTitleText": "公司简介",
-  "titleNView": false,
-  "usingComponents": {
-    "returns": "/pages/common/returns"
-  }
-}

@@ -1,7 +1,0 @@
-{
-  "navigationBarTitleText": "填写退货信息",
-  "titleNView": false,
-  "usingComponents": {
-    "returns": "/pages/common/returns"
-  }
-}

@@ -1,7 +1,0 @@
-{
-  "navigationBarTitleText": "了解积分",
-  "titleNView": false,
-  "usingComponents": {
-    "returns": "/pages/common/returns"
-  }
-}

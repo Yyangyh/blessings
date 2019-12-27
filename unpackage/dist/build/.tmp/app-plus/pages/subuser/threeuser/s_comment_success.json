@@ -1,7 +1,0 @@
-{
-  "navigationBarTitleText": "评论",
-  "titleNView": false,
-  "usingComponents": {
-    "returns": "/pages/common/returns"
-  }
-}

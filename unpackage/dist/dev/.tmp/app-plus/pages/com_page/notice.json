@@ -1,8 +1,0 @@
-{
-  "navigationBarTitleText": "系统通知",
-  "titleNView": false,
-  "usingComponents": {
-    "returns": "/pages/common/returns",
-    "uni-load-more": "/components/uni-load-more/uni-load-more"
-  }
-}

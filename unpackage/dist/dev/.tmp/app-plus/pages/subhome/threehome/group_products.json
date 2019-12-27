@@ -1,7 +1,0 @@
-{
-  "navigationBarTitleText": "商品详情",
-  "titleNView": false,
-  "usingComponents": {
-    "share": "/pages/common/share"
-  }
-}

@@ -1,7 +1,0 @@
-{
-  "navigationBarTitleText": "我的同学",
-  "titleNView": false,
-  "usingComponents": {
-    "returns": "/pages/common/returns"
-  }
-}

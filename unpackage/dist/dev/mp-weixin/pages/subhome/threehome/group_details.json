@@ -1,7 +1,0 @@
-{
-  "navigationBarTitleText": "团详情",
-  "usingComponents": {
-    "returns": "/pages/common/returns",
-    "share": "/pages/common/share"
-  }
-}

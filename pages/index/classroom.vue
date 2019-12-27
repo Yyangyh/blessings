@@ -22,9 +22,9 @@
 		</view>
 		
 		 
-		<view class="vider_content_two" v-for="(item,index) in cen_class" :key='item.id'>
+		<view class="vider_content_two" v-for="(item,index) in cen_class" :key='item.id' v-if ="item.list.length != 0 ">
 			<view class="v_box_top">
-				<view class="box_left">
+				<view class="box_left" >
 					{{item.cl_name}}
 				</view>
 				<view class="box_right"  @tap="$jump('../com_page/video_class?id='+item.id+'&title='+item.cl_name)">

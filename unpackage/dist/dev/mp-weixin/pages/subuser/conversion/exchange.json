@@ -1,6 +1,0 @@
-{
-  "navigationBarTitleText": "兑换中心",
-  "usingComponents": {
-    "returns": "/pages/common/returns"
-  }
-}

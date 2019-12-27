@@ -20,7 +20,7 @@
 					</view>
 					<view class="user_star">
 						<view class="">
-							<image  v-for="(item,index) in item.grade" src="/static/image/com_page/stars.png" mode="widthFix"></image>
+							<image  v-for="(item,index) in item.rating_nums" src="/static/image/com_page/stars.png" mode="widthFix"></image>
 							<!-- -->
 						</view>
 						<text>{{item.create_time}}</text>
@@ -153,7 +153,11 @@
 					console.log(res)
 					self.dataList = res.data
 					self.load_show = false
-				})
+					for (let s of self.dataList) {
+							s.rating_nums = new Array(Number(s.grade))
+						}
+					})
+			
 			}
 		},
 		onLoad(e) {

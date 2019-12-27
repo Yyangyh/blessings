@@ -1,6 +1,0 @@
-{
-  "navigationBarTitleText": "系统通知",
-  "usingComponents": {
-    "returns": "/pages/common/returns"
-  }
-}

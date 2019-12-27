@@ -1,7 +1,0 @@
-{
-  "navigationBarTitleText": "活动",
-  "titleNView": false,
-  "usingComponents": {
-    "returns": "/pages/common/returns"
-  }
-}

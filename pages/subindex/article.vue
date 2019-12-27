@@ -16,13 +16,10 @@
 					<view class="times">{{dataList.add_time}}</view>
 					<view class=" graded">
 						<view class="start">
-							<image src="../../static/image/subhome/start.png" mode="widthFix"></image>
-							<image src="../../static/image/subhome/start.png" mode="widthFix"></image>
-							<image src="../../static/image/subhome/start.png" mode="widthFix"></image>
-							<image src="../../static/image/subhome/start.png" mode="widthFix"></image>
-							<image src="../../static/image/subhome/start.png" mode="widthFix"></image>
+							<image src="../../static/image/subhome/start.png" mode="widthFix" v-for="(item,index) in dataList.rating_num" :key='index'></image>
+							
 						</view>
-						<view class="time">5.0</view>
+						<view class="time">{{ dataList.grade}}</view>
 						<view class="time">{{dataList.access_count}}次观看</view>
 					</view>
 				</view>
@@ -53,7 +50,7 @@
 				</view>
 				<view class="user_star">
 					<view class="">
-						<image  src="/static/image/com_page/stars.png" mode="widthFix"></image>
+						<image  src="/static/image/com_page/stars.png" mode="widthFix" v-for="(item,index) in item.rating_nums"></image>
 						<!-- v-for="(item,index) in item.rating_num" -->
 					</view>
 					<text>{{item.content}}</text>
@@ -95,18 +92,18 @@
 			}
 		},
 		methods:{
-			Index(){
-				this.service.entire(this,'get',this.APIconfig.api_root.subindex.s_getCommentByAid,{
-					// userid:this.$store.state.user.id,
-					aid:this.id,
-					// page:1,
-					// limit:20
-				},function(self,res){
-					console.log(res)
-					self.data_list = res.data
-					self.load_show = false
-				})
-			}
+			// Index(){
+			// 	this.service.entire(this,'get',this.APIconfig.api_root.subindex.s_getCommentByAid,{
+			// 		// userid:this.$store.state.user.id,
+			// 		aid:this.id,
+			// 		// page:1,
+			// 		// limit:20
+			// 	},function(self,res){
+			// 		console.log(res)
+			// 		self.data_list = res.data
+			// 		self.load_show = false
+			// 	})
+			// }
 		},
 		onLoad(e) {
 			this.id = e.id
@@ -115,14 +112,17 @@
 			},function(self,res){
 				console.log(res)
 				self.dataList = res.data
+				self.dataList.rating_num = new Array(Number(self.dataList.grade))
+				console.log(self.dataList)
 			})
 			
 			this.service.entire(this,'get',this.APIconfig.api_root.subindex.s_getCommentByAid,{ //用户评论
 				aid:this.id,
 			},function(self,res){
 				self.data_list = res.data
+				console.log(self.data_list)
 				for (let s of self.data_list) {
-					s.rating_num = new Array(Number(s.grade))
+					s.rating_nums = new Array(Number(s.grade))
 				}
 			})
 		}

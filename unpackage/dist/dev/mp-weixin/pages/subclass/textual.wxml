@@ -1,1 +1,0 @@
-<view class="content"><view class="status_bar"></view><returns vue-id="1" titles="{{title}}" bind:__l="__l"></returns><view class="text1">学习打卡积分满10000分</view><view class="text2">可立即申请证书</view><button type="default" data-event-opts="{{[['tap',[['$jump',['./applyFor']]]]]}}" bindtap="__e">立即申请</button></view>

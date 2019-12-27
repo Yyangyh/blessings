@@ -1,7 +1,8 @@
 const api = ''
 
-// const api ='http://192.168.0.195:8990'
-const api_img ='http://192.168.0.195:8990'
+// const api ='http://0318.t1.nethhw188.com'
+// const api_img ='http://0318.t1.nethhw188.com'
+const api_img ='http://192.168.0.195:8990'//本地
 
 const api_root = {
 	common:{
@@ -138,6 +139,7 @@ const api_root = {
 		s_member_kinshipLog:api+'/api/member/kinshipLog',//亲情日志
 		s_member_kinship:api+'/api/member/kinship',//亲情号绑定发送邀请
 		s_member_bindKinship:api+'/api/member/bindKinship',//绑定/取消绑定
+		s_getShareOrder:api+'/api/member/getShareOrder',//共享资源列表
 	},
 	subindex:{
 		s_test:api+'/api/test/getPaper',//通过试卷id获取试卷信息
@@ -153,6 +155,11 @@ const api_root = {
 		s_article_comment:api+'/api/article/comment',//评价文章
 		s_getCommentByAid:api+'/api/article/getCommentByAid',//获取文章的评论
 		s_getArticleDetail:api+'/api/article/getArticleDetail',//文章详情
+		
+		a_activity_index:api+'/api/activity/index',//活动列表
+		a_activity_detail:api+'/api/activity/detail',//活动详情
+		a_activity_signup:api+'/api/activity/signup',//活动报名
+		a_activity_useractivitylist:api+'/api/activity/useractivitylist',//我的活动
 	}
 }
 

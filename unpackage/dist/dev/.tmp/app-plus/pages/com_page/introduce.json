@@ -1,7 +1,0 @@
-{
-  "navigationBarTitleText": "讲师介绍",
-  "titleNView": false,
-  "usingComponents": {
-    "returns": "/pages/common/returns"
-  }
-}

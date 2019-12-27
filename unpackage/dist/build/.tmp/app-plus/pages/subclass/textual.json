@@ -1,7 +1,0 @@
-{
-  "navigationBarTitleText": "导师考证",
-  "titleNView": false,
-  "usingComponents": {
-    "returns": "/pages/common/returns"
-  }
-}

@@ -4,15 +4,15 @@
 			
 		</view>
 		<returns :titles='title'></returns>
-		<view class="worp">
-			<image src="../../static/image/index/huo1.png" mode="widthFix"></image>
-			<view class="theme">让爱回家|高分孩子·智慧父母一大型公益巡讲</view>
+		<view class="worp" >
+			<image :src="dataList.cover" mode="widthFix"></image>
+			<view class="theme">{{dataList.title}}</view>
 			<view class="line">
 			  <image src="../../static/image/index/apply.png" mode="widthFix"></image>
-			  <text>已报名37人</text>
-			  <text>限1000人报名</text>
+			  <text>已报名{{dataList.sign_number}}人</text>
+			  <text>限{{dataList.limit}}人报名</text>
 			 </view>
-			 <view class="price">￥100.0/399积分</view>
+			 <view class="price">￥{{dataList.price}}/{{dataList.integral}}积分</view>
 			<view class="count">
 				 <text>剩余</text>
 				 <view>00</view>
@@ -28,19 +28,19 @@
 		<view class="worp">
 			<view class="line">
 			  <image src="../../static/image/index/time.png" mode="widthFix"></image>
-			  <text class="theme1">6月27日 </text>
-			  <text>星期三</text>
-			  <text>17:00-19:00</text>
+			  <text class="theme1">{{dataList.start_time_text}} </text>
+			  <!-- <text>星期三</text> -->
+			  <!-- <text>17:00-19:00</text> -->
 			</view>
 			<hr />
 			<view class="line">
 				<image src='../../static/image/index/site.png' mode="widthFix"></image>
-				<text class="theme1">广东省东莞市帝京国际酒店</text>
+				<text class="theme1">{{dataList.address}}</text>
 			</view>
 			<hr />
 			<view class="line">
 				<image src='../../static/image/index/zhubanfang.png' mode="widthFix"></image>
-				<text class="theme1">主办方：五福家庭教育</text>
+				<text class="theme1">主办方：{{dataList.organizer}}</text>
 			</view>
 		</view>
 		<view class="worp">
@@ -76,23 +76,61 @@
 		data(){
 			return{
 				title:'活动详情',
+				dataList:'',
+				sign_user: [
+					{
+						"avatar": "",
+						"nickname": ""
+					}
+				],
+				day: 0,
+				hr: 0,
+				min: 0,
+				sec: 0
 			}
 		},
+		onLoad: function () {
+			this.countdown()
+		},
 		methods:{
-			// toapply(){
-			// 	uni.navigateTo({
-			// 		url:'/pages/activity/apply',
-			// 	})
-			// },
-		}
+		   countdown: function () {
+			  const end = Date.parse(new Date(this.dataList.end_time_text))
+			  const start = Date.parse(new Date(this.dataList.start_time_text))
+			  const msec = end - now
+			  let day = parseInt(msec / 1000 / 60 / 60 / 24)
+			  let hr = parseInt(msec / 1000 / 60 / 60 % 24)
+			  let min = parseInt(msec / 1000 / 60 % 60)
+			  let sec = parseInt(msec / 1000 % 60)
+			  this.day = day
+			  this.hr = hr > 9 ? hr : '0' + hr
+			  this.min = min > 9 ? min : '0' + min
+			  this.sec = sec > 9 ? sec : '0' + sec
+			  const that = this
+			  setTimeout(function () {
+				that.countdown()
+			  }, 1000)
+			}
+		},
+		onLoad(e) {
+			console.log(e)
+			this.service.entire(this,'post',this.APIconfig.api_root.subindex.a_activity_detail,{
+				id:e.id
+			},function(self,res){
+				console.log(res)
+				self.dataList = res.data.data
+				
+			})
+		},
 	}
 </script>
 
 <style lang='scss'>
-	.content{
+	/* .content{
 		height: 100%vh;
-		width: 100%;
+		width: 100%; */
+	page{
 		background-color: #F2F2F2;
+	}
 		.worp{
 			width: 100%;
 			background-color: #FFFFFF;
@@ -247,5 +285,5 @@
 				letter-spacing: 10rpx;
 			}
 		}
-	}
+/* 	} */
 </style>

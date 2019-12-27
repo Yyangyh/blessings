@@ -1,7 +1,0 @@
-{
-  "navigationBarTitleText": "我的佣金",
-  "titleNView": false,
-  "usingComponents": {
-    "returns": "/pages/common/returns"
-  }
-}

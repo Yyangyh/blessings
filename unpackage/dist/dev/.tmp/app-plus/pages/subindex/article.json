@@ -1,7 +1,0 @@
-{
-  "navigationBarTitleText": "文章",
-  "titleNView": false,
-  "usingComponents": {
-    "returns": "/pages/common/returns"
-  }
-}
