@@ -211,7 +211,7 @@ const analysis_url = function(video_url){
 	video_url = video_url.replace(/XISKH5dImd/gi, 'bkt.clouddn.com')
 	video_url = video_url.replace(/JSIk5/gi, '.')
 	video_url = video_url.replace(/jKd5/gi, '-')
-	
+	console.log(video_url)
 	return video_url
 }
 
