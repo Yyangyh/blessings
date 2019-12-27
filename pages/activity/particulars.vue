@@ -13,15 +13,15 @@
 			  <text>限{{dataList.limit}}人报名</text>
 			 </view>
 			 <view class="price">￥{{dataList.price}}/{{dataList.integral}}积分</view>
-			<view class="count">
+			<view class="countdown">
 				 <text>剩余</text>
-				 <view>00</view>
+				 <view>{{day}}</view>
 				 <text>天</text>
-				 <view>01</view>
+				 <view>{{hr}}</view>
 				 <text>时</text>
-				 <view>34</view>
+				 <view>{{min}}</view>
 				 <text>分</text>
-				 <view>48</view>
+				 <view>{{sec}}</view>
 				 <text>秒</text>
 			 </view>
 		</view>
@@ -57,11 +57,11 @@
 		</view> 
 		<view class="p-t">活动详情</view>
 		<image class="image" src='../../static/image/index/xq.png' mode="widthFix"></image>
-		<view class="underway">
+		<view class="underway" v-if="ends == true">
 			<button type="default" @tap="$jump('./apply')">立即报名</button>
 			<button type="default">邀请好友</button>
 		</view>
-		<view class="finish">
+		<view class="finish" v-else="ends == false">
 			<button>活动已结束</button>
 		</view>
 	</view>
@@ -83,20 +83,18 @@
 						"nickname": ""
 					}
 				],
-				day: 0,
-				hr: 0,
-				min: 0,
-				sec: 0
+				ends:true,
+				day: '',
+				hr: '',
+				min: '',
+				sec:''
 			}
-		},
-		onLoad: function () {
-			this.countdown()
 		},
 		methods:{
 		   countdown: function () {
 			  const end = Date.parse(new Date(this.dataList.end_time_text))
 			  const start = Date.parse(new Date(this.dataList.start_time_text))
-			  const msec = end - now
+			  const msec = end - start
 			  let day = parseInt(msec / 1000 / 60 / 60 / 24)
 			  let hr = parseInt(msec / 1000 / 60 / 60 % 24)
 			  let min = parseInt(msec / 1000 / 60 % 60)
@@ -111,6 +109,9 @@
 			  }, 1000)
 			}
 		},
+		onHide() {
+			clearInterval(this.timer)
+		},
 		onLoad(e) {
 			console.log(e)
 			this.service.entire(this,'post',this.APIconfig.api_root.subindex.a_activity_detail,{
@@ -120,7 +121,47 @@
 				self.dataList = res.data.data
 				
 			})
+			this.countdown()
 		},
+		watch:{
+			sec(news,old){
+				if(news == 0){
+					if(this.minute == 0){
+						this.minute --
+						return
+					}
+					this.minute --
+					this.min = 59
+				}
+			},
+			min(news,old){  //监控分钟
+				if(news == -1){
+					this.sec = 0
+					this.min = 0
+					this.ends = false
+					clearInterval(this.timer)
+				}
+			},
+			hr(news,old){  //监控分钟
+				if(news == -1){
+					this.sec = 0
+					this.min = 0
+					this.hr = 0
+					this.ends = false
+					clearInterval(this.timer)
+				}
+			},
+			day(news,old){
+				if(news == -1){
+					this.sec = 0
+					this.min = 0
+					this.hr = 0
+					this.day =0
+					this.ends = false
+					clearInterval(this.timer)
+				}
+			}
+		}
 	}
 </script>
 
@@ -179,7 +220,7 @@
 				margin: 20rpx 0 0 23rpx;
 				letter-spacing: 3rpx;
 			}
-			.count{
+			.countdown{
 				display: flex;
 				margin-left: 23rpx;
 				align-items: center;
