@@ -16,7 +16,7 @@
 			</view>
 			
 		</view>
-		<view class="quan" @tap="$jump('./tessera?id='+item.id)" v-show="cur==1" v-for="(item,index) in activity_Data.expired ">
+		<view class="quan"  v-show="cur==1" v-for="(item,index) in activity_Data.expired ">
 			<image :src='item.cover' mode="widthFix"></image>
 			<view class="q_right">
 				<view>{{item.title}}</view>

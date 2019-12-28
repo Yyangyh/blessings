@@ -104,6 +104,7 @@ const api_root = {
 		u_getNormolGrade:api+'/api/upgrade/getNormolGrade',//获取可升级正常会员等级
 		u_upUserGrade:api+'/api/upgrade/upUserGrade',//会员升级订单信息
 		u__order:api+'/api/upgrade/pay_forgrade_order',//会员订单提交
+		u_Signin_integralDoc:api+'/api/Signin/integralDoc',//积分说明
 		
 		u_favor:api+'/api/videohome/favor',//收藏
 		

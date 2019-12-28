@@ -4,9 +4,9 @@
 			
 		</view>
 		<returns :titles='title'></returns>
-		<view class="back" >
-			 <!-- v-for="(item,index) in activity_Data" -->
-			<image src="../../../static/image/subuser/tessera-back.png" mode="widthFix"></image>
+		<view class="back" v-for="(item,index) in activity_Data">
+			 <!--  -->
+			<image src="../../../static/image/subuser/tessera-back.png" mode="widthFix" ></image>
 			<view class="worp">
 				<view class="left">
 					<view>入</view>
@@ -14,9 +14,9 @@
 					<view>卷</view>
 				</view>
 				<view class="right">
-					<view>让爱回家|高分孩子·智慧父母一大型公益巡讲</view>
-					<view>￥100.00</view>
-					<view>11-17 08:00至11-17 17:00</view>
+					<view>{{item.title}}</view>
+					<view>￥{{item.price}}</view>
+					<view>{{item.start_time_text}}至{{item.end_time_text}}</view>
 				</view>
 			</view>
 		</view>
@@ -32,7 +32,6 @@
 			data(){
 				return{
 					title:'入场卷',
-					
 					activity_Data:'',
 				}
 			},
@@ -42,8 +41,8 @@
 					id:e.id
 				},function(self,res){
 					console.log(res)
-					self.activity_Data = res.data.unexpired,res.data.expired
-					
+					self.activity_Data = res.data.unexpired
+					console.log(self.activity_Data)
 				})
 			}
 		}

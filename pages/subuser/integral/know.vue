@@ -7,7 +7,7 @@
 		<image class="jifen" src="../../../static/image/subuser/jifen.png" mode="widthFix"></image>
 		<view class="know_box">
 			<view class="boxs">
-				<view class="title">
+				<!-- <view class="title">
 					<view class="circle"></view>
 					<text>签到</text>
 				</view>
@@ -34,7 +34,8 @@
 				</view>
 				<view class="texts">
                  成功激请一位学员可获得1积分
-				</view>
+				</view> -->
+				<rich-text :nodes="data.integral_doc"></rich-text>
 			</view>
 		</view>
 	</view>
@@ -49,11 +50,18 @@
 		data(){
 			return{
 				title:'了解积分',
+				data:'',
 			}
 		},
-		methods:{
-			
-		}
+		onLoad() {
+			this.service.entire(this,'post',this.APIconfig.api_root.subuser.u_Signin_integralDoc,{
+				
+			},function(self,res){
+				console.log(res)
+				self.data = res.data
+			})
+		},
+		
 	}
 </script>
 
@@ -76,32 +84,34 @@
 			position: absolute;
 			top:306rpx;
 			left: 20rpx;
-			.boxs{
-				margin: 50rpx 0 0 21rpx;
-				line-height: 30rpx;
-				.title{
-					display: flex;
-					align-items: center;
+			padding: 20rpx;
+			box-sizing: border-box;
+			// .boxs{
+			// 	margin: 50rpx 0 0 21rpx;
+			// 	line-height: 30rpx;
+			// 	.title{
+			// 		display: flex;
+			// 		align-items: center;
 					
-					.circle{
-						width:25rpx;
-						height: 25rpx;
-						border-radius: 50%;
-						background-color: #EA5656;
-						margin-right: 10rpx;
-					}
-					text{
-						font-size: 24rpx;
-						color: #EA5656;
+			// 		.circle{
+			// 			width:25rpx;
+			// 			height: 25rpx;
+			// 			border-radius: 50%;
+			// 			background-color: #EA5656;
+			// 			margin-right: 10rpx;
+			// 		}
+			// 		text{
+			// 			font-size: 24rpx;
+			// 			color: #EA5656;
 						
-					}
-				}
-				.texts{
-					font-size: 24rpx;
-					margin-bottom: 10rpx;
-					margin:10rpx 20rpx 10rpx 0;
-				}
-			}
+			// 		}
+			// 	}
+			// 	.texts{
+			// 		font-size: 24rpx;
+			// 		margin-bottom: 10rpx;
+			// 		margin:10rpx 20rpx 10rpx 0;
+			// 	}
+			// }
 		}
 	}
 </style>
