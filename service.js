@@ -49,7 +49,7 @@ const asy_entire = function(self,type,url,data,func){ //同步请求
 	        		if(res_list.code == 9){ //token过期时替换重新请求
 	        			self.$store.commit('state_token',res_list.data.token)
 						self.$store.commit('state_user',res_list.data.userinfo)
-	        			entire(self,type,url,data,func)
+	        			asy_entire(self,type,url,data,func)
 	        		}else if(res_list.code == 10){
 	        			uni.navigateTo({
 	        				url:'/pages/login/login'
@@ -68,6 +68,37 @@ const asy_entire = function(self,type,url,data,func){ //同步请求
 	})
 }
 
+const upimg = function(self,upname,url,data,filePath,func){ //上传图片
+	if(self.$store.state.token){
+		 data.token = self.$store.state.token
+	}else{
+		uni.reLaunch({
+			url:'/pages/login/login'
+		})
+	}
+	uni.uploadFile({
+		url: url, 
+		filePath: filePath,
+		name: upname,
+		formData: data,
+		success: (uploadFileRes) => {
+			console.log(JSON.parse(uploadFileRes.data))
+			// console.log(Object.prototype.toString.call(uploadFileRes.data)) 判断数据类型
+			let res_list = JSON.parse(uploadFileRes.data)
+			if(res_list.code == 9){ //token过期时替换重新请求
+				self.$store.commit('state_token',res_list.data.token)
+				self.$store.commit('state_user',res_list.data.userinfo)
+				upimg(self,type,url,data,func)
+			}else if(res_list.code == 10){
+				uni.navigateTo({
+					url:'/pages/login/login'
+				})
+			}else{
+				func(self,res_list)
+			}
+		}
+	});
+}
 
 const order = function(ref, self, url, wxUrl) { //支付调用
 	// console.log(self.payment_name)
@@ -253,6 +284,7 @@ const loading = function(title){ //加载层
 export default{
 	entire,
 	asy_entire,
+	upimg,
 	order,
 	returns,
 	analysis_url,

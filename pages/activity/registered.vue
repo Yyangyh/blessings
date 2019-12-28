@@ -12,7 +12,7 @@
 					</view>
 					<text>昵称：{{item.nickname?item.nickname:'神秘用户'}}</text>
 				</view>
-				<view class="l_right">2019-05-38  16:03</view>
+				<view class="l_right">{{service.Test(item.add_time)}}</view>
 			</view>
 		</view>
 	</view>

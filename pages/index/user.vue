@@ -6,7 +6,10 @@
 		<view class="user_top">
 			<view class="top_one">
 				<image src="../../static/image/index/set.png" mode="widthFix" @tap="$jump('../subuser/setting/setting')"></image>
-				<image src="../../static/image/index/user_news.png" mode="widthFix"></image>
+				<view class="top_img" @click="$jump('/pages/com_page/notice')">
+					<image src="../../static/image/index/user_news.png" mode="widthFix"></image>
+					<view v-if="$store.state.notice"></view>
+				</view>
 			</view>
 			<view class="top_two">
 				<view class="two_left" @tap="$jump('../subuser/personage/personage')">
@@ -332,7 +335,7 @@
 			}
 		},
 		onShow() {
-			
+			this.service.notice(this)
 		}
 	}
 </script>
@@ -353,12 +356,25 @@
 		background:linear-gradient(90deg,rgba(247,76,74,1),rgba(245,110,106,1));
 	}
 	.user_top .top_one{
-		text-align: right;
+		display: flex;
+		justify-content: flex-end;
 	}
 	.user_top .top_one image{
 		height: 50rpx;
 		width: 50rpx;
 		margin-right: 23rpx;
+	}
+	.user_top .top_one .top_img{
+		position: relative;
+	}
+	.user_top .top_one .top_img view{
+		position: absolute;
+		right: 20rpx;
+		top: 0;
+		height: 10rpx;
+		width: 10rpx;
+		border-radius: 50%;
+		background: #fff;
 	}
 	.user_top .top_two{
 		display: flex;

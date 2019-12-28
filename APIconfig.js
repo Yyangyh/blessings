@@ -142,6 +142,7 @@ const api_root = {
 		s_member_kinship:api+'/api/member/kinship',//亲情号绑定发送邀请
 		s_member_bindKinship:api+'/api/member/bindKinship',//绑定/取消绑定
 		s_getShareOrder:api+'/api/member/getShareOrder',//共享资源列表
+		u_appSeniorPartner:api+'/api/upgrade/appSeniorPartner',//申请高级合伙人
 	},
 	subindex:{
 		s_test:api+'/api/test/getPaper',//通过试卷id获取试卷信息
