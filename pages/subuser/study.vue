@@ -10,7 +10,7 @@
 		</view>
 		
 		<view class="box">
-			<view class="line" v-for='(item,index) in dataList' :key='item.id'>
+			<view class="line" v-for='(item,index) in dataList' :key='item.id' @tap="$jump('../com_page/video_details?id='+item.id)">
 				<image class="l_left" :src="item.v_pic" mode="scaleToFill"></image>
 				<view class="l_right">
 					<view> {{item.long_title}}</view>
