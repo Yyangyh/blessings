@@ -16,7 +16,7 @@
 		</view>
 		<!-- 课程视频\音频-->
 		<view class="boxs" >
-			<view class="line" v-for="(item,index) in dataList" :key='item.id'>
+			<view class="line" v-for="(item,index) in dataList" :key='item.video_id'  @tap="$jump('../com_page/video_details?id='+item.video_id+'&type='+item.type)">
 				<view class="tab_left"  style="transform: scale(0.8);" v-show="show">
 					<label  class="radio" @click="singleElection(index)"><radio value="r1" :checked="item.choice" /></label>
 				</view>	
@@ -79,13 +79,25 @@
 				this.Index(data)
 			},
 			Index(data){
+				
 				this.service.entire(this,'post',this.APIconfig.api_root.subuser.u_favor,data,function(self,res){
 					console.log(res)
 					res.data.favor_list.forEach(x => x.choice = false)
 					self.dataList = res.data.favor_list
-					// self.data_lsit = res.data
 				})
 			},
+			// detail(){
+			// 	if(this.type == 1)|{
+			// 		uni.navigateTo({
+			// 			url:'../com_page/index_class',
+			// 		})
+			// 	}else if(this.type == 2){
+			// 		uni.navigateTo({
+			// 			url:'../com_page/index_class',
+			// 		})
+			// 	}
+				
+			// },
 			allElection(){ //全选
 				this.checked = !this.checked
 				if(this.checked == true){

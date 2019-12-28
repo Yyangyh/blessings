@@ -4,7 +4,8 @@
 			
 		</view>
 		<returns :titles='title'></returns>
-		<view class="back">
+		<view class="back" >
+			 <!-- v-for="(item,index) in activity_Data" -->
 			<image src="../../../static/image/subuser/tessera-back.png" mode="widthFix"></image>
 			<view class="worp">
 				<view class="left">
@@ -31,9 +32,20 @@
 			data(){
 				return{
 					title:'入场卷',
-					// cur:0
+					
+					activity_Data:'',
 				}
 			},
+			onLoad(e) {
+				this.service.entire(this,'post',this.APIconfig.api_root.subindex.a_activity_useractivitylist,{
+					user_id:this.$store.state.user.id,
+					id:e.id
+				},function(self,res){
+					console.log(res)
+					self.activity_Data = res.data.unexpired,res.data.expired
+					
+				})
+			}
 		}
 </script>
 

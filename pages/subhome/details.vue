@@ -85,7 +85,13 @@
 			</view>
 		</view>
 		<view class="p-t">活动详情</view>
-		<image class="image" src='../../static/image/index/xq.png' mode="widthFix"></image>
+		<view v-for="(item,index) in goods.content_app" :key ='item.id'>
+			
+			<image class="image" :src='item.images' mode="widthFix"></image>
+			<view class="c_a" style="font-size: 24rpx;">
+				{{item.content}}
+			</view>
+		</view>
 		<view class="shopping">
 			<view class="to">
 				<view class="cart" @tap="$jump('../com_page/shopp_cart')">
@@ -224,6 +230,7 @@
 					coupon_id:this.coupon[index].id,
 					user_id:this.$store.state.user.id
 				},function(self,res){
+					console.log(res)
 					if(res.code == 0){
 						self.coupon[index].is_operable = 0
 					}else{
@@ -478,6 +485,7 @@
 						width: 25rpx;
 						height: 25rpx;
 					}
+					
 				}
 				text{
 					font-size: 24rpx;
@@ -680,6 +688,11 @@
 			
 			width: 100%;
 			// height: 988rpx;
+		}
+		.c_a{
+			font-size: 24rpx;
+			line-height: 50rpx;
+			text-indent:2em;
 		}
 		.shopping{
 			width: 100%;

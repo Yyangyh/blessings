@@ -14,7 +14,7 @@
 		</view> 
 		<view class="swiper_box">
 			<swiper class="swiper" :indicator-dots="indicatorDots" :autoplay="autoplay" :interval="interval" :duration="duration">
-				<swiper-item v-for="(item,index) in swiper_list" :key='item.id'>
+				<swiper-item v-for="(item,index) in swiper_list" :key='item.id' @tap="$jump('../subhome/details?id='+item.goods_id)">
 					<view class="swiper-item uni-bg-red" style="text-align: center;">
 						<image :src="item.images_url" mode="widthFix"></image>
 					</view>

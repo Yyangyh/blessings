@@ -8,11 +8,19 @@
 			  <text @click="cur=0" class="one" :class="{active:cur==0}">近期活动</text>
 			  <text @click="cur=1" class="two" :class="{active:cur==1}">往期活动</text>
 		</view>
-		<view class="quan" @tap="$jump('./tessera')" v-show="cur==0">
-			<image src='../../../static/image/index/sm.png' mode="widthFix"></image>
+		<view class="quan" @tap="$jump('./tessera?id='+item.id)" v-show="cur==0" v-for="(item,index) in activity_Data.unexpired ">
+			<image :src='item.cover' mode="widthFix"></image>
 			<view class="q_right">
-				<view>让爱回家|高分孩子·智慧父母一	大型公益巡讲</view>
-				<view>￥100.00</view>
+				<view>{{item.title}}</view>
+				<view>￥{{item.price}}</view>
+			</view>
+			
+		</view>
+		<view class="quan" @tap="$jump('./tessera?id='+item.id)" v-show="cur==1" v-for="(item,index) in activity_Data.expired ">
+			<image :src='item.cover' mode="widthFix"></image>
+			<view class="q_right">
+				<view>{{item.title}}</view>
+				<view>￥{{item.price}}</view>
 			</view>
 			
 		</view>
@@ -28,9 +36,19 @@
 		data(){
 			return{
 				title:'我的活动',
-				cur:0
+				cur:0,
+				activity_Data:'',
 			}
 		},
+		onShow() {
+			this.service.entire(this,'post',this.APIconfig.api_root.subindex.a_activity_useractivitylist,{
+				user_id:this.$store.state.user.id
+			},function(self,res){
+				console.log(res)
+				self.activity_Data = res.data
+				
+			})
+		}
 	}
 </script>
 
