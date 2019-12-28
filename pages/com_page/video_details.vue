@@ -345,6 +345,7 @@
 				
 			},
 			record_play(currentTime,duration){//记录播放进度
+				if(isNaN(duration)) return
 				this.service.entire(this,'post',this.APIconfig.api_root.com_page.v_playProcess,{
 					video_id:this.id,
 					user_id:this.$store.state.user.id,

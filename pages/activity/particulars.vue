@@ -58,7 +58,7 @@
 		<view class="p-t">活动详情</view>
 		<image class="image" src='../../static/image/index/xq.png' mode="widthFix"></image>
 		<view class="underway" v-if="ends == true">
-			<button type="default" @tap="$jump('./apply')">立即报名</button>
+			<button type="default" @tap="$jump('./apply?id='+id)">立即报名</button>
 			<button type="default">邀请好友</button>
 		</view>
 		<view class="finish" v-else="ends == false">
@@ -87,81 +87,50 @@
 				day: '',
 				hr: '',
 				min: '',
-				sec:''
+				sec:'',
+				timer:'',
+				
 			}
 		},
 		methods:{
-		   countdown: function () {
-			  const end = Date.parse(new Date(this.dataList.end_time_text))
-			  const start = Date.parse(new Date(this.dataList.start_time_text))
-			  const msec = end - start
-			  let day = parseInt(msec / 1000 / 60 / 60 / 24)
-			  let hr = parseInt(msec / 1000 / 60 / 60 % 24)
-			  let min = parseInt(msec / 1000 / 60 % 60)
-			  let sec = parseInt(msec / 1000 % 60)
+		   countdown: function (msec) {
+			  let day = parseInt(msec  / 60 / 60 / 24)
+			  let hr = parseInt(msec  / 60 / 60 % 24)
+			  let min = parseInt(msec  / 60 % 60)
+			  let sec = parseInt(msec  % 60)
 			  this.day = day
 			  this.hr = hr > 9 ? hr : '0' + hr
 			  this.min = min > 9 ? min : '0' + min
 			  this.sec = sec > 9 ? sec : '0' + sec
-			  const that = this
-			  setTimeout(function () {
-				that.countdown()
-			  }, 1000)
+			  console.log(day,hr,min,sec)
 			}
 		},
 		onHide() {
+			
 			clearInterval(this.timer)
 		},
-		onLoad(e) {
-			console.log(e)
+		onUnload(){
+			
+			clearInterval(this.timer)
+		},
+		onShow() {
 			this.service.entire(this,'post',this.APIconfig.api_root.subindex.a_activity_detail,{
-				id:e.id
+				id:this.id
 			},function(self,res){
 				console.log(res)
 				self.dataList = res.data.data
 				
+				let msec = (self.dataList.end_time - Date.parse(new Date())/1000)
+				self.timer = setInterval(function(){
+					msec -- 
+					self.countdown(msec)
+				},1000)
 			})
-			this.countdown()
 		},
-		watch:{
-			sec(news,old){
-				if(news == 0){
-					if(this.minute == 0){
-						this.minute --
-						return
-					}
-					this.minute --
-					this.min = 59
-				}
-			},
-			min(news,old){  //监控分钟
-				if(news == -1){
-					this.sec = 0
-					this.min = 0
-					this.ends = false
-					clearInterval(this.timer)
-				}
-			},
-			hr(news,old){  //监控分钟
-				if(news == -1){
-					this.sec = 0
-					this.min = 0
-					this.hr = 0
-					this.ends = false
-					clearInterval(this.timer)
-				}
-			},
-			day(news,old){
-				if(news == -1){
-					this.sec = 0
-					this.min = 0
-					this.hr = 0
-					this.day =0
-					this.ends = false
-					clearInterval(this.timer)
-				}
-			}
-		}
+		onLoad(e) {
+			console.log(e)
+			this.id = e.id
+		},
 	}
 </script>
 
@@ -171,6 +140,9 @@
 		width: 100%; */
 	page{
 		background-color: #F2F2F2;
+	}
+	.content{
+		padding-bottom: 140rpx;
 	}
 		.worp{
 			width: 100%;
@@ -281,8 +253,13 @@
 		}
 		.underway{
 			background: #FFFFFF;
+			position: fixed;
+			left: 0;
+			bottom: 0;
+			width: 100%;
 			display: flex;
-			padding: 30rpx 0;
+			align-items: center;
+			height: 140rpx;
 			button:first-child{
 				width: 250rpx;
 				height: 80rpx;

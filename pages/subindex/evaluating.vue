@@ -410,6 +410,8 @@
 				margin: 20rpx 0 0 50rpx;
 				width: 650rpx;
 				height: 280rpx;
+				padding: 20rpx;
+				box-sizing: border-box;
 			}
 			.ganxie{
 				font-size: 28rpx;
