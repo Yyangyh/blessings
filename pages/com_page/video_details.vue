@@ -405,7 +405,7 @@
 						    content: '该章节为付费章节，是否购买该章节？',
 						    success: res =>{
 						        if (res.confirm) {
-									that.$jump('./v_order?id='+that.id+'&s_id='+that.catalog_data[index].id)
+									this.$jump('./v_order?id='+this.id+'&s_id='+this.catalog_data[index].id)
 								} 
 						    }
 						});

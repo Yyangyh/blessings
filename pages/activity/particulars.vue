@@ -43,14 +43,16 @@
 				<text class="theme1">主办方：{{dataList.organizer}}</text>
 			</view>
 		</view>
-		<view class="worp">
+		<view class="worp" v-if="sign_user.length">
 			<view class="top">
 				<text>已报名</text>
-				<text>查看更多</text>
+				<text @tap="$jump('./registered?id='+id)">查看更多</text>
 			</view>
 			<view class="personnel-list">
-				<view class="list" v-for="(item,index) in dataList.sign_user" :key='index'>
-					<image :src='APIconfig.api_img+item.avatar' mode="widthFix"></image>
+				<view class="list" v-for="(item,index) in sign_user" :key='index'>
+					<view class="l_img">
+						<image :src='APIconfig.api_img+item.avatar' mode="widthFix"></image>
+					</view>
 					<view>{{item.nickname?item.nickname:'神秘用户'}}</view>
 				</view>
 			</view>
@@ -80,12 +82,7 @@
 			return{
 				title:'活动详情',
 				dataList:'',
-				sign_user: [
-					{
-						"avatar": "",
-						"nickname": ""
-					}
-				],
+				sign_user: '',
 				ends:true,
 				day: '',
 				hr: '',
@@ -128,6 +125,8 @@
 			},function(self,res){
 				console.log(res)
 				self.dataList = res.data.data
+				self.sign_user = res.data.data.sign_user
+				if(self.sign_user.length > 5) self.sign_user.length = 5
 				let img = res.data.data.detail
 				img = Object.values(img)
 				console.log(img)
@@ -249,10 +248,16 @@
 					-webkit-box-orient: vertical;
 					-webkit-line-clamp: 1;
 					overflow: hidden;
-					image{
+					.l_img{
 						width: 96rpx;
 						height: 96rpx;
 						border-radius: 50%;
+						overflow: hidden;
+						display: inline-block;
+					}
+					image{
+						width: 100%;
+						height: 100%;
 					}
 					view{
 						font-size: 23rpx;

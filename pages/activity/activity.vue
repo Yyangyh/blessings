@@ -12,7 +12,7 @@
 			<view class="worp"  v-for="(item,index) in activity_Data1" :key='item.id' @tap="$jump('./particulars?id='+item.id)">
 				<view class="line">
 					<image src="../../static/image/index/time.png" mode="widthFix"  ></image>
-					<text class="theme">{{item.start_time_text}}</text>
+					<text class="theme">{{item.start_time_text}}至{{item.end_time_text}}</text>
 				</view>
 				<hr />
 				<view class="line">
@@ -34,7 +34,7 @@
 			<view class="worp" v-for="(item,index) in activity_Data2" :key='item.id'  @tap="$jump('./particulars?id='+item.id)">
 				<view class="line">
 					<image src="../../static/image/index/time.png" mode="widthFix"></image>
-					<text class="theme">{{item.start_time_text}}</text>
+					<text class="theme">{{item.start_time_text}}至{{item.end_time_text}}</text>
 				</view>
 				<hr />
 				<view class="line">
