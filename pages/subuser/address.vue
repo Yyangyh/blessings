@@ -137,6 +137,7 @@
 			align-items: center;
 			height: 100%;
 			width: 180rpx;
+			
 		}
 		image{
 			height: 40rpx;
@@ -148,6 +149,7 @@
 			font-weight: 400;
 			width: 180rpx;
 			display: inline-block;
+			text-align: right;
 		}
 	}
 	.list{

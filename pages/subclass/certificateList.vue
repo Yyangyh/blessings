@@ -166,6 +166,7 @@
 			font-weight: 400;
 			display: inline-block;
 			width: 180rpx;
+			text-align: right;
 		}
 	}
 

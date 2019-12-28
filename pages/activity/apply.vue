@@ -5,7 +5,7 @@
 		</view>
 		<returns :titles='title'></returns>
 		<view class="activitys">
-			<image :src='dataList.cover'></image>
+			<image :src='APIconfig.api_img+dataList.cover'></image>
 			<view class="a-right">
 				<view class="theme">{{dataList.title}}</view>
 				<view class="line">
@@ -22,7 +22,7 @@
 				<hr />
 				<view class=""><text>手机号码：</text><input type="text" placeholder="请输入手机号码" v-model="phone" value></view>
 				<hr />
-				<view class=""><text>备注：</text><input type="text" placeholder="请输入备注"></view>
+				<view class=""><text>备注：</text><input type="text" v-model="remarks" placeholder="请输入备注"></view>
 				<hr />
 			</form>
 			
@@ -65,11 +65,12 @@
 				title:'立即报名',
 				name:'',
 				phone:'',
+				remarks:'',
 				dataList:'',
 				payment:'',
 				pay_type:'',
 				payment_id:'',
-				payment_name:''
+				payment_name:'',
 			}
 		},
 		methods:{
@@ -93,7 +94,7 @@
 				   if (this.phone == "" || this.name == "") {
 					  uni.showToast({
 					  	icon:'none',
-					  	title:'输入框不能为空!'
+					  	title:'报名信息不能为空!'
 					  })
 					  return
 					 }
@@ -118,7 +119,8 @@
 					  pay_type:	this.pay_type,
 					  sign_name:this.name,
 					  sign_mobile:this.phone,
-					  payment_id:this.payment_id
+					  payment_id:this.payment_id,
+					  remark:this.remarks
 				  },function(self,res){
 					  console.log(res)
 					  uni.showToast({
@@ -135,6 +137,7 @@
 			},function(self,res){
 				console.log(res)
 				self.dataList = res.data.data
+				
 				let data =[
 					{
 						name:'积分',

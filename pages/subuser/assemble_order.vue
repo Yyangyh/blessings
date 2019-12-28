@@ -223,6 +223,7 @@
 			font-weight: 400;
 			width: 180rpx;
 			display: inline-block;
+			text-align: right;
 		}
 	}
 	.box_top {

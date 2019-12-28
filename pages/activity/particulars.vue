@@ -5,7 +5,7 @@
 		</view>
 		<returns :titles='title'></returns>
 		<view class="worp" >
-			<image :src="dataList.cover" mode="widthFix"></image>
+			<image :src="APIconfig.api_img+dataList.cover" mode="widthFix"></image>
 			<view class="theme">{{dataList.title}}</view>
 			<view class="line">
 			  <image src="../../static/image/index/apply.png" mode="widthFix"></image>
@@ -54,24 +54,27 @@
 					<view>{{item.nickname?item.nickname:'神秘用户'}}</view>
 				</view>
 			</view>
-		</view> 
+		</view>
 		<view class="p-t">活动详情</view>
-		<image class="image" src='../../static/image/index/xq.png' mode="widthFix"></image>
+		<image class="image" v-for="(item,index) in detail_img" :src='APIconfig.api_img+item.images' mode="widthFix"></image>
 		<view class="underway" v-if="ends == true">
 			<button type="default" @tap="$jump('./apply?id='+id)">立即报名</button>
 			<button type="default">邀请好友</button>
 		</view>
-		<view class="finish" v-else="ends == false">
+		<view class="finish" v-else>
 			<button>活动已结束</button>
 		</view>
+		<load v-if="load_show"></load>
 	</view>
 </template>
 
 <script>
 	import returns from '../common/returns.vue'
+	import load from '../common/load.vue'
 	export default{
 		components:{
-			returns
+			returns,
+			load
 		},
 		data(){
 			return{
@@ -89,11 +92,18 @@
 				min: '',
 				sec:'',
 				timer:'',
-				
+				load_show:true,
+				detail_img:''
 			}
 		},
 		methods:{
 		   countdown: function (msec) {
+			  if(msec < 0){
+				  msec = 0
+				  this.ends = false
+				  clearInterval(this.timer)
+			  }
+			  
 			  let day = parseInt(msec  / 60 / 60 / 24)
 			  let hr = parseInt(msec  / 60 / 60 % 24)
 			  let min = parseInt(msec  / 60 % 60)
@@ -102,7 +112,7 @@
 			  this.hr = hr > 9 ? hr : '0' + hr
 			  this.min = min > 9 ? min : '0' + min
 			  this.sec = sec > 9 ? sec : '0' + sec
-			  console.log(day,hr,min,sec)
+			  if(this.load_show == true)this.load_show = false
 			}
 		},
 		onHide() {
@@ -110,7 +120,6 @@
 			clearInterval(this.timer)
 		},
 		onUnload(){
-			
 			clearInterval(this.timer)
 		},
 		onShow() {
@@ -119,7 +128,10 @@
 			},function(self,res){
 				console.log(res)
 				self.dataList = res.data.data
-				
+				let img = res.data.data.detail
+				img = Object.values(img)
+				console.log(img)
+				self.detail_img = img
 				let msec = (self.dataList.end_time - Date.parse(new Date())/1000)
 				self.timer = setInterval(function(){
 					msec -- 
@@ -233,6 +245,10 @@
 				.list{
 					width: 20%;
 					text-align: center;
+					display: -webkit-box;
+					-webkit-box-orient: vertical;
+					-webkit-line-clamp: 1;
+					overflow: hidden;
 					image{
 						width: 96rpx;
 						height: 96rpx;
@@ -290,8 +306,14 @@
 	/* 	结束按钮 */
 		.finish{
 			background: #FFFFFF;
-			padding: 30rpx 0;
-			display: none;
+			height: 140rpx;
+			display: flex;
+			align-items: center;
+			position: fixed;
+			left: 0;
+			bottom: 0;
+			width: 100%;
+			/* display: none; */
 			button{
 				width: 600rpx;
 				height: 80rpx;
