@@ -398,7 +398,21 @@
 				
 			},
 			play_end(e){ //播放结束时
-				
+				let testing = function(index){
+					if(this.catalog_data[index].cou_is_free == false){
+						uni.showModal({
+						    title: '提示',
+						    content: '该章节为付费章节，是否购买该章节？',
+						    success: res =>{
+						        if (res.confirm) {
+									that.$jump('./v_order?id='+that.id+'&s_id='+that.catalog_data[index].id)
+								} 
+						    }
+						});
+					}else{
+						this.play_url = this.service.analysis_url(this.catalog_data[index].video_url)
+					}
+				}
 				if(this.indexs || this.indexs === 0){ //当宣传视频播放结束时
 					let that = this
 					this.record_time = 0
@@ -406,22 +420,25 @@
 					this.receive_status == false ? this.receive_int() : this.receive_status = false //播放结束时再判断一次是否领取积分
 					if(this.indexs === this.catalog_data.length - 1) return//当视频目录最后一个播放完毕时 
 					this.indexs++
-					if(this.catalog_data[this.indexs].cou_is_free == false){
-						uni.showModal({
-						    title: '提示',
-						    content: '该章节为付费章节，是否购买该章节？',
-						    success: res =>{
-						        if (res.confirm) {
-									that.$jump('./v_order?id='+that.id+'&s_id='+that.catalog_data[this.indexs].id)
-								} 
-						    }
-						});
-					}else{
-						this.play_url = this.service.analysis_url(this.catalog_data[this.indexs].video_url)
-					}
+					// testing(this.indexs)
+					testing.call(this,this.indexs)
+					// if(this.catalog_data[this.indexs].cou_is_free == false){
+					// 	uni.showModal({
+					// 	    title: '提示',
+					// 	    content: '该章节为付费章节，是否购买该章节？',
+					// 	    success: res =>{
+					// 	        if (res.confirm) {
+					// 				that.$jump('./v_order?id='+that.id+'&s_id='+that.catalog_data[this.indexs].id)
+					// 			} 
+					// 	    }
+					// 	});
+					// }else{
+					// 	this.play_url = this.service.analysis_url(this.catalog_data[this.indexs].video_url)
+					// }
 				}else{
 					this.indexs = 0
-					this.play_url = this.service.analysis_url(this.catalog_data[0].video_url)
+					// testing(this.indexs)
+					testing.call(this,this.indexs)
 				}
 				
 			},

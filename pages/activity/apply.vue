@@ -5,7 +5,7 @@
 		</view>
 		<returns :titles='title'></returns>
 		<view class="activitys">
-			<image src='../../static/image/index/sm.png'></image>
+			<image :src='dataList.cover'></image>
 			<view class="a-right">
 				<view class="theme">{{dataList.title}}</view>
 				<view class="line">

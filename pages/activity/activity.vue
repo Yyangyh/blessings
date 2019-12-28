@@ -19,7 +19,7 @@
 					<image src='../../static/image/index/site.png' mode="widthFix"></image>
 					<text class="theme">{{item.address}}</text>
 				</view>
-				<image src="../../static/image/index/huo1.png" mode="widthFix"></image>
+				<image :src="item.cover" mode="widthFix"></image>
 				<view class="theme">{{item.title}}</view>
 				<view class="line">
 					<image src="../../static/image/index/apply.png" mode="widthFix"></image>
@@ -41,7 +41,7 @@
 					<image src='../../static/image/index/site.png' mode="widthFix"></image>
 					<text class="theme">{{item.address}}</text>
 				</view>
-				<image src="../../static/image/index/huo1.png" mode="widthFix"></image>
+				<image :src="item.cover" mode="widthFix"></image>
 				<view class="theme">{{item.title}}</view>
 				<view class="line">
 					<image src="../../static/image/index/apply.png" mode="widthFix"></image>

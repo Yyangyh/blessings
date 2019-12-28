@@ -49,9 +49,9 @@
 				<text>查看更多</text>
 			</view>
 			<view class="personnel-list">
-				<view class="list">
-					<image src='../../static/image/index/per.png' mode="widthFix"></image>
-					<view>老胡</view>
+				<view class="list" v-for="(item,index) in dataList.sign_user" :key='index'>
+					<image :src='APIconfig.api_img+item.avatar' mode="widthFix"></image>
+					<view>{{item.nickname?item.nickname:'神秘用户'}}</view>
 				</view>
 			</view>
 		</view> 
@@ -229,8 +229,10 @@
 			}
 			.personnel-list{
 				display: flex;
-				justify-content: space-around;
+				/* justify-content: space-around; */
 				.list{
+					width: 20%;
+					text-align: center;
 					image{
 						width: 96rpx;
 						height: 96rpx;
