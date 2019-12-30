@@ -90,7 +90,7 @@
 				
 			},
 			 register(){
-				  // let tel = /^(13[0-9]|14[5|7]|15[0|1|2|3|5|6|7|8|9]|18[0|1|2|3|5|6|7|8|9])\d{8}$/.test(this.phone);
+				  let tel = /^1(3|4|5|7|8)\d{9}$/.test(this.phone);
 				   if (this.phone == "" || this.name == "") {
 					  uni.showToast({
 					  	icon:'none',
@@ -98,13 +98,13 @@
 					  })
 					  return
 					 }
-				  // }else if(!tel){
-					 //  uni.showToast({
-					 //  	icon:'none',
-					 //  	title:'请输入正确的11位手机号码!'
-					 //  })
-					 //  return
-				  // }
+				  else if(!tel){
+					  uni.showToast({
+					  	icon:'none',
+					  	title:'请输入正确的11位手机号码!'
+					  })
+					  return
+				  }
 				  console.log(this.pay_type)
 				  if(!this.pay_type){
 					  uni.showToast({
