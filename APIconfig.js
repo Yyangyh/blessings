@@ -1,8 +1,8 @@
 const api = ''
 
 // const api ='http://0318.t1.nethhw188.com'
-// const api_img ='http://0318.t1.nethhw188.com'
-const api_img ='http://192.168.0.195:8990'//本地
+const api_img ='http://0318.t1.nethhw188.com'
+// const api_img ='http://192.168.0.195:8990'//本地
 
 const api_root = {
 	common:{
@@ -143,6 +143,7 @@ const api_root = {
 		s_member_bindKinship:api+'/api/member/bindKinship',//绑定/取消绑定
 		s_getShareOrder:api+'/api/member/getShareOrder',//共享资源列表
 		u_appSeniorPartner:api+'/api/upgrade/appSeniorPartner',//申请高级合伙人
+		u_coupon:api+'/api/coupon/user',//优惠券列表
 	},
 	subindex:{
 		s_test:api+'/api/test/getPaper',//通过试卷id获取试卷信息
@@ -163,6 +164,8 @@ const api_root = {
 		a_activity_detail:api+'/api/activity/detail',//活动详情
 		a_activity_signup:api+'/api/activity/signup',//活动报名
 		a_activity_useractivitylist:api+'/api/activity/useractivitylist',//我的活动
+		
+		getClassify:api+'/api/videohome/getClassify',//视频音频分类
 	}
 }
 

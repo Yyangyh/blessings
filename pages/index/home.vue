@@ -4,8 +4,10 @@
 			
 		</view>
 		<view class="content_top">
-			<view class="top_search">
-				<input type="text" value="" placeholder="请输入关键词搜索" />
+			<view class="top_search" @tap="$jump('/pages/com_page/s_search')">
+				<view class="search_text">
+					请输入关键词搜索
+				</view>
 			</view>
 			<view class="top_img" @click="$jump('../com_page/shopp_cart')">
 				<image src="/static/image/index/shopp.png" mode="widthFix"></image>
@@ -26,7 +28,7 @@
 				<image :src="item.icon"></image>
 				<view>{{item.name}}</view>
 			</view>
-			<view class="classify">
+			<view class="classify" @tap="$jump('../com_page/video_class?id=40&title=家风学堂')">
 				<image src="../../static/image/index/school.png"></image>
 				<view>家风学堂</view>
 			</view>
@@ -260,6 +262,8 @@ res
 			align-items: center;
 			padding-left: 40rpx;
 			background: #EEEEEE;
+			font-size: 24rpx;
+			color: #999;
 		}
 		view input{
 			font-size: 24rpx;

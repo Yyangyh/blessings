@@ -39,9 +39,9 @@
 		<button type="default" @tap="$jump('./open_order?id='+member_data[chiose_show].id)">
 			立即开通
 		</button>
-		<view class="upgrade">
-			<text>50000积分可升级</text>
-			<text>VIP</text>
+		<view class="upgrade" v-if="member_data">
+			<text>{{member_data[chiose_show].integral}}积分可升级</text>
+			<text>{{member_data[chiose_show].name}}</text>
 		</view>
 		<image class="line" src="/static/image/subuser/line@2x.png" mode="widthFix"></image>
 		<view class="vip-center">

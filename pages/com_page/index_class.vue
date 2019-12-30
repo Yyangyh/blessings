@@ -7,8 +7,10 @@
 			<view class="top_returns" @tap="service.returns()">
 				<image src="../../static/image/com_page/returns.png" mode="widthFix"></image>
 			</view>
-			<view class="top_search">
-				<input type="text" value="" placeholder="请输入关键词搜索" />
+			<view class="top_search" @tap="$jump('/pages/com_page/v_search?type='+req_data.type)">
+				<view class="search_text">
+					请输入关键词搜索
+				</view>
 			</view>
 			<view class="top_img" @click="jump('../com_page/notice')">
 				<image src="/static/image/index/news.png" mode="widthFix"></image>
@@ -51,7 +53,7 @@
 			<view class="vider_content">
 				<view class="content_list" v-for="(item,index) in video_list" :key='item.id'  @tap="$jump('../com_page/video_details?id='+item.id)">
 					<view class="list_img_box">
-						<image :src="item.v_pic" mode="scaleToFill"></image>
+						<image :src="APIconfig.api_img+item.v_pic" mode="scaleToFill"></image>
 					</view>
 					<view class="list_right">
 						<view class="list_one">
@@ -146,7 +148,7 @@
 			},
 			uni_request(req_data){
 				this.service.entire(this,'get',this.APIconfig.api_root.com_page.videoList,req_data,function(self,res){
-					self.top_class = res.data.top_list
+					if(!self.top_class)self.top_class = res.data.top_list
 					let data = self.video_list
 					data.push(...res.data.video_list)
 					self.video_list = data
@@ -205,6 +207,8 @@
 			align-items: center;
 			padding-left: 40rpx;
 			background: #EEEEEE;
+			font-size: 24rpx;
+			color: #999;
 		}
 		view input{
 			font-size: 24rpx;

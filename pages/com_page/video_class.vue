@@ -46,7 +46,7 @@
 		<view class="vider_content">
 			<view class="content_list" v-for="(item,index) in video_list" :key='item.id' @tap="$jump('./video_details?id='+item.id)">
 				<view class="list_img_box">
-					<image :src="item.v_pic" mode="scaleToFill"></image>
+					<image :src="APIconfig.api_img+item.v_pic" mode="scaleToFill"></image>
 				</view>
 				<view class="list_right">
 					<view class="list_one">
@@ -98,7 +98,8 @@
 				let data = {
 					limit:10,
 					page:this.page,
-					v_pid:this.v_pid
+					v_pid:this.v_pid,
+					type:this.type
 				}
 				
 				this.uni_request(data)
@@ -108,7 +109,8 @@
 				this.loadRecord = true
 				let data = {
 					limit:10,
-					page:this.page
+					page:this.page,
+					type:this.type
 				}
 				if(v_pid){
 					data.v_pid = v_pid
@@ -145,6 +147,7 @@
 			this.title = e.title
 			this.v_pid = e.id
 			this.old_id = e.id
+			this.type = 3
 			this.Index()
 		},
 		onReachBottom() {

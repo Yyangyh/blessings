@@ -5,22 +5,32 @@
 		</view>
 		<returns :titles='title'></returns>
 		<view class="allorder">
-			  <text @click="cur=0" class="one" :class="{active:cur==0}">课程视频</text>
-			  <text @click="cur=1" class="two" :class="{active:cur==1}">音频</text>
-			  <text @click="cur=2" class="three" :class="{active:cur==2}">文章</text>
+			  <text @tap="Index(1)" class="one" :class="{active:cur==1}">课程视频</text>
+			  <text @tap="Index(2)" class="two" :class="{active:cur==2}">音频</text>
+			  <text @tap="Index(3)" class="three" :class="{active:cur==3}">文章</text>
 		</view>
-		 <view class="boxs" v-show="cur==0">
+		<view class="article" v-if="cur==3">
+			<view class="a_list" v-for="(item,index) in article_data" :key='index'>
+				<!-- <image :src="APIconfig.api_img+item.cl_image" mode="widthFix"></image> -->
+				<view class="">
+					{{item.name}}
+				</view>
+			</view>
+		</view>
+		 <view class="boxs" v-else>
 			 <view class="allorders" >
-				 <view @click="bur=0" class="one" :class="{actives:bur==0}">幸福短片</view>
-				 <view @click="bur=1" class="two" :class="{actives:bur==1}">幸福直播</view>
-				 <view @click="bur=2" class="three" :class="{actives:bur==2}">名师讲堂</view>
-				 <view @click="bur=3" class="four" :class="{actives:bur==3}">偏差矫正</view>
-				 <view @click="bur=4" class="five" :class="{actives:bur==4}">状元养成</view>
+				 <view @tap="chiose(index)" class="one" :class="{actives:indexs == index}" v-for="(item,index) in data" :key='item.id'>{{item.cl_name}}</view>
 			 </view>
-			 <view class="b_right">
-				 
+			 <view class="b_right" v-if="data">
+				 <view class="b_list" v-for="(item,index) in data[indexs].t_list" :key='item.id'>
+				 	<image :src="APIconfig.api_img+item.cl_image" mode="widthFix"></image>
+					<view class="">
+						{{item.cl_name}}
+					</view>
+				 </view>
 			 </view>
 		 </view>
+		 
 	</view>
 </template>
 
@@ -33,17 +43,47 @@
 		data(){
 			return{
 				title:'分类',
-				cur:'',
+				cur:1,
 				bur:'',
+				data:'',
+				article_data:'',
+				indexs:0,
+				
 			}
+		},
+		methods:{
+			Index(type){
+				this.cur = type
+				this.indexs = 0
+				if(type == 3){
+					this.service.entire(this,'get',this.APIconfig.api_root.subindex.s_getNormalCategory,{},function(self,res){
+						console.log(res)
+						self.article_data = res.data
+					})
+				}else{
+					this.service.entire(this,'post',this.APIconfig.api_root.subindex.getClassify,{
+						userid:this.$store.state.user.id,
+						type:type
+					},function(self,res){
+						console.log(res)
+						self.data = res.data.t_list
+						console.log(self.data)
+					})
+				}
+				
+			},
+			chiose(index){
+				this.indexs = index
+			}
+		},
+		onLoad() {
+			this.Index(1)
 		}
 	}
 </script>
 
 <style lang="scss">
-	page{
-		background-color: #F6F6F7;
-	}
+	
 	.allorder{
 		width: 100%;
 		height: 100rpx;
@@ -51,13 +91,24 @@
 		text-align: center;
 		line-height: 100rpx;
 		font-size:28rpx;
-		// background-color: #F6F6F7;
+		background-color: #F6F6F7;
 		text{
 			flex: 1;
 		}
 	}
 	.active{
 		color:#D80000;
+	}
+	.article{
+		padding: 20rpx;
+		box-sizing: border-box;
+		display: flex;
+		flex-wrap: wrap;
+		.a_list{
+			width: 50%;
+			text-align: center;
+			margin-bottom: 20rpx;
+		}
 	}
 	.boxs{
 		display: flex;
@@ -78,7 +129,22 @@
 		.b_right{
 			background-color: #FFFFFF;
 			width: 75%;
-			
+			height: 100%;
+			padding: 20rpx;
+			display: flex;
+			flex-wrap: wrap;
+			.b_list{
+				width: 50%;
+				text-align: center;
+				margin-bottom: 20rpx;
+				view{
+					font-size: 24rpx;
+				}
+				image{
+					width: 210rpx;
+					height: 103rpx;
+				}
+			}
 		}
 	}
 </style>

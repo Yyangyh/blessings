@@ -3,7 +3,7 @@
 		<view class="status_bar">
 			
 		</view>
-		<search></search>
+		<search :type='3'></search>
 		<view class="room_top">
 			<image :src="APIconfig.api_img + slide.images_url" mode="widthFix"></image>
 		</view>
@@ -27,14 +27,14 @@
 				<view class="box_left" >
 					{{item.cl_name}}
 				</view>
-				<view class="box_right"  @tap="$jump('../com_page/video_class?id='+item.id+'&title='+item.cl_name)">
+				<view class="box_right"  @tap="$jump('../com_page/video_class?type=3&id='+item.id+'&title='+item.cl_name)">
 					全部
 				</view>
 			</view>
 			<view class="vider_content">
 				<view class="content_list" v-for="(items,indexs) in item.list" :key='items.id'  @tap="$jump('../com_page/video_details?id='+items.id + '&type='+items.type)">
 					<view class="list_img_box">
-						<image :src="items.v_pic" mode="scaleToFill"></image>
+						<image :src="APIconfig.api_img+items.v_pic" mode="scaleToFill"></image>
 					</view>
 					<view class="list_right">
 						<view class="list_one">
