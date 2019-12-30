@@ -110,7 +110,20 @@
 				});
 			},
 			apply(){
-				
+				 let tel = /^1(3|4|5|7|8)\d{9}$/.test(this.phone);
+				if (this.phone == "" || this.name == "") {
+					uni.showToast({
+						icon:'none',
+						title:'信息不能为空!'
+					})
+				  return
+				 }else if(!tel){
+					  uni.showToast({
+						icon:'none',
+						title:'请输入正确的11位手机号码!'
+					  })
+					  return
+				}
 				if(this.index == 0){
 					uni.showToast({
 						icon:'none',
