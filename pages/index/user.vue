@@ -20,8 +20,9 @@
 						{{user.username}}
 					</view>
 					<view class="mid_bottom">
-						<image src="../../static/image/index/member.png" mode="widthFix"></image>
-						<text>会员</text>
+						<!-- <image src="../../static/image/index/member.png" mode="widthFix"></image> -->
+						<image :src="user.level_icon ? user.level_icon: '../../static/image/index/member.png'" mode="widthFix"></image>
+						<text>{{user.level_name}}</text>
 					</view>
 				</view>
 				<!-- <view class="two_right">
@@ -52,7 +53,7 @@
 			</view>
 		</view>
 		
-		<view class="user_vip"  @tap="$jump('../subuser/member/member')">
+		<view class="user_vip"  @tap="$jump('../subuser/member/member')" v-if="user.level_name != 6">
 			<view class="vip_one">
 				<image src="../../static/image/index/vip.png" mode="widthFix"></image>
 				<view class="">
@@ -154,6 +155,12 @@
 					<image src="../../static/image/index/other_img8.png" mode="widthFix"></image>
 					<view class="">
 						亲情号
+					</view>
+				</view>
+				<view class="tab_list" @tap="$jump('../subuser/member/member')">
+					<image src="../../static/image/index/member1.png" mode="widthFix"></image>
+					<view class="">
+						会员中心
 					</view>
 				</view>
 			</view>
@@ -404,7 +411,7 @@
 		align-items: center;
 		justify-content: center;
 		font-size: 24rpx;
-		width: 106rpx;
+		padding: 0 10rpx;
 		height: 36rpx;
 		border-radius: 36rpx;
 		background: rgba(255,255,255,.3);

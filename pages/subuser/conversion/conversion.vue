@@ -10,9 +10,9 @@
 		</view>
 		<view class="discounts">
 			<view class="state">
-				<view  @click="bur=0" class="one"   :class="{actives:bur==0}">待使用</view>
-				<view  @click="bur=1" class="two"   :class="{actives:bur==1}">已使用</view>
-				<view  @click="bur=2" class="three"  :class="{actives:bur==2}">已过期</view>
+				<view  @tap="chiose(0)" class="one"   :class="{actives:bur==0}">待使用</view>
+				<view  @tap="chiose(1)" class="two"   :class="{actives:bur==1}">已使用</view>
+				<view  @tap="chiose(2)" class="three"  :class="{actives:bur==2}">已过期</view>
 			</view>
 		</view>
 		<!-- <view class="discounts" v-show="cur==1">
@@ -23,33 +23,33 @@
 			</view>
 		</view> -->
 		
-		<view class="st" v-show="bur==0">
-			<view class="quan">
+		<view class="st" v-if='data_list'>
+			<view class="quan" v-for="(item,index) in data_list" :key='item.id'>
 				<view class="q_left">
 					<view class="l_top">
 						<view class="t_left">
 							<text>￥</text>
-							<text>200</text>
+							<text>{{item.coupon.discount_value}}</text>
 						</view>
 						<view class="t_right">
-							<view>优惠券</view>
+							<view>{{item.coupon.name}}</view>
 							<view>
-								<text>满减  </text>
-								<text>满300减100</text>
+								<text>{{item.coupon.type_name}}  </text>
+								<text>满{{item.coupon.where_order_price}}减{{item.coupon.discount_value}}</text>
 							</view>
 						</view>
 					</view>
 					<view class="l_bottom">
-						有效期：2019-05-04至2019-05-06
+						有效期：{{service.Test(item.time_start)}}至{{service.Test(item.time_end)}}
 					</view>
 				</view>
 				<view class="q_right">
-					已领取
+					待使用
 				</view>
 			</view>
 			
 		</view>
-		<view class="st" v-show="bur==1">
+		<view class="st" v-else>
 			<image class="back" src='../../../static/image/com_page/juan.png' mode="widthFix"></image>
 			<view class="c-text">暂无优惠券</view>
 			<button type="default" @tap="$jump('./exchange')">兑换入口</button>
@@ -69,9 +69,30 @@
 				title:'优惠券',
 				cur:0,
 				bur:0,
+				data:'',
+				data_list:''
 				// aur:0
 			}
 		},
+		methods:{
+			chiose(type){
+				this.bur = type
+				if(type == 0){
+					this.data_list = this.data.not_use
+				}else if(type == 1){
+					this.data_list = this.data.already_expire
+				}
+			}
+		},
+		onLoad() {
+			this.service.entire(this,'post',this.APIconfig.api_root.subuser.u_coupon,{
+				user_id:this.$store.state.user.id
+			},function(self,res){
+				console.log(res)
+				self.data = res.data
+				self.data_list = res.data.not_use
+			})
+		}
 	}
 </script>
 

@@ -129,6 +129,24 @@
 			}
 		},
 		{
+			"path": "pages/com_page/v_search",
+			"style": {
+				"navigationBarTitleText": "搜索",
+				"app-plus":{
+					"titleNView":false
+				}
+			}
+		},
+		{
+			"path": "pages/com_page/s_search",
+			"style": {
+				"navigationBarTitleText": "搜索",
+				"app-plus":{
+					"titleNView":false
+				}
+			}
+		},
+		{
 			"path": "pages/subhome/home_com",
 			"style": {
 				"navigationBarTitleText": "产品列表",

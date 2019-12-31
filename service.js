@@ -10,7 +10,7 @@ const entire = function(self,type,url,data,func){
 		url:url,
 		data:data,
 		method:type,
-		header:{ 'content-type': 'application/x-www-form-urlencoded', 'X-Requested-With':'xmlhttprequest','Content-Type':'application/json'},
+		header:{'X-Requested-With':'xmlhttprequest','Content-Type':'application/json'},
 		success(res) {
 			let res_list = res.data
 			if(res_list.code == 9){ //token过期时替换重新请求
@@ -43,7 +43,7 @@ const asy_entire = function(self,type,url,data,func){ //同步请求
 	        	url:url,
 	        	data:data,
 	        	method:type,
-	        	header:{'content-type': 'application/x-www-form-urlencoded','X-Requested-With':'xmlhttprequest','Content-Type':'application/json'},
+	        	header:{'X-Requested-With':'xmlhttprequest','Content-Type':'application/json'},
 	        	success(res) {
 	        		let res_list = res.data
 	        		if(res_list.code == 9){ //token过期时替换重新请求
