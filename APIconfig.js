@@ -1,8 +1,8 @@
 const api = ''
 
 // const api ='http://0318.t1.nethhw188.com'
-const api_img ='http://0318.t1.nethhw188.com'
-// const api_img ='http://192.168.0.195:8990'//本地
+// const api_img ='http://0318.t1.nethhw188.com'
+const api_img ='http://192.168.0.195:8990'//本地
 
 const api_root = {
 	common:{
@@ -143,12 +143,9 @@ const api_root = {
 		s_member_bindKinship:api+'/api/member/bindKinship',//绑定/取消绑定
 		s_getShareOrder:api+'/api/member/getShareOrder',//共享资源列表
 		u_appSeniorPartner:api+'/api/upgrade/appSeniorPartner',//申请高级合伙人
-<<<<<<< HEAD
 		
 		u_Company_index:api+'/api/Company/index',//公司简介
-=======
 		u_coupon:api+'/api/coupon/user',//优惠券列表
->>>>>>> 98e63b6fc5487846f97ffdc8b4c7a321ee7c2e7e
 	},
 	subindex:{
 		s_test:api+'/api/test/getPaper',//通过试卷id获取试卷信息

@@ -5,7 +5,7 @@
 		</view>
 		<returns :titles='title'></returns>
 		<view class="back_img">
-			<image src="../../../static/image/brokerage/brokerage-back.png" mode="widthFix"></image>
+			<image :src="APIconfig.api_img + bg" mode="widthFix"></image>
 		</view>
 		<view class="pages">
 			<image :src="APIconfig.api_img + code_img" mode="widthFix"></image>
@@ -31,6 +31,7 @@
 				url:'http://192.168.0.166:8000/h5/#/pages/login/reg'
 			},function(self,res){
 				self.code_img = res.data.invite_code_img
+				self.bg = res.data.bg
 			})
 		}
 	}

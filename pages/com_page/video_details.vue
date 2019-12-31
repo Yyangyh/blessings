@@ -80,7 +80,7 @@
 				<view class="mid_tutor" @tap="$jump('./introduce?techer_id='+video_data.techer_id)">
 					<view class="tu_one">
 						<view class="Image">
-							<image :src="video_data.head_pic" mode="scaleToFill"></image>
+							<image :src="APIconfig.api_img+video_data.head_pic" mode="scaleToFill"></image>
 						</view>
 						<view class="tu_name">
 							<view class="">
@@ -173,7 +173,7 @@
 			<view class="vider_content">
 				<view class="content_list" v-for="(item,index) in recommend_video" :key='item.id'  @tap="$jump('./video_details?id='+item.id)">
 					<view class="list_img_box">
-						<image :src="item.v_pic" mode="aspectFill"></image>
+						<image :src="APIconfig.api_img+item.v_pic" mode="aspectFill"></image>
 					</view>
 					<view class="list_right">
 						<view class="list_one">
