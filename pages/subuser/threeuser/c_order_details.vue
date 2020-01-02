@@ -212,7 +212,8 @@
 				        if (res.confirm) {
 				            that.service.entire(that,'post',that.APIconfig.api_root.com_page.v_saveOrder, {
 				            	coupon_id: 0,
-				            	vid: that.data.vid,
+								userid:that.$store.state.user.id,
+				            	video_id: that.data.vid,
 								section_id:that.data.section_id,
 								pay_type:that.payment_name,
 								pay_price:that.data.pay_price

@@ -87,6 +87,10 @@
 							self.reveal = true
 							self.if_sign = true
 							self.msg = res.msg
+							let user_data = {
+								integral:Number(self.$store.state.user.integral) + Number(res.integarl)
+							}
+							self.$store.commit('set_user',user_data)
 							for (let s of self.data_list) {
 								if(s.day == data) {
 									s.is_sign = 1

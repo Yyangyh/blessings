@@ -730,7 +730,7 @@
 		},{
 			"path": "pages/subuser/signIn",
 			"style": {
-				"navigationBarTitleText": "签到",
+				"navigationBarTitleText": "每周签到",
 				"app-plus":{
 					"titleNView":false
 				}
