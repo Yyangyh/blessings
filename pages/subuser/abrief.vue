@@ -4,19 +4,16 @@
 			
 		</view>
 		<returns :titles='title'></returns>
+		<video :src="company_info.video_url" controls></video>
 		<!-- 介绍 -->
 		<view class="recommend">
 			<view class="title">
 				五福家庭教育
 			</view>
 			<view class="particulars">
-				五福家庭教育，坐落于广东省国家高新科技园松山湖，肩负“为四亿
-				家庭幸福而奋斗”的神圣使命，本着“体验性、本质性、系统性”的教
-				育理念，凭借十多年对素质教育研究与实践的基础，结合古今中外
-				先进的家庭教育理念，成功研发出具有中国特色的家庭教育课程体
-				系。
+				<rich-text :nodes="company_info.content"></rich-text>
 			</view>
-			<image src="../../static/image/subuser/jianjie.png" mode="widthFix"></image>
+			<!-- <image src="../../static/image/subuser/jianjie.png" mode="widthFix"></image> -->
 		</view>
 	</view>
 </template>
@@ -30,22 +27,25 @@
 		data() {
 			return {
 				title:'公司简介',
+				company_info:'',
+				poster:'',
 			}
 		},
-		
-		// onShow() {
-		// 	uni.getLocation({
-		// 	    type: 'wgs84',
-		// 	    success: function (res) {
-		// 	        console.log('当前位置的经度：' + res.longitude);
-		// 	        console.log('当前位置的纬度：' + res.latitude);
-		// 	    }
-		// 	});
-		// }
+		onShow() {
+			this.service.entire(this,'post',this.APIconfig.api_root.subuser.u_Company_index,{
+				
+			},function(self,res){
+				console.log(res)
+				self.company_info = res.data.company_info
+			})
+		}
 	}
 </script>
 
 <style lang="scss">
+	video{
+		width: 100%;
+	}
 	.recommend{
 		padding:0 17rpx 0 24rpx;
 		.title{
