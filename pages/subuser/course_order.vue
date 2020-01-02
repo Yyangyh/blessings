@@ -36,7 +36,7 @@
 						</view>
 		
 						<view class="top2 refund" v-if="item.state == 0">
-							未支付
+							待支付
 						</view>
 						<view class="top2 obligation" v-if="item.state == 1">
 							已支付
@@ -46,7 +46,7 @@
 					
 					<view class="list_middle" @click="jump('threeuser/s_order_details?id='+item.id)">
 						<view class="v_img">
-							<image :src="item.video.v_pic" mode="scaleToFill"></image>
+							<image :src="APIconfig.api_img+item.video.v_pic" mode="scaleToFill"></image>
 						</view>
 						<view class="middle1">
 							<view class="">{{item.video.title}}</view>

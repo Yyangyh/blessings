@@ -127,6 +127,13 @@
 					  	icon:'none',
 						title:res.msg
 					  })
+					  if(res.code == 0){
+					  	setTimeout(function(self,res){
+							uni.redirectTo({
+							    url: './activity'
+							},1000);
+						})
+					  }
 				  })
 			 }
 		},

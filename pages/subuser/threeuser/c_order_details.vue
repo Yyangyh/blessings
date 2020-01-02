@@ -20,7 +20,7 @@
 		<view class="order">
 			<view class="order_num" @tap="$jump('../../com_page/video_details?id='+data.vid+'&type='+data.type)">
 				<view class="num_one">
-					<image :src="data.v_pic" mode="scaleToFill"></image>
+					<image :src="APIconfig.api_img+data.v_pic" mode="scaleToFill"></image>
 				</view>
 				<view class="num_two">
 					<view class="test_one">
@@ -70,9 +70,9 @@
 		</view>
 
 
-		<view class="order_bottom" v-if="data.status == 1">
+		<view class="order_bottom" v-if="data.state == 0">
 			<!-- <text>修改地址</text> -->
-			<text @click="cancel()">取消订单</text>
+			<!-- <text @click="cancel()">取消订单</text> -->
 			<text class="or_pay" @click="show = !show">付款</text>
 		</view>
 		
@@ -191,13 +191,14 @@
 				}
 				this.pay_list[index].choice = true
 				this.pay_list = JSON.parse(JSON.stringify(this.pay_list))
-				this.payment_id = this.pay_list[index].id
+				// this.payment_id = this.pay_list[index].id
+				// console.log(this.payment_id)
 				this.payment_name = this.pay_list[index].payment
 			},
 			payment() {
 				//提交
 				let  that = this
-				if (!this.payment_id) {
+				if (!this.payment_name) {
 					uni.showToast({
 						icon: 'none',
 						title: '请选择支付方式'
@@ -209,12 +210,14 @@
 				    content: '是否确定支付？',
 				    success: function (res) {
 				        if (res.confirm) {
-				            that.service.entire(that,'post',that.APIconfig.api_root.com_page.order_pay, {
-				            	user_id: that.$store.state.user.id,
-				            	id: that.data.id,
-				            	payment_id: that.payment_id
+				            that.service.entire(that,'post',that.APIconfig.api_root.com_page.v_saveOrder, {
+				            	coupon_id: 0,
+				            	vid: that.data.vid,
+								section_id:that.data.section_id,
+								pay_type:that.payment_name,
+								pay_price:that.data.pay_price
 				            }, function(self, ref) {
-				            	self.service.order(ref,self,'../s_order?status=-1','pages/subuser/s_order?status=-1')
+				            	self.service.order(ref,self,'../course_order?status=6','pages/subuser/course_order?status=6')
 				            	
 				            })
 				        } else if (res.cancel) {
@@ -233,12 +236,13 @@
 			}, function(self, res) {
 				self.data = res.data.orderDetail
 				self.data_list = res.data.items
-				if(res.data.payment_list){
-					let data = res.data.payment_list
+				if(res.data.pay){
+					let data = res.data.pay
 					for (let s of data) {
 						s.choice = false
 					}
 					self.pay_list = data
+					console.log(self.pay_list)
 				}
 				
 				

@@ -66,7 +66,7 @@
 			},
 			data(){
 				return{
-					title:'签到',
+					title:'每周签到',
 					reveal:false,
 					data_list:'',
 					msg:'',
@@ -82,6 +82,7 @@
 						user_id:this.$store.state.user.id
 					},function(self,res){
 						console.log(res)
+						self.data.sign_count += res.integarl
 						if(res.code == 0){
 							self.reveal = true
 							self.if_sign = true
@@ -114,6 +115,7 @@
 					self.data = res.data
 					for (let s of self.data_list) {
 						if(s.day == data) {
+							console.log(123)
 							s.is_sign == 1 ? self.if_sign = true : self.if_sign = false
 						}
 						
