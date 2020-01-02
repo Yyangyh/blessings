@@ -9,7 +9,7 @@
 			  <text @click="cur=1" class="two" :class="{active:cur==1}">往期活动</text>
 		</view>
 		<view class="quan" @tap="$jump('./tessera?id='+item.id)" v-show="cur==0" v-for="(item,index) in activity_Data.unexpired ">
-			<image :src='item.cover' mode="widthFix"></image>
+			<image :src='APIconfig.api_img+item.cover' mode="widthFix"></image>
 			<view class="q_right">
 				<view>{{item.title}}</view>
 				<view>￥{{item.price}}</view>
@@ -17,7 +17,7 @@
 			
 		</view>
 		<view class="quan"  v-show="cur==1" v-for="(item,index) in activity_Data.expired ">
-			<image :src='item.cover' mode="widthFix"></image>
+			<image :src='APIconfig.api_img+item.cover' mode="widthFix"></image>
 			<view class="q_right">
 				<view>{{item.title}}</view>
 				<view>￥{{item.price}}</view>

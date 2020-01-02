@@ -22,11 +22,11 @@
 				</view>
 				<image class="all_img" :class="show===false ? 'tran_none' : show===true ? 'tran_show' : ''" src="../../static/image/index/down.png" mode="widthFix"></image>
 			</view>
-			<view class="">
-				免费音频
+			<view  @tap="condition(1)" :class="{'red':keyword_show === 1}">
+				{{req_data.type == 1?'免费视频':'免费音频'}}
 			</view>
-			<view class="">
-				收听多
+			<view  @tap="condition(2)" :class="{'red':keyword_show === 2}">
+				{{req_data.type == 1?'观看多':'收听多'}}
 			</view>
 		</view>
 		
@@ -80,6 +80,7 @@
 		data() {
 			return {
 				data:'',
+				type:'',
 				show:false,
 				top_class:'',
 				title:'',
@@ -87,53 +88,66 @@
 				more: 'more',
 				page: 1,
 				loadRecord: true,
-				v_pid:'',
 				v_test:'全部',
-				old_id:''
+				old_id:'',
+				keyword_show:'',
+				req_data:{
+					type:'',
+					limit:10,
+					page:1,
+					v_pid:''
+				}
 			}
 		},
 		methods:{
 			Index(){
 				this.more = 'loading'
-				let data = {
-					limit:10,
-					page:this.page,
-					v_pid:this.v_pid,
-					type:this.type
-				}
-				
-				this.uni_request(data)
+				this.uni_request(this.req_data)
 			},
 			chiose(v_pid,test){
 				this.page = 1
 				this.loadRecord = true
-				let data = {
-					limit:10,
-					page:this.page,
-					type:this.type
-				}
 				if(v_pid){
-					data.v_pid = v_pid
-					this.v_pid = v_pid
+					this.req_data.v_pid = v_pid
 					this.v_test = test
 				}else{
-					this.v_pid = this.old_id
-					data.v_pid = this.old_id
+					this.req_data.v_pid = this.old_id
 					this.v_test = '全部'
 				}
 				this.video_list.length = 0
-				
-				this.uni_request(data)
+				this.uni_request(this.req_data)
 				this.show = false
+			},
+			condition(type){//条件选择
+				this.more = 'loading'
+				this.req_data.page = 1
+				this.loadRecord = true
+				this.video_list.length = 0
+				if(this.keyword_show == type){//重复点击取消
+					this.keyword_show = ''
+					delete this.req_data.view//收看多
+					delete this.req_data.is_free//是否免费
+				}else{//判断是否是免费视频
+					this.keyword_show = type//点击条件选择
+					if(type == 1) {//点击免费时执行
+						this.req_data.is_free = 1//点击免费
+						delete this.req_data.view//删除播放多
+					}
+					if(type == 2) {//点击观看多执行
+						this.req_data.view = 1//点击观看多
+						delete this.req_data.is_free//删除免费
+					}
+				}
+				this.uni_request(this.req_data)//执行分页函数
 			},
 			uni_request(data){//请求接口
 				this.service.entire(this,'get',this.APIconfig.api_root.com_page.videoList,data,function(self,res){
-					self.top_class = res.data.top_list
+					if(!self.top_class)self.top_class = res.data.top_list
 					let data = self.video_list
 					data.push(...res.data.video_list)
 					self.video_list = data
 					console.log(self.video_list);
-					self.page += 1
+					self.req_data.page += 1
 					self.more = 'more'
 					if (res.data.video_list.length < 10) {//判断是否还有下一页
 						self.more = 'noMore'
@@ -145,9 +159,9 @@
 		},
 		onLoad(e) {
 			this.title = e.title
-			this.v_pid = e.id
+			this.req_data.v_pid = e.id
 			this.old_id = e.id
-			this.type = 3
+			this.req_data.type = e.type
 			this.Index()
 		},
 		onReachBottom() {
@@ -219,6 +233,9 @@
 		align-items: center;
 		color: #D80000;
 	}
+	.red{
+			color: #D80000;
+		}
 	.all_img{
 		transition: .3s;
 	}

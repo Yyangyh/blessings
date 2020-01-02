@@ -354,6 +354,7 @@
 					s_process:duration
 				},function(self,res){
 					console.log(res)
+					self.catalog_data[self.indexs].section_plan = res.section_plan
 				})
 			},
 			receive_int(){ //自动领取积分

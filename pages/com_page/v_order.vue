@@ -13,7 +13,7 @@
 		<view class="vider_content">
 			<view class="content_list">
 				<view class="list_img_box">
-					<image :src="data.v_pic" mode="aspectFill"></image>
+					<image :src="APIconfig.api_img+data.v_pic" mode="aspectFill"></image>
 				</view>
 				<view class="list_right">
 					<view class="list_one">
@@ -237,8 +237,13 @@
 							that.service.entire(that,'post',that.APIconfig.api_root.com_page.v_saveOrder,data_list,function(self,res){
 								console.log(res)
 								if(res.code == 0){
-									
-									self.service.returns()
+									uni.showToast({
+										icon:'none',
+										title:res.msg
+									})
+									setTimeout(function(){
+										self.service.returns()
+									},1000)
 									// self.service.entire(self,'post',self.APIconfig.api_root.com_page.order_pay,{
 									// 	user_id: that.$store.state.user.id,
 									// 	id:res.data.order.id

@@ -27,7 +27,7 @@
 				<view class="box_left" >
 					{{item.cl_name}}
 				</view>
-				<view class="box_right"  @tap="$jump('../com_page/video_class?type=3&id='+item.id+'&title='+item.cl_name)">
+				<view class="box_right"  @tap="$jump('../com_page/video_class?type='+item.type+'&id='+item.id+'&title='+item.cl_name)">
 					全部
 				</view>
 			</view>

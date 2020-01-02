@@ -82,12 +82,12 @@
 				</view>
 				
 				<view class="order_handle">
-					<text v-if="new_aftersale_data == null"  @click="jump('/pages/threeLayers/refund?id='+data.items.id +'&oid='+data.id)">{{data.status == 4?'申请售后':'退款/退货'}}</text>
+					<text v-if="new_aftersale_data == null"  @click="jump('./s_order_refund?id='+data.items.id +'&oid='+data.id)">{{data.status == 4?'申请售后':'退款/退货'}}</text>
 					<block v-else>
 						<text v-if="new_aftersale_data.status == 3">退款完成</text>
-						<text v-else-if="new_aftersale_data.status == 4"  @click="jump('/pages/threeLayers/refund?id='+data.items.id +'&oid='+data.id)">已拒绝</text>
-						<text v-else-if="new_aftersale_data.status == 5"  @click="jump('/pages/threeLayers/refund?id='+data.items.id +'&oid='+data.id)">已取消</text>
-						<text v-else @click="cancel_return(data.id)">退款/退货中</text>
+						<text v-else-if="new_aftersale_data.status == 4"  @click="jump('./s_order_refund?id='+data.items.id +'&oid='+data.id)">{{new_aftersale_data.status_text}}</text>
+						<text v-else-if="new_aftersale_data.status == 5"  @click="jump('./s_order_refund?id='+data.items.id +'&oid='+data.id)">{{new_aftersale_data.status_text}}</text>
+						<text v-else @click="cancel_return(new_aftersale_data.id)">{{new_aftersale_data.status_text}}</text>
 					</block>
 					
 				</view>
@@ -195,13 +195,13 @@
 			},
 		},
 		onLoad(options) {
-			this.service.entire(this, 'get', this.APIconfig.api_root.subuser.threeuser.s_Aftersale, {
+			this.service.entire(this, 'post', this.APIconfig.api_root.subuser.threeuser.s_order_aftersale, {
 				oid: options.oid,
 				did: options.did,
 				user_id:this.$store.state.user.id
 			}, function(self, res) {
-				self.data = res.data.order
-				self.goods = res.data.goods
+				self.data = res.data.order_data
+				self.goods = res.data.order_data.items
 				self.new_aftersale_data = res.data.new_aftersale_data
 				
 			})

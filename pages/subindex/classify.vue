@@ -22,7 +22,7 @@
 				 <view @tap="chiose(index)" class="one" :class="{actives:indexs == index}" v-for="(item,index) in data" :key='item.id'>{{item.cl_name}}</view>
 			 </view>
 			 <view class="b_right" v-if="data">
-				 <view class="b_list" v-for="(item,index) in data[indexs].t_list" :key='item.id'>
+				 <view class="b_list" v-for="(item,index) in data[indexs].t_list" :key='item.id' @tap="$jump('../com_page/video_class?type='+item.type+'&id='+data[indexs].id+'&title='+data[indexs].cl_name)">
 				 	<image :src="APIconfig.api_img+item.cl_image" mode="widthFix"></image>
 					<view class="">
 						{{item.cl_name}}
@@ -104,6 +104,7 @@
 		box-sizing: border-box;
 		display: flex;
 		flex-wrap: wrap;
+		font-size: 24rpx;
 		.a_list{
 			width: 50%;
 			text-align: center;

@@ -141,7 +141,8 @@
 				let data =[
 					{
 						name:'积分',
-						logo:c_integral
+						logo:c_integral,
+						choice:false
 					}
 				]
 				data.push(...res.data.payment_list)
