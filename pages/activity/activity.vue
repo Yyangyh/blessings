@@ -78,7 +78,7 @@
 		},
 		onLoad() {
 			this.service.entire(this, 'post', this.APIconfig.api_root.subindex.a_activity_index, {
-
+				
 			}, function(self, res) {
 				console.log(res)
 				self.activity_Data = res.data.data

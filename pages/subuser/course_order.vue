@@ -41,10 +41,13 @@
 						<view class="top2 obligation" v-if="item.state == 1">
 							已支付
 						</view>
+						<view class="top2 obligation" v-if="item.state == 9">
+							已取消
+						</view>
 						
 					</view>
 					
-					<view class="list_middle" @click="jump('threeuser/s_order_details?id='+item.id)">
+					<view class="list_middle" @click="$jump('threeuser/c_order_details?id='+item.id)">
 						<view class="v_img">
 							<image :src="APIconfig.api_img+item.video.v_pic" mode="scaleToFill"></image>
 						</view>
@@ -71,9 +74,9 @@
 								<view class="bottom_ash" v-if='item.status == 4 || item.status == 5' @click="deletes(item.id,index)">
 									删除订单
 								</view>
-								<view class="bottom_ash" v-if='item.status == 4 && item.user_is_comments ==0' @click="jump('threeuser/s_comment_order?id='+item.id)">
+								<!-- <view class="bottom_ash" v-if='item.status == 4 && item.user_is_comments ==0' @click="jump('threeuser/s_comment_order?id='+item.id)">
 									评论
-								</view>
+								</view> -->
 								<view class="bottom3" @click="$jump('threeuser/c_order_details?id='+item.id)">
 									详情
 								</view>

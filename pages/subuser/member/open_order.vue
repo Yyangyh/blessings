@@ -8,7 +8,7 @@
 			<view class="titlie">{{dataList.name}}</view>
 			<!-- <view class="msgs">须在5分钟内完成订单支付，否则该订单将自动取消.</view> -->
 			<!-- <hr /> -->
-			<view class="msgs">应付金额：<text>{{dataList.consume}}元/{{dataList.discounts}}积分</text></view>
+			<view class="msgs">应付金额：<text>{{dataList.consume - dataList.discounts}}元/{{dataList.integral}}积分</text></view>
 		</view>
 		<view class="payment">
 			<view class="pa_test">
@@ -18,7 +18,8 @@
 				
 				<view class="box_list"  v-for="(item,index) in payment"  :key='item.id' @click="choice(index)">
 					<view class="list_top">
-						<image :src="item.logo" mode="widthFix"></image>
+						<image :src="item.logo" mode="widthFix" v-if="index === 0"></image>
+						<image :src="APIconfig.api_img+item.logo" mode="widthFix" v-else></image>
 						<view class="">
 							{{item.name}}
 						</view>

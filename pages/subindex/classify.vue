@@ -10,8 +10,8 @@
 			  <text @tap="Index(3)" class="three" :class="{active:cur==3}">文章</text>
 		</view>
 		<view class="article" v-if="cur==3">
-			<view class="a_list" v-for="(item,index) in article_data" :key='index'>
-				<!-- <image :src="APIconfig.api_img+item.cl_image" mode="widthFix"></image> -->
+			<view class="a_list" v-for="(item,index) in article_data" :key='index' @tap="$jump('../subindex/texts?v_test='+item.name+'&v_pid='+item.id)">
+				<image :src="APIconfig.api_img+item.icon" mode="widthFix"></image>
 				<view class="">
 					{{item.name}}
 				</view>
@@ -22,7 +22,9 @@
 				 <view @tap="chiose(index)" class="one" :class="{actives:indexs == index}" v-for="(item,index) in data" :key='item.id'>{{item.cl_name}}</view>
 			 </view>
 			 <view class="b_right" v-if="data">
-				 <view class="b_list" v-for="(item,index) in data[indexs].t_list" :key='item.id' @tap="$jump('../com_page/video_class?type='+item.type+'&id='+data[indexs].id+'&title='+data[indexs].cl_name)">
+				 <view class="b_list" v-for="(item,index) in data[indexs].t_list" :key='item.id' 
+				 @tap="$jump('../com_page/video_class?type='+item.type+'&id='+data[indexs].id+'&title='+data[indexs].cl_name+'&v_test='+item.cl_name+'&v_pid='+item.id)"
+				 >
 				 	<image :src="APIconfig.api_img+item.cl_image" mode="widthFix"></image>
 					<view class="">
 						{{item.cl_name}}
@@ -109,6 +111,10 @@
 			width: 50%;
 			text-align: center;
 			margin-bottom: 20rpx;
+			image{
+				width: 210rpx;
+				height: 103rpx;
+			}
 		}
 	}
 	.boxs{
@@ -122,6 +128,7 @@
 			border-bottom:1rpx solid #EEEEEE ;
 			text-align: center;
 			color: #333333;
+			
 		}
 		.actives{
 			color:#D80000;

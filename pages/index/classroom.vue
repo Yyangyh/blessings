@@ -45,10 +45,10 @@
 						</view>
 						<view class="list_three">
 							<view class="">
-								￥{{items.group_price}}
+								￥{{items.v_price}}
 							</view>
-							<view class="" v-if="items.is_free_vip.indexOf($store.state.user.level_id) != -1">
-								VIP免费
+							<view class="" v-if="items.free_type > 0">
+								{{items.free_dec}}免费
 							</view>
 						</view>
 					</view>

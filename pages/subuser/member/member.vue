@@ -6,10 +6,12 @@
 		<returns :titles='title'></returns>
 		<view class="m-top">
 			<image  class="back" src="/static/image/subuser/m-top.png" mode="widthFix"></image>
-			<image class="photo" src="/static/image/subuser/toux.png" mode="widthFix"></image>
+			<view class="head_img">
+				<image class="photo" :src="APIconfig.api_img+user.avatar" mode="scaleToFill"></image>
+			</view>
 			<view class="box">
-				<image src="/static/image/subuser/v.png" mode="widthFix"></image>
-				<text>会员</text>
+				<image :src="user.level_icon ? APIconfig.api_img+user.level_icon: '/static/image/index/member.png'" mode="widthFix"></image>
+				<text>{{user.level_name}}</text>
 			</view>
 			<view class="explain">
 				<text>开通</text>
@@ -89,10 +91,16 @@
 </template>
 
 <script>
+	import {mapState} from 'vuex'
 	import returns from '../../common/returns.vue'
 	export default{
 		components:{
 			returns
+		},
+		computed:{
+			...mapState({
+				user:'user'
+			})
 		},
 		data(){
 			return{
@@ -131,18 +139,27 @@
 			top:0;
 			left: 0;
 		}
-		.photo{
+		.head_img{
 			width: 100rpx;
 			height: 100rpx;
+			border-radius: 50%;
+			overflow: hidden;
 			position: absolute;
 			top:83rpx;
 			left: 324rpx;
+			.photo{
+				width: 100%;
+				height: 100%;
+				
+			}
 		}
+		
 		.box{
 			position: absolute;
 			top:204rpx;
-			left: 322rpx;
-			width:106rpx;
+			left: 50%;
+			transform: translateX(-50%);
+			padding: 0 20rpx;
 			height:35rpx;
 			background:linear-gradient(0deg,rgba(255,238,221,1),rgba(185,161,142,1));
 			border-radius:18rpx;
@@ -153,7 +170,7 @@
 			image{
 				width: 23rpx;
 				height: 23rpx;
-				margin: 0 0 0 20rpx;
+				// margin: 0 0 0 20rpx;
 			}
 		}
 		.explain{

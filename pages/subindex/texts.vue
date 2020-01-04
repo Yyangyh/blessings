@@ -130,7 +130,11 @@
 				
 			}
 		},
-		onLoad() {
+		onLoad(e) {
+			if(e.v_pid){
+				this.req_data.cate_id = e.v_pid
+				this.v_test = e.v_test
+			}
 			this.Index()
 		},
 		onShow() {

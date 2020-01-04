@@ -60,8 +60,8 @@
 							{{item.is_free == 0? '￥'+item.v_price : '免费'}}
 							
 						</view>
-						<view class="" v-if="item.is_free_vip == 1">
-							VIP免费
+						<view class="" v-if="item.free_type > 0">
+							{{item.free_dec}}免费
 						</view>
 					</view>
 				</view>
@@ -105,7 +105,7 @@
 				this.uni_request(this.req_data)
 			},
 			chiose(v_pid,test){
-				this.page = 1
+				this.req_data.page = 1
 				this.loadRecord = true
 				if(v_pid){
 					this.req_data.v_pid = v_pid
@@ -162,6 +162,10 @@
 			this.req_data.v_pid = e.id
 			this.old_id = e.id
 			this.req_data.type = e.type
+			if(e.v_pid){
+				this.req_data.v_pid = e.v_pid
+				this.v_test = e.v_test
+			}
 			this.Index()
 		},
 		onReachBottom() {
@@ -306,6 +310,7 @@
 		flex-direction: column;
 		justify-content: space-between;
 		padding-bottom: 30rpx;
+		flex-grow: 2;
 	}
 	.list_one{
 		padding-right: 10rpx;

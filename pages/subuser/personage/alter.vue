@@ -41,7 +41,7 @@
 						title:res.msg
 					})
 					if(res.code==0){
-						self.$store.commit('set_user',{username:self.name})
+						self.$store.commit('set_user',{nickname:self.name})
 						setTimeout(function() {
 							self.service.returns()
 						}, 1000);

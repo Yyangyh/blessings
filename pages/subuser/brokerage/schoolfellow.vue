@@ -13,8 +13,8 @@
 			<view class="line" v-for="(item,index) in dataList.one" :key='item.id'>
 				<image class="l_left" :src="APIconfig.api_img+item.avatar"></image>
 				<view class="l-right">
-					<view style="display: flex;"><text style="display:block;width: 240rpx;">昵称：{{item.nickname?item.nickname:'未填写'}}</text><text>{{item.mobile}}</text></view>
-					<view><text>成为同学时间：</text><text style="margin-right: 20rpx;">2019-05-38</text><text>16:03</text></view>
+					<view style="display: flex;"><text style="display:block;width: 240rpx;">用户名：{{item.username}}</text><text>{{item.mobile}}</text></view>
+					<view><text>成为同学时间：</text><text style="margin-right: 20rpx;">{{item.referrer_time == true?item.referrer_time:item.add_time}}</text></view>
 				</view>
 			</view>
 		</view>
@@ -23,8 +23,8 @@
 			<view class="line" v-for="(item,index) in dataList.two" :key='item.id'>
 				<image class="l_left" :src="APIconfig.api_img+item.avatar"></image>
 				<view class="l-right">
-					<view style="display: flex;"><text style="display:block;width: 240rpx;">昵称：{{item.nickname?item.nickname:'未填写'}}</text><text>{{item.mobile}}</text></view>
-					<view><text>成为同学时间：</text><text style="margin-right: 20rpx;">2019-05-38</text><text>16:03</text></view>
+					<view style="display: flex;"><text style="display:block;width: 240rpx;">用户名：{{item.username}}</text><text>{{item.mobile}}</text></view>
+					<view><text>成为同学时间：</text><text style="margin-right: 20rpx;">{{item.referrer_time == true?item.referrer_time:item.add_time}}</text></view>
 				</view>
 			</view>
 		</view>

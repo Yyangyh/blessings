@@ -67,8 +67,8 @@
 								{{item.is_free == 0? '￥'+item.v_price : '免费'}}
 								
 							</view>
-							<view class="" v-if="item.is_free_vip == 1">
-								VIP免费
+							<view class="" v-if="item.free_type > 0">
+								{{item.free_dec}}免费
 							</view>
 						</view>
 					</view>
@@ -334,6 +334,7 @@
 					display: flex;
 					flex-direction: column;
 					justify-content: space-between;
+					flex-grow: 2;
 					padding-bottom: 30rpx;
 					.list_three{
 						display: flex;

@@ -40,7 +40,10 @@
 			<view class="img_test">
 				产品介绍
 			</view>
-			<rich-text  class="test" :nodes="data.content"></rich-text>
+			<view class="rich">
+				<rich-text  class="test" :nodes="data.content"></rich-text>
+			</view>
+			
 		</view>
 		
 		
@@ -230,6 +233,9 @@
 			text-align: center;
 			padding: 30rpx;
 			font-size: 32rpx;
+		}
+		.rich{
+			padding: 20rpx;
 		}
 		image{
 			width: 100%;

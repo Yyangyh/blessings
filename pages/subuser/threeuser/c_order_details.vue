@@ -72,7 +72,7 @@
 
 		<view class="order_bottom" v-if="data.state == 0">
 			<!-- <text>修改地址</text> -->
-			<!-- <text @click="cancel()">取消订单</text> -->
+			<text @click="cancel()">取消订单</text>
 			<text class="or_pay" @click="show = !show">付款</text>
 		</view>
 		
@@ -162,8 +162,8 @@
 				    content: '是否确定取消？',
 				    success: function (res) {
 				        if (res.confirm) {
-				            that.service.entire(that,'post', that.APIconfig.api_root.subuser.threeuser.s_order_cancel,{
-								id:that.data.id,
+				            that.service.entire(that,'post', that.APIconfig.api_root.subuser.threeuser.v_cancelOrder,{
+								order_sn:that.data.order_sn,
 								user_id: that.$store.state.user.id,
 							},function(self,res){
 								uni.showToast({

@@ -20,6 +20,7 @@ const api_root = {
 		index: api+'/api/VideoHome/index',//首页
 		good_index: api+'/api/good/index',//商城首页
 		felicity_index: api+'/api/felicity/index',//幸福课堂首页数据 
+		u_token: api+'/api/common/refresh_token',//刷新用户信息 
 	},
 	subclass:{
 		c_certificateList:api+'/api/Research/certificateList',//证书列表
@@ -135,6 +136,7 @@ const api_root = {
 			g_AftersaleCancel: api+'/api/groupgoods/AftersaleCancel',//拼团申请售后订单详情
 			
 			v_videoorder: api+'/api/videoorder/getVideoOrderDetail',//视频订单详情
+			v_cancelOrder: api+'/api/videoorder/cancelOrder',//视频订单取消
 			
 		},
 		s_member:api+'/api/member/updateUserInfo',//更新用户信息
@@ -146,6 +148,11 @@ const api_root = {
 		
 		u_Company_index:api+'/api/Company/index',//公司简介
 		u_coupon:api+'/api/coupon/user',//优惠券列表
+		u_couponList:api+'/api/member/couponList',//兑换优惠券列表
+		
+		
+		psdReset:api+'/api/member/psdReset',//密码重置
+		
 	},
 	subindex:{
 		s_test:api+'/api/test/getPaper',//通过试卷id获取试卷信息

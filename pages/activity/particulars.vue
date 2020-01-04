@@ -51,9 +51,9 @@
 			<view class="personnel-list">
 				<view class="list" v-for="(item,index) in sign_user" :key='index'>
 					<view class="l_img">
-						<image :src='APIconfig.api_img+item.avatar' mode="widthFix"></image>
+						<image :src='APIconfig.api_img+item.avatar' mode="scaleToFill"></image>
 					</view>
-					<view>{{item.nickname?item.nickname:'神秘用户'}}</view>
+					<view>{{item.nickname?item.nickname:'暂无'}}</view>
 				</view>
 			</view>
 		</view>

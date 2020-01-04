@@ -25,7 +25,9 @@
 				</view>
 				<image class="t_right" src="/static/image/subhome/heart.png" mode="widthFix"></image>
 			</view>
-			<rich-text :nodes="dataList.content"></rich-text>
+			<view class="rich">
+				<rich-text :nodes="dataList.content"></rich-text>
+			</view>
 		</view>
 		<!-- 用户评论 -->
 		<view class="user_top">
@@ -287,5 +289,8 @@
 			height: 44rpx;
 			margin:80rpx 30rpx 0 0;
 		}
+	}
+	.rich{
+		padding: 0 10rpx;
 	}
 </style>

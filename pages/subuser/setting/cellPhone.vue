@@ -5,11 +5,11 @@
 		</view >
 		<returns :titles='title'></returns>	
 		<form>
-			<input class="input" type="text" placeholder="请输入新手机号">
+			<input class="input" v-model="accounts" type="text" placeholder="请输入新手机号">
 			<hr />
 			<view class="verification">
-				<input type="text" value="" placeholder="请输入验证码" />
-				<text>获取验证码</text>
+				<input type="text" v-model="verify" value="" placeholder="请输入验证码" />
+				<text @click="obtain()">{{verification}}</text>
 			</view>
 			<hr />
 		</form>
@@ -26,7 +26,74 @@
 		data(){
 			return{
 				title:'修改手机号',
+				verification: '获取验证码',
+				accounts:'',
+				disabled:false,
+				verify:''
+			}
+		},
+		methods:{
+			obtain(){ //获取验证码
 				
+				let that = this
+				if(!(/^1[3-9][0-9]\d{8,11}$/.test(that.accounts))){
+					uni.showToast({
+						icon: 'none',
+						title: '手机号码格式不正确'
+					});
+					return;
+				}
+				if(that.disabled == true) return
+				let data = {
+					mobile:that.accounts,
+					time:Date.parse(new Date())/1000  //时间戳
+				}
+				function debounce(fn,wait){
+					var timeout = null;
+					return function() {
+						if(timeout !== null) clearTimeout(timeout);
+						timeout = setTimeout(fn, wait);
+					}
+				}
+				let req = uni.request({
+					url:that.APIconfig.api_root.login.sendPhone,
+					method:'POST',
+					data,
+					success(res) {
+						console.log(res)
+						let data = res.data 
+						console.log(data)
+						uni.showToast({
+							icon:'none',
+							title:JSON.stringify(data.data.send_code)
+						})
+						if(data.code == 0){
+							that.verification = '60s'
+							that.disabled = true
+							that.timer = setInterval(function(){
+								let num = that.verification.split('s')[0]
+								num --
+								that.verification = num+'s'
+							},1000)
+							uni.showToast({
+								icon:'none',
+								title:data.data.send_code
+							})
+						}
+						
+					}
+				})
+				debounce(req,1000)
+				
+			},
+		},
+		watch:{
+			verification(curval,oldval){// 监听定时器的num值
+				if(curval == '-1s'){
+					clearInterval(this.timer)
+					this.verification = '重新获取'
+					this.disabled = false
+				}
 			}
 		},
 	}

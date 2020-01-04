@@ -71,7 +71,7 @@
 							有效期：{{service.Test(item.fixed_time_start)}}至{{service.Test(item.fixed_time_end)}}
 						</view>
 					</view>
-					<view class="e_right" :class="{receive:!item.c_id}" @tap="getCoupon(item.id,item.c_id,index)">
+					<view class="e_right" :class="{receive:!item.c_id}" @tap="getCoupon(item.id,item.c_id,item.discount_value,index)">
 						{{item.c_id>0? '已兑换' : '立即兑换'}}
 					</view>
 				</view>
@@ -115,24 +115,46 @@
 					this.data_list = this.data.already_expire
 				}
 			},
-			// getCoupon(id,cid,discount,index){//领取优惠券
-			// 	if(!cid){
+			getCoupon(id,cid,discount,index){//兑换优惠券
+				let that = this
+				if(!cid){
+					console.log(cid,discount)
+					uni.showModal({
+					    title: '提示',
+					    content: '兑换需消耗'+discount+'积分',
+					    success: function (res) {
+					        if (res.confirm) {
+								console.log(that.$store.state.user.integral)
+								console.log(that.$store.state.user.integral > discount)
+								if(Number(that.$store.state.user.integral) > Number(discount)){
+									that.service.entire(that,'post',that.APIconfig.api_root.com_page.v_getCoupon,{ //兑换优惠券
+										userid:that.$store.state.user.id,
+										coupon_id:id,
+										type:2
+									},function(self,res){
+										uni.showToast({
+											icon:'none',
+											title:res.msg
+										})
+										if(res.code == 0){
+											self.exchange[index].c_id = id
+										}
+									})
+								}else{
+									uni.showToast({
+										icon:'none',
+										title:'积分不足！'
+									})
+								}
+					           
+					        } else if (res.cancel) {
+					            console.log('用户点击取消');
+					        }
+					    }
+					});
 					
-			// 		this.service.entire(this,'post',this.APIconfig.api_root.com_page.v_getCoupon,{ //领取优惠券
-			// 			userid:this.$store.state.user.id,
-			// 			coupon_id:id
-			// 		},function(self,res){
-			// 			uni.showToast({
-			// 				icon:'none',
-			// 				title:res.msg
-			// 			})
-			// 			if(res.code == 0){
-			// 				self.coupon_data[index].c_id = id
-							
-			// 			}
-			// 		})
-			// 	}
-			// },
+				}
+			},
 		},
 		onLoad() {
 			this.service.entire(this,'post',this.APIconfig.api_root.subuser.u_coupon,{

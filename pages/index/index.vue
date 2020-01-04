@@ -84,8 +84,11 @@
 									{{items.is_free == 0? '￥'+items.v_price : '免费'}}
 									
 								</view>
-								<view class="" v-if="items.is_free_vip.indexOf($store.state.user.level_id) != -1">
+								<!-- <view class="" v-if="items.is_free_vip.indexOf($store.state.user.level_id) != -1">
 									VIP免费
+								</view> -->
+								<view class="" v-if="items.free_type > 0">
+									{{items.free_dec}}免费
 								</view>
 							</view>
 						</view>
@@ -119,8 +122,8 @@
 								<view class="">
 									{{items.is_free == 0? '￥'+items.v_price : '免费'}}
 								</view>
-								<view class="" v-if="items.is_free_vip.indexOf($store.state.user.level_id) != -1">
-									VIP免费
+								<view class="" v-if="items.free_type > 0">
+									{{items.free_dec}}免费
 								</view>
 							</view>
 						</view>
@@ -222,6 +225,7 @@
 				font-size: 24rpx;
 				box-sizing: border-box;
 				white-space: initial;
+				vertical-align: top;
 				padding-right: 24rpx;
 				padding-bottom: 50rpx;
 				.list_img_box{
@@ -248,6 +252,10 @@
 	}
 	.list_one{
 		padding-right: 10rpx;
+		display: -webkit-box;
+		-webkit-box-orient: vertical;
+		-webkit-line-clamp: 2;
+		overflow: hidden;
 	}
 	 .list_two{
 		color: #999999;

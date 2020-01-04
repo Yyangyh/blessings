@@ -13,7 +13,7 @@
 			</view>
 			<view class="top_two">
 				<view class="two_left" @tap="$jump('../subuser/personage/personage')">
-					<image :src="user.avatar" mode="scaleToFill"></image>
+					<image :src="APIconfig.api_img+user.avatar" mode="scaleToFill"></image>
 				</view>
 				<view class="two_mid">
 					<view class="mid_top">
@@ -21,7 +21,7 @@
 					</view>
 					<view class="mid_bottom">
 						<!-- <image src="../../static/image/index/member.png" mode="widthFix"></image> -->
-						<image :src="user.level_icon ? user.level_icon: '../../static/image/index/member.png'" mode="widthFix"></image>
+						<image :src="user.level_icon ? APIconfig.api_img+user.level_icon: '../../static/image/index/member.png'" mode="widthFix"></image>
 						<text>{{user.level_name}}</text>
 					</view>
 				</view>
@@ -53,7 +53,7 @@
 			</view>
 		</view>
 		
-		<view class="user_vip"  @tap="$jump('../subuser/member/member')" v-if="user.level_name != 6">
+		<view class="user_vip"  @tap="$jump('../subuser/member/member')" v-if="user.level_id != 6">
 			<view class="vip_one">
 				<image src="../../static/image/index/vip.png" mode="widthFix"></image>
 				<view class="">
@@ -335,14 +335,34 @@
 </template>
 
 <script>
+	import { mapState } from 'vuex'
 	export default{
 		data() {
 			return {
-				user:this.$store.state.user
 			}
 		},
+		computed: {
+		  // localComputed () { /* ... */ },
+		  // 使用对象展开运算符将此对象混入到外部对象中
+		  ...mapState({
+			  user:'user'
+		  }),
+		
+		},	
 		onShow() {
 			this.service.notice(this)
+			this.service.entire(this,'post',this.APIconfig.api_root.index.u_token,{
+				id:this.$store.state.user.id
+			},function(self,res){
+				if(res.code == 0){
+					self.$store.commit('state_user',res.data.user_info)
+					self.$store.commit('state_token',res.data.token)
+					
+					uni.setStorageSync('state_user',res.data.user_info)
+					uni.setStorageSync('state_token',res.data.token)
+				}
+			})
+			
 		}
 	}
 </script>
@@ -460,7 +480,7 @@
 		display: flex;
 		justify-content: space-between;
 		border-radius: 10rpx;
-		margin: 20rpx 20rpx;
+		margin: 20rpx 20rpx 0 20rpx;
 		padding: 16rpx 30rpx;
 		font-size: 28rpx;
 		color: #333333;
@@ -490,7 +510,7 @@
 	}
 	.user_top_list{
 		height: 150rpx;
-		margin: 0 20rpx;
+		margin: 20rpx 20rpx 0 20rpx;
 		background: #fff;
 		font-size: 28rpx;
 		color: #333333;

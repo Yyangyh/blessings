@@ -31,15 +31,14 @@
 					   <text  @click="Index(1)" class="one" :class="{active:cur==1}">我的邀请</text>
 					   
 				</view>
-				<view v-for="(item,index) in invateList" :key='item.id'>
+				<view>
 					<view class="box" v-show="cur==3">
-						<form >
+						<!-- <form > -->
 							<view class="add_box">
 								<view class="left_box">
 									<!-- <image src="/static/image/subuser/tuoyuan.png"></image> -->
 									<image src="/static/image/subuser/renxiang.png" mode="widthFix"></image>
 								</view>
-								
 									<view class="right_box">
 										<view>
 											<text>号码</text>
@@ -47,52 +46,54 @@
 										</view> 
 										<image src="/static/image/subuser/tongxunlu.png" mode="widthFix"></image>
 									</view>
-								
 							</view>
 							<button type="default" @click="invite">邀请好友</button>
-						</form>
+						<!-- </form> -->
 					</view>
-					<view class="box" v-show="cur==2">
-						<form >
-							<view class="add_box" >
-								<view class="left_box">
-									<view class="pagination">
-										<view v-show='true' @click="goFirst(index)" v-bind:class="{'classFirsta':item.is_enabled==0,'classFirstb':item.is_enabled==1}"></view>
+					<block  v-for="(item,index) in invateList" :key='item.id'>
+						<view class="box" v-show="cur==2">
+							<!-- <form > -->
+								<view class="add_box" >
+									<view class="left_box">
+										<view class="pagination">
+											<view v-show='true' @click="goFirst(index)" v-bind:class="{'classFirsta':item.is_enabled==0,'classFirstb':item.is_enabled==1}"></view>
+										</view>
+										<image :src="APIconfig.api_img+item.avatar"  mode="scaleToFill"></image>
 									</view>
-									<image :src="item.avatar"></image>
-								</view>
-								<view class="right_box">
-									<view>
-										<text>号码</text>
-										<input disabled='disabled' type="text" :value="item.mobile"  >
-									</view> 
-									<image src="/static/image/subuser/tongxunlu.png" mode="widthFix"></image>
-								</view>
-							</view>
-							<!-- <button type="default" @click="relieve">一键解绑</button> -->
-						
-						</form>
-					</view>
-					<view class="box" v-show="cur==1">
-						<form >
-							<view class="add_box">
-								<view class="left_box">
-									<!-- <image src="/static/image/subuser/tuoyuan.png"></image> -->
-									<image class="phimg" :src="item.avatar" mode="widthFix"></image>
-								</view>
-								
 									<view class="right_box">
 										<view>
 											<text>号码</text>
-											<input type="text" placeholder="请输入手机号码" :value="item.mobile">
+											<input disabled='disabled' type="text" :value="item.mobile"  >
 										</view> 
 										<image src="/static/image/subuser/tongxunlu.png" mode="widthFix"></image>
 									</view>
-								
-							</view>
-							<!-- <button type="default">邀请好友</button> -->
-						</form>
-					</view>
+								</view>
+								<!-- <button type="default" @click="relieve">一键解绑</button> -->
+							
+							<!-- </form> -->
+						</view>
+						<view class="box" v-show="cur==1">
+							<!-- <form > -->
+								<view class="add_box">
+									<view class="left_box">
+										<!-- <image src="/static/image/subuser/tuoyuan.png"></image> -->
+										<image class="phimg" :src="APIconfig.api_img+item.avatar" mode="scaleToFill"></image>
+									</view>
+									
+										<view class="right_box">
+											<view>
+												<text>号码</text>
+												<input type="text" placeholder="请输入手机号码" :value="item.mobile">
+											</view> 
+											<image src="/static/image/subuser/tongxunlu.png" mode="widthFix"></image>
+										</view>
+									
+								</view>
+								<!-- <button type="default">邀请好友</button> -->
+							<!-- </form> -->
+						</view>
+					</block>
+					
 				</view>
 			</view>
 		</view>
@@ -194,7 +195,7 @@
 			}
 		},
 		onShow() {
-			this.Index(1)
+			this.Index(3)
 		}
 	}
 </script>

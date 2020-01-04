@@ -25,7 +25,7 @@
 			<input type="text" value=""  v-model="address" />
 		</view>
 		
-		<label class="checkbox">
+		<label class="checkbox" @tap="checked = !checked">
 			<checkbox style="transform:scale(.8);" value="" :checked="checked"/>设为默认
 		</label>
 		<button  @click="preservation()">保存收货地址</button>
@@ -98,6 +98,7 @@
 			preservation(){  //保存
 				// console.log(this.city_id)
 				let is_default
+				console.log(this.checked)
 				this.checked == false ? is_default = 0 :is_default = 1
 				let data = {
 					user_id: this.$store.state.user.id,

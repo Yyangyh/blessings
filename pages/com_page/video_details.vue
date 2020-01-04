@@ -100,7 +100,9 @@
 			<view class="cou_details">
 				课程详情 
 			</view>
-			<rich-text :nodes="video_data.video_content"></rich-text>
+			<view class="rich">
+				<rich-text :nodes="video_data.video_content"></rich-text>
+			</view>
 		</view>
 		<view class="catalog_box" v-show="test_show == 1">
 			<view class="catalog_test">
@@ -738,6 +740,9 @@
 		line-height: 96rpx;
 		background: #F6F6F6;
 		padding: 0 20rpx;
+	}
+	.rich{
+		padding: 20rpx;
 	}
 	.video_bottom{
 		width: 100%;

@@ -12,7 +12,7 @@
 		<view class="per_box">
 			<view class="box_top">
 				<view class="photo_box">
-					<image class="photo" :src="user.avatar" mode="scaleToFill"></image>
+					<image class="photo" :src="APIconfig.api_img+user.avatar" mode="scaleToFill"></image>
 				</view>
 				<view @click="reveal">修改头像></view>
 			</view>
@@ -23,7 +23,7 @@
 						<text>昵称</text>
 					</view>
 					<view class="l_right">
-						<text>{{user.username}}</text>
+						<text>{{user.nickname?user.nickname:'暂无'}}</text>
 						<image src='/static/image/index/go.png' mode="widthFix"></image>
 					</view>
 				</view>
@@ -34,7 +34,7 @@
 						<text>会员等级</text>
 					</view>
 					<view class="l_right">
-						<text>普通会员</text>
+						<text>{{user.level_name}}</text>
 						<image src='/static/image/index/go.png' mode="widthFix"></image>
 					</view>
 				</view>
@@ -59,13 +59,22 @@
 </template>
 
 <script>
+	import { mapState } from 'vuex'
 	import returns from '../../common/returns.vue'
 		export default{
 			data(){
 				return{
-					user:this.$store.state.user
+					
 				}
 			},
+			computed: {
+			  // localComputed () { /* ... */ },
+			  // 使用对象展开运算符将此对象混入到外部对象中
+			  ...mapState({
+				  user:'user'
+			  }),
+			
+			},	
 			methods:{
 				reveal(){
 					let that = this

@@ -7,7 +7,7 @@
 		<view class="worp">
 			<view class="top">
 				<view class="img_box">
-					<image :src='user.avatar' mode="scaleToFill"></image>
+					<image :src='APIconfig.api_img+user.avatar' mode="scaleToFill"></image>
 				</view>
 				<view class="msg">
 					<view>{{user.username}}</view>
