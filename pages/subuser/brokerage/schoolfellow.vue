@@ -43,7 +43,7 @@
 
 <script>
 	import returns from '../../common/returns.vue'
-	import uniCalendar from "../../components/uni-calendar/uni-calendar.vue"
+	import uniCalendar from "../../../components/uni-calendar/uni-calendar.vue"
 	export default{
 		components:{
 			returns,
