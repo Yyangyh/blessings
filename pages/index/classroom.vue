@@ -22,7 +22,7 @@
 		</view>
 		
 		 
-		<view class="vider_content_two" v-for="(item,index) in cen_class" :key='item.id' v-if ="item.list.length != 0 ">
+		<!-- <view class="vider_content_two" v-for="(item,index) in cen_class" :key='item.id' v-if ="item.list.length != 0 ">
 			<view class="v_box_top">
 				<view class="box_left" >
 					{{item.cl_name}}
@@ -55,9 +55,19 @@
 				</view>
 				
 			</view>
+		</view> -->
+		
+		<view class="vider_content_two" >
+			<view class="two_list" v-for="(item,index) in cen_class" :key='item.id' @tap="$jump('../com_page/video_class?type='+item.type+'&id='+item.id+'&title='+item.cl_name)">
+				<view class="two_img">
+					<image :src="APIconfig.api_img+item.cl_image" mode="scaleToFill"></image>
+				</view>
+				<view class="two_text">
+					{{item.cl_name}}
+				</view>
+			</view>
+			
 		</view>
-		
-		
 		
 		
 		
@@ -80,7 +90,7 @@
 			}
 		},
 		onShow() {
-			this.service.notice(this)
+			this.service.notice.call(this)
 			this.service.entire(this,'get',this.APIconfig.api_root.index.felicity_index,{
 				userid:this.$store.state.user.id
 			},function(self,res){
@@ -94,7 +104,7 @@
 	}
 </script>
 
-<style>
+<style lang="scss">
 	.content{
 		/* padding-top: 0; */
 	}
@@ -136,27 +146,30 @@
 		color: #EF7C38;
 	}
 	.vider_content_two{
-		border-bottom: 6rpx solid #F1F1F1;
-	}
-	.vider_content_two .vider_content{
-		padding: 0 20rpx;
-		font-size: 24rpx;
-	}
-	.vider_content_two .vider_content image{
-		width: 268rpx;
-		height: 179rpx;
-		margin-right: 29rpx;
-	}
-	.vider_content_two .vider_content .content_list{
 		display: flex;
-		margin: 30rpx 0;
-	}
-	.vider_content_two .vider_content .content_list .list_right{
-		display: flex;
-		flex-direction: column;
-		justify-content: space-between;
-		padding-bottom: 30rpx;
-		width: 100%;
+		flex-wrap: wrap;
+		font-size: 28rpx;
+		text-align: center;
+		padding: 40rpx 20rpx;
+		.two_list{
+			.two_img{
+				width: 343rpx;
+				height: 270rpx;
+				border-radius: 10rpx;
+				overflow: hidden;
+				image{
+					width: 100%;
+					height: 100%;
+				}
+			}
+			.two_text{
+				margin:25rpx 0 30rpx 0;
+			}
+			&:nth-of-type(odd){
+				margin-right: 20rpx;
+			}
+		}
+		
 	}
 	.list_three{
 		display: flex;

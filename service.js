@@ -213,7 +213,7 @@ const order = function(ref, self, url, wxUrl) { //支付调用
 	}
 }
 
-const returns = function(that) {
+const returns = function() {
 	// #ifdef H5
 	history.back()
 	// #endif  
@@ -224,8 +224,8 @@ const returns = function(that) {
 	// #endif
 }
 
-const notice = function(that) { //通知信息
-	that.service.entire(that,'post',that.APIconfig.api_root.common.UnRead,{user_id:that.$store.state.user.id},function(self,res){
+const notice = function() { //通知信息
+	this.service.entire(this,'post',this.APIconfig.api_root.common.UnRead,{user_id:this.$store.state.user.id},function(self,res){
 		res.data.count == 0 ? self.$store.commit('notice_status',false) :  self.$store.commit('notice_status',true)
 	})
 }
@@ -281,6 +281,34 @@ const loading = function(title){ //加载层
 	return times
 }
 
+const debounce = function(fn, wait){ //
+	// console.log(this.timeout)
+	// console.log(new Date().getTime() - this.timeout)
+	let that = this
+	that.timeout = null
+	console.log(that)
+	return function() {
+		console.log(that)
+		if(that.timeout !== null)clearTimeout(that.timeout);
+		that.timeout = setTimeout(fn, wait);
+		
+	}
+	console.log(this)
+	
+	// if(this.timeout){ 
+	// 	if(new Date().getTime() - this.timeout < 1000){
+	// 		this.timeout = new Date().getTime()
+	// 		return false
+	// 	}else{
+	// 		this.timeout = new Date().getTime()
+	// 		return true
+	// 	}
+	// }else{
+	// 	this.timeout = new Date().getTime()
+	// 	return true
+	// }
+}
+
 export default{
 	entire,
 	asy_entire,
@@ -290,5 +318,6 @@ export default{
 	analysis_url,
 	Test,
 	loading,
-	notice
+	notice,
+	debounce
 }

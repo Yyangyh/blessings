@@ -28,14 +28,26 @@
 				</view>
 			</view>
 		</view>
+		<view>
+		    <uni-calendar 
+		    ref="calendar"
+		    :insert="false"
+		    @confirm="confirm"
+			:startDate = "startDate"
+			:endDate = "endDate"
+			:selected = 'buy_selected'
+		     ></uni-calendar>
+		</view>
 	</view>
 </template>
 
 <script>
 	import returns from '../../common/returns.vue'
+	import uniCalendar from "../../components/uni-calendar/uni-calendar.vue"
 	export default{
 		components:{
-			returns
+			returns,
+			uniCalendar
 		},
 		data(){
 			return{

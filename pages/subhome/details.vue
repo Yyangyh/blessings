@@ -46,7 +46,7 @@
 			<view class="">
 				用户评论
 			</view>
-			<view class="" @tap="$jump('../subuser/threeuser/s_comment_list'+'?goods_id='+id)">
+			<view class="" @tap="$jump('../subuser/threeuser/s_comment_list'+'?goods_id='+id)"  v-if="comment_data.length != 0">
 				全部
 			</view>
 		</view>

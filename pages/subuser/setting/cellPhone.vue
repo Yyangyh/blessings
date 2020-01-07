@@ -9,11 +9,11 @@
 			<hr />
 			<view class="verification">
 				<input type="text" v-model="verify" value="" placeholder="请输入验证码" />
-				<text @click="obtain()">{{verification}}</text>
+				<text @tap="obtain" >{{verification}}</text>
 			</view>
 			<hr />
 		</form>
-		<button type="default">完成</button>
+		<button @click="config">完成</button>
 	</view>
 </template>
 
@@ -29,33 +29,47 @@
 				verification: '获取验证码',
 				accounts:'',
 				disabled:false,
-				verify:''
+				verify:'',
+				
 			}
 		},
+		onShow() {
+			
+		},
 		methods:{
+			// debounce(){
+			// 	this.service.debounce.call(this,this.obtain,1000)()
+			// 	console.log(this.service.debounce.call(this,this.obtain,1000))
+			// },
+			config(){
+				this.service.entire(this,'post',this.APIconfig.api_root.subuser.resetPhone,{
+					sms_code:this.verify,
+					mobile:this.accounts,
+					user_id:this.$store.state.user.id
+				},function(self,res){
+					uni.showToast({
+						icon:'none',
+						title:res.msg
+					})
+					
+				})
+			},
 			obtain(){ //获取验证码
-				
 				let that = this
+				// console.log(123)
 				if(!(/^1[3-9][0-9]\d{8,11}$/.test(that.accounts))){
 					uni.showToast({
 						icon: 'none',
 						title: '手机号码格式不正确'
 					});
-					return;
+					return true; 
 				}
 				if(that.disabled == true) return
 				let data = {
 					mobile:that.accounts,
 					time:Date.parse(new Date())/1000  //时间戳
 				}
-				function debounce(fn,wait){
-					var timeout = null;
-					return function() {
-						if(timeout !== null) clearTimeout(timeout);
-						timeout = setTimeout(fn, wait);
-					}
-				}
-				let req = uni.request({
+				uni.request({
 					url:that.APIconfig.api_root.login.sendPhone,
 					method:'POST',
 					data,
@@ -83,7 +97,9 @@
 						
 					}
 				})
-				debounce(req,1000)
+				
+				
+				
 				
 			},
 		},

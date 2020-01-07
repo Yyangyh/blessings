@@ -9,7 +9,7 @@
 		</view>
 		<view class="ipt">
 			<image src="../../static/image/login/user.png" mode=""></image>
-			<input type="text" value="" v-model="username" placeholder="请输入用户昵称"/>
+			<input type="text" value="" v-model="username" placeholder="请输入真实姓名"/>
 		</view>
 		<view class="ipt">
 			<input type="text" v-model="verify" value="" maxlength="4" placeholder="请输入验证码"/>

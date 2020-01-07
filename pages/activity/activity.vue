@@ -21,6 +21,7 @@
 				</view>
 				<image :src="APIconfig.api_img+item.cover" mode="widthFix"></image>
 				<view class="theme">{{item.title}}</view>
+				<!-- <view class="theme">{{item.week}}</view> -->
 				<view class="line">
 					<image src="../../static/image/index/apply.png" mode="widthFix"></image>
 					<text>已报名{{item.sign_number}}人</text>

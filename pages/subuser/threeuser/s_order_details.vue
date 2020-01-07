@@ -5,10 +5,14 @@
 		</view>
 		<returns :titles='title'></returns>
 		<view class="order_top">
-			<view class="" v-if="data.status == 2">
-				买家已付款
+			<view class="">
+				{{data.status_name}}
 			</view>
-			<view class="" v-else-if="data.status == 3">
+			
+			<!-- <view class="" v-if="data.status == 2">
+				买家已付款
+			</view> -->
+			<!-- <view class="" v-else-if="data.status == 3">
 				等待买家收货
 			</view>
 			<view class="" v-else-if="data.status == 4">
@@ -16,7 +20,7 @@
 			</view>
 			<view class="" v-else-if="data.status == 1">
 				等待买家付款
-			</view>
+			</view> -->
 			<image src="/static/image/subuser/box.png" mode="widthFix"></image>
 		</view>
 		<view class="order_position">
@@ -82,15 +86,16 @@
 				</view>
 				
 				<view class="order_handle" v-if="data.status == 2 || data.status == 3 || data.status == 4">
-					
 					<text v-if="item.orderaftersale == null"  @click="jump('./s_order_refund?id='+ item.id+'&oid='+item.order_id)">{{data.status == 4?'申请售后':'退款/退货'}}</text>
 					<block v-else>
 						<text v-if="item.orderaftersale.status == 3">退款完成</text>
-						<text v-else-if="item.orderaftersale.status == 4"  @click="jump('./s_order_refund?id='+ item.id+'&oid='+item.order_id)">已拒绝</text>
-						<text v-else-if="item.orderaftersale.status == 5"  @click="jump('./s_order_refund?id='+ item.id+'&oid='+item.order_id)">已取消</text>
+						<text v-else-if="item.orderaftersale.status == 4"  @click="jump('./s_order_refund?id='+ item.id+'&oid='+item.order_id)">已成功</text>
+						<text v-else-if="item.orderaftersale.status == 5"  @click="jump('./s_order_refund?id='+ item.id+'&oid='+item.order_id)">售后已取消</text>
 						<text v-else @click="cancel_return(item.orderaftersale.id)">退款/退货中</text>
 					</block>
-					
+				</view>
+				<view class="order_handle" v-else-if="data.status == 6">
+					<text v-if="item.orderaftersale.status == 3">退款完成</text>
 				</view>
 			</view>
 
@@ -446,7 +451,8 @@
 			text {
 				display: inline-block;
 				text-align: center;
-				width: 160rpx;
+				// width: 160rpx;
+				padding: 0 20rpx;
 				height: 66rpx;
 				font-size: 28rpx;
 				color: #333;

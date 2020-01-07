@@ -350,7 +350,7 @@
 		
 		},	
 		onShow() {
-			this.service.notice(this)
+			this.service.notice.call(this)
 			this.service.entire(this,'post',this.APIconfig.api_root.index.u_token,{
 				id:this.$store.state.user.id
 			},function(self,res){

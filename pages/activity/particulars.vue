@@ -29,6 +29,7 @@
 			<view class="line">
 			  <image src="../../static/image/index/time.png" mode="widthFix"></image>
 			  <text class="theme1">{{dataList.start_time_text}} </text>
+			  <text  class="theme1">{{dataList.week}}</text>
 			  <!-- <text>星期三</text> -->
 			  <!-- <text>17:00-19:00</text> -->
 			</view>
@@ -60,7 +61,7 @@
 		<view class="p-t">活动详情</view>
 		<image class="image" v-for="(item,index) in detail_img" :src='APIconfig.api_img+item.images' mode="widthFix"></image>
 		<view class="underway" v-if="ends == true">
-			<button type="default" @tap="$jump('./apply?id='+id)">立即报名</button>
+			<button type="default" @tap="confirm(id,dataList.limit,dataList.sign_number)">立即报名</button>
 			<button type="default">邀请好友</button>
 		</view>
 		<view class="finish" v-else>
@@ -110,6 +111,17 @@
 			  this.min = min > 9 ? min : '0' + min
 			  this.sec = sec > 9 ? sec : '0' + sec
 			  if(this.load_show == true)this.load_show = false
+			},
+			confirm(id,limit,number){
+				console.log(limit,number)
+				if(limit > number){
+					this.$jump('./apply?id='+id)
+				}else{
+					uni.showToast({
+						icon:'none',
+						title:'报名人数已达上限！'
+					})
+				}
 			}
 		},
 		onHide() {
@@ -193,7 +205,7 @@
 				.theme1{
 					font-size: 24upx;
 					color:#333333;
-					margin:20upx 0 20upx 0upx;
+					margin:20upx 10rpx 20upx 0upx;
 				}
 			}
 			.price{
@@ -268,6 +280,7 @@
 		}
 		.p-t{
 			font-size: 28rpx;
+			text-align: center;
 		}
 		.image{
 			margin-top: 30rpx;

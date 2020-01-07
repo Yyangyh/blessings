@@ -25,15 +25,15 @@
 			</view>
 			<view class="tab_list" @tap="$jump('../subindex/texts')">
 				<image src='../../static/image/index/index_tab3.png' mode="widthFix"></image>
-				<view class="">文章</view>
+				<view class="">精彩文章</view>
 			</view>
 			<view class="tab_list" @tap="$jump('../subindex/classify')">
 				<image src='../../static/image/index/index_tab4.png' mode="widthFix"></image>
 				<view class="">分类</view>
 			</view>
-			<view class="tab_list" @tap="$jump('../subuser/study')">
+			<view class="tab_list" @tap="temporary">
 				<image src='../../static/image/index/index_tab5.png' mode="widthFix"></image>
-				<view class="">学习记录</view>
+				<view class="">早间晨语</view>
 			</view>
 			<view class="tab_list" @tap="jump('/pages/index/home')">
 				<image src='../../static/image/index/index_tab6.png' mode="widthFix"></image>
@@ -48,17 +48,10 @@
 				<view class="">活动发布</view>
 			</view>
 		</view>
-		<!-- <view class="index_tab">
-			<view class="tab_list" v-for="(item,index) in class_top" :key='item.id' @tap="jump('../com_page/index_class?id='+item.id)">
-				<image :src="APIconfig.api_img + item.cl_image" mode="widthFix"></image>
-				<view class="">
-					{{item.cl_name}}
-				</view>
-			</view>
-		</view> -->
 		
-		<block v-for="(item,index) in class_list" :key='item.id'>
-			<view class="video_box" v-if="index == 0">
+		
+		
+			<view class="video_box" v-for="(item,index) in class_top" :key='item.id'>
 				<view class="v_box_top">
 					<view class="box_left">
 						{{item.cl_name}}
@@ -73,22 +66,27 @@
 							<view class="list_img_box">
 								<image :src="APIconfig.api_img+items.v_pic" mode="scaleToFill"></image>
 							</view>
-							<view class="list_one">
-								{{items.long_title}}
-							</view>
-							<view class="list_two">
-								{{items.view}}次{{items.type == 1? '观看':'收听'}}
-							</view>
-							<view class="list_three">
-								<view class="">
-									{{items.is_free == 0? '￥'+items.v_price : '免费'}}
-									
+							<view class="list_box">
+								<view class="list_one">
+									{{items.long_title}}
 								</view>
-								<!-- <view class="" v-if="items.is_free_vip.indexOf($store.state.user.level_id) != -1">
-									VIP免费
-								</view> -->
-								<view class="" v-if="items.free_type > 0">
-									{{items.free_dec}}免费
+								<view class="list_box2">
+									<view class="list_two">
+										<view class="">
+											共{{items.catalogue_count}}节
+										</view>
+										<view class="">
+											{{items.is_free == 0? '￥'+items.v_price : '免费'}}
+										</view>
+									</view>
+									<view class="list_three">
+										<view class="">
+											讲师：{{items.techer.name}}
+										</view>
+										<view class="">
+											已有{{items.view}}人学习
+										</view>
+									</view>
 								</view>
 							</view>
 						</view>
@@ -97,40 +95,17 @@
 				</view>
 			</view>
 			
-			<view class="vider_content_two" v-else>
-				<view class="v_box_top">
-					<view class="box_left">
+			<view class="vider_content_two" >
+				<view class="two_list" v-for="(item,index) in class_list" :key='item.id'  @tap="$jump('../com_page/video_class?id='+item.id+'&title='+item.cl_name)"  v-if="index != 0">
+					<view class="two_img">
+						<image :src="APIconfig.api_img+item.cl_image" mode="scaleToFill"></image>
+					</view>
+					<view class="two_text">
 						{{item.cl_name}}
 					</view>
-					<view class="box_right"  @tap="$jump('../com_page/video_class?id='+item.id+'&title='+item.cl_name)">
-						全部
-					</view>
 				</view>
-				<view class="vider_content">
-					<view class="content_list" v-for="(items,indexs) in item.video_list" :key='items.id'  @tap="$jump('../com_page/video_details?id='+items.id + '&type='+items.type)">
-						<view class="list_img_box">
-							<image :src="APIconfig.api_img+items.v_pic" mode="scaleToFill"></image>
-						</view>
-						<view class="list_right">
-							<view class="list_one">
-								{{items.long_title}}
-							</view>
-							<view class="list_two">
-								{{items.view}}次{{items.type == 1? '观看':'收听'}}
-							</view>
-							<view class="list_three">
-								<view class="">
-									{{items.is_free == 0? '￥'+items.v_price : '免费'}}
-								</view>
-								<view class="" v-if="items.free_type > 0">
-									{{items.free_dec}}免费
-								</view>
-							</view>
-						</view>
-					</view>
-				</view>
+				
 			</view>
-		</block>
 		
 	</view>
 </template>
@@ -150,7 +125,7 @@
 				autoplay: true,
 				interval: 2000,
 				duration: 500,
-				class_top:'',
+				class_top:[],
 				class_list:'',
 				msg:'holle'
 			}
@@ -168,12 +143,12 @@
 			console.log(this.$store.state.user)
 		},
 		onShow() {
-			this.service.notice(this)
+			this.service.notice.call(this)
 			this.service.entire(this,'post',this.APIconfig.api_root.index.index,{
 				userid:this.$store.state.user.id
 			},function(self,res){
 				self.swiper_list = res.data.slide
-				self.class_top = res.data.class_top
+				if(self.class_top.length == 0) self.class_top.push(res.data.class_list[0])
 				self.class_list = res.data.class_list
 			})
 		},
@@ -181,6 +156,12 @@
 			jump(url){
 				uni.switchTab({
 					url:url
+				})
+			},
+			temporary(){
+				uni.showToast({
+					icon:'none',
+					title:'暂未开放！'
 				})
 			}
 		}
@@ -226,11 +207,18 @@
 				box-sizing: border-box;
 				white-space: initial;
 				vertical-align: top;
-				padding-right: 24rpx;
 				padding-bottom: 50rpx;
 				.list_img_box{
 					text-align: center;
 					margin-bottom: 16rpx;
+				}
+				.list_box{
+					height: 154rpx;
+					padding: 0 10rpx;
+					box-sizing: border-box;
+					display: flex;
+					justify-content: space-between;
+					flex-direction: column;
 				}
 				image{
 					width: 343rpx;
@@ -260,44 +248,48 @@
 	 .list_two{
 		color: #999999;
 		margin: 10rpx 0;
+		display: flex;
+		justify-content: space-between;
+		view:nth-of-type(2){
+			
+			font-size: 28rpx;
+			color: #D80000;
+		}
 	}
 	
 	.vider_content_two{
-		border-bottom: 6rpx solid #F1F1F1;
-		.vider_content{
-			padding: 0 20rpx;
-			font-size: 24rpx;
-			.content_list{
-				display: flex;
-				margin: 30rpx 0;
-				.list_right{
-					display: flex;
-					flex-direction: column;
-					justify-content: space-between;
-					padding-bottom: 30rpx;
+		display: flex;
+		flex-wrap: wrap;
+		font-size: 28rpx;
+		text-align: center;
+		padding: 40rpx 20rpx;
+		.two_list{
+			.two_img{
+				width: 343rpx;
+				height: 270rpx;
+				border-radius: 10rpx;
+				overflow: hidden;
+				image{
 					width: 100%;
+					height: 100%;
 				}
 			}
-			image{
-				width: 268rpx;
-				height: 179rpx;
-				margin-right: 29rpx;
+			.two_text{
+				margin:25rpx 0 30rpx 0;
+			}
+			&:nth-of-type(odd){
+				margin-right: 20rpx;
 			}
 		}
+		
 	}
 	.list_three{
 		display: flex;
 		justify-content: space-between;
-		color: #D80000;
-		font-size: 28rpx;
+		color: #EF7C38;
+		font-size: 24rpx;
 		view:nth-of-type(2){
-			background: #000000;
-			font-size: 24rpx;
-			color: #FFFFFF;
-			height: 20rpx;
-			padding: 10rpx;
-			line-height: 20rpx;
-			border-radius: 20rpx;
+			color: #999999;
 		}
 	}
 </style>

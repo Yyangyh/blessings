@@ -38,7 +38,7 @@
 			</view>
 		</view>
 		 <!-- @click="reveal=true" -->
-		<button type="default" @tap="$jump('./open_order?id='+member_data[chiose_show].id)">
+		<button type="default" @tap="opening">
 			立即开通
 		</button>
 		<view class="upgrade" v-if="member_data">
@@ -65,7 +65,7 @@
 			</view>
 		</view>
 		<!-- 开通成功弹框 -->
-		<view class="mask_black" v-if="reveal">
+		<!-- <view class="mask_black" v-if="reveal">
 			
 		</view>
 		<view class="bk" v-if="reveal">
@@ -86,7 +86,7 @@
 						确定
 					</view>
 			</view>
-		</view>
+		</view> -->
 	</view>
 </template>
 
@@ -105,13 +105,21 @@
 		data(){
 			return{
 				title:'会员中心',
-				reveal:false,
 				member_data:'',
 				chiose_show:0
 			}
 		},
 		methods:{
-			
+			opening(){
+				if(this.user.level_id < this.member_data[this.chiose_show].id){
+					this.$jump('./open_order?id='+this.member_data[this.chiose_show].id)
+				}else{
+					uni.showToast({
+						icon:'none',
+						title:'当前会员等级高于选择等级！'
+					})
+				}
+			}
 		},
 		onLoad() {
 			

@@ -41,7 +41,7 @@
 		</view>
 		
 		<view class="shopp_tab">
-			<view class="shopp_list" v-for="(item,index) in shopp_list" :key='item.id'>
+			<view class="shopp_list" v-for="(item,index) in shopp_list" :key='item.id'  @tap="$jump('/pages/subhome/details?id='+item.id)">
 				<view class="list_one">
 					<image :src="item.images" mode="widthFix"></image>
 				</view>
@@ -282,7 +282,7 @@
 		.shopp_list{
 			width: 50%;
 			font-size: 24rpx;
-			padding: 0 10rpx;
+			padding: 10rpx;
 			box-sizing: border-box;
 			image{
 				width: 100%;

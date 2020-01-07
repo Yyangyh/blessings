@@ -815,6 +815,14 @@
 					"titleNView":false
 				}
 			}
+		},{
+			"path": "pages/subuser/distribution/agreement",
+			"style": {
+				"navigationBarTitleText": "同意协议",
+				"app-plus":{
+					"titleNView":false
+				}
+			}
 		}
 		
 	],

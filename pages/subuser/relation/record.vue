@@ -5,16 +5,18 @@
 		</view >
 		<returns :titles='title'></returns>
 		<view class="allorder">
-			  <text @click="cur=0" class="one" :class="{active:cur==0}">课程视频</text>
-			  <text @click="cur=1" class="two" :class="{active:cur==1}">音频</text>
+			  <text  @click="choise(1)" class="one" :class="{active:cur==1}">课程视频</text>
+			  <text @click="choise(2)" class="two" :class="{active:cur==2}">音频</text>
 		</view>
 		<view class="box">
-			<view class="line" v-for='(item,index) in dataList' :key='item.id' @tap="$jump('../com_page/video_details?id='+item.id)">
-				<image class="l_left" :src="APIconfig.api_img+item.v_pic" mode="scaleToFill"></image>
+			<view class="line" v-for='(item,index) in data' :key='index' >
+				<view class="l_left">
+					<image class="" :src="APIconfig.api_img+item.video.v_pic" mode="scaleToFill" ></image>
+				</view>
+				
 				<view class="l_right">
-					<view> {{item.long_title}}</view>
-					<view class="middle">{{item.view}}次观看</view>
-					<view>已学习{{item.plan}}</view>
+					<view> {{item.video.long_title}}</view>
+					<view class="middle">{{item.video.view}}次观看</view>
 				</view>
 			</view>
 		</view>
@@ -30,18 +32,27 @@
 		data(){
 			return{
 				title:'共享资源',
-				cur:0,
-				data:''
+				cur:1,
+				data:'',
+				
+			}
+		},
+		methods:{
+			choise(all){
+				this.cur = all;
+				let data ={
+					mobile:this.$store.state.user.mobile,
+					video_type:all
+				}
+				this.service.entire(this,'post',this.APIconfig.api_root.subuser.s_getShareOrder,data,function(self,res){
+					console.log(res)
+					self.data = res.data
+					
+				})
 			}
 		},
 		onShow(){
-			this.service.entire(this,'post',this.APIconfig.api_root.subuser.s_getShareOrder,{
-				mobile:this.$store.state.user.mobile,
-				video_type:1
-			},function(self,res){
-				console.log(res)
-				self.data = res.data
-			})
+			this.choise(1)
 		}
 	}
 </script>
@@ -69,10 +80,15 @@
 			padding: 30rpx;
 			border-bottom:1rpx solid #EEEEEE;
 			align-items: center;
+			background-color: #FFFFFF;
 			.l_left{
 				width:268rpx;
 				height:179rpx;
 				margin-right: 30rpx;
+				image{
+					width:100%;
+					height:100%;
+				}
 			}
 			.l_right{
 				view:first-child{

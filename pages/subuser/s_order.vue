@@ -38,10 +38,8 @@
 							<text>五福家庭</text>
 							<!-- <image src="/static/image/index/go.png" mode="widthFix"></image> -->
 						</view>
-
-						<view class="top2 refund" v-if="item.status == 7">
-							{{item.status_name}}
-						</view>
+						
+						
 						<view class="top2 obligation" v-if="item.status == 1">
 							{{item.status_name}}
 						</view>
@@ -55,6 +53,9 @@
 							{{item.status_name}}
 						</view>
 						<view class="top2 refund" v-if="item.status == 5">
+							{{item.status_name}}
+						</view>
+						<view class="top2 obligation" v-if="item.status == 6">
 							{{item.status_name}}
 						</view>
 					</view>

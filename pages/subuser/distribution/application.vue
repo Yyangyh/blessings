@@ -75,7 +75,7 @@
 				title:'立即申请',
 				name:'',
 				phone:'',
-				array: ['请选择升级等级','分销商', '市级代理', '省级代理'],
+				array: ['请选择管理身份','联盟单位', '市学习中心', '省学习中心'],
 				index: 0,
 				reveal:false,
 				business:'/static/image/subuser/photo.png',
@@ -110,7 +110,7 @@
 				});
 			},
 			apply(){
-				 let tel = /^1(3|4|5|7|8)\d{9}$/.test(this.phone);
+				let tel = /^1(3|4|5|7|8)\d{9}$/.test(this.phone);
 				if (this.phone == "" || this.name == "") {
 					uni.showToast({
 						icon:'none',
@@ -127,7 +127,7 @@
 				if(this.index == 0){
 					uni.showToast({
 						icon:'none',
-						title:'请选择升级等级'
+						title:'请选择管理身份'
 					})
 					return
 				}
@@ -138,7 +138,8 @@
 					})
 					return
 				}
-				this.service.entire(this,'post',this.APIconfig.api_root.subuser.u_appSeniorPartner,{
+				
+				let data = {
 					user_id:this.$store.state.user.id,
 					name:this.name,
 					phone:this.phone,
@@ -146,12 +147,10 @@
 					id_right:this.just.split(this.APIconfig.api_img)[1],
 					id_left:this.back.split(this.APIconfig.api_img)[1],
 					level_id:this.index + 3
-				},function(self,res){
-					uni.showToast({
-						icon:'none',
-						title:res.msg
-					})
-				})
+				}
+				uni.navigateTo({
+				    url: './agreement?data=' + JSON.stringify(data)
+				});
 			}
 		}
 	}
