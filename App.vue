@@ -11,9 +11,9 @@
 			// #ifdef H5
 				//在页面加载时读取sessionStorage里的状态信息
 				if (uni.getStorageSync("store")) {  //防止用户刷新页面导致vuex数据丢失
-					console.log(this.$store.state)
+					// console.log(this.$store.state)
 					this.$store.replaceState(Object.assign({}, this.$store.state,JSON.parse(uni.getStorageSync("store"))))
-					console.log(this.$store.state)
+					// console.log(this.$store.state)
 				}
 				
 				//在页面刷新时将vuex里的信息保存到sessionStorage里

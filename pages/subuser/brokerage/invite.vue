@@ -22,13 +22,14 @@
 		data(){
 			return{
 				title:'我的邀请码',
-				code_img:''
+				code_img:'',
+				bg:''
 			}
 		},
 		onShow() {
 			this.service.entire(this,'post',this.APIconfig.api_root.subuser.u_InviteCode,{
 				user_id:this.$store.state.user.id,
-				url:'http://192.168.0.166:8000/h5/#/pages/login/reg'
+				url:this.APIconfig.api_img + '/h5/#/pages/login/reg'
 			},function(self,res){
 				self.code_img = res.data.invite_code_img
 				self.bg = res.data.bg

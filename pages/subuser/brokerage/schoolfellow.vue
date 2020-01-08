@@ -10,6 +10,14 @@
 		</view>
 		<view class="screen_box">
 			<view class="box_list">
+				<view class="list_test" @tap="empty">
+					清空
+				</view>
+				<view class="list_test" @tap="confirms">
+					确认
+				</view>
+			</view>
+			<view class="box_list">
 				<view class="" @tap="open(1)">
 					开始日期：{{sta_time}}
 				</view>
@@ -17,14 +25,7 @@
 					结束日期：{{ent_time}}
 				</view>
 			</view>
-			<view class="box_list">
-				<view class="">
-					清空
-				</view>
-				<view class="">
-					确认
-				</view>
-			</view>
+			
 		</view>
 		<!-- 一级 -->
 		<view class="box"  v-show="cur==0"> 
@@ -82,17 +83,57 @@
 			},
 			confirm(e) {  //日历表选择日期时间
 				console.log(e);
-				this.type == 1? this.sta_time = e.fulldate : this.ent_time = e.fulldate
-				
+				if(this.type == 1){
+					if(new Date(e.fulldate).getTime() > new Date(this.ent_time).getTime()){
+						uni.showToast({
+							icon:'none',
+							title:'请选择正确的时间'
+						})
+						return
+					}else{
+						this.sta_time = e.fulldate
+					}
+				}else{
+					if(new Date(this.sta_time).getTime() > new Date(e.fulldate).getTime()){
+						uni.showToast({
+							icon:'none',
+							title:'请选择正确的时间'
+						})
+						return
+					}else{
+						this.ent_time = e.fulldate
+					}
+				}
 			},
+			empty(){ //清空
+				[this.sta_time,this.ent_time] = ''
+			},
+			confirms(){//确认
+				let data = {
+					user_id:this.$store.state.user.id,
+					start_time:new Date(this.sta_time).getTime(),
+					end_time:new Date(this.ent_time).getTime(),
+				}
+				this.requst(data)
+			},
+			requst(data){
+				this.service.entire(this,'post',this.APIconfig.api_root.subuser.u_Subordinate,data,function(self,res){
+					console.log(res)
+					self.dataList = res.data
+					if(self.dataList.length == 0){
+						uni.showToast({
+							icon:'none',
+							title:res.msg
+						})
+					}
+				})
+			}
 		},
 		onLoad() {
-			this.service.entire(this,'post',this.APIconfig.api_root.subuser.u_Subordinate,{
+			let data = {
 				user_id:this.$store.state.user.id,
-			},function(self,res){
-				console.log(res)
-				self.dataList = res.data
-			})
+			}
+			this.requst(data)
 		}
 	}
 </script>
@@ -126,6 +167,9 @@
 			.box_list{
 				display: flex;
 				border-bottom: 2rpx solid #ccc;
+				.list_test{
+					text-align: center;
+				}
 				view{
 					width: 50%;
 					height: 90rpx;
@@ -133,11 +177,7 @@
 				}
 				
 			}
-			&:nth-last-child{
-				view{
-					text-align: center;
-				}
-			}
+			
 		}
 		.active{
 			color:#D80000;

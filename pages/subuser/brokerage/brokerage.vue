@@ -5,7 +5,7 @@
 		</view>
 		<returns :titles='title'></returns>
 		<view class="worp">
-			<view class="top">
+			<!-- <view class="top">
 				<view class="img_box">
 					<image :src='APIconfig.api_img+user.avatar' mode="scaleToFill"></image>
 				</view>
@@ -24,13 +24,13 @@
 				<text class="">我的推广二维码</text>
 				<image src='../../../static/image/brokerage/QR.png' mode="widthFix"></image>
 			</view>
-			<hr />
+			<hr /> -->
 			<view class="line2">
 				<view>
 					<view class="money">{{data.can_cash}}</view>
-					<view class="textss">可提现佣金（元）</view>
+					<view class="textss">可提奖学金（元）</view>
 				</view>
-				<view class="btn" @tap="$jump('./withdraw?deposit='+data.can_cash)">提现佣金</view>
+				<view class="btn" @tap="$jump('./withdraw?deposit='+data.can_cash)">提现奖学金</view>
 			</view>
 		</view>
 		<view class="classify">
@@ -38,14 +38,14 @@
 				<view class="box-list" style="border: 1rpx solid #EEEEEE;"  @tap="$jump('./sales')">
 					<image src="../../../static/image/brokerage/yongjin.png" mode="widthFix"></image>
 					<view>
-						<view class="yj">分销佣金</view>
+						<view class="yj">奖学金</view>
 						<view class="toutcome">{{data.total_commission}}元</view>
 					</view>
 				</view>
 				<view class="box-list" style="border: 1rpx solid #EEEEEE;" @tap="$jump('./order')">
 					<image src="../../../static/image/brokerage/dingdan.png" mode="widthFix"></image>
 					<view>
-						<view class="yj">分销订单</view>
+						<view class="yj">分享订单</view>
 						<view class="toutcome">{{data.order_count}}笔</view>
 					</view>
 				</view>
@@ -59,13 +59,13 @@
 						<view class="toutcome">{{data.cash_count}}笔</view>
 					</view>
 				</view>
-				<view class="box-list" style="border: 1rpx solid #EEEEEE;"  @tap="$jump('./schoolfellow')">
+				<!-- <view class="box-list" style="border: 1rpx solid #EEEEEE;"  @tap="$jump('./schoolfellow')">
 					<image src="../../../static/image/brokerage/tongxue.png" mode="widthFix"></image>
 					<view>
 						<view class="yj">我的同学</view>
 						<view class="toutcome">{{data.lower_count}}人</view>
 					</view>
-				</view>
+				</view> -->
 			</view>
 		</view>
 	</view>
@@ -194,8 +194,9 @@
 					height: 161rpx;
 					display: flex;
 					align-items: center;
+					justify-content: center;
 					font-size: 24rpx;
-					padding-left: 15%;
+					// padding-left: 15%;
 					image{
 						width: 55rpx;
 						height: 55rpx;

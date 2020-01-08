@@ -129,8 +129,8 @@
 					  })
 					  if(res.code == 0){
 					  	setTimeout(function(self,res){
-							uni.redirectTo({
-							    url: './activity'
+							uni.reLaunch({
+							    url: '../subuser/activitys/activitys'
 							},1000);
 						})
 					  }

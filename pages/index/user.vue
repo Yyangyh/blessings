@@ -32,6 +32,14 @@
 						<image src="../../static/image/index/go1.png" mode="widthFix"></image>
 					</view>
 				</view> -->
+				<view class="code">
+					<view class="">
+						邀请码：
+					</view>
+					<view class="">
+						{{user.invite_code}}
+					</view>
+				</view>
 			</view>
 			<view class="top_three">
 				<view class="three_list" @tap="$jump('../subuser/balance')">
@@ -78,19 +86,25 @@
 				<view class="tab_list" @tap="$jump('../subuser/distribution/distribution')">
 					<image src="../../static/image/index/service.png" mode="widthFix"></image>
 					<view class="">
-						分销商
+						管理中心
 					</view>
 				</view>
-				<view class="tab_list"  @tap="$jump('../subuser/brokerage/brokerage')">
-					<image src="../../static/image/index/commission.png" mode="widthFix"></image>
+				<view class="tab_list"  @tap="$jump('../subuser/brokerage/schoolfellow')">
+					<image src="../../static/image/index/list1.png" mode="widthFix"></image>
 					<view class="">
-						佣金
+						我的同学
 					</view>
 				</view>
-				<view class="tab_list"  @tap="$jump('../subclass/textual')">
-					<image src="../../static/image/index/tutor.png" mode="widthFix"></image>
+				<view class="tab_list" @tap="$jump('../subuser/relation/relation')">
+					<image src="../../static/image/index/list2.png" mode="widthFix"></image>
 					<view class="">
-						导师考证
+						亲情号
+					</view>
+				</view>
+				<view class="tab_list" @tap="$jump('../subuser/brokerage/invite')">
+					<image src="../../static/image/index/list3.png" mode="widthFix"></image>
+					<view class="">
+						推广码
 					</view>
 				</view>
 				<view class="tab_list" @tap="$jump('../subuser/signIn')">
@@ -99,6 +113,19 @@
 						签到
 					</view>
 				</view>
+				<view class="tab_list"  @tap="$jump('../subuser/brokerage/brokerage')">
+					<image src="../../static/image/index/commission.png" mode="widthFix"></image>
+					<view class="">
+						我的账户
+					</view>
+				</view>
+				<view class="tab_list"  @tap="$jump('../subclass/textual')">
+					<image src="../../static/image/index/tutor.png" mode="widthFix"></image>
+					<view class="">
+						导师考证
+					</view>
+				</view>
+				
 			</view>
 		</view>
 		
@@ -151,12 +178,12 @@
 					</view>
 				</view>
 				
-				<view class="tab_list" @tap="$jump('../subuser/relation/relation')">
+				<!-- <view class="tab_list">
 					<image src="../../static/image/index/other_img8.png" mode="widthFix"></image>
 					<view class="">
 						亲情号
 					</view>
-				</view>
+				</view> -->
 				<view class="tab_list" @tap="$jump('../subuser/member/member')">
 					<image src="../../static/image/index/member1.png" mode="widthFix"></image>
 					<view class="">
@@ -371,104 +398,113 @@
 	page{
 		background: #F1F1F1;
 	}
-	.status_bar{
-		background:linear-gradient(90deg,rgba(247,76,74,1),rgba(245,110,106,1));
-	}
 	.content{
 		padding-top: 0;
 	}
+	.status_bar{
+		background:linear-gradient(90deg,rgba(247,76,74,1),rgba(245,110,106,1));
+	}
+	
 	.user_top{
 		color: #fff;
 		padding: 30rpx 0;
 		background:linear-gradient(90deg,rgba(247,76,74,1),rgba(245,110,106,1));
-	}
-	.user_top .top_one{
-		display: flex;
-		justify-content: flex-end;
-	}
-	.user_top .top_one image{
-		height: 50rpx;
-		width: 50rpx;
-		margin-right: 23rpx;
-	}
-	.user_top .top_one .top_img{
-		position: relative;
-	}
-	.user_top .top_one .top_img view{
-		position: absolute;
-		right: 20rpx;
-		top: 0;
-		height: 10rpx;
-		width: 10rpx;
-		border-radius: 50%;
-		background: #fff;
-	}
-	.user_top .top_two{
-		display: flex;
-		align-items: center;
-		padding-left: 54rpx;
-		font-size: 32rpx;
-	}
-	.user_top .top_two .two_left{
-		height: 100rpx;
-		width: 100rpx;
-		margin-right: 25rpx;
-		border-radius: 50%;
-		overflow: hidden;
-	}
-	.user_top .top_two .two_left image{
-		height: 100%;
-		width: 100%;
-	}
-	.user_top .top_two .two_mid{
-		height: 90rpx;
-		display: flex;
-		justify-content: space-between;
-		flex-direction: column;
-	}
-	.user_top .top_two .two_mid .mid_bottom{
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		font-size: 24rpx;
-		padding: 0 10rpx;
-		height: 36rpx;
-		border-radius: 36rpx;
-		background: rgba(255,255,255,.3);
-	}
-	.user_top .top_two .two_mid image{
-		height: 24rpx;
-		width: 24rpx;
-	}
-	.user_top .top_two .two_right{
-		height: 90rpx;
-		margin-left: 15rpx;
-	}
-	.user_top .top_two .two_right view{
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		font-size: 24rpx;
-		height: 35rpx;
-		border-radius: 35rpx;
-		width: 170rpx;
-		background: rgba(255,255,255,.3);
-	}
-	.user_top .top_two .two_right view text{
-		margin: 0 10rpx;
-	}
-	.user_top .top_two .two_right image{
-		height: 24rpx;
-		width: 24rpx;
-	}
-	.user_top .top_three{
-		display: flex;
-	}
-	.user_top .top_three .three_list{
-		width: 50%;
-		font-size: 28rpx;
-		padding-top: 30rpx;
-		text-align: center;
+		.top_one{
+			display: flex;
+			justify-content: flex-end;
+			image{
+				height: 50rpx;
+				width: 50rpx;
+				margin-right: 23rpx;
+			}
+			.top_img{
+				position: relative;
+				view{
+					position: absolute;
+					right: 20rpx;
+					top: 0;
+					height: 10rpx;
+					width: 10rpx;
+					border-radius: 50%;
+					background: #fff;
+				}
+			}
+		}
+		.top_two{
+			display: flex;
+			align-items: center;
+			padding-left: 54rpx;
+			font-size: 32rpx;
+			position: relative;
+			.two_left{
+				height: 100rpx;
+				width: 100rpx;
+				margin-right: 25rpx;
+				border-radius: 50%;
+				overflow: hidden;
+				image{
+					height: 100%;
+					width: 100%;
+				}
+			}
+			.two_mid{
+				height: 90rpx;
+				display: flex;
+				justify-content: space-between;
+				flex-direction: column;
+				.mid_bottom{
+					display: flex;
+					align-items: center;
+					justify-content: center;
+					font-size: 24rpx;
+					padding: 0 10rpx;
+					height: 36rpx;
+					border-radius: 36rpx;
+					background: rgba(255,255,255,.3);
+				}
+				image{
+					height: 24rpx;
+					width: 24rpx;
+				}
+			}
+			.code{
+				font-size: 28rpx;
+				position: absolute;
+				right: 40rpx;
+				top: 50%;
+				transform: translateY(-50%);
+			}
+			.two_right{
+				height: 90rpx;
+				margin-left: 15rpx;
+				view{
+					display: flex;
+					align-items: center;
+					justify-content: center;
+					font-size: 24rpx;
+					height: 35rpx;
+					border-radius: 35rpx;
+					width: 170rpx;
+					background: rgba(255,255,255,.3);
+					text{
+						margin: 0 10rpx;
+					}
+				}
+				image{
+					height: 24rpx;
+					width: 24rpx;
+				}
+			}
+		}
+		.top_three{
+			display: flex;
+			.three_list{
+				width: 50%;
+				font-size: 28rpx;
+				padding-top: 30rpx;
+				text-align: center;
+			}
+		}
 	}
 	
 	/* .user_top .top_two .two_right image:nth-of-type(2){
@@ -485,98 +521,106 @@
 		font-size: 28rpx;
 		color: #333333;
 		background: #FFFFFF;
-	}
-	.user_vip .vip_one{
-		display: flex;
-	}
-	.user_vip .vip_one image{
-		height: 78rpx;
-		width: 76rpx;
-		margin-right: 16rpx;
-	}
-	.user_vip .vip_one view:nth-of-type(2){
-		color: #CCCCCC;
-		font-size: 24rpx;
-	}
-	
-	.user_vip .vip_two{
-		display: flex;
-		align-items: center;
-		color: #666666;
-	}
-	.user_vip .vip_two image{
-		height: 20rpx;
-		width: 20rpx;
+		.vip_one{
+			display: flex;
+			image{
+				height: 78rpx;
+				width: 76rpx;
+				margin-right: 16rpx;
+			}
+			view:nth-of-type(2){
+				color: #CCCCCC;
+				font-size: 24rpx;
+			}
+		}
+		.vip_two{
+			display: flex;
+			align-items: center;
+			color: #666666;
+			image{
+				height: 20rpx;
+				width: 20rpx;
+			}
+		}
 	}
 	.user_top_list{
-		height: 150rpx;
 		margin: 20rpx 20rpx 0 20rpx;
 		background: #fff;
 		font-size: 28rpx;
 		color: #333333;
 		border-radius: 10rpx;
+		.user_tab{
+			display: flex;
+			flex-wrap: wrap;
+			align-items: center;
+			padding-top: 20rpx;
+			.tab_list{
+				width: 25%;
+				text-align: center;
+				margin-bottom: 20rpx;
+			}
+		}
+		image{
+			width: 70rpx;
+			height: 70rpx;
+		}
 	}
-	.user_top_list .user_tab{
-		height: 150rpx;
-		display: flex;
-		align-items: center;
-	}
-	.user_top_list .user_tab .tab_list{
-		width: 33.3%;
-		text-align: center;
-	}
-	.user_top_list image{
-		width: 70rpx;
-		height: 70rpx;
-		
-	}
-	
 	.user_middle{
 		background: #fff;
 		margin: 20rpx;
 		border-radius: 10rpx;
 		padding:0rpx 30rpx 28rpx 30rpx;
 		border-bottom: 1rpx solid #F2F2F2;
-	}
-	.user_middle .middle_top{
-		display: flex;
-		justify-content: space-between;
-		font-size: 28rpx;
-		color: #333;
-		font-weight: bold;
-		border-bottom: 2rpx solid #F2F2F2;
-		padding: 34rpx 0;
-		
-	}
-	
-	.user_middle .middle_top view:last-child{
-		display: flex;
-		align-items: center;
-	}
-	.user_middle .middle_top text{
-		font-size: 22rpx;
-		color: #333;
-		margin-right: 24rpx;
-	}
-	.user_middle .middle_top image{
-		width: 28rpx;
-		height: 28rpx;
-	}
-	.user_middle .middle_tab{
-		padding-top: 34rpx;
-	}
-	.user_middle .middle_tab .tab_top_box{
-		display: flex;
-		justify-content: space-between;
-	}
-	.user_middle .middle_tab .tab_top_box .more{
-		font-size: 24rpx;
-		color: #CCCCCC;
-	}
-	.user_middle .middle_tab .tab_top{
-		font-size: 24rpx;
-		font-weight: bold;
-		margin-bottom: 26rpx;
+		.middle_top{
+			display: flex;
+			justify-content: space-between;
+			font-size: 28rpx;
+			color: #333;
+			font-weight: bold;
+			border-bottom: 2rpx solid #F2F2F2;
+			padding: 34rpx 0;
+			view:last-child{
+				display: flex;
+				align-items: center;
+			}
+			text{
+				font-size: 22rpx;
+				color: #333;
+				margin-right: 24rpx;
+			}
+			image{
+				width: 28rpx;
+				height: 28rpx;
+			}
+		}
+		.middle_tab{
+			padding-top: 34rpx;
+			.tab_top_box{
+				display: flex;
+				justify-content: space-between;
+				.more{
+					font-size: 24rpx;
+					color: #CCCCCC;
+				}
+				&:nth-of-type(5){
+					padding-top: 50rpx; 
+				}
+			}
+			.tab_top{
+				font-size: 24rpx;
+				font-weight: bold;
+				margin-bottom: 26rpx;
+			}
+			.tab_box:nth-of-type(2){
+				padding-bottom: 26rpx;
+				margin-bottom: 34rpx;
+				border-bottom: 2rpx solid #F2F2F2;
+				.tab_list{
+					width: 33.3%;
+					position: relative;
+				}
+			}
+		}
 	}
 	.tab_box{
 		display: flex;
@@ -584,67 +628,52 @@
 		flex-wrap: wrap;
 		text-align: center;
 		color: #333333;
-		
 		font-size: 24rpx;
-		
-	}
-	
-	.user_middle .middle_tab .tab_box:nth-of-type(2){
-		padding-bottom: 26rpx;
-		margin-bottom: 34rpx;
-		border-bottom: 2rpx solid #F2F2F2;
-	}
-	.user_middle .middle_tab .tab_box:nth-of-type(2) .tab_list{
-		width: 33.3%;
-		position: relative;
-	}
-	.user_middle .middle_tab .tab_top_box:nth-of-type(5){
-		padding-top: 50rpx; 
-	}
-	.tab_box image{
-		height: 54rpx;
-		width: 54rpx;
-		margin-bottom: 13rpx;
-	}
-	.tab_box .tab_list{
-		width: 20%;
-		position: relative;
-	}
-	.tab_box .tab_list text{
-		width: 40rpx;
-		height: 40rpx;
-		border-radius: 50%;
-		font-size: 24rpx;
-		text-align: center;
-		line-height: 40rpx;
-		background: #FF431D;
-		color: #fff;
-		position: absolute;
-		top: 0;
-		right: 16rpx;
-		transform: scale(0.7);
+		.tab_list{
+			width: 20%;
+			position: relative;
+			text{
+				width: 40rpx;
+				height: 40rpx;
+				border-radius: 50%;
+				font-size: 24rpx;
+				text-align: center;
+				line-height: 40rpx;
+				background: #FF431D;
+				color: #fff;
+				position: absolute;
+				top: 0;
+				right: 16rpx;
+				transform: scale(0.7);
+			}
+		}
+		image{
+			height: 54rpx;
+			width: 54rpx;
+			margin-bottom: 13rpx;
+		}
 	}
 	.list_bottom{
 		background: #fff;
 		margin: 20rpx;
 		border-radius: 10rpx;
 		padding: 36rpx 30rpx 10rpx 30rpx;
-	}
-	.list_bottom .list_test{
-		font-size: 24rpx;
-		color: #333333;
-		font-weight: bold;
-		padding-bottom: 32rpx;
-		margin-bottom: 20rpx;
-		border-bottom: 2rpx solid #F2F2F2;
-	}
-	.list_bottom  .tab_list{
-		width: 25%;
-		margin-bottom: 20rpx;
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		justify-content: center;	
+		.list_test{
+			font-size: 24rpx;
+			color: #333333;
+			font-weight: bold;
+			padding-bottom: 32rpx;
+			margin-bottom: 20rpx;
+			border-bottom: 2rpx solid #F2F2F2;
+		}
+		.tab_list{
+			width: 25%;
+			margin-bottom: 20rpx;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;	
+		}
 	}
 	.c_buttom{
 		display: flex;

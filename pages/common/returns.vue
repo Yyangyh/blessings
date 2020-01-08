@@ -1,6 +1,6 @@
 <template>
 	<view class="top">
-		<view class="top_enlarge"  @click="returns()">
+		<view class="top_enlarge"  @tap="returns()">
 			<image src="/static/image/com_page/returns.png" mode="widthFix"></image>
 		</view>
 		<text>{{titles}}</text>
@@ -32,7 +32,7 @@
 	}
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 	.top{
 		height: 105rpx;
 		padding: 0 44rpx;
@@ -50,19 +50,20 @@
 		color: #333333;
 		background: #fff;
 		box-shadow:0px 2rpx 4rpx 0px rgba(0, 0, 0, 0.1);
+		.top_enlarge{
+			display: flex;
+			align-items: center;
+			height: 100%;
+			width: 180rpx;
+		}
+		text:nth-of-type(2){
+			width: 180rpx;
+			display: inline-block;
+		}
+		image{
+			height: 40rpx;
+			width: 40rpx;
+		}
 	}
-	.top_enlarge{
-		display: flex;
-		align-items: center;
-		height: 100%;
-		width: 180rpx;
-	}
-	.top image{
-		height: 40rpx;
-		width: 40rpx;
-	}
-	.top text:nth-of-type(2){
-		width: 180rpx;
-		display: inline-block;
-	}
+	
 </style>

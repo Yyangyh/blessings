@@ -11,8 +11,8 @@
 		<view class="allorder">
 			  <text @click="choise(1)" class="one"   :class="{active:cur==1}">课程视频</text>
 			  <text @click="choise(2)" class="two"   :class="{active:cur==2}">音频</text>
-			  <text @click="cur=3" class="three" :class="{active:cur==3}">文章</text>
-			  <text @click="cur=4" class="four"  :class="{active:cur==4}">商品</text>
+			  <text @click="choise(3)" class="three" :class="{active:cur==3}">文章</text>
+			  <text @click="choise(4)" class="four"  :class="{active:cur==4}">商品</text>
 		</view>
 		<!-- 课程视频\音频-->
 		<view class="boxs" >
@@ -20,7 +20,9 @@
 				<view class="tab_left"  style="transform: scale(0.8);" v-show="show">
 					<label  class="radio" @click="singleElection(index)"><radio value="r1" :checked="item.choice" /></label>
 				</view>	
-				<image class="l_left" :src="item.v_pic" mode="scaleToFill"></image>
+				<view class="">
+					<image class="l_left" :src="APIconfig.api_img+item.v_pic" mode="scaleToFill"></image>
+				</view>
 				<view class="l_right">
 					<view>{{item.long_title}}</view>
 					<view class="middle">{{item.view}}次观看</view>
@@ -50,54 +52,90 @@
 			
 			<button @click="deletes()">删除</button>
 		</view>
+		<uni-load-more :status="more"></uni-load-more>
 	</view>
 </template>
 
 <script>
-	
+	import uniLoadMore from '../../components/uni-load-more/uni-load-more.vue'
 	export default{
-		
+		components: {
+			uniLoadMore
+		},
 		data(){
 			return{
 				cur:'',
-				dataList:'',
+				dataList:[],
 				type:'',
 				show:false,
 				checked:false,
+				more: 'more',
+				page: 1,
+				loadRecord: true
 			}
 		},
 		methods:{
 			choise(all){
-				// console.log(this.$store.state)
+				console.log(all)
 				this.cur = all
-				let data ={
-					user_id:this.$store.state.user.id,
-					page:1,
-					type:all
+				this.dataList.length = 0
+				let data
+				if(all == 3){
+					data ={
+						user_id:this.$store.state.user.id,
+						page:1,
+						num:10
+					}
+				}else{
+					data ={
+						user_id:this.$store.state.user.id,
+						page:1,
+						type:all
+					}
 				}
 				console.log(data)
 				this.Index(data)
 			},
 			Index(data){
+				this.more = 'loading'
+				if(this.cur == 3){
+					this.service.entire(this,'post',this.APIconfig.api_root.subuser.a_getFavorite,data,function(self,res){ //视频音频
+						console.log(res)
+						// res.data.favor_list.forEach(x => x.choice = false)
+						// let data = self.dataList
+						// data.push(...res.data.favor_list)
+						// self.dataList = data
+						// console.log(self.dataList);
+						// self.page += 1
+						// self.more = 'more'
+						// if (res.data.favor_list.length < 10) {
+						// 	self.more = 'noMore'
+						// 	self.loadRecord = false
+						// 	return
+						// }
+					})
+				}else{
+					this.service.entire(this,'post',this.APIconfig.api_root.subuser.u_favor,data,function(self,res){ //视频音频
+						console.log(res)
+						res.data.favor_list.forEach(x => x.choice = false)
+						let data = self.dataList
+						data.push(...res.data.favor_list)
+						self.dataList = data
+						console.log(self.dataList);
+						self.page += 1
+						self.more = 'more'
+						if (res.data.favor_list.length < 10) {
+							self.more = 'noMore'
+							self.loadRecord = false
+							return
+						}
+					})
+				}
 				
-				this.service.entire(this,'post',this.APIconfig.api_root.subuser.u_favor,data,function(self,res){
-					console.log(res)
-					res.data.favor_list.forEach(x => x.choice = false)
-					self.dataList = res.data.favor_list
-				})
+				
+				
 			},
-			// detail(){
-			// 	if(this.type == 1)|{
-			// 		uni.navigateTo({
-			// 			url:'../com_page/index_class',
-			// 		})
-			// 	}else if(this.type == 2){
-			// 		uni.navigateTo({
-			// 			url:'../com_page/index_class',
-			// 		})
-			// 	}
-				
-			// },
+			
 			allElection(){ //全选
 				this.checked = !this.checked
 				if(this.checked == true){
@@ -154,6 +192,10 @@
 					})
 				// },
 			},
+		},
+		onReachBottom() {
+			if (this.loadRecord == false) return
+			this.loadMore()
 		},
 		onLoad() {
 			this.choise(1)

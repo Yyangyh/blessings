@@ -81,7 +81,6 @@
 				dataList:[],
 				msgs:'',
 				more: 'more',
-				page: 1,
 				loadRecord: true
 			}
 		},
@@ -90,13 +89,11 @@
 				this.cur = type;//判断type值
 				this.more = 'loading' //加载状态
 				this.dataList.length = 0 //切换数据归零
-				this.page = 1 //初始页码为1
 				this.loadRecord = true
 				
 				let data = {
 					user_id:this.$store.state.user.id,
 					type:type,
-					page:1,
 				}
 				this.Index(data)
 			},
@@ -104,27 +101,47 @@
 				this.more = 'loading'
 				let data = {
 					user_id:this.$store.state.user.id,
-					page:this.page,
 					type:this.cur
 				}
 				if(data.type == this.cur) Reflect.deleteProperty(data, "type");
-				console.log(this.cur)
 				this.Index(data)//执行接口
 			},
 			Index(data){
 				this.service.entire(this,'post',this.APIconfig.api_root.subuser.u_index,data,
 				function(self,res){
-					// console.log(res)
 					self.data = res.data
-					// self.dataList = res.data.order
-					
+					self.All_data = [
+									{
+										"id": "71",
+										"status": "2",
+										"status_text": "已结算",
+										"order_no": "20191206182212135323",
+										"pay_price": "135.00",
+										"avatar": "",
+										"is_commission": "0",
+										"user_id": "16",
+										"referrer": "15",
+										"username": "test_2",
+										"commission_money": "33.75"
+									},
+									{
+										"id": "71",
+										"status": "2",
+										"status_text": "已结算",
+										"order_no": "20191206182212135323",
+										"pay_price": "135.00",
+										"avatar": "",
+										"is_commission": "0",
+										"user_id": "16",
+										"referrer": "15",
+										"username": "test_2",
+										"commission_money": "33.75"
+									}
+								]
+		
 					self.dataList.push(...res.data.order)
-					self.page ++ //页码数+1
 					self.more = 'more'
-					if(res.data.order.length < 10){//判断是否还有下一页
-						self.more = 'noMore'
-						self.loadRecord = false
-					}
+					
 				})
 			}
 			

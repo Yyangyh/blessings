@@ -80,7 +80,7 @@
 
 <style lang="scss">
 	.content{
-		background: #F6F6F7;
+		// background: #F6F6F7;
 		width: 100%;
 		height: 100%;
 		// padding-top: 100rpx;
@@ -88,7 +88,8 @@
 			background: #FFFFFF;
 			width: 100%;
 			// height: 218rpx;
-			margin-top: 30rpx;
+			// margin-top: 30rpx;
+			border-bottom: 10rpx solid #F6F6F7;
 			.top{
 				display: flex;
 				align-items: center;

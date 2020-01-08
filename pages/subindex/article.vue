@@ -19,11 +19,12 @@
 							<image src="../../static/image/subhome/start.png" mode="widthFix" v-for="(item,index) in dataList.rating_num" :key='index'></image>
 							
 						</view>
-						<view class="time">{{ dataList.grade}}</view>
+						<view class="time">{{dataList.grade}}</view>
 						<view class="time">{{dataList.access_count}}次观看</view>
 					</view>
 				</view>
-				<image class="t_right" src="/static/image/subhome/heart.png" mode="widthFix"></image>
+				<image v-if="dataList.is_lighten == -1" class="t_right" src="/static/image/com_page/collect.png" mode="widthFix" @tap="collection"></image>
+				<image v-else-if="dataList.is_lighten == 1"  class="t_right" src="../../static/image/com_page/collect_HL.png" mode="widthFix"  @tap="collection" ></image>
 			</view>
 			<view class="rich">
 				<rich-text :nodes="dataList.content"></rich-text>
@@ -34,7 +35,7 @@
 			<view class="">
 				用户评论
 			</view>
-			<view class="" @tap="$jump('./comment?id='+ id)">
+			<view class="" @tap="$jump('./comment?id='+ id)"  v-if="data_list.length != 0">
 				
 				全部
 			</view>
@@ -94,23 +95,25 @@
 			}
 		},
 		methods:{
-			// Index(){
-			// 	this.service.entire(this,'get',this.APIconfig.api_root.subindex.s_getCommentByAid,{
-			// 		// userid:this.$store.state.user.id,
-			// 		aid:this.id,
-			// 		// page:1,
-			// 		// limit:20
-			// 	},function(self,res){
-			// 		console.log(res)
-			// 		self.data_list = res.data
-			// 		self.load_show = false
-			// 	})
-			// }
+			collection(){
+				let times = this.service.loading()
+				this.service.entire(this,'get',this.APIconfig.api_root.subindex.s_favoriteArticle,{
+					aid:this.id,
+					user_id:this.$store.state.user.id
+				},function(self,res){
+					uni.hideLoading()
+					clearTimeout(times)
+					if(res.code == 0){
+						self.dataList.is_lighten == 1? self.dataList.is_lighten = -1 :self.dataList.is_lighten = 1
+					}
+				})
+			}
 		},
 		onLoad(e) {
 			this.id = e.id
 			this.service.entire(this,'get',this.APIconfig.api_root.subindex.s_getArticleDetail,{//获取文章
-				aid:e.id
+				aid:e.id,
+				user_id:this.$store.state.user.id
 			},function(self,res){
 				console.log(res)
 				self.dataList = res.data
@@ -291,6 +294,6 @@
 		}
 	}
 	.rich{
-		padding: 0 10rpx;
+		padding: 0 20rpx;
 	}
 </style>

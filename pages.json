@@ -714,7 +714,7 @@
 		},{
 			"path": "pages/subuser/distribution/distribution",
 			"style": {
-				"navigationBarTitleText": "分销商",
+				"navigationBarTitleText": "管理中心",
 				"app-plus":{
 					"titleNView":false
 				}

@@ -151,6 +151,7 @@ const api_root = {
 		u_coupon:api+'/api/coupon/user',//优惠券列表
 		u_couponList:api+'/api/member/couponList',//兑换优惠券列表
 		
+		a_getFavorite:api+'api/article/getFavoriteArticleByUser',//用户收藏的文章
 		
 		psdReset:api+'/api/member/psdReset',//密码重置
 		resetPhone:api+'/api/member/resetPhone',//手机重置
@@ -170,6 +171,7 @@ const api_root = {
 		s_article_comment:api+'/api/article/comment',//评价文章
 		s_getCommentByAid:api+'/api/article/getCommentByAid',//获取文章的评论
 		s_getArticleDetail:api+'/api/article/getArticleDetail',//文章详情
+		s_favoriteArticle:api+'/api/article/favoriteArticle',//文章收藏/取消
 		
 		a_activity_index:api+'/api/activity/index',//活动列表
 		a_activity_detail:api+'/api/activity/detail',//活动详情

@@ -3,7 +3,13 @@
 		<view class="status_bar">
 			
 		</view>
-		<returns :titles='title'></returns>
+		<view class="top">
+			<view class="top_enlarge"  @tap="returns()">
+				<image src="/static/image/com_page/returns.png" mode="widthFix"></image>
+			</view>
+			<text>我的活动</text>
+			<text></text>
+		</view>
 		<view class="allorder">
 			  <text @click="cur=0" class="one" :class="{active:cur==0}">近期活动</text>
 			  <text @click="cur=1" class="two" :class="{active:cur==1}">往期活动</text>
@@ -35,9 +41,15 @@
 		},
 		data(){
 			return{
-				title:'我的活动',
 				cur:0,
 				activity_Data:'',
+			}
+		},
+		methods:{
+			returns(){
+				uni.switchTab({
+					url:'/pages/index/user'
+				})
 			}
 		},
 		onShow() {
@@ -53,6 +65,38 @@
 </script>
 
 <style lang="scss">
+	.top{
+		height: 105rpx;
+		padding: 0 44rpx;
+		width: 100%;
+		box-sizing: border-box;
+		position: fixed;
+		top: var(--status-bar-height);
+		z-index: 99;
+		left: 0;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		font-size: 32rpx;
+		font-weight: bold;
+		color: #333333;
+		background: #fff;
+		box-shadow:0px 2rpx 4rpx 0px rgba(0, 0, 0, 0.1);
+		.top_enlarge{
+			display: flex;
+			align-items: center;
+			height: 100%;
+			width: 180rpx;
+		}
+		text:nth-of-type(2){
+			width: 180rpx;
+			display: inline-block;
+		}
+		image{
+			height: 40rpx;
+			width: 40rpx;
+		}
+	}
 	.allorder{
 		width: 100%;
 		height: 100rpx;

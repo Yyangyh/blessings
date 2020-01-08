@@ -33,6 +33,13 @@
 						icon:'none',
 						title:res.msg
 					})
+					if(res.code == 0){
+						setTimeout(function(){
+							uni.switchTab({
+								url:'../../index/user'
+							})
+						},1000)
+					}
 				})
 			}
 		},
