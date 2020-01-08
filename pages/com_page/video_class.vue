@@ -55,7 +55,8 @@
 						<view class="">
 							<view class="list_two">
 								<view class="">
-									共{{item.catalogue_count}}节
+									{{title == '幸福直播'?service.Test(item.created_at):'共'+item.catalogue_count+'节'}}
+									
 								</view>
 								<view class="">
 									<view class="list_vip" v-if="item.free_type > 0">

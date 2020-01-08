@@ -8,6 +8,24 @@
 			  <text @click="cur=0" class="one" :class="{active:cur==0}">直推</text>
 			  <text @click="cur=1" class="two" :class="{active:cur==1}">间推</text>
 		</view>
+		<view class="screen_box">
+			<view class="box_list">
+				<view class="" @tap="open(1)">
+					开始日期：{{sta_time}}
+				</view>
+				<view class="" @tap="open(2)">
+					结束日期：{{ent_time}}
+				</view>
+			</view>
+			<view class="box_list">
+				<view class="">
+					清空
+				</view>
+				<view class="">
+					确认
+				</view>
+			</view>
+		</view>
 		<!-- 一级 -->
 		<view class="box"  v-show="cur==0"> 
 			<view class="line" v-for="(item,index) in dataList.one" :key='item.id'>
@@ -33,9 +51,7 @@
 		    ref="calendar"
 		    :insert="false"
 		    @confirm="confirm"
-			:startDate = "startDate"
-			:endDate = "endDate"
-			:selected = 'buy_selected'
+			:showMonth="false"
 		     ></uni-calendar>
 		</view>
 	</view>
@@ -53,10 +69,24 @@
 			return{
 				title:'我的同学',
 				cur:0,
-				dataList:''
+				dataList:'',
+				type:'',
+				sta_time:'',
+				ent_time:''
 			}
 		},
-		onShow() {
+		methods:{
+			open(type){
+				this.type = type
+				this.$refs.calendar.open();
+			},
+			confirm(e) {  //日历表选择日期时间
+				console.log(e);
+				this.type == 1? this.sta_time = e.fulldate : this.ent_time = e.fulldate
+				
+			},
+		},
+		onLoad() {
 			this.service.entire(this,'post',this.APIconfig.api_root.subuser.u_Subordinate,{
 				user_id:this.$store.state.user.id,
 			},function(self,res){
@@ -68,9 +98,12 @@
 </script>
 
 <style lang="scss">
+	page{
+		background-color: #F6F6F7;
+	}
 	.content{
 		width: 100%;
-		height: 100vh;
+		// height: 100vh;
 		background-color: #F6F6F7;
 		.allorder{
 			width: 100%;
@@ -80,9 +113,30 @@
 			line-height: 100upx;
 			font-size: 28upx;
 			background-color: #FFFFFF;
-			margin-bottom: 30rpx;
+			padding-bottom: 30rpx;
+			border-bottom: 2rpx solid #ccc;
 			text{
 				flex: 1;
+			}
+		}
+		.screen_box{
+			font-size: 28rpx;
+			background: #fff;
+			padding: 30rpx 20rpx;
+			.box_list{
+				display: flex;
+				border-bottom: 2rpx solid #ccc;
+				view{
+					width: 50%;
+					height: 90rpx;
+					line-height: 90rpx;
+				}
+				
+			}
+			&:nth-last-child{
+				view{
+					text-align: center;
+				}
 			}
 		}
 		.active{
