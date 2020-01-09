@@ -15,31 +15,48 @@
 			  <text @click="choise(4)" class="four"  :class="{active:cur==4}">商品</text>
 		</view>
 		<!-- 课程视频\音频-->
-		<view class="boxs" >
-			<view class="line" v-for="(item,index) in dataList" :key='item.video_id'  @tap="$jump('../com_page/video_details?id='+item.video_id+'&type='+item.type)">
+		<view class="boxs" v-show="cur == 1 || cur == 2">
+			<view class="line" v-for="(item,index) in dataList" :key='item.video_id'>
 				<view class="tab_left"  style="transform: scale(0.8);" v-show="show">
 					<label  class="radio" @click="singleElection(index)"><radio value="r1" :checked="item.choice" /></label>
 				</view>	
-				<view class="">
+				<view class=""   @tap="$jump('/pages/com_page/video_details?id='+item.video_id+'&type='+item.type)">
 					<image class="l_left" :src="APIconfig.api_img+item.v_pic" mode="scaleToFill"></image>
 				</view>
-				<view class="l_right">
+				<view class="l_right"  @tap="$jump('/pages/com_page/video_details?id='+item.video_id+'&type='+item.type)">
 					<view>{{item.long_title}}</view>
 					<view class="middle">{{item.view}}次观看</view>
 					<view>￥99</view>
 				</view>
 			</view>
 		</view>
-		
+		<view class="boxs" v-show="cur == 3">
+			<view class="line" v-for="(item,index) in dataList" :key='item.id' >
+				<view class="tab_left"  style="transform: scale(0.8);" v-show="show">
+					<label  class="radio" @click="singleElection(index)"><radio value="r1" :checked="item.choice" /></label>
+				</view>	
+				<view class=""  @tap="$jump('/pages/subindex/article?id='+item.id)">
+					<image class="l_left" :src="APIconfig.api_img+item.images" mode="scaleToFill"></image>
+				</view>
+				<view class="l_right"  @tap="$jump('/pages/subindex/article?id='+item.id)">
+					<view>{{item.title}}</view>
+					<view class="article">{{item.access_count}}次阅读</view>
+					<!-- <view>￥99</view> -->
+				</view>
+			</view>
+		</view>
 		<!-- 商品-->
 		<view class="boxs" v-show="cur==4">
 			<view class="box_s">
-				<view class="commodity">
-					<image src="../../static/image/index/page.png" mode="scaleToFill"></image>
+				<view class="commodity"  v-for="(item,index) in dataList" :key='item.id'>
+					<image :src="APIconfig.api_img+item.images_old" mode="scaleToFill"   @tap="$jump('/pages/subhome/details?id='+item.goods_id)"></image>
 					<view class="texts">
-						<view class="t_name">管理魂丨家庭式管理系统</view>
-						<view class="t_sell">已售100件</view>
-						<view class="t_price">￥2980.0</view>
+						<view class="t_name">{{item.title}}</view>
+						<view class="t_sell">已售{{item.sales_count}}件</view>
+						<view class="t_price">￥{{item.min_price}}</view>
+						<view class="tab_left"  style="transform: scale(0.8);" v-show="show">
+							<label  class="radio" @click="singleElection(index)"><radio value="r1" :checked="item.choice" /></label>
+						</view>	
 					</view>
 				</view>
 			</view>
@@ -79,40 +96,46 @@
 				console.log(all)
 				this.cur = all
 				this.dataList.length = 0
-				let data
-				if(all == 3){
-					data ={
-						user_id:this.$store.state.user.id,
-						page:1,
-						num:10
-					}
-				}else{
-					data ={
-						user_id:this.$store.state.user.id,
-						page:1,
-						type:all
-					}
+				let data = {
+					user_id:this.$store.state.user.id,
+					page:1,
 				}
-				console.log(data)
+				if(all == 1 || all == 2) data.type = all
 				this.Index(data)
 			},
 			Index(data){
 				this.more = 'loading'
 				if(this.cur == 3){
-					this.service.entire(this,'post',this.APIconfig.api_root.subuser.a_getFavorite,data,function(self,res){ //视频音频
+					this.service.entire(this,'post',this.APIconfig.api_root.subuser.a_getFavorite,data,function(self,res){ //文章
 						console.log(res)
-						// res.data.favor_list.forEach(x => x.choice = false)
-						// let data = self.dataList
-						// data.push(...res.data.favor_list)
-						// self.dataList = data
-						// console.log(self.dataList);
-						// self.page += 1
-						// self.more = 'more'
-						// if (res.data.favor_list.length < 10) {
-						// 	self.more = 'noMore'
-						// 	self.loadRecord = false
-						// 	return
-						// }
+						res.data.forEach(x => x.choice = false)
+						let data = self.dataList
+						data.push(...res.data)
+						self.dataList = data
+						console.log(self.dataList);
+						self.page += 1
+						self.more = 'more'
+						if (res.data.length < 10) {
+							self.more = 'noMore'
+							self.loadRecord = false
+							return
+						}
+					})
+				}else if(this.cur == 4){
+					this.service.entire(this,'post',this.APIconfig.api_root.subuser.usergoodsfavor,data,function(self,res){ //商品
+						console.log(res)
+						res.data.data.forEach(x => x.choice = false)
+						let data = self.dataList
+						data.push(...res.data.data)
+						self.dataList = data
+						console.log(self.dataList);
+						self.page += 1
+						self.more = 'more'
+						if (res.data.data.length < 10) {
+							self.more = 'noMore'
+							self.loadRecord = false
+							return
+						}
 					})
 				}else{
 					this.service.entire(this,'post',this.APIconfig.api_root.subuser.u_favor,data,function(self,res){ //视频音频
@@ -164,24 +187,48 @@
 			},
 			deletes(){  //删除
 					let all =[]
-					for (let s of this.dataList) {
-						console.log(s)
-						if(s.choice == true)all.push(s.video_id)
-					}
 					
-					console.log(this.dataList)
-					this.service.entire(this,'post',this.APIconfig.api_root.com_page.v_collect,{
-						userid:this.$store.state.user.id,
-						video_id:all.join(','),
-						c_type:0,
-						mobile:this.$store.state.user.mobile
-					},function(self,res){
+					
+					let url,data
+					
+					if(this.cur == 3){ // 文章
+						for (let s of this.dataList) {
+							if(s.choice == true)all.push(s.id)
+						}
+						url = this.APIconfig.api_root.subuser.favoriteDel
+						data = {
+							user_id:this.$store.state.user.id,
+							aids:all
+						}
+					}else if(this.cur == 4){
+						for (let s of this.dataList) {
+							if(s.choice == true)all.push(s.goods_id)
+						}
+						url = this.APIconfig.api_root.subuser.cancelall
+						data = {
+							user_id:this.$store.state.user.id,
+							goods_ids:all
+						}
+					}else{// 视频音频
+						for (let s of this.dataList) {
+							if(s.choice == true)all.push(s.video_id)
+						}
+						url = this.APIconfig.api_root.com_page.v_collect
+						data = { 
+							userid:this.$store.state.user.id,
+							video_id:all.join(','),
+							c_type:0,
+							mobile:this.$store.state.user.mobile
+						}
+					}
+					this.service.entire(this,'post',url,data,function(self,res){
 						console.log(res)
 						uni.showToast({
 							icon:'none',
 							title:res.msg
 						})
 						if(res.code == 0){
+							self.checked = false
 							let data = self.dataList
 							for(let i = data.length - 1;i >= 0;i--){  //倒序删除
 								if(data[i].choice == true){
@@ -208,7 +255,8 @@
 		background-color: #FFFFFF;
 	}
 	.content{
-	/* 	background-color: #F6F6F7; */
+		padding-top:  calc(225rpx + var(--status-bar-height));
+		padding-bottom: 120rpx;
 	}
 	.top{
 		height: 105rpx;
@@ -243,6 +291,9 @@
 	.allorder{
 		width: 100%;
 		height: 120upx;
+		position: fixed;
+		top: calc(105rpx + var(--status-bar-height));
+		z-index: 111;
 		display: flex;
 		text-align: center;
 		line-height: 120upx;
@@ -267,8 +318,18 @@
 			margin-right: 30rpx;
 		}
 		.l_right{
+			height:179rpx;
+			flex-grow: 2;
+			display: flex;
+			flex-direction: column;
+			/* justify-content: space-around; */
 			view:first-child{
 				font-size: 24rpx;
+			}
+			.article{
+				font-size: 24rpx !important;
+				color:#999999 !important;
+				margin-top: 10rpx;
 			}
 			.middle{
 				font-size: 24rpx;
@@ -329,8 +390,13 @@
 			}
 			.texts{
 				margin-top: 25rpx;
+				position: relative;
 				.t_name{
 					font-size: 24rpx;
+					display: -webkit-box;
+					-webkit-box-orient: vertical;
+					-webkit-line-clamp: 2;
+					overflow: hidden;
 				}
 				.t_sell{
 					font-size: 24rpx;
@@ -341,7 +407,13 @@
 					font-size: 28rpx;
 					color:#D80000;
 				}
+				.tab_left{
+					position: absolute;
+					right: 0;
+					bottom: 0;
+				}
 			}
+			
 		}
 	}
 	.show{

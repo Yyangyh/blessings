@@ -6,7 +6,7 @@
 		<returns :titles='title'></returns>
 		<view class="w-top">
 			<view class="t-left">
-				<text>可提现佣金:</text>
+				<text>可提现奖学金:</text>
 				<text>￥{{deposit}}</text>
 			</view>
 			<view class="t-right" @click="deposits">全部提现</view>
@@ -61,7 +61,7 @@
 		},
 		data(){
 			return{
-				title:'佣金提现',
+				title:'奖学金提现',
 				money:'',
 				deposit:'',
 			}
@@ -124,6 +124,9 @@
 				font-size: 28rpx;
 				text{
 					margin-right: 20rpx;
+				}
+				input{
+					font-size: 28rpx;
 				}
 			}
 		}

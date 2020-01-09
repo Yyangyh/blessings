@@ -74,7 +74,7 @@
 		},
 		data(){
 			return{
-				title:'分销订单',
+				title:'分享订单',
 				cur:'',
 				reveal:false,
 				data:'',

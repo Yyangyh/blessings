@@ -6,13 +6,13 @@
 		<returns :titles='title'></returns>
 		<view class="c-top">
 			<view class="t-money">{{dataList.total}}</view>
-			<view class="t-text">累计佣金(元)</view>
+			<view class="t-text">累计奖学金(元)</view>
 		</view>
 		<view class="worp">
 			<view class="line">
 				<view class="line-left">
 					<image src='../../../static/image/brokerage/s1.png' mode="widthFix"></image>
-					<text>可提现佣金</text>
+					<text>可提现奖学金</text>
 				</view>
 				<view class="line-right">￥{{dataList.can_cash}}</view>
 			</view>
@@ -36,7 +36,7 @@
 			<view class="line">
 				<view class="line-left">
 					<image src='../../../static/image/brokerage/s4.png'></image>
-					<text>成功提现佣金</text>
+					<text>成功提现奖学金</text>
 				</view>
 				<view class="line-right">￥{{dataList.cashed}}</view>
 			</view>
@@ -44,7 +44,7 @@
 			<view class="line">
 				<view class="line-left">
 					<image src='../../../static/image/brokerage/s5.png'></image>
-					<text>待收货佣金</text>
+					<text>待收货奖学金</text>
 				</view>
 				<view class="line-right">￥{{dataList.unsettle}}</view>
 			</view>
@@ -52,7 +52,7 @@
 			<view class="line">
 				<view class="line-left">
 					<image src='../../../static/image/brokerage/s6.png'></image>
-					<text>未结算佣金</text>
+					<text>未结算奖学金</text>
 				</view>
 				<view class="line-right">￥{{dataList.settled}}</view>
 			</view>
@@ -60,8 +60,8 @@
 			<view class="title">
 				用户须知
 			</view>
-			<view class="explain">买家确认订单后,立即获得分销佣金</view>
-			<view class="explain">注意:可用佣金 <text>1元</text>后才能申请提现</view>
+			<view class="explain">买家确认订单后,立即获得分销奖学金</view>
+			<view class="explain">注意:可用奖学金 <text>1元</text>后才能申请提现</view>
 			<button class="btn" type="default" @tap="$jump('./withdraw?deposit='+dataList.can_cash)">提现</button>
 		</view>
 	</view>
@@ -75,7 +75,7 @@
 		},
 		data(){
 			return{
-				title:'分销佣金',
+				title:'分享奖学金',
 				dataList:'',
 			}
 		},
@@ -144,7 +144,7 @@
 		.explain{
 			font-size: 24rpx;
 			color: #666666;
-			margin: 0 340rpx 10rpx 22rpx;
+			padding: 10rpx 20rpx;
 			text{
 				color: #F2221F;
 				letter-spacing: 5rpx;

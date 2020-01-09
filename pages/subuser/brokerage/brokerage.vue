@@ -79,7 +79,7 @@
 		},
 		data(){
 			return{
-				title:'我的佣金',
+				title:'我的账户',
 				data:'',
 				user:this.$store.state.user
 			}

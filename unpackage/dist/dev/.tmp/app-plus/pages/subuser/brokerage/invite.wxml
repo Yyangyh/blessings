@@ -1,0 +1,1 @@
+<view class="content"><view class="status_bar"></view><returns vue-id="1" titles="{{title}}" bind:__l="__l"></returns><view class="back_img"><image src="{{APIconfig.api_img+bg}}" mode="widthFix"></image></view><view class="pages"><image src="{{APIconfig.api_img+code_img}}" mode="widthFix"></image></view></view>

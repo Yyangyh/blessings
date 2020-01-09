@@ -1,0 +1,1 @@
+<view class="content"><view class="status_bar"></view><returns vue-id="1" titles="{{title}}" bind:__l="__l"></returns><view class="rich"><rich-text nodes="{{data}}"></rich-text></view><button data-event-opts="{{[['tap',[['apply',['$event']]]]]}}" bindtap="__e">我已认真阅读协议内容并同意</button></view>

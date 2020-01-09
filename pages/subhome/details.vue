@@ -84,11 +84,11 @@
 				暂无评论
 			</view>
 		</view>
-		<view class="p-t">活动详情</view>
+		<view class="p-t">商品详情</view>
 		<view v-for="(item,index) in goods.content_app" :key ='item.id'>
 			
 			<image class="image" :src='item.images' mode="widthFix"></image>
-			<view class="c_a" style="font-size: 24rpx;">
+			<view class="c_a" >
 				{{item.content}}
 			</view>
 		</view>
@@ -393,7 +393,7 @@
 				self.is_freight_free = res.data.goods.freight_free.is_freight_free
 				self.freight_price = res.data.goods.freight_free.freight_price
 				self.coupon =  res.data.plugins_coupon_data
-				
+				self.collects = res.data.goods.is_favor
 				self.comment_data = res.data.goods.comments
 				for (let s of self.comment_data) {
 					s.rating_num = new Array(Number(s.rating))
@@ -683,6 +683,7 @@
 			font-size: 28rpx;
 			margin-left: 20rpx;
 			padding: 20rpx 0;
+			
 		}
 		.image{
 			
@@ -693,6 +694,8 @@
 			font-size: 24rpx;
 			line-height: 50rpx;
 			text-indent:2em;
+			padding: 0 10rpx;
+			
 		}
 		.shopping{
 			width: 100%;

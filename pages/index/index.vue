@@ -4,6 +4,7 @@
 			
 		</view>
 		<search :type='3'></search>
+		
 		<view class="swiper_box">
 			<swiper class="swiper" :indicator-dots="indicatorDots" :autoplay="autoplay" :interval="interval" :duration="duration">
 				<swiper-item v-for="(item,index) in swiper_list" :key='item.id' @tap="$jump('../com_page/video_details?'+item.event_value)">
@@ -13,7 +14,9 @@
 				</swiper-item>
 			</swiper>
 		</view>
-		
+		<!-- <view class="">
+			{{APIconfig.api_img}}
+		</view> -->
 		<view class="index_tab">
 			<view class="tab_list"  @tap="$jump('../com_page/index_class?type=1')">
 				<image src='../../static/image/index/index_tab1.png'></image>
@@ -183,6 +186,7 @@
 		text-align: center;
 		font-size: 24rpx;
 		padding: 0 20rpx;
+		margin-top: 30rpx;
 		min-height: 300rpx;
 		display: flex;
 		flex-wrap: wrap;

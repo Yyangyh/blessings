@@ -15,9 +15,9 @@
 				<view class="bottom_list" v-for="(item,index) in data" :key='item.id'>
 					<view class="list_top">
 						<view class="top1">
-							<image src="../../static/image/secondary/shop.png" mode="widthFix"></image>
-							<text>店铺名字</text>
-							<image src="../../static/image/go.png" mode="widthFix"></image>
+							<image src="/static/image/subuser/logo.png" mode="widthFix"></image>
+							<text>五福家庭</text>
+							<!-- <image src="../../static/image/go.png" mode="widthFix"></image> -->
 						</view>
 						<view class="top2">
 							{{item.status_text}}

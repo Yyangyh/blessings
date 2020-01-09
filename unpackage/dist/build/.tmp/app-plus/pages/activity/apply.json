@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "立即报名",
+  "titleNView": false,
+  "usingComponents": {
+    "returns": "/pages/common/returns"
+  }
+}

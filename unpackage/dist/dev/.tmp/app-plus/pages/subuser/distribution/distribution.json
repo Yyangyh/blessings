@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "管理中心",
+  "titleNView": false,
+  "usingComponents": {
+    "returns": "/pages/common/returns"
+  }
+}

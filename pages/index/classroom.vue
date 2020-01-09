@@ -163,7 +163,7 @@
 				}
 			}
 			.two_text{
-				margin:25rpx 0 30rpx 0;
+				margin:10rpx 0 30rpx 0;
 			}
 			&:nth-of-type(odd){
 				margin-right: 20rpx;

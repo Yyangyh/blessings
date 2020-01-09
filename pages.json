@@ -383,6 +383,16 @@
 			}
 		},
 		{
+			"path": "pages/subuser/threeuser/cash",
+			"style": {
+				"navigationBarTitleText": "余额提现",
+				"app-plus":{
+					"titleNView":false
+				}
+			}
+		},
+		
+		{
 			"path": "pages/login/forget",
 			"style": {
 				"navigationBarTitleText": "忘记密码"
@@ -561,7 +571,7 @@
 		},{
 			"path": "pages/subuser/brokerage/sales",
 			"style": {
-				"navigationBarTitleText": "分销佣金",
+				"navigationBarTitleText": "分享奖学金",
 				"app-plus":{
 					"titleNView":false
 				}

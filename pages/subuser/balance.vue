@@ -3,7 +3,13 @@
 		<view class="status_bar">
 			<!-- 这里是状态栏 -->
 		</view>
-		<returns :titles='title'></returns>
+		<view class="top">
+			<view class="top_enlarge"  @tap="service.returns()">
+				<image src="/static/image/com_page/returns.png" mode="widthFix"></image>
+			</view>
+			<text>余额</text>
+			<text @tap="$jump('/pages/subuser/threeuser/cash')">提现</text>
+		</view>
 		<image class="black" src="../../static/image/subuser/blance.png"></image>
 		<view class="money">
 			<view>可用余额（元）</view>
@@ -29,16 +35,14 @@
 </template>
 
 <script>
-	import returns from '../common/returns.vue'
 	import uniLoadMore from '../../components/uni-load-more/uni-load-more.vue'
 		export default{
 			components:{
-				returns,
 				uniLoadMore
 			},
 			data(){
 				return{
-					title:'余额',
+					
 					user:this.$store.state.user,
 					cur:'',
 					dataList:[],
@@ -98,6 +102,41 @@
 <style lang="scss">
 	.content{
 		position: relative;
+		.top{
+			height: 105rpx;
+			padding: 0 44rpx;
+			width: 100%;
+			box-sizing: border-box;
+			position: fixed;
+			top: var(--status-bar-height);
+			z-index: 99;
+			left: 0;
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			font-size: 32rpx;
+			font-weight: bold;
+			color: #333333;
+			background: #fff;
+			box-shadow:0px 2rpx 4rpx 0px rgba(0, 0, 0, 0.1);
+			.top_enlarge{
+				display: flex;
+				align-items: center;
+				height: 100%;
+				width: 180rpx;
+			}
+			text:nth-of-type(2){
+				width: 180rpx;
+				font-size: 30rpx;
+				font-weight: 400;
+				display: inline-block;
+				text-align: right;
+			}
+			image{
+				height: 40rpx;
+				width: 40rpx;
+			}
+		}
 		.black{
 			width: 100%;
 			height: 209rpx;

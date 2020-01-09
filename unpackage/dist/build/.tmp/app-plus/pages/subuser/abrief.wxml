@@ -1,0 +1,1 @@
+<view class="content"><view class="status_bar"></view><returns vue-id="1" titles="{{title}}" bind:__l="__l"></returns><video src="{{company_info.video_url}}" controls></video><view class="recommend"><view class="title">五福家庭教育</view><view class="particulars"><rich-text nodes="{{company_info.content}}"></rich-text></view></view></view>

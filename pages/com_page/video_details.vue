@@ -205,7 +205,7 @@
 			</view>
 		</view>
 		
-		<view class="mask_black" v-show="coupon_show == true" @tap="coupon_show = false">
+		<view class="mask_black" v-show="coupon_show || give_show" @tap="coupon_show = false,give_show = false">
 			<!-- 遮罩层 层级888 -->
 		</view>
 		
@@ -248,12 +248,37 @@
 				</scroll-view>
 			</view>
 		</view>
-		
-		<view class="video_bottom">
-			<view class="bot_left"  v-if="is_free">
-				￥{{video_data.v_price}}
+		<view class="give_box" v-if="give_show">
+			<view class="give_top">
+				赠送说明
 			</view>
+			<view class="give_text">
+				<view class="">
+					1.请在我的“个人中心”完成亲情号邀请注册。
+				</view>
+				<view class="">
+					2.购买课程后，可通过链接分享给亲情好友。
+				</view>
+				<view class="">
+					3.在亲情号共享资源领取后就能免费观看课程。
+				</view>
+				<view class="">
+					4.邀请您的亲密爱人或其它家人一起学习吧。
+				</view>
+			</view>
+			<image  @tap="give_show = false" src="../../static/image/com_page/close.png" mode="widthFix"></image>
+		</view>
+		<view class="video_bottom">
+			<!-- <view class="bot_left" >
+				￥
+			</view> -->
 			<view class="bot_right">
+				<view class="bot_col" @tap="give_show = true">
+					<image  src="../../static/image/com_page/give.png" mode="widthFix"></image>
+					<view class="">
+						赠送说明
+					</view>
+				</view>
 				<view class="bot_col" @tap="collect()" >
 					<image v-show="collects == 0" src="../../static/image/com_page/collect.png" mode="widthFix"></image>
 					<image v-show="collects == 1" src="../../static/image/com_page/collect_HL.png" mode="widthFix"></image>
@@ -262,7 +287,7 @@
 					</view>
 				</view>
 				<view class="bot_buy" @tap="$jump('./v_order?id='+id)"  v-if="is_free">
-					立即购买
+					<text v-if="is_free">{{video_data.v_price}}</text>立即购买
 				</view>
 				<view class="bot_buy" v-else>
 					{{type == 1?'免费观看' : '免费悦听'}}
@@ -305,7 +330,8 @@
 				load_show:true,
 				duration_time:'',
 				receive_status:false,
-				initial_time:0 //指定视频播放初始秒数
+				initial_time:0 ,//指定视频播放初始秒数
+				give_show:false
 			}
 		},
 		computed:{
@@ -355,7 +381,7 @@
 					play_time:currentTime,
 					s_process:duration
 				},function(self,res){
-					console.log(res)
+					self.duration_time = 0 //每次记录完都要清空
 					self.catalog_data[self.indexs].section_plan = res.section_plan
 				})
 			},
@@ -781,6 +807,9 @@
 				height: 80rpx;
 				line-height: 80rpx;
 				width: 343rpx;
+				text{
+					margin-right: 10rpx;
+				}
 			}
 		}
 		image{
@@ -921,6 +950,36 @@
 	}
 	.coupon_show{
 		transform: translateY(0) !important;
+	}
+	.give_box{
+		position: fixed;
+		z-index: 900;
+		border-radius: 20rpx;
+		width: 80%;
+		height: 600rpx;
+		background: #fff;
+		top: 50%;
+		left: 50%;
+		font-size: 32rpx;
+		padding: 20rpx;
+		box-sizing: border-box;
+		transform: translate(-50%,-50%);
+		.give_top{
+			text-align: center;
+			font-size: 36rpx;
+		}
+		.give_text{
+			view{
+				margin-top: 15rpx;
+			}
+		}
+		image{
+			position: absolute;
+			top: 10rpx;
+			right: 10rpx;
+			height: 45rpx;
+			width: 45rpx;
+		}
 	}
 	.user_top {
 		display: flex;

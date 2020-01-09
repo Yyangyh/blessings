@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "同意协议",
+  "titleNView": false,
+  "usingComponents": {
+    "returns": "/pages/common/returns"
+  }
+}

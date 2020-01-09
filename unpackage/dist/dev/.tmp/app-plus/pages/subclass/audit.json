@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "审核中",
+  "titleNView": false,
+  "usingComponents": {
+    "returns": "/pages/common/returns"
+  }
+}

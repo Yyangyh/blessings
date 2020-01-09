@@ -9,11 +9,10 @@
 			  <text @click="choise(2)" class="two" :class="{active:cur==2}">音频</text>
 		</view>
 		<view class="box">
-			<view class="line" v-for='(item,index) in data' :key='index' >
+			<view class="line" v-for='(item,index) in data' :key='index'  @tap="$jump('/pages/com_page/video_details?id='+item.video_id+'&type='+item.type)">
 				<view class="l_left">
 					<image class="" :src="APIconfig.api_img+item.video.v_pic" mode="scaleToFill" ></image>
 				</view>
-				
 				<view class="l_right">
 					<view> {{item.video.long_title}}</view>
 					<view class="middle">{{item.video.view}}次观看</view>

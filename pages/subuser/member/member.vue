@@ -61,7 +61,7 @@
 			</view>
 			<view class="pr-box">
 				<image src="/static/image/subuser/ticheng.png" mode="widthFix"></image>
-				<view>佣金提成</view>
+				<view>奖学金提成</view>
 			</view>
 		</view>
 		<!-- 开通成功弹框 -->

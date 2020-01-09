@@ -138,6 +138,9 @@ const api_root = {
 			v_videoorder: api+'/api/videoorder/getVideoOrderDetail',//视频订单详情
 			v_cancelOrder: api+'/api/videoorder/cancelOrder',//视频订单取消
 			
+			u_cashauthinfo: api+'/api/cash/cashauthinfo',//余额提现验证
+			u_create: api+'/api/cash/create',//余额提现申请
+			
 		},
 		s_member:api+'/api/member/updateUserInfo',//更新用户信息
 		s_member_kinshipLog:api+'/api/member/kinshipLog',//亲情日志
@@ -151,7 +154,10 @@ const api_root = {
 		u_coupon:api+'/api/coupon/user',//优惠券列表
 		u_couponList:api+'/api/member/couponList',//兑换优惠券列表
 		
-		a_getFavorite:api+'api/article/getFavoriteArticleByUser',//用户收藏的文章
+		a_getFavorite:api+'/api/article/getFavoriteArticleByUser',//用户收藏的文章
+		usergoodsfavor:api+'/api/usergoodsfavor/index',//用户收藏的文章
+		favoriteDel:api+'/api/article/favoriteDel',//收藏文章批量删除
+		cancelall:api+'/api/usergoodsfavor/cancelall',//商品取消收藏
 		
 		psdReset:api+'/api/member/psdReset',//密码重置
 		resetPhone:api+'/api/member/resetPhone',//手机重置

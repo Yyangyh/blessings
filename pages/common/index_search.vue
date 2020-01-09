@@ -9,15 +9,24 @@
 			</view>
 			<view class="top_img" @tap="$jump('/pages/com_page/notice')">
 				<image src="/static/image/index/news.png" mode="widthFix"></image>
-				<view v-if="$store.state.notice"></view>
+				<view v-if="notice"></view>
 			</view>
 		</view>
 	</view>
 </template>
 
 <script>
+	import { mapState } from 'vuex'
 	export default{
 		props:['type'],
+		computed: {
+		  // localComputed () { /* ... */ },
+		  // 使用对象展开运算符将此对象混入到外部对象中
+		  ...mapState({
+			  notice:'notice'
+		  }),
+		
+		},	
 		data() {
 			return {
 				

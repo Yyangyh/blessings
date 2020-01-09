@@ -96,6 +96,23 @@
 					
 				</view>
 			</view>
+			<view class="explain">
+				<view class="">
+					1.所有会员可随意邀请一位亲朋好友，和您共享所购买视频内容。
+				</view>
+				<view class="">
+					2.我们倡导夫妻共同学习，共同成长，建设美好幸福家庭。
+				</view>
+				<view class="">
+					3.也可以邀请您身边最亲近的人成为您亲情好友，和您一起学习。
+				</view>
+				<view class="">
+					4.本人如果已经成为被邀请人，将不在有邀请别人的权限。
+				</view>
+				<view class="">
+					5.邀请前请您认真填写，邀请之后不能随意更换邀请人。
+				</view>
+			</view>
 		</view>
 	</view>
 </template>
@@ -239,7 +256,7 @@
 		}
 		.back{
 			width: 100%;
-			position: absolute;
+			position: fixed;
 			height: 1229rpx;
 			top:calc(var(--status-bar-height) + 105rpx);
 			left:0;
@@ -357,6 +374,14 @@
 					position: absolute;
 					bottom: 40rpx;
 					left: 51rpx;
+				}
+			}
+			.explain{
+				font-size: 30rpx;
+				padding:  20rpx;
+				color: #fff;
+				view{
+					margin-top: 10rpx;
 				}
 			}
 		}

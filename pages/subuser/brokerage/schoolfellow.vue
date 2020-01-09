@@ -5,8 +5,8 @@
 		</view >
 		<returns :titles='title'></returns>
 		<view class="allorder">
-			  <text @click="cur=0" class="one" :class="{active:cur==0}">直推</text>
-			  <text @click="cur=1" class="two" :class="{active:cur==1}">间推</text>
+			  <text @click="cur=0" class="one" :class="{active:cur==0}">一班同学</text>
+			  <text @click="cur=1" class="two" :class="{active:cur==1}">二班同学</text>
 		</view>
 		<view class="screen_box">
 			<view class="box_list">
@@ -154,7 +154,6 @@
 			line-height: 100upx;
 			font-size: 28upx;
 			background-color: #FFFFFF;
-			padding-bottom: 30rpx;
 			border-bottom: 2rpx solid #ccc;
 			text{
 				flex: 1;
@@ -163,7 +162,7 @@
 		.screen_box{
 			font-size: 28rpx;
 			background: #fff;
-			padding: 30rpx 20rpx;
+			padding: 0 20rpx 30rpx 20rpx;
 			.box_list{
 				display: flex;
 				border-bottom: 2rpx solid #ccc;

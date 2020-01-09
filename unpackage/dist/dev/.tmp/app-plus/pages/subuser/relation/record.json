@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "分享记录",
+  "titleNView": false,
+  "usingComponents": {
+    "returns": "/pages/common/returns"
+  }
+}

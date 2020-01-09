@@ -1,0 +1,1 @@
+<view class="content"><view class="status_bar"></view><returns vue-id="1" titles="{{title}}" bind:__l="__l"></returns><image src="../../static/image/subclass/mistake.png" mode="widthFix"></image><view>您已经申请，无需重复申请！</view><button type="default">确认</button></view>

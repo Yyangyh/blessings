@@ -1,0 +1,8 @@
+{
+  "navigationBarTitleText": "活动详情",
+  "titleNView": false,
+  "usingComponents": {
+    "load": "/pages/common/load",
+    "returns": "/pages/common/returns"
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "navigationBarTitleText": "全部评论",
+  "titleNView": false,
+  "usingComponents": {
+    "load": "/pages/common/load",
+    "returns": "/pages/common/returns"
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "产品列表",
+  "titleNView": false,
+  "usingComponents": {
+    "uni-load-more": "/components/uni-load-more/uni-load-more"
+  }
+}

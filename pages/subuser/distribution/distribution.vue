@@ -19,7 +19,7 @@
 			},
 			data(){
 				return{
-					title:'分销商',
+					title:'管理中心',
 					
 				}
 			},

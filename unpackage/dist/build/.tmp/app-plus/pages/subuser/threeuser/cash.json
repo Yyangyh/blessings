@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "余额提现",
+  "titleNView": false,
+  "usingComponents": {
+    "returns": "/pages/common/returns"
+  }
+}

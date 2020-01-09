@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "收藏",
+  "titleNView": false,
+  "usingComponents": {
+    "uni-load-more": "/components/uni-load-more/uni-load-more"
+  }
+}
