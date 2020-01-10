@@ -11,7 +11,7 @@
 		</view>
 		<view class="article" v-if="cur==3">
 			<view class="a_list" v-for="(item,index) in article_data" :key='index' @tap="$jump('../subindex/texts?v_test='+item.name+'&v_pid='+item.id)">
-				<image :src="APIconfig.api_img+item.icon" mode="widthFix"></image>
+				<image :src="$api_img()+item.icon" mode="widthFix"></image>
 				<view class="">
 					{{item.name}}
 				</view>
@@ -25,7 +25,7 @@
 				 <view class="b_list" v-for="(item,index) in data[indexs].t_list" :key='item.id' 
 				 @tap="$jump('../com_page/video_class?type='+item.type+'&id='+data[indexs].id+'&title='+data[indexs].cl_name+'&v_test='+item.cl_name+'&v_pid='+item.id)"
 				 >
-				 	<image :src="APIconfig.api_img+item.cl_image" mode="scaleToFill"></image>
+				 	<image :src="$api_img()+item.cl_image" mode="scaleToFill"></image>
 					<view class="">
 						{{item.cl_name}}
 					</view>

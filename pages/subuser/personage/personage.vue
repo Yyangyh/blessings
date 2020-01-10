@@ -12,7 +12,7 @@
 		<view class="per_box">
 			<view class="box_top">
 				<view class="photo_box">
-					<image class="photo" :src="APIconfig.api_img+user.avatar" mode="scaleToFill"></image>
+					<image class="photo" :src="$api_img()+user.avatar" mode="scaleToFill"></image>
 				</view>
 				<view @click="reveal">修改头像></view>
 			</view>

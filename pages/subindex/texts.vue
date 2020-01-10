@@ -36,7 +36,7 @@
 		</view>
 		<view class="texts_boxList" v-for="(item,index) in dataList" :key='item.id'>
 			<view class="t_box" @tap="$jump('./article?id='+item.id)">
-				<image :src="APIconfig.api_img + item.images" mode="scaleToFill"></image>
+				<image :src="$api_img() + item.images" mode="scaleToFill"></image>
 				<view class="b_right">
 					<view>{{item.title}}</view>
 					<view>{{item.access_count}}次观看</view>

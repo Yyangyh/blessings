@@ -5,10 +5,10 @@
 		</view>
 		<returns :titles='title'></returns>
 		<view class="back_img">
-			<image :src="APIconfig.api_img + bg" mode="widthFix"></image>
+			<image :src="$api_img() + bg" mode="widthFix"></image>
 		</view>
 		<view class="pages">
-			<image :src="APIconfig.api_img + code_img" mode="widthFix"></image>
+			<image :src="$api_img() + code_img" mode="widthFix"></image>
 		</view>
 	</view>
 </template>
@@ -29,7 +29,7 @@
 		onShow() {
 			this.service.entire(this,'post',this.APIconfig.api_root.subuser.u_InviteCode,{
 				user_id:this.$store.state.user.id,
-				url:this.APIconfig.api_img + '/h5/#/pages/login/reg'
+				url:this.$api_img() + '/h5/#/pages/login/reg'
 			},function(self,res){
 				self.code_img = res.data.invite_code_img
 				self.bg = res.data.bg

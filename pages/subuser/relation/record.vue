@@ -11,7 +11,7 @@
 		<view class="box">
 			<view class="line" v-for='(item,index) in data' :key='index'  @tap="$jump('/pages/com_page/video_details?id='+item.video_id+'&type='+item.type)">
 				<view class="l_left">
-					<image class="" :src="APIconfig.api_img+item.video.v_pic" mode="scaleToFill" ></image>
+					<image class="" :src="$api_img()+item.video.v_pic" mode="scaleToFill" ></image>
 				</view>
 				<view class="l_right">
 					<view> {{item.video.long_title}}</view>

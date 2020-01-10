@@ -104,7 +104,7 @@
 							user_id:that.$store.state.user.id,
 						},tempFilePaths[0],function(self,res){
 							console.log(res)
-							self[name] = self.APIconfig.api_img + res.data.url
+							self[name] = self.$api_img() + res.data.url
 						})
 				    }
 				});
@@ -143,9 +143,9 @@
 					user_id:this.$store.state.user.id,
 					name:this.name,
 					phone:this.phone,
-					bus_img:this.business.split(this.APIconfig.api_img)[1],
-					id_right:this.just.split(this.APIconfig.api_img)[1],
-					id_left:this.back.split(this.APIconfig.api_img)[1],
+					bus_img:this.business.split(this.$api_img())[1],
+					id_right:this.just.split(this.$api_img())[1],
+					id_left:this.back.split(this.$api_img())[1],
 					level_id:this.index + 3
 				}
 				uni.navigateTo({

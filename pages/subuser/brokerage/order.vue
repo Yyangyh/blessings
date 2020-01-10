@@ -29,7 +29,7 @@
 			<view v-for="(item,index) in dataList" :key='item.id' @tap="msgs = index">
 				<view class="line">
 					<view class="l_left">
-						<image :src= "APIconfig.api_img + item.avatar" mode="widthFix"></image>
+						<image :src= "$api_img() + item.avatar" mode="widthFix"></image>
 						<view class="left_text">
 							<view><text style="margin-right: 5rpx;">昵称:</text><text>{{item.username}}</text></view>
 							<view style="margin-top: 5rpx;">{{item.order_no}}</view>

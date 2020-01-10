@@ -5,7 +5,7 @@
 		</view>
 		<returns :titles='title'></returns>
 		<view class="worp" >
-			<image :src="APIconfig.api_img+dataList.cover" mode="widthFix"></image>
+			<image :src="$api_img()+dataList.cover" mode="widthFix"></image>
 			<view class="theme">{{dataList.title}}</view>
 			<view class="line">
 			  <image src="../../static/image/index/apply.png" mode="widthFix"></image>
@@ -52,14 +52,14 @@
 			<view class="personnel-list">
 				<view class="list" v-for="(item,index) in sign_user" :key='index'>
 					<view class="l_img">
-						<image :src='APIconfig.api_img+item.avatar' mode="scaleToFill"></image>
+						<image :src='$api_img()+item.avatar' mode="scaleToFill"></image>
 					</view>
 					<view>{{item.nickname?item.nickname:'暂无'}}</view>
 				</view>
 			</view>
 		</view>
 		<view class="p-t">活动详情</view>
-		<image class="image" v-for="(item,index) in detail_img" :src='APIconfig.api_img+item.images' mode="widthFix"></image>
+		<image class="image" v-for="(item,index) in detail_img" :src='$api_img()+item.images' mode="widthFix"></image>
 		<view class="underway" v-if="ends == true">
 			<button type="default" @tap="confirm(id,dataList.limit,dataList.sign_number)">立即报名</button>
 			<button type="default">邀请好友</button>

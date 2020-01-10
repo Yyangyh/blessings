@@ -21,7 +21,7 @@
 					<label  class="radio" @click="singleElection(index)"><radio value="r1" :checked="item.choice" /></label>
 				</view>	
 				<view class=""   @tap="$jump('/pages/com_page/video_details?id='+item.video_id+'&type='+item.type)">
-					<image class="l_left" :src="APIconfig.api_img+item.v_pic" mode="scaleToFill"></image>
+					<image class="l_left" :src="$api_img()+item.v_pic" mode="scaleToFill"></image>
 				</view>
 				<view class="l_right"  @tap="$jump('/pages/com_page/video_details?id='+item.video_id+'&type='+item.type)">
 					<view>{{item.long_title}}</view>
@@ -36,7 +36,7 @@
 					<label  class="radio" @click="singleElection(index)"><radio value="r1" :checked="item.choice" /></label>
 				</view>	
 				<view class=""  @tap="$jump('/pages/subindex/article?id='+item.id)">
-					<image class="l_left" :src="APIconfig.api_img+item.images" mode="scaleToFill"></image>
+					<image class="l_left" :src="$api_img()+item.images" mode="scaleToFill"></image>
 				</view>
 				<view class="l_right"  @tap="$jump('/pages/subindex/article?id='+item.id)">
 					<view>{{item.title}}</view>
@@ -49,7 +49,7 @@
 		<view class="boxs" v-show="cur==4">
 			<view class="box_s">
 				<view class="commodity"  v-for="(item,index) in dataList" :key='item.id'>
-					<image :src="APIconfig.api_img+item.images_old" mode="scaleToFill"   @tap="$jump('/pages/subhome/details?id='+item.goods_id)"></image>
+					<image :src="$api_img()+item.images_old" mode="scaleToFill"   @tap="$jump('/pages/subhome/details?id='+item.goods_id)"></image>
 					<view class="texts">
 						<view class="t_name">{{item.title}}</view>
 						<view class="t_sell">已售{{item.sales_count}}件</view>

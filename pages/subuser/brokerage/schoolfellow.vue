@@ -30,7 +30,7 @@
 		<!-- 一级 -->
 		<view class="box"  v-show="cur==0"> 
 			<view class="line" v-for="(item,index) in dataList.one" :key='item.id'>
-				<image class="l_left" :src="APIconfig.api_img+item.avatar"></image>
+				<image class="l_left" :src="$api_img()+item.avatar"></image>
 				<view class="l-right">
 					<view style="display: flex;"><text style="display:block;width: 240rpx;">用户名：{{item.username}}</text><text>{{item.mobile}}</text></view>
 					<view><text>成为同学时间：</text><text style="margin-right: 20rpx;">{{item.referrer_time == true?item.referrer_time:item.add_time}}</text></view>
@@ -40,7 +40,7 @@
 		<!-- 二级 -->
 		<view class="box"  v-show="cur==1">
 			<view class="line" v-for="(item,index) in dataList.two" :key='item.id'>
-				<image class="l_left" :src="APIconfig.api_img+item.avatar"></image>
+				<image class="l_left" :src="$api_img()+item.avatar"></image>
 				<view class="l-right">
 					<view style="display: flex;"><text style="display:block;width: 240rpx;">用户名：{{item.username}}</text><text>{{item.mobile}}</text></view>
 					<view><text>成为同学时间：</text><text style="margin-right: 20rpx;">{{item.referrer_time == true?item.referrer_time:item.add_time}}</text></view>

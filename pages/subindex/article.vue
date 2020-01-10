@@ -44,7 +44,7 @@
 			 <!--  -->
 			<view class="user">
 				<view class="user_one">
-					<image class="user_img" :src="APIconfig.api_img +item.commenter.avatar" mode="widthFix"></image>
+					<image class="user_img" :src="$api_img() +item.commenter.avatar" mode="widthFix"></image>
 					 <!--  -->
 					<view class="user_test" >
 						<view>{{item.create_time}}</view>

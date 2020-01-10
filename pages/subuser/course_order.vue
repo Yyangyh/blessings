@@ -49,7 +49,7 @@
 					
 					<view class="list_middle" @click="$jump('threeuser/c_order_details?id='+item.id)">
 						<view class="v_img">
-							<image :src="APIconfig.api_img+item.video.v_pic" mode="scaleToFill"></image>
+							<image :src="$api_img()+item.video.v_pic" mode="scaleToFill"></image>
 						</view>
 						<view class="middle1">
 							<view class="">{{item.video.title}}</view>

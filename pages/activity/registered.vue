@@ -8,7 +8,7 @@
 			<view class="line" v-for="(item,index) in sign_user" :key='index'>
 				<view class="l_left">
 					<view class="l_img">
-						<image :src='APIconfig.api_img+item.avatar' mode="scaleToFill"></image>
+						<image :src='$api_img()+item.avatar' mode="scaleToFill"></image>
 					</view>
 					<text>昵称：{{item.nickname?item.nickname:'神秘用户'}}</text>
 				</view>

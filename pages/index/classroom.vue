@@ -5,19 +5,19 @@
 		</view>
 		<search :type='3'></search>
 		<view class="room_top">
-			<image :src="APIconfig.api_img + slide.images_url" mode="widthFix"></image>
+			<image :src="$api_img() + slide.images_url" mode="widthFix"></image>
 		</view>
 		<view class="room_title">
 			<view class="title_top">
 				<view class="top_list" v-for="(item,index) in top_class" :key = 'item.id'  @tap="$jump('../com_page/video_class?id='+item.id+'&title='+item.cl_name)">
-					<image :src="APIconfig.api_img + item.cl_image" mode="widthFix"></image>
+					<image :src="$api_img() + item.cl_image" mode="widthFix"></image>
 					<view class="">
 						{{item.cl_name}}
 					</view>
 				</view>
 			</view>
 			<view class="title_bottom" @tap="$jump('../subclass/textual')">
-				<image :src="APIconfig.api_img + advertising.cl_image" mode="widthFix"></image>
+				<image :src="$api_img() + advertising.cl_image" mode="widthFix"></image>
 			</view>
 		</view>
 		
@@ -34,7 +34,7 @@
 			<view class="vider_content">
 				<view class="content_list" v-for="(items,indexs) in item.list" :key='items.id'  @tap="$jump('../com_page/video_details?id='+items.id + '&type='+items.type)">
 					<view class="list_img_box">
-						<image :src="APIconfig.api_img+items.v_pic" mode="scaleToFill"></image>
+						<image :src="$api_img()+items.v_pic" mode="scaleToFill"></image>
 					</view>
 					<view class="list_right">
 						<view class="list_one">
@@ -60,7 +60,7 @@
 		<view class="vider_content_two" >
 			<view class="two_list" v-for="(item,index) in cen_class" :key='item.id' @tap="$jump('../com_page/video_class?type='+item.type+'&id='+item.id+'&title='+item.cl_name)">
 				<view class="two_img">
-					<image :src="APIconfig.api_img+item.cl_image" mode="scaleToFill"></image>
+					<image :src="$api_img()+item.cl_image" mode="scaleToFill"></image>
 				</view>
 				<view class="two_text">
 					{{item.cl_name}}

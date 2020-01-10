@@ -7,10 +7,10 @@
 		<view class="m-top">
 			<image  class="back" src="/static/image/subuser/m-top.png" mode="widthFix"></image>
 			<view class="head_img">
-				<image class="photo" :src="APIconfig.api_img+user.avatar" mode="scaleToFill"></image>
+				<image class="photo" :src="$api_img()+user.avatar" mode="scaleToFill"></image>
 			</view>
 			<view class="box">
-				<image :src="user.level_icon ? APIconfig.api_img+user.level_icon: '/static/image/index/member.png'" mode="widthFix"></image>
+				<image :src="user.level_icon ? $api_img()+user.level_icon: '/static/image/index/member.png'" mode="widthFix"></image>
 				<text>{{user.level_name}}</text>
 			</view>
 			<view class="explain">

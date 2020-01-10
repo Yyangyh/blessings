@@ -11,7 +11,7 @@
 		
 		<view class="box">
 			<view class="line" v-for='(item,index) in dataList' :key='item.id' @tap="$jump('../com_page/video_details?id='+item.id)">
-				<image class="l_left" :src="APIconfig.api_img+item.v_pic" mode="scaleToFill"></image>
+				<image class="l_left" :src="$api_img()+item.v_pic" mode="scaleToFill"></image>
 				<view class="l_right">
 					<view> {{item.long_title}}</view>
 					<view class="middle">{{item.view}}次观看</view>

@@ -1,5 +1,5 @@
 {
-    "name" : "blessings",
+    "name" : "五福家庭",
     "appid" : "__UNI__F2D41E0",
     "description" : "",
     "versionName" : "1.0.0",
@@ -92,8 +92,8 @@
             "disableHostCheck" : true,
             "proxy" : {
                 "/api" : {
-                    "target" : "http://192.168.0.195:8990",
-                    // "target" : "http://0318.t1.nethhw188.com",
+                    // "target" : "http://192.168.0.195:8990",
+                    "target" : "http://0318.t1.nethhw188.com",
                     "changeOrigin" : true,
                     "secure" : false
                 }

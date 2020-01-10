@@ -7,7 +7,7 @@
 		<block v-if="dataList">
 			<view class="top_top"  >
 				<view class="Image">
-					<image :src="APIconfig.api_img+dataList.techerInfo.head_pic" mode="scaleToFill"></image>
+					<image :src="$api_img()+dataList.techerInfo.head_pic" mode="scaleToFill"></image>
 				</view>
 				<view class="t_right">
 					<view class="">{{dataList.techerInfo.name}}</view>

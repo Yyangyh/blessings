@@ -21,7 +21,7 @@
 			<view class="vider_content">
 				<view class="content_list" v-for="(item,index) in recommend" :key='item.id' @tap="$jump('../com_page/video_details?id='+item.id)">
 					<view class="list_img_box">
-						<image :src="APIconfig.api_img+item.v_pic" mode="scaleToFill"></image>
+						<image :src="$api_img()+item.v_pic" mode="scaleToFill"></image>
 					</view>
 					<view class="list_right">
 						<view class="list_one">

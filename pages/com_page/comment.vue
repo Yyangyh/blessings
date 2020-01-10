@@ -10,7 +10,7 @@
 				<view class="user">
 					<view class="user_one">
 						<view class="img_box">
-							<image class="user_img"  :src="APIconfig.api_img +item.avatar" mode="scaleToFill"></image>
+							<image class="user_img"  :src="$api_img() +item.avatar" mode="scaleToFill"></image>
 						</view>
 						<view class="user_test" >
 							<view>{{item.username}}</view>

@@ -58,7 +58,7 @@
 										<view class="pagination">
 											<view v-show='true' @click="goFirst(index)" v-bind:class="{'classFirsta':item.is_enabled==0,'classFirstb':item.is_enabled==1}"></view>
 										</view>
-										<image :src="APIconfig.api_img+item.avatar"  mode="scaleToFill"></image>
+										<image :src="$api_img()+item.avatar"  mode="scaleToFill"></image>
 									</view>
 									<view class="right_box">
 										<view>
@@ -77,7 +77,7 @@
 								<view class="add_box">
 									<view class="left_box">
 										<!-- <image src="/static/image/subuser/tuoyuan.png"></image> -->
-										<image class="phimg" :src="APIconfig.api_img+item.avatar" mode="scaleToFill"></image>
+										<image class="phimg" :src="$api_img()+item.avatar" mode="scaleToFill"></image>
 									</view>
 									
 										<view class="right_box">

@@ -9,14 +9,11 @@
 			<swiper class="swiper" :indicator-dots="indicatorDots" :autoplay="autoplay" :interval="interval" :duration="duration">
 				<swiper-item v-for="(item,index) in swiper_list" :key='item.id' @tap="$jump('../com_page/video_details?'+item.event_value)">
 					<view class="swiper-item uni-bg-red">
-						<image :src="APIconfig.api_img + item.images_url" mode="widthFix"></image>
+						<image :src="$api_img() + item.images_url" mode="widthFix"></image>
 					</view>
 				</swiper-item>
 			</swiper>
 		</view>
-		<!-- <view class="">
-			{{APIconfig.api_img}}
-		</view> -->
 		<view class="index_tab">
 			<view class="tab_list"  @tap="$jump('../com_page/index_class?type=1')">
 				<image src='../../static/image/index/index_tab1.png'></image>
@@ -67,7 +64,7 @@
 					<scroll-view  scroll-x="true" class="scroll-Y">
 						<view class="content_list" v-for="(items,indexs) in item.video_list" :key='items.id' @tap="$jump('../com_page/video_details?id='+items.id + '&type='+items.type)">
 							<view class="list_img_box">
-								<image :src="APIconfig.api_img+items.v_pic" mode="scaleToFill"></image>
+								<image :src="$api_img()+items.v_pic" mode="scaleToFill"></image>
 							</view>
 							<view class="list_box">
 								<view class="list_one">
@@ -101,7 +98,7 @@
 			<view class="vider_content_two" >
 				<view class="two_list" v-for="(item,index) in class_list" :key='item.id'  @tap="$jump('../com_page/video_class?id='+item.id+'&title='+item.cl_name)"  v-if="index != 0">
 					<view class="two_img">
-						<image :src="APIconfig.api_img+item.cl_image" mode="scaleToFill"></image>
+						<image :src="$api_img()+item.cl_image" mode="scaleToFill"></image>
 					</view>
 					<view class="two_text">
 						{{item.cl_name}}

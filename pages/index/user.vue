@@ -13,7 +13,7 @@
 			</view>
 			<view class="top_two">
 				<view class="two_left" @tap="$jump('../subuser/personage/personage')">
-					<image :src="APIconfig.api_img+user.avatar" mode="scaleToFill"></image>
+					<image :src="$api_img()+user.avatar" mode="scaleToFill"></image>
 				</view>
 				<view class="two_mid">
 					<view class="mid_top">
@@ -21,7 +21,7 @@
 					</view>
 					<view class="mid_bottom">
 						<!-- <image src="../../static/image/index/member.png" mode="widthFix"></image> -->
-						<image :src="user.level_icon ? APIconfig.api_img+user.level_icon: '../../static/image/index/member.png'" mode="widthFix"></image>
+						<image :src="user.level_icon ? $api_img()+user.level_icon: '../../static/image/index/member.png'" mode="widthFix"></image>
 						<text>{{user.level_name}}</text>
 					</view>
 				</view>

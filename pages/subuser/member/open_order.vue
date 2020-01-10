@@ -19,7 +19,7 @@
 				<view class="box_list"  v-for="(item,index) in payment"  :key='item.id' @click="choice(index)">
 					<view class="list_top">
 						<image :src="item.logo" mode="widthFix" v-if="index === 0"></image>
-						<image :src="APIconfig.api_img+item.logo" mode="widthFix" v-else></image>
+						<image :src="$api_img()+item.logo" mode="widthFix" v-else></image>
 						<view class="">
 							{{item.name}}
 						</view>

@@ -13,7 +13,7 @@
 		<view class="vider_content">
 			<view class="content_list">
 				<view class="list_img_box">
-					<image :src="APIconfig.api_img+data.v_pic" mode="aspectFill"></image>
+					<image :src="$api_img()+data.v_pic" mode="aspectFill"></image>
 				</view>
 				<view class="list_right">
 					<view class="list_one">
@@ -61,7 +61,7 @@
 			<view class="pa_box">
 				<view class="box_list"  v-for="(item,index) in payment"  :key='item.id' @click="choice(index)">
 					<view class="list_top">
-						<image :src="APIconfig.api_img+item.logo" mode="widthFix"></image>
+						<image :src="$api_img()+item.logo" mode="widthFix"></image>
 						<view class="">
 							{{item.name}}
 						</view>
@@ -242,7 +242,7 @@
 										title:res.msg
 									})
 									setTimeout(function(){
-										self.service.returns()
+										self.$jump('/pages/subuser/course_order')
 									},1000)
 									// self.service.entire(self,'post',self.APIconfig.api_root.com_page.order_pay,{
 									// 	user_id: that.$store.state.user.id,

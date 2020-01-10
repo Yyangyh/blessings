@@ -1,8 +1,6 @@
 const api = ''
 
 // const api ='http://0318.t1.nethhw188.com'
-// const api_img ='http://0318.t1.nethhw188.com'
-const api_img ='http://192.168.0.195:8990'//本地
 
 const api_root = {
 	common:{
@@ -191,7 +189,6 @@ const api_root = {
 
 export default{
 	api,
-	api_root,
-	api_img
+	api_root
 	
 }

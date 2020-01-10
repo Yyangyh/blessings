@@ -5,7 +5,7 @@
 		</view>
 		<returns :titles='title'></returns>
 		<view class="activitys">
-			<image :src='APIconfig.api_img+dataList.cover'></image>
+			<image :src='$api_img()+dataList.cover'></image>
 			<view class="a-right">
 				<view class="theme">{{dataList.title}}</view>
 				<view class="line">

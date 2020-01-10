@@ -20,7 +20,7 @@
 		<view class="order">
 			<view class="order_num" @tap="$jump('../../com_page/video_details?id='+data.vid+'&type='+data.type)">
 				<view class="num_one">
-					<image :src="APIconfig.api_img+data.v_pic" mode="scaleToFill"></image>
+					<image :src="$api_img()+data.v_pic" mode="scaleToFill"></image>
 				</view>
 				<view class="num_two">
 					<view class="test_one">

@@ -57,7 +57,7 @@
 					<text style="color:#EF7C38;font-size: 30upx;">超值拼团</text>
 				</view>
 				<view  class="commodity"  v-for="(itemo,indexo) in fight" :key='itemo.id'  @click="$jump('/pages/subhome/threehome/group_products?id='+itemo.id)">
-					<view class="pages"><image :src='APIconfig.api_img+itemo.thumb'></image></view>
+					<view class="pages"><image :src='$api_img()+itemo.thumb'></image></view>
 					<view class="name">{{itemo.title}}</view>
 					<view style="color:#D80000;font-size: 30upx">{{itemo.price}}</view>
 				</view>
