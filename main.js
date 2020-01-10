@@ -18,12 +18,10 @@ Vue.prototype.$jump = function(url){
 		url:url
 	})
 }
-// Vue.prototype.$api_img() = 'http://192.168.0.195:8990' 
 Vue.prototype.$api_img = function(){
-	return 'http://0318.t1.nethhw188.com' 
-	// return 'http://192.168.0.195:8990' 
+	// return 'http://0318.t1.nethhw188.com' 
+	return 'http://192.168.0.195:8990' 
 }
-// Vue.prototype.$api_img() = 'http://0318.t1.nethhw188.com' 
 
 Vue.config.productionTip = false
  

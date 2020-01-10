@@ -374,16 +374,21 @@
 			},
 			record_play(currentTime,duration){//记录播放进度
 				if(isNaN(duration)) return
-				this.service.entire(this,'post',this.APIconfig.api_root.com_page.v_playProcess,{
-					video_id:this.id,
-					user_id:this.$store.state.user.id,
-					section_id:this.catalog_data[this.indexs].id,
-					play_time:currentTime,
-					s_process:duration
-				},function(self,res){
-					self.duration_time = 0 //每次记录完都要清空
-					self.catalog_data[self.indexs].section_plan = res.section_plan
+				return new Promise((resolve, reject) =>{ //将异步请求变同步
+					this.service.entire(this,'post',this.APIconfig.api_root.com_page.v_playProcess,{
+						video_id:this.id,
+						user_id:this.$store.state.user.id,
+						section_id:this.catalog_data[this.indexs].id,
+						play_time:currentTime,
+						s_process:duration
+					},function(self,res){
+						self.duration_time = 0 //每次记录完都要清空
+						console.log(self.indexs)
+						self.catalog_data[self.indexs].section_plan = res.section_plan
+						resolve('suc');
+					})
 				})
+				
 			},
 			receive_int(){ //自动领取积分
 				this.service.entire(this,'post',this.APIconfig.api_root.com_page.v_integral,{
@@ -426,7 +431,7 @@
 				}
 				
 			},
-			play_end(e){ //播放结束时
+			async play_end(e){ //播放结束时
 				let testing = function(index){
 					if(this.catalog_data[index].cou_is_free == false){
 						uni.showModal({
@@ -445,10 +450,11 @@
 				if(this.indexs || this.indexs === 0){ //当宣传视频播放结束时
 					let that = this
 					this.record_time = 0
-					this.record_play(this.duration_time,this.duration_time)
+					await this.record_play(this.duration_time,this.duration_time)
 					this.receive_status == false ? this.receive_int() : this.receive_status = false //播放结束时再判断一次是否领取积分
 					if(this.indexs === this.catalog_data.length - 1) return//当视频目录最后一个播放完毕时 
 					this.indexs++
+					console.log(this.indexs)
 					testing.call(this,this.indexs)
 				}else{
 					this.indexs = 0

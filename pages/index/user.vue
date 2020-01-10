@@ -15,6 +15,7 @@
 				<view class="two_left" @tap="$jump('../subuser/personage/personage')">
 					<image :src="$api_img()+user.avatar" mode="scaleToFill"></image>
 				</view>
+				
 				<view class="two_mid">
 					<view class="mid_top">
 						{{user.username}}
@@ -355,8 +356,8 @@
 			
 		</view>
 		<view class="c_buttom">
-			<view @click="$jump('../subuser/abrief')">公司简介</view>
-			<view @click="$jump('../subuser/ContactUs')">联系我们</view>
+			<view @tap="$jump('../subuser/abrief')">公司简介</view>
+			<view @tap="contact">联系我们</view>
 		</view>
 	</view>
 </template>
@@ -366,6 +367,8 @@
 	export default{
 		data() {
 			return {
+				latitude:'',
+				longitude:''
 			}
 		},
 		computed: {
@@ -376,6 +379,31 @@
 		  }),
 		
 		},	
+		methods:{
+			contact(){
+				console.log(this.latitude,this.longitude)
+				
+				uni.openLocation({
+					latitude: Number(this.latitude),
+					longitude:Number(this.longitude),
+					success: function () {
+						console.log('success');
+					}
+				});
+				    
+				
+			}
+			
+		},
+		onLoad() {
+			this.service.entire(this,'post',this.APIconfig.api_root.subuser.u_Company_index,{
+				
+			},function(self,res){
+				console.log(res)
+				self.latitude = res.data.company_info.latitude
+				self.longitude = res.data.company_info.longitude
+			})
+		},
 		onShow() {
 			this.service.notice.call(this)
 			this.service.entire(this,'post',this.APIconfig.api_root.index.u_token,{

@@ -150,7 +150,7 @@
       height: 100%;
 }
 .vider_content_two .two_list .two_text {
-    margin: 25rpx 0 30rpx 0;
+    margin: 10rpx 0 30rpx 0;
 }
 .vider_content_two .two_list:nth-of-type(odd) {
     margin-right: 20rpx;

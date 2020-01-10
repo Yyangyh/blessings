@@ -10,7 +10,7 @@
 			<view class="top_search">
 				{{title}}
 			</view>
-			<view class="top_img" @tap="$jump('../com_page/notice')">
+			<view class="top_img"  @tap="$jump('/pages/com_page/v_search?type='+type)">
 				<image src="/static/image/com_page/search.png" mode="widthFix"></image>
 			</view>
 		</view>
@@ -157,7 +157,7 @@
 			},
 			uni_request(data){//请求接口
 				this.service.entire(this,'get',this.APIconfig.api_root.com_page.videoList,data,function(self,res){
-					if(!self.top_class)self.top_class = res.data.top_list
+					self.top_class = res.data.top_list
 					let data = self.video_list
 					data.push(...res.data.video_list)
 					self.video_list = data
@@ -174,6 +174,7 @@
 		},
 		onLoad(e) {
 			this.title = e.title
+			this.type = e.type
 			this.req_data.v_pid = e.id
 			this.old_id = e.id
 			this.req_data.type = e.type

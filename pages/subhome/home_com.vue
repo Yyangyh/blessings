@@ -10,7 +10,7 @@
 			<view class="top_search">
 				{{title}}
 			</view>
-			<view class="top_img">
+			<view class="top_img" @tap="$jump('/pages/com_page/s_search')">
 				<image src="/static/image/com_page/search.png" mode="widthFix"></image>
 			</view>
 		</view>

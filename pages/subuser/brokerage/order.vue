@@ -26,7 +26,7 @@
 		</view>
 		<view class="box">
 			<!-- 订单一 -->
-			<view v-for="(item,index) in dataList" :key='item.id' @tap="msgs = index">
+			<view v-for="(item,index) in dataList" :key='item.id' @tap="assi_index(index)">
 				<view class="line">
 					<view class="l_left">
 						<image :src= "$api_img() + item.avatar" mode="widthFix"></image>
@@ -85,6 +85,9 @@
 			}
 		},
 		methods:{
+			assi_index(index){
+				this.msgs = index
+			},
 			Indexs(type){ //切换状态执行
 				this.cur = type;//判断type值
 				this.more = 'loading' //加载状态
@@ -99,49 +102,37 @@
 			},
 			loadMore(){//滚动到底部执行
 				this.more = 'loading'
-				let data = {
-					user_id:this.$store.state.user.id,
-					type:this.cur
+				let length = this.All_data.length
+				// console.log()
+				
+				this.dataList.push(...this.All_data.splice(0,10))
+				if(length < 10){
+					this.loadRecord = false
+					this.more = 'noMore'	
+				}else{
+					this.more = 'more'	
 				}
-				if(data.type == this.cur) Reflect.deleteProperty(data, "type");
-				this.Index(data)//执行接口
+				
+				
+				// let data = {
+				// 	user_id:this.$store.state.user.id,
+				// 	type:this.cur
+				// }
+				// this.Index(data)//执行接口
 			},
 			Index(data){
 				this.service.entire(this,'post',this.APIconfig.api_root.subuser.u_index,data,
 				function(self,res){
 					self.data = res.data
-					self.All_data = [
-									{
-										"id": "71",
-										"status": "2",
-										"status_text": "已结算",
-										"order_no": "20191206182212135323",
-										"pay_price": "135.00",
-										"avatar": "",
-										"is_commission": "0",
-										"user_id": "16",
-										"referrer": "15",
-										"username": "test_2",
-										"commission_money": "33.75"
-									},
-									{
-										"id": "71",
-										"status": "2",
-										"status_text": "已结算",
-										"order_no": "20191206182212135323",
-										"pay_price": "135.00",
-										"avatar": "",
-										"is_commission": "0",
-										"user_id": "16",
-										"referrer": "15",
-										"username": "test_2",
-										"commission_money": "33.75"
-									}
-								]
-		
-					self.dataList.push(...res.data.order)
-					self.more = 'more'
-					
+					self.All_data = res.data.order
+					let length = self.All_data.length
+					self.dataList.push(...self.All_data.splice(0,10))
+					if(length < 10){
+						self.loadRecord = false
+						self.more = 'noMore'	
+					}else{
+						self.more = 'more'	
+					}
 				})
 			}
 			
@@ -188,6 +179,7 @@
 			line-height: 100upx;
 			font-size: 28upx;
 			background-color: #FFFFFF;
+			border-bottom: 2rpx solid #F1F1F1;
 			text{
 				flex: 1;
 			}

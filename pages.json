@@ -802,14 +802,6 @@
 				}
 			}
 		},{
-			"path": "pages/subuser/ContactUs",
-			"style": {
-				"navigationBarTitleText": "联系我们",
-				"app-plus":{
-					"titleNView":false
-				}
-			}
-		},{
 			"path": "pages/com_page/comment",
 			"style": {
 				"navigationBarTitleText": "全部评论",

@@ -9,21 +9,30 @@
 		</view>
 		<view class="pages">
 			<image :src="$api_img() + code_img" mode="widthFix"></image>
+			<view class="">
+				我是幸福使者：{{user.username}}
+			</view>
 		</view>
 	</view>
 </template>
 
 <script>
 	import returns from '../../common/returns.vue'
+		import { mapState } from 'vuex'
 	export default{
 		components:{
 			returns
+		},
+		computed:{
+			...mapState({
+				user:'user'
+			})
 		},
 		data(){
 			return{
 				title:'我的邀请码',
 				code_img:'',
-				bg:''
+				bg:'',
 			}
 		},
 		onShow() {
@@ -65,10 +74,15 @@
 			transform: translateX(-50%);
 			bottom: 200rpx;
 			z-index: 100;
+			text-align: center;
+			font-size: 24rpx;
+			view{
+				margin: 12rpx 0;
+			}
 			image{
 				width: 342rpx;
 				height: 342rpx;
-				margin: 12rpx;
+				margin: 12rpx 12rpx 0 12rpx;
 			}
 		}
 	}

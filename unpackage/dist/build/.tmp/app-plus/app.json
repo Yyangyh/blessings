@@ -94,7 +94,6 @@
     "pages/subindex/texts",
     "pages/subindex/article",
     "pages/subuser/abrief",
-    "pages/subuser/ContactUs",
     "pages/com_page/comment",
     "pages/subindex/comment",
     "pages/subuser/distribution/agreement"
@@ -143,7 +142,7 @@
     "alwaysShowBeforeRender": true,
     "autoclose": false
   },
-  "appname": "blessings",
+  "appname": "五福家庭",
   "compilerVersion": "2.5.1",
   "usingComponents": {
     "load": "/pages/common/load"

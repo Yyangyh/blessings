@@ -10,7 +10,9 @@
 		<view class="room_title">
 			<view class="title_top">
 				<view class="top_list" v-for="(item,index) in top_class" :key = 'item.id'  @tap="$jump('../com_page/video_class?id='+item.id+'&title='+item.cl_name)">
-					<image :src="$api_img() + item.cl_image" mode="widthFix"></image>
+					<view class="list_img">
+						<image :src="$api_img() + item.cl_image" mode="widthFix"></image>
+					</view>
 					<view class="">
 						{{item.cl_name}}
 					</view>
@@ -126,9 +128,14 @@
 		font-size: 28rpx;
 		margin-bottom: 40rpx;
 	}
-	.room_title .title_top image{
+	.room_title .title_top .list_img{
 		height: 169rpx;
 		width: 343rpx;
+		margin-bottom: 10rpx;
+	}
+	.room_title .title_top .list_img image{
+		height: 100%;
+		width: 100%;
 	}
 	.room_title .title_bottom image{
 		height: 150rpx;

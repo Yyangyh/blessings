@@ -20,7 +20,7 @@
 			</view>
 		</view>
 		<view class="Package">
-			<view  :class="chiose_show === index?'p-box1':'p-box2'"  v-for="(item,index) in member_data" :key='item.id'  @tap="chiose_show = index">
+			<view  :class="chiose_show === index?'p-box1':'p-box2'"  v-for="(item,index) in member_data" :key='item.id'  @tap="assi_index(index)">
 				<view class="tu" v-if="index === 0">
 					<image src='/static/image/subuser/box1.png' mode="widthFix"></image>
 					<text>推荐</text>
@@ -110,6 +110,9 @@
 			}
 		},
 		methods:{
+			assi_index(){
+				this.chiose_show = index
+			},
 			opening(){
 				if(this.user.level_id < this.member_data[this.chiose_show].id){
 					this.$jump('./open_order?id='+this.member_data[this.chiose_show].id)

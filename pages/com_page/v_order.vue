@@ -242,7 +242,7 @@
 										title:res.msg
 									})
 									setTimeout(function(){
-										self.$jump('/pages/subuser/course_order')
+										self.$jump('/pages/subuser/course_order?status=6')
 									},1000)
 									// self.service.entire(self,'post',self.APIconfig.api_root.com_page.order_pay,{
 									// 	user_id: that.$store.state.user.id,

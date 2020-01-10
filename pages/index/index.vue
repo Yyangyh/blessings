@@ -56,7 +56,7 @@
 					<view class="box_left">
 						{{item.cl_name}}
 					</view>
-					<view class="box_right"  @tap="$jump('../com_page/video_class?id='+item.id+'&title='+item.cl_name)">
+					<view class="box_right"  @tap="$jump('../com_page/video_class?id='+item.id+'&title='+item.cl_name+'&type='+item.type)">
 						全部
 					</view>
 				</view>
@@ -96,7 +96,7 @@
 			</view>
 			
 			<view class="vider_content_two" >
-				<view class="two_list" v-for="(item,index) in class_list" :key='item.id'  @tap="$jump('../com_page/video_class?id='+item.id+'&title='+item.cl_name)"  v-if="index != 0">
+				<view class="two_list" v-for="(item,index) in class_list" :key='item.id'   @tap="$jump('../com_page/video_class?id='+item.id+'&title='+item.cl_name+'&type='+item.type)"  v-if="index != 0">
 					<view class="two_img">
 						<image :src="$api_img()+item.cl_image" mode="scaleToFill"></image>
 					</view>
@@ -276,7 +276,7 @@
 				}
 			}
 			.two_text{
-				margin:25rpx 0 30rpx 0;
+				margin:10rpx 0 30rpx 0;
 			}
 			&:nth-of-type(odd){
 				margin-right: 20rpx;

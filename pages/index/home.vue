@@ -28,7 +28,7 @@
 				<image :src="item.icon"></image>
 				<view>{{item.name}}</view>
 			</view>
-			<view class="classify" @tap="$jump('../com_page/video_class?id=40&title=家风学堂')">
+			<view class="classify" @tap="$jump('../com_page/video_class?id=40&title=家风学堂&type=1')">
 				<image src="../../static/image/index/school.png"></image>
 				<view>家风学堂</view>
 			</view>

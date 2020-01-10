@@ -159,7 +159,7 @@
 			},
 			uni_request(req_data){
 				this.service.entire(this,'get',this.APIconfig.api_root.com_page.videoList,req_data,function(self,res){
-					if(!self.top_class)self.top_class = res.data.top_list
+					self.top_class = res.data.top_list
 					let data = self.video_list
 					data.push(...res.data.video_list)
 					self.video_list = data
