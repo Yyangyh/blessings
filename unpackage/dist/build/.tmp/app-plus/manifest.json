@@ -19,6 +19,9 @@
   },
   "permissions": {
     "VideoPlayer": {},
+    "Maps": {
+      "coordType": "gcj02"
+    },
     "UniNView": {
       "description": "UniNView原生渲染"
     }

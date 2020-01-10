@@ -381,7 +381,7 @@
 		},	
 		methods:{
 			contact(){
-				console.log(this.latitude,this.longitude)
+				console.log(Number(this.latitude))
 				
 				uni.openLocation({
 					latitude: Number(this.latitude),

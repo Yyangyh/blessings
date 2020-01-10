@@ -78,7 +78,7 @@
 		height: 100%;
 		width: 100%;
 		background: rgba(0, 0, 0, 1);
-		opacity: 0.3;
+		opacity: 0.5;
 		top: 0;
 		left: 0;
 		z-index: 888;

@@ -959,7 +959,7 @@
 	}
 	.give_box{
 		position: fixed;
-		z-index: 900;
+		z-index: 1001;
 		border-radius: 20rpx;
 		width: 80%;
 		height: 600rpx;
@@ -969,7 +969,7 @@
 		font-size: 32rpx;
 		padding: 20rpx;
 		box-sizing: border-box;
-		transform: translate(-50%,-50%);
+		transform: translate(-50%,-10%);
 		.give_top{
 			text-align: center;
 			font-size: 36rpx;

@@ -1,0 +1,108 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* .content{
+	position: relative;
+} */
+.jump{
+	height: 50rpx;
+	line-height: 50rpx;
+	width: 90rpx;
+	border-radius: 50rpx;
+	border: 2rpx solid #ccc;
+	font-size: 28rpx;
+	position: fixed;
+	background: #fff;
+	z-index: 111;
+	padding: 0 10rpx;
+	top: calc(20rpx + var(--status-bar-height));
+	right: 20rpx;
+}
+.spot_box{
+}
+view{
+	text-align: center;
+}
+text{
+	height: 20rpx;
+	width: 20rpx;
+	border-radius: 50%;
+	margin-right: 10rpx;
+	background: #CE7E92;
+	display: inline-block;
+}
+

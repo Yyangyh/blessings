@@ -17,7 +17,8 @@
         },
         /* 模块配置 */
         "modules" : {
-            "VideoPlayer" : {}
+            "VideoPlayer" : {},
+            "Maps" : {}
         },
         /* 应用发布信息 */
         "distribute" : {
@@ -51,7 +52,14 @@
             /* ios打包配置 */
             "ios" : {},
             /* SDK配置 */
-            "sdkConfigs" : {},
+            "sdkConfigs" : {
+                "maps" : {
+                    "baidu" : {
+                        "appkey_ios" : "l159PqVlbymCK8ntD6lYySO7bDvlwXxo",
+                        "appkey_android" : "l159PqVlbymCK8ntD6lYySO7bDvlwXxo"
+                    }
+                }
+            },
             "splashscreen" : {
                 "android" : {
                     "hdpi" : "static/image/login/startup1.png",
@@ -124,8 +132,8 @@
             "disableHostCheck" : true,
             "proxy" : {
                 "/api" : {
-                    "target" : "http://192.168.0.195:8990",
-                    // "target" : "http://0318.t1.nethhw188.com",
+                    // "target" : "http://192.168.0.195:8990",
+                    "target" : "http://0318.t1.nethhw188.com",
                     "changeOrigin" : true,
                     "secure" : false
                 }

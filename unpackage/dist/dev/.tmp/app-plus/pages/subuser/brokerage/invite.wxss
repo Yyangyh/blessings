@@ -48,10 +48,15 @@
             transform: translateX(-50%);
     bottom: 200rpx;
     z-index: 100;
+    text-align: center;
+    font-size: 24rpx;
+}
+.content .pages view {
+      margin: 12rpx 0;
 }
 .content .pages image {
       width: 342rpx;
       height: 342rpx;
-      margin: 12rpx;
+      margin: 12rpx 12rpx 0 12rpx;
 }
 

@@ -1,6 +1,6 @@
-const api = ''
+// const api = ''
 
-// const api ='http://0318.t1.nethhw188.com'
+const api ='http://0318.t1.nethhw188.com'
 
 const api_root = {
 	common:{

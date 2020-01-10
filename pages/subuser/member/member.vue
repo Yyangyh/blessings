@@ -106,11 +106,12 @@
 			return{
 				title:'会员中心',
 				member_data:'',
-				chiose_show:0
+				chiose_show:0,
+				index:''
 			}
 		},
 		methods:{
-			assi_index(){
+			assi_index(index){
 				this.chiose_show = index
 			},
 			opening(){
