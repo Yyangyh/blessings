@@ -71,7 +71,7 @@
 					data_list:'',
 					msg:'',
 					data:'',
-					if_sign:''
+					if_sign:false
 				}
 			},
 			methods:{

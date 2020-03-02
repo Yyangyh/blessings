@@ -43,7 +43,7 @@
 	}
 </script>
 
-<style>
+<style lang="scss">
 	/*每个页面公共css */
 	page {
 		/* height: 100%;
@@ -83,5 +83,13 @@
 		left: 0;
 		z-index: 888;
 	}
-	
+	.QRcode{
+		position: fixed;
+		right: 30rpx;
+		bottom: 135rpx;
+		image{
+			width: 60rpx;
+			height: 60rpx;
+		}
+	}
 </style>

@@ -71,7 +71,9 @@
 			
 		</view>
 		
-		
+		<view class="QRcode" @tap="$jump('/pages/subuser/brokerage/invite')">
+			<image src="../../static/image/index/code.png" mode=""></image>
+		</view>
 		
 	</view>
 </template>

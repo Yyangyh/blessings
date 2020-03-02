@@ -42,6 +42,15 @@
 				<view class="l-right"></view>
 			</view>
 		</view>
+		
+		<view class="p-t">商品详情</view>
+		<view v-for="(item,index) in goods.content_app" :key ='item.id'>
+			
+			<image class="image" :src='item.images' mode="widthFix"></image>
+			<view class="c_a" >
+				{{item.content}}
+			</view>
+		</view>
 		<view class="user_top">
 			<view class="">
 				用户评论
@@ -82,14 +91,6 @@
 			<image  src="/static/image/com_page/lack.png" mode="widthFix"></image>
 			<view class="">
 				暂无评论
-			</view>
-		</view>
-		<view class="p-t">商品详情</view>
-		<view v-for="(item,index) in goods.content_app" :key ='item.id'>
-			
-			<image class="image" :src='item.images' mode="widthFix"></image>
-			<view class="c_a" >
-				{{item.content}}
 			</view>
 		</view>
 		<view class="shopping">

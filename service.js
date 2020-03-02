@@ -111,15 +111,17 @@ const order = function(ref, self, url, wxUrl) { //支付调用
 		// #ifndef  APP-PLUS
 		uni.showToast({
 			icon: 'none',
-			title: '只能在APP内选择支付宝支付'
+			title: '支付宝支付暂未开放'
 		})
 		return
 		// #endif
-
+		
+		// #ifdef H5
 		uni.showToast({
 			icon: 'none',
-			title: '支付宝支付暂未开放'
+			title: '只能在APP内选择支付宝支付'
 		})
+		// #endif
 		return
 	} else if (self.payment_name == 'Weixin') { //当选择微信支付时
 		// #ifdef H5  

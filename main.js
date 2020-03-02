@@ -19,7 +19,8 @@ Vue.prototype.$jump = function(url){
 	})
 }
 Vue.prototype.$api_img = function(){
-	return 'http://0318.t1.nethhw188.com' 
+	// return 'http://0318.t1.nethhw188.com' 
+	return 'http://www.wufu-app.com' 
 	// return 'http://192.168.0.195:8990' 
 }
 

@@ -359,6 +359,9 @@
 			<view @tap="$jump('../subuser/abrief')">公司简介</view>
 			<view @tap="contact">联系我们</view>
 		</view>
+		<view class="QRcode" @tap="$jump('/pages/subuser/brokerage/invite')">
+			<image src="../../static/image/index/code.png" mode=""></image>
+		</view>
 	</view>
 </template>
 

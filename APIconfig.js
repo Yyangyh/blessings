@@ -1,6 +1,7 @@
-// const api = ''
+// const api ='http://0318.t1.nethhw188.com'
+// const api ='http://www.wufu-app.com'
+const api = ''
 
-const api ='http://0318.t1.nethhw188.com'
 
 const api_root = {
 	common:{

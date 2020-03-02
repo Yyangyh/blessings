@@ -57,9 +57,9 @@
 					<view class="ex_three">
 						￥{{video_data.v_price}}
 					</view>
-					<view class="ex_four" @tap="play_integral()">
+					<!-- <view class="ex_four" @tap="play_integral()">
 						领取积分
-					</view>
+					</view> -->
 				</view>
 			</view>
 			
@@ -101,7 +101,7 @@
 				课程详情 
 			</view>
 			<view class="rich">
-				<rich-text :nodes="video_data.video_content"></rich-text>
+				<rich-text :nodes="video_content"></rich-text>
 			</view>
 		</view>
 		<view class="catalog_box" v-show="test_show == 1">
@@ -312,6 +312,7 @@
 				type:'',
 				data:'',
 				video_data:'',
+				video_content:'',
 				test_show:0,
 				catalog_data:'',
 				play_url:'',
@@ -529,6 +530,14 @@
 					self.data = res.data
 					res.data.video.v_url ? self.play_url = self.service.analysis_url(res.data.video.v_url) : self.indexs = 0
 					self.video_data = res.data.video
+					
+					
+					let richtext=  res.data.video.video_content
+					const regex = new RegExp('<img', 'gi');
+					richtext= richtext.replace(regex, `<img style="max-width: 100%;"`);
+					self.video_content = richtext;
+					
+					
 					self.collects = res.data.video.collect
 					self.poster = res.data.video.v_pic
 					if(self.video_data.evaluate)self.video_data.stars_num = new Array(Number(self.video_data.evaluate))

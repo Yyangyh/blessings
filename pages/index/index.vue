@@ -104,9 +104,11 @@
 						{{item.cl_name}}
 					</view>
 				</view>
-				
 			</view>
-		
+			
+			<view class="QRcode" @tap="$jump('/pages/subuser/brokerage/invite')">
+				<image src="../../static/image/index/code.png" mode=""></image>
+			</view>
 	</view>
 </template>
 
@@ -171,6 +173,9 @@
 <style lang="scss">
 	.content {
 		/* padding-top: 0; */
+	}
+	.swiper{
+		height:365rpx;
 	}
 	.swiper_box{
 		padding: 0 20rpx;
@@ -293,4 +298,5 @@
 			color: #999999;
 		}
 	}
+	
 </style>

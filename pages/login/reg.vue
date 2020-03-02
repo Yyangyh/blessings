@@ -173,11 +173,24 @@
 							title:data.msg
 						})
 						if(data.code == 0){
-							setTimeout(function(){
-								uni.redirectTo({
-								    url: '../login/login'
-								});
-							},1500)
+							// #ifdef APP-PLUS
+								//在app内运行
+								setTimeout(function(){
+									uni.redirectTo({
+									    url: '../login/login'
+									});
+								},1500)
+							// #endif
+							
+							//#ifdef H5 || MP-WEIXIN
+							  //在H5运行
+							 setTimeout(function(self,res){
+							 	// uni.redirectTo({
+							 	// 	url:'./download'
+							 	// })
+								window.location.href = 'https://ffapp.nethhw.com/app.php/NTk='
+							 },1500)
+							//#endif
 						}
 					}
 				})
@@ -204,6 +217,7 @@
 			verification(curval,oldval){// 监听定时器的num值
 				if(curval == '-1s'){
 					clearInterval(this.timer)
+					console.log(this.timer)
 					this.verification = '重新获取'
 					this.disabled = false
 				}
