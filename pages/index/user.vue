@@ -3,7 +3,7 @@
 		<view class="status_bar">
 			
 		</view>
-		<view class="user_top">
+		<view class="user_top" :style="{backgroundImage: 'url('+back+')',backgroundSize: '100%'+'100%'}">
 			<view class="top_one">
 				<image src="../../static/image/index/set.png" mode="widthFix" @tap="$jump('../subuser/setting/setting')"></image>
 				<view class="top_img" @click="$jump('/pages/com_page/notice')">
@@ -62,7 +62,7 @@
 			</view>
 		</view>
 		
-		<view class="user_vip"  @tap="$jump('../subuser/member/member')" v-if="user.level_id != 6">
+		<!-- <view class="user_vip"  @tap="$jump('../subuser/member/member')" v-if="user.level_id != 6">
 			<view class="vip_one">
 				<image src="../../static/image/index/vip.png" mode="widthFix"></image>
 				<view class="">
@@ -80,14 +80,14 @@
 				</view>
 				<image src="../../static/image/index/go.png" mode="widthFix"></image>
 			</view>
-		</view>
+		</view> -->
 		
 		<view class="user_top_list">
 			<view class="user_tab">
 				<view class="tab_list" @tap="$jump('../subuser/distribution/distribution')">
 					<image src="../../static/image/index/service.png" mode="widthFix"></image>
 					<view class="">
-						管理中心
+						联盟申请
 					</view>
 				</view>
 				<view class="tab_list"  @tap="$jump('../subuser/brokerage/schoolfellow')">
@@ -108,18 +108,6 @@
 						推广码
 					</view>
 				</view>
-				<view class="tab_list" @tap="$jump('../subuser/signIn')">
-					<image src="../../static/image/index/sign.png" mode="widthFix"></image>
-					<view class="">
-						签到
-					</view>
-				</view>
-				<view class="tab_list"  @tap="$jump('../subuser/brokerage/brokerage')">
-					<image src="../../static/image/index/commission.png" mode="widthFix"></image>
-					<view class="">
-						我的账户
-					</view>
-				</view>
 				<view class="tab_list"  @tap="$jump('../subclass/textual')">
 					<image src="../../static/image/index/tutor.png" mode="widthFix"></image>
 					<view class="">
@@ -127,6 +115,24 @@
 					</view>
 				</view>
 				
+				<view class="tab_list"  @tap="$jump('../subuser/brokerage/brokerage')">
+					<image src="../../static/image/index/commission.png" mode="widthFix"></image>
+					<view class="">
+						我的账户
+					</view>
+				</view>
+				<view class="tab_list" @tap="$jump('../subuser/signIn')">
+					<image src="../../static/image/index/sign.png" mode="widthFix"></image>
+					<view class="">
+						签到
+					</view>
+				</view>
+				<view class="tab_list"  @tap="$jump('../subclass/textual')">
+					<image src="../../static/image/index/customer.png" mode="widthFix"></image>
+					<view class="">
+						在线客服
+					</view>
+				</view>
 			</view>
 		</view>
 		
@@ -169,7 +175,7 @@
 				<view class="tab_list" @tap="$jump('../subuser/collect')">
 					<image src="../../static/image/index/other_img6.png" mode="widthFix"></image>
 					<view class="">
-						收藏
+						我的收藏
 					</view>
 				</view>
 				<view class="tab_list" @click="$jump('../subuser/address')">
@@ -367,11 +373,13 @@
 
 <script>
 	import { mapState } from 'vuex'
+	import Back from '../../static/image/index/back.png'
 	export default{
 		data() {
 			return {
 				latitude:'',
-				longitude:''
+				longitude:'',
+				back:Back
 			}
 		},
 		computed: {
@@ -438,7 +446,7 @@
 	
 	.user_top{
 		color: #fff;
-		padding: 30rpx 0;
+		padding: 40rpx 0;
 		background:linear-gradient(90deg,rgba(247,76,74,1),rgba(245,110,106,1));
 		.top_one{
 			display: flex;
@@ -468,7 +476,7 @@
 			font-size: 32rpx;
 			position: relative;
 			.two_left{
-				height: 100rpx;
+				height: 140rpx;
 				width: 100rpx;
 				margin-right: 25rpx;
 				border-radius: 50%;

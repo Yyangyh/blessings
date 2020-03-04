@@ -1,2 +1,2 @@
-setCssToHead([".",[1],"log_box.",[1],"data-v-3e3f3653{ padding: ",[0,20],"; }\n",],undefined,{path:"./pages/subuser/threeuser/logistics.wxss"})();
+setCssToHead([".",[1],"log_box.",[1],"data-v-936c5e58{ padding: ",[0,20],"; }\n",],undefined,{path:"./pages/subuser/threeuser/logistics.wxss"})();
 document.dispatchEvent(new CustomEvent("generateFuncReady", { detail: { generateFunc: $gwx('./pages/subuser/threeuser/logistics.wxml') } }));

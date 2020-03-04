@@ -1,5 +1,5 @@
 
-.ipt.data-v-126ac00b{
+.ipt.data-v-126c160c{
 	display: -webkit-box;
 	display: -webkit-flex;
 	display: flex;
@@ -7,23 +7,23 @@
 	border-bottom: 2rpx solid #EEEEEE;
 	padding: 20rpx 30rpx;
 }
-.ipt image.data-v-126ac00b{
+.ipt image.data-v-126c160c{
 	margin: 0 20rpx;
 	width: 35rpx;
 	height: 45rpx;
 }
-.ipt input.data-v-126ac00b{
+.ipt input.data-v-126c160c{
 	-webkit-box-flex: 2;
 	-webkit-flex-grow: 2;
 	        flex-grow: 2;
 	font-size: 30rpx;
 }
-.ipt text.data-v-126ac00b{
+.ipt text.data-v-126c160c{
 	font-size: 32rpx;
 	width: 160rpx;
 	text-align: center;
 }
-button.data-v-126ac00b{
+button.data-v-126c160c{
 	background: #1D74FF;
 	color: #FFFFFF;
 	height: 88rpx;

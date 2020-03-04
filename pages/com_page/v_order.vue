@@ -224,7 +224,6 @@
 				uni.showModal({
 				    title: '提示',
 				    content: '是否确定支付？',
-					
 				    success: function (res) {
 				        if (res.confirm) {
 				            // console.log('用户点击确定');
@@ -234,31 +233,48 @@
 							let data_list = Object.assign(data,that.require_data)
 							console.log(data_list)
 							// return
-							that.service.entire(that,'post',that.APIconfig.api_root.com_page.v_saveOrder,data_list,function(self,res){
-								console.log(res)
-								if(res.code == 0){
-									uni.showToast({
-										icon:'none',
-										title:res.msg
-									})
-									setTimeout(function(){
-										self.$jump('/pages/subuser/course_order?status=6')
-									},1000)
-									// self.service.entire(self,'post',self.APIconfig.api_root.com_page.order_pay,{
-									// 	user_id: that.$store.state.user.id,
-									// 	id:res.data.order.id
-									// },function(self,ref){
-									// 	console.log(ref)
-									// 	self.service.order(ref,self,'../subuser/s_order?status=-1','pages/subuser/s_order?status=-1')
-									// })
-								}else{
-									uni.showToast({
-										icon:'none',
-										title:res.msg
-									})
-								}
+							if(data.pay_type == 'Alipay'){
+								that.service.entire(that,'post',that.APIconfig.api_root.common.Alipay,{},function(self,res){
+									
+									uni.requestPayment({
+									    provider: 'alipay',
+									    orderInfo: res, //微信、支付宝订单数据
+									    success: function (ref) {
+											
+									    },
+									    fail: function (err) {
+									        
+									    }
+									});
+								})
 								
-							})
+							}else{
+								that.service.entire(that,'post',that.APIconfig.api_root.com_page.v_saveOrder,data_list,function(self,res){
+									console.log(res)
+									if(res.code == 0){
+										uni.showToast({
+											icon:'none',
+											title:res.msg
+										})
+										setTimeout(function(){
+											self.$jump('/pages/subuser/course_order?status=6')
+										},1000)
+										// self.service.entire(self,'post',self.APIconfig.api_root.com_page.order_pay,{
+										// 	user_id: that.$store.state.user.id,
+										// 	id:res.data.order.id
+										// },function(self,ref){
+										// 	console.log(ref)
+										// 	self.service.order(ref,self,'../subuser/s_order?status=-1','pages/subuser/s_order?status=-1')
+										// })
+									}else{
+										uni.showToast({
+											icon:'none',
+											title:res.msg
+										})
+									}
+								})
+							}
+							
 				        } else if (res.cancel) {
 				            // console.log('用户点击取消');
 							return
@@ -274,7 +290,8 @@
 				userid: this.$store.state.user.id,
 				video_id:e.id,
 				section_id:0,
-				coupon_id:0
+				coupon_id:0,
+				order_sn:e.order_sn
 			}
 			if(e.s_id) require_data.section_id = e.s_id
 			this.require_data = require_data

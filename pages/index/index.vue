@@ -53,7 +53,9 @@
 		
 			<view class="video_box" v-for="(item,index) in class_top" :key='item.id'>
 				<view class="v_box_top">
+					
 					<view class="box_left">
+						<text class="red"></text>
 						{{item.cl_name}}
 					</view>
 					<view class="box_right"  @tap="$jump('../com_page/video_class?id='+item.id+'&title='+item.cl_name+'&type='+item.type)">
@@ -64,24 +66,27 @@
 					<scroll-view  scroll-x="true" class="scroll-Y">
 						<view class="content_list" v-for="(items,indexs) in item.video_list" :key='items.id' @tap="$jump('../com_page/video_details?id='+items.id + '&type='+items.type)">
 							<view class="list_img_box">
-								<image :src="$api_img()+items.v_pic" mode="scaleToFill"></image>
+								<image :src="$api_img()+items.v_pic" mode="widthFix"></image>
 							</view>
 							<view class="list_box">
 								<view class="list_one">
-									{{items.long_title}}
+									<view class="">
+										{{items.long_title}}
+									</view>
+									<view class="">
+										{{items.is_free == 0? '￥'+items.v_price : '免费'}}
+									</view>
 								</view>
 								<view class="list_box2">
 									<view class="list_two">
 										<view class="">
-											共{{items.catalogue_count}}节
+											讲师：{{items.techer.name}}
 										</view>
-										<view class="">
-											{{items.is_free == 0? '￥'+items.v_price : '免费'}}
-										</view>
+										
 									</view>
 									<view class="list_three">
 										<view class="">
-											讲师：{{items.techer.name}}
+											共{{items.catalogue_count}}节
 										</view>
 										<view class="">
 											已有{{items.view}}人学习
@@ -101,7 +106,19 @@
 						<image :src="$api_img()+item.cl_image" mode="scaleToFill"></image>
 					</view>
 					<view class="two_text">
-						{{item.cl_name}}
+						<view class="">
+							{{item.cl_name}}
+						</view>
+						<view class="">
+							{{item.is_free == 0? '[付费]' : '[免费]'}}
+						</view>
+					</view>
+					<view class="two_mid">
+						<text style="color: #FE0000;">{{item.red_four}}</text>
+						<text style="color: #E9BB00;">{{item.yell_four}}</text>
+					</view>
+					<view class="two_btm">
+						已有{{item.showCount}}人学习
 					</view>
 				</view>
 			</view>
@@ -187,14 +204,20 @@
 	.index_tab{
 		text-align: center;
 		font-size: 24rpx;
-		padding: 0 20rpx;
-		margin-top: 30rpx;
+		padding: 20rpx 20rpx 0 20rpx;
+		margin-top: 10rpx;
 		min-height: 300rpx;
+		background: #E4E4E4;
 		display: flex;
 		flex-wrap: wrap;
+		justify-content: space-between;
 		.tab_list{
-			width: 25%;
+			width: 23%;
 			margin-bottom: 25rpx;
+			height: 123rpx;
+			padding: 20rpx 0;
+			background: #FFFFFF;
+			border-radius: 5rpx;
 		}
 		image{
 			height: 90rpx;
@@ -213,13 +236,13 @@
 				box-sizing: border-box;
 				white-space: initial;
 				vertical-align: top;
-				padding-bottom: 50rpx;
+				padding-bottom: 30rpx;
 				.list_img_box{
 					text-align: center;
 					margin-bottom: 16rpx;
 				}
 				.list_box{
-					height: 154rpx;
+					height: 120rpx;
 					padding: 0 10rpx;
 					box-sizing: border-box;
 					display: flex;
@@ -239,37 +262,47 @@
 		padding: 0 20rpx;
 		font-size: 28rpx;
 		margin: 20rpx 0;
+		.box_left{
+			display: flex;
+			align-items: center;
+			.red{
+				display: inline-block;
+				margin-right: 10rpx;
+				height: 28rpx;
+				width: 4rpx;
+				background: #FE0000;
+			}
+		}
 		.box_right{
 			font-size: 24rpx;
-			color: #EF7C38;
+			color: #E9BB00;
 		}
 	}
 	.list_one{
 		padding-right: 10rpx;
-		display: -webkit-box;
-		-webkit-box-orient: vertical;
-		-webkit-line-clamp: 2;
-		overflow: hidden;
+		display: flex;
+		justify-content: space-between;
+		view:nth-of-type(2){
+			font-size: 28rpx;
+			color: #D80000;
+		}
 	}
 	 .list_two{
 		color: #999999;
 		margin: 10rpx 0;
 		display: flex;
 		justify-content: space-between;
-		view:nth-of-type(2){
-			
-			font-size: 28rpx;
-			color: #D80000;
-		}
+		
 	}
 	
 	.vider_content_two{
 		display: flex;
 		flex-wrap: wrap;
 		font-size: 28rpx;
-		text-align: center;
-		padding: 40rpx 20rpx;
+		// text-align: center;
+		padding: 0rpx 20rpx 10rpx 20rpx;
 		.two_list{
+			margin-top: 40rpx;
 			.two_img{
 				width: 343rpx;
 				height: 270rpx;
@@ -281,7 +314,22 @@
 				}
 			}
 			.two_text{
-				margin:10rpx 0 30rpx 0;
+				margin:10rpx 0 ;
+				display: flex;
+				justify-content: space-between;
+				view{
+					&:nth-of-type(2){
+						color: #FE0000;
+					}
+				}
+			}
+			.two_mid{
+				font-size: 24rpx;
+				margin-bottom: 10rpx;
+			}
+			.two_btm{
+				font-size: 24rpx;
+				color: #666666;
 			}
 			&:nth-of-type(odd){
 				margin-right: 20rpx;

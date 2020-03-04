@@ -27,7 +27,7 @@
 				<image v-else-if="dataList.is_lighten == 1"  class="t_right" src="../../static/image/com_page/collect_HL.png" mode="widthFix"  @tap="collection" ></image>
 			</view>
 			<view class="rich">
-				<rich-text :nodes="dataList.content"></rich-text>
+				<rich-text :nodes="video_content"></rich-text>
 			</view>
 		</view>
 		<!-- 用户评论 -->
@@ -117,6 +117,12 @@
 			},function(self,res){
 				console.log(res)
 				self.dataList = res.data
+				
+				let richtext=  res.data.content
+				const regex = new RegExp('<img', 'gi');
+				richtext= richtext.replace(regex, `<img style="max-width: 100%;"`);
+				self.video_content = richtext;
+				
 				self.dataList.rating_num = new Array(Number(self.dataList.grade))
 				console.log(self.dataList)
 			})

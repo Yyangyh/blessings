@@ -2,7 +2,7 @@
   "navigationBarTitleText": "退款订单",
   "titleNView": false,
   "usingComponents": {
-    "returns": "/pages/common/returns",
-    "uni-load-more": "/components/uni-load-more/uni-load-more"
+    "uni-load-more": "/components/uni-load-more/uni-load-more",
+    "returns": "/pages/common/returns"
   }
 }

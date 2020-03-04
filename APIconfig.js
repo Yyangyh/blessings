@@ -1,4 +1,4 @@
-// const api ='http://0318.t1.nethhw188.com'
+// const api ='http://192.168.0.195:8990'
 // const api ='http://www.wufu-app.com'
 const api = ''
 
@@ -6,6 +6,7 @@ const api = ''
 const api_root = {
 	common:{
 		UnRead: api+'/api/message/UnRead',//消息未读总数
+		Alipay: api+'/api/Alipay/orderInfo',//支付宝支付
 	},
 	login:{
 		register: api+'/api/member/register',//注册
@@ -19,6 +20,7 @@ const api_root = {
 		index: api+'/api/VideoHome/index',//首页
 		good_index: api+'/api/good/index',//商城首页
 		felicity_index: api+'/api/felicity/index',//幸福课堂首页数据 
+		xfClassList: api+'/api/felicity/xfClassList',//幸福课堂分类数据	
 		u_token: api+'/api/common/refresh_token',//刷新用户信息 
 	},
 	subclass:{
@@ -46,6 +48,7 @@ const api_root = {
 		buy_index: api+'/api/buy/index',//确认商品信息信息
 		buy_add: api+'/api/buy/add',//提交订单
 		order_pay: api+'/api/order/pay',//订单支付
+		v_addOrder: api+'/api/videoOrder/addOrder',//视频订单生成
 		v_orderDetail: api+'/api/videohome/orderDetail',//视频订单详情
 		v_saveOrder: api+'/api/videoorder/saveOrder',//视频订单提交
 		v_playProcess: api+'/api/videohome/playProcess',//视频播放进度记录

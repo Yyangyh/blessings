@@ -17,7 +17,7 @@
 		 <!--  :autoplay='true' -->
 		<view class="">
 			<video id="myVideo" :src="play_url"
-			:autoplay='true' 
+				
 			:initial-time = 'initial_time'
 			@pause='pause' 
 			@timeupdate='timeupdate'
@@ -173,24 +173,35 @@
 				</view>
 			</view>
 			<view class="vider_content">
-				<view class="content_list" v-for="(item,index) in recommend_video" :key='item.id'  @tap="$jump('./video_details?id='+item.id)">
+				<view class="content_list" v-for="(item,index) in recommend_video" :key='item.id'  @tap="$jump('../com_page/video_details?id='+item.id)">
 					<view class="list_img_box">
-						<image :src="$api_img()+item.v_pic" mode="aspectFill"></image>
+						<image :src="$api_img()+item.v_pic" mode="scaleToFill"></image>
 					</view>
 					<view class="list_right">
 						<view class="list_one">
 							{{item.long_title}}
 						</view>
-						<view class="list_two">
-							{{item.view}}次{{item.type == 1? '观看':'收听'}}
-						</view>
-						<view class="list_three">
-							<view class="">
-								{{item.is_free == 0? '￥'+item.v_price : '免费'}}
-								
+						<view class="">
+							<view class="list_two">
+								<view class="">
+									共{{item.catalogue_count}}节
+								</view>
+								<view class="">
+									<view class="list_vip" v-if="item.free_type > 0">
+										{{item.free_dec}}免费
+									</view>
+									<view class="">
+										{{item.is_free == 0? '￥'+item.v_price : '免费'}}
+									</view>
+								</view>
 							</view>
-							<view class="" v-if="item.is_free_vip == 1">
-								VIP免费
+							<view class="list_three">
+								<view class="">
+									讲师：{{item.techer.name}}
+								</view>
+								<view class="">
+									已有{{item.view}}人学习
+								</view>
 							</view>
 						</view>
 					</view>
@@ -286,7 +297,7 @@
 						收藏
 					</view>
 				</view>
-				<view class="bot_buy" @tap="$jump('./v_order?id='+id)"  v-if="is_free">
+				<view class="bot_buy" @tap="order_sn()"  v-if="is_free">
 					<text v-if="is_free">{{video_data.v_price}}</text>立即购买
 				</view>
 				<view class="bot_buy" v-else>
@@ -421,7 +432,7 @@
 					    content: '是否购买该章节？',
 					    success: res =>{
 					        if (res.confirm) {
-								this.$jump('./v_order?id='+this.id+'&s_id='+id)
+								this.order_sn(id)
 							} 
 					    }
 					});
@@ -440,7 +451,7 @@
 						    content: '该章节为付费章节，是否购买该章节？',
 						    success: res =>{
 						        if (res.confirm) {
-									this.$jump('./v_order?id='+this.id+'&s_id='+this.catalog_data[index].id)
+									this.order_sn(this.catalog_data[index].id)
 								} 
 						    }
 						});
@@ -520,6 +531,24 @@
 						}
 					})
 				}
+			},
+			order_sn(section_id){ //点击购买时生成订单
+				let s_id = section_id? section_id: 0
+				this.service.entire(this,'post',this.APIconfig.api_root.com_page.v_addOrder,{
+					userid:this.$store.state.user.id,
+					video_id:this.id,
+					section_id:s_id
+				},function(self,res){
+					if(res.code == 0){
+						
+						self.$jump('./v_order?id='+self.id+'&s_id='+s_id+'&order_sn='+res.data.order_sn)
+					}else{
+						uni.showToast({
+							icon:'none',
+							title:res.msg
+						})
+					}
+				})
 			},
 			async async_n(){ //需同步请求
 				await this.service.asy_entire(this,'post',this.APIconfig.api_root.com_page.VideoDetail,{ //视频详情
@@ -1099,30 +1128,47 @@
 		}
 		.content_list{
 			display: flex;
-			margin-bottom: 30rpx;
-		}
-		.content_list .list_right{
-			display: flex;
-			flex-direction: column;
-			justify-content: space-between;
-			padding-bottom: 30rpx;
-			.list_two {
-			    color: #999999;
-			    margin: 5px 0;
-			}
-			.list_three{
+			margin: 30rpx 0;
+			.list_right{
 				display: flex;
+				flex-direction: column;
 				justify-content: space-between;
-				color: #D80000;
-				font-size: 28rpx;
-				view:nth-of-type(2){
-					background: #000000;
+				flex-grow: 2;
+				padding-bottom: 20rpx;
+				.list_one{
+					display: -webkit-box;
+					-webkit-box-orient: vertical;
+					-webkit-line-clamp: 2;
+					overflow: hidden;
+				}
+				.list_two{
+					color: #999999;
+					display: flex;
+					justify-content: space-between;
+					margin-bottom: 10rpx;
+					view:nth-of-type(2){
+						display: flex;
+						color: #D80000;
+						font-size: 28rpx;
+						.list_vip{
+							background: #000000;
+							font-size: 24rpx;
+							color: #FFFFFF;
+							padding: 5rpx 10rpx;
+							box-sizing: border-box;
+							border-radius: 20rpx;
+							margin-right: 10rpx;
+						}
+					}
+				}
+				.list_three{
+					display: flex;
+					justify-content: space-between;
+					color: #EF7C38;
 					font-size: 24rpx;
-					color: #FFFFFF;
-					height: 20rpx;
-					padding: 10rpx;
-					line-height: 20rpx;
-					border-radius: 20rpx;
+					view:nth-of-type(2){
+						color: #999999;
+					}
 				}
 			}
 		}

@@ -228,7 +228,8 @@ const returns = function() {
 
 const notice = function() { //通知信息
 	this.service.entire(this,'post',this.APIconfig.api_root.common.UnRead,{user_id:this.$store.state.user.id},function(self,res){
-		res.data.count == 0 ? self.$store.commit('notice_status',false) :  self.$store.commit('notice_status',true)
+		// res.data.count == 0 ? self.$store.commit('notice_status',false) :  self.$store.commit('notice_status',true)
+		self.$store.commit('notice_status',res.data.count)
 	})
 }
 

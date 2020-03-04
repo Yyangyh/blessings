@@ -9,7 +9,7 @@
 			</view>
 			<view class="top_img" @tap="$jump('/pages/com_page/notice')">
 				<image src="/static/image/index/news.png" mode="widthFix"></image>
-				<view v-if="notice"></view>
+				<view v-if="notice">{{notice}}</view>
 			</view>
 		</view>
 	</view>
@@ -66,11 +66,15 @@
 			position: relative;
 			view{
 				position: absolute;
-				right: 0;
-				top: 0;
-				height: 10rpx;
-				width: 10rpx;
+				right: -10rpx;
+				top: -4rpx;
+				height: 30rpx;
+				width: 30rpx;
+				text-align: center;
+				line-height: 30rpx;
 				border-radius: 50%;
+				color: #FFFFFF;
+				font-size: 24rpx;
 				background: #D80000;
 			}
 		}
