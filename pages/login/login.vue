@@ -42,7 +42,7 @@
 						<text class="line"></text>
 					</view>
 					
-					<view class="mode" v-if="show == 0">
+					<view class="mode">
 						<image src="../../static/image/login/wx.png" mode="widthFix" @click="wx()"></image>
 					</view>
 					
@@ -163,45 +163,59 @@
 				
 				
 				// #ifdef APP-PLUS
-				uni.showLoading({
-					title: '登录中',
-					mask: true
-				});
-				let times = setTimeout(function() {
-					uni.hideLoading()
-					uni.showToast({
-						icon: 'none',
-						title: '网络请求错误，请稍后再试'
-					})
-					return
-				}, 10000)
+				// uni.showLoading({
+				// 	title: '登录中',
+				// 	mask: true
+				// });
+				// let times = setTimeout(function() {
+				// 	uni.hideLoading()
+				// 	uni.showToast({
+				// 		icon: 'none',
+				// 		title: '网络请求错误，请稍后再试'
+				// 	})
+				// 	return
+				// }, 10000)
 					uni.login({
 					  provider: 'weixin',
 					  success: function (loginRes) {
 						uni.request({
-							url:that.service.api_root.common.WeatchAppLogin,
+							url:that.APIconfig.api_root.common.getWxLogin,
 							method:'get',
-							header:{'X-Requested-With':'xmlhttprequest'},
+							// header:{'X-Requested-With':'xmlhttprequest'},
 							data:{
 								access_token:loginRes.authResult.access_token,
 								openid:loginRes.authResult.openid,
 							},
 							success(res) {
-								uni.hideLoading()
-								clearTimeout(times)
+								
+								// uni.hideLoading()
+								// clearTimeout(times)
+								
+								setTimeout(function(){
+									uni.showToast({
+										icon:'none',
+										title:'接口返回：'+JSON.stringify(res)
+									})
+								},5000)
 								if(res.data.code ==0){
-									uni.setStorageSync('token',res.data.data.token)
-									uni.setStorageSync('uid',res.data.data.id)
-									uni.setStorageSync('user',res.data.data)
-									uni.setStorageSync('mobile',res.data.data.mobile)
-									uni.setStorageSync('wxlogin','wxlogin')
-									uni.switchTab({
-										url: '../index/index'
-									});
+									// uni.setStorageSync('token',res.data.data.token)
+									// uni.setStorageSync('uid',res.data.data.id)
+									// uni.setStorageSync('user',res.data.data)
+									// uni.setStorageSync('mobile',res.data.data.mobile)
+									// uni.setStorageSync('wxlogin','wxlogin')
+									// uni.switchTab({
+									// 	url: '../index/index'
+									// });
 								}
 							}
 						})
 					    
+					  },
+					  complete:function(com) {
+					  	uni.showToast({
+					  		icon:'none',
+							title:JSON.stringify(com)
+					  	})
 					  }
 					});
 				// #endif

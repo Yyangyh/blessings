@@ -233,32 +233,60 @@
 							let data_list = Object.assign(data,that.require_data)
 							console.log(data_list)
 							// return
-							if(data.pay_type == 'Alipay'){
-								that.service.entire(that,'post',that.APIconfig.api_root.common.Alipay,{},function(self,res){
-									
-									uni.requestPayment({
-									    provider: 'alipay',
-									    orderInfo: res, //微信、支付宝订单数据
-									    success: function (ref) {
-											
-									    },
-									    fail: function (err) {
-									        
-									    }
-									});
-								})
-								
-							}else{
+							
 								that.service.entire(that,'post',that.APIconfig.api_root.com_page.v_saveOrder,data_list,function(self,res){
-									console.log(res)
 									if(res.code == 0){
-										uni.showToast({
-											icon:'none',
-											title:res.msg
-										})
-										setTimeout(function(){
-											self.$jump('/pages/subuser/course_order?status=6')
-										},1000)
+										if(data.pay_type == 'Alipay'){
+											console.log(res.data)
+											// uni.showToast({
+											// 	icon:'none',
+											// 	title:res.data
+											// })
+											uni.requestPayment({
+											    provider: 'alipay',
+											    orderInfo: res.data, //微信、支付宝订单数据
+											    success: function (ref) {
+													
+											    },
+											    fail: function (err) {
+											        
+											    },
+												complete:function(com) {
+													uni.showToast({
+														icon:'none',
+														title:JSON.stringify(err)
+													})
+												}
+											});
+										}else if(data.pay_type == 'Weixin'){
+											console.log(res.data)
+											uni.requestPayment({
+											    provider: 'wxpay',
+											    orderInfo: res.data, //微信、支付宝订单数据
+											    success: function (ref) {
+													
+											    },
+											    fail: function (err) {
+											        
+											    },
+												complete:function(com) {
+													uni.showToast({
+														icon:'none',
+														title:JSON.stringify(com)
+													})
+												}
+											});
+										}else{
+											uni.showToast({
+												icon:'none',
+												title:res.msg
+											})
+											setTimeout(function(){
+												self.$jump('/pages/subuser/course_order?status=6')
+											},1000)
+										}
+										
+										
 										// self.service.entire(self,'post',self.APIconfig.api_root.com_page.order_pay,{
 										// 	user_id: that.$store.state.user.id,
 										// 	id:res.data.order.id
@@ -273,7 +301,6 @@
 										})
 									}
 								})
-							}
 							
 				        } else if (res.cancel) {
 				            // console.log('用户点击取消');

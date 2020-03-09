@@ -261,6 +261,7 @@ res
 		height: 105rpx;
 		padding: 0 20rpx;
 		.top_search{
+			border: 1rpx solid #FE0000;
 			flex-grow: 2;
 			height: 65rpx;
 			border-radius: 65rpx;

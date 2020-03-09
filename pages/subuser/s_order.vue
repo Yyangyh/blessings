@@ -131,8 +131,11 @@
 		},
 		methods: {
 			returns() {
-				uni.switchTab({
-					url: '/pages/index/user'
+				// uni.switchTab({
+				// 	url: '/pages/index/user'
+				// });
+				uni.redirectTo({
+				    url: './myorder'
 				});
 			},
 			jump(url) {

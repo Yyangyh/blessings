@@ -6,9 +6,12 @@
 		<view class="user_top" :style="{backgroundImage: 'url('+back+')',backgroundSize: '100%'+'100%'}">
 			<view class="top_one">
 				<image src="../../static/image/index/set.png" mode="widthFix" @tap="$jump('../subuser/setting/setting')"></image>
-				<view class="top_img" @click="$jump('/pages/com_page/notice')">
+				<!-- <view class="top_img" @click="$jump('/pages/com_page/notice')">
 					<image src="../../static/image/index/user_news.png" mode="widthFix"></image>
 					<view v-if="$store.state.notice"></view>
+				</view> -->
+				<view class="top_img" @tap="$jump('../subuser/setting/setting')">
+					设置
 				</view>
 			</view>
 			<view class="top_two">
@@ -33,7 +36,7 @@
 						<image src="../../static/image/index/go1.png" mode="widthFix"></image>
 					</view>
 				</view> -->
-				<view class="code">
+				<view class="code" v-if="user.invite_code">
 					<view class="">
 						邀请码：
 					</view>
@@ -108,7 +111,9 @@
 						推广码
 					</view>
 				</view>
-				<view class="tab_list"  @tap="$jump('../subclass/textual')">
+				
+				<!-- <view class="tab_list"  @tap="$jump('../subclass/textual')"> -->
+				<view class="tab_list"  @tap="temporary">
 					<image src="../../static/image/index/tutor.png" mode="widthFix"></image>
 					<view class="">
 						导师考证
@@ -163,7 +168,7 @@
 				<view class="tab_list"  @tap="$jump('../subuser/conversion/conversion')">
 					<image src="../../static/image/index/other_img4.png" mode="widthFix"></image>
 					<view class="">
-						优惠券
+						领取优惠
 					</view>
 				</view>
 				<!-- <view class="tab_list" @click="jump('../subuser/realname')">
@@ -197,170 +202,17 @@
 						会员中心
 					</view>
 				</view>
+				<view class="tab_list" @tap="$jump('../subuser/myorder')">
+					<image src="../../static/image/index/order.png" mode="widthFix"></image>
+					<view class="">
+						我的订单
+					</view>
+				</view>
 			</view>
 		</view>
 		
 		
-		<view class="user_middle">
-			<view class="middle_top">
-				<view class="">
-					我的订单
-				</view>
-			<!-- 	<view>
-					<text>查看更多订单</text>
-					<image src="../../static/image/go.png" mode="widthFix"></image>
-				</view> -->
-			</view>
-			<view class="middle_tab">
-				<view class="tab_top_box">
-					<view class="tab_top">
-						课程订单
-					</view>
-					<!-- <view class="more" @click="jump('../subuser/scen_order?status=-2')">
-						查看更多
-					</view> -->
-				</view>
-				
-				<view class="tab_box">
-					<view class="tab_list" @click="$jump('../subuser/course_order?status=6')">
-						<image src="../../static/image/index/video1.png" mode="widthFix"></image>
-						<view class="">
-							全部
-						</view>
-					</view>
-					<view class="tab_list" @click="$jump('../subuser/course_order?status=0')">
-						<image src="../../static/image/index/video2.png" mode="widthFix" ></image>
-						<view class="">
-							待付款
-						</view>
-					</view>
-					<view class="tab_list" @click="$jump('../subuser/course_order?status=1')">
-						<image src="../../static/image/index/video3.png" mode="widthFix"></image>
-						<view class="">
-							已完成
-						</view>
-					</view>
-					
-					<!-- <view class="tab_list" @click="$jump('../subuser/course_order?status=2')">
-						<image src="../../static/image/index/video4.png" mode="widthFix"></image>
-						<view class="">
-							退款
-						</view>
-					</view> -->
-				</view>
-				<view class="tab_top_box">
-					<view class="tab_top">
-						商城订单
-					</view>
-					<view class="more"  @click="$jump('../subuser/s_order?status=-1')">
-						查看更多
-					</view>
-				</view>
-				<view class="tab_box">
-					<view class="tab_list"  @click="$jump('../subuser/s_order?status=1')">
-						<image src="../../static/image/index/shopp_img1.png" mode="widthFix"></image>
-						<view class="">
-							待付款
-						</view>
-						<!-- <block v-if="order_status[1]">
-							<text v-if="order_status[1].count != 0">{{order_status[1].count}}</text>
-						</block> -->
-					</view>
-					<view class="tab_list" @click="$jump('../subuser/s_order?status=2')">
-						<image src="../../static/image/index/shopp_img2.png" mode="widthFix"></image>
-						<view class="">
-							待发货
-						</view>
-						<!-- <block v-if="order_status[2]">
-							<text v-if="order_status[2].count != 0">{{order_status[2].count}}</text>
-						</block> -->
-					</view>
-					<view class="tab_list" @click="$jump('../subuser/s_order?status=3')">
-						<image src="../../static/image/index/shopp_img3.png" mode="widthFix"></image>
-						<view class="">
-							待收货
-						</view>
-						<!-- <block v-if="order_status[3]">
-							<text v-if="order_status[3].count != 0">{{order_status[3].count}}</text>
-						</block> -->
-					</view>
-					<view class="tab_list" @click="$jump('../subuser/s_order?status=4')">
-						<image src="../../static/image/index/shopp_img4.png" mode="widthFix"></image>
-						<view class="">
-							已完成
-						</view>
-						<!-- <block v-if="order_status[4]">
-							<text v-if="order_status[4].count != 0">{{order_status[4].count}}</text>
-						</block> -->
-					</view>
-					<view class="tab_list" @click="$jump('../subuser/s_refund')">
-						<image src="../../static/image/index/shopp_img5.png" mode="widthFix"></image>
-						<view class="">
-							退款
-						</view>
-					</view>
-					
-				</view>
-				
-				
-				
-				<view class="tab_top_box">
-					<view class="tab_top">
-						拼团订单
-					</view>
-					<view class="more"  @click="$jump('../subuser/assemble_order?status=0')">
-						查看更多
-					</view>
-				</view>
-				<view class="tab_box">
-					<view class="tab_list"  @click="$jump('../subuser/assemble_order?status=1')">
-						<image src="../../static/image/index/group_img1.png" mode="widthFix"></image>
-						<view class="">
-							待付款
-						</view>
-						<!-- <block v-if="order_status[1]">
-							<text v-if="order_status[1].count != 0">{{order_status[1].count}}</text>
-						</block> -->
-					</view>
-					<view class="tab_list" @click="$jump('../subuser/assemble_order?status=2')">
-						<image src="../../static/image/index/group_img2.png" mode="widthFix"></image>
-						<view class="">
-							待发货
-						</view>
-						<!-- <block v-if="order_status[2]">
-							<text v-if="order_status[2].count != 0">{{order_status[2].count}}</text>
-						</block> -->
-					</view>
-					<view class="tab_list" @click="$jump('../subuser/assemble_order?status=3')">
-						<image src="../../static/image/index/group_img3.png" mode="widthFix"></image>
-						<view class="">
-							待收货
-						</view>
-						<!-- <block v-if="order_status[3]">
-							<text v-if="order_status[3].count != 0">{{order_status[3].count}}</text>
-						</block> -->
-					</view>
-					<view class="tab_list" @click="$jump('../subuser/assemble_order?status=4')">
-						<image src="../../static/image/index/group_img4.png" mode="widthFix"></image>
-						<view class="">
-							已完成
-						</view>
-						<!-- <block v-if="order_status[4]">
-							<text v-if="order_status[4].count != 0">{{order_status[4].count}}</text>
-						</block> -->
-					</view>
-					<view class="tab_list" @click="$jump('../subuser/assemble_refund')">
-						<image src="../../static/image/index/group_img5.png" mode="widthFix"></image>
-						<view class="">
-							退款
-						</view>
-					</view>
-					
-				</view>
-				
-			</view>
-			
-		</view>
+		
 		<view class="c_buttom">
 			<view @tap="$jump('../subuser/abrief')">公司简介</view>
 			<view @tap="contact">联系我们</view>
@@ -403,6 +255,12 @@
 				});
 				    
 				
+			},
+			temporary(){
+				uni.showToast({
+					icon:'none',
+					title:'暂未开放！'
+				})
 			}
 			
 		},
@@ -451,22 +309,15 @@
 		.top_one{
 			display: flex;
 			justify-content: flex-end;
+			align-items: center;
 			image{
 				height: 50rpx;
 				width: 50rpx;
 				margin-right: 23rpx;
 			}
 			.top_img{
-				position: relative;
-				view{
-					position: absolute;
-					right: 20rpx;
-					top: 0;
-					height: 10rpx;
-					width: 10rpx;
-					border-radius: 50%;
-					background: #fff;
-				}
+				padding-right: 30rpx;
+				font-size: 28rpx;
 			}
 		}
 		.top_two{
@@ -604,63 +455,7 @@
 			height: 70rpx;
 		}
 	}
-	.user_middle{
-		background: #fff;
-		margin: 20rpx;
-		border-radius: 10rpx;
-		padding:0rpx 30rpx 28rpx 30rpx;
-		border-bottom: 1rpx solid #F2F2F2;
-		.middle_top{
-			display: flex;
-			justify-content: space-between;
-			font-size: 28rpx;
-			color: #333;
-			font-weight: bold;
-			border-bottom: 2rpx solid #F2F2F2;
-			padding: 34rpx 0;
-			view:last-child{
-				display: flex;
-				align-items: center;
-			}
-			text{
-				font-size: 22rpx;
-				color: #333;
-				margin-right: 24rpx;
-			}
-			image{
-				width: 28rpx;
-				height: 28rpx;
-			}
-		}
-		.middle_tab{
-			padding-top: 34rpx;
-			.tab_top_box{
-				display: flex;
-				justify-content: space-between;
-				.more{
-					font-size: 24rpx;
-					color: #CCCCCC;
-				}
-				&:nth-of-type(5){
-					padding-top: 50rpx; 
-				}
-			}
-			.tab_top{
-				font-size: 24rpx;
-				font-weight: bold;
-				margin-bottom: 26rpx;
-			}
-			.tab_box:nth-of-type(2){
-				padding-bottom: 26rpx;
-				margin-bottom: 34rpx;
-				border-bottom: 2rpx solid #F2F2F2;
-				.tab_list{
-					width: 33.3%;
-					position: relative;
-				}
-			}
-		}
-	}
+	
 	.tab_box{
 		display: flex;
 		/* justify-content: space-between; */
@@ -716,8 +511,9 @@
 	}
 	.c_buttom{
 		display: flex;
-		font-size: 24rpx;
+		font-size: 28rpx;
 		justify-content: space-around;
 		padding-bottom: 20rpx;
+		margin-top: 40rpx;
 	}
 </style>

@@ -17,7 +17,7 @@
 		 <!--  :autoplay='true' -->
 		<view class="">
 			<video id="myVideo" :src="play_url"
-				
+			:autoplay='true'
 			:initial-time = 'initial_time'
 			@pause='pause' 
 			@timeupdate='timeupdate'
@@ -1007,7 +1007,7 @@
 		font-size: 32rpx;
 		padding: 20rpx;
 		box-sizing: border-box;
-		transform: translate(-50%,-10%);
+		transform: translate(-50%,-50%);
 		.give_top{
 			text-align: center;
 			font-size: 36rpx;

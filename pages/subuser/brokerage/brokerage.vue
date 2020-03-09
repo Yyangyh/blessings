@@ -49,9 +49,6 @@
 						<view class="toutcome">{{data.order_count}}笔</view>
 					</view>
 				</view>
-			</view>
-			
-			<view class="box">
 				<view class="box-list" style="border: 1rpx solid #EEEEEE;"  @tap="$jump('./record')">
 					<image src="../../../static/image/brokerage/tixian.png" mode="widthFix"></image>
 					<view>
@@ -59,14 +56,18 @@
 						<view class="toutcome">{{data.cash_count}}笔</view>
 					</view>
 				</view>
-				<!-- <view class="box-list" style="border: 1rpx solid #EEEEEE;"  @tap="$jump('./schoolfellow')">
+			</view>
+			
+			<!-- <view class="box">
+				
+				<view class="box-list" style="border: 1rpx solid #EEEEEE;"  @tap="$jump('./schoolfellow')">
 					<image src="../../../static/image/brokerage/tongxue.png" mode="widthFix"></image>
 					<view>
 						<view class="yj">我的同学</view>
 						<view class="toutcome">{{data.lower_count}}人</view>
 					</view>
-				</view> -->
-			</view>
+				</view>
+			</view> -->
 		</view>
 	</view>
 </template>
@@ -190,7 +191,7 @@
 			.box{
 				display: flex;
 				.box-list{
-					width: 50%;
+					width: 33.3%;
 					height: 161rpx;
 					display: flex;
 					align-items: center;

@@ -105,8 +105,8 @@
 		},
 		methods:{
 			returns(){
-				uni.switchTab({
-				    url: '/pages/index/user'
+				uni.redirectTo({
+				    url: './myorder'
 				});
 			},
 			chiose(status){

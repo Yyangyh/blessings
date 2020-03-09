@@ -27,6 +27,7 @@
     "pages/subuser/assemble_order",
     "pages/subuser/s_order",
     "pages/subuser/address",
+    "pages/subuser/myorder",
     "pages/subuser/s_refund",
     "pages/subuser/course_order",
     "pages/subuser/member/open_order",

@@ -247,6 +247,15 @@
 			}
 		},
 		{
+			"path": "pages/subuser/myorder",
+			"style": {
+				"navigationBarTitleText": "我的订单",
+				"app-plus":{
+					"titleNView":false
+				}
+			}
+		},
+		{
 			"path": "pages/subuser/s_refund",
 			"style": {
 				"navigationBarTitleText": "退款",

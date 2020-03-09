@@ -6,7 +6,7 @@ const api = ''
 const api_root = {
 	common:{
 		UnRead: api+'/api/message/UnRead',//消息未读总数
-		Alipay: api+'/api/Alipay/orderInfo',//支付宝支付
+		getWxLogin: api+'/api/member/getWxLogin',//微信登录
 	},
 	login:{
 		register: api+'/api/member/register',//注册
@@ -50,7 +50,7 @@ const api_root = {
 		order_pay: api+'/api/order/pay',//订单支付
 		v_addOrder: api+'/api/videoOrder/addOrder',//视频订单生成
 		v_orderDetail: api+'/api/videohome/orderDetail',//视频订单详情
-		v_saveOrder: api+'/api/videoorder/saveOrder',//视频订单提交
+		v_saveOrder: api+'/api/videoorder/newsaveOrder',//视频订单提交
 		v_playProcess: api+'/api/videohome/playProcess',//视频播放进度记录
 		v_techerDetail:api+'/api/videohome/techerDetail',//作者详情
 

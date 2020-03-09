@@ -22,11 +22,11 @@
 				</view>
 				<image class="all_img" :class="show===false ? 'tran_none' : show===true ? 'tran_show' : ''" src="../../static/image/index/down.png" mode="widthFix"></image>
 			</view>
-			<view  @tap="condition(1)" :class="{'red':keyword_show === 1}">
+			<!-- <view  @tap="condition(1)" :class="{'red':keyword_show === 1}">
 				{{req_data.type == 1?'免费视频':'免费音频'}}
-			</view>
+			</view> -->
 			<view  @tap="condition(2)" :class="{'red':keyword_show === 2}">
-				{{req_data.type == 1?'观看多':'收听多'}}
+				{{req_data.type == 1?'观看更多':'收听更多'}}
 			</view>
 		</view>
 		

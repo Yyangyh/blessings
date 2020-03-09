@@ -109,10 +109,26 @@ const order = function(ref, self, url, wxUrl) { //支付调用
 	if (self.payment_name == 'Alipay') {
 		//当选择支付宝支付时
 		// #ifndef  APP-PLUS
-		uni.showToast({
-			icon: 'none',
-			title: '支付宝支付暂未开放'
-		})
+			uni.showToast({
+				icon:'none',
+				title:JSON.stringify(ref)
+			})
+			uni.requestPayment({
+			    provider: 'alipay',
+			    orderInfo: ref, //微信、支付宝订单数据
+			    success: function (ref) {
+					
+			    },
+			    fail: function (err) {
+			        
+			    },
+				complete:function(com) {
+					uni.showToast({
+						icon:'none',
+						title:JSON.stringify(err)
+					})
+				}
+			});
 		return
 		// #endif
 		
@@ -183,7 +199,7 @@ const order = function(ref, self, url, wxUrl) { //支付调用
 		// #ifdef  APP-PLUS
 		uni.requestPayment({
 			provider: 'wxpay',
-			orderInfo: ref.data.data, //微信、支付宝订单数据
+			orderInfo: ref.data, //微信、支付宝订单数据
 			success: function(ref) {
 				if(url.split('/index/').length == 2){
 					uni.switchTab({

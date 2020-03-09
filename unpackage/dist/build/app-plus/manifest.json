@@ -23,6 +23,7 @@
       "coordType": "gcj02"
     },
     "Payment": {},
+    "OAuth": {},
     "UniNView": {
       "description": "UniNView原生渲染"
     }
@@ -128,9 +129,20 @@
           }
         },
         "payment": {
-          "alipay": {}
+          "alipay": {},
+          "weixin": {
+            "appid": "wxfa6d980de363757f",
+            "UniversalLinks": ""
+          }
         },
         "ad": null,
+        "oauth": {
+          "weixin": {
+            "appid": "wxfa6d980de363757f",
+            "appsecret": "a9eed98a6d4477c6c7886208915ea071",
+            "UniversalLinks": ""
+          }
+        },
         "audio": {
           "mp3": {
             "description": "Android平台录音支持MP3格式文件"

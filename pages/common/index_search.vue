@@ -61,6 +61,8 @@
 			background: #EEEEEE;
 			font-size: 24rpx;
 			color: #999;
+			box-sizing: border-box;
+			border: 1rpx solid #FE0000;
 		}
 		.top_img{
 			position: relative;
