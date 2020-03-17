@@ -29,16 +29,16 @@
 		</view>
 		
 		
-		<!-- <view class="treaty" v-if="open_protocol == 1">
+		<view class="treaty" >
 			<label class="radio"><checkbox style="transform: scale(0.8);" :checked="checked" class="checkbox-3" @click="checked = !checked"></checkbox></label>
 			我已阅读并了解<text  @click="treaty_show = true">【注册须知】</text>
-		</view> -->
+		</view>
 		
-		<!-- <view class="Mask" v-show="treaty_show == true" @click="treaty_show = false">
+		<view class="Mask" v-show="treaty_show == true" @click="treaty_show = false">
 			
-		</view> -->
+		</view>
 		
-		<!-- <view class="treaty_box"  v-show="treaty_show == true">
+		<view class="treaty_box"  v-show="treaty_show == true">
 			<view class="box_top">
 				注册须知
 			</view>
@@ -46,7 +46,7 @@
 				<rich-text :nodes='treaty'></rich-text>
 			</scroll-view>
 			<button  @click="treaty_show = false">我已阅读</button>
-		</view> -->
+		</view>
 		
 		<button class="red_button" @click="reg()">注册</button>
 		<view class="test" @click="jump('../login/login')">
@@ -69,7 +69,10 @@
 				username:'',
 				parent_id:'',
 				code:'',
-				parent_dis:false
+				parent_dis:false,
+				treaty:'',
+				treaty_show:false,
+				checked:false
 			}
 		},
 		methods:{
@@ -126,7 +129,13 @@
 			},
 			reg(){ //注册
 				let that = this
-				
+				if(!that.checked){
+					uni.showToast({
+						icon:'none',
+						title:'请完整阅读注册须知并同意！'
+					})
+					return;
+				}
 				if(!that.pwd && !that.parent_id && that.verify && that.username){
 					uni.showToast({
 						icon:'none',
@@ -205,13 +214,14 @@
 		},
 		onShow() {
 			let that = this
-			// uni.request({  //用户须知
-			// 	url:this.service.api_root.reg.RegisterAgreement,
-			// 	success(res) {
-			// 		that.treaty = res.data.data.content.value
-			// 		that.open_protocol = res.data.data.status
-			// 	}
-			// })
+			uni.request({  //用户须知
+				url:this.APIconfig.api_root.login.getProtocol,
+				success(res) {
+					console.log(res)
+					that.treaty = res.data.data.content
+					// that.open_protocol = res.data.data.status
+				}
+			})
 		},
 		watch:{
 			verification(curval,oldval){// 监听定时器的num值

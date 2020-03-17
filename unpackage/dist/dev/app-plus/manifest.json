@@ -22,6 +22,8 @@
     "Maps": {
       "coordType": "gcj02"
     },
+    "Payment": {},
+    "OAuth": {},
     "UniNView": {
       "description": "UniNView原生渲染"
     }
@@ -126,6 +128,21 @@
             "appkey_android": "f31f98e3b86ca7a7941469b4db4fd137"
           }
         },
+        "payment": {
+          "alipay": {},
+          "weixin": {
+            "appid": "wxfa6d980de363757f",
+            "UniversalLinks": ""
+          }
+        },
+        "ad": null,
+        "oauth": {
+          "weixin": {
+            "appid": "wxfa6d980de363757f",
+            "appsecret": "a9eed98a6d4477c6c7886208915ea071",
+            "UniversalLinks": ""
+          }
+        },
         "audio": {
           "mp3": {
             "description": "Android平台录音支持MP3格式文件"
@@ -141,7 +158,7 @@
       }
     },
     "uni-app": {
-      "compilerVersion": "2.5.1",
+      "compilerVersion": "2.6.1",
       "control": "v8",
       "nvueCompiler": "uni-app",
       "renderer": "auto",
@@ -182,5 +199,6 @@
       ],
       "height": "50px"
     }
-  }
+  },
+  "usingComponents": {}
 }

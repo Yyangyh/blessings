@@ -4,17 +4,17 @@
 			<!-- 这里是状态栏 -->
 		</view>
 		<returns :titles='title'></returns>
-		<image class="sign1" src='../../static/image/subuser/sign1.png' mode="widthFix"></image>
+		<image class="sign1" src='../../static/image/subuser/back.png' mode="widthFix"></image>
 		<view class="integral">
 			<view>{{data.sign_count}}</view>
 			<view>签到积分</view>
 		</view>
 		<view class="singnBox">
-			<view class="state">已签到</view>
-			<image class="sign2" src="../../static/image/subuser/sign2.png" mode="widthFix"></image>
-			<view class="times">{{Sign_num}}</text>
-				<text>天</text>
-			</view>
+			<view class="state">已签到<text>{{Sign_num}}</text>天</view>
+			<!-- <image class="sign2" src="../../static/image/subuser/sign2.png" mode="widthFix"></image> -->
+			<!-- <view class="times"></text>
+				<text></text>
+			</view> -->
 			<view class="time">
 				<block v-for="(item,index) in data_list" :key='index'>
 					<view class="timebox">
@@ -32,6 +32,7 @@
 			<button type="default" v-else-if="if_sign === true">已签到</button>
 			<view class="look" @tap="$jump('./integral/know')">查看积分规则</view>
 		</view>
+		<image class="back_btm" src="../../static/image/subuser/back_btm.png" mode="widthFix"></image>
 		<!-- 跳转 -->
 		<view class="mask_black" v-if="reveal" @tap="reveal = !reveal">
 			
@@ -39,12 +40,17 @@
 		<view class="bk" v-if="reveal">
 			<image src='../../static/image/subuser/qiandao1.png' mode="widthFix"></image>
 			<view class="bk_text">
-				<view>签到成功</view>
-				<view class="mSg">
-					{{msg}}
+				<view class="msg1">签到成功</view>
+				<view class="msg2">
+					{{msg}}积分
 				</view>
+				<view class="msg3">
+					积分已存入
+				</view>
+				<button @tap="reveal = !reveal">我知道了</button>
 			</view>
 		</view>
+		
 	</view>
 </template>
 
@@ -130,10 +136,10 @@
 </script>
 
 <style lang="scss">
+	page{
+		background:#E6E6E6;
+	}
 	.content{
-		width: 100%;
-		height: 1229rpx;
-		background:linear-gradient(180deg,rgba(255,93,68,1),rgba(255,167,116,1));
 		position: relative;
 		.mSg{
 			font-size: 28rpx;
@@ -141,16 +147,17 @@
 		}
 		.sign1{
 			position: absolute;
-			width: 578rpx;
-			height: 321rpx;
-			left: 79rpx;
-			top:150rpx;
+			width: 100%;
+			height: 100%;
+			top: 105rpx;
+			left: 50%;
+			transform: translateX(-50%);
 			z-index: 1;
 		}
 		.integral{
 			color: #FFFFFF;
 			text-align: center;
-			margin-top: 110rpx;
+			margin-top: 60rpx;
 			z-index: 199;
 			position: relative;
 			view:first-child{
@@ -162,19 +169,27 @@
 			}
 		}
 		.singnBox{
-			width:690rpx;
-			height:800rpx;
+			// width:690rpx;
+			height:532rpx;
 			background:rgba(255,255,255,1);
 			border-radius:10rpx;
-			margin: 130rpx auto 0;
+			// margin: 130rpx auto 0;
 			z-index: 199;
 			position: relative;
+			top: 50rpx;
+			margin: 0 20rpx;
+			// left: 50%;
+			// transform: translateX(-50%);
 			padding-top: 30rpx;
 			.state{
-				font-size: 28rpx;
-				color: #777777;
+				font-size: 40rpx;
+				color: #010101;
 				text-align: center;
+				margin-top: 60rpx;
 				padding: 30rpx auto;
+				text{
+					color: #FE0000;
+				}
 			}
 			.sign2{
 				width: 296rpx;
@@ -198,7 +213,7 @@
 			}
 			.time{
 				display: flex;
-				margin: 300rpx 0 0 30rpx;
+				margin: 60rpx 0 0 30rpx;
 				// align-items: center;
 				.timebox{
 					display: flex;
@@ -224,15 +239,15 @@
 			button{
 				width:487rpx;
 				height:80rpx;
-				background:linear-gradient(180deg,rgba(255,158,103,1),rgba(255,78,51,1));
+				background:#FE0000;
 				border-radius:40rpx;
-				color: #FFFFFF;
+				color: #FFFF6F;
 				font-size: 28rpx;
-				margin: 80rpx auto;
+				margin: 50rpx auto;
 			}
 			.look{
-				font-size: 24rpx;
-				color: #A5A5A5;
+				font-size: 28rpx;
+				color: #FE0000;
 				text-align: center;
 			}
 		}
@@ -241,10 +256,10 @@
 			position: fixed;
 			left: 50%;
 			transform: translateX(-50%);
-			top:500rpx;
+			top:300rpx;
 			z-index: 900;
 			image{
-				width: 500rpx;
+				width: 650rpx;
 				height: 304rpx;
 				display: block;
 				margin: 0 auto;
@@ -252,26 +267,44 @@
 			}
 			.bk_text{
 				position: absolute;
+				width: 100%;
 				text-align: center;
-				margin: -170rpx 0 0 31%;
-				view:first-child{
-					font-size: 32rpx;
-					color:#FFFFFF;
+				top: 240rpx;
+				
+				left: 50%;
+				transform: translateX(-50%);
+				.msg1{
+					font-size: 40rpx;
+					color:#010101;
 				}
-				view:last-child{
-					margin-top: 40rpx;
-					display: flex;
-					align-items: center;
-					.text1{
-						font-size: 24rpx;
-						color:#333333;
-					}
-					.text2{
-						font-size: 40rpx;
-						color:#FE8D08;
-					}
+				.msg2{
+					color: #FFFFFF;
+					font-size: 28rpx;
+					margin-top: 160rpx;
+				}
+				.msg3{
+					color: #666666;
+					font-size: 32rpx;
+					margin-top: 20rpx;
+					margin-bottom: 60rpx;
+				}
+				button{
+					margin-top: 30rpx;
+					font-size: 34rpx;
+					height: 80rpx;
+					line-height: 80rpx;
+					border-radius: 80rpx;
+					color: #FFFF6F;
+					background: #FE0000;
+					margin: 0 80rpx;
 				}
 			}
+		}
+		.back_btm{
+			width: 710rpx;
+			position: relative;
+			top: 70rpx;
+			margin: 0 20rpx;
 		}
 	}
 </style>

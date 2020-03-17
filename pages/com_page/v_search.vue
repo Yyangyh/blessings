@@ -18,7 +18,7 @@
 		
 		<view class="vider_content_two">
 			<view class="vider_content">
-				<view class="content_list" v-for="(item,index) in data" :key='item.id'  @tap="$jump('../com_page/video_details?id='+item.id + '&type='+item.type)">
+				<view class="content_list" v-for="(item,index) in data" :key='item.id'  @tap="$jump('../com_page/video_details?id='+item.id)">
 					<view class="list_img_box">
 						<image :src="$api_img()+item.v_pic" mode="scaleToFill"></image>
 					</view>
@@ -26,15 +26,27 @@
 						<view class="list_one">
 							{{item.long_title}}
 						</view>
-						<view class="list_two">
-							{{item.view}}次{{item.type == 1? '观看':'收听'}}
-						</view>
-						<view class="list_three">
-							<view class="">
-								{{item.is_free == 0? '￥'+item.v_price : '免费'}}
+						<view class="">
+							<view class="list_two">
+								<view class="">
+									共{{item.catalogue_count}}节
+								</view>
+								<view class="">
+									<view class="list_vip" v-if="item.free_type > 0">
+										{{item.free_dec}}免费
+									</view>
+									<view class="">
+										{{item.is_free == 0? '￥'+item.v_price : '免费'}}
+									</view>
+								</view>
 							</view>
-							<view class="" v-if="item.is_free_vip.indexOf($store.state.user.level_id) != -1">
-								VIP免费
+							<view class="list_three">
+								<view class="">
+									讲师：{{item.techer.name}}
+								</view>
+								<view class="">
+									已有{{item.view}}人学习
+								</view>
 							</view>
 						</view>
 					</view>
@@ -156,6 +168,11 @@
 		.vider_content{
 			padding: 0 20rpx;
 			font-size: 24rpx;
+			image{
+				width: 268rpx;
+				height: 179rpx;
+				margin-right: 29rpx;
+			}
 			.content_list{
 				display: flex;
 				margin: 30rpx 0;
@@ -163,29 +180,44 @@
 					display: flex;
 					flex-direction: column;
 					justify-content: space-between;
-					padding-bottom: 30rpx;
-					width: 100%;
+					flex-grow: 2;
+					padding-bottom: 20rpx;
+					.list_one{
+						display: -webkit-box;
+						-webkit-box-orient: vertical;
+						-webkit-line-clamp: 2;
+						overflow: hidden;
+					}
+					.list_two{
+						color: #999999;
+						display: flex;
+						justify-content: space-between;
+						margin-bottom: 10rpx;
+						view:nth-of-type(2){
+							display: flex;
+							color: #D80000;
+							font-size: 28rpx;
+							.list_vip{
+								background: #000000;
+								font-size: 24rpx;
+								color: #FFFFFF;
+								padding: 5rpx 10rpx;
+								box-sizing: border-box;
+								border-radius: 20rpx;
+								margin-right: 10rpx;
+							}
+						}
+					}
 					.list_three{
 						display: flex;
 						justify-content: space-between;
-						color: #D80000;
-						font-size: 28rpx;
+						color: #EF7C38;
+						font-size: 24rpx;
 						view:nth-of-type(2){
-							background: #000000;
-							font-size: 24rpx;
-							color: #FFFFFF;
-							height: 20rpx;
-							padding: 10rpx;
-							line-height: 20rpx;
-							border-radius: 20rpx;
+							color: #999999;
 						}
 					}
 				}
-			}
-			image{
-				width: 268rpx;
-				height: 179rpx;
-				margin-right: 29rpx;
 			}
 		}
 	}

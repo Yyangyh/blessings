@@ -4,6 +4,14 @@
 						
 		</view >
 		<returns :titles='title'></returns>	
+		<!-- <view class="line" @tap="$jump('./cellPhone')">
+			<view class="l_left">
+				<image src='/static/image/subuser/binding.png' mode="widthFix"></image>
+				<text>绑定手机号码</text>
+			</view>
+			<image class="l_right" src='/static/image/index/go.png' mode="widthFix"></image>
+		</view>
+		<hr /> -->
 		<view class="line" @tap="$jump('./cellPhone')">
 			<view class="l_left">
 				<image src='/static/image/subuser/set-1.png' mode="widthFix"></image>

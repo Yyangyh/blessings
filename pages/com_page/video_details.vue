@@ -625,6 +625,9 @@
 				}
 			})
 		},
+		onReady: function (res) {
+			this.videoContext = uni.createVideoContext('myVideo')
+		},
 		onLoad(e) {
 			this.id = e.id
 			this.type = e.type
@@ -643,6 +646,12 @@
 			},function(self,res){
 				self.recommend_video = res.data.video_list
 			})
+		},
+		onHide(){
+			this.videoContext.pause()
+		},
+		onUnload(){
+			this.videoContext.pause()
 		}
 	}
 </script>

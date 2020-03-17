@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "早间晨语",
+  "titleNView": false,
+  "usingComponents": {
+    "returns": "/pages/common/returns"
+  }
+}

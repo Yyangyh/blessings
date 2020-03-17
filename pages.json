@@ -690,7 +690,8 @@
 					"titleNView":false
 				}
 			}
-		},{
+		},
+		{
 			"path": "pages/subuser/conversion/conversion",
 			"style": {
 				"navigationBarTitleText": "优惠券",
@@ -698,7 +699,8 @@
 					"titleNView":false
 				}
 			}
-		},{
+		},
+		{
 			"path": "pages/subuser/conversion/exchange",
 			"style": {
 				"navigationBarTitleText": "兑换中心",
@@ -706,7 +708,8 @@
 					"titleNView":false
 				}
 			}
-		},{
+		},
+		{
 			"path": "pages/subuser/activitys/activitys",
 			"style": {
 				"navigationBarTitleText": "我的活动",
@@ -714,7 +717,8 @@
 					"titleNView":false
 				}
 			}
-		},{
+		},
+		{
 			"path": "pages/subuser/activitys/tessera",
 			"style": {
 				"navigationBarTitleText": "入场卷",
@@ -722,7 +726,8 @@
 					"titleNView":false
 				}
 			}
-		},{
+		},
+		{
 			"path": "pages/subuser/study",
 			"style": {
 				"navigationBarTitleText": "我的学习",
@@ -730,7 +735,8 @@
 					"titleNView":false
 				}
 			}
-		},{
+		},
+		{
 			"path": "pages/subuser/distribution/distribution",
 			"style": {
 				"navigationBarTitleText": "管理中心",
@@ -738,7 +744,8 @@
 					"titleNView":false
 				}
 			}
-		},{
+		},
+		{
 			"path": "pages/subuser/distribution/application",
 			"style": {
 				"navigationBarTitleText": "立即申请",
@@ -746,7 +753,8 @@
 					"titleNView":false
 				}
 			}
-		},{
+		},
+		{
 			"path": "pages/subuser/signIn",
 			"style": {
 				"navigationBarTitleText": "每周签到",
@@ -754,7 +762,8 @@
 					"titleNView":false
 				}
 			}
-		},{
+		},
+		{
 			"path": "pages/subuser/integral/integral",
 			"style": {
 				"navigationBarTitleText": "我的积分",
@@ -762,7 +771,8 @@
 					"titleNView":false
 				}
 			}
-		},{
+		},
+		{
 			"path": "pages/subuser/balance",
 			"style": {
 				"navigationBarTitleText": "我的余额",
@@ -778,7 +788,8 @@
 					"titleNView":false
 				}
 			}
-		},{
+		},
+		{
 			"path": "pages/subindex/classify",
 			"style": {
 				"navigationBarTitleText": "分类",
@@ -786,7 +797,8 @@
 					"titleNView":false
 				}
 			}
-		},{
+		},
+		{
 			"path": "pages/subindex/texts",
 			"style": {
 				"navigationBarTitleText": "文章",
@@ -794,7 +806,8 @@
 					"titleNView":false
 				}
 			}
-		},{
+		},
+		{
 			"path": "pages/subindex/article",
 			"style": {
 				"navigationBarTitleText": "文章",
@@ -802,7 +815,18 @@
 					"titleNView":false
 				}
 			}
-		},{
+		},
+		{
+			"path": "pages/subindex/morning",
+			"style": {
+				"navigationBarTitleText": "早间晨语",
+				"app-plus":{
+					"titleNView":false
+				}
+			}
+		},
+		
+		{
 			"path": "pages/subuser/abrief",
 			"style": {
 				"navigationBarTitleText": "公司简介",
@@ -810,7 +834,8 @@
 					"titleNView":false
 				}
 			}
-		},{
+		},
+		{
 			"path": "pages/com_page/comment",
 			"style": {
 				"navigationBarTitleText": "全部评论",
@@ -818,7 +843,8 @@
 					"titleNView":false
 				}
 			}
-		},{
+		},
+		{
 			"path": "pages/subindex/comment",
 			"style": {
 				"navigationBarTitleText": "全部评论",
@@ -826,7 +852,8 @@
 					"titleNView":false
 				}
 			}
-		},{
+		},
+		{
 			"path": "pages/subuser/distribution/agreement",
 			"style": {
 				"navigationBarTitleText": "同意协议",

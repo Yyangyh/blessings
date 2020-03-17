@@ -161,6 +161,7 @@
   padding: 0 20rpx;
 }
 .content_top .top_search {
+    border: 1rpx solid #FE0000;
     -webkit-box-flex: 2;
     -webkit-flex-grow: 2;
             flex-grow: 2;

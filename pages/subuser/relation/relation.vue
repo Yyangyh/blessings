@@ -269,8 +269,8 @@
 			top:calc(var(--status-bar-height) + 105rpx);
 			left: 0;
 			.image{
-				width: 35rpx;
-				height: 35rpx;
+				width: 100rpx;
+				height: 100rpx;
 				margin: 35rpx auto;
 				display: block;
 			}
@@ -281,17 +281,24 @@
 			}
 			.privilege{
 				display: flex;
-				justify-content: space-around;
+				justify-content: space-between;
+				padding: 0 20rpx;
 				margin-top: 50rpx;
 				.pr_box{
-					font-size: 24rpx;
-					color: #FFFFFF;
+					height: 55rpx;
+					line-height: 55rpx;
+					border-radius: 55rpx;
+					width: 330rpx;
+					font-size: 28rpx;
+					color: #333333;
+					background: #FFE68A;
 					display: flex ;
-					flex-direction: column ;
 					align-items: center;
+					justify-content: center;
 					image{
-						width: 80rpx;
-						height: 80rpx;
+						width: 28rpx;
+						height: 28rpx;
+						margin-right: 13rpx;
 					}
 				}
 			}
@@ -315,8 +322,8 @@
 					}
 				}
 				.active{
-					color:#D80000;
-					border-bottom: 1rpx solid #D80000;
+					color:#FE0000;
+					border-bottom: 4rpx solid #FE0000;
 				}
 				
 				.add_box{
@@ -365,7 +372,7 @@
 				button{
 					width:600rpx;
 					height:80rpx;
-					background:linear-gradient(-90deg,rgba(254,101,59,1),rgba(253,185,60,1));
+					background:#FE0000;
 					border-radius:40rpx;
 					font-size: 32rpx;
 					line-height: 80rpx;

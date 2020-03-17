@@ -24,7 +24,7 @@
 /* 垂直间距 */
 /* 透明度 */
 /* 文章场景相关 */
-.top.data-v-6d9a5857 {
+.top.data-v-28655998 {
   height: 105rpx;
   padding: 0 44rpx;
   width: 100%;
@@ -48,7 +48,7 @@
   background: #fff;
   box-shadow: 0px 2rpx 4rpx 0px rgba(0, 0, 0, 0.1);
 }
-.top .top_enlarge.data-v-6d9a5857 {
+.top .top_enlarge.data-v-28655998 {
     display: -webkit-box;
     display: -webkit-flex;
     display: flex;
@@ -58,11 +58,11 @@
     height: 100%;
     width: 180rpx;
 }
-.top text.data-v-6d9a5857:nth-of-type(2) {
+.top text.data-v-28655998:nth-of-type(2) {
     width: 180rpx;
     display: inline-block;
 }
-.top image.data-v-6d9a5857 {
+.top image.data-v-28655998 {
     height: 40rpx;
     width: 40rpx;
 }

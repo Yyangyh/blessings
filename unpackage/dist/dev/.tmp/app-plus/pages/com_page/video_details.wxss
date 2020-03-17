@@ -409,8 +409,8 @@ video {
   font-size: 32rpx;
   padding: 20rpx;
   box-sizing: border-box;
-  -webkit-transform: translate(-50%, -10%);
-          transform: translate(-50%, -10%);
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
 }
 .give_box .give_top {
   text-align: center;
@@ -534,7 +534,7 @@ video {
   display: -webkit-box;
   display: -webkit-flex;
   display: flex;
-  margin-bottom: 30rpx;
+  margin: 30rpx 0;
 }
 .vider_content .content_list .list_right {
   display: -webkit-box;
@@ -547,11 +547,42 @@ video {
   -webkit-box-pack: justify;
   -webkit-justify-content: space-between;
           justify-content: space-between;
-  padding-bottom: 30rpx;
+  -webkit-box-flex: 2;
+  -webkit-flex-grow: 2;
+          flex-grow: 2;
+  padding-bottom: 20rpx;
+}
+.vider_content .content_list .list_right .list_one {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
 }
 .vider_content .content_list .list_right .list_two {
   color: #999999;
-  margin: 5px 0;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+          justify-content: space-between;
+  margin-bottom: 10rpx;
+}
+.vider_content .content_list .list_right .list_two view:nth-of-type(2) {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  color: #D80000;
+  font-size: 28rpx;
+}
+.vider_content .content_list .list_right .list_two view:nth-of-type(2) .list_vip {
+  background: #000000;
+  font-size: 24rpx;
+  color: #FFFFFF;
+  padding: 5rpx 10rpx;
+  box-sizing: border-box;
+  border-radius: 20rpx;
+  margin-right: 10rpx;
 }
 .vider_content .content_list .list_right .list_three {
   display: -webkit-box;
@@ -560,17 +591,11 @@ video {
   -webkit-box-pack: justify;
   -webkit-justify-content: space-between;
           justify-content: space-between;
-  color: #D80000;
-  font-size: 28rpx;
+  color: #EF7C38;
+  font-size: 24rpx;
 }
 .vider_content .content_list .list_right .list_three view:nth-of-type(2) {
-  background: #000000;
-  font-size: 24rpx;
-  color: #FFFFFF;
-  height: 20rpx;
-  padding: 10rpx;
-  line-height: 20rpx;
-  border-radius: 20rpx;
+  color: #999999;
 }
 .Image {
   width: 88rpx;

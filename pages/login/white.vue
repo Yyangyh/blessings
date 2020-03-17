@@ -1,5 +1,5 @@
 <template>
-	<view class=".content">
+	<view class=".content" v-if="page_show === false">
 		<view class="jump" @tap="jumps">
 			跳过
 		</view>
@@ -35,14 +35,22 @@
 		data() {
 			return {
 				show: 0,
+				page_show:false,
 				timer:''
 			}
 		},
 		onLoad() {
 			let that = this
+			if(uni.getStorageInfoSync('state_user')){
+				uni.switchTab({
+					url:'../index/index'
+				})
+				return
+			}else{
+				that.page_show = true
+			}
 			that.timer = setInterval(function(){
 				 that.show++
-				 console.log(that.show)
 			},1500)
 		},
 		methods:{

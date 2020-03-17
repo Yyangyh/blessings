@@ -10,7 +10,7 @@
 			<text>余额</text>
 			<text @tap="$jump('/pages/subuser/threeuser/cash')">提现</text>
 		</view>
-		<image class="black" src="../../static/image/subuser/blance.png"></image>
+		<image class="black" src="../../static/image/subuser/back.png"></image>
 		<view class="money">
 			<view>可用余额（元）</view>
 			<view>{{user.money}}</view>
@@ -109,7 +109,7 @@
 			box-sizing: border-box;
 			position: fixed;
 			top: var(--status-bar-height);
-			z-index: 99;
+			z-index: 333;
 			left: 0;
 			display: flex;
 			justify-content: space-between;
@@ -173,6 +173,8 @@
 			top: 300rpx;
 			left: 0;
 			border-bottom:1rpx solid #E9E9E9;
+			z-index: 222;
+			background: #fff;
 			text{
 				flex: 1;
 			}

@@ -27,6 +27,7 @@
     "pages/subuser/assemble_order",
     "pages/subuser/s_order",
     "pages/subuser/address",
+    "pages/subuser/myorder",
     "pages/subuser/s_refund",
     "pages/subuser/course_order",
     "pages/subuser/member/open_order",
@@ -93,6 +94,7 @@
     "pages/subindex/classify",
     "pages/subindex/texts",
     "pages/subindex/article",
+    "pages/subindex/morning",
     "pages/subuser/abrief",
     "pages/com_page/comment",
     "pages/subindex/comment",
@@ -143,7 +145,7 @@
     "autoclose": false
   },
   "appname": "五福家庭",
-  "compilerVersion": "2.5.1",
+  "compilerVersion": "2.6.1",
   "usingComponents": {
     "load": "/pages/common/load"
   }

@@ -1,5 +1,5 @@
 
-.load.data-v-97f3bffc{
+.load.data-v-07c78e61{
 	height: 100%;
 	width: 100%;
 	position: fixed;
@@ -9,7 +9,7 @@
 	background:#FFFFFF;
 	/* position: relative; */
 }
-.load .load_box.data-v-97f3bffc{
+.load .load_box.data-v-07c78e61{
 	font-size: 30rpx;
 	color: #333333;
 	text-align: center;
@@ -19,7 +19,7 @@
 	-webkit-transform: translate(-50%,-50%);
 	        transform: translate(-50%,-50%);
 }
-.load image.data-v-97f3bffc{
+.load image.data-v-07c78e61{
 	width: 320rpx;
 	height: 180rpx;
 	

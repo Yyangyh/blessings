@@ -3,7 +3,7 @@
 		<view class="status_bar">
 			
 		</view>
-		<view class="user_top" :style="{backgroundImage: 'url('+back+')',backgroundSize: '100%'+'100%'}">
+		<view class="user_top" :style="{backgroundImage: 'url('+back+')',backgroundSize: '100% 100%'}">
 			<view class="top_one">
 				<image src="../../static/image/index/set.png" mode="widthFix" @tap="$jump('../subuser/setting/setting')"></image>
 				<!-- <view class="top_img" @click="$jump('/pages/com_page/notice')">
@@ -327,7 +327,7 @@
 			font-size: 32rpx;
 			position: relative;
 			.two_left{
-				height: 140rpx;
+				height: 100rpx;
 				width: 100rpx;
 				margin-right: 25rpx;
 				border-radius: 50%;

@@ -3,19 +3,21 @@
 		<view class="status_bar">
 							
 		</view >
-		<view class="top" @tap="service.returns()">
+		<!-- <view class="top"@tap="service.returns()">
 			<view class="image">
-				<image src="/static/image/subuser/per-return.png" mode="widthFix"></image>
+				<image src="/static/image/com_page/returns.png" mode="widthFix"></image>
 			</view>
 			<text>个人资料</text>
-		</view>	
-		<view class="per_box">
-			<view class="box_top">
-				<view class="photo_box">
-					<image class="photo" :src="$api_img()+user.avatar" mode="scaleToFill"></image>
-				</view>
-				<view @click="reveal">修改头像></view>
+		</view>	 -->
+		<returns :titles='title'></returns>
+		<view class="box_top"  :style="{backgroundImage: 'url('+back+')',backgroundSize: '100% 100%'}" >
+			<view class="photo_box">
+				<image class="photo" :src="$api_img()+user.avatar" mode="scaleToFill"></image>
 			</view>
+			<view @click="reveal">修改头像</view>
+		</view>
+		<view class="per_box">
+			
 			<view class="bank"> 
 				<view class="line" @tap="$jump('./alter')">
 					<view class="l_felt">
@@ -60,11 +62,16 @@
 
 <script>
 	import { mapState } from 'vuex'
+	import Back from '../../../static/image/subuser/back.png'
 	import returns from '../../common/returns.vue'
 		export default{
+			components:{
+				returns
+			},
 			data(){
 				return{
-					
+					back:Back,
+					title:'个人资料',
 				}
 			},
 			computed: {
@@ -113,33 +120,29 @@
 
 <style lang="scss">
 	.content{
-		.top{
-			position: fixed;
+		.box_top{
+			height: 304rpx;
 			width: 100%;
-			top: var(--status-bar-height);
-			left: 0;
 			display: flex;
-			height:226rpx;
-			padding: 31rpx 0 0;
-			background:linear-gradient(49deg,rgba(245,110,106,1) 0%,rgba(247,76,74,1) 100%);
-			z-index: 99;
-			.image{
-				width:80rpx;
-				height:80rpx;
-				margin-left: 40rpx;
-				image{
-					width:18rpx;
-					height:31rpx;
+			flex-direction: column;
+			justify-content: center;
+			color: #fff;
+			.photo_box{
+				width: 120rpx;
+				height: 120rpx;
+				display: block;
+				margin: 0 auto ;
+				border-radius: 50%;
+				overflow: hidden;
+				.photo{
+					height: 100%;
+					width: 100%;
 				}
 			}
-			text{
-				font-size: 32rpx;
-				margin: 0 auto;
-				color:#FFFFFF
-			}
-			&:after{
-				content: "";
-				width:80rpx;
+			view{
+				font-size: 24rpx;
+				text-align: center;
+				margin-top: 5rpx;
 			}
 		}
 		.per_box{
@@ -148,32 +151,18 @@
 			background:rgba(255,255,255,1);
 			border-radius:20rpx 20rpx 0rpx 0rpx;
 			margin-top: -20rpx;
-			z-index: 100;
-			position: absolute;
-			top: calc(var(--status-bar-height) + 194rpx);
-			left:0;
-			.box_top{
-				.photo_box{
-					width: 120rpx;
-					height: 120rpx;
-					display: block;
-					margin: -60rpx auto 0;
-					border-radius: 50%;
-					overflow: hidden;
-					.photo{
-						height: 100%;
-						width: 100%;
-					}
-				}
-				view{
-					font-size: 24rpx;
-					color:#323232;
-					text-align: center;
-					margin-top: 5rpx;
-				}
-			}
+			margin-top: 30rpx;
+			position: relative;
+			top: -70rpx;
+			left: 0;
+			z-index: 999;
+			// z-index: 100;
+			// position: absolute;
+			// top: calc(var(--status-bar-height) + 194rpx);
+			// left:0;
+			
 			.bank{
-				margin-top: 30rpx;
+				
 				button{
 					width:684rpx;
 					height:80rpx;

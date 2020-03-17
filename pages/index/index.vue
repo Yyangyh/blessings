@@ -31,7 +31,7 @@
 				<image src='../../static/image/index/index_tab4.png' mode="widthFix"></image>
 				<view class="">分类</view>
 			</view>
-			<view class="tab_list" @tap="temporary">
+			<view class="tab_list" @tap="$jump('/pages/subindex/morning')">
 				<image src='../../static/image/index/index_tab5.png' mode="widthFix"></image>
 				<view class="">早间晨语</view>
 			</view>
@@ -122,6 +122,23 @@
 					</view>
 				</view>
 			</view>
+			<view class="mask_black1" v-if="openid">
+				<view class="binding">
+					<view class="bind_top">
+						绑定手机
+					</view>
+					<input class="input" v-model="accounts" type="text" placeholder="请输入新手机号">
+					<view class="verification">
+						<input type="text" v-model="verify" value="" placeholder="请输入验证码" />
+						<text @tap="obtain" >{{verification}}</text>
+					</view>
+					<input class="input" v-model="pwd" type="text" placeholder="设置密码">
+					<input class="input" v-model="re_pwd" type="text" placeholder="确认密码">
+					
+					<button @click="config">完成</button>
+				</view>
+			</view>
+			
 			
 			<view class="QRcode" @tap="$jump('/pages/subuser/brokerage/invite')">
 				<image src="../../static/image/index/code.png" mode=""></image>
@@ -146,7 +163,13 @@
 				duration: 500,
 				class_top:[],
 				class_list:'',
-				msg:'holle'
+				verification: '获取验证码',
+				accounts:'',
+				pwd:'',
+				re_pwd:'',
+				disabled:false,
+				verify:'',
+				openid:''
 			}
 		},
 		// computed: {
@@ -177,13 +200,94 @@
 					url:url
 				})
 			},
-			temporary(){
-				uni.showToast({
-					icon:'none',
-					title:'暂未开放！'
+			
+			config(){
+				if(this.pwd != this.re_pwd){
+					uni.showToast({
+						icon:'none',
+						title:'输入密码不一致！'
+					})
+					return
+				}
+				this.service.entire(this,'post',this.APIconfig.api_root.index.bindPhone,{
+					sms_code:this.verify,
+					mobile:this.accounts,
+					password:this.pwd,
+					openid:this.openid
+				},function(self,res){
+					uni.showToast({
+						icon:'none',
+						title:res.msg
+					})
+					if(res.code == 0){
+						self.openid = ''
+						uni.removeStorageSync('openid')
+						uni.showTabBar()
+					}
 				})
+			},
+			obtain(){ //获取验证码
+				let that = this
+				// console.log(123)
+				if(!(/^1[3-9][0-9]\d{8,11}$/.test(that.accounts))){
+					uni.showToast({
+						icon: 'none',
+						title: '手机号码格式不正确'
+					});
+					return true; 
+				}
+				if(that.disabled == true) return
+				let data = {
+					mobile:that.accounts,
+					time:Date.parse(new Date())/1000  //时间戳
+				}
+				uni.request({
+					url:that.APIconfig.api_root.login.sendPhone,
+					method:'POST',
+					data,
+					success(res) {
+						console.log(res)
+						let data = res.data 
+						console.log(data)
+						uni.showToast({
+							icon:'none',
+							title:JSON.stringify(data.data.send_code)
+						})
+						if(data.code == 0){
+							that.verification = '60s'
+							that.disabled = true
+							that.timer = setInterval(function(){
+								let num = that.verification.split('s')[0]
+								num --
+								that.verification = num+'s'
+							},1000)
+							uni.showToast({
+								icon:'none',
+								title:data.data.send_code
+							})
+						}
+					}
+				})
+			},
+		},
+		onLoad() {
+			if(uni.getStorageSync('openid')){
+				this.openid = uni.getStorageSync('openid')
+				uni.hideTabBar()
 			}
-		}
+		},
+		onTabItemTap(e) {
+			console.log(e)
+		},
+		watch:{
+			verification(curval,oldval){// 监听定时器的num值
+				if(curval == '-1s'){
+					clearInterval(this.timer)
+					this.verification = '重新获取'
+					this.disabled = false
+				}
+			}
+		},
 	}
 </script>
 
@@ -344,6 +448,64 @@
 		font-size: 24rpx;
 		view:nth-of-type(2){
 			color: #999999;
+		}
+	}
+	.mask_black1{
+		z-index: 10001;
+		background: rgba(0,0,0,.3);
+		position: fixed;
+		height: 100%;
+		width: 100%;
+		top: 0;
+		left: 0;
+		.binding{
+			// height: 700rpx;
+			
+			width: 560rpx;
+			box-sizing: border-box;
+			padding: 0 20rpx 20rpx 20rpx;
+			background: #FFFFFF;
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%,-50%);
+			.bind_top{
+				text-align: center;
+				font-size: 32rpx;
+				padding: 20rpx 0;
+			}
+			.input{
+				font-size: 24rpx;
+				border-bottom: 2rpx solid #F2F2F2;
+				padding: 30rpx 60rpx;
+			}
+			.verification{
+				display: flex;
+				align-items: center;
+				justify-content: space-between;
+				padding-right: 60rpx;
+				border-bottom: 2rpx solid #F2F2F2;
+				input{
+					font-size: 24rpx;
+					padding: 30rpx 0 30rpx 60rpx;
+				}
+				text{
+					font-size: 26rpx;
+					color: #32A6FF;
+				}
+			}
+			button{
+				width:410rpx;
+				height:80rpx;
+				background:rgba(216,0,0,1);
+				border-radius:40rpx;
+				font-size: 32rpx;
+				color: #FFFFFF;
+				text-align: center;
+				display: block;
+				line-height: 80rpx;
+				margin: 40rpx auto 0;
+			}
 		}
 	}
 	

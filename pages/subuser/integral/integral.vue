@@ -4,7 +4,7 @@
 			
 		</view>
 		<returns :titles='title'></returns>
-		<image class='integralback' src="../../../static/image/subuser/integralback.png" mode="widthFix"></image>
+		<image class='integralback' src="../../../static/image/subuser/back.png" mode="widthFix"></image>
 		<view class="back_text">
 			<view class="rightjio"  @tap="$jump('./know')">
 				<image src='../../../static/image/subuser/wenhao.png' mode="widthFix"></image>

@@ -15,6 +15,7 @@ const api_root = {
 		phoneLogin: api+'/api/member/phoneLogin',//手机号登录
 		findPassword: api+'/api/member/findPassword',//找回密码验证
 		reset: api+'/api/member/reset',//重置密码
+		getProtocol: api+'/api/member/getProtocol',//获取协议内容
 	},
 	index:{ 
 		index: api+'/api/VideoHome/index',//首页
@@ -22,6 +23,8 @@ const api_root = {
 		felicity_index: api+'/api/felicity/index',//幸福课堂首页数据 
 		xfClassList: api+'/api/felicity/xfClassList',//幸福课堂分类数据	
 		u_token: api+'/api/common/refresh_token',//刷新用户信息 
+		bindPhone: api+'/api/Member/bindPhone',//首页绑定手机号 
+		category: api+'/api/familystyle/category',//获取家风建设分类 
 	},
 	subclass:{
 		c_certificateList:api+'/api/Research/certificateList',//证书列表
@@ -166,6 +169,7 @@ const api_root = {
 		
 	},
 	subindex:{
+		getMorningnew:api+'/api/article/getMorningnew',//早间晨语
 		s_test:api+'/api/test/getPaper',//通过试卷id获取试卷信息
 		s_test_classify:api+'/api/test/getPaperCategory',//幸福评测分类或分类下数据获取
 		s_test_Result:api+'/api/test/examUserTestResult',//用户测验

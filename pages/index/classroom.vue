@@ -30,7 +30,7 @@
 				<view class="box_one">
 					<text></text>{{item.cl_name}}
 				</view>
-				<view class="box_two" v-for="(items,index) in item.video_list" :key='items.id'>
+				<view class="box_two" v-for="(items,index) in item.video_list" :key='items.id'  @tap="$jump('../com_page/video_details?id='+items.id + '&type='+items.type)">
 					<view class="two_top">
 						<view class="top_left1">
 							<image :src="$api_img() + items.v_pic" mode=""></image>

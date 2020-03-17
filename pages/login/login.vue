@@ -49,6 +49,21 @@
 				</view>
 			</view>
 		</view>
+		<view class="Mask" v-show="treaty_show == true" @click="treaty_show = false">
+			
+		</view>
+		<view class="treaty_box"  v-show="treaty_show == true">
+			<view class="box_top">
+				注册须知
+			</view>
+			<scroll-view scroll-y="true" class="box_conent">
+				<rich-text :nodes='treaty'></rich-text>
+			</scroll-view>
+			<view class="all_btn">
+				<button class="refuse" @click="treaty_show = false">拒绝</button>
+				<button class="agree" @click="treaty_show = false">同意</button>
+			</view>
+		</view>
 	</view>
 </template>
 
@@ -59,7 +74,9 @@
 			return {
 				accounts:'',
 				pwd:'',
-				show:0
+				show:0,
+				treaty_show:false,
+				treaty:''
 			}
 		},
 		methods:{
@@ -151,75 +168,95 @@
 					}
 				})
 			},
-			wx(){
-				let that = this
-				
-				
-				
-				// #ifdef H5
-					uni.setStorageSync('wxlogin','wxlogin')
-					window.location.href = this.service.api_root.common.Auth
-				// #endif
-				
-				
+			agree(){
 				// #ifdef APP-PLUS
-				// uni.showLoading({
-				// 	title: '登录中',
-				// 	mask: true
-				// });
-				// let times = setTimeout(function() {
-				// 	uni.hideLoading()
-				// 	uni.showToast({
-				// 		icon: 'none',
-				// 		title: '网络请求错误，请稍后再试'
-				// 	})
-				// 	return
-				// }, 10000)
+				uni.showLoading({
+					title: '登录中',
+					mask: true
+				});
+				let times = setTimeout(function() {
+					uni.hideLoading()
+					uni.showToast({
+						icon: 'none',
+						title: '网络请求错误，请稍后再试'
+					})
+					return
+				}, 10000)
 					uni.login({
 					  provider: 'weixin',
 					  success: function (loginRes) {
 						uni.request({
 							url:that.APIconfig.api_root.common.getWxLogin,
 							method:'get',
-							// header:{'X-Requested-With':'xmlhttprequest'},
 							data:{
 								access_token:loginRes.authResult.access_token,
 								openid:loginRes.authResult.openid,
 							},
 							success(res) {
 								
-								// uni.hideLoading()
-								// clearTimeout(times)
-								
-								setTimeout(function(){
-									uni.showToast({
-										icon:'none',
-										title:'接口返回：'+JSON.stringify(res)
-									})
-								},5000)
-								if(res.data.code ==0){
-									// uni.setStorageSync('token',res.data.data.token)
-									// uni.setStorageSync('uid',res.data.data.id)
-									// uni.setStorageSync('user',res.data.data)
-									// uni.setStorageSync('mobile',res.data.data.mobile)
-									// uni.setStorageSync('wxlogin','wxlogin')
-									// uni.switchTab({
-									// 	url: '../index/index'
-									// });
+								uni.hideLoading()
+								clearTimeout(times)
+								let data = res.data
+								console.log(data)
+								if(data.code == 0){
+									that.$store.commit('state_user',data.data.memberInfo)
+									that.$store.commit('state_token',data.token)
+									uni.setStorageSync('state_user',data.data.memberInfo)
+									uni.setStorageSync('state_token',data.token)
+									uni.setStorageSync('wx','wx')
+									uni.switchTab({
+										url: '../index/index'
+									});
+								}else if(data.code == 1){
+									that.$store.commit('state_user',data.data.memberInfo)
+									that.$store.commit('state_token',data.token)
+									uni.setStorageSync('state_user',data.data.memberInfo)
+									uni.setStorageSync('state_token',data.token)
+									uni.setStorageSync('openid',loginRes.authResult.openid)
+									uni.setStorageSync('wx','wx')
+									uni.switchTab({
+										url: '../index/index'
+									});
 								}
 							}
 						})
 					    
 					  },
-					  complete:function(com) {
-					  	uni.showToast({
-					  		icon:'none',
-							title:JSON.stringify(com)
-					  	})
-					  }
+					  // complete:function(com) {
+					  // 	uni.showToast({
+					  // 		icon:'none',
+							// title:JSON.stringify(com)
+					  // 	})
+					  // }
 					});
 				// #endif
+			},
+			wx(){
+				let that = this
+				if(!uni.getStorageSync('wx')){
+					that.treaty_show = true
+				}else{
+					this.agree()
+				}
+				// // #ifdef H5
+				// 	uni.setStorageSync('wxlogin','wxlogin')
+				// 	window.location.href = this.service.api_root.common.Auth
+				// // #endif
+				
+				
+				
 			}
+		},
+		onLoad() {
+			let that = this
+			uni.request({  //用户须知
+				url:this.APIconfig.api_root.login.getProtocol,
+				success(res) {
+					console.log(res)
+					that.treaty = res.data.data.content
+					// that.open_protocol = res.data.data.status
+				}
+			})
 		},
 		onShow() {
 			// #ifdef H5
@@ -345,5 +382,54 @@
 	.mode image{
 		width: 80rpx;
 		height: 80rpx;
+	}
+	.Mask{
+		position: fixed;
+		left: 0;
+		top: 0;
+		height: 100%;
+		width: 100%;
+		z-index: 888;
+		background: rgba(0,0,0,.6);
+	}
+	.treaty_box{
+		position: fixed;
+		z-index: 999;
+		height: 780rpx;
+		padding: 20rpx;
+		box-sizing: border-box;
+		width: 80%;
+		background: #fff;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%,-50%);
+	}
+	.treaty_box .box_top{
+		text-align: center;
+		font-size: 36rpx;
+	}
+	.treaty_box .box_conent{
+		margin: 20rpx 0;
+		height: 560rpx;
+	}
+	.treaty_box button{
+		width: 45%;
+		font-size: 30rpx;
+		margin: 0;
+	}
+	.treaty_box .all_btn{
+		display: flex;
+		justify-content: space-between;
+		position: absolute;
+		width: 90%;
+		height: 80rpx;
+		left: 50%;
+		bottom: 20rpx;
+		margin: 0;
+		transform: translateX(-50%);
+	}
+	.treaty_box .all_btn .agree{
+		background: #D80000;
+		color: #fff;
 	}
 </style>
