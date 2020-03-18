@@ -69,7 +69,7 @@
 						<view class="pages"><image :src='$api_img()+itemo.thumb'></image></view>
 						<view class="pages_box">
 							<view class="name">{{itemo.title}}</view>
-							<view class="picker">{{itemo.price}}<text>{{itemo.inventory}}人付款</text></view>
+							<view class="picker">{{itemo.price}}<text>{{itemo.sales}}人付款</text></view>
 						</view>
 					</view>
 				</view>
@@ -145,6 +145,7 @@
 						全部
 					</view>
 				</view>
+				<!-- <view class="box_main" v-for="(items,indexs) in item.items"  @click="$jump('../subhome/h_list?id='+items.id+'')"> -->
 				<view class="box_main" v-for="(items,indexs) in item.items">
 					<view class="image">
 						<image :src="$api_img() + items.big_images_old" mode="widthFix"></image>
@@ -214,7 +215,7 @@ res
 			},function(self,res){
 				self.cart_status = res.data.data.length
 			})
-			this.service.entire(this,'get',this.APIconfig.api_root.index.good_index,{ //家风产品
+			this.service.entire(this,'post',this.APIconfig.api_root.index.good_index,{ //家风产品
 				userid:this.$store.state.user.id
 			},function(self,res){
 				console.log(res)
@@ -227,14 +228,14 @@ res
 				self.recommend = res.data.recommend
 			})
 			
-			this.service.entire(this,'get',this.APIconfig.api_root.index.xfClassList,{ //家风学堂
+			this.service.entire(this,'post',this.APIconfig.api_root.index.xfClassList,{ //家风学堂
 				id:40
 			},function(self,res){
 				console.log(res)
 				self.class_list1 = res.data.list
 				// self.anima = false
 			})
-			this.service.entire(this,'get',this.APIconfig.api_root.index.category,{ //家风建设
+			this.service.entire(this,'post',this.APIconfig.api_root.index.category,{ //家风建设
 				// id:40
 			},function(self,res){
 				console.log(res)
@@ -242,7 +243,7 @@ res
 				// self.anima = false
 			})
 			
-			this.service.entire(this,'get',this.APIconfig.api_root.subhome.g_lists,{ //拼团
+			this.service.entire(this,'post',this.APIconfig.api_root.subhome.g_lists,{ //拼团
 				page:1
 			},function(self,res){
 				console.log(res)
@@ -272,7 +273,8 @@ res
 			justify-content:space-around;
 			background: #fff;
 			.classify{
-				margin: 41rpx 0;
+				margin: 40rpx 0;
+				font-size: 24rpx;
 				width: 25%;
 				text-align: center;
 				image{
@@ -644,6 +646,9 @@ res
 				padding-bottom: 20rpx;
 				border-radius: 20rpx;
 				margin-bottom: 24rpx;
+				&:last-child{
+					margin-bottom: 0rpx;
+				}
 				image{
 					width: 100%;
 				}

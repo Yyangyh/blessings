@@ -20,7 +20,8 @@
             "VideoPlayer" : {},
             "Maps" : {},
             "Payment" : {},
-            "OAuth" : {}
+            "OAuth" : {},
+            "Share" : {}
         },
         /* 应用发布信息 */
         "distribute" : {
@@ -70,11 +71,17 @@
                         "UniversalLinks" : ""
                     }
                 },
-                "ad" : null,
+                "ad" : {},
                 "oauth" : {
                     "weixin" : {
                         "appid" : "wxfa6d980de363757f",
                         "appsecret" : "a9eed98a6d4477c6c7886208915ea071",
+                        "UniversalLinks" : ""
+                    }
+                },
+                "share" : {
+                    "weixin" : {
+                        "appid" : "wxfa6d980de363757f",
                         "UniversalLinks" : ""
                     }
                 }
@@ -152,8 +159,8 @@
             "proxy" : {
                 "/api" : {
                     // "target" : "http://0318.t1.nethhw188.com",
-                    // "target" : "http://www.wufu-app.com",
-                    "target" : "http://192.168.0.100:8990",
+                    "target" : "http://www.wufu-app.com",
+                    // "target" : "http://192.168.0.100:8990",
                     "changeOrigin" : true,
                     "secure" : false
                 }

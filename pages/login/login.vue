@@ -61,7 +61,7 @@
 			</scroll-view>
 			<view class="all_btn">
 				<button class="refuse" @click="treaty_show = false">拒绝</button>
-				<button class="agree" @click="treaty_show = false">同意</button>
+				<button class="agree" @click="agree">同意</button>
 			</view>
 		</view>
 	</view>
@@ -118,6 +118,7 @@
 					url:that.APIconfig.api_root.login.login,
 					// url:'http://wl.hhw778.com/api/user/Login',
 					method:'POST',
+					dataType:'json',
 					data:{
 						username:that.accounts,
 						password:that.pwd,
@@ -170,6 +171,8 @@
 			},
 			agree(){
 				// #ifdef APP-PLUS
+				let that = this
+				that.treaty_show = false
 				uni.showLoading({
 					title: '登录中',
 					mask: true
@@ -199,6 +202,7 @@
 								let data = res.data
 								console.log(data)
 								if(data.code == 0){
+									uni.removeStorageSync('openid')
 									that.$store.commit('state_user',data.data.memberInfo)
 									that.$store.commit('state_token',data.token)
 									uni.setStorageSync('state_user',data.data.memberInfo)
@@ -236,7 +240,7 @@
 				if(!uni.getStorageSync('wx')){
 					that.treaty_show = true
 				}else{
-					this.agree()
+					this.agree.call(this)
 				}
 				// // #ifdef H5
 				// 	uni.setStorageSync('wxlogin','wxlogin')

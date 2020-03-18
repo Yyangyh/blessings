@@ -132,7 +132,7 @@
 						签到
 					</view>
 				</view>
-				<view class="tab_list"  @tap="$jump('../subclass/textual')">
+				<view class="tab_list"  @tap="temporary">
 					<image src="../../static/image/index/customer.png" mode="widthFix"></image>
 					<view class="">
 						在线客服
@@ -196,7 +196,8 @@
 						亲情号
 					</view>
 				</view> -->
-				<view class="tab_list" @tap="$jump('../subuser/member/member')">
+				<!-- <view class="tab_list" @tap="$jump('../subuser/member/member')"> -->
+				<view class="tab_list"  @tap="temporary">
 					<image src="../../static/image/index/member1.png" mode="widthFix"></image>
 					<view class="">
 						会员中心
@@ -493,7 +494,7 @@
 		border-radius: 10rpx;
 		padding: 36rpx 30rpx 10rpx 30rpx;
 		.list_test{
-			font-size: 24rpx;
+			font-size: 28rpx;
 			color: #333333;
 			font-weight: bold;
 			padding-bottom: 32rpx;
@@ -503,6 +504,7 @@
 		.tab_list{
 			width: 25%;
 			margin-bottom: 20rpx;
+			font-size: 28rpx;
 			display: flex;
 			flex-direction: column;
 			align-items: center;

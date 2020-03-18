@@ -45,7 +45,7 @@
 				uni.switchTab({
 					url:'../index/index'
 				})
-				return
+				return false
 			}else{
 				that.page_show = true
 			}

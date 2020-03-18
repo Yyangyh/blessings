@@ -1,5 +1,7 @@
 {
   "navigationBarTitleText": "个人资料",
   "titleNView": false,
-  "usingComponents": {}
+  "usingComponents": {
+    "returns": "/pages/common/returns"
+  }
 }

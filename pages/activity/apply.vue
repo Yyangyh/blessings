@@ -90,6 +90,7 @@
 				
 			},
 			 register(){
+				  let that = this
 				  let tel = /^1(3|4|5|7|8)\d{9}$/.test(this.phone);
 				   if (this.phone == "" || this.name == "") {
 					  uni.showToast({
@@ -123,16 +124,18 @@
 					  remark:this.remarks
 				  },function(self,res){
 					  console.log(res)
-					  uni.showToast({
-					  	icon:'none',
-						title:res.msg
-					  })
 					  if(res.code == 0){
-					  	setTimeout(function(self,res){
-							uni.reLaunch({
-							    url: '../subuser/activitys/activitys'
-							});
-						},1000)
+						self.service.order.apply(self,[res,that.payment_name,'../subuser/activitys/activitys'])
+					    //  setTimeout(function(self,res){
+						// 	uni.reLaunch({
+						// 	    url: '../subuser/activitys/activitys'
+						// 	});
+						// },1000)
+					  }else{
+						  uni.showToast({
+						  	icon:'none',
+						  	title:res.msg
+						  })
 					  }
 				  })
 			 }

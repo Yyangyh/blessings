@@ -215,16 +215,19 @@
 .list_three view:nth-of-type(2) {
     color: #999999;
 }
-.mask_black {
-  z-index: 999;
-  opacity: 1;
+.mask_black1 {
+  z-index: 10001;
   background: rgba(0, 0, 0, 0.3);
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
 }
-.mask_black .binding {
-    height: 600rpx;
+.mask_black1 .binding {
     width: 560rpx;
     box-sizing: border-box;
-    padding: 0 20rpx;
+    padding: 0 20rpx 20rpx 20rpx;
     background: #FFFFFF;
     position: absolute;
     top: 50%;
@@ -232,16 +235,17 @@
     -webkit-transform: translate(-50%, -50%);
             transform: translate(-50%, -50%);
 }
-.mask_black .binding .bind_top {
+.mask_black1 .binding .bind_top {
       text-align: center;
       font-size: 32rpx;
       padding: 20rpx 0;
 }
-.mask_black .binding .input {
+.mask_black1 .binding .input {
       font-size: 24rpx;
+      border-bottom: 2rpx solid #F2F2F2;
       padding: 30rpx 60rpx;
 }
-.mask_black .binding .verification {
+.mask_black1 .binding .verification {
       display: -webkit-box;
       display: -webkit-flex;
       display: flex;
@@ -252,16 +256,17 @@
       -webkit-justify-content: space-between;
               justify-content: space-between;
       padding-right: 60rpx;
+      border-bottom: 2rpx solid #F2F2F2;
 }
-.mask_black .binding .verification input {
+.mask_black1 .binding .verification input {
         font-size: 24rpx;
         padding: 30rpx 0 30rpx 60rpx;
 }
-.mask_black .binding .verification text {
+.mask_black1 .binding .verification text {
         font-size: 26rpx;
         color: #32A6FF;
 }
-.mask_black .binding button {
+.mask_black1 .binding button {
       width: 410rpx;
       height: 80rpx;
       background: #d80000;

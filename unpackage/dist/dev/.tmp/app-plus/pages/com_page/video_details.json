@@ -2,6 +2,7 @@
   "navigationBarTitleText": "视频详情",
   "titleNView": false,
   "usingComponents": {
-    "load": "/pages/common/load"
+    "load": "/pages/common/load",
+    "share": "/pages/common/share"
   }
 }

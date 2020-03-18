@@ -24,11 +24,10 @@
 /* 垂直间距 */
 /* 透明度 */
 /* 文章场景相关 */
+page {
+  background: #E6E6E6;
+}
 .content {
-  width: 100%;
-  height: 1229rpx;
-  background: -webkit-linear-gradient(top, #ff5d44, #ffa774);
-  background: linear-gradient(180deg, #ff5d44, #ffa774);
   position: relative;
 }
 .content .mSg {
@@ -37,16 +36,18 @@
 }
 .content .sign1 {
     position: absolute;
-    width: 578rpx;
-    height: 321rpx;
-    left: 79rpx;
-    top: 150rpx;
+    width: 100%;
+    height: 100%;
+    top: 105rpx;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+            transform: translateX(-50%);
     z-index: 1;
 }
 .content .integral {
     color: #FFFFFF;
     text-align: center;
-    margin-top: 110rpx;
+    margin-top: 60rpx;
     z-index: 199;
     position: relative;
 }
@@ -58,20 +59,24 @@
       margin-top: 10rpx;
 }
 .content .singnBox {
-    width: 690rpx;
-    height: 800rpx;
+    height: 532rpx;
     background: white;
     border-radius: 10rpx;
-    margin: 130rpx auto 0;
     z-index: 199;
     position: relative;
+    top: 50rpx;
+    margin: 0 20rpx;
     padding-top: 30rpx;
 }
 .content .singnBox .state {
-      font-size: 28rpx;
-      color: #777777;
+      font-size: 40rpx;
+      color: #010101;
       text-align: center;
+      margin-top: 60rpx;
       padding: 30rpx auto;
+}
+.content .singnBox .state text {
+        color: #FE0000;
 }
 .content .singnBox .sign2 {
       width: 296rpx;
@@ -97,7 +102,7 @@
       display: -webkit-box;
       display: -webkit-flex;
       display: flex;
-      margin: 300rpx 0 0 30rpx;
+      margin: 60rpx 0 0 30rpx;
 }
 .content .singnBox .time .timebox {
         display: -webkit-box;
@@ -128,16 +133,15 @@
 .content .singnBox button {
       width: 487rpx;
       height: 80rpx;
-      background: -webkit-linear-gradient(top, #ff9e67, #ff4e33);
-      background: linear-gradient(180deg, #ff9e67, #ff4e33);
+      background: #FE0000;
       border-radius: 40rpx;
-      color: #FFFFFF;
+      color: #FFFF6F;
       font-size: 28rpx;
-      margin: 80rpx auto;
+      margin: 50rpx auto;
 }
 .content .singnBox .look {
-      font-size: 24rpx;
-      color: #A5A5A5;
+      font-size: 28rpx;
+      color: #FE0000;
       text-align: center;
 }
 .content .bk {
@@ -146,11 +150,11 @@
     left: 50%;
     -webkit-transform: translateX(-50%);
             transform: translateX(-50%);
-    top: 500rpx;
+    top: 300rpx;
     z-index: 900;
 }
 .content .bk image {
-      width: 500rpx;
+      width: 650rpx;
       height: 304rpx;
       display: block;
       margin: 0 auto;
@@ -158,28 +162,42 @@
 }
 .content .bk .bk_text {
       position: absolute;
+      width: 100%;
       text-align: center;
-      margin: -170rpx 0 0 31%;
+      top: 240rpx;
+      left: 50%;
+      -webkit-transform: translateX(-50%);
+              transform: translateX(-50%);
 }
-.content .bk .bk_text view:first-child {
-        font-size: 32rpx;
+.content .bk .bk_text .msg1 {
+        font-size: 40rpx;
+        color: #010101;
+}
+.content .bk .bk_text .msg2 {
         color: #FFFFFF;
+        font-size: 28rpx;
+        margin-top: 160rpx;
 }
-.content .bk .bk_text view:last-child {
-        margin-top: 40rpx;
-        display: -webkit-box;
-        display: -webkit-flex;
-        display: flex;
-        -webkit-box-align: center;
-        -webkit-align-items: center;
-                align-items: center;
+.content .bk .bk_text .msg3 {
+        color: #666666;
+        font-size: 32rpx;
+        margin-top: 20rpx;
+        margin-bottom: 60rpx;
 }
-.content .bk .bk_text view:last-child .text1 {
-          font-size: 24rpx;
-          color: #333333;
+.content .bk .bk_text button {
+        margin-top: 30rpx;
+        font-size: 34rpx;
+        height: 80rpx;
+        line-height: 80rpx;
+        border-radius: 80rpx;
+        color: #FFFF6F;
+        background: #FE0000;
+        margin: 0 80rpx;
 }
-.content .bk .bk_text view:last-child .text2 {
-          font-size: 40rpx;
-          color: #FE8D08;
+.content .back_btm {
+    width: 710rpx;
+    position: relative;
+    top: 70rpx;
+    margin: 0 20rpx;
 }
 

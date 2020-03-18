@@ -34,7 +34,7 @@
     box-sizing: border-box;
     position: fixed;
     top: var(--status-bar-height);
-    z-index: 99;
+    z-index: 333;
     left: 0;
     display: -webkit-box;
     display: -webkit-flex;
@@ -110,6 +110,8 @@
     top: 300rpx;
     left: 0;
     border-bottom: 1rpx solid #E9E9E9;
+    z-index: 222;
+    background: #fff;
 }
 .content .allorder text {
       -webkit-box-flex: 1;

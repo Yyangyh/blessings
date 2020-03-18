@@ -10,9 +10,7 @@
 		<view class="room_title">
 			<view class="title_top">
 				<view class="top_list" v-for="(item,index) in top_class" :key = 'item.id' @tap="chiose(index)">
-					<view class="list_img">
-						<image :src="$api_img() + item.cl_image" mode=""></image>
-					</view>
+					<image :src="$api_img() + item.cl_image" mode=""></image>
 					<view class="" :class="{name_show:id == item.id}">
 						{{item.cl_name}}
 					</view>
@@ -114,7 +112,6 @@
 						self.slide = res.data.slide
 						self.id = res.data.top_class[0].id
 						
-						console.log(self.id)
 						resolve(self.id);
 					})
 				})
@@ -129,8 +126,10 @@
 				})
 			}
 		},
-		onShow() {
+		onLoad() {
 			this.a_sync()
+		},
+		onShow() {
 			this.service.notice.call(this)
 			// this.service.entire(this,'get',this.APIconfig.api_root.index.felicity_index,{
 			// 	userid:this.$store.state.user.id
@@ -157,26 +156,23 @@
 	}
 	.room_title{
 		background: #fff;
-		padding: 40rpx 20rpx;
+		padding: 00rpx 20rpx;
 		.title_top{
 			display: flex;
 			justify-content: space-between;
 			text-align: center;
 			font-size: 24rpx;
-			margin-bottom: 40rpx;
 			.top_list{
 				width: 25%;
+				margin: 40rpx 0;
 				text-align: center;
 				.name_show{
 					color: #FE0000;
 				}
 			}
-			.list_img{
-				margin-bottom: 10rpx;
-				image{
-					height: 85rpx;
-					width: 85rpx;
-				}
+			image{
+				height: 85rpx;
+				width: 85rpx;
 			}
 		}
 		.title_bottom image{
@@ -198,7 +194,7 @@
 			margin: 30rpx 0 20rpx 0;
 			display: flex;
 			align-items: center;
-			font-weight: 500;
+			font-weight: bold;
 			text{
 				display: inline-block;
 				width: 4rpx;
@@ -211,7 +207,7 @@
 			background: #FFFFFF;
 			padding: 30rpx 15rpx;
 			height: 350rpx;
-			margin-bottom: 25px;
+			margin-bottom: 20rpx;
 			box-sizing: border-box;
 			border-radius: 10rpx;
 			display: flex;

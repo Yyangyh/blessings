@@ -132,8 +132,8 @@
 						<input type="text" v-model="verify" value="" placeholder="请输入验证码" />
 						<text @tap="obtain" >{{verification}}</text>
 					</view>
-					<input class="input" v-model="pwd" type="text" placeholder="设置密码">
-					<input class="input" v-model="re_pwd" type="text" placeholder="确认密码">
+					<input class="input" password="true" v-model="pwd" type="text" placeholder="设置密码">
+					<input class="input" password="true" v-model="re_pwd" type="text" placeholder="确认密码">
 					
 					<button @click="config">完成</button>
 				</view>
@@ -336,7 +336,7 @@
 			.content_list{
 				display: inline-block;
 				width: 50%;
-				font-size: 24rpx;
+				font-size: 28rpx;
 				box-sizing: border-box;
 				white-space: initial;
 				vertical-align: top;
@@ -363,27 +363,31 @@
 	.v_box_top{
 		display: flex;
 		justify-content: space-between;
+		align-items: center;
 		padding: 0 20rpx;
 		font-size: 28rpx;
 		margin: 20rpx 0;
 		.box_left{
 			display: flex;
 			align-items: center;
+			font-size: 38rpx;
+			font-weight: bold;
 			.red{
 				display: inline-block;
 				margin-right: 10rpx;
-				height: 28rpx;
+				height: 38rpx;
 				width: 4rpx;
 				background: #FE0000;
 			}
 		}
 		.box_right{
-			font-size: 24rpx;
+			font-size: 28rpx;
 			color: #E9BB00;
 		}
 	}
 	.list_one{
 		padding-right: 10rpx;
+		font-size: 30rpx;
 		display: flex;
 		justify-content: space-between;
 		view:nth-of-type(2){
@@ -402,7 +406,7 @@
 	.vider_content_two{
 		display: flex;
 		flex-wrap: wrap;
-		font-size: 28rpx;
+		font-size: 30rpx;
 		// text-align: center;
 		padding: 0rpx 20rpx 10rpx 20rpx;
 		.two_list{
@@ -428,11 +432,11 @@
 				}
 			}
 			.two_mid{
-				font-size: 24rpx;
+				font-size: 28rpx;
 				margin-bottom: 10rpx;
 			}
 			.two_btm{
-				font-size: 24rpx;
+				font-size: 28rpx;
 				color: #666666;
 			}
 			&:nth-of-type(odd){
@@ -445,7 +449,7 @@
 		display: flex;
 		justify-content: space-between;
 		color: #EF7C38;
-		font-size: 24rpx;
+		font-size: 28rpx;
 		view:nth-of-type(2){
 			color: #999999;
 		}

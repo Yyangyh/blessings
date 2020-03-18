@@ -3,7 +3,13 @@
 		<view class="status_bar">
 			<!-- 这里是状态栏 -->
 		</view>
-		<returns :titles='title'></returns>
+		<view class="top">
+			<view class="top_enlarge"  @click="returns()">
+				<image src="/static/image/com_page/returns.png" mode="widthFix" ></image>
+			</view>
+			<text>商城订单</text>
+			<text></text>
+		</view>
 		<view class="course_top">
 			<view class="top_one" @tap="chiose(1)" :class="{top_show:top_show == 1}">
 				课程视频
@@ -95,16 +101,13 @@
 </template>
 
 <script>
-	import returns from '../common/returns.vue'
 	import uniLoadMore from '../../components/uni-load-more/uni-load-more.vue'
 		export default{
 			components:{
-				returns,
 				uniLoadMore
 			},
 			data(){
 				return{
-					title:'课程订单',
 					top_show:1,
 					mid_show:6,
 					data:[],
@@ -115,6 +118,14 @@
 				}
 			},
 			methods:{
+				returns() {
+					// uni.switchTab({
+					// 	url: '/pages/index/user'
+					// });
+					uni.redirectTo({
+					    url: './myorder'
+					});
+				},
 				Index(){
 					this.more = 'loading'
 					let data = {
@@ -191,6 +202,37 @@
 </script>
 
 <style lang="scss">
+	.top {
+		position: fixed;
+		width: 100%;
+		box-sizing: border-box;
+		top: var(--status-bar-height);
+		left: 0;
+		z-index: 99;
+		height: 105rpx;
+		padding: 0 44rpx;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		font-size: 32rpx;
+		font-weight: bold;
+		color: #333333;
+		background: #fff;
+		.top_enlarge{
+			display: flex;
+			align-items: center;
+			height: 100%;
+			width: 180rpx;
+		}
+		image {
+			height: 40rpx;
+			width: 40rpx;
+		}
+		text:nth-of-type(2) {
+			width: 180rpx;
+			display: inline-block;
+		}
+	}
 	.course_top{
 		height: 115rpx;
 		display: flex;

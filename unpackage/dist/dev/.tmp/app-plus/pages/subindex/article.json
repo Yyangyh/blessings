@@ -2,6 +2,7 @@
   "navigationBarTitleText": "文章",
   "titleNView": false,
   "usingComponents": {
-    "returns": "/pages/common/returns"
+    "returns": "/pages/common/returns",
+    "share": "/pages/common/share"
   }
 }

@@ -63,6 +63,8 @@ const api_root = {
 		
 	},
 	subhome:{
+		f_detail: api+'/api/familystyle/detail',//家风建设内容详情
+		f_index: api+'/api/familystyle/index',//家风建设内容列表
 		s_index: api+'/api/search/index',//商品列表
 		s_category: api+'/api/good/category',//分类列表
 		s_detail: api+'/api/good/detail',//获取商品详情
@@ -170,6 +172,7 @@ const api_root = {
 	},
 	subindex:{
 		getMorningnew:api+'/api/article/getMorningnew',//早间晨语
+		satusOfMorningnew:api+'/api/article/satusOfMorningnew',//更改早间晨语的操作状态
 		s_test:api+'/api/test/getPaper',//通过试卷id获取试卷信息
 		s_test_classify:api+'/api/test/getPaperCategory',//幸福评测分类或分类下数据获取
 		s_test_Result:api+'/api/test/examUserTestResult',//用户测验

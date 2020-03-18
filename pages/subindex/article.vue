@@ -3,10 +3,11 @@
 		<view class="status_bar">
 					
 		</view>
+		<share ref="share" :datas='share_arr'></share>
 		<view class="top">
 			<image src="../../static/image/com_page/returns.png" @tap="service.returns()" mode="widthFix"></image>
 			<text>文章</text>
-			<image src='../../static/image/subhome/share.png'></image>
+			<image  @tap="tips" src='../../static/image/subhome/share.png'></image>
 		</view>
 		<hr />
 		<view>
@@ -81,9 +82,11 @@
 
 <script>
 	import returns from '../common/returns.vue'
+	import share from'../common/share.vue'
 	export default{
 		components:{
-			returns
+			returns,
+			share
 		},
 		data(){
 			return{
@@ -92,9 +95,25 @@
 				data_list:'',
 				show:false,
 				id:'',
+				share_arr:{},
 			}
 		},
 		methods:{
+			tips(){ //分享
+				// #ifdef H5
+				uni.showModal({
+				    title: '提示',
+				    content: '请点击右上角选择分享！',
+					showCancel:false,
+				    success: function (res) {
+				       
+				    }
+				});
+				// #endif
+				// #ifdef APP-PLUS
+				this.$refs.share.share();
+				// #endif
+			},
 			collection(){
 				let times = this.service.loading()
 				this.service.entire(this,'get',this.APIconfig.api_root.subindex.s_favoriteArticle,{
@@ -111,11 +130,17 @@
 		},
 		onLoad(e) {
 			this.id = e.id
+			this.share_arr.Url = 'http://www.wufu-app.com/h5/#/pages/subindex/article?id='+e.id
 			this.service.entire(this,'get',this.APIconfig.api_root.subindex.s_getArticleDetail,{//获取文章
 				aid:e.id,
 				user_id:this.$store.state.user.id
 			},function(self,res){
 				console.log(res)
+				
+				self.share_arr.Title =  res.data.title//分享
+				// self.share_arr.Summary =  res.data.video.long_title//分享
+				self.share_arr.ImageUrl = self.$api_img() + res.data.images[0]//分享
+				
 				self.dataList = res.data
 				
 				let richtext=  res.data.content

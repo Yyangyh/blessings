@@ -16,13 +16,13 @@ const entire = function(self,type,url,data,func){
 			if(res_list.code == 9){ //token过期时替换重新请求
 				self.$store.commit('state_token',res_list.data.token)
 				self.$store.commit('state_user',res_list.data.userinfo)
-				console.log(self.$store.state.user)
+				// console.log(self.$store.state.user)
 				entire(self,type,url,data,func)
 			}else if(res_list.code == 10){
 				uni.navigateTo({
 					url:'/pages/login/login'
 				})
-				
+				return false
 			}else{
 				func(self,res_list)
 			}
@@ -100,107 +100,30 @@ const upimg = function(self,upname,url,data,filePath,func){ //上传图片
 	});
 }
 
-const order = function(ref, self, url, wxUrl) { //支付调用
-	// console.log(self.payment_name)
-	uni.showToast({
-		icon: "none",
-		title: ref.msg
-	})
-	if (self.payment_name == 'Alipay') {
-		//当选择支付宝支付时
-		// #ifndef  APP-PLUS
-			uni.showToast({
-				icon:'none',
-				title:JSON.stringify(ref)
-			})
-			uni.requestPayment({
-			    provider: 'alipay',
-			    orderInfo: ref, //微信、支付宝订单数据
-			    success: function (ref) {
-					
-			    },
-			    fail: function (err) {
-			        
-			    },
-				complete:function(com) {
-					uni.showToast({
-						icon:'none',
-						title:JSON.stringify(err)
-					})
-				}
-			});
-		return
-		// #endif
-		
-		// #ifdef H5
-		uni.showToast({
-			icon: 'none',
-			title: '只能在APP内选择支付宝支付'
-		})
-		// #endif
-		return
-	} else if (self.payment_name == 'Weixin') { //当选择微信支付时
-		// #ifdef H5  
-
-		let ua = navigator.userAgent.toLowerCase();
-		if (ua.match(/MicroMessenger/i) == "micromessenger") { //判断是否是在微信内置浏览器打开
-			let appId = ref.data.data.appId
-			let timeStamp = ref.data.data.timeStamp
-			let nonceStr = ref.data.data.nonceStr
-			let package_id = ref.data.data.package
-			let signType = ref.data.data.signType
-			let paySign = ref.data.data.paySign
-			console.log(signType)
-
-			function onBridgeReady(appId, timeStamp, nonceStr, package_id, signType, paySign) {
-				WeixinJSBridge.invoke(
-					'getBrandWCPayRequest', {
-						"appId": appId, //公众号名称，由商户传入     
-						"timeStamp": timeStamp, //时间戳，自1970年以来的秒数     
-						"nonceStr": nonceStr, //随机串     
-						"package": package_id,
-						"signType": signType, //微信签名方式：     
-						"paySign": paySign //微信签名 
-					},
-					function(res) {
-						if (res.err_msg == "get_brand_wcpay_request:ok") {
-							if(url.split('/index/').length == 2){
-								uni.switchTab({
-								    url: url
-								});
-							}else{
-								uni.redirectTo({
-									url: url
-								})
-							}
-							
-							// 使用以上方式判断前端返回,微信团队郑重提示：
-							//res.err_msg将在用户支付成功后返回ok，但并不保证它绝对可靠。
-						}
-					});
-			}
-			if (typeof WeixinJSBridge == "undefined") {
-				if (document.addEventListener) {
-					document.addEventListener('WeixinJSBridgeReady', onBridgeReady, false);
-				} else if (document.attachEvent) {
-					document.attachEvent('WeixinJSBridgeReady', onBridgeReady);
-					document.attachEvent('onWeixinJSBridgeReady', onBridgeReady);
-				}
-			} else {
-				onBridgeReady(appId, timeStamp, nonceStr, package_id, signType, paySign);
-			}
-		} else { //普通浏览器微信支付
-			let string = encodeURI('http://wx.huanqiutongmall.com/h5/#/' + wxUrl)
-			window.location.href = ref.data.data + '&redirect_url=' + string
-		}
-		// #endif  
-
-
-		// #ifdef  APP-PLUS
+const order = function(ref,pay_type,url) { //支付调用
+	let that = this
+	if(pay_type == 'Alipay'){
 		uni.requestPayment({
-			provider: 'wxpay',
-			orderInfo: ref.data, //微信、支付宝订单数据
-			success: function(ref) {
+		    provider: 'alipay',
+		    orderInfo: ref.data, //微信、支付宝订单数据
+		    success: function (ref) {
+				
+		    },
+		    fail: function (err) {
+		        
+		    },
+			complete:function(com) {
+				uni.showToast({
+					icon:'none',
+					title:JSON.stringify(err)
+				})
+			}
+		});
+	}else if(pay_type == 'Weixin'){
+		uni.requestPayment({
+		    provider: 'wxpay',
+		    orderInfo: ref.data, //微信、支付宝订单数据
+		    success: function (ref) {
 				if(url.split('/index/').length == 2){
 					uni.switchTab({
 					    url: url
@@ -210,24 +133,24 @@ const order = function(ref, self, url, wxUrl) { //支付调用
 						url: url
 					})
 				}
-			},
-			fail: function(err) {
-				console.log('fail:' + JSON.stringify(err));
-			}
-		});
-		// #endif
-	} else if (self.payment_name == 'WalletPay') { //选择钱包支付时
-		setTimeout(function() {
-			if(url.split('/index/').length == 2){
-				uni.switchTab({
-				    url: url
-				});
-			}else{
-				uni.redirectTo({
-					url: url
+		    },
+		    fail: function (err) {
+		    },
+			complete:function(com) {
+				uni.showToast({
+					icon:'none',
+					title:JSON.stringify(com)
 				})
 			}
-		}, 1500)
+		});
+	}else{
+		uni.showToast({
+			icon:'none',
+			title:ref.msg
+		})
+		setTimeout(function(){
+			that.$jump(url)
+		},1000)
 	}
 }
 

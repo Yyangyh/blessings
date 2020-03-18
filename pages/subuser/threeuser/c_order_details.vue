@@ -216,9 +216,11 @@
 				            	video_id: that.data.vid,
 								section_id:that.data.section_id,
 								pay_type:that.payment_name,
-								pay_price:that.data.pay_price
+								pay_price:that.data.pay_price,
+								order_sn:that.data.order_sn
 				            }, function(self, ref) {
-				            	self.service.order(ref,self,'../course_order?status=6','pages/subuser/course_order?status=6')
+								self.service.order.apply(self,[ref,that.payment_name,'../course_order?status=6'])
+				            	// self.service.order(ref,self,'../course_order?status=6','pages/subuser/course_order?status=6')
 				            	
 				            })
 				        } else if (res.cancel) {

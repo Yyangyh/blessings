@@ -174,7 +174,8 @@
 				           			payment_id:self.payment_id,
 									
 				           		},function(selfs,ref){
-				           			self.service.order(ref,self,'../../subuser/assemble_order?status=0','pages/subuser/assemble_order?status=1')
+				           			// self.service.order(ref,self,'../../subuser/assemble_order?status=0','pages/subuser/assemble_order?status=1')
+									self.service.order.apply(self,[ref,that.payment_name,'../../subuser/assemble_order?status=0'])
 				           		})	
 				           	}else{
 				           		uni.showToast({

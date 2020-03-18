@@ -115,7 +115,7 @@
 				this.show = status
 				this.page = 1
 				this.loadRecord = true
-				this.service.entire(this,'get',this.APIconfig.api_root.subuser.g_order_lists,{
+				this.service.entire(this,'post',this.APIconfig.api_root.subuser.g_order_lists,{
 					user_id:this.$store.state.user.id,
 					is_more:1,
 					status:status,
@@ -133,7 +133,7 @@
 			loadMore(){
 				let page = this.page
 				this.more = 'loading'
-				this.service.entire(this,'get',this.APIconfig.api_root.subuser.g_order_lists,{
+				this.service.entire(this,'post',this.APIconfig.api_root.subuser.g_order_lists,{
 					user_id:this.$store.state.user.id,
 					is_more:1,
 					status:this.show,

@@ -38,7 +38,7 @@
 			</view>
 			<view class="uploading">
 				<view class="lines" @tap="upimg('just')">
-					<view class="l_felt">法人身份证正面</view>
+					<view class="l_felt">身份证正面</view>
 					<view class="l_right" >
 						<image :src="just" mode="widthFix"></image>
 						<image src='../../../static/image/index/go.png' mode="widthFix"></image>
@@ -46,7 +46,7 @@
 				</view>
 				<hr />
 				<view class="lines" @tap="upimg('back')">
-					<view class="l_felt">法人身份证反面</view>
+					<view class="l_felt">身份证反面</view>
 					<view class="l_right" >
 						<image :src="back" mode="widthFix"></image>
 						<image src='../../../static/image/index/go.png' mode="widthFix"></image>

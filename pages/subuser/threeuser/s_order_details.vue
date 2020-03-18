@@ -314,7 +314,8 @@
 				            	id: that.data.id,
 				            	payment_id: that.payment_id
 				            }, function(self, ref) {
-				            	self.service.order(ref,self,'../s_order?status=-1','pages/subuser/s_order?status=-1')
+								self.service.order.apply(self,[ref,that.payment_name,'../s_order?status=-1'])
+				            	// self.service.order(ref,self,'../s_order?status=-1','pages/subuser/s_order?status=-1')
 				            	
 				            })
 				        } else if (res.cancel) {

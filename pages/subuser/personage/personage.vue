@@ -52,8 +52,8 @@
 					</view>
 				</view>
 				<hr />
-				<button>确认</button>
-				<hr />
+				<!-- <button>确认</button>
+				<hr /> -->
 			</view>
 		</view>
 		

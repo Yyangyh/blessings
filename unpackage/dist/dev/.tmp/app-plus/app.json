@@ -18,6 +18,8 @@
     "pages/com_page/s_search",
     "pages/subhome/home_com",
     "pages/subhome/assemble",
+    "pages/subhome/h_list",
+    "pages/subhome/h_article",
     "pages/subhome/threehome/group_products",
     "pages/subhome/threehome/my_group",
     "pages/subhome/threehome/operation",
@@ -145,7 +147,7 @@
     "autoclose": false
   },
   "appname": "五福家庭",
-  "compilerVersion": "2.6.1",
+  "compilerVersion": "2.6.5",
   "usingComponents": {
     "load": "/pages/common/load"
   }

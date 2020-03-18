@@ -290,7 +290,7 @@
 		top: calc(var(--status-bar-height) + 205rpx);
 		left: 0;
 		width: 100%;
-		z-index: 998;
+		z-index: 900;
 		box-sizing: border-box;
 		display: flex;
 		flex-wrap: wrap;

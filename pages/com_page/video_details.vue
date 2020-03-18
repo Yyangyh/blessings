@@ -3,6 +3,7 @@
 		<view class="status_bar">
 			
 		</view>
+		<share ref="share" :datas='share_arr'></share>
 		<view class="content_top">
 			<view class="top_returns" @tap="service.returns()">
 				<image src="/static/image/com_page/returns.png" mode="widthFix"></image>
@@ -10,7 +11,7 @@
 			<view class="top_search">
 				课程详情
 			</view>
-			<view class="top_img">
+			<view class="top_img" @tap="tips">
 				<image src="/static/image/com_page/share.png" mode="widthFix"></image>
 			</view>
 		</view>
@@ -313,9 +314,11 @@
 	import collect_img from '../../static/image/com_page/collect_HL.png'
 	import integral_img from '../../static/image/com_page/integral.png'
 	import load from '../common/load.vue'
+	import share from'../common/share.vue'
 	export default{
 		components:{
-			load
+			load,
+			share
 		},
 		data() {
 			return {
@@ -343,7 +346,8 @@
 				duration_time:'',
 				receive_status:false,
 				initial_time:0 ,//指定视频播放初始秒数
-				give_show:false
+				give_show:false,
+				share_arr:{},
 			}
 		},
 		computed:{
@@ -366,6 +370,21 @@
 		methods:{
 			pause(e){
 				// console.log(e)
+			},
+			tips(){ //分享
+				// #ifdef H5
+				uni.showModal({
+				    title: '提示',
+				    content: '请点击右上角选择分享！',
+					showCancel:false,
+				    success: function (res) {
+				       
+				    }
+				});
+				// #endif
+				// #ifdef APP-PLUS
+				this.$refs.share.share();
+				// #endif
 			},
 			timeupdate(e){ //记录播放进度
 				this.duration_time = e.detail.duration
@@ -560,6 +579,11 @@
 					res.data.video.v_url ? self.play_url = self.service.analysis_url(res.data.video.v_url) : self.indexs = 0
 					self.video_data = res.data.video
 					
+					self.share_arr.Title =  res.data.video.title//分享
+					self.share_arr.Summary =  res.data.video.long_title//分享
+					self.share_arr.ImageUrl = self.$api_img() + res.data.video.v_pic//分享
+					
+					
 					
 					let richtext=  res.data.video.video_content
 					const regex = new RegExp('<img', 'gi');
@@ -629,6 +653,7 @@
 			this.videoContext = uni.createVideoContext('myVideo')
 		},
 		onLoad(e) {
+			this.share_arr.Url = 'http://www.wufu-app.com/h5/#/pages/com_page/video_details?id='+e.id+'&type='+e.type
 			this.id = e.id
 			this.type = e.type
 			this.service.entire(this,'post',this.APIconfig.api_root.com_page.v_coupon,{ //优惠券列表

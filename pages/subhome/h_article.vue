@@ -111,13 +111,12 @@
 		},
 		onLoad(e) {
 			this.id = e.id
-			this.service.entire(this,'get',this.APIconfig.api_root.subindex.s_getArticleDetail,{//获取文章
-				aid:e.id,
+			this.service.entire(this,'post',this.APIconfig.api_root.subhome.f_detail,{//获取文章
+				id:e.id,
 				user_id:this.$store.state.user.id
 			},function(self,res){
 				console.log(res)
 				self.dataList = res.data
-				
 				let richtext=  res.data.content
 				const regex = new RegExp('<img', 'gi');
 				richtext= richtext.replace(regex, `<img style="max-width: 100%;"`);
@@ -127,15 +126,15 @@
 				console.log(self.dataList)
 			})
 			
-			this.service.entire(this,'get',this.APIconfig.api_root.subindex.s_getCommentByAid,{ //用户评论
-				aid:this.id,
-			},function(self,res){
-				self.data_list = res.data
-				console.log(self.data_list)
-				for (let s of self.data_list) {
-					s.rating_nums = new Array(Number(s.grade))
-				}
-			})
+			// this.service.entire(this,'get',this.APIconfig.api_root.subindex.s_getCommentByAid,{ //用户评论
+			// 	aid:this.id,
+			// },function(self,res){
+			// 	self.data_list = res.data
+			// 	console.log(self.data_list)
+			// 	for (let s of self.data_list) {
+			// 		s.rating_nums = new Array(Number(s.grade))
+			// 	}
+			// })
 		}
 	}
 </script>

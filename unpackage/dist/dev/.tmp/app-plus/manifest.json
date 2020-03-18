@@ -24,6 +24,7 @@
     },
     "Payment": {},
     "OAuth": {},
+    "Share": {},
     "UniNView": {
       "description": "UniNView原生渲染"
     }
@@ -135,11 +136,17 @@
             "UniversalLinks": ""
           }
         },
-        "ad": null,
+        "ad": {},
         "oauth": {
           "weixin": {
             "appid": "wxfa6d980de363757f",
             "appsecret": "a9eed98a6d4477c6c7886208915ea071",
+            "UniversalLinks": ""
+          }
+        },
+        "share": {
+          "weixin": {
+            "appid": "wxfa6d980de363757f",
             "UniversalLinks": ""
           }
         },
@@ -158,7 +165,7 @@
       }
     },
     "uni-app": {
-      "compilerVersion": "2.6.1",
+      "compilerVersion": "2.6.5",
       "control": "v8",
       "nvueCompiler": "uni-app",
       "renderer": "auto",

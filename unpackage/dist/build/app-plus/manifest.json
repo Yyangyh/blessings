@@ -135,7 +135,7 @@
             "UniversalLinks": ""
           }
         },
-        "ad": null,
+        "ad": {},
         "oauth": {
           "weixin": {
             "appid": "wxfa6d980de363757f",
@@ -158,7 +158,7 @@
       }
     },
     "uni-app": {
-      "compilerVersion": "2.6.1",
+      "compilerVersion": "2.6.5",
       "control": "v8",
       "nvueCompiler": "uni-app",
       "renderer": "auto",

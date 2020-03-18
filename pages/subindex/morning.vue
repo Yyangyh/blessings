@@ -3,12 +3,13 @@
 		<view class="status_bar">
 					
 		</view>
+		<share ref="share" :datas='share_arr'></share>
 		<view class="top">
 			<view class="top_enlarge"  @tap="service.returns()">
 				<image src="/static/image/com_page/returns.png" mode="widthFix"></image>
 			</view>
 			<text>早间晨语</text>
-			<view class="screen">
+			<view class="screen" @tap="open()">
 				<image src="../../static/image/index/screen.png" mode="widthFix"></image>
 				<text>筛选</text>
 			</view>
@@ -38,20 +39,23 @@
 					{{service.Test(item.create_time)}}
 				</view>
 				<view class="list_oper">
-					<view class="oper">
-						<image src="../../static/image/index/oper1.png" mode="widthFix"></image>
+					<view class="oper" @tap="preservation(item.image,item.id,index)">
+						<image v-if="item.is_downimage == 0" src="../../static/image/index/oper1.png" mode="widthFix"></image>
+						<image v-else src="../../static/image/index/Hoper1.png" mode="widthFix"></image>
 						<view class="">
 							图片下载
 						</view>
 					</view>
-					<view class="oper" @tap="copy(item.content)">
-						<image src="../../static/image/index/oper2.png" mode="widthFix"></image>
+					<view class="oper" @tap="copy(item.content,item.id,index)">
+						<image v-if="item.is_copycontent == 0"  src="../../static/image/index/oper2.png" mode="widthFix"></image>
+						<image v-else src="../../static/image/index/Hoper2.png" mode="widthFix"></image>
 						<view class="">
 							文案复制
 						</view>
 					</view>
-					<view class="oper">
-						<image src="../../static/image/index/oper3.png" mode="widthFix"></image>
+					<view class="oper"  @tap="forward(index)">
+						<image v-if="item.is_share == 0"  src="../../static/image/index/oper3.png" mode="widthFix"></image>
+						<image v-else src="../../static/image/index/Hoper3.png" mode="widthFix"></image>
 						<view class="">
 							一键转发
 						</view>
@@ -60,25 +64,54 @@
 			</view>
 		</view>
 		
-		
+		<view>
+		    <uni-calendar 
+		    ref="calendar"
+		    :insert="false"
+		    @confirm="confirm"
+			:showMonth="false"
+		     ></uni-calendar>
+		</view>
 		
 	</view>
 </template>
 
 <script>
+	import uniCalendar from "../../components/uni-calendar/uni-calendar.vue"
 	import js_sdk from '../../js_sdk/ican-H5Api/ican-H5Api.js'
+	import share from'../common/share.vue'
 	export default{
-		
+		components:{
+			uniCalendar,
+			share
+		},
 		data(){
 			return{
-				data:''
+				data:'',
+				share_arr:{},
 			}
 		},
 		methods:{
-			copy(data) {
+			open(type){
+				this.type = type
+				this.$refs.calendar.open();
+			},
+			confirm(e) {  //日历表选择日期时间
+				this.service.entire(this,'post',this.APIconfig.api_root.subindex.getMorningnew,{ //
+					page:1,
+					start_time:new Date(e.fulldate).getTime()/1000,
+					user_id:this.$store.state.user.id,
+				},function(self,res){
+					self.data = res.data
+				})
+			},
+			copy(data,id,index) { //复制文案
+				let that = this
 				uni.setClipboardData({
 					data: data,
 					success: function(res) {
+						that.oper(2,id)
+						that.data[index].is_copycontent = 1
 						uni.showToast({
 							icon: 'none',
 							title: '复制成功'
@@ -86,13 +119,47 @@
 					}
 				})
 			},
+			oper(type,id){
+				this.service.entire(this,'post',this.APIconfig.api_root.subindex.satusOfMorningnew,{ //
+					morning_id:id,
+					user_id:this.$store.state.user.id,
+					type:type
+				},function(self,res){
+				})
+			},
+			preservation(Url,id,index) { //保存图片
+				// #ifdef APP-PLUS
+				let that = this
+				//在app内运行
+				Url = this.$api_img() + Url
+				let filename = Math.random() + ".png"
+				plus.downloader.createDownload(Url, {
+					filename: "_downloads/" + filename
+				}, (download, status) => {
+					if (status == 200) { //下载成功  
+						plus.gallery.save(download.filename, () => {
+							uni.hideLoading();
+							that.oper(1,id)
+							that.data[index].is_downimage = 1
+							uni.showToast({
+								icon: 'none',
+								title: '保存成功！'
+							});
+						})
+					}
+				}).start()
+				// #endif
+			}
 		},
 		onShow() {
-			this.service.entire(this,'get',this.APIconfig.api_root.subindex.getMorningnew,{ //
-				page:1
+			this.share_arr.Url = 'http://www.wufu-app.com/h5/#/pages/subindex/morning'
+			this.service.entire(this,'post',this.APIconfig.api_root.subindex.getMorningnew,{ //
+				page:1,
+				user_id:this.$store.state.user.id,
 			},function(self,res){
 				console.log(res)
 				self.data = res.data
+				
 				console.log(self.data)
 			})
 		}

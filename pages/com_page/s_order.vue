@@ -272,7 +272,6 @@
 				uni.showModal({
 				    title: '提示',
 				    content: '是否确定支付？',
-					
 				    success: function (res) {
 				        if (res.confirm) {
 				            // console.log('用户点击确定');
@@ -282,6 +281,7 @@
 								payment_id:that.payment_id,
 							}
 							let data_list = Object.assign(data,that.require_data)
+							console.log(that.payment_name)
 							that.service.entire(that,'post',that.APIconfig.api_root.com_page.buy_add,data_list,function(self,res){
 								console.log(res)
 								if(res.code == 0){
@@ -290,7 +290,15 @@
 										id:res.data.order.id
 									},function(self,ref){
 										console.log(ref)
-										self.service.order(ref,self,'../subuser/s_order?status=-1','pages/subuser/s_order?status=-1')
+										if(ref.code == 0){
+											self.service.order.apply(self,[ref,that.payment_name,'../subuser/s_order?status=-1'])
+										}else{
+											uni.showToast({
+												icon:'none',
+												title:ref.msg
+											})
+										}
+										// self.service.order(ref,self,'../subuser/s_order?status=-1','pages/subuser/s_order?status=-1')
 									})
 								}else{
 									uni.showToast({

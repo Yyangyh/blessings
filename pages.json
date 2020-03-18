@@ -165,6 +165,24 @@
 			}
 		},
 		{
+			"path": "pages/subhome/h_list",
+			"style": {
+				"navigationBarTitleText": "家风建设",
+				"app-plus":{
+					"titleNView":false
+				}
+			}
+		},
+		{
+			"path": "pages/subhome/h_article",
+			"style": {
+				"navigationBarTitleText": "家风建设",
+				"app-plus":{
+					"titleNView":false
+				}
+			}
+		},
+		{
 			"path": "pages/subhome/threehome/group_products",
 			"style": {
 				"navigationBarTitleText": "商品详情",

@@ -38,7 +38,7 @@
 }
 .room_title {
   background: #fff;
-  padding: 40rpx 20rpx;
+  padding: 00rpx 20rpx;
 }
 .room_title .title_top {
     display: -webkit-box;
@@ -49,21 +49,18 @@
             justify-content: space-between;
     text-align: center;
     font-size: 24rpx;
-    margin-bottom: 40rpx;
 }
 .room_title .title_top .top_list {
       width: 25%;
+      margin: 40rpx 0;
       text-align: center;
 }
 .room_title .title_top .top_list .name_show {
         color: #FE0000;
 }
-.room_title .title_top .list_img {
-      margin-bottom: 10rpx;
-}
-.room_title .title_top .list_img image {
-        height: 85rpx;
-        width: 85rpx;
+.room_title .title_top image {
+      height: 85rpx;
+      width: 85rpx;
 }
 .room_title .title_bottom image {
     height: 150rpx;
@@ -87,7 +84,7 @@
     -webkit-box-align: center;
     -webkit-align-items: center;
             align-items: center;
-    font-weight: 500;
+    font-weight: bold;
 }
 .vider_content_two .box_one text {
       display: inline-block;
@@ -100,7 +97,7 @@
     background: #FFFFFF;
     padding: 30rpx 15rpx;
     height: 350rpx;
-    margin-bottom: 25px;
+    margin-bottom: 20rpx;
     box-sizing: border-box;
     border-radius: 10rpx;
     display: -webkit-box;
