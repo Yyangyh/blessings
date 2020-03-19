@@ -31,7 +31,7 @@
 			<view class="tab_list" :class="{test_show:test_show === 0}" @tap="test_show = 0">
 				课程介绍
 			</view>
-			<view class="tab_list" :class="{test_show:test_show === 1}" @tap="test_show = 1">
+			<view class="tab_list" v-if="video_data.is_online == 0" :class="{test_show:test_show === 1}" @tap="test_show = 1">
 				目录
 			</view>
 			<view class="tab_list" :class="{test_show:test_show === 2}" @tap="test_show = 2">
@@ -298,12 +298,15 @@
 						收藏
 					</view>
 				</view>
-				<view class="bot_buy" @tap="order_sn()"  v-if="is_free">
-					<text v-if="is_free">{{video_data.v_price}}</text>立即购买
-				</view>
-				<view class="bot_buy" v-else>
-					{{type == 1?'免费观看' : '免费悦听'}}
-				</view>
+				<block  v-if="video_data.is_online == 0">
+					<view class="bot_buy" @tap="order_sn()"    v-if="is_free">
+						<text v-if="is_free">{{video_data.v_price}}</text>立即购买
+					</view>
+					<view class="bot_buy" v-else>
+						{{type == 1?'免费观看' : '免费悦听'}}
+					</view>
+				</block>
+				
 			</view>
 		</view>
 		<load v-if="load_show"></load>

@@ -162,6 +162,7 @@
   -webkit-box-pack: justify;
   -webkit-justify-content: space-between;
           justify-content: space-between;
+  margin-bottom: 20rpx;
 }
 .title_top .title {
     font-size: 28rpx;
@@ -204,5 +205,106 @@
 }
 .rich {
   padding: 0 20rpx;
+}
+.com_box {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+          justify-content: space-between;
+  -webkit-align-content: center;
+          align-content: center;
+  font-size: 24rpx;
+  padding: 0 20rpx;
+  box-sizing: border-box;
+  height: 120rpx;
+  border-top: 2rpx solid #F2F2F2;
+  padding-top: 20rpx;
+}
+.com_box .box_left {
+    -webkit-box-flex: 2;
+    -webkit-flex-grow: 2;
+            flex-grow: 2;
+    border: 2rpx solid #999999;
+    height: 60rpx;
+    line-height: 60rpx;
+    border-radius: 60rpx;
+    padding: 0 31rpx;
+    color: #999999;
+}
+.com_box .box_right {
+    background: -webkit-linear-gradient(left, #f74c4a, #f56e6a);
+    background: linear-gradient(90deg, #f74c4a, #f56e6a);
+    border-radius: 10rpx;
+    width: 100rpx;
+    text-align: center;
+    line-height: 60rpx;
+    height: 60rpx;
+    color: #fff;
+    margin-left: 44rpx;
+}
+.write {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  z-index: 998;
+  width: 100%;
+  height: 416rpx;
+  background: #F6F6F6;
+  padding: 30rpx 20rpx;
+  -webkit-transform: translateY(100%);
+          transform: translateY(100%);
+  -webkit-transition: .3s;
+  transition: .3s;
+}
+.write .w_title {
+    font-size: 24rpx;
+    color: #666666;
+}
+.write .start {
+    margin-top: 20rpx;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+}
+.write .start image {
+      width: 41rpx;
+      height: 41rpx;
+      margin: 20rpx 10rpx;
+}
+.write textarea {
+    font-size: 24rpx;
+    color: #999999;
+    padding: 10rpx;
+    width: 690rpx;
+    height: 170rpx;
+    background-color: #FFFFFF;
+    border: 1rpx solid #999999;
+    margin-top: 20rpx;
+}
+.write button {
+    width: 120rpx;
+    height: 60rpx;
+    background: -webkit-linear-gradient(left, #f74c4a, #f56e6a);
+    background: linear-gradient(90deg, #f74c4a, #f56e6a);
+    border-radius: 10rpx;
+    color: #FFFFFF;
+    font-size: 24rpx;
+    line-height: 60rpx;
+    text-align: center;
+    margin: 20rpx 0 0 600rpx;
+}
+.show {
+  -webkit-transform: translateY(0);
+          transform: translateY(0);
+}
+.Noshow {
+  -webkit-transform: translateY(100%);
+          transform: translateY(100%);
 }
 

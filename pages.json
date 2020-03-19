@@ -182,6 +182,16 @@
 				}
 			}
 		},
+		
+		{
+			"path": "pages/subhome/threehome/h_article",
+			"style": {
+				"navigationBarTitleText": "文章详情",
+				"app-plus":{
+					"titleNView":false
+				}
+			}
+		},
 		{
 			"path": "pages/subhome/threehome/group_products",
 			"style": {

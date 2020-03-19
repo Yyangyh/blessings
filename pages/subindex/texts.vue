@@ -17,7 +17,7 @@
 			</view>
 			
 			<view class="list_all" @click="condition" :class="{'red':keyword_show === 1}">
-				收听多
+				阅读更多
 			</view>
 		</view>
 		<view class="mask_black" v-show="show == true" @tap="show = false">
@@ -36,10 +36,12 @@
 		</view>
 		<view class="texts_boxList" v-for="(item,index) in dataList" :key='item.id'>
 			<view class="t_box" @tap="$jump('./article?id='+item.id)">
-				<image :src="$api_img() + item.images" mode="scaleToFill"></image>
+				<view class="">
+					<image :src="$api_img() + item.images" mode="scaleToFill"></image>
+				</view>
 				<view class="b_right">
 					<view>{{item.title}}</view>
-					<view>{{item.access_count}}次观看</view>
+					<view>{{item.access_count}}次阅读</view>
 				</view>
 			</view>
 		</view>
@@ -302,12 +304,17 @@
 				margin-right: 30rpx;
 			}
 			.b_right{
+				flex-grow: 2;
 				view:first-child{
-					font-size: 24rpx;
+					display: -webkit-box;
+					-webkit-box-orient: vertical;
+					-webkit-line-clamp: 2;
+					overflow: hidden;
+					font-size: 28rpx;
 					margin: 20rpx 0;
 				}
 				view:last-child{
-					font-size: 24rpx;
+					font-size: 28rpx;
 					color: #999999;
 				}
 			}

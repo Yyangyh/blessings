@@ -20,6 +20,7 @@
     "pages/subhome/assemble",
     "pages/subhome/h_list",
     "pages/subhome/h_article",
+    "pages/subhome/threehome/h_article",
     "pages/subhome/threehome/group_products",
     "pages/subhome/threehome/my_group",
     "pages/subhome/threehome/operation",

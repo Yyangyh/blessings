@@ -24,6 +24,9 @@
 /* 垂直间距 */
 /* 透明度 */
 /* 文章场景相关 */
+page {
+  background: #ff6b55;
+}
 .content {
   width: 100%;
   overflow-y: hidden;

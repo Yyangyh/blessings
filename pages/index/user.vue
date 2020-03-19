@@ -492,8 +492,8 @@
 		background: #fff;
 		margin: 20rpx;
 		border-radius: 10rpx;
-		padding: 36rpx 30rpx 10rpx 30rpx;
 		.list_test{
+			padding: 36rpx 30rpx 10rpx 30rpx;
 			font-size: 28rpx;
 			color: #333333;
 			font-weight: bold;
@@ -512,6 +512,9 @@
 		}
 	}
 	.c_buttom{
+		position: fixed;
+		width: 100%;
+		bottom: 100rpx;
 		display: flex;
 		font-size: 28rpx;
 		justify-content: space-around;

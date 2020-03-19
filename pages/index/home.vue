@@ -16,7 +16,7 @@
 		</view> 
 		<view class="swiper_box">
 			<swiper class="swiper" :indicator-dots="indicatorDots" :autoplay="autoplay" :interval="interval" :duration="duration">
-				<swiper-item v-for="(item,index) in swiper_list" :key='item.id' @tap="$jump('../subhome/details?id='+item.goods_id)">
+				<swiper-item v-for="(item,index) in swiper_list" :key='item.id' @tap="Tjump(item.type,item.id)">
 					<view class="swiper-item uni-bg-red" style="text-align: center;">
 						<image :src="item.images_url" mode="widthFix"></image>
 					</view>
@@ -136,17 +136,17 @@
 			<view class="build_top">
 				家风建设之路
 			</view>
-			<view class="build_box" v-for="(item,index) in class_list2" :key='item.id'>
+			<view class="build_box" v-for="(item,index) in class_list2" :key='item.id' >
 				<view class="box_top">
 					<view class="top1">
 						<text></text>{{item.name}}
 					</view>
-					<view class="top2">
+					<view class="top2" @click="$jump('../subhome/h_list?id='+item.id+'&title='+item.name)">
 						全部
 					</view>
 				</view>
-				<!-- <view class="box_main" v-for="(items,indexs) in item.items"  @click="$jump('../subhome/h_list?id='+items.id+'')"> -->
-				<view class="box_main" v-for="(items,indexs) in item.items">
+				<!-- <view class="box_main" v-for="(items,indexs) in item.items"> -->
+				<view class="box_main" v-for="(items,indexs) in item.items" :key='items.id'  @click="$jump('../subhome/h_list?id='+items.id+'&title='+items.name)">
 					<view class="image">
 						<image :src="$api_img() + items.big_images_old" mode="widthFix"></image>
 					</view>
@@ -207,7 +207,28 @@ res
 		methods: {
 			 change(e) {
 					this.current = e.detail.current;
+			},
+			Tjump(type,id){
+				if(id){
+					if(type == 'chanpin'){
+						uni.navigateTo({
+							url:'../subhome/details?id='+id
+						})
+					}else if(type == 'xuetang'){
+						uni.navigateTo({
+							url:'../com_page/video_details?type=1&id='+id
+						})
+					}else if(type == 'pintuan'){
+						uni.navigateTo({
+							url:'../subhome/threehome/group_products?id='+id
+						})
+					}else{
+						uni.navigateTo({
+							url:'../subhome/h_article?id='+id
+						})
+					}
 				}
+			},
 		},
 		onShow() {
 			this.service.entire(this,'post',this.APIconfig.api_root.com_page.c_Index,{ //查看购物车状态

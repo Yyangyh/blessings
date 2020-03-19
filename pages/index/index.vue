@@ -7,7 +7,7 @@
 		
 		<view class="swiper_box">
 			<swiper class="swiper" :indicator-dots="indicatorDots" :autoplay="autoplay" :interval="interval" :duration="duration">
-				<swiper-item v-for="(item,index) in swiper_list" :key='item.id' @tap="$jump('../com_page/video_details?'+item.event_value)">
+				<swiper-item v-for="(item,index) in swiper_list" :key='item.id' >
 					<view class="swiper-item uni-bg-red">
 						<image :src="$api_img() + item.images_url" mode="widthFix"></image>
 					</view>
@@ -39,7 +39,8 @@
 				<image src='../../static/image/index/index_tab6.png' mode="widthFix"></image>
 				<view class="">商城</view>
 			</view>
-			<view class="tab_list" @tap="$jump('../subindex/evaluating')">
+			<!-- <view class="tab_list" @tap="$jump('../subindex/evaluating')"> -->
+			<view class="tab_list" @tap="temporary">
 				<image src='../../static/image/index/index_tab7.png' mode="widthFix"></image>
 				<view class="">幸福测评</view>
 			</view>
@@ -139,6 +140,17 @@
 				</view>
 			</view>
 			
+			<!-- <view class="eject" v-show="eject_show">
+				<view class="eject_test">
+					<view class="ej_top">
+						版通（AWT）
+					</view>
+					<view class="ej_bottom">
+						1AWT≈{{}}CNY
+					</view>
+				</view>
+				<image src="/static/image/com_page/close.png" mode="widthFix" @click="close()"></image>
+			</view> -->
 			
 			<view class="QRcode" @tap="$jump('/pages/subuser/brokerage/invite')">
 				<image src="../../static/image/index/code.png" mode=""></image>
@@ -169,6 +181,7 @@
 				re_pwd:'',
 				disabled:false,
 				verify:'',
+				eject_show:'',
 				openid:''
 			}
 		},
@@ -183,8 +196,31 @@
 		
 		onLoad() {
 			console.log(this.$store.state.user)
+			this.service.entire(this,'post',this.APIconfig.api_root.index.advertise,{
+				// userid:this.$store.state.user.id
+			},function(self,res){
+				console.log(res)
+				// self.swiper_list = res.data.slide
+				// if(self.class_top.length == 0) self.class_top.push(res.data.class_list[0])
+				// self.class_list = res.data.class_list
+			})
 		},
 		onShow() {
+			
+			
+			if(uni.getStorageSync('notice') == ''){  //是否显示版通比例
+				this.eject_show = true
+			}else{
+				var timestamp = (new Date()).getTime()
+				if(timestamp - uni.getStorageSync('start_notice') > 43200000){ //12小时显示一次
+					this.eject_show = true
+					uni.setStorageSync('start_notice',timestamp)
+				}else{
+					
+					this.eject_show = false
+				}
+			}
+			
 			this.service.notice.call(this)
 			this.service.entire(this,'post',this.APIconfig.api_root.index.index,{
 				userid:this.$store.state.user.id
@@ -200,7 +236,18 @@
 					url:url
 				})
 			},
-			
+			close(){
+				this.eject_show = false
+				var timestamp = (new Date()).getTime()
+				if(!uni.getStorageSync('start_notice'))uni.setStorageSync('start_notice',timestamp)
+				uni.setStorageSync('notice',1)
+			},
+			temporary(){
+				uni.showToast({
+					icon:'none',
+					title:'暂未开放！'
+				})
+			},
 			config(){
 				if(this.pwd != this.re_pwd){
 					uni.showToast({
@@ -412,8 +459,8 @@
 		.two_list{
 			margin-top: 40rpx;
 			.two_img{
-				width: 343rpx;
-				height: 270rpx;
+				width: 344rpx;
+				height: 210rpx;
 				border-radius: 10rpx;
 				overflow: hidden;
 				image{
@@ -512,5 +559,47 @@
 			}
 		}
 	}
-	
+	.eject{
+		height: 100%;
+		width: 100%;
+		background:rgba(0,0,0,.5);
+		position: fixed;
+		top: 0;
+		left: 0;
+		z-index: 998;
+		.eject_test{
+			position: absolute;
+			width: 518rpx;
+			height: 250rpx;
+			left: 50%;
+			top: 315rpx;
+			margin-left: -259rpx;
+			font-size: 36rpx;
+			color: #fff;
+			background-size: 100% 100%;
+			.ej_top{
+				text-align: center;
+				margin: 56rpx 0 24rpx 0;
+			}
+			.ej_bottom{
+				background: #fff;
+				color: #0078FF;
+				height: 84rpx;
+				line-height: 84rpx;
+				text-align: center;
+				border-radius: 10rpx;
+				font-weight: 500;
+				margin: 0 50rpx;
+			}
+		}
+		image{
+			height: 72rpx;
+			width: 72rpx;
+			position: absolute;
+			left: 50%;
+			margin-left: -36rpx;
+			top: 597rpx;
+		}
+	}
+
 </style>

@@ -1,6 +1,6 @@
 // const api ='http://192.168.0.195:8990'
-// const api ='http://www.wufu-app.com'
-const api = ''
+const api ='http://www.wufu-app.com'
+// const api = ''
 
 
 const api_root = {
@@ -17,7 +17,8 @@ const api_root = {
 		reset: api+'/api/member/reset',//重置密码
 		getProtocol: api+'/api/member/getProtocol',//获取协议内容
 	},
-	index:{ 
+	index:{
+		advertise: api+'/api/index/advertise',//首页弹框
 		index: api+'/api/VideoHome/index',//首页
 		good_index: api+'/api/good/index',//商城首页
 		felicity_index: api+'/api/felicity/index',//幸福课堂首页数据 
@@ -63,6 +64,7 @@ const api_root = {
 		
 	},
 	subhome:{
+		f_favor: api+'/api/familystyle/favor',//家风建设内容详情
 		f_detail: api+'/api/familystyle/detail',//家风建设内容详情
 		f_index: api+'/api/familystyle/index',//家风建设内容列表
 		s_index: api+'/api/search/index',//商品列表

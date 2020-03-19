@@ -4,10 +4,10 @@
 					
 		</view>
 		<returns :titles='title'></returns>
-		<view class="back_img">
+		<view class="back_img"  @longtap="longtap">
 			<image :src="$api_img() + bg" mode="widthFix"></image>
 		</view>
-		<view class="pages">
+		<view class="pages"  @longtap="longtap">
 			<image :src="$api_img() + code_img" mode="widthFix"></image>
 			<view class="">
 				我是幸福使者：{{user.username}}
@@ -18,7 +18,7 @@
 
 <script>
 	import returns from '../../common/returns.vue'
-		import { mapState } from 'vuex'
+	import { mapState } from 'vuex'
 	export default{
 		components:{
 			returns
@@ -35,6 +35,11 @@
 				bg:'',
 			}
 		},
+		methods:{
+			longtap(){
+				console.log(123)
+			}
+		},
 		onShow() {
 			this.service.entire(this,'post',this.APIconfig.api_root.subuser.u_InviteCode,{
 				user_id:this.$store.state.user.id,
@@ -48,10 +53,12 @@
 </script>
 
 <style lang="scss">
+	page{
+		background: #ff6b55;
+	}
 	.content{
 		width: 100%;
 		overflow-y: hidden;
-		// position: relative;
 		.back_img{
 			
 			position: fixed;

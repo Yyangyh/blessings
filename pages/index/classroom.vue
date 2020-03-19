@@ -28,7 +28,8 @@
 				<view class="box_one">
 					<text></text>{{item.cl_name}}
 				</view>
-				<view class="box_two" v-for="(items,index) in item.video_list" :key='items.id'  @tap="$jump('../com_page/video_details?id='+items.id + '&type='+items.type)">
+				<view class="box_two" v-for="(items,index) in item.video_list" :key='items.id'  
+				@tap="$jump('../com_page/video_details?id='+items.id + '&type='+items.type)">
 					<view class="two_top">
 						<view class="top_left1">
 							<image :src="$api_img() + items.v_pic" mode=""></image>
@@ -42,7 +43,7 @@
 										{{items.title}}
 									</view>
 								</view>
-								<view class="title_two">{{items.is_free == 0? '免费' : items.is_free == 1? '付费': '未解锁'}}</view>
+								<view class="title_two">{{items.is_free == 1? '免费' : items.is_free == 0? '付费': '未解锁'}}</view>
 							</view>
 							<view class="long_title">
 								{{items.long_title}}

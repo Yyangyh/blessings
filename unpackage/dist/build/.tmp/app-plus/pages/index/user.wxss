@@ -272,10 +272,10 @@ page {
   background: #fff;
   margin: 20rpx;
   border-radius: 10rpx;
-  padding: 36rpx 30rpx 10rpx 30rpx;
 }
 .list_bottom .list_test {
-    font-size: 24rpx;
+    padding: 36rpx 30rpx 10rpx 30rpx;
+    font-size: 28rpx;
     color: #333333;
     font-weight: bold;
     padding-bottom: 32rpx;
@@ -285,6 +285,7 @@ page {
 .list_bottom .tab_list {
     width: 25%;
     margin-bottom: 20rpx;
+    font-size: 28rpx;
     display: -webkit-box;
     display: -webkit-flex;
     display: flex;
@@ -300,6 +301,9 @@ page {
             justify-content: center;
 }
 .c_buttom {
+  position: fixed;
+  width: 100%;
+  bottom: 100rpx;
   display: -webkit-box;
   display: -webkit-flex;
   display: flex;

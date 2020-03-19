@@ -157,8 +157,6 @@
 					})
 					return;
 				}
-				
-				
 				let data_list = {
 					mobile:that.accounts,
 					time:Date.parse(new Date())/1000,//时间戳
@@ -186,9 +184,9 @@
 								//在app内运行
 								setTimeout(function(){
 									uni.redirectTo({
-									    url: '../login/login'
+									    url: './login'
 									});
-								},1500)
+								},1000)
 							// #endif
 							
 							//#ifdef H5 || MP-WEIXIN
