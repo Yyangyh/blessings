@@ -77,7 +77,7 @@
 		}
 		.know_box{
 			width:710rpx;
-			height:567rpx;
+			min-height:567rpx;
 			background:rgba(255,255,255,1);
 			box-shadow:1rpx 1rpx 6rpx 0rpx rgba(177,65,65,0.27);
 			border-radius:10rpx;

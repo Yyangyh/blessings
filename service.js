@@ -107,17 +107,17 @@ const order = function(ref,pay_type,url) { //支付调用
 		    provider: 'alipay',
 		    orderInfo: ref.data, //微信、支付宝订单数据
 		    success: function (ref) {
-				
-		    },
-		    fail: function (err) {
-		        
-		    },
-			complete:function(com) {
-				uni.showToast({
-					icon:'none',
-					title:JSON.stringify(err)
-				})
-			}
+				if(url.split('/index/').length == 2){
+					uni.switchTab({
+					    url: url
+					});
+				}else{
+					uni.redirectTo({
+						url: url
+					})
+				}
+		    }
+		   
 		});
 	}else if(pay_type == 'Weixin'){
 		uni.requestPayment({
@@ -134,14 +134,6 @@ const order = function(ref,pay_type,url) { //支付调用
 					})
 				}
 		    },
-		    fail: function (err) {
-		    },
-			complete:function(com) {
-				uni.showToast({
-					icon:'none',
-					title:JSON.stringify(com)
-				})
-			}
 		});
 	}else{
 		uni.showToast({

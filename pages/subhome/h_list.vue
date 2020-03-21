@@ -69,6 +69,7 @@
 		},
 		onLoad(e) {
 			this.title = e.title
+			this.req_data.category_id = e.id
 			this.Index()
 		},
 		onShow() {

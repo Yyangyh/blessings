@@ -109,6 +109,7 @@
 			<view class="catalog_test">
 				目录
 			</view>
+			<!-- <view class="catalog" v-for="(item,index) in catalog_data" :key='item.id' @click="chiose_video(index,item.cou_is_free,item.id)"> -->
 			<view class="catalog" v-for="(item,index) in catalog_data" :key='item.id' @click="chiose_video(index,item.cou_is_free,item.id)">
 				<view class="play_status">
 					<image v-if="indexs === index"  src="../../static/image/com_page/video_HL.png" mode="widthFix"></image>
@@ -116,7 +117,8 @@
 					<text>{{item.name}}</text>
 				</view>
 				<view class="price_status" >
-					{{item.cou_is_free? '已学习'+item.section_plan : '￥'+item.v_price}}
+					<!-- {{item.cou_is_free? '已学习'+item.section_plan : '￥'+item.v_price}} -->
+					{{item.cou_is_free? '已学习'+item.section_plan : '未购买'}}
 				</view>
 			</view>
 		</view>
@@ -451,10 +453,11 @@
 				if(cou_is_free == false){
 					uni.showModal({
 					    title: '提示',
-					    content: '是否购买该章节？',
+					    content: '是否购买该视频？',
 					    success: res =>{
 					        if (res.confirm) {
-								this.order_sn(id)
+								// this.order_sn(id)
+								this.order_sn()
 							} 
 					    }
 					});
@@ -470,10 +473,11 @@
 					if(this.catalog_data[index].cou_is_free == false){
 						uni.showModal({
 						    title: '提示',
-						    content: '该章节为付费章节，是否购买该章节？',
+						    content: '该视频需要购买才能继续观看，是否购买？',
 						    success: res =>{
 						        if (res.confirm) {
-									this.order_sn(this.catalog_data[index].id)
+									// this.order_sn(this.catalog_data[index].id)
+									this.order_sn()
 								} 
 						    }
 						});
@@ -488,7 +492,6 @@
 					this.receive_status == false ? this.receive_int() : this.receive_status = false //播放结束时再判断一次是否领取积分
 					if(this.indexs === this.catalog_data.length - 1) return//当视频目录最后一个播放完毕时 
 					this.indexs++
-					console.log(this.indexs)
 					testing.call(this,this.indexs)
 				}else{
 					this.indexs = 0
@@ -619,8 +622,11 @@
 							}
 						}else if(self.data.vorder.is_bay_all == 0){
 							for (let s of data) {
-								if(self.data.vorder.section_all.indexOf(s.id) != -1 || s.v_price == 0) s.cou_is_free = true
+								s.cou_is_free = false
 							}
+							// for (let s of data) {
+							// 	if(self.data.vorder.section_all.indexOf(s.id) != -1 || s.v_price == 0) s.cou_is_free = true
+							// }
 						}
 					}
 					

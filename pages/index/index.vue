@@ -140,17 +140,13 @@
 				</view>
 			</view>
 			
-			<!-- <view class="eject" v-show="eject_show">
+			<view class="eject" v-show="eject_show">
 				<view class="eject_test">
-					<view class="ej_top">
-						版通（AWT）
-					</view>
-					<view class="ej_bottom">
-						1AWT≈{{}}CNY
-					</view>
+					
+					<image :src="$api_img() + eject.img" @tap="eject_jump(eject.target,eject.id)" mode="widthFix"></image>
+					<image class="close" src="/static/image/com_page/close.png" mode="widthFix" @click="close()"></image>
 				</view>
-				<image src="/static/image/com_page/close.png" mode="widthFix" @click="close()"></image>
-			</view> -->
+			</view>
 			
 			<view class="QRcode" @tap="$jump('/pages/subuser/brokerage/invite')">
 				<image src="../../static/image/index/code.png" mode=""></image>
@@ -182,6 +178,7 @@
 				disabled:false,
 				verify:'',
 				eject_show:'',
+				eject:'',
 				openid:''
 			}
 		},
@@ -195,18 +192,22 @@
 		// },	
 		
 		onLoad() {
+			if(uni.getStorageSync('openid')){
+				this.openid = uni.getStorageSync('openid')
+				uni.hideTabBar()
+			}
 			console.log(this.$store.state.user)
 			this.service.entire(this,'post',this.APIconfig.api_root.index.advertise,{
 				// userid:this.$store.state.user.id
 			},function(self,res){
 				console.log(res)
+				self.eject = res.data
 				// self.swiper_list = res.data.slide
 				// if(self.class_top.length == 0) self.class_top.push(res.data.class_list[0])
 				// self.class_list = res.data.class_list
 			})
 		},
 		onShow() {
-			
 			
 			if(uni.getStorageSync('notice') == ''){  //是否显示版通比例
 				this.eject_show = true
@@ -241,6 +242,31 @@
 				var timestamp = (new Date()).getTime()
 				if(!uni.getStorageSync('start_notice'))uni.setStorageSync('start_notice',timestamp)
 				uni.setStorageSync('notice',1)
+			},
+			eject_jump(type,id){
+				if(id){
+					if(type == 'shangpin'){//商品
+						uni.navigateTo({
+							url:'../subhome/details?id='+id
+						})
+					}else if(type == 'shipin'){ //视频
+						uni.navigateTo({
+							url:'../com_page/video_details?type=1&id='+id
+						})
+					}else if(type == 'huodong'){ //活动
+						uni.navigateTo({
+							url:'../activity/particulars?id='+id
+						})
+					}else if(type == 'pintuan'){ //拼团
+						uni.navigateTo({
+							url:'../subhome/threehome/group_products?id='+id
+						})
+					}else{ //文章
+						uni.navigateTo({
+							url:'../subindex/article?id='+id
+						})
+					}
+				}
 			},
 			temporary(){
 				uni.showToast({
@@ -317,12 +343,6 @@
 				})
 			},
 		},
-		onLoad() {
-			if(uni.getStorageSync('openid')){
-				this.openid = uni.getStorageSync('openid')
-				uni.hideTabBar()
-			}
-		},
 		onTabItemTap(e) {
 			console.log(e)
 		},
@@ -342,23 +362,25 @@
 	.content {
 		/* padding-top: 0; */
 	}
-	.swiper{
-		height:365rpx;
-	}
 	.swiper_box{
 		padding: 0 20rpx;
+		background: #fff;
+		.swiper{
+			height:350rpx;
+		}
 		image{
 			width: 100%;
 			height: 250rpx;
 		}
 	} 
+	
 	.index_tab{
 		text-align: center;
-		font-size: 24rpx;
+		font-size: 28rpx;
 		padding: 20rpx 20rpx 0 20rpx;
 		margin-top: 10rpx;
 		min-height: 300rpx;
-		background: #E4E4E4;
+		background: #FE0000;
 		display: flex;
 		flex-wrap: wrap;
 		justify-content: space-between;
@@ -376,7 +398,7 @@
 		}
 	}
 	.video_box{
-		border-bottom: 6rpx solid #F1F1F1;
+		border-bottom: 20rpx solid #FE0000;
 		.vider_content{
 			white-space: nowrap;
 			padding: 0 20rpx;
@@ -569,37 +591,22 @@
 		z-index: 998;
 		.eject_test{
 			position: absolute;
-			width: 518rpx;
-			height: 250rpx;
+			text-align: center;
 			left: 50%;
 			top: 315rpx;
-			margin-left: -259rpx;
+			transform: translateX(-50%);
 			font-size: 36rpx;
 			color: #fff;
 			background-size: 100% 100%;
-			.ej_top{
-				text-align: center;
-				margin: 56rpx 0 24rpx 0;
-			}
-			.ej_bottom{
-				background: #fff;
-				color: #0078FF;
-				height: 84rpx;
-				line-height: 84rpx;
-				text-align: center;
-				border-radius: 10rpx;
-				font-weight: 500;
-				margin: 0 50rpx;
+			.close{
+				height: 72rpx;
+				width: 72rpx;
+				margin-left: -36rpx;
+				margin-top: 20rpx;
 			}
 		}
-		image{
-			height: 72rpx;
-			width: 72rpx;
-			position: absolute;
-			left: 50%;
-			margin-left: -36rpx;
-			top: 597rpx;
-		}
+		
+		
 	}
 
 </style>

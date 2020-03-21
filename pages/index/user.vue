@@ -102,7 +102,7 @@
 				<view class="tab_list" @tap="$jump('../subuser/relation/relation')">
 					<image src="../../static/image/index/list2.png" mode="widthFix"></image>
 					<view class="">
-						亲情号
+						亲情账号
 					</view>
 				</view>
 				<view class="tab_list" @tap="$jump('../subuser/brokerage/invite')">
@@ -129,7 +129,7 @@
 				<view class="tab_list" @tap="$jump('../subuser/signIn')">
 					<image src="../../static/image/index/sign.png" mode="widthFix"></image>
 					<view class="">
-						签到
+						每日签到
 					</view>
 				</view>
 				<view class="tab_list"  @tap="temporary">
@@ -294,7 +294,7 @@
 
 <style lang="scss">
 	page{
-		background: #F1F1F1;
+		background: #FE0000;
 	}
 	.content{
 		padding-top: 0;
@@ -520,5 +520,6 @@
 		justify-content: space-around;
 		padding-bottom: 20rpx;
 		margin-top: 40rpx;
+		color: #fff;
 	}
 </style>

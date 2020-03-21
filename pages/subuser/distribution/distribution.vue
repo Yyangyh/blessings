@@ -5,7 +5,7 @@
 		</view>
 		<returns :titles='title'></returns>
 		<view class="worp">
-			<image src="../../../static/image/subuser/dis-back.png" mode="widthFix"></image>
+			<image src="../../../static/image/subuser/dis-back.jpg" mode="widthFix"></image>
 			<button type="default" @tap="$jump('./application')">立即申请</button>
 		</view>
 	</view>

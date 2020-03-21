@@ -191,7 +191,7 @@
 
 <style lang="scss">
 	.content {
-		padding-top: calc(205rpx + var(--status-bar-height));
+		padding-top: 205rpx;
 	}
 	.content_top{
 		position: fixed;

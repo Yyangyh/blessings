@@ -106,7 +106,12 @@
 				}
 			},
 			empty(){ //清空
+				
 				[this.sta_time,this.ent_time] = ''
+				let data= {
+					user_id:this.$store.state.user.id,
+				}
+				this.requst(data)
 			},
 			confirms(){//确认
 				let data = {

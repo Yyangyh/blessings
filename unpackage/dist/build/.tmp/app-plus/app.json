@@ -123,14 +123,14 @@
       },
       {
         "pagePath": "pages/index/classroom",
-        "iconPath": "static/image/index/room.png",
-        "selectedIconPath": "static/image/index/roomHL.png",
+        "iconPath": "static/image/index/home.png",
+        "selectedIconPath": "static/image/index/homeHL.png",
         "text": "幸福课堂"
       },
       {
         "pagePath": "pages/index/home",
-        "iconPath": "static/image/index/home.png",
-        "selectedIconPath": "static/image/index/homeHL.png",
+        "iconPath": "static/image/index/room.png",
+        "selectedIconPath": "static/image/index/roomHL.png",
         "text": "幸福家风"
       },
       {
@@ -144,8 +144,8 @@
   "nvueCompiler": "uni-app",
   "renderer": "auto",
   "splashscreen": {
-    "alwaysShowBeforeRender": true,
-    "autoclose": false
+    "alwaysShowBeforeRender": false,
+    "autoclose": true
   },
   "appname": "五福家庭",
   "compilerVersion": "2.6.5",

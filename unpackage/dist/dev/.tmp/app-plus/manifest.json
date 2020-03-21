@@ -56,9 +56,9 @@
     "distribute": {
       "splashscreen": {
         "android": {
-          "hdpi": "static/image/login/startup1.png",
-          "xhdpi": "static/image/login/startup2.png",
-          "xxhdpi": "static/image/login/startup3.png"
+          "hdpi": "static/image/login/star1.png",
+          "xhdpi": "static/image/login/star2.png",
+          "xxhdpi": "static/image/login/star3.png"
         }
       },
       "icons": {
@@ -177,6 +177,8 @@
       "color": "#999999",
       "selectedColor": "#000000",
       "borderStyle": "rgba(0,0,0,0.4)",
+      "fontSize": "14px",
+      "height": "55px",
       "backgroundColor": "#ffffff",
       "list": [
         {
@@ -187,14 +189,14 @@
         },
         {
           "pagePath": "pages/index/classroom",
-          "iconPath": "static/image/index/room.png",
-          "selectedIconPath": "static/image/index/roomHL.png",
+          "iconPath": "static/image/index/home.png",
+          "selectedIconPath": "static/image/index/homeHL.png",
           "text": "幸福课堂"
         },
         {
           "pagePath": "pages/index/home",
-          "iconPath": "static/image/index/home.png",
-          "selectedIconPath": "static/image/index/homeHL.png",
+          "iconPath": "static/image/index/room.png",
+          "selectedIconPath": "static/image/index/roomHL.png",
           "text": "幸福家风"
         },
         {
@@ -203,8 +205,7 @@
           "selectedIconPath": "static/image/index/userHL.png",
           "text": "个人中心"
         }
-      ],
-      "height": "50px"
+      ]
     }
   },
   "usingComponents": {}

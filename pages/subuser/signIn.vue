@@ -42,7 +42,7 @@
 			<view class="bk_text">
 				<view class="msg1">签到成功</view>
 				<view class="msg2">
-					{{msg}}积分
+					{{msg}}
 				</view>
 				<view class="msg3">
 					积分已存入

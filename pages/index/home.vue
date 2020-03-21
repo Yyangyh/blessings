@@ -49,8 +49,8 @@
 			<view class="propulsion">
 				<view class="commodity_box">
 					<view class="top">
-						<image src='../../static/image/index/start1.png'></image>
-						<text style="color:#D80000;font-size: 38rpx;font-weight: 600;">新品上市</text>
+						<image src='../../static/image/index/start2.png'></image>
+						<text>新品上市</text>
 					</view>
 					<view class="commodity" v-for="(itemo,indexo) in new_goods " :key='itemo.id' @tap="$jump('/pages/subhome/details?id='+itemo.id)">
 						<view class="pages"><image :src='itemo.images'></image></view>
@@ -63,7 +63,7 @@
 				<view class="commodity_box">
 					<view class="top">
 						<image src='../../static/image/index/start2.png'></image>
-						<text style="color:#000000;font-size: 38rpx;font-weight: 600;">超值拼团</text>
+						<text>超值拼团</text>
 					</view>
 					<view  class="commodity"  v-for="(itemo,indexo) in fight" :key='itemo.id'  @click="$jump('/pages/subhome/threehome/group_products?id='+itemo.id)">
 						<view class="pages"><image :src='$api_img()+itemo.thumb'></image></view>
@@ -276,7 +276,7 @@ res
 
 <style lang="scss">
 	page{
-		background: #E4E4E6;
+		background: #FE0000;
 	}
 	.content {
 		.swiper{
@@ -303,7 +303,7 @@ res
 					height: 85rpx;
 				}
 				view{
-					font-size: 24rpx;
+					font-size: 28rpx;
 				}
 			}
 			.name_show{
@@ -322,8 +322,9 @@ res
 					display: flex;
 					align-items: center;
 					margin: 26rpx 0 16rpx 0;
-					// margin: 0 20rpx;
-					// padding-bottom: 24rpx;
+					color: #fff;
+					font-size: 38rpx;
+					font-weight: bold;
 					image{
 						width: 31rpx;
 						height: 31rpx;
@@ -385,7 +386,7 @@ res
 			.top{
 				display: flex;
 				align-items: center;
-				
+				color: #fff;
 				justify-content: space-between;
 				padding: 29rpx 22rpx 20rpx 22rpx ;
 				.top1{
@@ -403,7 +404,7 @@ res
 				}
 				.top2{
 					font-size: 28rpx;
-					color:#E9BB00;
+					color:#FFFD04;
 				}
 			}
 			.allB{
@@ -417,6 +418,7 @@ res
 				.product{
 					width: 340rpx;
 					// margin:30rpx;
+					padding-bottom: 20rpx;
 					.pages{
 						width: 340rpx;
 						height: 340rpx;
@@ -510,18 +512,19 @@ res
 		font-size: 28rpx;
 		padding: 0rpx 20rpx 10rpx 20rpx;
 		overflow: hidden;
-		background: #E4E4E4;
+		background: #FE0000;
 		.box_one{
 			font-size: 38rpx;
 			margin: 30rpx 0 20rpx 0;
 			display: flex;
 			align-items: center;
 			font-weight: 600;
+			color: #fff;
 			text{
 				display: inline-block;
 				width: 4rpx;
 				height: 34rpx;
-				background: #FE0000;
+				background: #fff;
 				margin-right: 12rpx;
 			}
 		}
@@ -627,7 +630,7 @@ res
 		font-size: 28rpx;
 		padding-bottom: 10rpx;
 		overflow: hidden;
-		background: #E4E4E4;
+		background: #FE0000;
 		.build_top{
 			color: #FFFD04;
 			font-size: 38rpx;
@@ -649,17 +652,18 @@ res
 					display: flex;
 					align-items: center;
 					font-weight: 600;
+					color: #fff;
 					text{
 						display: inline-block;
 						width: 4rpx;
 						height: 36rpx;
-						background: #FE0000;
+						background: #fff;
 						margin-right: 8rpx;
 					}
 				}
 				.top2{
 					font-size: 28rpx;
-					color:#E9BB00;
+					color:#FFFD04;
 				}
 			}
 			.box_main{

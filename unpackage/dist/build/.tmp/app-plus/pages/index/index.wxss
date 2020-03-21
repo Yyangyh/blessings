@@ -27,11 +27,12 @@
 .content {
   /* padding-top: 0; */
 }
-.swiper {
-  height: 365rpx;
-}
 .swiper_box {
   padding: 0 20rpx;
+  background: #fff;
+}
+.swiper_box .swiper {
+    height: 350rpx;
 }
 .swiper_box image {
     width: 100%;
@@ -39,11 +40,11 @@
 }
 .index_tab {
   text-align: center;
-  font-size: 24rpx;
+  font-size: 28rpx;
   padding: 20rpx 20rpx 0 20rpx;
   margin-top: 10rpx;
   min-height: 300rpx;
-  background: #E4E4E4;
+  background: #FE0000;
   display: -webkit-box;
   display: -webkit-flex;
   display: flex;
@@ -66,7 +67,7 @@
     width: 90rpx;
 }
 .video_box {
-  border-bottom: 6rpx solid #F1F1F1;
+  border-bottom: 20rpx solid #FE0000;
 }
 .video_box .vider_content {
     white-space: nowrap;
@@ -295,35 +296,19 @@
 }
 .eject .eject_test {
     position: absolute;
-    width: 518rpx;
-    height: 250rpx;
+    text-align: center;
     left: 50%;
     top: 315rpx;
-    margin-left: -259rpx;
+    -webkit-transform: translateX(-50%);
+            transform: translateX(-50%);
     font-size: 36rpx;
     color: #fff;
     background-size: 100% 100%;
 }
-.eject .eject_test .ej_top {
-      text-align: center;
-      margin: 56rpx 0 24rpx 0;
-}
-.eject .eject_test .ej_bottom {
-      background: #fff;
-      color: #0078FF;
-      height: 84rpx;
-      line-height: 84rpx;
-      text-align: center;
-      border-radius: 10rpx;
-      font-weight: 500;
-      margin: 0 50rpx;
-}
-.eject image {
-    height: 72rpx;
-    width: 72rpx;
-    position: absolute;
-    left: 50%;
-    margin-left: -36rpx;
-    top: 597rpx;
+.eject .eject_test .close {
+      height: 72rpx;
+      width: 72rpx;
+      margin-left: -36rpx;
+      margin-top: 20rpx;
 }
 

@@ -36,7 +36,7 @@
 }
 .content .know_box {
     width: 710rpx;
-    height: 567rpx;
+    min-height: 567rpx;
     background: white;
     box-shadow: 1rpx 1rpx 6rpx 0rpx rgba(177, 65, 65, 0.27);
     border-radius: 10rpx;

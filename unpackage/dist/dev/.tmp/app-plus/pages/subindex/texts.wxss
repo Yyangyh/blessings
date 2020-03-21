@@ -26,7 +26,7 @@
 /* 文章场景相关 */
 .content {
   position: relative;
-  padding-top: calc(205rpx + var(--status-bar-height));
+  padding-top: 205rpx;
 }
 .content .top {
     position: fixed;
@@ -177,12 +177,21 @@
     height: 179rpx;
     margin-right: 30rpx;
 }
+.texts_boxList .t_box .b_right {
+    -webkit-box-flex: 2;
+    -webkit-flex-grow: 2;
+            flex-grow: 2;
+}
 .texts_boxList .t_box .b_right view:first-child {
-    font-size: 24rpx;
-    margin: 20rpx 0;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 2;
+      overflow: hidden;
+      font-size: 28rpx;
+      margin: 20rpx 0;
 }
 .texts_boxList .t_box .b_right view:last-child {
-    font-size: 24rpx;
-    color: #999999;
+      font-size: 28rpx;
+      color: #999999;
 }
 

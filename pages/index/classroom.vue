@@ -4,8 +4,14 @@
 			
 		</view>
 		<search :type='3'></search>
-		<view class="room_top">
-			<image :src="$api_img() + slide.images_url" mode="widthFix"></image>
+		<view class="swiper_box" v-if="slide">
+			<swiper class="swiper" :indicator-dots="indicatorDots" :autoplay="autoplay" :interval="interval" :duration="duration">
+				<swiper-item v-for="(item,index) in slide" :key='item.id' >
+					<view class="swiper-item uni-bg-red">
+						<image :src="$api_img() + item.images_url" mode="widthFix"></image>
+					</view>
+				</swiper-item>
+			</swiper>
 		</view>
 		<view class="room_title">
 			<view class="title_top">
@@ -23,9 +29,9 @@
 		
 		 
 		
-		<view class="vider_content_two" :class="{anima:anima}">
+		<view class="vider_content_two" :class="{anima:anima}" >
 			<view class="con_box" v-for="(item,index) in class_list" :key='item.id'>
-				<view class="box_one">
+				<view class="box_one" v-if="item.video_list != ''">
 					<text></text>{{item.cl_name}}
 				</view>
 				<view class="box_two" v-for="(items,index) in item.video_list" :key='items.id'  
@@ -84,6 +90,10 @@
 			return {
 				top_class:'',
 				slide:'',
+				indicatorDots: true,
+				autoplay: true,
+				interval: 2000,
+				duration: 500,
 				class_list:'',
 				id:'',
 				anima:false
@@ -109,6 +119,7 @@
 					this.service.entire(this,'get',this.APIconfig.api_root.index.felicity_index,{
 						userid:this.$store.state.user.id
 					},function(self,res){
+						console.log(res)
 						self.top_class = res.data.top_class
 						self.slide = res.data.slide
 						self.id = res.data.top_class[0].id
@@ -145,24 +156,27 @@
 <style lang="scss">
 	.content{
 		/* padding-top: 0; */
-		background: #E4E4E4;
+		background: #FE0000;
 	}
-	.room_top{
+	.swiper_box{
 		padding: 0 20rpx;
 		background: #fff;
-		image{
-			height: 350rpx;
-			width: 710rpx;
+		.swiper{
+			height:350rpx;
 		}
-	}
+		image{
+			width: 100%;
+			height: 250rpx;
+		}
+	} 
 	.room_title{
 		background: #fff;
-		padding: 00rpx 20rpx;
+		padding: 0rpx 20rpx;
 		.title_top{
 			display: flex;
 			justify-content: space-between;
 			text-align: center;
-			font-size: 24rpx;
+			font-size: 28rpx;
 			.top_list{
 				width: 25%;
 				margin: 40rpx 0;
@@ -189,18 +203,20 @@
 		font-size: 28rpx;
 		padding: 0rpx 20rpx 10rpx 20rpx;
 		overflow: hidden;
-		background: #E4E4E4;
+		background: #FE0000;
 		.box_one{
+			background: #FFFD04;
 			font-size: 38rpx;
 			margin: 30rpx 0 20rpx 0;
 			display: flex;
 			align-items: center;
 			font-weight: bold;
+			color: #000;
 			text{
 				display: inline-block;
 				width: 4rpx;
 				height: 34rpx;
-				background: #FE0000;
+				background: #fff;
 				margin-right: 12rpx;
 			}
 		}

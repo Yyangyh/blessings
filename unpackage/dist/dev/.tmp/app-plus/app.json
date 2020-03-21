@@ -20,6 +20,7 @@
     "pages/subhome/assemble",
     "pages/subhome/h_list",
     "pages/subhome/h_article",
+    "pages/subhome/threehome/h_article",
     "pages/subhome/threehome/group_products",
     "pages/subhome/threehome/my_group",
     "pages/subhome/threehome/operation",
@@ -112,6 +113,8 @@
     "color": "#999999",
     "selectedColor": "#000000",
     "borderStyle": "black",
+    "fontSize": "14px",
+    "height": "55px",
     "backgroundColor": "#ffffff",
     "list": [
       {
@@ -122,14 +125,14 @@
       },
       {
         "pagePath": "pages/index/classroom",
-        "iconPath": "static/image/index/room.png",
-        "selectedIconPath": "static/image/index/roomHL.png",
+        "iconPath": "static/image/index/home.png",
+        "selectedIconPath": "static/image/index/homeHL.png",
         "text": "幸福课堂"
       },
       {
         "pagePath": "pages/index/home",
-        "iconPath": "static/image/index/home.png",
-        "selectedIconPath": "static/image/index/homeHL.png",
+        "iconPath": "static/image/index/room.png",
+        "selectedIconPath": "static/image/index/roomHL.png",
         "text": "幸福家风"
       },
       {

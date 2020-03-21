@@ -41,7 +41,7 @@
 		},
 		onLoad() {
 			let that = this
-			if(uni.getStorageInfoSync('state_user')){
+			if(uni.getStorageSync('state_user')){
 				uni.switchTab({
 					url:'../index/index'
 				})

@@ -158,7 +158,7 @@
 <style lang="scss">
 	.content{
 		position: relative;
-		padding-top: calc(205rpx + var(--status-bar-height));
+		padding-top: 205rpx;
 		 .top{
 			position: fixed;
 			width: 100%;

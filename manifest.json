@@ -88,9 +88,9 @@
             },
             "splashscreen" : {
                 "android" : {
-                    "hdpi" : "static/image/login/startup1.png",
-                    "xhdpi" : "static/image/login/startup2.png",
-                    "xxhdpi" : "static/image/login/startup3.png"
+                    "hdpi" : "static/image/login/star1.png",
+                    "xhdpi" : "static/image/login/star2.png",
+                    "xxhdpi" : "static/image/login/star3.png"
                 }
             },
             "icons" : {
@@ -159,8 +159,8 @@
             "proxy" : {
                 "/api" : {
                     // "target" : "http://0318.t1.nethhw188.com",
-                    // "target" : "http://www.wufu-app.com",
-                    "target" : "http://192.168.0.100:8990",
+                    "target" : "http://www.wufu-app.com",
+                    // "target" : "http://192.168.0.100:8990",
                     "changeOrigin" : true,
                     "secure" : false
                 }

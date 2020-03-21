@@ -78,14 +78,12 @@
 		},
 		methods:{
 			onKeyInput(){
-				this.more = 'loading'
 				let that = this
 				setTimeout(() => { 
 					if(!that.test)return
+					that.more = 'loading'
 					that.index_all(that.test)
-					
 				}, 0)
-				
 			},
 			index_all(keywords){
 				this.service.entire(this,'get',this.APIconfig.api_root.com_page.videoList,{

@@ -26,19 +26,22 @@
 /* 文章场景相关 */
 .content {
   /* padding-top: 0; */
-  background: #E4E4E4;
+  background: #FE0000;
 }
-.room_top {
+.swiper_box {
   padding: 0 20rpx;
   background: #fff;
 }
-.room_top image {
+.swiper_box .swiper {
     height: 350rpx;
-    width: 710rpx;
+}
+.swiper_box image {
+    width: 100%;
+    height: 250rpx;
 }
 .room_title {
   background: #fff;
-  padding: 00rpx 20rpx;
+  padding: 0rpx 20rpx;
 }
 .room_title .title_top {
     display: -webkit-box;
@@ -48,7 +51,7 @@
     -webkit-justify-content: space-between;
             justify-content: space-between;
     text-align: center;
-    font-size: 24rpx;
+    font-size: 28rpx;
 }
 .room_title .title_top .top_list {
       width: 25%;
@@ -73,9 +76,10 @@
   font-size: 28rpx;
   padding: 0rpx 20rpx 10rpx 20rpx;
   overflow: hidden;
-  background: #E4E4E4;
+  background: #FE0000;
 }
 .vider_content_two .box_one {
+    background: #FFFD04;
     font-size: 38rpx;
     margin: 30rpx 0 20rpx 0;
     display: -webkit-box;
@@ -85,12 +89,13 @@
     -webkit-align-items: center;
             align-items: center;
     font-weight: bold;
+    color: #000;
 }
 .vider_content_two .box_one text {
       display: inline-block;
       width: 4rpx;
       height: 34rpx;
-      background: #FE0000;
+      background: #fff;
       margin-right: 12rpx;
 }
 .vider_content_two .box_two {
