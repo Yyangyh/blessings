@@ -165,6 +165,16 @@
 			}
 		},
 		{
+			"path": "pages/subhome/h_search",
+			"style": {
+				"navigationBarTitleText": "搜索",
+				"app-plus":{
+					"titleNView":false
+				}
+			}
+		},
+		
+		{
 			"path": "pages/subhome/h_list",
 			"style": {
 				"navigationBarTitleText": "家风建设",
@@ -881,6 +891,17 @@
 				}
 			}
 		},
+		{
+			"path": "pages/subindex/t_search",
+			"style": {
+				"navigationBarTitleText": "文章搜索",
+				"app-plus":{
+					"titleNView":false
+				}
+			}
+		},
+		
+		
 		{
 			"path": "pages/subuser/distribution/agreement",
 			"style": {

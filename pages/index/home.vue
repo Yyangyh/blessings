@@ -133,9 +133,9 @@
 		</view>
 		
 		<view class="build" v-show="show == 2">
-			<view class="build_top">
+			<!-- <view class="build_top">
 				家风建设之路
-			</view>
+			</view> -->
 			<view class="build_box" v-for="(item,index) in class_list2" :key='item.id' >
 				<view class="box_top">
 					<view class="top1">

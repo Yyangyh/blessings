@@ -6,14 +6,14 @@
 		<view class="top">
 			<image src="../../static/image/com_page/returns.png" @tap="service.returns()" mode="widthFix"></image>
 			<text>{{title}}</text>
-			<image src="../../static/image/com_page/search.png" mode="widthFix"></image>
+			<image  @tap="$jump('/pages/subhome/h_search?id='+req_data.category_id)" src="../../static/image/com_page/search.png" mode="widthFix"></image>
 		</view>
 		<view class="texts_boxList" v-for="(item,index) in dataList" :key='item.id'>
 			<view class="t_box" @tap="$jump('./threehome/h_article?id='+item.id)">
 				<view><image :src="$api_img() + item.cover" mode="scaleToFill"></image></view>
 				<view class="b_right">
 					<view>{{item.title}}</view>
-					<view>{{item.browse_count}}次观看</view>
+					<view>{{item.browse_count}}次阅读</view>
 				</view>
 			</view>
 		</view>

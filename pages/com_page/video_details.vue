@@ -942,9 +942,17 @@
 				display: flex;
 				justify-content: space-between;
 				align-items: center;
+				text{
+					display: -webkit-box;
+					-webkit-box-orient: vertical;
+					-webkit-line-clamp: 1;
+					overflow: hidden;
+				}
 			}
 			.price_status{
 				color: #D80000;
+				width: 150rpx;
+				text-align: right;
 			}
 			
 		}

@@ -205,13 +205,12 @@
 		overflow: hidden;
 		background: #FE0000;
 		.box_one{
-			background: #FFFD04;
 			font-size: 38rpx;
 			margin: 30rpx 0 20rpx 0;
 			display: flex;
 			align-items: center;
 			font-weight: bold;
-			color: #000;
+			color: #fff;
 			text{
 				display: inline-block;
 				width: 4rpx;

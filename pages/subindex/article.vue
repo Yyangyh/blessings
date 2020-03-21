@@ -27,7 +27,7 @@
 				<image v-if="dataList.is_lighten == -1" class="t_right" src="/static/image/com_page/collect.png" mode="widthFix" @tap="collection"></image>
 				<image v-else-if="dataList.is_lighten == 1"  class="t_right" src="../../static/image/com_page/collect_HL.png" mode="widthFix"  @tap="collection" ></image>
 			</view>
-			<view class="rich">
+			<view class="rich" v-if="video_content">
 				<rich-text :nodes="video_content"></rich-text>
 			</view>
 		</view>
@@ -111,8 +111,10 @@
 				title:'文章',
 				dataList:'',
 				data_list:'',
+				video_content:'',
 				show:false,
 				id:'',
+				com_text:'',
 				show:false,
 				imgList:[
 					{src:'/static/image/com_page/kongstart.png'},

@@ -6,7 +6,7 @@
 		<view class="top">
 			<image src="../../static/image/com_page/returns.png" @tap="service.returns()" mode="widthFix"></image>
 			<text>文章</text>
-			<image src="../../static/image/com_page/search.png" mode="widthFix"></image>
+			<image @tap="$jump('/pages/subindex/t_search')" src="../../static/image/com_page/search.png" mode="widthFix"></image>
 		</view>
 		<view class="tab_list">
 			<view class="list_all" @tap="show = !show">
