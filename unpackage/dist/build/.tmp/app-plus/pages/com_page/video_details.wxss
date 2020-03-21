@@ -298,8 +298,16 @@ video {
   -webkit-align-items: center;
           align-items: center;
 }
+.catalog_box .catalog .play_status text {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  overflow: hidden;
+}
 .catalog_box .catalog .price_status {
   color: #D80000;
+  width: 150rpx;
+  text-align: right;
 }
 .catalog_box image {
   height: 27rpx;

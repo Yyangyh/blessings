@@ -280,7 +280,7 @@ res
 	}
 	.content {
 		.swiper{
-			height:365rpx;
+			height:350rpx;
 		}
 		.swiper_box{
 			padding: 0 20rpx;

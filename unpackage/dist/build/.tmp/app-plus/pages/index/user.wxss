@@ -303,7 +303,7 @@ page {
 .c_buttom {
   position: fixed;
   width: 100%;
-  bottom: 100rpx;
+  bottom: 105rpx;
   display: -webkit-box;
   display: -webkit-flex;
   display: flex;

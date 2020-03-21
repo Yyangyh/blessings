@@ -48,7 +48,7 @@
 			<view class="top_three">
 				<view class="three_list" @tap="$jump('../subuser/balance')">
 					<view class="">
-						{{user.money}}
+						{{user.money ? user.money : '0'}}
 					</view>
 					<view class="">
 						余额
@@ -514,7 +514,7 @@
 	.c_buttom{
 		position: fixed;
 		width: 100%;
-		bottom: 100rpx;
+		bottom: 105rpx;
 		display: flex;
 		font-size: 28rpx;
 		justify-content: space-around;

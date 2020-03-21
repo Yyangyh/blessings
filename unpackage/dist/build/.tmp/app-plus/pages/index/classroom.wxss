@@ -182,7 +182,7 @@
             height: 32rpx;
             line-height: 32rpx;
             border-radius: 32rpx;
-            width: 80rpx;
+            padding: 0 5rpx;
             text-align: center;
 }
 .vider_content_two .box_two .two_top .top_left2 .long_title {

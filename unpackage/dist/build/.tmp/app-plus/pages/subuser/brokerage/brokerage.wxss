@@ -140,7 +140,7 @@ page {
       display: flex;
 }
 .content .classify .box .box-list {
-        width: 33.3%;
+        width: 50%;
         height: 161rpx;
         display: -webkit-box;
         display: -webkit-flex;

@@ -332,7 +332,7 @@
 		border-bottom: 6rpx solid #F1F1F1;
 		.vider_content{
 			padding: 0 20rpx;
-			font-size: 24rpx;
+			font-size: 28rpx;
 			image{
 				width: 268rpx;
 				height: 179rpx;
@@ -364,7 +364,7 @@
 							font-size: 28rpx;
 							.list_vip{
 								background: #000000;
-								font-size: 24rpx;
+								font-size: 28rpx;
 								color: #FFFFFF;
 								padding: 5rpx 10rpx;
 								box-sizing: border-box;
@@ -377,7 +377,7 @@
 						display: flex;
 						justify-content: space-between;
 						color: #EF7C38;
-						font-size: 24rpx;
+						font-size: 28rpx;
 						view:nth-of-type(2){
 							color: #999999;
 						}

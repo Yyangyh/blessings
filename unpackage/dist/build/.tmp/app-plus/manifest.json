@@ -35,8 +35,9 @@
       "concatenate": true
     },
     "splashscreen": {
-      "autoclose": false,
-      "waiting": false,
+      "target": "id:1",
+      "autoclose": true,
+      "waiting": true,
       "delay": 0
     },
     "popGesture": "close",
@@ -176,6 +177,8 @@
       "color": "#999999",
       "selectedColor": "#000000",
       "borderStyle": "rgba(0,0,0,0.4)",
+      "fontSize": "14px",
+      "height": "55px",
       "backgroundColor": "#ffffff",
       "list": [
         {
@@ -202,8 +205,7 @@
           "selectedIconPath": "static/image/index/userHL.png",
           "text": "个人中心"
         }
-      ],
-      "height": "50px"
+      ]
     }
   },
   "usingComponents": {}

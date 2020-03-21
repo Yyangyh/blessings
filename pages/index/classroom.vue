@@ -49,7 +49,7 @@
 										{{items.title}}
 									</view>
 								</view>
-								<view class="title_two">{{items.is_free == 1? '免费' : items.is_free == 0? '付费': '未解锁'}}</view>
+								<view class="title_two">{{items.is_free == 1? '免费' : items.is_free == 0? '￥'+Number(items.v_price): '未解锁'}}</view>
 							</view>
 							<view class="long_title">
 								{{items.long_title}}
@@ -65,7 +65,8 @@
 							主讲：{{items.techer.name}}&nbsp;导师
 						</view>
 						<view class="btn_right">
-							已有{{items.view}}人学习
+							<!-- 已有{{items.view}}人学习 -->
+							了解更多
 						</view>
 					</view>
 					
@@ -279,7 +280,8 @@
 							height: 32rpx;
 							line-height: 32rpx;
 							border-radius: 32rpx;
-							width: 80rpx;
+							// width: 80rpx;
+							padding: 0 5rpx;
 							text-align: center;
 							
 						}
