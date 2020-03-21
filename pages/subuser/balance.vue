@@ -15,7 +15,7 @@
 			<view>可用余额（元）</view>
 			<view>{{user.money}}</view>
 		</view>
-		<view class="allorder">
+		<!-- <view class="allorder">
 			<text @click="choise()" class="one" :class="{active:cur==2}">全部</text>
 			<text @click="choise(1)" class="two" :class="{active:cur==1}">收入</text>
 			<text @click="choise('0')" class="three" :class="{active:cur==0}">支出</text>
@@ -29,7 +29,7 @@
 				<view class="l_right">{{item.desc}}</view>
 			</view>
 			<uni-load-more :status="more"></uni-load-more>
-		</view>
+		</view> -->
 		
 	</view>
 </template>

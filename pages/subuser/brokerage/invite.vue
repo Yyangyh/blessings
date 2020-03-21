@@ -3,20 +3,27 @@
 		<view class="status_bar">
 					
 		</view>
-		<returns :titles='title'></returns>
-		<view class="back_img"  @longtap="longtap">
-			<image :src="$api_img() + bg" mode="widthFix"></image>
+		<view class="top">
+			<view class="top_enlarge"  @tap="service.returns()">
+				<image src="/static/image/com_page/returns.png" mode="widthFix"></image>
+			</view>
+			<text>推广码</text>
+			<text @tap="preservation">保存图片</text>
 		</view>
-		<view class="pages"  @longtap="longtap">
+		<view class="back_img"  @longtap="longtap">
+			<image :src="$api_img() + code_img" mode="widthFix"></image>
+		</view>
+		<!-- <view class="pages"  @longtap="longtap">
 			<image :src="$api_img() + code_img" mode="widthFix"></image>
 			<view class="">
 				我是幸福使者：{{user.username}}
 			</view>
-		</view>
+		</view> -->
 	</view>
 </template>
 
 <script>
+	import js_sdk from '../../../js_sdk/ican-H5Api/ican-H5Api.js'
 	import returns from '../../common/returns.vue'
 	import { mapState } from 'vuex'
 	export default{
@@ -38,6 +45,26 @@
 		methods:{
 			longtap(){
 				console.log(123)
+			},
+			preservation(){
+				// #ifdef APP-PLUS
+				let Url = this.$api_img()+this.code_img
+				//在app内运行
+				let filename = Math.random() + ".png"
+				plus.downloader.createDownload(Url, {
+					filename: "_downloads/" + filename
+				}, (download, status) => {
+					if (status == 200) { //下载成功  
+						plus.gallery.save(download.filename, () => {
+							uni.hideLoading();
+							uni.showToast({
+								icon: 'none',
+								title: '保存成功！'
+							});
+						})
+					}
+				}).start()
+				// #endif
 			}
 		},
 		onShow() {
@@ -54,20 +81,53 @@
 
 <style lang="scss">
 	page{
-		background: #ff6b55;
+		// background: #ff6b55;
 	}
 	.content{
 		width: 100%;
 		overflow-y: hidden;
+		.top{
+			height: 105rpx;
+			padding: 0 44rpx;
+			width: 100%;
+			box-sizing: border-box;
+			position: fixed;
+			top: var(--status-bar-height);
+			z-index: 333;
+			left: 0;
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			font-size: 32rpx;
+			font-weight: bold;
+			color: #333333;
+			background: #fff;
+			box-shadow:0px 2rpx 4rpx 0px rgba(0, 0, 0, 0.1);
+			.top_enlarge{
+				display: flex;
+				align-items: center;
+				height: 100%;
+				width: 180rpx;
+			}
+			text:nth-of-type(2){
+				width: 180rpx;
+				font-size: 30rpx;
+				font-weight: 400;
+				display: inline-block;
+				text-align: right;
+			}
+			image{
+				height: 40rpx;
+				width: 40rpx;
+			}
+		}
 		.back_img{
-			
 			position: fixed;
 			z-index: 80;
 			top: calc(105rpx + var(--status-bar-height));
 			left: 0;
 			width: 100%;
 			image{
-				
 				width: 100%;
 			}
 		}

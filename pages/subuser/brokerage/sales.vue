@@ -57,11 +57,11 @@
 				<view class="line-right">￥{{dataList.settled}}</view>
 			</view>
 			<hr />
-			<view class="title">
+			<!-- <view class="title">
 				用户须知
 			</view>
 			<view class="explain">买家确认订单后,立即获得分销奖学金</view>
-			<view class="explain">注意:可用奖学金 <text>1元</text>后才能申请提现</view>
+			<view class="explain">注意:可用奖学金 <text>1元</text>后才能申请提现</view> -->
 			<button class="btn" type="default" @tap="$jump('./withdraw?deposit='+dataList.can_cash)">提现</button>
 		</view>
 	</view>

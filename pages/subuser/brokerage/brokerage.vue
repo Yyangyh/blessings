@@ -42,13 +42,13 @@
 						<view class="toutcome">{{data.total_commission}}元</view>
 					</view>
 				</view>
-				<view class="box-list" style="border: 1rpx solid #EEEEEE;" @tap="$jump('./order')">
+				<!-- <view class="box-list" style="border: 1rpx solid #EEEEEE;" @tap="$jump('./order')">
 					<image src="../../../static/image/brokerage/dingdan.png" mode="widthFix"></image>
 					<view>
 						<view class="yj">分享订单</view>
 						<view class="toutcome">{{data.order_count}}笔</view>
 					</view>
-				</view>
+				</view> -->
 				<view class="box-list" style="border: 1rpx solid #EEEEEE;"  @tap="$jump('./record')">
 					<image src="../../../static/image/brokerage/tixian.png" mode="widthFix"></image>
 					<view>
@@ -191,7 +191,7 @@
 			.box{
 				display: flex;
 				.box-list{
-					width: 33.3%;
+					width: 50%;
 					height: 161rpx;
 					display: flex;
 					align-items: center;
