@@ -51,7 +51,7 @@
   display: flex;
   -webkit-flex-wrap: wrap;
           flex-wrap: wrap;
-  font-size: 24rpx;
+  font-size: 28rpx;
 }
 .article .a_list {
     width: 50%;
@@ -98,7 +98,7 @@
       margin-bottom: 20rpx;
 }
 .boxs .b_right .b_list view {
-        font-size: 24rpx;
+        font-size: 28rpx;
 }
 .boxs .b_right .b_list image {
         width: 210rpx;

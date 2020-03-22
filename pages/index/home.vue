@@ -49,7 +49,7 @@
 			<view class="propulsion">
 				<view class="commodity_box">
 					<view class="top">
-						<image src='../../static/image/index/start2.png'></image>
+						<image src='../../static/image/index/start1.png'></image>
 						<text>新品上市</text>
 					</view>
 					<view class="commodity" v-for="(itemo,indexo) in new_goods " :key='itemo.id' @tap="$jump('/pages/subhome/details?id='+itemo.id)">
@@ -109,7 +109,7 @@
 										{{items.title}}
 									</view>
 								</view>
-								<view class="title_two">{{items.is_free == 0? '免费' : items.is_free == 1? '付费': '未解锁'}}</view>
+								<view class="title_two">{{items.is_free == 1? '免费' : Number(items.v_price) <= 0? '免费': '￥'+Number(items.v_price)}}</view>
 							</view>
 							<view class="long_title">
 								{{items.long_title}}
@@ -125,7 +125,9 @@
 							主讲：{{items.techer.name}}&nbsp;导师
 						</view>
 						<view class="btn_right">
-							已有{{items.view}}人学习
+							<!-- 已有{{items.view}}人学习 -->
+							{{items.is_online?'已有' + items.view + '人学习':'了解更多'}}
+							
 						</view>
 					</view>
 				</view>
@@ -276,7 +278,7 @@ res
 
 <style lang="scss">
 	page{
-		background: #FE0000;
+		background: #e4e4e4;
 	}
 	.content {
 		.swiper{
@@ -321,8 +323,8 @@ res
 				.top{
 					display: flex;
 					align-items: center;
-					margin: 26rpx 0 16rpx 0;
-					color: #fff;
+					margin: 20rpx 0 16rpx 0;
+					color: #000;
 					font-size: 38rpx;
 					font-weight: bold;
 					image{
@@ -386,25 +388,25 @@ res
 			.top{
 				display: flex;
 				align-items: center;
-				color: #fff;
+				color: #000;
 				justify-content: space-between;
-				padding: 29rpx 22rpx 20rpx 22rpx ;
+				padding: 20rpx 22rpx 20rpx 22rpx ;
 				.top1{
 					font-size: 38rpx;
 					display: flex;
 					align-items: center;
-					font-weight: 600;
+					font-weight: bold;
 					text{
 						display: inline-block;
 						width: 4rpx;
 						height: 36rpx;
-						background: #FE0000;
+						background: #D80000;
 						margin-right: 8rpx;
 					}
 				}
 				.top2{
 					font-size: 28rpx;
-					color:#FFFD04;
+					color:#E9BB00;
 				}
 			}
 			.allB{
@@ -512,27 +514,27 @@ res
 		font-size: 28rpx;
 		padding: 0rpx 20rpx 10rpx 20rpx;
 		overflow: hidden;
-		background: #FE0000;
+		background: #e4e4e4;
 		.box_one{
 			font-size: 38rpx;
-			margin: 30rpx 0 20rpx 0;
+			margin: 20rpx 0 20rpx 0;
 			display: flex;
 			align-items: center;
-			font-weight: 600;
-			color: #fff;
+			font-weight: bold;
+			color: #000;
 			text{
 				display: inline-block;
 				width: 4rpx;
 				height: 34rpx;
-				background: #fff;
-				margin-right: 12rpx;
+				background: #D80000;
+				margin-right: 8rpx;
 			}
 		}
 		.box_two{
 			background: #FFFFFF;
 			padding: 30rpx 15rpx;
 			height: 350rpx;
-			margin-bottom: 25px;
+			margin-bottom: 20rpx;
 			box-sizing: border-box;
 			border-radius: 10rpx;
 			display: flex;
@@ -588,7 +590,7 @@ res
 							height: 32rpx;
 							line-height: 32rpx;
 							border-radius: 32rpx;
-							width: 80rpx;
+							padding: 0 6rpx;
 							text-align: center;
 							
 						}
@@ -630,14 +632,14 @@ res
 		font-size: 28rpx;
 		padding-bottom: 10rpx;
 		overflow: hidden;
-		background: #FE0000;
+		background: #e4e4e4;
 		.build_top{
 			color: #FFFD04;
 			font-size: 38rpx;
 			text-align: center;
 			height: 100rpx;
 			line-height: 100rpx;
-			background: #FE0000;
+			background: #e4e4e4;
 			font-weight:bold;
 		}
 		.build_box{
@@ -651,19 +653,19 @@ res
 					font-size: 38rpx;
 					display: flex;
 					align-items: center;
-					font-weight: 600;
-					color: #fff;
+					font-weight: bold;
+					color: #000;
 					text{
 						display: inline-block;
 						width: 4rpx;
 						height: 36rpx;
-						background: #fff;
+						background: #D80000;
 						margin-right: 8rpx;
 					}
 				}
 				.top2{
 					font-size: 28rpx;
-					color:#FFFD04;
+					color:#E9BB00;
 				}
 			}
 			.box_main{

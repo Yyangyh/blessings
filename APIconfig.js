@@ -2,7 +2,6 @@
 const api ='http://www.wufu-app.com'
 // const api = ''
 
-
 const api_root = {
 	common:{
 		UnRead: api+'/api/message/UnRead',//消息未读总数
@@ -78,6 +77,7 @@ const api_root = {
 		s_Favor:api+'/api/good/Favor',//用户商品收藏
 		threehome:{
 			g_Detail: api+'/api/groupgoods/Detail',//拼团商品详情
+			g_browse: api+'/api/familystyle/browse',//家风建设增加浏览量
 			g_teams: api+'/api/groupgoods/teams',//我的团
 			g_ConfirmDetail: api+'/api/groupgoods/ConfirmDetail',//拼团订单确定
 			g_Confirm: api+'/api/groupgoods/Confirm',//确认订单（生成订单号）-拼团商品

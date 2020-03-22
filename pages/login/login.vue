@@ -128,7 +128,7 @@
 						uni.hideLoading()
 						clearTimeout(times)
 						console.log(res)
-						console.log(res)
+						// console.log(res)
 						let data = res.data 
 						uni.showToast({
 							icon:'none',
@@ -137,21 +137,14 @@
 						if(data.code == 0){
 							console.log(data.data.memberInfo)
 							// uni.setStorageSync('user',JSON.stringify())
+							uni.removeStorageSync('openid')
+							uni.removeStorageSync('nickname')
 							that.$store.commit('state_user',data.data.memberInfo)
 							that.$store.commit('state_token',data.token)
 							
 							uni.setStorageSync('state_user',data.data.memberInfo)
 							uni.setStorageSync('state_token',data.token)
-							// // #ifdef H5
-							// // 	先判断是否在h5打开，再判断是否是在微信浏览器打开
-							// 	let ua = navigator.userAgent.toLowerCase();
-							// 	if (ua.match(/MicroMessenger/i) == "micromessenger") {
-							// 		//微信H5端
-									
-							// 		return
-							// 	}
-								
-							// // #endif
+							
 							
 							setTimeout(function(){
 								
@@ -160,12 +153,6 @@
 								});
 							},1000)
 						}
-					},
-					fail(res) {
-						console.log(res)
-					},
-					complete(res) {
-						console.log(res)
 					}
 				})
 			},
@@ -203,6 +190,7 @@
 								console.log(data)
 								if(data.code == 0){
 									uni.removeStorageSync('openid')
+									uni.removeStorageSync('nickname')
 									that.$store.commit('state_user',data.data.memberInfo)
 									that.$store.commit('state_token',data.token)
 									uni.setStorageSync('state_user',data.data.memberInfo)
@@ -217,6 +205,7 @@
 									uni.setStorageSync('state_user',data.data.memberInfo)
 									uni.setStorageSync('state_token',data.token)
 									uni.setStorageSync('openid',loginRes.authResult.openid)
+									uni.setStorageSync('nickname',data.data.nickname)
 									uni.setStorageSync('wx','wx')
 									uni.switchTab({
 										url: '../index/index'
@@ -256,7 +245,7 @@
 			uni.request({  //用户须知
 				url:this.APIconfig.api_root.login.getProtocol,
 				success(res) {
-					console.log(res)
+					// console.log(res)
 					that.treaty = res.data.data.content
 					// that.open_protocol = res.data.data.status
 				}

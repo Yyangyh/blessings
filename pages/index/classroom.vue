@@ -49,7 +49,7 @@
 										{{items.title}}
 									</view>
 								</view>
-								<view class="title_two">{{items.is_free == 1? '免费' : items.is_free == 0? '￥'+Number(items.v_price): '未解锁'}}</view>
+								<view class="title_two">{{items.is_free == 1? '免费' : Number(items.v_price) <= 0? '免费': '￥'+Number(items.v_price)}}</view>
 							</view>
 							<view class="long_title">
 								{{items.long_title}}
@@ -65,8 +65,7 @@
 							主讲：{{items.techer.name}}&nbsp;导师
 						</view>
 						<view class="btn_right">
-							<!-- 已有{{items.view}}人学习 -->
-							了解更多
+							{{items.is_online == 0?'已有' + items.view + '人学习':'了解更多'}}
 						</view>
 					</view>
 					
@@ -157,7 +156,7 @@
 <style lang="scss">
 	.content{
 		/* padding-top: 0; */
-		background: #FE0000;
+		background: #e4e4e4;
 	}
 	.swiper_box{
 		padding: 0 20rpx;
@@ -204,20 +203,20 @@
 		font-size: 28rpx;
 		padding: 0rpx 20rpx 10rpx 20rpx;
 		overflow: hidden;
-		background: #FE0000;
+		background: #e4e4e4;
 		.box_one{
 			font-size: 38rpx;
-			margin: 30rpx 0 20rpx 0;
+			margin: 20rpx 0 20rpx 0;
 			display: flex;
 			align-items: center;
 			font-weight: bold;
-			color: #fff;
+			color: #000;
 			text{
 				display: inline-block;
 				width: 4rpx;
 				height: 34rpx;
-				background: #fff;
-				margin-right: 12rpx;
+				background: #000;
+				margin-right: 8rpx;
 			}
 		}
 		.box_two{
@@ -281,7 +280,7 @@
 							line-height: 32rpx;
 							border-radius: 32rpx;
 							// width: 80rpx;
-							padding: 0 5rpx;
+							padding: 0 6rpx;
 							text-align: center;
 							
 						}

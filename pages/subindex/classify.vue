@@ -106,7 +106,7 @@
 		box-sizing: border-box;
 		display: flex;
 		flex-wrap: wrap;
-		font-size: 24rpx;
+		font-size: 28rpx;
 		.a_list{
 			width: 50%;
 			text-align: center;
@@ -146,7 +146,7 @@
 				text-align: center;
 				margin-bottom: 20rpx;
 				view{
-					font-size: 24rpx;
+					font-size: 28rpx;
 				}
 				image{
 					width: 210rpx;

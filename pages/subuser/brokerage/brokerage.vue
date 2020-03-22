@@ -27,7 +27,7 @@
 			<hr /> -->
 			<view class="line2">
 				<view>
-					<view class="money">{{data.can_cash}}</view>
+					<view class="money">{{data.can_cash?data.can_cash:'0'}}</view>
 					<view class="textss">可提奖学金（元）</view>
 				</view>
 				<view class="btn" @tap="$jump('./withdraw?deposit='+data.can_cash)">提现奖学金</view>

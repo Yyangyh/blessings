@@ -21,7 +21,7 @@
 			</view>
 			<view class="tab_list"  @tap="$jump('../com_page/index_class?type=2')">
 				<image src='../../static/image/index/index_tab2.png' mode="widthFix"></image>
-				<view class="">音频</view>
+				<view class="">音频课程</view>
 			</view>
 			<view class="tab_list" @tap="$jump('../subindex/texts')">
 				<image src='../../static/image/index/index_tab3.png' mode="widthFix"></image>
@@ -29,7 +29,7 @@
 			</view>
 			<view class="tab_list" @tap="$jump('../subindex/classify')">
 				<image src='../../static/image/index/index_tab4.png' mode="widthFix"></image>
-				<view class="">分类</view>
+				<view class="">课程分类</view>
 			</view>
 			<view class="tab_list" @tap="$jump('/pages/subindex/morning')">
 				<image src='../../static/image/index/index_tab5.png' mode="widthFix"></image>
@@ -37,7 +37,7 @@
 			</view>
 			<view class="tab_list" @tap="jump('/pages/index/home')">
 				<image src='../../static/image/index/index_tab6.png' mode="widthFix"></image>
-				<view class="">商城</view>
+				<view class="">五福商城</view>
 			</view>
 			<!-- <view class="tab_list" @tap="$jump('../subindex/evaluating')"> -->
 			<view class="tab_list" @tap="temporary">
@@ -75,7 +75,7 @@
 										{{items.long_title}}
 									</view>
 									<view class="">
-										{{items.is_free == 0? '￥'+items.v_price : '免费'}}
+										{{items.is_free == 0? '￥'+Number(items.v_price) : '免费'}}
 									</view>
 								</view>
 								<view class="list_box2">
@@ -196,7 +196,6 @@
 				this.openid = uni.getStorageSync('openid')
 				uni.hideTabBar()
 			}
-			console.log(this.$store.state.user)
 			this.service.entire(this,'post',this.APIconfig.api_root.index.advertise,{
 				// userid:this.$store.state.user.id
 			},function(self,res){
@@ -209,7 +208,7 @@
 		},
 		onShow() {
 			
-			if(uni.getStorageSync('notice') == ''){  //是否显示版通比例
+			if(uni.getStorageSync('notice') == ''){  //
 				this.eject_show = true
 			}else{
 				var timestamp = (new Date()).getTime()
@@ -217,24 +216,27 @@
 					this.eject_show = true
 					uni.setStorageSync('start_notice',timestamp)
 				}else{
-					
 					this.eject_show = false
 				}
 			}
-			
+			this.Index_requ()
 			this.service.notice.call(this)
-			this.service.entire(this,'post',this.APIconfig.api_root.index.index,{
-				userid:this.$store.state.user.id
-			},function(self,res){
-				self.swiper_list = res.data.slide
-				if(self.class_top.length == 0) self.class_top.push(res.data.class_list[0])
-				self.class_list = res.data.class_list
-			})
+			
 		},
 		methods: {
 			jump(url){
 				uni.switchTab({
 					url:url
+				})
+			},
+			Index_requ(){
+				
+				this.service.entire(this,'post',this.APIconfig.api_root.index.index,{
+					userid:this.$store.state.user.id
+				},function(self,res){
+					self.swiper_list = res.data.slide
+					if(self.class_top.length == 0) self.class_top.push(res.data.class_list[0])
+					self.class_list = res.data.class_list
 				})
 			},
 			close(){
@@ -282,20 +284,32 @@
 					})
 					return
 				}
-				this.service.entire(this,'post',this.APIconfig.api_root.index.bindPhone,{
+				let data = {
 					sms_code:this.verify,
 					mobile:this.accounts,
 					password:this.pwd,
-					openid:this.openid
-				},function(self,res){
+					openid:this.openid,
+					nickname:uni.getStorageSync('nickname'),
+					parent_id:0
+				}
+				console.log(data)
+				this.service.entire(this,'post',this.APIconfig.api_root.index.bindPhone,data,function(self,res){
+					// console.log(res)
 					uni.showToast({
 						icon:'none',
 						title:res.msg
 					})
 					if(res.code == 0){
 						self.openid = ''
+						self.$store.commit('state_user',res.data.memberInfo)
+						self.$store.commit('state_token',res.token)
+						// console.log(res.data.memberInfo)
+						// console.log(res.token)
+						uni.setStorageSync('state_user',res.data.memberInfo)
+						uni.setStorageSync('state_token',res.token)
 						uni.removeStorageSync('openid')
 						uni.showTabBar()
+						self.Index_requ()
 					}
 				})
 			},
@@ -380,7 +394,7 @@
 		padding: 20rpx 20rpx 0 20rpx;
 		margin-top: 10rpx;
 		min-height: 300rpx;
-		background: #FE0000;
+		background: #e4e4e4;
 		display: flex;
 		flex-wrap: wrap;
 		justify-content: space-between;
@@ -398,7 +412,7 @@
 		}
 	}
 	.video_box{
-		border-bottom: 20rpx solid #FE0000;
+		border-bottom: 20rpx solid #e4e4e4;
 		.vider_content{
 			white-space: nowrap;
 			padding: 0 20rpx;
@@ -459,6 +473,10 @@
 		font-size: 30rpx;
 		display: flex;
 		justify-content: space-between;
+		view:nth-of-type(1){
+			word-wrap: normal;
+			overflow: hidden;
+		}
 		view:nth-of-type(2){
 			font-size: 28rpx;
 			color: #D80000;

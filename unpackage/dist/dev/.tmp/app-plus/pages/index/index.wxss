@@ -44,7 +44,7 @@
   padding: 20rpx 20rpx 0 20rpx;
   margin-top: 10rpx;
   min-height: 300rpx;
-  background: #FE0000;
+  background: #e4e4e4;
   display: -webkit-box;
   display: -webkit-flex;
   display: flex;
@@ -67,7 +67,7 @@
     width: 90rpx;
 }
 .video_box {
-  border-bottom: 20rpx solid #FE0000;
+  border-bottom: 20rpx solid #e4e4e4;
 }
 .video_box .vider_content {
     white-space: nowrap;
@@ -149,6 +149,10 @@
   -webkit-box-pack: justify;
   -webkit-justify-content: space-between;
           justify-content: space-between;
+}
+.list_one view:nth-of-type(1) {
+    word-wrap: normal;
+    overflow: hidden;
 }
 .list_one view:nth-of-type(2) {
     font-size: 28rpx;

@@ -25,7 +25,7 @@
 /* 透明度 */
 /* 文章场景相关 */
 page {
-  background: #FE0000;
+  background: #e4e4e4;
 }
 .content {
   padding-top: 0;
@@ -303,15 +303,14 @@ page {
 .c_buttom {
   position: fixed;
   width: 100%;
-  bottom: 100rpx;
+  bottom: 105rpx;
   display: -webkit-box;
   display: -webkit-flex;
   display: flex;
   font-size: 28rpx;
   -webkit-justify-content: space-around;
           justify-content: space-around;
-  padding-bottom: 20rpx;
-  margin-top: 40rpx;
-  color: #fff;
+  padding-bottom: 5rpx;
+  color: #000;
 }
 

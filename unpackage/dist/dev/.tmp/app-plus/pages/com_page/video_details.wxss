@@ -53,11 +53,11 @@
   width: 25%;
   height: 100rpx;
   line-height: 100rpx;
-  font-size: 28rpx;
+  font-size: 32rpx;
   border-bottom: 2rpx solid #F6F6F6;
 }
 .video_top {
-  font-size: 28rpx;
+  font-size: 32rpx;
 }
 .test_show {
   border-bottom-color: #D80000 !important;
@@ -82,7 +82,7 @@
   background: -webkit-linear-gradient(315deg, #f74c4a, #f56e6a);
   background: linear-gradient(135deg, #f74c4a, #f56e6a);
   color: #fff;
-  font-size: 24rpx;
+  font-size: 28rpx;
   text-align: center;
   height: 50rpx;
   line-height: 50rpx;
@@ -100,7 +100,7 @@
   color: #999999;
 }
 .video_mid {
-  font-size: 24rpx;
+  font-size: 28rpx;
 }
 .video_mid .discount {
   height: 90rpx;
@@ -164,7 +164,7 @@
   border-radius: 50%;
 }
 .video_mid .mid_tutor .tu_one .tu_name view:nth-of-type(1) {
-  font-size: 28rpx;
+  font-size: 32rpx;
 }
 .video_mid .mid_tutor .tu_one .tu_name view:nth-of-type(2) {
   color: #999999;
@@ -298,8 +298,16 @@ video {
   -webkit-align-items: center;
           align-items: center;
 }
+.catalog_box .catalog .play_status text {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  overflow: hidden;
+}
 .catalog_box .catalog .price_status {
   color: #D80000;
+  width: 150rpx;
+  text-align: right;
 }
 .catalog_box image {
   height: 27rpx;
@@ -409,8 +417,8 @@ video {
   font-size: 32rpx;
   padding: 20rpx;
   box-sizing: border-box;
-  -webkit-transform: translate(-50%, -50%);
-          transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -15%);
+          transform: translate(-50%, -15%);
 }
 .give_box .give_top {
   text-align: center;

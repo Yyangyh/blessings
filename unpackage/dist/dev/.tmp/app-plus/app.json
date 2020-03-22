@@ -18,6 +18,7 @@
     "pages/com_page/s_search",
     "pages/subhome/home_com",
     "pages/subhome/assemble",
+    "pages/subhome/h_search",
     "pages/subhome/h_list",
     "pages/subhome/h_article",
     "pages/subhome/threehome/h_article",
@@ -101,6 +102,7 @@
     "pages/subuser/abrief",
     "pages/com_page/comment",
     "pages/subindex/comment",
+    "pages/subindex/t_search",
     "pages/subuser/distribution/agreement"
   ],
   "window": {

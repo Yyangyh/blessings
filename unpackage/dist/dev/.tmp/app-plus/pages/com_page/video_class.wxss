@@ -25,7 +25,7 @@
 /* 透明度 */
 /* 文章场景相关 */
 .content {
-  padding-top: calc(205rpx + var(--status-bar-height));
+  padding-top: 205rpx;
 }
 .content_top {
   position: fixed;
@@ -124,7 +124,7 @@
   left: 0;
   width: 100%;
   box-sizing: border-box;
-  z-index: 998;
+  z-index: 900;
   display: -webkit-box;
   display: -webkit-flex;
   display: flex;
@@ -170,7 +170,7 @@
 }
 .vider_content_two .vider_content {
     padding: 0 20rpx;
-    font-size: 24rpx;
+    font-size: 28rpx;
 }
 .vider_content_two .vider_content image {
       width: 268rpx;
@@ -224,7 +224,7 @@
 }
 .vider_content_two .vider_content .content_list .list_right .list_two view:nth-of-type(2) .list_vip {
               background: #000000;
-              font-size: 24rpx;
+              font-size: 28rpx;
               color: #FFFFFF;
               padding: 5rpx 10rpx;
               box-sizing: border-box;
@@ -239,7 +239,7 @@
           -webkit-justify-content: space-between;
                   justify-content: space-between;
           color: #EF7C38;
-          font-size: 24rpx;
+          font-size: 28rpx;
 }
 .vider_content_two .vider_content .content_list .list_right .list_three view:nth-of-type(2) {
             color: #999999;

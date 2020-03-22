@@ -1,32 +1,6 @@
 <template>
-	<view class=".content" v-if="page_show === false">
-		<view class="jump" @tap="jumps">
-			跳过
-		</view>
-		<view class="back1" v-if="show == 1">
-			<image src="../../static/s1.png" mode="widthFix"></image>
-			<view class="spot_box">
-				<text style="background: #D80000;"></text>
-				<text></text>
-				<text></text>
-			</view>
-		</view>
-		<view class="back2"  v-if="show == 2">
-			<image src="../../static/s2.png" mode="widthFix"></image>
-			<view class="spot_box">
-				<text></text>
-				<text style="background:#D80000;"></text>
-				<text></text>
-			</view>
-		</view>
-		<view class="back3"  v-if="show == 3">
-			<image src="../../static/s3.png" mode="widthFix"></image>
-			<view class="spot_box">
-				<text></text>
-				<text></text>
-				<text style="background: #D80000;"></text>
-			</view>
-		</view>
+	<view class="" >
+		
 	</view>
 </template>
 
@@ -40,45 +14,31 @@
 			}
 		},
 		onLoad() {
-			let that = this
-			if(uni.getStorageSync('state_user')){
-				uni.switchTab({
-					url:'../index/index'
+			if(uni.getStorageSync('openid')){
+				uni.reLaunch({
+					url:'./login'
 				})
-				return false
 			}else{
-				that.page_show = true
-			}
-			that.timer = setInterval(function(){
-				 that.show++
-			},1500)
-		},
-		methods:{
-			jumps(){
-				if(uni.getStorageSync('state_token')){
+				if(uni.getStorageSync('state_user')){
 					uni.switchTab({
 						url:'../index/index'
 					})
 				}else{
-					uni.redirectTo({
-					    url: './login'
-					});
+					uni.reLaunch({
+						url:'./login'
+					})
 				}
 			}
+			
+			
+		},
+		methods:{
 		},
 		onHide() {
-			clearInterval(this.timer)
 		},
 		onUnload(){
-			clearInterval(this.timer)
 		},
-		watch:{
-			show(a,b){
-				if(a == 4){
-					this.jumps()
-				}
-			}
-		}
+		
 	}
 </script>
 
@@ -100,19 +60,5 @@
 		top: calc(20rpx + var(--status-bar-height));
 		right: 20rpx;
 	}
-	.spot_box{
-		
-	}
-	view{
-		text-align: center;
-	}
 	
-	text{
-		height: 20rpx;
-		width: 20rpx;
-		border-radius: 50%;
-		margin-right: 10rpx;
-		background: #CE7E92;
-		display: inline-block;
-	}
 </style>

@@ -24,7 +24,7 @@
 /* 垂直间距 */
 /* 透明度 */
 /* 文章场景相关 */
-.top.data-v-718c0130 {
+.top.data-v-47ff1521 {
   position: fixed;
   width: 100%;
   box-sizing: border-box;
@@ -44,29 +44,29 @@
   box-shadow: 0 0 5px #ccc;
   font-size: 32rpx;
 }
-.top image.data-v-718c0130 {
+.top image.data-v-47ff1521 {
     height: 40rpx;
     width: 40rpx;
 }
-.top text.data-v-718c0130:nth-of-type(1) {
+.top text.data-v-47ff1521:nth-of-type(1) {
     font-size: 32rpx;
     font-weight: bold;
 }
-.top text.data-v-718c0130:nth-of-type(2) {
+.top text.data-v-47ff1521:nth-of-type(2) {
     font-size: 28rpx;
     color: #666666;
 }
-.show.data-v-718c0130 {
+.show.data-v-47ff1521 {
   color: #1D9DFF;
 }
-.all.data-v-718c0130 {
+.all.data-v-47ff1521 {
   padding: 0 40rpx;
   margin: 44rpx 0 56rpx 0;
 }
-.tab.data-v-718c0130 {
+.tab.data-v-47ff1521 {
   margin-top: 20rpx;
 }
-.tab_list.data-v-718c0130 {
+.tab_list.data-v-47ff1521 {
   display: -webkit-box;
   display: -webkit-flex;
   display: flex;
@@ -76,27 +76,27 @@
   padding: 0 40rpx;
   margin-bottom: 60rpx;
 }
-.tab_list image.data-v-718c0130 {
+.tab_list image.data-v-47ff1521 {
     width: 220rpx;
     height: 142rpx;
     margin: 0 20rpx 0 10rpx;
 }
-.tab_list .tab_right.data-v-718c0130 {
+.tab_list .tab_right.data-v-47ff1521 {
     /* width: 100%; */
     -webkit-box-flex: 2;
     -webkit-flex-grow: 2;
             flex-grow: 2;
 }
-.tab_list .tab_right .test_one.data-v-718c0130 {
+.tab_list .tab_right .test_one.data-v-47ff1521 {
       font-size: 28rpx;
       color: #666666;
 }
-.tab_list .tab_right .test_two.data-v-718c0130 {
+.tab_list .tab_right .test_two.data-v-47ff1521 {
       font-size: 24rpx;
       color: #333333;
       margin: 9rpx 0 17rpx 0;
 }
-.tab_list .tab_right .test_three.data-v-718c0130 {
+.tab_list .tab_right .test_three.data-v-47ff1521 {
       display: -webkit-box;
       display: -webkit-flex;
       display: flex;
@@ -105,14 +105,14 @@
               justify-content: space-between;
       /* width: 100%; */
 }
-.tab_list .tab_right .test_three .test_left.data-v-718c0130 {
+.tab_list .tab_right .test_three .test_left.data-v-47ff1521 {
         color: #FF431D;
         font-size: 36rpx;
 }
-.tab_list .tab_right .test_three .test_right.data-v-718c0130 {
+.tab_list .tab_right .test_three .test_right.data-v-47ff1521 {
         font-size: 30rpx;
 }
-.tab_list .tab_right .test_three .test_right text.data-v-718c0130 {
+.tab_list .tab_right .test_three .test_right text.data-v-47ff1521 {
           display: inline-block;
           color: #999999;
           border: 2rpx solid #999999;
@@ -122,12 +122,12 @@
           line-height: 36rpx;
           text-align: center;
 }
-.tab_list .tab_right .test_three .test_right view.data-v-718c0130 {
+.tab_list .tab_right .test_three .test_right view.data-v-47ff1521 {
           display: inline-block;
           width: 60rpx;
           text-align: center;
 }
-.tab_bottom.data-v-718c0130 {
+.tab_bottom.data-v-47ff1521 {
   position: fixed;
   bottom: 0;
   left: 0;
@@ -147,22 +147,22 @@
   height: 120rpx;
   color: #666;
 }
-.tab_bottom .total.data-v-718c0130 {
+.tab_bottom .total.data-v-47ff1521 {
     display: -webkit-box;
     display: -webkit-flex;
     display: flex;
 }
-.tab_bottom .total text.data-v-718c0130 {
+.tab_bottom .total text.data-v-47ff1521 {
       color: #FF431D;
 }
-.tab_bottom .total view.data-v-718c0130:nth-of-type(1) {
+.tab_bottom .total view.data-v-47ff1521:nth-of-type(1) {
       font-size: 32rpx;
 }
-.tab_bottom .total view.data-v-718c0130:nth-of-type(2) {
+.tab_bottom .total view.data-v-47ff1521:nth-of-type(2) {
       font-size: 24rpx;
       text-align: right;
 }
-.radio.data-v-718c0130 {
+.radio.data-v-47ff1521 {
   display: -webkit-box;
   display: -webkit-flex;
   display: flex;
@@ -170,10 +170,10 @@
   -webkit-align-items: center;
           align-items: center;
 }
-.alls.data-v-718c0130 {
+.alls.data-v-47ff1521 {
   font-size: 34rpx;
 }
-button.data-v-718c0130 {
+button.data-v-47ff1521 {
   background: #D80000;
   color: #fff;
   width: 224rpx;
@@ -183,7 +183,7 @@ button.data-v-718c0130 {
   margin-left: 20rpx;
   margin-right: 0rpx;
 }
-.tab_delete.data-v-718c0130 {
+.tab_delete.data-v-47ff1521 {
   position: fixed;
   bottom: 0;
   left: 0;

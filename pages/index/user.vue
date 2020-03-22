@@ -21,7 +21,7 @@
 				
 				<view class="two_mid">
 					<view class="mid_top">
-						{{user.username}}
+						{{user.username?user.username:user.nickname}}
 					</view>
 					<view class="mid_bottom">
 						<!-- <image src="../../static/image/index/member.png" mode="widthFix"></image> -->
@@ -294,7 +294,7 @@
 
 <style lang="scss">
 	page{
-		background: #FE0000;
+		background: #e4e4e4;
 	}
 	.content{
 		padding-top: 0;
@@ -518,8 +518,8 @@
 		display: flex;
 		font-size: 28rpx;
 		justify-content: space-around;
-		padding-bottom: 20rpx;
-		margin-top: 40rpx;
-		color: #fff;
+		padding-bottom: 5rpx;
+		// margin-top: 40rpx;
+		color: #000;
 	}
 </style>

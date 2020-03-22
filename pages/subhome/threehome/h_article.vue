@@ -100,7 +100,11 @@
 				self.dataList.rating_num = new Array(Number(self.dataList.grade))
 				console.log(self.dataList)
 			})
-			
+			this.service.entire(this,'post',this.APIconfig.api_root.subhome.threehome.g_browse,{//增加文章阅读
+				id:e.id,
+				mid:this.$store.state.user.id
+			},function(self,res){
+			})
 		}
 	}
 </script>

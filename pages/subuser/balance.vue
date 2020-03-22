@@ -13,7 +13,7 @@
 		<image class="black" src="../../static/image/subuser/back.png"></image>
 		<view class="money">
 			<view>可用余额（元）</view>
-			<view>{{user.money}}</view>
+			<view>{{user.money ? user.money : '0'}}</view>
 		</view>
 		<!-- <view class="allorder">
 			<text @click="choise()" class="one" :class="{active:cur==2}">全部</text>

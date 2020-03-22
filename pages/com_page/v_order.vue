@@ -235,7 +235,7 @@
 							// return
 								that.service.entire(that,'post',that.APIconfig.api_root.com_page.v_saveOrder,data_list,function(self,res){
 									if(res.code == 0){
-										self.service.order.apply(self,[res,data.pay_type,'../subuser/s_order?status=-1'])
+										self.service.order.apply(self,[res,data.pay_type,'./video_details?id='+self.id+'&type='+self.type])
 									}else{
 										uni.showToast({
 											icon:'none',
@@ -255,6 +255,8 @@
 		},
 		onLoad(e) {
 			console.log(e)
+			this.type = e.type
+			this.id = e.id
 			let require_data = {
 				userid: this.$store.state.user.id,
 				video_id:e.id,

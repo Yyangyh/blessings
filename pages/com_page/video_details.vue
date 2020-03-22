@@ -302,7 +302,7 @@
 				</view>
 				<block  v-if="video_data.is_online == 0">
 					<view class="bot_buy" @tap="order_sn()"    v-if="is_free">
-						<text v-if="is_free">{{video_data.v_price}}</text>立即购买
+						<text v-if="is_free">{{'￥'+Number(video_data.v_price)}}</text>立即购买
 					</view>
 					<view class="bot_buy" v-else>
 						{{type == 1?'免费观看' : '免费悦听'}}
@@ -478,7 +478,9 @@
 						        if (res.confirm) {
 									// this.order_sn(this.catalog_data[index].id)
 									this.order_sn()
-								} 
+								}else if (res.cancel) {
+									this.indexs--
+								}
 						    }
 						});
 					}else{
@@ -566,7 +568,7 @@
 				},function(self,res){
 					if(res.code == 0){
 						
-						self.$jump('./v_order?id='+self.id+'&s_id='+s_id+'&order_sn='+res.data.order_sn)
+						self.$jump('./v_order?id='+self.id+'&s_id='+s_id+'&order_sn='+res.data.order_sn+'&type='+self.type)
 					}else{
 						uni.showToast({
 							icon:'none',
@@ -735,12 +737,12 @@
 			width: 25%;
 			height: 100rpx;
 			line-height: 100rpx;
-			font-size: 28rpx;
+			font-size: 32rpx;
 			border-bottom: 2rpx solid #F6F6F6;
 		}
 	}
 	.video_top {
-		font-size: 28rpx;
+		font-size: 32rpx;
 		
 	}
 	.test_show{
@@ -765,7 +767,7 @@
 			bottom: 30rpx;
 			background: linear-gradient(135deg,rgba(247,76,74,1),rgba(245,110,106,1));
 			color: #fff;
-			font-size: 24rpx;
+			font-size: 28rpx;
 			text-align: center;
 			height: 50rpx;
 			line-height: 50rpx;
@@ -786,7 +788,7 @@
 	}
 	
 	.video_mid{
-		font-size: 24rpx;
+		font-size: 28rpx;
 		.discount{
 			height: 90rpx;
 			margin: 0 20rpx;
@@ -832,7 +834,7 @@
 				}
 				.tu_name{
 					view:nth-of-type(1){
-						font-size: 28rpx;
+						font-size: 32rpx;
 					}
 					view:nth-of-type(2){
 						color: #999999;
@@ -1058,7 +1060,7 @@
 		font-size: 32rpx;
 		padding: 20rpx;
 		box-sizing: border-box;
-		transform: translate(-50%,-50%);
+		transform: translate(-50%,-15%);
 		.give_top{
 			text-align: center;
 			font-size: 36rpx;

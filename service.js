@@ -1,10 +1,6 @@
 const entire = function(self,type,url,data,func){
 	if(self.$store.state.token){
 		 data.token = self.$store.state.token
-	}else{
-		uni.reLaunch({
-			url:'/pages/login/login'
-		})
 	}
 	uni.request({
 		url:url,
@@ -33,10 +29,6 @@ const entire = function(self,type,url,data,func){
 const asy_entire = function(self,type,url,data,func){ //同步请求
 	if(self.$store.state.token){
 		 data.token = self.$store.state.token
-	}else{
-		uni.reLaunch({
-			url:'/pages/login/login'
-		})
 	}
 	 return new Promise((resolve, reject) => {
 	        uni.request({
@@ -54,7 +46,7 @@ const asy_entire = function(self,type,url,data,func){ //同步请求
 	        			uni.navigateTo({
 	        				url:'/pages/login/login'
 	        			})
-	        			
+	        			return false
 	        		}else{
 	        			func(self,res_list)
 						
@@ -141,7 +133,9 @@ const order = function(ref,pay_type,url) { //支付调用
 			title:ref.msg
 		})
 		setTimeout(function(){
-			that.$jump(url)
+			uni.redirectTo({
+				url: url
+			})
 		},1000)
 	}
 }

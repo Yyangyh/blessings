@@ -26,7 +26,7 @@
 /* 文章场景相关 */
 .content {
   /* padding-top: 0; */
-  background: #FE0000;
+  background: #e4e4e4;
 }
 .swiper_box {
   padding: 0 20rpx;
@@ -76,11 +76,11 @@
   font-size: 28rpx;
   padding: 0rpx 20rpx 10rpx 20rpx;
   overflow: hidden;
-  background: #FE0000;
+  background: #e4e4e4;
 }
 .vider_content_two .box_one {
     font-size: 38rpx;
-    margin: 30rpx 0 20rpx 0;
+    margin: 20rpx 0 20rpx 0;
     display: -webkit-box;
     display: -webkit-flex;
     display: flex;
@@ -88,14 +88,14 @@
     -webkit-align-items: center;
             align-items: center;
     font-weight: bold;
-    color: #fff;
+    color: #000;
 }
 .vider_content_two .box_one text {
       display: inline-block;
       width: 4rpx;
       height: 34rpx;
-      background: #fff;
-      margin-right: 12rpx;
+      background: #000;
+      margin-right: 8rpx;
 }
 .vider_content_two .box_two {
     background: #FFFFFF;
@@ -182,7 +182,7 @@
             height: 32rpx;
             line-height: 32rpx;
             border-radius: 32rpx;
-            padding: 0 5rpx;
+            padding: 0 6rpx;
             text-align: center;
 }
 .vider_content_two .box_two .two_top .top_left2 .long_title {

@@ -7,7 +7,7 @@
 		<view class="w-top">
 			<view class="t-left">
 				<text>可提现奖学金:</text>
-				<text>￥{{user.money}}</text>
+				<text>￥{{user.money ? user.money : '0'}}</text>
 			</view>
 			<view class="t-right" @click="money = user.money">全部提现</view>
 		</view>
