@@ -12,6 +12,7 @@ const entire = function(self,type,url,data,func){
 			if(res_list.code == 9){ //token过期时替换重新请求
 				self.$store.commit('state_token',res_list.data.token)
 				self.$store.commit('state_user',res_list.data.userinfo)
+				uni.setStorageSync('state_token',res_list.data.token)
 				// console.log(self.$store.state.user)
 				entire(self,type,url,data,func)
 			}else if(res_list.code == 10){
@@ -41,6 +42,7 @@ const asy_entire = function(self,type,url,data,func){ //同步请求
 	        		if(res_list.code == 9){ //token过期时替换重新请求
 	        			self.$store.commit('state_token',res_list.data.token)
 						self.$store.commit('state_user',res_list.data.userinfo)
+						uni.setStorageSync('state_token',res_list.data.token)
 	        			asy_entire(self,type,url,data,func)
 	        		}else if(res_list.code == 10){
 	        			uni.navigateTo({
@@ -49,7 +51,6 @@ const asy_entire = function(self,type,url,data,func){ //同步请求
 	        			return false
 	        		}else{
 	        			func(self,res_list)
-						
 	        		}
 					resolve('suc');
 	        	},
@@ -80,6 +81,7 @@ const upimg = function(self,upname,url,data,filePath,func){ //上传图片
 			if(res_list.code == 9){ //token过期时替换重新请求
 				self.$store.commit('state_token',res_list.data.token)
 				self.$store.commit('state_user',res_list.data.userinfo)
+				uni.setStorageSync('state_token',res_list.data.token)
 				upimg(self,type,url,data,func)
 			}else if(res_list.code == 10){
 				uni.navigateTo({

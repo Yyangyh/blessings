@@ -54,11 +54,10 @@
 						</view>
 						<view class="">
 							<view class="list_two">
-								<view class="">
+								<view class="" v-if="title != '幸福采访' && title != '幸福影片'">
 									{{title == '幸福直播'?service.Test(item.created_at):'共'+item.catalogue_count+'节'}}
-									
 								</view>
-								<view class="">
+								<view class="list_mid">
 									<view class="list_vip" v-if="item.free_type > 0">
 										{{item.free_dec}}免费
 									</view>
@@ -69,7 +68,7 @@
 							</view>
 							<view class="list_three">
 								<view class="">
-									{{title == '幸福夜听'?'主播':title == '幸福影片'?'导演':'讲师'}}：{{item.techer.name}}
+									{{title == '幸福夜听'?'主播':title == '幸福影片'?'导演':title == '幸福采访'?'嘉宾':'讲师'}}：{{item.techer.name}}
 								</view>
 								<view class="">
 									已有{{item.view}}人学习
@@ -338,7 +337,7 @@
 						display: flex;
 						justify-content: space-between;
 						margin-bottom: 10rpx;
-						view:nth-of-type(2){
+						.list_mid{
 							display: flex;
 							color: #D80000;
 							font-size: 28rpx;

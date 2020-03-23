@@ -188,7 +188,6 @@
 		//   ...mapState({
 		// 	  name:'name'
 		//   }),
-		
 		// },	
 		
 		onLoad() {
@@ -196,18 +195,10 @@
 				this.openid = uni.getStorageSync('openid')
 				uni.hideTabBar()
 			}
-			this.service.entire(this,'post',this.APIconfig.api_root.index.advertise,{
-				// userid:this.$store.state.user.id
-			},function(self,res){
-				console.log(res)
-				self.eject = res.data
-				// self.swiper_list = res.data.slide
-				// if(self.class_top.length == 0) self.class_top.push(res.data.class_list[0])
-				// self.class_list = res.data.class_list
-			})
+			
 		},
 		onShow() {
-			
+			console.log(uni.getStorageSync('nickname'))
 			if(uni.getStorageSync('notice') == ''){  //
 				this.eject_show = true
 			}else{
@@ -220,7 +211,7 @@
 				}
 			}
 			this.Index_requ()
-			this.service.notice.call(this)
+			// this.service.notice.call(this)
 			
 		},
 		methods: {
@@ -229,15 +220,30 @@
 					url:url
 				})
 			},
-			Index_requ(){
-				
-				this.service.entire(this,'post',this.APIconfig.api_root.index.index,{
+			async Index_requ(){ //首页需同步请求，否则会导致token更新不及时返回到登录页
+				await this.service.asy_entire(this,'post',this.APIconfig.api_root.index.index,{ //首页信息
 					userid:this.$store.state.user.id
 				},function(self,res){
 					self.swiper_list = res.data.slide
 					if(self.class_top.length == 0) self.class_top.push(res.data.class_list[0])
 					self.class_list = res.data.class_list
 				})
+				
+				
+				await this.service.asy_entire(this,'post',this.APIconfig.api_root.index.advertise,{  //首页弹框图
+					// userid:this.$store.state.user.id
+				},function(self,res){
+					self.eject = res.data
+				})
+				
+				await this.service.asy_entire(this,'post',this.APIconfig.api_root.common.UnRead,{
+					user_id:this.$store.state.user.id,
+				},function(self,res){ //通知
+					// res.data.count == 0 ? self.$store.commit('notice_status',false) :  self.$store.commit('notice_status',true)
+					self.$store.commit('notice_status',res.data.count)
+				})
+				
+				
 			},
 			close(){
 				this.eject_show = false
@@ -294,7 +300,7 @@
 				}
 				console.log(data)
 				this.service.entire(this,'post',this.APIconfig.api_root.index.bindPhone,data,function(self,res){
-					// console.log(res)
+					console.log(res)
 					uni.showToast({
 						icon:'none',
 						title:res.msg
@@ -429,7 +435,7 @@
 					margin-bottom: 16rpx;
 				}
 				.list_box{
-					height: 120rpx;
+					// height: 120rpx;
 					padding: 0 10rpx;
 					box-sizing: border-box;
 					display: flex;

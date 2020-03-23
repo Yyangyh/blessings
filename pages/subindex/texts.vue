@@ -37,7 +37,7 @@
 		<view class="texts_boxList" v-for="(item,index) in dataList" :key='item.id'>
 			<view class="t_box" @tap="$jump('./article?id='+item.id)">
 				<view class="">
-					<image :src="$api_img() + item.images" mode="scaleToFill"></image>
+					<image :src="$api_img() + item.cover_img" mode="scaleToFill"></image>
 				</view>
 				<view class="b_right">
 					<view>{{item.title}}</view>

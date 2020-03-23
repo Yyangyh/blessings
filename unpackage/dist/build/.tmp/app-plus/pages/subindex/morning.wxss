@@ -128,7 +128,7 @@
         color: #999999;
 }
 .m_box .box_list .list_content {
-    font-size: 24rpx;
+    font-size: 32rpx;
     line-height: 36rpx;
     margin: 42rpx 0 30rpx 0;
 }

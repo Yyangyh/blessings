@@ -1,1 +1,1 @@
-<view class="load data-v-344923ac"><view hidden="{{!(show)}}" class="load_box data-v-344923ac"><image src="/static/image/common/load.gif" mode="widthFix" class="data-v-344923ac"></image><view class="data-v-344923ac">努力加载中...</view></view></view>
+<view class="load data-v-410a622e"><view hidden="{{!(show)}}" class="load_box data-v-410a622e"><image src="/static/image/common/load.gif" mode="widthFix" class="data-v-410a622e"></image><view class="data-v-410a622e">努力加载中...</view></view></view>

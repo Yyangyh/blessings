@@ -200,11 +200,13 @@
 										url: '../index/index'
 									});
 								}else if(data.code == 1){
+									console.log(1)
 									that.$store.commit('state_user',data.data.memberInfo)
 									that.$store.commit('state_token',data.token)
 									uni.setStorageSync('state_user',data.data.memberInfo)
 									uni.setStorageSync('state_token',data.token)
 									uni.setStorageSync('openid',loginRes.authResult.openid)
+									console.log(data)
 									uni.setStorageSync('nickname',data.data.nickname)
 									uni.setStorageSync('wx','wx')
 									uni.switchTab({

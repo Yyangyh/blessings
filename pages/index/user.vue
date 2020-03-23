@@ -159,7 +159,8 @@
 						我的活动
 					</view>
 				</view>
-				<view class="tab_list"  @tap="$jump('../subindex/evaluating')">
+				<!-- <view class="tab_list"  @tap="$jump('../subindex/evaluating')"> -->
+				<view class="tab_list"  @tap="temporary">
 					<image src="../../static/image/index/other_img3.png" mode="widthFix"></image>
 					<view class="">
 						我的测评

@@ -34,13 +34,15 @@
 				<image src="../../static/image/index/build.png"></image>
 				<view>家风建设</view>
 			</view>
-			<!-- <view class="classify"  @tap="$jump('../subhome/home_com')"> -->
-			<view class="classify" :class="{name_show:show == 3}" @tap="show = 3">
+			<!-- <view class="classify"  @tap="$jump('../subhome/home_com')"> --> 
+			<!-- <view class="classify" :class="{name_show:show == 3}" @tap="show = 3" > -->
+			<view class="classify"  @tap="temporary">
 				<image src="../../static/image/index/product.png"></image>
 				<view>家风产品</view>
 			</view>
 			<!-- <view class="classify" @tap="$jump('../subhome/assemble')"> -->
-			<view class="classify" :class="{name_show:show == 4}" @tap="show = 4">
+			<!-- <view class="classify" :class="{name_show:show == 4}" @tap="show = 4"> -->
+			<view class="classify" @tap="temporary" >
 				<image src="../../static/image/index/assemble.png"></image>
 				<view>拼团</view>
 			</view>
@@ -209,6 +211,12 @@ res
 		methods: {
 			 change(e) {
 					this.current = e.detail.current;
+			},
+			temporary(){
+				uni.showToast({
+					icon:'none',
+					title:'暂未开放！'
+				})
 			},
 			Tjump(type,id){
 				if(id){

@@ -128,9 +128,11 @@
         color: #999999;
 }
 .m_box .box_list .list_content {
-    font-size: 24rpx;
     line-height: 36rpx;
     margin: 42rpx 0 30rpx 0;
+}
+.m_box .box_list .list_img image {
+    width: 100%;
 }
 .m_box .box_list .list_time {
     font-size: 24rpx;

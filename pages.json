@@ -66,6 +66,16 @@
 			}
 		},
 		{
+			"path": "pages/com_page/video_give",
+			"style": {
+				"navigationBarTitleText": "赠送说明",
+				"app-plus":{
+					"titleNView":false
+				}
+			}
+		},
+		
+		{
 			"path": "pages/com_page/index_class",
 			"style": {
 				"navigationBarTitleText": "分类列表",

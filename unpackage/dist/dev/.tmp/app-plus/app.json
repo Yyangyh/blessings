@@ -7,6 +7,7 @@
     "pages/index/home",
     "pages/index/user",
     "pages/com_page/notice",
+    "pages/com_page/video_give",
     "pages/com_page/index_class",
     "pages/com_page/video_class",
     "pages/com_page/video_details",
@@ -148,8 +149,8 @@
   "nvueCompiler": "uni-app",
   "renderer": "auto",
   "splashscreen": {
-    "alwaysShowBeforeRender": true,
-    "autoclose": false
+    "alwaysShowBeforeRender": false,
+    "autoclose": true
   },
   "appname": "五福家庭",
   "compilerVersion": "2.6.5",

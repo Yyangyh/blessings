@@ -24,26 +24,26 @@
 /* 垂直间距 */
 /* 透明度 */
 /* 文章场景相关 */
-.content.data-v-30e33664 {
+.content.data-v-8488e13e {
   padding-top: 210rpx;
 }
-.refund.data-v-30e33664 {
+.refund.data-v-8488e13e {
   /* 退款 */
   color: #666666;
 }
-.obligation.data-v-30e33664 {
+.obligation.data-v-8488e13e {
   /* 待支付 */
   color: #D9011C;
 }
-.stayGoods.data-v-30e33664 {
+.stayGoods.data-v-8488e13e {
   /* 收货 */
   color: #02A7F0;
 }
-.stayComment.data-v-30e33664 {
+.stayComment.data-v-8488e13e {
   /* 待评价 */
   color: #F09B22;
 }
-.top.data-v-30e33664 {
+.top.data-v-8488e13e {
   position: fixed;
   width: 100%;
   box-sizing: border-box;
@@ -66,7 +66,7 @@
   color: #333333;
   background: #fff;
 }
-.top .top_enlarge.data-v-30e33664 {
+.top .top_enlarge.data-v-8488e13e {
     display: -webkit-box;
     display: -webkit-flex;
     display: flex;
@@ -76,15 +76,15 @@
     height: 100%;
     width: 180rpx;
 }
-.top image.data-v-30e33664 {
+.top image.data-v-8488e13e {
     height: 40rpx;
     width: 40rpx;
 }
-.top text.data-v-30e33664:nth-of-type(2) {
+.top text.data-v-8488e13e:nth-of-type(2) {
     width: 180rpx;
     display: inline-block;
 }
-.box_top.data-v-30e33664 {
+.box_top.data-v-8488e13e {
   background: #fff;
   width: 100%;
   position: fixed;
@@ -106,7 +106,7 @@
   height: 105rpx;
   box-shadow: 0rpx 4rpx 8rpx 0rpx rgba(0, 0, 0, 0.1);
 }
-.box_top .top_list.data-v-30e33664 {
+.box_top .top_list.data-v-8488e13e {
     padding: 0 20rpx;
     height: 100%;
     display: -webkit-box;
@@ -119,25 +119,25 @@
     border-bottom: 6rpx solid #fff;
     line-height: 44rpx;
 }
-.show.data-v-30e33664 {
+.show.data-v-8488e13e {
   color: #D80000;
   border-bottom-color: #D80000 !important;
 }
-.mall_box.data-v-30e33664 {
+.mall_box.data-v-8488e13e {
   font-size: 30rpx;
   padding-top: 30rpx;
 }
-.mall_box .box_bottom.data-v-30e33664 {
+.mall_box .box_bottom.data-v-8488e13e {
     background: #fff;
 }
-.mall_box .box_bottom .bottom_list.data-v-30e33664 {
+.mall_box .box_bottom .bottom_list.data-v-8488e13e {
       padding: 20rpx;
       background: #fff;
       border-radius: 20rpx;
       margin: 0 20rpx 32rpx 20rpx;
       box-shadow: 0px 0rpx 20rpx 0px rgba(0, 0, 0, 0.1);
 }
-.mall_box .box_bottom .bottom_list .list_top.data-v-30e33664 {
+.mall_box .box_bottom .bottom_list .list_top.data-v-8488e13e {
         display: -webkit-box;
         display: -webkit-flex;
         display: flex;
@@ -145,7 +145,7 @@
         -webkit-justify-content: space-between;
                 justify-content: space-between;
 }
-.mall_box .box_bottom .bottom_list .list_top .top1.data-v-30e33664 {
+.mall_box .box_bottom .bottom_list .list_top .top1.data-v-8488e13e {
           display: -webkit-box;
           display: -webkit-flex;
           display: flex;
@@ -153,19 +153,19 @@
           -webkit-align-items: center;
                   align-items: center;
 }
-.mall_box .box_bottom .bottom_list .list_top .top1 text.data-v-30e33664 {
+.mall_box .box_bottom .bottom_list .list_top .top1 text.data-v-8488e13e {
             margin: 0 8rpx;
             font-weight: 600;
             color: #3D3D3D;
 }
-.mall_box .box_bottom .bottom_list .list_top .top1 image.data-v-30e33664 {
+.mall_box .box_bottom .bottom_list .list_top .top1 image.data-v-8488e13e {
             height: 30rpx;
             width: 30rpx;
 }
-.mall_box .box_bottom .bottom_list .list_top .top2.data-v-30e33664 {
+.mall_box .box_bottom .bottom_list .list_top .top2.data-v-8488e13e {
           font-size: 28rpx;
 }
-.mall_box .box_bottom .bottom_list .list_middle.data-v-30e33664 {
+.mall_box .box_bottom .bottom_list .list_middle.data-v-8488e13e {
         display: -webkit-box;
         display: -webkit-flex;
         display: flex;
@@ -174,11 +174,11 @@
                 align-items: center;
         margin-top: 30rpx;
 }
-.mall_box .box_bottom .bottom_list .list_middle .middle1.data-v-30e33664 {
+.mall_box .box_bottom .bottom_list .list_middle .middle1.data-v-8488e13e {
           font-size: 24rpx;
           color: #999999;
 }
-.mall_box .box_bottom .bottom_list .list_middle .middle1 view.data-v-30e33664:nth-of-type(1) {
+.mall_box .box_bottom .bottom_list .list_middle .middle1 view.data-v-8488e13e:nth-of-type(1) {
             font-size: 28rpx;
             font-weight: bold;
             display: -webkit-box;
@@ -186,7 +186,7 @@
             -webkit-line-clamp: 2;
             overflow: hidden;
 }
-.mall_box .box_bottom .bottom_list .list_middle .middle2.data-v-30e33664 {
+.mall_box .box_bottom .bottom_list .list_middle .middle2.data-v-8488e13e {
           font-size: 26rpx;
           color: #999999;
           -webkit-box-flex: 2;
@@ -194,25 +194,25 @@
                   flex-grow: 2;
           text-align: right;
 }
-.mall_box .box_bottom .bottom_list .list_middle image.data-v-30e33664 {
+.mall_box .box_bottom .bottom_list .list_middle image.data-v-8488e13e {
           height: 122rpx;
           width: 122rpx;
           margin-right: 20rpx;
 }
-.mall_box .box_bottom .bottom_list .list_bottom.data-v-30e33664 {
+.mall_box .box_bottom .bottom_list .list_bottom.data-v-8488e13e {
         text-align: right;
         font-size: 24rpx;
         color: #999999;
 }
-.mall_box .box_bottom .bottom_list .list_bottom .bottom2.data-v-30e33664 {
+.mall_box .box_bottom .bottom_list .list_bottom .bottom2.data-v-8488e13e {
           text-align: right;
           margin: 10rpx 0;
 }
-.mall_box .box_bottom .bottom_list .list_bottom .bottom2 text.data-v-30e33664 {
+.mall_box .box_bottom .bottom_list .list_bottom .bottom2 text.data-v-8488e13e {
             font-weight: bold;
             margin-left: 10rpx;
 }
-.mall_box .box_bottom .bottom_list .list_bottom .bottom3.data-v-30e33664 {
+.mall_box .box_bottom .bottom_list .list_bottom .bottom3.data-v-8488e13e {
           display: inline-block;
           width: 154rpx;
           height: 52rpx;
@@ -224,7 +224,7 @@
           text-align: center;
           margin-left: 20rpx;
 }
-.mall_box .box_bottom .bottom_list .list_bottom .bottom_ash.data-v-30e33664 {
+.mall_box .box_bottom .bottom_list .list_bottom .bottom_ash.data-v-8488e13e {
           display: inline-block;
           width: 154rpx;
           height: 52rpx;
@@ -236,7 +236,7 @@
           text-align: center;
           margin-left: 20rpx;
 }
-.pl_box.data-v-30e33664 {
+.pl_box.data-v-8488e13e {
   margin-bottom: 10rpx;
   display: -webkit-box;
   display: -webkit-flex;
@@ -245,7 +245,7 @@
   -webkit-justify-content: space-between;
           justify-content: space-between;
 }
-.pl.data-v-30e33664 {
+.pl.data-v-8488e13e {
   width: 154rpx;
   height: 52rpx;
   line-height: 52rpx;

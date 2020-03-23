@@ -1,0 +1,1 @@
+<view class="content"><view class="status_bar"></view><returns vue-id="5887c018-1" titles="{{title}}" bind:__l="__l"></returns><view class="give_box"><view class="give_top">赠送说明</view><view class="give_text"><view>1.请在我的“个人中心”完成亲情号邀请注册。</view><view>2.购买课程后，可通过链接分享给亲情好友。</view><view>3.在亲情号共享资源领取后就能免费观看课程。</view><view>4.邀请您的亲密爱人或其它家人一起学习吧。</view></view></view></view>

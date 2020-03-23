@@ -29,10 +29,10 @@
 					</view>
 				</view>
 				<view class="list_content">
-					{{item.content}}
+					<rich-text :nodes="item.content"></rich-text>
 				</view>
 				<view class="list_img">
-					<image :src="$api_img() + item.image" mode=""></image>
+					<image :src="$api_img() + item.image" mode="widthFix"></image>
 				</view>
 				<view class="list_time">
 					{{service.Test(item.create_time)}}
@@ -45,7 +45,7 @@
 							图片下载
 						</view>
 					</view>
-					<view class="oper" @tap="copy(item.content,item.id,index)">
+					<view class="oper" @tap="copy(item.formatcontent,item.id,index)">
 						<image v-if="item.is_copycontent == 0"  src="../../static/image/index/oper2.png" mode="widthFix"></image>
 						<image v-else src="../../static/image/index/Hoper2.png" mode="widthFix"></image>
 						<view class="">
@@ -549,9 +549,13 @@
 				
 			}
 			.list_content{
-				font-size: 24rpx;
 				line-height: 36rpx;
 				margin: 42rpx 0 30rpx 0;
+			}
+			.list_img{
+				image{
+					width: 100%;
+				}
 			}
 			.list_time{
 				font-size: 24rpx;

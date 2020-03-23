@@ -19,12 +19,14 @@
 		<view class="">
 			<video id="myVideo" :src="play_url"
 			:autoplay='true'
+			:controls = 'true'
 			:initial-time = 'initial_time'
 			@pause='pause' 
 			@timeupdate='timeupdate'
 			@play='play_start' 
 			@ended='play_end'  
-			enable-danmu controls  :poster='poster'>
+			enable-danmu   :poster='$api_img() + poster' 
+			>
 			</video>
 		</view>
 		<view class="video_tab">
@@ -219,7 +221,7 @@
 			</view>
 		</view>
 		
-		<view class="mask_black" v-show="coupon_show || give_show" @tap="coupon_show = false,give_show = false">
+		<view class="mask_black" v-show="coupon_show" @tap="coupon_show = false">
 			<!-- 遮罩层 层级888 -->
 		</view>
 		
@@ -262,7 +264,7 @@
 				</scroll-view>
 			</view>
 		</view>
-		<view class="give_box" v-if="give_show">
+		<!-- <view class="give_box" v-if="give_show">
 			<view class="give_top">
 				赠送说明
 			</view>
@@ -281,13 +283,13 @@
 				</view>
 			</view>
 			<image  @tap="give_show = false" src="../../static/image/com_page/close.png" mode="widthFix"></image>
-		</view>
+		</view> -->
 		<view class="video_bottom">
 			<!-- <view class="bot_left" >
 				￥
 			</view> -->
 			<view class="bot_right">
-				<view class="bot_col" @tap="give_show = true">
+				<view class="bot_col" @tap="$jump('./video_give')">
 					<image  src="../../static/image/com_page/give.png" mode="widthFix"></image>
 					<view class="">
 						赠送说明
@@ -351,7 +353,6 @@
 				duration_time:'',
 				receive_status:false,
 				initial_time:0 ,//指定视频播放初始秒数
-				give_show:false,
 				share_arr:{},
 			}
 		},

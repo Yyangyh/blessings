@@ -400,6 +400,7 @@
 		padding: 0 20rpx;
 	}
 	.com_box{
+		background: #fff;
 		position: fixed;
 		left: 0;
 		bottom: 0;

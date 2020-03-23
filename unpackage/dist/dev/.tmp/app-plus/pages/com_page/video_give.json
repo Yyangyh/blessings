@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "赠送说明",
+  "titleNView": false,
+  "usingComponents": {
+    "returns": "/pages/common/returns"
+  }
+}
