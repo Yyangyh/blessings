@@ -16,7 +16,7 @@
 			</view>
 		</view>
 		 <!--  :autoplay='true' -->
-		<view class="">
+		<view class="" v-if="poster">
 			<video id="myVideo" :src="play_url"
 			:autoplay='true'
 			:controls = 'true'
@@ -25,7 +25,7 @@
 			@timeupdate='timeupdate'
 			@play='play_start' 
 			@ended='play_end'  
-			enable-danmu   :poster='$api_img() + poster' 
+			enable-danmu   :poster='poster' 
 			>
 			</video>
 		</view>
@@ -43,7 +43,6 @@
 				推荐
 			</view>
 		</view>
-		
 		<view v-show="test_show == 0">
 			<view class="video_top">
 				<view class="video_explain">
@@ -601,7 +600,7 @@
 					
 					
 					self.collects = res.data.video.collect
-					self.poster = res.data.video.v_pic
+					self.poster = res.data.video.screensaver
 					if(self.video_data.evaluate)self.video_data.stars_num = new Array(Number(self.video_data.evaluate))
 				})
 				

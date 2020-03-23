@@ -87,7 +87,6 @@
         margin-bottom: 16rpx;
 }
 .video_box .vider_content .content_list .list_box {
-        height: 120rpx;
         padding: 0 10rpx;
         box-sizing: border-box;
         display: -webkit-box;

@@ -155,4 +155,123 @@
         color: #0C0C0C;
         margin-left: 20rpx;
 }
+.content .word_box {
+    position: absolute;
+    width: 100%;
+    top: 310rpx;
+}
+.content .word_box .w-top {
+      background-color: #F6F6F7;
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: flex;
+      -webkit-box-pack: justify;
+      -webkit-justify-content: space-between;
+              justify-content: space-between;
+      padding: 30rpx 22rpx;
+      font-size: 28rpx;
+}
+.content .word_box .w-top .t-left text:first-child {
+        color: #666666;
+}
+.content .word_box .w-top .t-left text:last-child {
+        color: #D80000;
+}
+.content .word_box .w-top .t-right {
+        color: #EF7C38;
+}
+.content .word_box .worp .line {
+      padding: 30rpx 22rpx;
+}
+.content .word_box .worp .line .l-top {
+        font-size: 24rpx;
+        margin-bottom: 10rpx;
+}
+.content .word_box .worp .line .l-bottom {
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: flex;
+        -webkit-box-align: center;
+        -webkit-align-items: center;
+                align-items: center;
+        font-size: 28rpx;
+}
+.content .word_box .worp .line .l-bottom text {
+          margin-right: 20rpx;
+}
+.content .word_box .worp .line .l-bottom input {
+          font-size: 28rpx;
+          -webkit-box-flex: 2;
+          -webkit-flex-grow: 2;
+                  flex-grow: 2;
+}
+.content .word_box .worp button {
+      display: block;
+      width: 692rpx;
+      height: 80rpx;
+      background: #d80000;
+      border-radius: 40rpx;
+      color: #FFFFFF;
+      line-height: 80rpx;
+      text-align: center;
+      letter-spacing: 5rpx;
+      margin: 40rpx auto 0;
+}
+.content .word_box .worp ._hr {
+      height: 1rpx;
+      border: none;
+      border-top: 1px solid #F4F4F4;
+}
+.content .word_box .worp .w-text {
+      font-size: 24rpx;
+      padding: 30rpx 22rpx;
+}
+.content .word_box .worp .w-text1 {
+      font-size: 28rpx;
+      color: #999999;
+      padding: 20rpx 22rpx 30rpx 22rpx;
+}
+.content .word_box .worp .means {
+      padding: 0 22rpx;
+}
+.content .word_box .worp .means .line {
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: flex;
+        padding: 30rpx 20rpx;
+        -webkit-box-align: center;
+        -webkit-align-items: center;
+                align-items: center;
+        border-top: 2rpx solid #F4F4F4;
+}
+.content .word_box .worp .means .line text {
+          font-size: 24rpx;
+          margin-right: 20rpx;
+}
+.content .word_box .worp .means .line input {
+          font-size: 24rpx;
+          -webkit-box-flex: 2;
+          -webkit-flex-grow: 2;
+                  flex-grow: 2;
+}
+.content .word_box .worp .means .choice {
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: flex;
+        -webkit-box-align: center;
+        -webkit-align-items: center;
+                align-items: center;
+        font-size: 28rpx;
+        padding: 22rpx 0;
+        color: #333333;
+}
+.content .word_box .worp .means .choice image {
+          width: 52rpx;
+          height: 52rpx;
+          margin-right: 20rpx;
+}
+.content .word_box .worp .means image {
+        width: 30rpx;
+        height: 30rpx;
+}
 
