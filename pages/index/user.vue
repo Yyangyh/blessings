@@ -515,7 +515,7 @@
 	.c_buttom{
 		position: fixed;
 		width: 100%;
-		bottom: 105rpx;
+		bottom: 10rpx;
 		display: flex;
 		font-size: 28rpx;
 		justify-content: space-around;

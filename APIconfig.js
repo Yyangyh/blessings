@@ -1,6 +1,6 @@
 // const api ='http://192.168.0.195:8990'
-const api ='http://www.wufu-app.com'
-// const api = ''
+// const api ='http://www.wufu-app.com'
+const api = ''
 
 const api_root = {
 	common:{

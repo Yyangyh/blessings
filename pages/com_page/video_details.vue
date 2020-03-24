@@ -15,20 +15,79 @@
 				<image src="/static/image/com_page/share.png" mode="widthFix"></image>
 			</view>
 		</view>
-		 <!--  :autoplay='true' -->
-		<view class="" v-if="poster">
-			<video id="myVideo" :src="play_url"
-			:autoplay='true'
-			:controls = 'true'
-			:initial-time = 'initial_time'
-			@pause='pause' 
-			@timeupdate='timeupdate'
-			@play='play_start' 
-			@ended='play_end'  
-			enable-danmu   :poster='poster' 
-			>
-			</video>
-		</view>
+		 <!--  :autoplay='true' 自动播放   controls显示默认播放控件  initial-time指定视频初始播放位置 
+				@pause当暂停播放时  @timeupdate播放进度变化时  @play当开始/继续播放时 
+				@ended当播放到末尾时  poster视频封面的图片
+		 -->
+		 <block v-if="type == 1">
+			 <view class="" v-if="poster">
+			 	<video id="myVideo" :src="play_url"
+			 	:autoplay='true' 
+			 	:controls = 'true'
+			 	:initial-time = 'initial_time'
+			 	@pause='pause' 
+			 	@timeupdate='timeupdate'
+			 	@play='play_start' 
+			 	@ended='play_end'  
+			 	:poster='poster' >
+			 	</video>
+			 	
+			 	<!-- <Audio :url='play_url'></Audio> -->
+			 </view>
+		 </block>
+		
+		<block v-else>
+			<view class="audo-video"  v-if="play_url">
+				<video id="myAudio" 
+				:src="play_url" class="hidden" 
+				:autoplay='true' 
+				:initial-time = 'initial_time'
+				@play='play_start' 
+				@ended='play_end'  
+				
+				@timeupdate="Au_timeupdate" 
+				ref="video" 
+				@loadedmetadata="loadedmetadata" 
+				></video>
+				
+				<view class="slider">
+					<view class="slider_img">
+						<image :src="poster" mode="widthFix"></image>
+					</view>
+					<view class="box">
+						<view class="oper">
+							<image v-show="status == 1" @tap="play" src="/static/image/com_page/play.png" mode="widthFix"></image>
+							<image v-show="status == 2" @tap="stop" src="/static/image/com_page/stop.png" mode="widthFix"></image>
+						</view>
+						<view class="slider-box">
+							<text class="mm">{{timer}}</text>
+							<slider 
+								style="width: 450rpx;"
+								@change="sliderChange"
+								@changing="sliderChanging"
+								class="audio-slider" 
+								block-size="16" 
+								:min="0"
+								:max="duration"
+								:value="currentTime"
+								activeColor="#ff7400"
+								@touchstart="lock= true"
+								@touchend="lock = false"
+								/>
+							<text class="ss">{{overTimer}}</text>
+						</view>
+						
+					</view>
+				</view>
+				
+				
+				<!-- <button @tap="play">播放</button>
+				<button @tap="stop">暫停</button> -->
+			</view>
+		</block>
+		
+		
+		
 		<view class="video_tab">
 			<view class="tab_list" :class="{test_show:test_show === 0}" @tap="test_show = 0">
 				课程介绍
@@ -321,10 +380,12 @@
 	import integral_img from '../../static/image/com_page/integral.png'
 	import load from '../common/load.vue'
 	import share from'../common/share.vue'
+	import Audio from'../../components/wangding-audioQuickPlay/index'
 	export default{
 		components:{
 			load,
-			share
+			share,
+			Audio
 		},
 		data() {
 			return {
@@ -353,6 +414,14 @@
 				receive_status:false,
 				initial_time:0 ,//指定视频播放初始秒数
 				share_arr:{},
+				
+				//mp3
+				lock: false, // 锁
+				status: 1, // 1暂停 2播放
+				currentTime: 0,  //当前进度
+				duration: 100, // 总进度
+				videoContext: ''
+				//mp3
 			}
 		},
 		computed:{
@@ -371,11 +440,81 @@
 					}
 				}
 			},
+			timer() {
+				return calcTimer(this.currentTime)
+			},
+			overTimer() {
+				return calcTimer(this.duration)
+			}
+		},
+		created() {
+			 this.videoContext = uni.createVideoContext('myAudio')
 		},
 		methods:{
+			
+			
+			// 播放
+			play() {
+				this.status = 2
+				this.videoContext.play()
+			},
+			// 暂停
+			stop() {
+				this.videoContext.pause()
+				this.status = 1
+			},
+			// 更新进度条
+			Au_timeupdate(e) {  //音频
+				if(this.lock) return; // 锁
+				// console.log(e)
+				var currentTime,duration;
+				if(e.detail.detail) {
+					currentTime = e.detail.detail.currentTime
+					duration = e.detail.detail.duration
+				}else {
+					currentTime = e.detail.currentTime
+					duration = e.detail.duration
+				}
+				
+				this.duration_time = e.detail.duration
+				if(this.indexs || this.indexs === 0){
+					if(Math.ceil(e.detail.currentTime) % 10 == 0){ //10s记录一次
+						if(Math.ceil(e.detail.currentTime) != this.record_time)	{
+							this.record_time = Math.ceil(e.detail.currentTime)
+							this.record_play(e.detail.currentTime,e.detail.duration) //记录播放进度
+							let speed = Math.round((Math.ceil(e.detail.currentTime)/Math.ceil(e.detail.duration))*100)/100
+							if(speed > 0.8 && this.receive_status == false){ //当播放比例大于百分之80时自动领取章节积分
+								this.receive_int() //自动领取积分
+								this.receive_status = true
+							}
+						}
+					}
+				}
+				
+				this.currentTime = currentTime
+				this.duration = duration
+			},
+			
+			// 拖动进度条
+			sliderChange(data) {
+				this.videoContext.seek(data.detail.value)
+			},
+			
+			//拖动中
+			sliderChanging(data) {
+				this.currentTime = data.detail.value
+			},
+			
+			// 视频加载完成
+			loadedmetadata(data) {
+				this.duration = data.detail.duration
+			},
+			
+			
 			pause(e){
 				// console.log(e)
 			},
+			
 			tips(){ //分享
 				// #ifdef H5
 				uni.showModal({
@@ -660,9 +799,9 @@
 				}
 			})
 		},
-		onReady: function (res) {
-			this.videoContext = uni.createVideoContext('myVideo')
-		},
+		// onReady: function (res) {
+		// 	this.videoContext = uni.createVideoContext('myVideo')
+		// },
 		onLoad(e) {
 			this.share_arr.Url = 'http://www.wufu-app.com/h5/#/pages/com_page/video_details?id='+e.id+'&type='+e.type
 			this.id = e.id
@@ -689,6 +828,21 @@
 		onUnload(){
 			this.videoContext.pause()
 		}
+	}
+	function calcTimer(timer) {
+		console.log(timer)
+		if(timer === 0 || typeof timer !== 'number' || isNaN(timer) || timer < 0) {
+			return '00:00'
+		}
+		let mm = Math.floor(timer / 60)
+		let ss = Math.floor(timer % 60)
+		if(mm < 10) {
+			mm = '0' + mm
+		}
+		if(ss < 10) {
+			ss = '0' + ss
+		}
+		return mm + ':' + ss
 	}
 </script>
 
@@ -727,6 +881,48 @@
 			padding-right: 10rpx;
 		}
 	}
+	.audo-video {
+		padding-bottom: 20rpx;
+		.hidden {
+			position: fixed;
+			z-index: -1;
+			width: 1rpx;height: 1rpx;
+		}
+		.slider{
+			.slider_img{
+				image{
+					width: 100%;
+					height: 400rpx;
+				}
+			}
+			.box{
+				display: flex;
+				align-items: center;
+				padding: 0 20rpx;
+				.slider-box {
+					display: flex;
+					align-items: center;
+					justify-content: center;
+					font-size: 26rpx;
+					color: #999;
+				}
+				.oper{
+					display: flex;
+					align-items: center;
+					image{
+						margin-right: 10rpx;
+						width: 45rpx;
+						height: 45rpx;
+					}
+				}
+			}
+			
+		}
+	}
+	
+	
+	
+	
 	.video_tab{
 		background: #F6F6F6;
 		text-align: center;
@@ -797,6 +993,7 @@
 			align-items: center;
 			justify-content: space-between;
 			.dis_one{
+				
 				image{
 					margin-right: 20rpx;
 					height: 32rpx;
@@ -953,7 +1150,7 @@
 			}
 			.price_status{
 				color: #D80000;
-				width: 150rpx;
+				width: 180rpx;
 				text-align: right;
 			}
 			
