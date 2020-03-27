@@ -84,7 +84,6 @@
 				user_id:this.$store.state.user.id,
 				
 			},function(self,res){
-				console.log(res)
 				self.dataList = res.data
 			})
 		}

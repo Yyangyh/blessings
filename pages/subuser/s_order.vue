@@ -202,7 +202,6 @@
 
 					data.push(...res.data.data)
 					self.data = data
-					console.log(self.data);
 					self.page = page + 1
 					self.more = 'more'
 					if (res.data.data.length < 10) {

@@ -35,7 +35,6 @@
 			this.service.entire(this,'post',this.APIconfig.api_root.subuser.u_Company_index,{
 				
 			},function(self,res){
-				console.log(res)
 				self.company_info = res.data.company_info
 			})
 		}

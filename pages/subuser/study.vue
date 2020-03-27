@@ -10,7 +10,7 @@
 		</view>
 		
 		<view class="box">
-			<view class="line" v-for='(item,index) in dataList' :key='item.id' @tap="$jump('../com_page/video_details?id='+item.id)">
+			<view class="line" v-for='(item,index) in dataList' :key='item.id' @tap="$jump('../com_page/video_details?id='+item.id+'&type='+item.type)">
 				<image class="l_left" :src="$api_img()+item.v_pic" mode="scaleToFill"></image>
 				<view class="l_right">
 					<view> {{item.long_title}}</view>
@@ -37,14 +37,12 @@
 			},
 			methods:{
 				choise(all){
-					console.log(all)
 					this.cur = all;
 					let data ={
 						user_id:this.$store.state.user.id,
 						type:all
 					}
 					this.service.entire(this,'post',this.APIconfig.api_root.subuser.u_getStutyPlan,data,function(self,res){
-						console.log(res)
 						self.dataList = res.data
 					})
 				}

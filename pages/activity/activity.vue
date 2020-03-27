@@ -32,7 +32,7 @@
 		</view>
 
 		<view class="boxs" v-show="cur==1">
-			<view class="worp" v-for="(item,index) in activity_Data2" :key='item.id'  @tap="$jump('./particulars?id='+item.id)">
+			<view class="worp" v-for="(item,index) in activity_Data2" :key='item.id'  @tap="$jump('./particulars?id='+item.id+'&type='+item.type)">
 				<view class="line">
 					<image src="../../static/image/index/time.png" mode="widthFix"></image>
 					<text class="theme">{{item.start_time_text}}至{{item.end_time_text}}</text>
@@ -81,7 +81,6 @@
 			this.service.entire(this, 'post', this.APIconfig.api_root.subindex.a_activity_index, {
 				
 			}, function(self, res) {
-				console.log(res)
 				self.activity_Data = res.data.data
 				for (var i = 0; i < self.activity_Data.length; i++) {
 					if (self.activity_Data[i].is_expired == 0) {
@@ -90,8 +89,7 @@
 						self.activity_Data2.push(self.activity_Data[i])
 					}
 				}
-				console.log(self.activity_Data1)
-				console.log(self.activity_Data2)
+				
 			})
 		}
 	}

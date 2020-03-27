@@ -61,7 +61,6 @@
 			this.service.entire(this,'get',this.APIconfig.api_root.subhome.g_lists,{
 				page:1
 			},function(self,res){
-				console.log(res)
 				self.data = res.data.data
 			})
 		}

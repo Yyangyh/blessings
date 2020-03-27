@@ -223,7 +223,6 @@
 			},
 			cancel_return(id){//取消退款申请
 				let that = this
-				console.log(id)
 				return
 				uni.showModal({
 				    title: '提示',
@@ -322,7 +321,6 @@
 				for (let s of data) {
 					s.choice = false
 				}
-				console.log(data)
 				self.pay_list = data
 			})
 		}

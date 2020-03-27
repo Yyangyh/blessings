@@ -87,13 +87,11 @@
 				let data = []
 				data.push(this.voucher[0].answer[this.que_show].psqq_id)
 				data.push(this.opinion_test)
-				console.log(this.cur)
 				this.service.entire(this,'post',this.APIconfig.api_root.subindex.s_qtn_submitQtn,{ //提交问券调查
 					qtn_id :5,
 					user_id:this.$store.state.user.id,
 					data:data
 				},function(self,res){
-					console.log(res)
 					uni.showToast({
 						icon:'none',
 						title:res.msg
@@ -102,25 +100,21 @@
 			}
 		},
 		onShow() {
-			console.log(this.cur)
 			this.service.entire(this,'post',this.APIconfig.api_root.subindex.s_test_classify,{//幸福评测列表
 				
 			},function(self,res){
-				console.log(res)
 				self.dataList =res.data
 			})
 			
 			this.service.entire(this,'post',this.APIconfig.api_root.subindex.s_qtn_getQtn,{//问券调查
 				id:5
 			},function(self,res){
-				console.log(res)
 				self.voucher = res.data.question
 			})
 			
 			this.service.entire(this,'post',this.APIconfig.api_root.subindex.s_examList,{//获取用户的评测记录列表
 				user_id:this.$store.state.user.id,
 			},function(self,res){
-				console.log(res)
 				self.record_data = res.data
 			})
 		}

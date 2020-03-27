@@ -40,9 +40,7 @@
 					user_id:this.$store.state.user.id,
 					id:e.id
 				},function(self,res){
-					console.log(res)
 					self.activity_Data = res.data.unexpired
-					console.log(self.activity_Data)
 				})
 			}
 		}

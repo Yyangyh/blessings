@@ -164,7 +164,6 @@
 			this.id = options.id
 			this.type = options.type
 			this.service.entire(this,'get',this.APIconfig.api_root.subhome.threehome.g_Detail,{id:options.id},function(self,res){
-				console.log(res)
 				self.data = res.data.goods
 			})
 		}

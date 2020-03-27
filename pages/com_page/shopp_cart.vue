@@ -89,7 +89,6 @@
 		methods:{
 			stock(type,index){ //改变数量
 				let all = []
-				console.log(this.data[index].choice)
 				if(type == 0){
 					if(this.data[index].stock == 1) return
 					this.data[index].stock --
@@ -110,7 +109,6 @@
 					goods_id:this.data[index].goods_id,
 					stock:this.data[index].stock
 				},function(self,res){
-					console.log(res)
 				})
 			},
 			allElection(){ //全选
@@ -147,7 +145,6 @@
 						all.push(s.stock * s.price)
 					}
 				}
-				console.log(all)
 				all != '' ? this.allPrice = all.reduce((n,m) => n+m) :this.allPrice = 0
 			},
 			deletes(){  //删除
@@ -161,7 +158,6 @@
 					user_id:this.$store.state.user.id,
 					id:all.join(','),
 				},function(self,res){
-					console.log(res)
 					uni.showToast({
 						icon:'none',
 						title:res.msg
@@ -210,7 +206,6 @@
 			this.service.entire(this,'post',this.APIconfig.api_root.com_page.c_Index,{
 				user_id:this.$store.state.user.id
 			},function(self,res){
-				console.log(res.data)
 				
 				let list = res.data.data
 				for (let s of list) {

@@ -56,13 +56,16 @@
 				})
 				if(res.data.code == 0){
 					let [reset_err,reset_data] = await reset()
-					console.log(reset_data)
 					uni.showToast({
 						icon:'none',
 						title:reset_data.data.msg
 					})
 					if(reset_data.data.code == 0){
-						
+						setTimeout(function(){
+							uni.redirectTo({
+							    url: './login'
+							});
+						},1000)
 					}
 				}else{
 					uni.showToast({
@@ -99,15 +102,12 @@
 					mobile:that.accounts,
 					time:Date.parse(new Date())/1000  //时间戳
 				}
-				console.log(data)
 				uni.request({
 					url:that.APIconfig.api_root.login.sendPhone,
 					method:'POST',
 					data,
 					success(res) {
-						console.log(res)
 						let data = res.data 
-						console.log(data)
 						uni.showToast({
 							icon:'none',
 							title:data.msg

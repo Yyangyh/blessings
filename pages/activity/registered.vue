@@ -34,7 +34,6 @@
 			
 		},
 		onLoad(e) {
-			console.log(e)
 			this.id = e.id
 		},
 		onShow() {

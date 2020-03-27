@@ -113,7 +113,6 @@
 			  if(this.load_show == true)this.load_show = false
 			},
 			confirm(id,limit,number){
-				console.log(limit,number)
 				if(limit > number){
 					this.$jump('./apply?id='+id)
 				}else{
@@ -135,13 +134,11 @@
 			this.service.entire(this,'post',this.APIconfig.api_root.subindex.a_activity_detail,{
 				id:this.id
 			},function(self,res){
-				console.log(res)
 				self.dataList = res.data.data
 				self.sign_user = res.data.data.sign_user
 				if(self.sign_user.length > 5) self.sign_user.length = 5
 				let img = res.data.data.detail
 				img = Object.values(img)
-				console.log(img)
 				self.detail_img = img
 				let msec = (self.dataList.end_time - Date.parse(new Date())/1000)
 				self.timer = setInterval(function(){
@@ -151,7 +148,6 @@
 			})
 		},
 		onLoad(e) {
-			console.log(e)
 			this.id = e.id
 		},
 	}

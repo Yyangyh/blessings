@@ -51,11 +51,9 @@
 					// self.top_class = res.data.top_list
 					let data = self.dataList
 					// top_class = self.top_class
-					console.log(res)
 					self.dataList = res.data
 					data.push(...res.data)
 					self.dataList = data
-					console.log(self.dataList);
 					self.req_data.page += 1
 					self.more = 'more'
 					if (res.data.length < 10) {

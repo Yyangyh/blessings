@@ -42,7 +42,6 @@
 		},
 		methods:{
 			unfold(id,index){ //读取信息
-				console.log(this.dataList[index].is_read)
 				this.dataList[index].is_read=1
 				this.msgs = index 
 				this.service.entire(this,'post',this.APIconfig.api_root.com_page.c_read,{

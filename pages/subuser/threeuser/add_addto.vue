@@ -87,7 +87,6 @@
 				this.aggregate.push(name)
 				this.city_id.push(id)
 				this.service.entire(this,'post',this.APIconfig.api_root.subuser.threeuser.region_index,{pid:id},function(self,res){
-					console.log(res)
 					if(res.data == ''){
 						self.show = 0
 						self.county = self.aggregate
@@ -98,7 +97,6 @@
 			preservation(){  //保存
 				// console.log(this.city_id)
 				let is_default
-				console.log(this.checked)
 				this.checked == false ? is_default = 0 :is_default = 1
 				let data = {
 					user_id: this.$store.state.user.id,
@@ -133,7 +131,6 @@
 					user_id: this.$store.state.user.id,
 					id:options.id
 				},function(self,res){
-					console.log(res)
 					self.name = res.data.name
 					self.tel = res.data.tel
 					self.address = res.data.address
@@ -145,7 +142,6 @@
 				})
 			}
 			this.service.entire(this,'post',this.APIconfig.api_root.subuser.threeuser.region_index,{},function(self,res){
-				console.log(res)
 				self.city = res.data
 			})
 		},
@@ -154,9 +150,7 @@
 				this.aggregate = []
 				if(record == 1){
 					this.service.entire(this,'get',this.APIconfig.api_root.subuser.threeuser.region_index,{},function(self,res){
-						console.log(res)
 						self.city_id = []
-						console.log()
 						self.city = res.data
 					})
 				}

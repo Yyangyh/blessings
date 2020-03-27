@@ -87,7 +87,6 @@
 					this.service.entire(this,'post',this.APIconfig.api_root.subuser.index_Week,{
 						user_id:this.$store.state.user.id
 					},function(self,res){
-						console.log(res)
 						self.data.sign_count += res.integarl
 						if(res.code == 0){
 							self.reveal = true
@@ -104,7 +103,6 @@
 								}
 								
 							}
-							console.log(self.data_list)
 						}else if(res.code == 1){
 							uni.showToast({
 								icon:'none',
@@ -120,12 +118,10 @@
 				this.service.entire(this,'post',this.APIconfig.api_root.subuser.thisWeek,{
 					user_id:this.$store.state.user.id
 				},function(self,res){
-					console.log(res)
 					self.data_list = res.data.week_all
 					self.data = res.data
 					for (let s of self.data_list) {
 						if(s.day == data) {
-							console.log(123)
 							s.is_sign == 1 ? self.if_sign = true : self.if_sign = false
 						}
 						

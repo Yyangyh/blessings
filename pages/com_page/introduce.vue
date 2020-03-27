@@ -37,11 +37,9 @@
 			}
 		},
 		onLoad(e) {
-			console.log(e.techer_id)
 			this.service.entire(this,'post',this.APIconfig.api_root.com_page.v_techerDetail,{
 				techer_id:e.techer_id
 			},function(self,res){
-				console.log(res)
 				self.dataList = res.data
 			})
 		}

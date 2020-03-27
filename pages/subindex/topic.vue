@@ -54,7 +54,6 @@
 					this.numer =''
 					var id = index + 1;
 					this.index = id;
-					console.log(id)
 					this.item = this.questionList[id];
 				}else{
 					this.data.push(this.numer);
@@ -79,7 +78,6 @@
 				id:e.id
 			},function(self,res){
 				// console.log(res)
-				console.log(res.data.question)
 				self.questionList = res.data.question
 				self.item = res.data.question[0];
 			})

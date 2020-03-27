@@ -2,6 +2,7 @@ const entire = function(self,type,url,data,func){
 	if(self.$store.state.token){
 		 data.token = self.$store.state.token
 	}
+	
 	uni.request({
 		url:url,
 		data:data,
@@ -16,10 +17,14 @@ const entire = function(self,type,url,data,func){
 				// console.log(self.$store.state.user)
 				entire(self,type,url,data,func)
 			}else if(res_list.code == 10){
-				uni.navigateTo({
-					url:'/pages/login/login'
-				})
-				return false
+				
+				if(self.$store.state.login == 1){
+					uni.reLaunch({
+						url:'/pages/login/login'
+					})
+					return false
+				}
+				
 			}else{
 				func(self,res_list)
 			}
@@ -45,7 +50,7 @@ const asy_entire = function(self,type,url,data,func){ //同步请求
 						uni.setStorageSync('state_token',res_list.data.token)
 	        			asy_entire(self,type,url,data,func)
 	        		}else if(res_list.code == 10){
-	        			uni.navigateTo({
+	        			uni.reLaunch({
 	        				url:'/pages/login/login'
 	        			})
 	        			return false
@@ -75,7 +80,6 @@ const upimg = function(self,upname,url,data,filePath,func){ //上传图片
 		name: upname,
 		formData: data,
 		success: (uploadFileRes) => {
-			console.log(JSON.parse(uploadFileRes.data))
 			// console.log(Object.prototype.toString.call(uploadFileRes.data)) 判断数据类型
 			let res_list = JSON.parse(uploadFileRes.data)
 			if(res_list.code == 9){ //token过期时替换重新请求
@@ -84,7 +88,7 @@ const upimg = function(self,upname,url,data,filePath,func){ //上传图片
 				uni.setStorageSync('state_token',res_list.data.token)
 				upimg(self,type,url,data,func)
 			}else if(res_list.code == 10){
-				uni.navigateTo({
+				uni.reLaunch({
 					url:'/pages/login/login'
 				})
 			}else{
@@ -162,7 +166,7 @@ const notice = function() { //通知信息
 
 const analysis_url = function(video_url){
 	
-	video_url = video_url.replace(/luU3/gi, 'http')
+	video_url = video_url.replace(/luU3/gi, 'https')
 	video_url = video_url.replace(/IKXG/gi, ':')
 	video_url = video_url.replace(/SuJl/gi, '?')
 	video_url = video_url.replace(/IXSh/gi, '&')
@@ -172,7 +176,6 @@ const analysis_url = function(video_url){
 	video_url = video_url.replace(/XISKH5dImd/gi, 'bkt.clouddn.com')
 	video_url = video_url.replace(/JSIk5/gi, '.')
 	video_url = video_url.replace(/jKd5/gi, '-')
-	console.log(video_url)
 	return video_url
 }
 
@@ -216,14 +219,11 @@ const debounce = function(fn, wait){ //
 	// console.log(new Date().getTime() - this.timeout)
 	let that = this
 	that.timeout = null
-	console.log(that)
 	return function() {
-		console.log(that)
 		if(that.timeout !== null)clearTimeout(that.timeout);
 		that.timeout = setTimeout(fn, wait);
 		
 	}
-	console.log(this)
 	
 	// if(this.timeout){ 
 	// 	if(new Date().getTime() - this.timeout < 1000){

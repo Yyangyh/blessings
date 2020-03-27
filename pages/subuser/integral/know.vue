@@ -57,7 +57,6 @@
 			this.service.entire(this,'post',this.APIconfig.api_root.subuser.u_Signin_integralDoc,{
 				
 			},function(self,res){
-				console.log(res)
 				self.data = res.data
 			})
 		},

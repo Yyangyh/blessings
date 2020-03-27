@@ -118,14 +118,11 @@
 			getCoupon(id,cid,discount,index){//兑换优惠券
 				let that = this
 				if(!cid){
-					console.log(cid,discount)
 					uni.showModal({
 					    title: '提示',
 					    content: '兑换需消耗'+discount+'积分',
 					    success: function (res) {
 					        if (res.confirm) {
-								console.log(that.$store.state.user.integral)
-								console.log(that.$store.state.user.integral > discount)
 								if(Number(that.$store.state.user.integral) > Number(discount)){
 									that.service.entire(that,'post',that.APIconfig.api_root.com_page.v_getCoupon,{ //兑换优惠券
 										userid:that.$store.state.user.id,
@@ -148,7 +145,6 @@
 								}
 					           
 					        } else if (res.cancel) {
-					            console.log('用户点击取消');
 					        }
 					    }
 					});
@@ -160,14 +156,12 @@
 			this.service.entire(this,'post',this.APIconfig.api_root.subuser.u_coupon,{
 				user_id:this.$store.state.user.id
 			},function(self,res){
-				console.log(res)
 				self.data = res.data
 				self.data_list = res.data.not_use
 			})
 			this.service.entire(this,'post',this.APIconfig.api_root.subuser.u_couponList,{
 				userid:this.$store.state.user.id
 			},function(self,res){
-				console.log(res)
 				self.exchange = res.data.coupon
 			})
 		}

@@ -90,7 +90,6 @@
 			// 更新进度条
 			timeupdate(event) {
 				if(this.lock) return; // 锁
-				console.log(event)
 				var currentTime,duration;
 				if(event.detail.detail) {
 					currentTime = event.detail.detail.currentTime

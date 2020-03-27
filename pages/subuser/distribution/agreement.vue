@@ -52,7 +52,6 @@
 			this.service.entire(this,'get',this.APIconfig.api_root.subuser.u_getSeniorPartnerDeal,{
 				grade:data.level_id,
 			},function(self,res){
-				console.log(res)
 				self.data = res.data
 			})
 		}

@@ -43,7 +43,6 @@
 					express_name:this.express_name,
 					express_number:this.express_number,
 				},function(self,res){
-					console.log(res)
 					uni.showToast({
 						icon:'none',
 						title:res.msg

@@ -106,7 +106,6 @@
 					  })
 					  return
 				  }
-				  console.log(this.pay_type)
 				  if(!this.pay_type){
 					  uni.showToast({
 					  	icon:'none',
@@ -123,7 +122,6 @@
 					  payment_id:this.payment_id,
 					  remark:this.remarks
 				  },function(self,res){
-					  console.log(res)
 					  if(res.code == 0){
 						self.service.order.apply(self,[res,that.payment_name,'../subuser/activitys/activitys'])
 					    //  setTimeout(function(self,res){
@@ -145,7 +143,6 @@
 			this.service.entire(this,'post',this.APIconfig.api_root.subindex.a_activity_detail,{
 				id:e.id
 			},function(self,res){
-				console.log(res)
 				self.dataList = res.data.data
 				
 				let data =[

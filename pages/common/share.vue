@@ -272,7 +272,6 @@
 				} else {
 					iClickIndex = iCol + 4
 				}
-				console.log("点击按钮的序号: " + iClickIndex);
 				if (iClickIndex >= 0 && iClickIndex <= 5) { //处理具体的点击逻辑，此处也可以自行定义逻辑。如果增减了按钮，此处也需要跟着修改
 					var strProvider="",strScene=""
 					switch (iClickIndex) {
@@ -316,10 +315,8 @@
 							summary: strShareSummary,
 							imageUrl: strShareImageUrl,
 							success: function(res) {
-								console.log("success:" + JSON.stringify(res));
 							},
 							fail: function(err) {
-								console.log("fail:" + JSON.stringify(err));
 							}
 						})
 					}
@@ -370,7 +367,8 @@
 		methods: {
 			share(){
 				let data = this.datas
-				strShareUrl = data.Url
+				// strShareUrl = data.Url
+				strShareUrl = 'https://www.wufu-app.com/h5/#/pages/login/reg?code='+this.$store.state.user.invite_code
 				strShareTitle = data.Title
 				strShareSummary = data.Summary
 				strShareImageUrl = data.ImageUrl

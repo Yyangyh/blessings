@@ -56,7 +56,6 @@
 			this.service.entire(this,'post',this.APIconfig.api_root.subindex.a_activity_useractivitylist,{
 				user_id:this.$store.state.user.id
 			},function(self,res){
-				console.log(res)
 				self.activity_Data = res.data
 				
 			})

@@ -249,7 +249,6 @@ res
 			this.service.entire(this,'post',this.APIconfig.api_root.index.good_index,{ //家风产品
 				userid:this.$store.state.user.id
 			},function(self,res){
-				console.log(res)
 				self.category = res.data.category
 				self.swiper_list = res.data.banner_list
 				self.class_top = res.data.class_top
@@ -262,14 +261,12 @@ res
 			this.service.entire(this,'post',this.APIconfig.api_root.index.xfClassList,{ //家风学堂
 				id:40
 			},function(self,res){
-				console.log(res)
 				self.class_list1 = res.data.list
 				// self.anima = false
 			})
 			this.service.entire(this,'post',this.APIconfig.api_root.index.category,{ //家风建设
 				// id:40
 			},function(self,res){
-				console.log(res)
 				self.class_list2 = res.data
 				// self.anima = false
 			})
@@ -277,7 +274,6 @@ res
 			this.service.entire(this,'post',this.APIconfig.api_root.subhome.g_lists,{ //拼团
 				page:1
 			},function(self,res){
-				console.log(res)
 				self.class_list3 = res.data.data
 			})
 		}

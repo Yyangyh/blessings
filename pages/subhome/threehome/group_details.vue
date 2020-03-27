@@ -154,15 +154,13 @@
 		},
 		onLoad(options) {
 			this.id = options.id 
-			this.share_arr.Url = 'http://wx.huanqiutongmall.com/h5/#/pages/subindex/threeindex/group_details?id='+options.id
+			this.share_arr.Url = 'https://wx.huanqiutongmall.com/h5/#/pages/login/reg?code='+this.$store.state.user.invite_code
 		},
 		onShow() {
-			console.log(this.id)
 			this.service.entire(this,'get',this.APIconfig.api_root.subhome.threehome.g_TeamsDetail,{
 				user_id:this.$store.state.user.id,
 				teamid:this.id
 			},function(self,res){
-				console.log(res)
 				self.data = res.data
 				self.goods = res.data.goods
 				let strShareTitle = res.data.goods.title
@@ -180,7 +178,6 @@
 				let user = JSON.stringify(res.data.order.users)
 					user = JSON.parse(user)
 				self.users = user
-				console.log(user)
 				self.users.length = res.data.goods.groupnum
 				self.endtime =  res.data.endtime
 				let times = new Date().getTime().toString().substr(0,10)

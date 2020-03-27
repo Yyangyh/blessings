@@ -72,7 +72,6 @@
 				
 				
 			}, function(self, res) {
-				console.log(res.data.items);
 				self.list = res.data.items
 			})
 		}

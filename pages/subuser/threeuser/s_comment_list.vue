@@ -93,8 +93,6 @@
 				goods_id:goods_id, //商品id
 				page:1
 			}, function(self, res) {
-				console.log(res);
-				console.log(res.data.data);
 				self.list = res.data.data
 			})
 		}

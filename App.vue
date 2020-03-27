@@ -6,6 +6,19 @@
 			console.log('App Launch')
 			
 			
+			// #ifdef H5
+			// if(!uni.getStorageSync('state_token')){  //未登陆时跳转登陆页面
+			// if(uni.getStorageSync('state_token')){
+			// 	let url = 'pages/login/reg?code='+JSON.parse()
+			// }
+				// uni.reLaunch({
+				//     url: 'pages/login/reg?code='+JSON.parse()
+				// });
+				// return false
+			// }
+			// #endif
+			
+			
 			console.log('App Show')
 			
 			// #ifdef H5
@@ -27,11 +40,7 @@
 				this.$store.commit('state_user',uni.getStorageSync('state_user'))
 				this.$store.commit('state_token',uni.getStorageSync('state_token'))
 			}
-			// if(this.$store.state.hasLogin == false){  //未登陆时跳转登陆页面
-			// 	uni.reLaunch({
-			// 	    url: 'pages/login/login'
-			// 	});
-			// }
+			
 			
 		},
 		onShow: function() {

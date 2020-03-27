@@ -5,7 +5,9 @@ const store = new Vuex.Store({
     state: {
 		user:'',
 		token:'',
-		notice:false
+		notice:false,
+		login_state:false,
+		login:1,
 	},
     mutations: {
 		state_user(state,data){
@@ -21,6 +23,12 @@ const store = new Vuex.Store({
 		},
 		notice_status(state,data){
 			state.notice = data
+		},
+		modify_login(state,data){
+			state.login_state = data
+		},
+		Amodify_login(state,data){
+			state.login = data
 		}
 	},
     actions: {}

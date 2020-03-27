@@ -44,7 +44,6 @@
 		},
 		methods:{
 			longtap(){
-				console.log(123)
 			},
 			preservation(){
 				// #ifdef APP-PLUS
@@ -122,11 +121,11 @@
 			}
 		}
 		.back_img{
-			position: fixed;
-			z-index: 80;
-			top: calc(105rpx + var(--status-bar-height));
-			left: 0;
-			width: 100%;
+			// position: fixed;
+			// z-index: 80;
+			// top: calc(105rpx + var(--status-bar-height));
+			// left: 0;
+			// width: 100%;
 			image{
 				width: 100%;
 			}

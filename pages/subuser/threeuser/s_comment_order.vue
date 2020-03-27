@@ -98,16 +98,13 @@
 					content
 				} = e
 				this.content[index] = content
-				console.log(this.content);
 			},
 			ratingCount(e) {
-				console.log(e, 'eeee');
 				const {
 					rating,
 					index
 				} = e
 				this.rating[index] = rating
-				console.log(this.rating);
 			},
 			submit() { // 提交评论
 				if(this.rating.length==0){
@@ -150,7 +147,6 @@
 					images: this.images, // 上传的图片
 					user_id: this.$store.state.user.id,
 				}
-				console.log(data)
 				this.service.entire(this, 'post',e.url,data, function(self, res) {
 					
 					uni.showToast({
@@ -167,10 +163,8 @@
 					})
 			},
 			add_image(i) { // 上传图片
-				console.log(i);
 				let that = this
 				let path_type = 'order_comments-'+that.$store.state.user.id+'-'+that.id
-				console.log(path_type)
 				uni.chooseImage({
 					count: 1, //默认9
 					sourceType: ['album'], //从相册选择
@@ -185,7 +179,6 @@
 								user_id: that.$store.state.user.id,
 							},
 							success: (ref) => {
-								console.log(ref, 'll')
 								if (JSON.parse(ref.data).code == 0) {
 									// console.log(JSON.parse(ref.data))
 									// 新建一个数组保存选择的图片
@@ -202,7 +195,6 @@
 									}
 									that.image_list = JSON.parse(JSON.stringify(that.image_list))
 									// console.log(that.image_list);
-									console.log(that.images);
 									// that.image_list.push(res.tempFilePaths[0])
 									// that.images.push(JSON.parse(ref.data).data.file)
 								}
@@ -224,12 +216,10 @@
 					id: options.id,
 					user_id: this.$store.state.user.id,
 				}, function(self, res) {
-					console.log(res.data.items);
 					self.data = res.data.items;
 					for (var i = 0; i < self.data.length; i++) {
 						self.goodsId.push(self.data[i].goods_id); // 获取商品id 
 					}
-					console.log(self.goodsId);
 
 					// console.log(self.data,self.id,self.goodsId);
 				})

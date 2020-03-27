@@ -28,7 +28,6 @@
 				id:e.id,
 				user_id:this.$store.state.user.id
 			},function(self,res){
-				console.log(res)
 				self.img = self.service.analysis_url(res.info.app_img)
 			})
 		}

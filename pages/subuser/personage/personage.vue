@@ -101,7 +101,6 @@
 									uni.hideLoading()
 					                clearTimeout(times)
 									let data =JSON.parse(res.data)
-									console.log(data)
 									if(data.code == 0){
 										let user_data = {
 											avatar:data.data.userinfo.avatar

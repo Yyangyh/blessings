@@ -122,8 +122,6 @@
 					grade:this.branch,
 					content:this.com_text
 				},function(self,res){
-					console.log(res)
-					console.log(res)
 					uni.showToast({
 						icon:'none',
 						title:res.msg
@@ -150,7 +148,6 @@
 					// page:1,
 					// limit:20
 				},function(self,res){
-					console.log(res)
 					self.dataList = res.data
 					self.load_show = false
 					for (let s of self.dataList) {

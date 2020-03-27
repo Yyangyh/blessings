@@ -1,8 +1,9 @@
 <template>
 	<view class="content">
-		<!-- <view class="status_bar">
-		            
-		</view> -->
+		<view class="status_bar">
+			
+		</view>
+		<returns :titles='title'></returns>
 		<view class="ipt">
 			<image src="../../static/image/login/user.png" mode=""></image>
 			<input type="text" value="" v-model="accounts"  maxlength="11" placeholder="输入手机号"/>
@@ -16,7 +17,7 @@
 			<text @click="obtain()">{{verification}}</text>
 		</view>
 		<view class="ipt">
-			<input type="text" v-model="parent_id" :disabled="parent_dis" value="" maxlength="8" placeholder="请输入邀请码(可选填)"/>
+			<input type="text" v-model="parent_id" :disabled="parent_dis" value="" maxlength="8" placeholder="请输入邀请码 ( 可选填 ) "/>
 			<!-- <text @click="obtain()">{{verification}}</text> -->
 		</view>
 		<view class="ipt">
@@ -39,27 +40,41 @@
 		</view>
 		
 		<view class="treaty_box"  v-show="treaty_show == true">
-			<view class="box_top">
+			<!-- <view class="box_top">
 				注册须知
+			</view> -->
+			<image src="../../static/image/login/agreement.jpg" mode="widthFix"></image>
+			<view class="t_conent">
+				<scroll-view scroll-y="true" class="box_conent">
+					<rich-text :nodes='treaty'></rich-text>
+				</scroll-view>
+				<button  @click="treaty_show = false,checked = true">我已阅读</button>
 			</view>
-			<scroll-view scroll-y="true" class="box_conent">
-				<rich-text :nodes='treaty'></rich-text>
-			</scroll-view>
-			<button  @click="treaty_show = false">我已阅读</button>
+			
 		</view>
 		
 		<button class="red_button" @click="reg()">注册</button>
+		
+		<button  v-if="show" class="red_button" @click="href()">应用下载</button>
+		
+		<!-- #ifdef APP-PLUS -->
 		<view class="test" @click="jump('../login/login')">
 			<text>登录</text>
 		</view>
+		<!-- #endif -->
+		
 	</view>
 </template>
 
 <script>
-	
+	import returns from '../common/returns.vue'
 	export default{
+		components:{
+			returns
+		},
 		data() {
 			return {
+				title:'注册',
 				verification: '获取验证码',
 				disabled:false,
 				accounts:'',
@@ -72,7 +87,8 @@
 				parent_dis:false,
 				treaty:'',
 				treaty_show:false,
-				checked:false
+				checked:false,
+				show:false
 			}
 		},
 		methods:{
@@ -96,15 +112,12 @@
 					mobile:that.accounts,
 					time:Date.parse(new Date())/1000  //时间戳
 				}
-				console.log(data)
 				uni.request({
 					url:that.APIconfig.api_root.login.sendPhone,
 					method:'POST',
 					data,
 					success(res) {
-						console.log(res)
 						let data = res.data 
-						console.log(data)
 						uni.showToast({
 							icon:'none',
 							title:JSON.stringify(data.data.send_code)
@@ -172,9 +185,7 @@
 					method:'POST',
 					data:data_list,
 					success(res) {
-						console.log(res)
 						let data = res.data 
-						console.log(data)
 						uni.showToast({
 							icon:'none',
 							title:data.msg
@@ -195,16 +206,21 @@
 							 	// uni.redirectTo({
 							 	// 	url:'./download'
 							 	// })
-								window.location.href = 'https://ffapp.nethhw.com/app.php/NTk='
-							 },1500)
+								window.location.href = 'https://ios.8396048.com/0318/'
+							 },1000)
 							//#endif
 						}
 					}
 				})
+			},
+			href(){
+				window.location.href = 'https://ios.8396048.com/0318/'
 			}
 		},
 		onLoad(options) {
-			
+			// #ifdef H5
+			this.show = true
+			// #endif
 			if(options.code){
 				this.parent_dis = true
 				this.parent_id = options.code
@@ -215,7 +231,6 @@
 			uni.request({  //用户须知
 				url:this.APIconfig.api_root.login.getProtocol,
 				success(res) {
-					console.log(res)
 					that.treaty = res.data.data.content
 					// that.open_protocol = res.data.data.status
 				}
@@ -225,7 +240,6 @@
 			verification(curval,oldval){// 监听定时器的num值
 				if(curval == '-1s'){
 					clearInterval(this.timer)
-					console.log(this.timer)
 					this.verification = '重新获取'
 					this.disabled = false
 				}
@@ -234,13 +248,14 @@
 	}
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 	.content{
 		overflow: hidden;
-		padding-top: 0;
+		// padding-top: 0;
 	}
 	.uni-input-placeholder{
-		color: #C5C5C5;
+		color: #999;
+		
 	}
 	
 	.ipt{
@@ -256,7 +271,7 @@
 	}
 	.ipt input{
 		flex-grow: 2;
-		font-size: 28rpx;
+		font-size: 30rpx;
 	}
 	.ipt text{
 		font-size: 32rpx;
@@ -288,41 +303,79 @@
 	.treaty_box{
 		position: fixed;
 		z-index: 999;
-		height: 780rpx;
-		padding: 20rpx;
-		box-sizing: border-box;
+		height: 800rpx;
 		width: 80%;
 		background: #fff;
 		top: 50%;
 		left: 50%;
 		transform: translate(-50%,-50%);
+		.t_conent{
+			position: absolute;
+			width: 100%;
+			height: 800rpx;
+			top: 0;
+			left: 0;
+			z-index: 100;
+			box-sizing: border-box;
+			padding: 20rpx;
+			.box_top{
+				text-align: center;
+				font-size: 36rpx;
+			}
+			.box_conent{
+				margin: 20rpx 0;
+				height: 600rpx;
+			}
+			button{
+				position: absolute;
+				width: 90%;
+				height: 80rpx;
+				bottom: 20rpx;
+				font-size: 30rpx;
+				left: 50%;
+				margin: 0;
+				background: rgb(255, 255, 0);
+				transform: translateX(-50%);
+			}
+		}
+		image{
+			z-index: 98;
+			width: 100%;
+			position: absolute;
+			top: 0;
+			left: 0;
+		}
 	}
-	.treaty_box .box_top{
-		text-align: center;
-		font-size: 36rpx;
-	}
-	.treaty_box .box_conent{
-		margin: 20rpx 0;
-		height: 560rpx;
-	}
-	.treaty_box button{
-		position: absolute;
-		width: 90%;
-		height: 80rpx;
-		bottom: 20rpx;
-		font-size: 30rpx;
-		left: 50%;
-		margin: 0;
-		transform: translateX(-50%);
-	}
+	
 	
 	button{
 		
 		/* width: 100%; */
-		margin:60rpx 34rpx 30rpx 34rpx;
+		margin:34rpx 34rpx 30rpx 34rpx;
 	}
 	.test{
 		text-align: center;
 		font-size: 32rpx;
+	}
+	.download{
+		padding: 20rpx;
+		.down_top{
+			margin: 20rpx 0;
+			font-size: 34rpx;
+		}
+		.down_box{
+			display: flex;
+			justify-content: space-between;
+			view{
+				width: 240rpx;
+				height: 80rpx;
+				line-height: 80rpx;
+				text-align: center;
+				background: #D80000;
+				font-size: 30rpx;
+				color: #fff;
+				border-radius: 20rpx;
+			}
+		}
 	}
 </style>

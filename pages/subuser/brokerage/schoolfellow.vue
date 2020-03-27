@@ -82,7 +82,6 @@
 				this.$refs.calendar.open();
 			},
 			confirm(e) {  //日历表选择日期时间
-				console.log(e);
 				if(this.type == 1){
 					if(new Date(e.fulldate).getTime() > new Date(this.ent_time).getTime()){
 						uni.showToast({
@@ -123,7 +122,6 @@
 			},
 			requst(data){
 				this.service.entire(this,'post',this.APIconfig.api_root.subuser.u_Subordinate,data,function(self,res){
-					console.log(res)
 					self.dataList = res.data
 					if(self.dataList.length == 0){
 						uni.showToast({

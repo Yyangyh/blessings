@@ -30,14 +30,12 @@
 				express_id:e.id,
 				express_number:e.number,
 			},function(self,res){
-				console.log(res)
 				let richtext = res.data
 				const regex = new RegExp('<li', 'gi');
 				const regexs = new RegExp('<p', 'gi');
 				
 				richtext= richtext.replace(regex, `<li style="padding:10px 0;font-size: 16px;border-bottom: 1px solid #F1F1F1;color:#666"`);
 				richtext = richtext.replace(regexs, `<p style="margin-bottom:10px;font-size: 18px"`);
-				console.log(self.nodes)
 				self.nodes = richtext
 			})
 			

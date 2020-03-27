@@ -75,7 +75,6 @@
 					user_id:this.$store.state.user.id,
 					status:type
 				},function(self,res){
-					console.log(res)
 					self.data = res.data.data
 				})
 			},

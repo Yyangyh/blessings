@@ -168,7 +168,6 @@
 					s.choice = false
 				}
 				this.coupon_list[index].choice = true
-				console.log(this.coupon_list)
 			},
 			finish(){
 				this.show = false
@@ -185,13 +184,11 @@
 						}
 					}
 				})
-				console.log(this.require_data)
 			},
 			Index(){ //下单时间确定
 				this.service.entire(this,'post',this.APIconfig.api_root.com_page.v_orderDetail,this.require_data,function(self,res){//订单信息
 					self.data = res.data.video
 					self.v_price = res.data.video.v_price
-					console.log(res.data.coupon)
 					if(res.data.coupon != ''){
 						let not_coupon = {
 							not_coupon:'不使用'	
@@ -202,7 +199,6 @@
 							s.choice = false
 						}
 						self.coupon_list = coupon_data
-						console.log(self.coupon_list)
 					}
 					let data = res.data.pay_type
 					for (let s of data) {
@@ -226,13 +222,10 @@
 				    content: '是否确定支付？',
 				    success: function (res) {
 				        if (res.confirm) {
-				            // console.log('用户点击确定');
 							let data = {
 								pay_type:that.payment_name
 							}
 							let data_list = Object.assign(data,that.require_data)
-							console.log(data_list)
-							// return
 								that.service.entire(that,'post',that.APIconfig.api_root.com_page.v_saveOrder,data_list,function(self,res){
 									if(res.code == 0){
 										self.service.order.apply(self,[res,data.pay_type,'./video_details?id='+self.id+'&type='+self.type])
@@ -245,7 +238,6 @@
 								})
 							
 				        } else if (res.cancel) {
-				            // console.log('用户点击取消');
 							return
 				        }
 				    }
@@ -254,7 +246,6 @@
 			}
 		},
 		onLoad(e) {
-			console.log(e)
 			this.type = e.type
 			this.id = e.id
 			let require_data = {

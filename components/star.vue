@@ -36,7 +36,6 @@
 					this.active = i
 				}
 				// this.rating.push(index+1) ;
-				// console.log(this.rating);
 				this.$emit('star',{rating:index+1,index:this.index})
 			}
 		}

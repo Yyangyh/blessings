@@ -231,7 +231,6 @@
 					coupon_id:this.coupon[index].id,
 					user_id:this.$store.state.user.id
 				},function(self,res){
-					console.log(res)
 					if(res.code == 0){
 						self.coupon[index].is_operable = 0
 					}else{
@@ -267,13 +266,11 @@
 						type: data[index].name,
 						value: data[index].value[indexs].name
 					}
-					console.log(this.spec)
 					if(index == data.length -1){ //最后一步，请求商品库存
 						this.service.entire(this,'post',this.APIconfig.api_root.subhome.s_SpecDetail,{
 							id: this.id,
 							spec: this.spec
 						},function(self,res){
-							console.log(res)
 							self.price = res.data.price
 							self.inventory = res.data.inventory
 							
@@ -303,12 +300,10 @@
 					this.index_list = this.spec.length
 					
 				}
-				console.log(this.spec)
 				this.service.entire(this, 'post', this.APIconfig.api_root.subhome.s_SpecType, {
 					id: this.id,
 					spec: this.spec
 				}, function(self, res) {
-					console.log(res)
 					if (res.code == 0) {
 						let res_data = res.data
 						for (let k of res_data) {
@@ -366,7 +361,6 @@
 					user_id:this.$store.state.user.id,
 					id:this.id
 				},function(self,res){
-					console.log(res)
 					uni.hideLoading()
 					clearTimeout(times)
 					self.tips_test = res.msg

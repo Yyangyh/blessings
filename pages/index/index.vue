@@ -198,7 +198,6 @@
 			
 		},
 		onShow() {
-			console.log(uni.getStorageSync('nickname'))
 			if(uni.getStorageSync('notice') == ''){  //
 				this.eject_show = true
 			}else{
@@ -300,7 +299,6 @@
 				}
 				console.log(data)
 				this.service.entire(this,'post',this.APIconfig.api_root.index.bindPhone,data,function(self,res){
-					console.log(res)
 					uni.showToast({
 						icon:'none',
 						title:res.msg
@@ -339,9 +337,7 @@
 					method:'POST',
 					data,
 					success(res) {
-						console.log(res)
 						let data = res.data 
-						console.log(data)
 						uni.showToast({
 							icon:'none',
 							title:JSON.stringify(data.data.send_code)
@@ -364,7 +360,6 @@
 			},
 		},
 		onTabItemTap(e) {
-			console.log(e)
 		},
 		watch:{
 			verification(curval,oldval){// 监听定时器的num值

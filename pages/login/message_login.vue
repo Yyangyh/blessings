@@ -55,15 +55,12 @@
 					mobile:that.accounts,
 					time:Date.parse(new Date())/1000  //时间戳
 				}
-				console.log(data)
 				uni.request({
 					url:that.APIconfig.api_root.login.sendPhone,
 					method:'POST',
 					data,
 					success(res) {
-						console.log(res)
 						let data = res.data 
-						console.log(data)
 						uni.showToast({
 							icon:'none',
 							title:data.msg

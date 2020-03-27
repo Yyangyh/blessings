@@ -96,7 +96,6 @@
 			this.service.entire(this,'post',this.APIconfig.api_root.subuser.address_index,{
 				user_id: this.$store.state.user.id,
 			},function(self,res){
-				console.log(res)
 				self.data = res.data
 			})
 		}

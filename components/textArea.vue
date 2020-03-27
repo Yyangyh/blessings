@@ -15,7 +15,6 @@
 		},
 		methods:{
 			saying(){ //
-				// console.log('a');
 				if(this.send) clearTimeout(this.send)
 				this.send = setTimeout(()=>{
 					this.$emit('saying',{content:this.content,index:this.index})

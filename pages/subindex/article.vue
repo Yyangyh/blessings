@@ -164,8 +164,6 @@
 					grade:this.branch,
 					content:this.com_text
 				},function(self,res){
-					console.log(res)
-					console.log(res)
 					uni.showToast({
 						icon:'none',
 						title:res.msg
@@ -201,12 +199,11 @@
 		},
 		onLoad(e) {
 			this.id = e.id
-			this.share_arr.Url = 'http://www.wufu-app.com/h5/#/pages/subindex/article?id='+e.id
+			this.share_arr.Url = 'https://www.wufu-app.com/h5/#/pages/login/reg?code='+this.$store.state.user.invite_code
 			this.service.entire(this,'get',this.APIconfig.api_root.subindex.s_getArticleDetail,{//获取文章
 				aid:e.id,
 				user_id:this.$store.state.user.id
 			},function(self,res){
-				console.log(res)
 				
 				self.share_arr.Title =  res.data.title//分享
 				// self.share_arr.Summary =  res.data.video.long_title//分享
@@ -220,14 +217,12 @@
 				self.video_content = richtext;
 				
 				self.dataList.rating_num = new Array(Number(self.dataList.grade))
-				console.log(self.dataList)
 			})
 			
 			this.service.entire(this,'get',this.APIconfig.api_root.subindex.s_getCommentByAid,{ //用户评论
 				aid:this.id,
 			},function(self,res){
 				self.data_list = res.data
-				console.log(self.data_list)
 				for (let s of self.data_list) {
 					s.rating_nums = new Array(Number(s.grade))
 				}

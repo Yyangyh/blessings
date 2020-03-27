@@ -152,7 +152,6 @@
 						bank_username:this.chiose_show?this.w_name:this.z_name,
 						user_id:this.user.id
 					},function(self,res){
-						console.log(res)
 						uni.showToast({
 							icon:'none',
 							title:res.msg
@@ -173,7 +172,6 @@
 				this.service.entire(this,'post',this.APIconfig.api_root.subuser.threeuser.u_cashauthinfo,{
 						user_id:this.user.id
 					},function(self,res){
-						console.log(res)
 						self.fee = res.data.fee
 				})
 				

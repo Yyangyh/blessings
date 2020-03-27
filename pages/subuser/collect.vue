@@ -93,7 +93,6 @@
 		},
 		methods:{
 			choise(all){
-				console.log(all)
 				this.cur = all
 				this.dataList.length = 0
 				let data = {
@@ -107,12 +106,10 @@
 				this.more = 'loading'
 				if(this.cur == 3){
 					this.service.entire(this,'post',this.APIconfig.api_root.subuser.a_getFavorite,data,function(self,res){ //文章
-						console.log(res)
 						res.data.forEach(x => x.choice = false)
 						let data = self.dataList
 						data.push(...res.data)
 						self.dataList = data
-						console.log(self.dataList);
 						self.page += 1
 						self.more = 'more'
 						if (res.data.length < 10) {
@@ -123,12 +120,10 @@
 					})
 				}else if(this.cur == 4){
 					this.service.entire(this,'post',this.APIconfig.api_root.subuser.usergoodsfavor,data,function(self,res){ //商品
-						console.log(res)
 						res.data.data.forEach(x => x.choice = false)
 						let data = self.dataList
 						data.push(...res.data.data)
 						self.dataList = data
-						console.log(self.dataList);
 						self.page += 1
 						self.more = 'more'
 						if (res.data.data.length < 10) {
@@ -139,12 +134,10 @@
 					})
 				}else{
 					this.service.entire(this,'post',this.APIconfig.api_root.subuser.u_favor,data,function(self,res){ //视频音频
-						console.log(res)
 						res.data.favor_list.forEach(x => x.choice = false)
 						let data = self.dataList
 						data.push(...res.data.favor_list)
 						self.dataList = data
-						console.log(self.dataList);
 						self.page += 1
 						self.more = 'more'
 						if (res.data.favor_list.length < 10) {

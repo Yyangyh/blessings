@@ -35,7 +35,7 @@
 						</view>
 						
 					</view>
-					
+					<!-- #ifdef APP-PLUS -->
 					<view class="other">
 						<text class="line"></text>
 						<text class="other_test">其他登录方式</text>
@@ -45,30 +45,30 @@
 					<view class="mode">
 						<image src="../../static/image/login/wx.png" mode="widthFix" @click="wx()"></image>
 					</view>
-					
+					<!-- #endif -->
 				</view>
 			</view>
 		</view>
 		<view class="Mask" v-show="treaty_show == true" @click="treaty_show = false">
 			
 		</view>
-		<view class="treaty_box"  v-show="treaty_show == true">
-			<view class="box_top">
-				注册须知
-			</view>
-			<scroll-view scroll-y="true" class="box_conent">
-				<rich-text :nodes='treaty'></rich-text>
-			</scroll-view>
-			<view class="all_btn">
-				<button class="refuse" @click="treaty_show = false">拒绝</button>
-				<button class="agree" @click="agree">同意</button>
+		<view class="treaty_box"   v-show="treaty_show == true">
+			<image src="../../static/image/login/agreement.jpg" mode="widthFix"></image>
+			<view class="t_conent">
+				<scroll-view scroll-y="true" class="box_conent">
+					<rich-text :nodes='treaty'></rich-text>
+				</scroll-view>
+				<view class="all_btn">
+					<button class="refuse" @click="treaty_show = false">拒绝</button>
+					<button class="agree" @click="agree">同意</button>
+				</view>
 			</view>
 		</view>
 	</view>
 </template>
 
 <script>
-	
+	import agreement from '../../static/image/login/agreement.jpg'
 	export default{
 		data() {
 			return {
@@ -76,7 +76,8 @@
 				pwd:'',
 				show:0,
 				treaty_show:false,
-				treaty:''
+				treaty:'',
+				agreement:agreement
 			}
 		},
 		methods:{
@@ -113,7 +114,6 @@
 					})
 					return
 				}, 10000)
-				console.log(that.APIconfig.api_root.login.login)
 				uni.request({
 					url:that.APIconfig.api_root.login.login,
 					// url:'http://wl.hhw778.com/api/user/Login',
@@ -127,15 +127,12 @@
 					success(res) {
 						uni.hideLoading()
 						clearTimeout(times)
-						console.log(res)
-						// console.log(res)
 						let data = res.data 
 						uni.showToast({
 							icon:'none',
 							title:data.msg
 						})
 						if(data.code == 0){
-							console.log(data.data.memberInfo)
 							// uni.setStorageSync('user',JSON.stringify())
 							uni.removeStorageSync('openid')
 							uni.removeStorageSync('nickname')
@@ -144,7 +141,6 @@
 							
 							uni.setStorageSync('state_user',data.data.memberInfo)
 							uni.setStorageSync('state_token',data.token)
-							
 							
 							setTimeout(function(){
 								
@@ -187,7 +183,6 @@
 								uni.hideLoading()
 								clearTimeout(times)
 								let data = res.data
-								console.log(data)
 								if(data.code == 0){
 									uni.removeStorageSync('openid')
 									uni.removeStorageSync('nickname')
@@ -200,13 +195,11 @@
 										url: '../index/index'
 									});
 								}else if(data.code == 1){
-									console.log(1)
 									that.$store.commit('state_user',data.data.memberInfo)
 									that.$store.commit('state_token',data.token)
 									uni.setStorageSync('state_user',data.data.memberInfo)
 									uni.setStorageSync('state_token',data.token)
 									uni.setStorageSync('openid',loginRes.authResult.openid)
-									console.log(data)
 									uni.setStorageSync('nickname',data.data.nickname)
 									uni.setStorageSync('wx','wx')
 									uni.switchTab({
@@ -254,6 +247,7 @@
 			})
 		},
 		onShow() {
+			this.$store.commit('Amodify_login',0)
 			// #ifdef H5
 				//先判断是否在h5打开，再判断是否是在微信浏览器打开
 			
@@ -269,7 +263,7 @@
 	}
 </script>
 
-<style>
+<style lang="scss">
 	page{
 		padding-top: 0;
 	}
@@ -390,29 +384,44 @@
 	.treaty_box{
 		position: fixed;
 		z-index: 999;
-		height: 780rpx;
-		padding: 20rpx;
-		box-sizing: border-box;
+		height: 800rpx;
 		width: 80%;
 		background: #fff;
 		top: 50%;
 		left: 50%;
 		transform: translate(-50%,-50%);
+		image{
+			z-index: 98;
+			width: 100%;
+			position: absolute;
+			top: 0;
+			left: 0;
+		}
 	}
-	.treaty_box .box_top{
+	.treaty_box .t_conent{
+		position: absolute;
+		width: 100%;
+		height: 800rpx;
+		top: 0;
+		left: 0;
+		z-index: 100;
+		padding: 20rpx;
+		box-sizing: border-box;
+	}
+	.treaty_box .t_conent .box_top{
 		text-align: center;
 		font-size: 36rpx;
 	}
-	.treaty_box .box_conent{
+	.treaty_box .t_conent .box_conent{
 		margin: 20rpx 0;
-		height: 560rpx;
+		height: 600rpx;
 	}
-	.treaty_box button{
+	.treaty_box .t_conent button{
 		width: 45%;
 		font-size: 30rpx;
 		margin: 0;
 	}
-	.treaty_box .all_btn{
+	.treaty_box .t_conent .all_btn{
 		display: flex;
 		justify-content: space-between;
 		position: absolute;
@@ -423,8 +432,8 @@
 		margin: 0;
 		transform: translateX(-50%);
 	}
-	.treaty_box .all_btn .agree{
-		background: #D80000;
-		color: #fff;
+	.treaty_box .t_conent .all_btn .agree{
+		background: rgb(255, 255, 0);
+		color: #000;
 	}
 </style>

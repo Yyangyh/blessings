@@ -106,11 +106,10 @@
 		},
 		onLoad(options) {
 			
-			this.share_arr.Url = 'http://wx.huanqiutongmall.com/h5/#/pages/subindex/group_products?id='+options.id
+			this.share_arr.Url = 'https://wx.huanqiutongmall.com/h5/#/pages/login/reg?code='+this.$store.state.user.invite_code
 			this.id = options.id
 			
 			this.service.entire(this,'get',this.APIconfig.api_root.subhome.threehome.g_Detail,{id:options.id},function(self,res){
-				console.log(res)
 				self.data = res.data.goods
 				
 				self.share_arr.Title = self.data.title//分享

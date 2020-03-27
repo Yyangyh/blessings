@@ -18,7 +18,7 @@
 		
 		<view class="vider_content_two">
 			<view class="vider_content">
-				<view class="content_list" v-for="(item,index) in data" :key='item.id'  @tap="$jump('../com_page/video_details?id='+item.id)">
+				<view class="content_list" v-for="(item,index) in data" :key='item.id'  @tap="$jump('../com_page/video_details?id='+item.id+'&type='+item.type)">
 					<view class="list_img_box">
 						<image :src="$api_img()+item.v_pic" mode="scaleToFill"></image>
 					</view>
@@ -99,7 +99,6 @@
 							return
 						}
 						self.more = 'more'
-						console.log(self.data)
 					})
 			},
 		},

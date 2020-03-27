@@ -98,7 +98,6 @@
 					user_id:this.$store.state.user.id,
 					id_dels:all.join(','),
 				},function(self,res){
-					console.log(res)
 					uni.showToast({
 						icon:'none',
 						title:res.msg

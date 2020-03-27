@@ -59,7 +59,6 @@
 				this.indexs = 0
 				if(type == 3){
 					this.service.entire(this,'get',this.APIconfig.api_root.subindex.s_getNormalCategory,{},function(self,res){
-						console.log(res)
 						self.article_data = res.data
 					})
 				}else{
@@ -67,9 +66,7 @@
 						userid:this.$store.state.user.id,
 						type:type
 					},function(self,res){
-						console.log(res)
 						self.data = res.data.t_list
-						console.log(self.data)
 					})
 				}
 				

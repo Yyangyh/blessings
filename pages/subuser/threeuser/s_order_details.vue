@@ -229,7 +229,6 @@
 			},
 			cancel_return(id){//取消退款申请
 				let that = this
-				console.log(id)
 				uni.showModal({
 				    title: '提示',
 				    content: '是否取消退款/退货申请？',

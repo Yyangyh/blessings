@@ -464,7 +464,10 @@
 		{
 			"path": "pages/login/reg",
 			"style": {
-				"navigationBarTitleText": "注册"
+				"navigationBarTitleText": "注册",
+				"app-plus":{
+					"titleNView":false
+				}
 			}
 		},
 		{

@@ -44,7 +44,6 @@
 					video_type:all
 				}
 				this.service.entire(this,'post',this.APIconfig.api_root.subuser.s_getShareOrder,data,function(self,res){
-					console.log(res)
 					self.data = res.data
 					
 				})

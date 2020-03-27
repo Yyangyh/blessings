@@ -64,7 +64,6 @@
 					page:1,
 					type:all
 				}
-				console.log(data)
 				this.Index(data) //执行接口
 			},
 			loadMore(){//滚动到底部执行
@@ -77,7 +76,6 @@
 				
 				// if(data.type == 2) delete data.type;
 				if(data.type == 2) Reflect.deleteProperty(data, "type");
-				console.log(data)
 				this.Index(data)//执行接口
 			},
 			Index(data){//这是最后一步 

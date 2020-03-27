@@ -38,18 +38,11 @@
 		
 		<block v-else>
 			<view class="audo-video"  v-if="play_url">
-				<video id="myAudio" 
-				:src="play_url" class="hidden" 
-				:autoplay='true' 
-				:initial-time = 'initial_time'
-				@play='play_start' 
-				@ended='play_end'  
-				
-				@timeupdate="Au_timeupdate" 
-				ref="video" 
-				@loadedmetadata="loadedmetadata" 
+				<video id="myAudio" :src="play_url" class="hidden" 
+				:autoplay='true' :initial-time = 'initial_time' @play='play_start' 
+				@ended='play_end'  @timeupdate="Au_timeupdate" 
+				ref="video" @loadedmetadata="loadedmetadata" 
 				></video>
-				
 				<view class="slider">
 					<view class="slider_img">
 						<image :src="poster" mode="widthFix"></image>
@@ -76,13 +69,8 @@
 								/>
 							<text class="ss">{{overTimer}}</text>
 						</view>
-						
 					</view>
 				</view>
-				
-				
-				<!-- <button @tap="play">播放</button>
-				<button @tap="stop">暫停</button> -->
 			</view>
 		</block>
 		
@@ -236,7 +224,7 @@
 				</view>
 			</view>
 			<view class="vider_content">
-				<view class="content_list" v-for="(item,index) in recommend_video" :key='item.id'  @tap="$jump('../com_page/video_details?id='+item.id)">
+				<view class="content_list" v-for="(item,index) in recommend_video" :key='item.id'  @tap="$jump('../com_page/video_details?id='+item.id+'&type='+item.type)">
 					<view class="list_img_box">
 						<image :src="$api_img()+item.v_pic" mode="scaleToFill"></image>
 					</view>
@@ -417,7 +405,7 @@
 				
 				//mp3
 				lock: false, // 锁
-				status: 1, // 1暂停 2播放
+				status: 2, // 1暂停 2播放
 				currentTime: 0,  //当前进度
 				duration: 100, // 总进度
 				videoContext: ''
@@ -447,8 +435,38 @@
 				return calcTimer(this.duration)
 			}
 		},
+		onLoad() {
+			const music=uni.requireNativePlugin('Html5app-Music');
+			console.log(music)
+		},
 		created() {
 			 this.videoContext = uni.createVideoContext('myAudio')
+			//  console.log(this.videoContext)
+			//  bgAudioMannager.title = '致爱丽丝';
+			//  bgAudioMannager.singer = '暂无';
+			//  bgAudioMannager.coverImgUrl = 'https://img-cdn-qiniu.dcloud.net.cn/uniapp/audio/music.jpg';
+			//  bgAudioMannager.src = 'https://img-cdn-qiniu.dcloud.net.cn/uniapp/audio/music.mp3';
+			
+			//  music.show({"title":"","image":"","next":true,"last":true},data=>{
+			//      //监听控制条按键点击事件
+			//      switch(data.type)
+			//      {
+			//           case "play":            
+			//           console.log("用户点击通知栏的播放键");             
+			//          break;
+			//          case "next":
+			//            console.log("用户点击通知栏的下一首键")
+			//          break;
+			//          case "last":
+			//            console.log("用户点击通知栏的上一首键")
+			//          break;
+			//          case "close":
+			//             console.log("用户点击通知栏的关闭键")
+			//          break;
+			 
+			//          default:break;
+			//      }
+			//  }); 
 		},
 		methods:{
 			
@@ -558,7 +576,6 @@
 						s_process:duration
 					},function(self,res){
 						self.duration_time = 0 //每次记录完都要清空
-						console.log(self.indexs)
 						self.catalog_data[self.indexs].section_plan = res.section_plan
 						resolve('suc');
 					})
@@ -681,7 +698,6 @@
 				})
 			},
 			getCoupon(id,cid,index){//领取优惠券
-				console.log(id,cid)
 				if(!cid){
 					this.service.entire(this,'post',this.APIconfig.api_root.com_page.v_getCoupon,{ //领取优惠券
 						userid:this.$store.state.user.id,
@@ -772,11 +788,10 @@
 					}
 					
 					if(res.data.video.new_play){  //当用户有历史播放记录时
-						console.log(data[res.play_index])
 						self.indexs = res.play_index
 						self.play_url = self.service.analysis_url(data[res.play_index].video_url)
 						let play_time = res.data.video.new_play.play_time
-						play_time > 10 ? self.initial_time = play_time - 10 : self.initial_time = play_time 
+						play_time > 10 ? self.initial_time = play_time - 5 : self.initial_time = play_time 
 					}
 					
 					self.catalog_data = data
@@ -803,7 +818,8 @@
 		// 	this.videoContext = uni.createVideoContext('myVideo')
 		// },
 		onLoad(e) {
-			this.share_arr.Url = 'http://www.wufu-app.com/h5/#/pages/com_page/video_details?id='+e.id+'&type='+e.type
+			this.share_arr.Url = 'https://www.wufu-app.com/h5/#/pages/login/reg?code='+this.$store.state.user.invite_code
+			// this.share_arr.Url = 'https://www.wufu-app.com/h5/#/pages/com_page/video_details?id='+e.id+'&type='+e.type
 			this.id = e.id
 			this.type = e.type
 			this.service.entire(this,'post',this.APIconfig.api_root.com_page.v_coupon,{ //优惠券列表
@@ -824,13 +840,14 @@
 		},
 		onHide(){
 			this.videoContext.pause()
+			this.status = 1
 		},
 		onUnload(){
 			this.videoContext.pause()
+			this.status = 1
 		}
 	}
 	function calcTimer(timer) {
-		console.log(timer)
 		if(timer === 0 || typeof timer !== 'number' || isNaN(timer) || timer < 0) {
 			return '00:00'
 		}

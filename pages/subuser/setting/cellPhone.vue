@@ -74,9 +74,7 @@
 					method:'POST',
 					data,
 					success(res) {
-						console.log(res)
 						let data = res.data 
-						console.log(data)
 						uni.showToast({
 							icon:'none',
 							title:JSON.stringify(data.data.send_code)

@@ -36,11 +36,9 @@ import returns from '../common/returns.vue'
 		},
 		onLoad(e){
 			this.title = e.name;
-			console.log(e)
 			this.service.entire(this,'post',this.APIconfig.api_root.subindex.s_test_classify,{
 				id:e.id,
 			},function(self,res){
-				console.log(res)
 				self.dataList =res.data
 			})
 		}

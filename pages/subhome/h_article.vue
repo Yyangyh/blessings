@@ -115,7 +115,6 @@
 				id:e.id,
 				user_id:this.$store.state.user.id
 			},function(self,res){
-				console.log(res)
 				self.dataList = res.data
 				let richtext=  res.data.content
 				const regex = new RegExp('<img', 'gi');
@@ -123,7 +122,6 @@
 				self.video_content = richtext;
 				
 				self.dataList.rating_num = new Array(Number(self.dataList.grade))
-				console.log(self.dataList)
 			})
 			
 			// this.service.entire(this,'get',this.APIconfig.api_root.subindex.s_getCommentByAid,{ //用户评论

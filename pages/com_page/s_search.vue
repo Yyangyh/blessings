@@ -17,7 +17,7 @@
 		</view>
 		
 		<view class="shopp_tab">
-			<view class="shopp_list" v-for="(item,index) in data" :key='item.id' @tap="$jump('/pages/subhome/details?id='+item.id)">
+			<view class="shopp_list" v-for="(item,index) in data" :key='item.id' @tap="$jump('/pages/subhome/details?id='+item.id+'&type='+item.type)">
 				<view class="list_one">
 					<image :src="item.images" mode="widthFix"></image>
 				</view>
@@ -78,7 +78,6 @@
 							return
 						}
 						self.more = 'more'
-						console.log(self.data)
 					})
 			},
 		},

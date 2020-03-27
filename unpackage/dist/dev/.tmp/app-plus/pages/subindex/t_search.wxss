@@ -24,10 +24,10 @@
 /* 垂直间距 */
 /* 透明度 */
 /* 文章场景相关 */
-.content.data-v-4755fecf {
+.content.data-v-ce797772 {
   padding-top: calc(105rpx + var(--status-bar-height));
 }
-.sea_top.data-v-4755fecf {
+.sea_top.data-v-ce797772 {
   height: 105rpx;
   padding: 0 44rpx;
   width: 100%;
@@ -48,14 +48,14 @@
   background: #fff;
   box-shadow: 0px 2rpx 4rpx 0px rgba(0, 0, 0, 0.1);
 }
-.sea_top .top_img.data-v-4755fecf {
+.sea_top .top_img.data-v-ce797772 {
     width: 60rpx;
 }
-.sea_top .top_img image.data-v-4755fecf {
+.sea_top .top_img image.data-v-ce797772 {
       height: 36rpx;
       width: 36rpx;
 }
-.sea_top .sea_one.data-v-4755fecf {
+.sea_top .sea_one.data-v-ce797772 {
     background: #F1F1F1;
     height: 60rpx;
     border-radius: 30rpx;
@@ -69,39 +69,39 @@
     -webkit-align-items: center;
             align-items: center;
 }
-.sea_top .sea_one image.data-v-4755fecf {
+.sea_top .sea_one image.data-v-ce797772 {
       width: 40rpx;
       height: 40rpx;
       margin: 0 10rpx;
 }
-.sea_top .sea_one input.data-v-4755fecf {
+.sea_top .sea_one input.data-v-ce797772 {
       -webkit-box-flex: 2;
       -webkit-flex-grow: 2;
               flex-grow: 2;
       font-size: 26rpx;
       font-weight: 200;
 }
-.sea_top .search.data-v-4755fecf {
+.sea_top .search.data-v-ce797772 {
     margin-left: 20rpx;
     font-size: 32rpx;
 }
-.texts_boxList .t_box.data-v-4755fecf {
+.texts_boxList .t_box.data-v-ce797772 {
   padding: 20rpx 25rpx 20rpx 25rpx;
   display: -webkit-box;
   display: -webkit-flex;
   display: flex;
 }
-.texts_boxList .t_box image.data-v-4755fecf {
+.texts_boxList .t_box image.data-v-ce797772 {
     width: 268rpx;
     height: 179rpx;
     margin-right: 30rpx;
 }
-.texts_boxList .t_box .b_right.data-v-4755fecf {
+.texts_boxList .t_box .b_right.data-v-ce797772 {
     -webkit-box-flex: 2;
     -webkit-flex-grow: 2;
             flex-grow: 2;
 }
-.texts_boxList .t_box .b_right view.data-v-4755fecf:first-child {
+.texts_boxList .t_box .b_right view.data-v-ce797772:first-child {
       display: -webkit-box;
       -webkit-box-orient: vertical;
       -webkit-line-clamp: 2;
@@ -109,7 +109,7 @@
       font-size: 28rpx;
       margin: 20rpx 0;
 }
-.texts_boxList .t_box .b_right view.data-v-4755fecf:last-child {
+.texts_boxList .t_box .b_right view.data-v-ce797772:last-child {
       font-size: 28rpx;
       color: #999999;
 }

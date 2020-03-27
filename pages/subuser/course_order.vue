@@ -172,7 +172,6 @@
 					this.service.entire(this,'post',this.APIconfig.api_root.subuser.v_orderList,data,function(self,res){
 						let data = self.data
 						data.push(...res.data.order_list)
-						console.log(self.data);
 						self.page += 1
 						self.more = 'more'
 						if (res.data.order_list.length < 10) {
@@ -187,7 +186,6 @@
 			},
 			onLoad(e) {
 				this.mid_show = e.status
-				console.log(this.mid_show)
 			},
 			onShow() {
 				this.data.length = 0

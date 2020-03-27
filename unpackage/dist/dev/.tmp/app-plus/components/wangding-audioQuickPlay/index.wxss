@@ -24,10 +24,10 @@
 /* 垂直间距 */
 /* 透明度 */
 /* 文章场景相关 */
-.audo-video.data-v-5ef33ba7 {
+.audo-video.data-v-290ad5a2 {
   padding-bottom: 20rpx;
 }
-.slider-box.data-v-5ef33ba7 {
+.slider-box.data-v-290ad5a2 {
   display: -webkit-box;
   display: -webkit-flex;
   display: flex;
@@ -40,7 +40,7 @@
   font-size: 26rpx;
   color: #999;
 }
-button.data-v-5ef33ba7 {
+button.data-v-290ad5a2 {
   display: inline-block;
   width: 100rpx;
   background-color: #fff;
@@ -48,7 +48,7 @@ button.data-v-5ef33ba7 {
   color: #000;
   padding: 0;
 }
-.hidden.data-v-5ef33ba7 {
+.hidden.data-v-290ad5a2 {
   position: fixed;
   z-index: -1;
   width: 1rpx;

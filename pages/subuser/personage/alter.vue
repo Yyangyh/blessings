@@ -35,7 +35,6 @@
 					nickname:this.name,
 					type:1
 				},function(self,res){
-					console.log(res)
 					uni.showToast({
 						icon:'none',
 						title:res.msg
@@ -50,7 +49,6 @@
 			}
 		},
 		onShow() {
-			console.log(this.$store.state.user)
 		}
 	}
 </script>

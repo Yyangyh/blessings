@@ -89,7 +89,6 @@
 				user_id:this.$store.state.user.id,
 				level_id:e.id
 			},function(self,res){
-				console.log(res)
 				self.dataList = res.data
 				let data =[
 					{

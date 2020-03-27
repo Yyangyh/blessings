@@ -19,7 +19,7 @@
 		
 		<view class="vider_content_two">
 			<view class="vider_content">
-				<view class="content_list" v-for="(item,index) in recommend" :key='item.id' @tap="$jump('../com_page/video_details?id='+item.id)">
+				<view class="content_list" v-for="(item,index) in recommend" :key='item.id' @tap="$jump('../com_page/video_details?id='+item.id+'&type='+item.type)">
 					<view class="list_img_box">
 						<image :src="$api_img()+item.v_pic" mode="scaleToFill"></image>
 					</view>
@@ -67,8 +67,6 @@
 					user_id:this.$store.state.user.id,
 					data:JSON.parse(e.data),
 				},function(self,res){
-					console.log(res)
-					console.log(res.code)
 					self.result_data = res.data.result_des
 					self.recommend = res.data.recommend
 				})
@@ -76,8 +74,6 @@
 				this.service.entire(this,'post',this.APIconfig.api_root.subindex.s_lookSignExam,{
 					id:e.id,
 				},function(self,res){
-					console.log(res)
-					console.log(res.code)
 					self.result_data = res.data.res_des
 					self.recommend = res.data.recommend
 				})

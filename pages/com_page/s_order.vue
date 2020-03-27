@@ -198,7 +198,6 @@
 					s.choice = false
 				}
 				this.coupon_list[index].choice = true
-				console.log(this.coupon_list)
 			},
 			finish(){
 				this.show = false
@@ -213,7 +212,6 @@
 						}
 					}
 				})
-				console.log(this.require_data)
 				this.Index()
 			},
 			Index(){ //下单时间确定
@@ -245,7 +243,6 @@
 					self.shopp = res.data.goods_list
 					self.extension = res.data.extension_data
 					let data = res.data.payment_list
-					console.log(self.shopp)
 					for (let s of data) {
 						s.choice = false
 					}
@@ -281,15 +278,12 @@
 								payment_id:that.payment_id,
 							}
 							let data_list = Object.assign(data,that.require_data)
-							console.log(that.payment_name)
 							that.service.entire(that,'post',that.APIconfig.api_root.com_page.buy_add,data_list,function(self,res){
-								console.log(res)
 								if(res.code == 0){
 									self.service.entire(self,'post',self.APIconfig.api_root.com_page.order_pay,{
 										user_id: that.$store.state.user.id,
 										id:res.data.order.id
 									},function(self,ref){
-										console.log(ref)
 										if(ref.code == 0){
 											self.service.order.apply(self,[ref,that.payment_name,'../subuser/s_order?status=-1'])
 										}else{
@@ -318,11 +312,9 @@
 			}
 		},
 		onLoad(options) {
-			console.log(JSON.parse(options.data))
 			this.options = JSON.parse(options.data)
 			let options_data = JSON.parse(options.data)
 			let require_data
-			console.log()
 			if(options_data.type == 'cart'){   //从购物车进来
 				require_data = {
 					user_id: this.$store.state.user.id,

@@ -119,7 +119,6 @@
 					this.service.entire(this,'get',this.APIconfig.api_root.index.felicity_index,{
 						userid:this.$store.state.user.id
 					},function(self,res){
-						console.log(res)
 						self.top_class = res.data.top_class
 						self.slide = res.data.slide
 						self.id = res.data.top_class[0].id
@@ -132,7 +131,6 @@
 				this.service.entire(this,'get',this.APIconfig.api_root.index.xfClassList,{
 					id:id
 				},function(self,res){
-					console.log(res)
 					self.class_list = res.data.list
 					self.anima = false
 				})

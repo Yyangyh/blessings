@@ -72,7 +72,6 @@
 					user_id:this.$store.state.user.id,
 					money:this.money,
 				},function(self,res){
-					console.log(res)
 					uni.showToast({
 						icon:'none',
 						title:res.msg
@@ -86,7 +85,6 @@
 		},
 		onLoad(e) {
 			//提现
-			console.log(e.deposit)
 			this.deposit = e.deposit
 		}
 	}

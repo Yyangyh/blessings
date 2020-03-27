@@ -139,7 +139,6 @@
 					status:this.show,
 					page:page
 				},function(self,res){
-					console.log(res.data.data)
 					let data = self.data
 					
 					data.push(...res.data.data)

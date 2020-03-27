@@ -98,15 +98,12 @@
 		},
 		methods:{
 			Change(e){
-				console.log('picker发送选择改变，携带值为', e.target.value)
 				this.index = e.target.value
 			},
 			Change_grade(e){
-				console.log('picker发送选择改变，携带值为', e.target.value)
 				this.grade_index = e.target.value
 			},
 			Change_apply(e){
-				console.log('picker发送选择改变，携带值为', e.target.value)
 				this.apply_index = e.target.value
 			},
 			register(){
@@ -149,7 +146,6 @@
 				 	classify:this.apply_list[this.apply_index].id,
 				 	address:this.site,
 				 }
-				 console.log(data)
 				 this.service.entire(this,'post',this.APIconfig.api_root.subclass.c_formData,data,function(self,res){
 				 	uni.showToast({
 				 		icon:'none',
@@ -168,7 +164,6 @@
 		},
 		onShow() {
 			this.service.entire(this,'post',this.APIconfig.api_root.subclass.c_Index,{},function(self,res){
-				console.log(res)
 				self.grade_list = res.data.grade
 				self.apply_list = res.data.apply
 			})

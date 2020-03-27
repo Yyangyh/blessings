@@ -73,15 +73,8 @@
       height: 40rpx;
       width: 40rpx;
 }
-.content .back_img {
-    position: fixed;
-    z-index: 80;
-    top: calc(105rpx + var(--status-bar-height));
-    left: 0;
-    width: 100%;
-}
 .content .back_img image {
-      width: 100%;
+    width: 100%;
 }
 .content .pages {
     background: white;

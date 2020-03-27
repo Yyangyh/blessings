@@ -88,7 +88,6 @@
 		
 		onShow() {
 			this.service.entire(this,'post',this.APIconfig.api_root.subuser.u_distribute,{user_id:this.$store.state.user.id},function(self,res){
-				console.log(self.$store.state.user)
 				self.data = res.data
 			})
 			

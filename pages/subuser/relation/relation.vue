@@ -141,7 +141,6 @@
 					from_mobile:this.phone,
 					my_mobile:this.$store.state.user.mobile
 				},function(self,res){
-					console.log(res.data.invate)
 					uni.showToast({
 						icon:'none',
 						title:res.msg
@@ -159,7 +158,6 @@
 					title:'请输入正确的11位手机号码!'
 				  })
 				}
-				console.log(this.phone)
 			},
 			Index(type){
 				this.cur = type;
@@ -168,9 +166,7 @@
 					type:type,
 					mobile:this.$store.state.user.mobile
 				},function(self,res){
-					console.log(res)
 					self.invateList = res.data.invate
-					console.log(self.invateList)
 				})
 			},
 			
@@ -184,7 +180,6 @@
 				},function(self,res){
 					uni.hideToast()
 					clearTimeout(times)
-					console.log(res)
 					uni.showToast({
 						icon:'none',
 						title:res.msg
@@ -192,10 +187,8 @@
 					if(res.code==0){
 						if(self.invateList[index].is_enabled==1){
 							self.invateList[index].is_enabled=0
-							console.log(self.invateList)
 						}else if(self.invateList[index].is_enabled==0){
 							self.invateList[index].is_enabled=1
-							console.log(self.invateList)
 						}
 						// uni.showToast({
 						// 	icon:'none',

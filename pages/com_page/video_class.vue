@@ -44,7 +44,7 @@
 		
 		<view class="vider_content_two">
 			<view class="vider_content">
-				<view class="content_list" v-for="(item,index) in video_list" :key='item.id' @tap="$jump('./video_details?id='+item.id)">
+				<view class="content_list" v-for="(item,index) in video_list" :key='item.id' @tap="$jump('./video_details?id='+item.id+'&type='+item.type)">
 					<view class="list_img_box">
 						<image :src="$api_img()+item.v_pic" mode="scaleToFill"></image>
 					</view>
@@ -160,7 +160,6 @@
 					let data = self.video_list
 					data.push(...res.data.video_list)
 					self.video_list = data
-					console.log(self.video_list);
 					self.req_data.page += 1
 					self.more = 'more'
 					if (res.data.video_list.length < 10) {//判断是否还有下一页

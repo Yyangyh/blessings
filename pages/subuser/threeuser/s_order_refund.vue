@@ -185,7 +185,6 @@
 								clearTimeout(times)
 								
 						        if(JSON.parse(ref.data).code == 0){
-									console.log(JSON.parse(ref.data))
 									 that.image_list.push(res.tempFilePaths[0])
 									 that.images.push(JSON.parse(ref.data).data.url)
 									 if(that.image_list.length == 3)that.add_show = 2
@@ -247,7 +246,6 @@
 		},
 		
 		onLoad(e) {
-			console.log(e)
 			if(e.id){  //商城订单
 				this.oid = e.oid
 				this.id = e.id
@@ -273,10 +271,8 @@
 				},function(self,res){
 					self.data = res.data
 					self.goods_data = res.data.goods[0]
-					console.log(self.goods_data)
 					self.num = 1
 					self.order_data = res.data.order.order
-					console.log(self.order_data)
 					self.price = res.data.order.order.price
 					self.return_only.push(...res.data.return_only_money_reason)
 					self.return_money.push(...res.data.return_money_goods_reason_list)

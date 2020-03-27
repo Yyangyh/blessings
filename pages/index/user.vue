@@ -246,13 +246,11 @@
 		},	
 		methods:{
 			contact(){
-				console.log(Number(this.latitude))
 				
 				uni.openLocation({
 					latitude: Number(this.latitude),
 					longitude:Number(this.longitude),
 					success: function () {
-						console.log('success');
 					}
 				});
 				    
@@ -270,13 +268,12 @@
 			this.service.entire(this,'post',this.APIconfig.api_root.subuser.u_Company_index,{
 				
 			},function(self,res){
-				console.log(res)
 				self.latitude = res.data.company_info.latitude
 				self.longitude = res.data.company_info.longitude
 			})
 		},
 		onShow() {
-			this.service.notice.call(this)
+			// this.service.notice.call(this)
 			this.service.entire(this,'post',this.APIconfig.api_root.index.u_token,{
 				id:this.$store.state.user.id
 			},function(self,res){

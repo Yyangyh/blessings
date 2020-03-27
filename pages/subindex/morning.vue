@@ -280,7 +280,6 @@
 				} else {
 					iClickIndex = iCol + 4
 				}
-				console.log("点击按钮的序号: " + iClickIndex);
 				if (iClickIndex >= 0 && iClickIndex <= 5) { //处理具体的点击逻辑，此处也可以自行定义逻辑。如果增减了按钮，此处也需要跟着修改
 					var strProvider="",strScene=""
 					switch (iClickIndex) {
@@ -319,10 +318,8 @@
 							summary: strShareSummary,
 							imageUrl: strShareImageUrl,
 							success: function(res) {
-								console.log("success:" + JSON.stringify(res));
 							},
 							fail: function(err) {
-								console.log("fail:" + JSON.stringify(err));
 							}
 						})
 					}
@@ -351,9 +348,7 @@
 				data.morning_id = e.id
 			}
 			this.service.entire(this,'post',this.APIconfig.api_root.subindex.getMorningnew,data,function(self,res){
-				console.log(res)
 				self.data = res.data
-				console.log(self.data)
 			})
 			
 		},
@@ -377,7 +372,7 @@
 		
 		methods: {
 			share(index){
-				strShareUrl ='http://www.wufu-app.com/h5/#/pages/subindex/morning?id='+this.data[index].id
+				strShareUrl ='https://www.wufu-app.com/h5/#/pages/login/reg?code='+this.$store.state.user.invite_code
 				strShareTitle =  this.data[index].name//分享
 				strShareSummary = this.data[index].spoke//分享
 				strShareImageUrl =  this.$api_img() + this.data[index].image//分享
