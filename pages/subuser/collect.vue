@@ -248,7 +248,7 @@
 		background-color: #FFFFFF;
 	}
 	.content{
-		padding-top:  calc(225rpx + var(--status-bar-height));
+		padding-top: 225rpx;
 		padding-bottom: 120rpx;
 	}
 	.top{

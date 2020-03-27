@@ -39,7 +39,7 @@
 		<block v-else>
 			<view class="audo-video"  v-if="play_url">
 				<video id="myAudio" :src="play_url" class="hidden" 
-				:autoplay='true' :initial-time = 'initial_time' @play='play_start' 
+				 :initial-time = 'initial_time' @play='play_start' 
 				@ended='play_end'  @timeupdate="Au_timeupdate" 
 				ref="video" @loadedmetadata="loadedmetadata" 
 				></video>
@@ -369,6 +369,7 @@
 	import load from '../common/load.vue'
 	import share from'../common/share.vue'
 	import Audio from'../../components/wangding-audioQuickPlay/index'
+	const bgAudioMannager = uni.getBackgroundAudioManager();
 	export default{
 		components:{
 			load,
@@ -435,39 +436,8 @@
 				return calcTimer(this.duration)
 			}
 		},
-		onLoad() {
-			const music=uni.requireNativePlugin('Html5app-Music');
-			console.log(music)
-		},
-		created() {
-			 this.videoContext = uni.createVideoContext('myAudio')
-			//  console.log(this.videoContext)
-			//  bgAudioMannager.title = '致爱丽丝';
-			//  bgAudioMannager.singer = '暂无';
-			//  bgAudioMannager.coverImgUrl = 'https://img-cdn-qiniu.dcloud.net.cn/uniapp/audio/music.jpg';
-			//  bgAudioMannager.src = 'https://img-cdn-qiniu.dcloud.net.cn/uniapp/audio/music.mp3';
-			
-			//  music.show({"title":"","image":"","next":true,"last":true},data=>{
-			//      //监听控制条按键点击事件
-			//      switch(data.type)
-			//      {
-			//           case "play":            
-			//           console.log("用户点击通知栏的播放键");             
-			//          break;
-			//          case "next":
-			//            console.log("用户点击通知栏的下一首键")
-			//          break;
-			//          case "last":
-			//            console.log("用户点击通知栏的上一首键")
-			//          break;
-			//          case "close":
-			//             console.log("用户点击通知栏的关闭键")
-			//          break;
-			 
-			//          default:break;
-			//      }
-			//  }); 
-		},
+		
+		
 		methods:{
 			
 			
@@ -483,6 +453,7 @@
 			},
 			// 更新进度条
 			Au_timeupdate(e) {  //音频
+				console.log(e)
 				if(this.lock) return; // 锁
 				// console.log(e)
 				var currentTime,duration;
@@ -740,6 +711,15 @@
 				},function(self,res){
 					self.data = res.data
 					res.data.video.v_url ? self.play_url = self.service.analysis_url(res.data.video.v_url) : self.indexs = 0
+					
+					
+					bgAudioMannager.src = self.play_url
+					bgAudioMannager.onTimeUpdate(function(e){
+						console.log(e)
+					})
+					console.log(bgAudioMannager)
+					// bgAudioMannager.play()
+					
 					self.video_data = res.data.video
 					
 					self.share_arr.Title =  res.data.video.title//分享
@@ -800,8 +780,18 @@
 				
 			}
 		},
+		created() {
+			 this.videoContext = uni.createVideoContext('myAudio')
+			//  console.log(this.videoContext)
+		},
 		onShow() {
-			this.async_n()
+			// bgAudioMannager.title = '致爱丽丝';
+			// bgAudioMannager.singer = '暂无';
+			// bgAudioMannager.coverImgUrl = 'https://img-cdn-qiniu.dcloud.net.cn/uniapp/audio/music.jpg';
+			
+			// bgAudioMannager.onTimeUpdate(function(e){
+			// 	console.log(e)
+			// })
 			this.service.entire(this,'post',this.APIconfig.api_root.com_page.v_evaluate,{ //用户评论
 				userid:this.$store.state.user.id,
 				video_id:this.id,
@@ -811,13 +801,15 @@
 				self.comments = res.data.data
 				for (let s of self.comments) {
 					s.rating_num = new Array(Number(s.grade))
-				}
+				}	
 			})
 		},
 		// onReady: function (res) {
 		// 	this.videoContext = uni.createVideoContext('myVideo')
 		// },
 		onLoad(e) {
+			this.async_n()
+			// const music=uni.requireNativePlugin('Html5app-Music');
 			this.share_arr.Url = 'https://www.wufu-app.com/h5/#/pages/login/reg?code='+this.$store.state.user.invite_code
 			// this.share_arr.Url = 'https://www.wufu-app.com/h5/#/pages/com_page/video_details?id='+e.id+'&type='+e.type
 			this.id = e.id
