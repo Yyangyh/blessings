@@ -155,7 +155,6 @@
         },
         "ad": {},
         "oauth": {
-          "apple": {},
           "weixin": {
             "appid": "wxfa6d980de363757f",
             "appsecret": "a9eed98a6d4477c6c7886208915ea071",
@@ -175,22 +174,7 @@
         }
       }
     },
-    "nativePlugins": {
-      "Html5app-Music": {
-        "__plugin_info__": {
-          "name": "Android 通知栏 音乐控制 插件",
-          "description": "Android 通知栏 音乐控制播放，下一首，上一首 QQ交流群：891416757",
-          "platforms": "Android",
-          "url": "https://ext.dcloud.net.cn/plugin?id=848",
-          "android_package_name": "uni.UNIF2D41E0",
-          "ios_bundle_id": "",
-          "isCloud": true,
-          "bought": 1,
-          "pid": "848",
-          "parameters": {}
-        }
-      }
-    },
+    "nativePlugins": {},
     "allowsInlineMediaPlayback": true,
     "safearea": {
       "background": "#ffffff",

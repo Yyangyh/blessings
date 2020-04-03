@@ -99,7 +99,13 @@
 							title:data.msg
 						})
 						if(data.code == 0){
-							uni.setStorageSync('token',JSON.stringify(data.data.memberInfo))
+							uni.removeStorageSync('openid')
+							uni.removeStorageSync('nickname')
+							that.$store.commit('state_user',data.data.memberInfo)
+							that.$store.commit('state_token',data.token)
+							
+							uni.setStorageSync('state_user',data.data.memberInfo)
+							uni.setStorageSync('state_token',data.token)
 							// #ifdef H5
 							// 	先判断是否在h5打开，再判断是否是在微信浏览器打开
 								let ua = navigator.userAgent.toLowerCase();

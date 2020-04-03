@@ -144,7 +144,7 @@
 					bus_img:this.business.split(this.$api_img())[1],
 					id_right:this.just.split(this.$api_img())[1],
 					id_left:this.back.split(this.$api_img())[1],
-					level_id:this.index + 3
+					level_id:Number(this.index) + 3
 				}
 				uni.navigateTo({
 				    url: './agreement?data=' + JSON.stringify(data)

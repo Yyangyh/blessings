@@ -38,11 +38,11 @@
 		
 		<block v-else>
 			<view class="audo-video"  v-if="play_url">
-				<video id="myAudio" :src="play_url" class="hidden" 
+				<!-- <video id="myAudio" :src="play_url" class="hidden" 
 				 :initial-time = 'initial_time' @play='play_start' 
 				@ended='play_end'  @timeupdate="Au_timeupdate" 
 				ref="video" @loadedmetadata="loadedmetadata" 
-				></video>
+				></video> -->
 				<view class="slider">
 					<view class="slider_img">
 						<image :src="poster" mode="widthFix"></image>
@@ -159,7 +159,7 @@
 			</view>
 			<!-- <view class="catalog" v-for="(item,index) in catalog_data" :key='item.id' @click="chiose_video(index,item.cou_is_free,item.id)"> -->
 			<view class="catalog" v-for="(item,index) in catalog_data" :key='item.id' @click="chiose_video(index,item.cou_is_free,item.id)">
-				<view class="play_status">
+				<view class="play_status"> 
 					<image v-if="indexs === index"  src="../../static/image/com_page/video_HL.png" mode="widthFix"></image>
 					<image  v-else src="../../static/image/com_page/video.png" mode="widthFix"></image>
 					<text>{{item.name}}</text>
@@ -370,6 +370,7 @@
 	import share from'../common/share.vue'
 	import Audio from'../../components/wangding-audioQuickPlay/index'
 	const bgAudioMannager = uni.getBackgroundAudioManager();
+	// const music = uni.requireNativePlugin('Html5app-Music');
 	export default{
 		components:{
 			load,
@@ -444,16 +445,19 @@
 			// 播放
 			play() {
 				this.status = 2
-				this.videoContext.play()
+				bgAudioMannager.play()
+				// this.videoContext.play()
 			},
 			// 暂停
 			stop() {
-				this.videoContext.pause()
+				// this.videoContext.pause()
+				bgAudioMannager.pause()
 				this.status = 1
 			},
 			// 更新进度条
 			Au_timeupdate(e) {  //音频
-				console.log(e)
+				// console.log(e.detail.duration)
+				// console.log( e.detail.currentTime)
 				if(this.lock) return; // 锁
 				// console.log(e)
 				var currentTime,duration;
@@ -486,14 +490,14 @@
 			
 			// 拖动进度条
 			sliderChange(data) {
-				this.videoContext.seek(data.detail.value)
+				bgAudioMannager.seek(data.detail.value)
 			},
 			
 			//拖动中
 			sliderChanging(data) {
 				this.currentTime = data.detail.value
 			},
-			
+			 
 			// 视频加载完成
 			loadedmetadata(data) {
 				this.duration = data.detail.duration
@@ -520,6 +524,7 @@
 				// #endif
 			},
 			timeupdate(e){ //记录播放进度
+				// console.log(e)
 				this.duration_time = e.detail.duration
 				if(this.indexs || this.indexs === 0){
 					if(Math.ceil(e.detail.currentTime) % 10 == 0){ //10s记录一次
@@ -703,6 +708,37 @@
 					}
 				})
 			},
+			// initial-time指定视频初始播放位置 
+			// @pause当暂停播放时  @timeupdate播放进度变化时  @play当开始/继续播放时 
+			// @ended当播放到末尾时
+			initAudio(){
+				let that = this
+				let audio = bgAudioMannager 
+				audio.startTime = this.initial_time  //指定视频初始播放位置
+				if(audio.paused){
+					audio.play()
+				}
+				
+				audio.onPlay(function(){ //视频开始播放时
+					that.play_start.call(this)
+				})
+				audio.onTimeUpdate(function(){  //播放进度变化时
+					let duration = audio.duration
+					let currentTime = audio.currentTime
+					let e = {
+						detail:{
+							duration:duration,
+							currentTime:currentTime
+						}
+					}
+					that.Au_timeupdate.apply(this,[e])
+					
+				})
+				audio.onEnded(function(){  //播放结束时
+					that.status = 1
+					that.play_end.call(this)
+				})
+			},
 			async async_n(){ //需同步请求
 				await this.service.asy_entire(this,'post',this.APIconfig.api_root.com_page.VideoDetail,{ //视频详情
 					video_id:this.id,
@@ -710,15 +746,10 @@
 					mobile:this.$store.state.user.mobile,
 				},function(self,res){
 					self.data = res.data
+					// console.log(res)
 					res.data.video.v_url ? self.play_url = self.service.analysis_url(res.data.video.v_url) : self.indexs = 0
 					
 					
-					bgAudioMannager.src = self.play_url
-					bgAudioMannager.onTimeUpdate(function(e){
-						console.log(e)
-					})
-					console.log(bgAudioMannager)
-					// bgAudioMannager.play()
 					
 					self.video_data = res.data.video
 					
@@ -737,6 +768,7 @@
 					self.collects = res.data.video.collect
 					self.poster = res.data.video.screensaver
 					if(self.video_data.evaluate)self.video_data.stars_num = new Array(Number(self.video_data.evaluate))
+					
 				})
 				
 				await this.service.asy_entire(this,'post',this.APIconfig.api_root.com_page.catalogue,{ //视频目录
@@ -776,22 +808,59 @@
 					
 					self.catalog_data = data
 					self.load_show = false
+					if(self.type == 2){
+						// mp3背景音乐
+						// #ifdef APP-PLUS
+						// console.log(self.poster)
+						bgAudioMannager.title = self.video_data.long_title;
+						bgAudioMannager.singer = self.video_data.name;
+						bgAudioMannager.coverImgUrl = self.poster;
+						bgAudioMannager.src = self.play_url
+						self.initAudio()
+						// #endif
+						// mp3背景音乐
+					}
+					
 				})
 				
 			}
 		},
 		created() {
-			 this.videoContext = uni.createVideoContext('myAudio')
+			 // this.videoContext = uni.createVideoContext('myAudio')
 			//  console.log(this.videoContext)
+			//打开通知栏控制条
+			
 		},
 		onShow() {
 			// bgAudioMannager.title = '致爱丽丝';
 			// bgAudioMannager.singer = '暂无';
 			// bgAudioMannager.coverImgUrl = 'https://img-cdn-qiniu.dcloud.net.cn/uniapp/audio/music.jpg';
 			
-			// bgAudioMannager.onTimeUpdate(function(e){
-			// 	console.log(e)
-			// })
+			// let that = this
+			// console.log(that.poster)
+			// console.log(music)
+			// music.show({"title":"音乐","image":'https://img-cdn-qiniu.dcloud.net.cn/uniapp/audio/music.jpg',"next":true,"last":true},data=>{
+			//     //监听控制条按键点击事件
+			// 	console.log(123)
+			//     switch(data.type)
+			//     {
+			//          case "play":            
+			//          console.log("用户点击通知栏的播放键");             
+			//         break;
+			//         case "next":
+			//           console.log("用户点击通知栏的下一首键")
+			//         break;
+			//         case "last":
+			//           console.log("用户点击通知栏的上一首键")
+			//         break;
+			//         case "close":
+			//            console.log("用户点击通知栏的关闭键")
+			//         break;
+			//         default:break;
+			//     }
+			// }); 
+			
+			
 			this.service.entire(this,'post',this.APIconfig.api_root.com_page.v_evaluate,{ //用户评论
 				userid:this.$store.state.user.id,
 				video_id:this.id,
@@ -808,12 +877,12 @@
 		// 	this.videoContext = uni.createVideoContext('myVideo')
 		// },
 		onLoad(e) {
-			this.async_n()
 			// const music=uni.requireNativePlugin('Html5app-Music');
 			this.share_arr.Url = 'https://www.wufu-app.com/h5/#/pages/login/reg?code='+this.$store.state.user.invite_code
 			// this.share_arr.Url = 'https://www.wufu-app.com/h5/#/pages/com_page/video_details?id='+e.id+'&type='+e.type
 			this.id = e.id
 			this.type = e.type
+			this.async_n()
 			this.service.entire(this,'post',this.APIconfig.api_root.com_page.v_coupon,{ //优惠券列表
 				userid:this.$store.state.user.id,
 				mobile:this.$store.state.user.mobile,
@@ -831,11 +900,13 @@
 			})
 		},
 		onHide(){
-			this.videoContext.pause()
-			this.status = 1
+			// this.videoContext.pause()
+			// this.status = 1
+			
 		},
 		onUnload(){
-			this.videoContext.pause()
+			// this.videoContext.pause()
+			bgAudioMannager.pause()
 			this.status = 1
 		}
 	}

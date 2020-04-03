@@ -248,17 +248,6 @@
 		},
 		onShow() {
 			this.$store.commit('Amodify_login',0)
-			// #ifdef H5
-				//先判断是否在h5打开，再判断是否是在微信浏览器打开
-			
-			let ua = navigator.userAgent.toLowerCase();
-			if (ua.match(/MicroMessenger/i) == "micromessenger") {
-				this.show = 0
-				
-			}else{
-				this.show = 1
-			}
-			// #endif
 		}
 	}
 </script>

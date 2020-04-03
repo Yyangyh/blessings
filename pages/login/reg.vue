@@ -10,7 +10,7 @@
 		</view>
 		<view class="ipt">
 			<image src="../../static/image/login/user.png"  mode=""></image>
-			<input type="text" value="" v-model="username" maxlength="8" placeholder="请输入真实姓名"/>
+			<input type="text" value="" v-model="nickname" maxlength="8" placeholder="请输入真实姓名"/>
 		</view>
 		<view class="ipt">
 			<input type="text" v-model="verify" value="" maxlength="4" placeholder="请输入验证码"/>
@@ -82,6 +82,7 @@
 				pwds:'',
 				verify:'',
 				username:'',
+				nickname:"",
 				parent_id:'',
 				code:'',
 				parent_dis:false,
@@ -149,7 +150,7 @@
 					})
 					return;
 				}
-				if(!that.pwd && !that.parent_id && that.verify && that.username){
+				if(!that.pwd && !that.parent_id && that.verify && that.nickname){
 					uni.showToast({
 						icon:'none',
 						title:'请完整填写注册信息！'
@@ -173,7 +174,8 @@
 				let data_list = {
 					mobile:that.accounts,
 					time:Date.parse(new Date())/1000,//时间戳
-					username:that.username,
+					username:that.accounts,
+					nickname:that.nickname,
 					parent_id:that.parent_id,
 					password:that.pwd,
 					repeat_password:that.pwds,
@@ -185,7 +187,8 @@
 					method:'POST',
 					data:data_list,
 					success(res) {
-						let data = res.data 
+						let data = res.data; 
+						that.show = true;
 						uni.showToast({
 							icon:'none',
 							title:data.msg
@@ -219,7 +222,7 @@
 		},
 		onLoad(options) {
 			// #ifdef H5
-			this.show = true
+			this.show = false
 			// #endif
 			if(options.code){
 				this.parent_dis = true

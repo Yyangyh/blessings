@@ -19,6 +19,7 @@ const entire = function(self,type,url,data,func){
 			}else if(res_list.code == 10){
 				
 				if(self.$store.state.login == 1){
+					uni.clearStorage();
 					uni.reLaunch({
 						url:'/pages/login/login'
 					})
@@ -50,6 +51,7 @@ const asy_entire = function(self,type,url,data,func){ //同步请求
 						uni.setStorageSync('state_token',res_list.data.token)
 	        			asy_entire(self,type,url,data,func)
 	        		}else if(res_list.code == 10){
+						uni.clearStorage();
 	        			uni.reLaunch({
 	        				url:'/pages/login/login'
 	        			})
@@ -88,6 +90,7 @@ const upimg = function(self,upname,url,data,filePath,func){ //上传图片
 				uni.setStorageSync('state_token',res_list.data.token)
 				upimg(self,type,url,data,func)
 			}else if(res_list.code == 10){
+				uni.clearStorage();
 				uni.reLaunch({
 					url:'/pages/login/login'
 				})

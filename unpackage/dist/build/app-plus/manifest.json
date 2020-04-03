@@ -24,6 +24,8 @@
     },
     "Payment": {},
     "Push": {},
+    "OAuth": {},
+    "Share": {},
     "UniNView": {
       "description": "UniNView原生渲染"
     }
@@ -145,11 +147,26 @@
           }
         },
         "payment": {
-          "alipay": {}
+          "alipay": {},
+          "weixin": {
+            "appid": "wxfa6d980de363757f",
+            "UniversalLinks": "https://wufu.wufu-app.com/app.php/Mw==/"
+          }
         },
         "ad": {},
-        "oauth": {},
-        "share": {},
+        "oauth": {
+          "weixin": {
+            "appid": "wxfa6d980de363757f",
+            "appsecret": "a9eed98a6d4477c6c7886208915ea071",
+            "UniversalLinks": "https://wufu.wufu-app.com/app.php/Mw==/"
+          }
+        },
+        "share": {
+          "weixin": {
+            "appid": "wxfa6d980de363757f",
+            "UniversalLinks": "https://wufu.wufu-app.com/app.php/Mw==/"
+          }
+        },
         "audio": {
           "mp3": {
             "description": "Android平台录音支持MP3格式文件"
