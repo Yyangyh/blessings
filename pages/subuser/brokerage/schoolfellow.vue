@@ -147,14 +147,15 @@
 				let req_data = data
 				this.service.entire(this,'post',this.APIconfig.api_root.subuser.u_Subordinate,data,function(self,res){
 					console.log(res)
-					if(req_data.type == 1 && !self.one_num){
-						self.one_num = res.data.total
-					}else if(req_data.type == 2 && !self.two_num){
-						self.two_num = res.data.total
-					}
+					
 					// self.dataList = res.data.data
 					let data = self.dataList
 					if(res.data.data){
+						if(req_data.type == 1 && !self.one_num){
+							self.one_num = res.data.total
+						}else if(req_data.type == 2 && !self.two_num){
+							self.two_num = res.data.total
+						}
 						data.push(...res.data.data)
 						self.dataList = data
 						self.page ++
@@ -190,7 +191,9 @@
 				user_id:this.$store.state.user.id,
 				type:2,
 			},function(self,res){
-				self.two_num = res.data.total
+				if(res.data.data){
+					self.two_num = res.data.total
+				}
 			})
 			
 		},

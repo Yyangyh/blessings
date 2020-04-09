@@ -44,6 +44,14 @@
 			<image class="l_right" src='/static/image/index/go.png' mode="widthFix"></image>
 		</view> -->
 		<hr />
+		<view class="line" @tap="$jump('./binding')">
+			<view class="l_left">
+				<image src='/static/image/subuser/bindingSuper.png' mode="widthFix"></image>
+				<text>绑定上级</text>
+			</view>
+			<image class="l_right" src='/static/image/index/go.png' mode="widthFix"></image>
+		</view> 
+		<hr />
 		<view class="line">
 			<view class="l_left">
 				<image src='/static/image/subuser/set-5.png' mode="widthFix"></image>

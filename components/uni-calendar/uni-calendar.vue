@@ -18,7 +18,7 @@
 				<view class="uni-calendar__header-btn-box" @click="next">
 					<view class="uni-calendar__header-btn uni-calendar--right"></view>
 				</view>
-				<text class="uni-calendar__backtoday" @click="backtoday">回到今天</text>
+				<text class="uni-calendar__backtoday" @click="backtoday">{{cleans?'回到今天':'返回全部'}}</text>
 			</view>
 			<view class="uni-calendar__box">
 				<view v-if="showMonth" class="uni-calendar__box-bg">
@@ -122,7 +122,11 @@
 			showMonth: {
 				type: Boolean,
 				default: true
-			}
+			},
+			cleans:{
+				type: Boolean,
+				default: true
+			},
 		},
 		data() {
 			return {
@@ -200,6 +204,7 @@
 					lunar,
 					extraInfo
 				} = this.calendar
+				console.log(123)
 				this.$emit(name, {
 					range: this.cale.multipleStatus,
 					year,
@@ -219,10 +224,17 @@
 				this.change()
 			},
 			backtoday() {
-				this.cale.setDate(this.date)
-				this.weeks = this.cale.weeks
-				this.nowDate = this.calendar = this.cale.getInfo(this.date)
-				this.change()
+				// console.log(this.cleans)
+				if(this.cleans){
+					this.cale.setDate(this.date)
+					this.weeks = this.cale.weeks
+					this.nowDate = this.calendar = this.cale.getInfo(this.date)
+					this.change()
+				}else{
+					this.$emit('backtoday', false)
+					this.close()
+				}
+				
 			},
 			pre() {
 				const preDate = this.cale.getDate(this.nowDate.fullDate, -1, 'month').fullDate

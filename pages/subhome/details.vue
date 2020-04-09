@@ -188,7 +188,7 @@
 				</view>
 			</view>
 			<button class="save" @click="save()">确定</button>
-			<image class="close" src="../../static/image/secondary/close2.png" mode="widthFix" @click="show = 0"></image>
+			<image class="close" src="../../static/image/subuser/close2.png" mode="widthFix" @click="show = 0"></image>
 		</view>
 		<load v-if="load_show"></load>
 	</view>

@@ -37,13 +37,13 @@
 			<view class="details">
 				<view class="details_content">
 					<text>共1个商品 总额:¥{{item.price}}元</text>
-					<image src="../../static/icon/arrow.png" mode="widthFix"></image>
+					<!-- <image src="../../static/subhome/arrow.png" mode="widthFix"></image> -->
 				</view>
 				<view class="button">
 					<view class="button_content" @click="$jump('./group_details?id='+item.teamid)">
 						查看团详情
 					</view>
-					<image src="../../static/icon/arrow.png" mode="widthFix"></image>
+					<!-- <image src="../../static/subhome/arrow.png" mode="widthFix"></image> -->
 				</view>
 			</view>
 		</view>

@@ -69,6 +69,8 @@
 		    :insert="false"
 		    @confirm="confirm"
 			:showMonth="false"
+			:cleans="false"
+			@backtoday='backtoday'
 		     ></uni-calendar>
 		</view>
 		
@@ -371,15 +373,24 @@
 		},
 		
 		methods: {
-			share(index){
-				strShareUrl ='https://www.wufu-app.com/h5/#/pages/login/reg?code='+this.$store.state.user.invite_code
-				strShareTitle =  this.data[index].name//分享
-				strShareSummary = this.data[index].spoke//分享
-				strShareImageUrl =  this.$api_img() + this.data[index].image//分享
-				nvMask.show()
-				nvImageMenu.show() //5+应支持从底部向上弹出的动画
-			},
-			
+				share(index){
+					strShareUrl ='https://www.wufu-app.com/h5/#/pages/login/reg?code='+this.$store.state.user.invite_code
+					strShareTitle =  this.data[index].name//分享
+					strShareSummary = this.data[index].spoke//分享
+					strShareImageUrl =  this.$api_img() + this.data[index].image//分享
+					nvMask.show()
+					nvImageMenu.show() //5+应支持从底部向上弹出的动画
+				},
+				backtoday(e){
+					if(!e){
+						this.service.entire(this,'post',this.APIconfig.api_root.subindex.getMorningnew,{
+							page:1,
+							user_id:this.$store.state.user.id,
+						},function(self,res){
+							self.data = res.data
+						})
+					}
+				},
 				open(type){
 					this.type = type
 					this.$refs.calendar.open();
@@ -404,6 +415,7 @@
 					// #endif
 				},
 				confirm(e) {  //日历表选择日期时间
+					console.log(e)
 					this.service.entire(this,'post',this.APIconfig.api_root.subindex.getMorningnew,{ //
 						page:1,
 						start_time:new Date(e.fulldate).getTime()/1000,

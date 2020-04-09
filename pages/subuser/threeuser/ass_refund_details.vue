@@ -6,7 +6,7 @@
 		<returns :titles='title'></returns>
 		<view class="order_position">
 			<view class="">
-				<image src="../../../static/image/threeLayers/position.png" mode="widthFix"></image>
+				<image src="../../../static/image/subuser/position.png" mode="widthFix"></image>
 			</view>
 			<view class="posi_one">
 				<view class="">
@@ -37,7 +37,7 @@
 			
 			<view class="news_four" >
 				<view class="" @click="jump('/pages/threeLayers/logistics?id='+data.express_id+'&number='+data.express_number)">
-					<image src="../../../static/image/threeLayers/contact.png" mode="widthFix"></image>
+					<image src="../../../static/image/subuser/contact.png" mode="widthFix"></image>
 					<text>查看物流</text>
 				</view>
 			</view>

@@ -5,7 +5,7 @@
 		</view>
 		<returns :titles='title'></returns>
 		<view class="empty"  v-if="list == ''">
-			<image src="../../static/image/empty.png" mode="widthFix"></image>
+			<image src="/static/image/subuser/empty.png" mode="widthFix"></image>
 			<view class="">
 				暂无评论
 			</view>
@@ -21,29 +21,29 @@
 						<view class="name">
 							<view style="margin-right: 27rpx;">{{item.user.user_name_view}}</view>
 							<view v-if="item.rating==1">
-								<image src="../../static/image/littlestar.png" mode=""></image>
+								<image src="/static/image/subuser/littlestar.png" mode=""></image>
 							</view>
 							<view v-if="item.rating==2">
-								<image src="../../static/image/littlestar.png" mode=""></image>
-								<image src="../../static/image/littlestar.png" mode=""></image>
+								<image src="/static/image/subuser/littlestar.png" mode=""></image>
+								<image src="/static/image/subuser/littlestar.png" mode=""></image>
 							</view>
 							<view v-if="item.rating==3">
-								<image src="../../static/image/littlestar.png" mode=""></image>
-								<image src="../../static/image/littlestar.png" mode=""></image>
-								<image src="../../static/image/littlestar.png" mode=""></image>
+								<image src="/static/image/subuser/littlestar.png" mode=""></image>
+								<image src="/static/image/subuser/littlestar.png" mode=""></image>
+								<image src="/static/image/subuser/littlestar.png" mode=""></image>
 							</view>
 							<view v-if="item.rating==4">
-								<image src="../../static/image/littlestar.png" mode=""></image>
-								<image src="../../static/image/littlestar.png" mode=""></image>
-								<image src="../../static/image/littlestar.png" mode=""></image>
-								<image src="../../static/image/littlestar.png" mode=""></image>
+								<image src="/static/image/subuser/littlestar.png" mode=""></image>
+								<image src="/static/image/subuser/littlestar.png" mode=""></image>
+								<image src="/static/image/subuser/littlestar.png" mode=""></image>
+								<image src="/static/image/subuser/littlestar.png" mode=""></image>
 							</view>
 							<view v-if="item.rating==5">
-								<image src="../../static/image/littlestar.png" mode=""></image>
-								<image src="../../static/image/littlestar.png" mode=""></image>
-								<image src="../../static/image/littlestar.png" mode=""></image>
-								<image src="../../static/image/littlestar.png" mode=""></image>
-								<image src="../../static/image/littlestar.png" mode=""></image>
+								<image src="/static/image/subuser/littlestar.png" mode=""></image>
+								<image src="/static/image/subuser/littlestar.png" mode=""></image>
+								<image src="/static/image/subuser/littlestar.png" mode=""></image>
+								<image src="/static/image/subuser/littlestar.png" mode=""></image>
+								<image src="/static/image/subuser/littlestar.png" mode=""></image>
 							</view>
 						</view>
 						<view class="day">

@@ -8,7 +8,7 @@
 			<text>导师考证</text>
 			<text @tap="$jump('./certificateList')">我的证书</text>
 		</view>
-		<image class="t_image" src="../../static/image/subclass/background.png " mode="widthFix"></image>
+		<image class="t_image" src="/static/image/subclass/background.png " mode="widthFix"></image>
 		<view class='t_text'>
 			<view class="text1">学习打卡积分满10000分 </view>
 			<view class="text2">可立即申请证书</view>

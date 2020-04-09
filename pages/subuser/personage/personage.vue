@@ -10,11 +10,14 @@
 			<text>个人资料</text>
 		</view>	 -->
 		<returns :titles='title'></returns>
-		<view class="box_top"  :style="{backgroundImage: 'url('+back+')',backgroundSize: '100% 100%'}" >
-			<view class="photo_box">
-				<image class="photo" :src="$api_img()+user.avatar" mode="scaleToFill"></image>
+		<view class="box_top">
+			<view class="back_content">
+				<view class="photo_box">
+					<image class="photo" :src="$api_img()+user.avatar" mode="scaleToFill"></image>
+				</view>
+				<view @click="reveal">修改头像</view>
 			</view>
-			<view @click="reveal">修改头像</view>
+			<image class="back_img" src="../../../static/image/subuser/back.png" mode="widthFix"></image>
 		</view>
 		<view class="per_box">
 			
@@ -62,7 +65,6 @@
 
 <script>
 	import { mapState } from 'vuex'
-	import Back from '../../../static/image/subuser/back.png'
 	import returns from '../../common/returns.vue'
 		export default{
 			components:{
@@ -70,7 +72,6 @@
 			},
 			data(){
 				return{
-					back:Back,
 					title:'个人资料',
 				}
 			},
@@ -121,27 +122,42 @@
 	.content{
 		.box_top{
 			height: 304rpx;
+			position: relative;
 			width: 100%;
 			display: flex;
 			flex-direction: column;
 			justify-content: center;
 			color: #fff;
-			.photo_box{
-				width: 120rpx;
-				height: 120rpx;
-				display: block;
-				margin: 0 auto ;
-				border-radius: 50%;
-				overflow: hidden;
-				.photo{
-					height: 100%;
-					width: 100%;
-				}
+			.back_img{
+				position: absolute;
+				width: 100%;
+				top: 0;
+				left: 0;
+				z-index: 10;
 			}
-			view{
-				font-size: 24rpx;
-				text-align: center;
-				margin-top: 5rpx;
+			.back_content{
+				z-index: 100;
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 100%;
+				.photo_box{
+					width: 120rpx;
+					height: 120rpx;
+					display: block;
+					margin: 0 auto ;
+					border-radius: 50%;
+					overflow: hidden;
+					.photo{
+						height: 100%;
+						width: 100%;
+					}
+				}
+				view{
+					font-size: 24rpx;
+					text-align: center;
+					margin-top: 5rpx;
+				}
 			}
 		}
 		.per_box{

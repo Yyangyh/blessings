@@ -27,7 +27,7 @@
 				<image v-if="dataList.is_lighten == -1" class="t_right" src="/static/image/com_page/collect.png" mode="widthFix" @tap="collection"></image>
 				<image v-else-if="dataList.is_lighten == 1"  class="t_right" src="../../static/image/com_page/collect_HL.png" mode="widthFix"  @tap="collection" ></image>
 			</view>
-			<view class="rich" v-if="video_content">
+			<view class="rich" v-if="video_content"  @tap="jump">
 				<rich-text :nodes="video_content"></rich-text>
 			</view>
 		</view>
@@ -128,6 +128,20 @@
 			}
 		},
 		methods:{
+			jump(){
+				if(this.dataList.jump_type == 0) return
+				if(this.dataList.jump_type == 1){
+					uni.navigateTo({
+						url:'../com_page/video_details?'+this.dataList.jump_url
+					})
+				}
+				if(this.dataList.jump_type == 2){
+					uni.navigateTo({
+						url:'../subhome/details?'+this.dataList.jump_url
+					})
+				}
+				
+			},
 			tips(){ //分享
 				// #ifdef H5
 				uni.showModal({

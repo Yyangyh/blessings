@@ -29,11 +29,11 @@
 				
 				<view class="operat">
 					<view class="write">
-						<image src="../../static/image/threeLayers/write.png" mode="widthFix"></image>
+						<image src="../../static/image/subuser/write.png" mode="widthFix"></image>
 						<text @click="jump('./threeuser/add_addto?id='+item.id)">编写</text>
 					</view>
 					<view class="delete" @click="deletes(item.id,index)">
-						<image src="../../static/image/threeLayers/delete.png" mode="widthFix"></image>
+						<image src="../../static/image/subuser/delete.png" mode="widthFix"></image>
 						<text>删除</text>
 					</view>
 				</view>

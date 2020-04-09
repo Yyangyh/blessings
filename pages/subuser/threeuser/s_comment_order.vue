@@ -7,11 +7,11 @@
 		<view v-for="(item,index) in data" :key="index">
 			<view class="goods">
 				<view class="shop">
-					<image src="../../static/image/secondary/shop.png" mode=""></image>
+					<image src="/static/image/subuser/shop.png" mode=""></image>
 					<view class="shop_name">
 						店铺名
 					</view>
-					<image src="../../static/image/arrowright.png" mode=""></image>
+					<image src="/static/image/subuser/arrowright.png" mode=""></image>
 				</view>
 				<view class="goods_detail">
 					<image :src="item.images" mode=""></image>

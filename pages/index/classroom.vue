@@ -6,7 +6,7 @@
 		<search :type='3'></search>
 		<view class="swiper_box" v-if="slide">
 			<swiper class="swiper" :indicator-dots="indicatorDots" :autoplay="autoplay" :interval="interval" :duration="duration">
-				<swiper-item v-for="(item,index) in slide" :key='item.id' >
+				<swiper-item v-for="(item,index) in slide" :key='item.id'  @tap="Tjump(item.event_value)">
 					<view class="swiper-item uni-bg-red">
 						<image :src="$api_img() + item.images_url" mode="widthFix"></image>
 					</view>
@@ -100,6 +100,13 @@
 			}
 		},
 		methods:{
+			Tjump(data){
+				if(data){
+					uni.navigateTo({
+						url:'../com_page/video_details?'+data
+					})
+				}
+			},
 			chiose(index){
 				if(this.top_class[index].action == 1){
 					let that = this
@@ -155,6 +162,7 @@
 	.content{
 		/* padding-top: 0; */
 		background: #e4e4e4;
+		// padding-top: var(--status-bar-height);
 	}
 	.swiper_box{
 		padding: 0 20rpx;

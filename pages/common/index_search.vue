@@ -1,5 +1,5 @@
 <template>
-	<view class="content">
+	<view class="">
 		<view class="content_top">
 			<view class="top_search" @tap="$jump('/pages/com_page/v_search?type='+type)">
 				<!-- <input type="text" value="" placeholder="请输入关键词搜索" /> -->
@@ -37,7 +37,7 @@
 
 <style lang="scss">
 	.content {
-		padding-top: 0;
+		// padding-top: 0;
 	}
 	.content_top{
 		position: fixed;

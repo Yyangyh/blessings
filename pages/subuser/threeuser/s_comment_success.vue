@@ -6,7 +6,7 @@
 		<returns :titles='title'></returns>
 		<view class="all">
 			<view class="success">
-				<image src="../../static/image/gou.png" mode=""></image>
+				<image src="/static/image/subuser/gou.png" mode=""></image>
 				<view>评论成功</view>
 			</view>
 			<view class="word">

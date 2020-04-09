@@ -295,6 +295,16 @@
 			}
 		},
 		{
+			"path": "pages/subuser/customer",
+			"style": {
+				"navigationBarTitleText": "联系客服",
+				"app-plus":{
+					"titleNView":false
+				}
+			}
+		},
+		
+		{
 			"path": "pages/subuser/myorder",
 			"style": {
 				"navigationBarTitleText": "我的订单",
@@ -724,7 +734,17 @@
 					"titleNView":false
 				}
 			}
-		},{
+		},
+		{
+			"path": "pages/subuser/setting/binding",
+			"style": {
+				"navigationBarTitleText": "绑定上级",
+				"app-plus":{
+					"titleNView":false
+				}
+			}
+		},
+		{
 			"path": "pages/subuser/setting/cellPhone",
 			"style": {
 				"navigationBarTitleText": "修改手机号",

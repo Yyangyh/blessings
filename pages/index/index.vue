@@ -7,7 +7,7 @@
 		
 		<view class="swiper_box">
 			<swiper class="swiper" :indicator-dots="indicatorDots" :autoplay="autoplay" :interval="interval" :duration="duration">
-				<swiper-item v-for="(item,index) in swiper_list" :key='item.id' >
+				<swiper-item v-for="(item,index) in swiper_list" :key='item.id'  @tap="Tjump(item.event_value)">
 					<view class="swiper-item uni-bg-red">
 						<image :src="$api_img() + item.images_url" mode="widthFix"></image>
 					</view>
@@ -202,7 +202,7 @@
 				this.eject_show = true
 			}else{
 				var timestamp = (new Date()).getTime()
-				if(timestamp - uni.getStorageSync('start_notice') > 43200000){ //12小时显示一次
+				if(timestamp - uni.getStorageSync('start_notice') > 1800000){ //半小时显示一次
 					this.eject_show = true
 					uni.setStorageSync('start_notice',timestamp)
 				}else{
@@ -218,6 +218,13 @@
 				uni.switchTab({
 					url:url
 				})
+			},
+			Tjump(data){
+				if(data){
+					uni.navigateTo({
+						url:'../com_page/video_details?'+data
+					})
+				}
 			},
 			async Index_requ(){ //首页需同步请求，否则会导致token更新不及时返回到登录页
 				await this.service.asy_entire(this,'post',this.APIconfig.api_root.index.index,{ //首页信息
@@ -375,7 +382,7 @@
 
 <style lang="scss">
 	.content {
-		/* padding-top: 0; */
+		// padding-top: var(--status-bar-height);
 	}
 	.swiper_box{
 		padding: 0 20rpx;

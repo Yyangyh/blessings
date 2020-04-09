@@ -16,6 +16,71 @@
 				// });
 				// return false
 			// }
+			
+			// if(window.location.href.split('http://').length > 1){
+				// let url = window.location.href.split('https://')[1]
+				// window.location.href = 'wufu://'+url
+			// }
+			// window.location.href = 'www.baidu.com'
+			// console.log(window.location.href.split('http://'))
+			
+			// let getBrower=function(){
+			// 	let browser={
+			// 	  versions:function(){
+			// 			var u = navigator.userAgent, app = navigator.appVersion;
+			// 			  return {
+			// 				  trident: u.indexOf('Trident') > -1, //IE内核
+			// 				  presto: u.indexOf('Presto') > -1, //opera内核
+			// 				  webKit: u.indexOf('AppleWebKit') > -1, //苹果、谷歌内核
+			// 				  gecko: u.indexOf('Gecko') > -1 && u.indexOf('KHTML') == -1,//火狐内核
+			// 				  mobile: !!u.match(/AppleWebKit.*Mobile.*/), //是否为移动终端
+			// 				  ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端
+			// 				  android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1, //android终端或者uc浏览器
+			// 				  iPhone: u.indexOf('iPhone') > -1 , //是否为iPhone或者QQHD浏览器
+			// 				  iPad: u.indexOf('iPad') > -1, //是否iPad
+			// 				  webApp: u.indexOf('Safari') == -1, //是否web应该程序，没有头部与底部
+			// 				  weixin: u.indexOf('MicroMessenger') > -1, //是否微信 （2015-01-22新增）
+			// 				  qq: u.match(/\sQQ/i) == " qq" //是否QQ
+			// 		  };
+			// 	  }(),
+			// 		language:(navigator.browserLanguage || navigator.language).toLowerCase()
+			// 	}
+			// 	return browser.versions
+			//  }
+			
+			//        let timeout=2300
+			//       //  let timer=null
+			//        let brower=getBrower()
+			// 	   uni.showToast({
+			// 			icon:'none',
+			// 			title:JSON.stringify(brower)
+			// 	   })
+			//       //  alert(brower)
+			//       // //  let u=navigator.userAgent
+			//        if(brower.weixin||brower.qq){
+			//          uni.showToast({
+			//          	icon:'none',
+			// 			title:'请在浏览器中打开'
+			//          })
+			//          return
+			//        }
+			//         //  alert(androidShema)
+			// 	   let startTime=Date.now();
+			// 	   let ifr = document.createElement('iframe');
+			// 		ifr.src = 'wufu://'+url;//这里是唤起App的协议，有Android可爱的同事提供
+			// 		ifr.style.display = 'none';
+			// 		document.body.appendChild(ifr);
+			// 		this.timer = setTimeout(function() {
+			// 			var endTime = Date.now();
+			// 			if(!startTime || endTime - startTime < timeout + 500) {
+			// 				document.body.removeChild(ifr);
+			// 				// window.open("唤起失败跳转的链接");
+			// 				window.location.href = 'https://ios.8396048.com/0318/packet/wufu.apk';
+			// 			}
+			// 		}, timeout);
+			
+			
+			
 			// #endif
 			
 			
@@ -44,7 +109,15 @@
 			
 		},
 		onShow: function() {
-			
+			// #ifdef APP-PLUS
+			var args= plus.runtime.arguments;  
+			    if(args){  
+			        // 处理args参数，如直达到某新页面等  
+					uni.reLaunch({
+						url:args
+					})
+			}  
+			// #endif
 		},
 		onHide: function() {
 			console.log('App Hide')

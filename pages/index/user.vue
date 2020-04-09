@@ -3,66 +3,70 @@
 		<view class="status_bar">
 			
 		</view>
-		<view class="user_top" :style="{backgroundImage: 'url('+back+')',backgroundSize: '100% 100%'}">
-			<view class="top_one">
-				<image src="../../static/image/index/set.png" mode="widthFix" @tap="$jump('../subuser/setting/setting')"></image>
-				<!-- <view class="top_img" @click="$jump('/pages/com_page/notice')">
-					<image src="../../static/image/index/user_news.png" mode="widthFix"></image>
-					<view v-if="$store.state.notice"></view>
-				</view> -->
-				<view class="top_img" @tap="$jump('../subuser/setting/setting')">
-					设置
+		<view class="user_top">
+			<view class="back_content">
+				<view class="top_one">
+					<image src="../../static/image/index/set.png" mode="widthFix" @tap="$jump('../subuser/setting/setting')"></image>
+					<!-- <view class="top_img" @click="$jump('/pages/com_page/notice')">
+						<image src="../../static/image/index/user_news.png" mode="widthFix"></image>
+						<view v-if="$store.state.notice"></view>
+					</view> -->
+					<view class="top_img" @tap="$jump('../subuser/setting/setting')">
+						设置
+					</view>
+				</view>
+				<view class="top_two">
+					<view class="two_left" @tap="$jump('../subuser/personage/personage')">
+						<image :src="$api_img()+user.avatar" mode="scaleToFill"></image>
+					</view>
+					
+					<view class="two_mid">
+						<view class="mid_top">
+							{{user.username?user.username:user.nickname}}
+						</view>
+						<view class="mid_bottom">
+							<!-- <image src="../../static/image/index/member.png" mode="widthFix"></image> -->
+							<image :src="user.level_icon ? $api_img()+user.level_icon: '../../static/image/index/member.png'" mode="widthFix"></image>
+							<text>{{user.level_name}}</text>
+						</view>
+					</view>
+					<!-- <view class="two_right">
+						<view class="">
+							<image src="../../static/image/index/real_name.png" mode="widthFix"></image>
+							<text>实名认证</text>
+							<image src="../../static/image/index/go1.png" mode="widthFix"></image>
+						</view>
+					</view> -->
+					<view class="code" v-if="user.invite_code" @longpress="copy(user.invite_code)">
+						<view class="">
+							邀请码：
+						</view>
+						<view class="">
+							{{user.invite_code}}
+						</view>
+					</view>
+				</view>
+				<view class="top_three">
+					<view class="three_list" @tap="$jump('../subuser/balance')">
+						<view class="">
+							{{user.money ? user.money : '0'}}
+						</view>
+						<view class="">
+							余额
+						</view>
+					</view>
+					<view class="three_list"  @tap="$jump('../subuser/integral/integral')">
+						<view class="">
+							{{user.integral}}
+						</view>
+						<view class="">
+							积分
+						</view>
+					</view>
 				</view>
 			</view>
-			<view class="top_two">
-				<view class="two_left" @tap="$jump('../subuser/personage/personage')">
-					<image :src="$api_img()+user.avatar" mode="scaleToFill"></image>
-				</view>
-				
-				<view class="two_mid">
-					<view class="mid_top">
-						{{user.username?user.username:user.nickname}}
-					</view>
-					<view class="mid_bottom">
-						<!-- <image src="../../static/image/index/member.png" mode="widthFix"></image> -->
-						<image :src="user.level_icon ? $api_img()+user.level_icon: '../../static/image/index/member.png'" mode="widthFix"></image>
-						<text>{{user.level_name}}</text>
-					</view>
-				</view>
-				<!-- <view class="two_right">
-					<view class="">
-						<image src="../../static/image/index/real_name.png" mode="widthFix"></image>
-						<text>实名认证</text>
-						<image src="../../static/image/index/go1.png" mode="widthFix"></image>
-					</view>
-				</view> -->
-				<view class="code" v-if="user.invite_code">
-					<view class="">
-						邀请码：
-					</view>
-					<view class="">
-						{{user.invite_code}}
-					</view>
-				</view>
-			</view>
-			<view class="top_three">
-				<view class="three_list" @tap="$jump('../subuser/balance')">
-					<view class="">
-						{{user.money ? user.money : '0'}}
-					</view>
-					<view class="">
-						余额
-					</view>
-				</view>
-				<view class="three_list"  @tap="$jump('../subuser/integral/integral')">
-					<view class="">
-						{{user.integral}}
-					</view>
-					<view class="">
-						积分
-					</view>
-				</view>
-			</view>
+			
+			<image class="back_img" src="../../static/image/index/back.png" mode="widthFix"></image>
 		</view>
 		
 		<!-- <view class="user_vip"  @tap="$jump('../subuser/member/member')" v-if="user.level_id != 6">
@@ -132,7 +136,7 @@
 						每日签到
 					</view>
 				</view>
-				<view class="tab_list"  @tap="temporary">
+				<view class="tab_list"   @tap="$jump('../subuser/customer')">
 					<image src="../../static/image/index/customer.png" mode="widthFix"></image>
 					<view class="">
 						在线客服
@@ -226,14 +230,13 @@
 </template>
 
 <script>
+	import js_sdk from '../../js_sdk/ican-H5Api/ican-H5Api.js'
 	import { mapState } from 'vuex'
-	import Back from '../../static/image/index/back.png'
 	export default{
 		data() {
 			return {
 				latitude:'',
 				longitude:'',
-				back:Back
 			}
 		},
 		computed: {
@@ -255,6 +258,17 @@
 				});
 				    
 				
+			},
+			copy(data) {
+				uni.setClipboardData({
+					data: data,
+					success: function(res) {
+						uni.showToast({
+							icon: 'none',
+							title: '邀请码复制成功!'
+						})
+					}
+				})
 			},
 			temporary(){
 				uni.showToast({
@@ -304,96 +318,112 @@
 	.user_top{
 		color: #fff;
 		padding: 40rpx 0;
-		background:linear-gradient(90deg,rgba(247,76,74,1),rgba(245,110,106,1));
-		.top_one{
-			display: flex;
-			justify-content: flex-end;
-			align-items: center;
-			image{
-				height: 50rpx;
-				width: 50rpx;
-				margin-right: 23rpx;
-			}
-			.top_img{
-				padding-right: 30rpx;
-				font-size: 28rpx;
-			}
-		}
-		.top_two{
-			display: flex;
-			align-items: center;
-			padding-left: 54rpx;
-			font-size: 32rpx;
-			position: relative;
-			.two_left{
-				height: 100rpx;
-				width: 100rpx;
-				margin-right: 25rpx;
-				border-radius: 50%;
-				overflow: hidden;
-				image{
-					height: 100%;
-					width: 100%;
-				}
-			}
-			.two_mid{
-				height: 90rpx;
+		position: relative;
+		height: 300rpx;
+		.back_content{
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			z-index: 100;
+			.top_one{
 				display: flex;
-				justify-content: space-between;
-				flex-direction: column;
-				.mid_bottom{
-					display: flex;
-					align-items: center;
-					justify-content: center;
-					font-size: 24rpx;
-					padding: 0 10rpx;
-					height: 36rpx;
-					border-radius: 36rpx;
-					background: rgba(255,255,255,.3);
-				}
+				justify-content: flex-end;
+				align-items: center;
 				image{
-					height: 24rpx;
-					width: 24rpx;
+					height: 50rpx;
+					width: 50rpx;
+					margin-right: 23rpx;
+				}
+				.top_img{
+					padding-right: 30rpx;
+					font-size: 28rpx;
 				}
 			}
-			.code{
-				font-size: 28rpx;
-				position: absolute;
-				right: 40rpx;
-				top: 50%;
-				transform: translateY(-50%);
-			}
-			.two_right{
-				height: 90rpx;
-				margin-left: 15rpx;
-				view{
-					display: flex;
-					align-items: center;
-					justify-content: center;
-					font-size: 24rpx;
-					height: 35rpx;
-					border-radius: 35rpx;
-					width: 170rpx;
-					background: rgba(255,255,255,.3);
-					text{
-						margin: 0 10rpx;
+			.top_two{
+				display: flex;
+				align-items: center;
+				padding-left: 54rpx;
+				font-size: 32rpx;
+				position: relative;
+				.two_left{
+					height: 100rpx;
+					width: 100rpx;
+					margin-right: 25rpx;
+					border-radius: 50%;
+					overflow: hidden;
+					image{
+						height: 100%;
+						width: 100%;
 					}
 				}
-				image{
-					height: 24rpx;
-					width: 24rpx;
+				.two_mid{
+					height: 90rpx;
+					display: flex;
+					justify-content: space-between;
+					flex-direction: column;
+					.mid_bottom{
+						display: flex;
+						align-items: center;
+						justify-content: center;
+						font-size: 24rpx;
+						padding: 0 10rpx;
+						height: 36rpx;
+						border-radius: 36rpx;
+						background: rgba(255,255,255,.3);
+					}
+					image{
+						height: 24rpx;
+						width: 24rpx;
+					}
+				}
+				.code{
+					font-size: 28rpx;
+					position: absolute;
+					right: 40rpx;
+					top: 50%;
+					transform: translateY(-50%);
+				}
+				.two_right{
+					height: 90rpx;
+					margin-left: 15rpx;
+					view{
+						display: flex;
+						align-items: center;
+						justify-content: center;
+						font-size: 24rpx;
+						height: 35rpx;
+						border-radius: 35rpx;
+						width: 170rpx;
+						background: rgba(255,255,255,.3);
+						text{
+							margin: 0 10rpx;
+						}
+					}
+					image{
+						height: 24rpx;
+						width: 24rpx;
+					}
+				}
+			}
+			.top_three{
+				display: flex;
+				.three_list{
+					width: 50%;
+					font-size: 28rpx;
+					padding-top: 30rpx;
+					text-align: center;
 				}
 			}
 		}
-		.top_three{
-			display: flex;
-			.three_list{
-				width: 50%;
-				font-size: 28rpx;
-				padding-top: 30rpx;
-				text-align: center;
-			}
+		.back_img{
+			position: absolute;
+			width: 100%;
+			height: 100%;
+			top: 0;
+			z-index: 1;
 		}
+		
 	}
 	
 	/* .user_top .top_two .two_right image:nth-of-type(2){

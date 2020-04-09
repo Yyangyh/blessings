@@ -1,6 +1,6 @@
 // const api ='http://192.168.0.195:8990'
-// const api ='https://www.wufu-app.com'
-const api = ''
+const api ='https://www.wufu-app.com'
+// const api = ''
 
 const api_root = {
 	common:{
@@ -170,6 +170,7 @@ const api_root = {
 		
 		psdReset:api+'/api/member/psdReset',//密码重置
 		resetPhone:api+'/api/member/resetPhone',//手机重置
+		BingReferrer:api+'/api/distribute/BingReferrer',//绑定上级
 		
 	},
 	subindex:{

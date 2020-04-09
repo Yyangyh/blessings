@@ -39,7 +39,7 @@
 		</view>
 		
 		<view class="choice_city" :class="show===0 ? 'mask_none' : show===1 ? 'mask_show' : ''">
-			<image src="../../static/image/secondary/close2.png" mode="widthFix" @click="show = 0"></image>
+			<image src="/static/image/subuser/close2.png" mode="widthFix" @click="show = 0"></image>
 			<view class="ci_test1">
 				请选择
 			</view>
