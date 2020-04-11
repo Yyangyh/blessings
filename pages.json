@@ -28,7 +28,15 @@
 				}
 			}
 		},
-		
+		{
+			"path": "pages/login/agreement",
+			"style": {
+				"navigationBarTitleText": "用户须知",
+				"app-plus":{
+					"titleNView":false
+				}
+			}
+		},
 		{
 			"path": "pages/index/classroom",
 			"style": {

@@ -746,9 +746,9 @@
 					mobile:this.$store.state.user.mobile,
 				},function(self,res){
 					self.data = res.data
-					// console.log(res)
-					res.data.video.v_url ? self.play_url = self.service.analysis_url(res.data.video.v_url) : self.indexs = 0
+					console.log(res.data.video.v_url)
 					
+					res.data.video.v_url ? self.play_url = self.service.analysis_url(res.data.video.v_url) : self.indexs = 0
 					
 					
 					self.video_data = res.data.video
@@ -757,18 +757,14 @@
 					self.share_arr.Summary =  res.data.video.long_title//分享
 					self.share_arr.ImageUrl = self.$api_img() + res.data.video.v_pic//分享
 					
-					
-					
 					let richtext=  res.data.video.video_content
 					const regex = new RegExp('<img', 'gi');
-					richtext= richtext.replace(regex, `<img style="max-width: 100%;"`);
-					self.video_content = richtext;
-					
+					self.video_content = richtext.replace(regex, `<img style="max-width: 100%;"`);
 					
 					self.collects = res.data.video.collect
 					self.poster = res.data.video.screensaver
 					if(self.video_data.evaluate)self.video_data.stars_num = new Array(Number(self.video_data.evaluate))
-					
+					console.error(self.play_url)
 				})
 				
 				await this.service.asy_entire(this,'post',this.APIconfig.api_root.com_page.catalogue,{ //视频目录

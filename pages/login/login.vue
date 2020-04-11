@@ -46,9 +46,15 @@
 						<image src="../../static/image/login/wx.png" mode="widthFix" @click="wx()"></image>
 					</view>
 					<!-- #endif -->
+					<view class="agreement" @tap="jump('./agreement')">
+						《用户协议和隐私政策》
+					</view>
 				</view>
+				
 			</view>
 		</view>
+		
+		
 		<view class="Mask" v-show="treaty_show == true" @click="treaty_show = false">
 			
 		</view>
@@ -226,10 +232,7 @@
 				}else{
 					this.agree.call(this)
 				}
-				// // #ifdef H5
-				// 	uni.setStorageSync('wxlogin','wxlogin')
-				// 	window.location.href = this.service.api_root.common.Auth
-				// // #endif
+				
 				
 				
 				
@@ -360,6 +363,12 @@
 	.mode image{
 		width: 80rpx;
 		height: 80rpx;
+	}
+	.agreement{
+		margin-top: 30rpx;
+		color: #fff;
+		font-size: 28rpx;
+		text-align: center;
 	}
 	.Mask{
 		position: fixed;

@@ -202,7 +202,7 @@
 				this.eject_show = true
 			}else{
 				var timestamp = (new Date()).getTime()
-				if(timestamp - uni.getStorageSync('start_notice') > 1800000){ //半小时显示一次
+				if(timestamp - uni.getStorageSync('start_notice') > 600000){ //十分钟显示一次
 					this.eject_show = true
 					uni.setStorageSync('start_notice',timestamp)
 				}else{
@@ -211,7 +211,6 @@
 			}
 			this.Index_requ()
 			// this.service.notice.call(this)
-			
 		},
 		methods: {
 			jump(url){
@@ -265,7 +264,7 @@
 						})
 					}else if(type == 'shipin'){ //视频
 						uni.navigateTo({
-							url:'../com_page/video_details?type=1&id='+id
+							url:'../com_page/video_details?'+id
 						})
 					}else if(type == 'huodong'){ //活动
 						uni.navigateTo({

@@ -57,7 +57,9 @@
                 "schemes" : "wufu"
             },
             /* ios打包配置 */
-            "ios" : {},
+            "ios" : {
+                "urltypes" : "wufu"
+            },
             /* SDK配置 */
             "sdkConfigs" : {
                 "maps" : {
