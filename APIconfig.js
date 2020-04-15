@@ -1,4 +1,4 @@
-// const api ='http://192.168.0.195:8990'
+// const api ='http://192.168.0.108:8990'
 // const api ='https://www.wufu-app.com'
 const api = ''
 
@@ -6,6 +6,7 @@ const api_root = {
 	common:{
 		UnRead: api+'/api/message/UnRead',//消息未读总数
 		getWxLogin: api+'/api/member/getWxLogin',//微信登录
+		getNewApk: api+'/api/user/getNewApk',//版本更新
 	},
 	login:{
 		register: api+'/api/member/register',//注册

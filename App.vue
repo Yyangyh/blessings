@@ -5,10 +5,28 @@
 			
 			console.log('App Launch')
 			
+			// #ifdef APP-PLUS
+			var req = { //升级检测数据  
+				"version": plus.runtime.version,
+				'type':uni.getSystemInfoSync().platform == 'android' ? '1': '2'
+			};  
+			uni.request({  
+				url: this.APIconfig.api_root.common.getNewApk,  
+				data: req,  
+				success: (res) => {
+					console.log(res)
+					
+					if (res.data.data) {  
+						
+						plus.runtime.openURL(res.data.data);
+					}
+				}  
+			}) 
+			// #endif
+			
+			
 			
 			// #ifdef H5
-			
-			
 			let url = window.location.href.split('https://')[1]
 			let getBrower=function(){
 				let browser={

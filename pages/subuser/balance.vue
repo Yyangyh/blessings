@@ -159,7 +159,7 @@
 						if(res.code == 0){
 							setTimeout(function(){
 								uni.switchTab({
-									url:'../../index/user'
+									url:'/pages/index/user'
 								})
 							},1000)
 						}
@@ -168,10 +168,18 @@
 				
 			},
 			onLoad(e) {
-				
 				this.service.entire(this,'post',this.APIconfig.api_root.subuser.threeuser.u_cashauthinfo,{
 						user_id:this.user.id
 					},function(self,res){
+						if(res.code == -1){
+							uni.showToast({
+								icon:'none',
+								title:res.msg
+							})
+							setTimeout(function(){
+								this.service.returns()
+							},1500)
+						}
 						self.fee = res.data.fee
 				})
 				

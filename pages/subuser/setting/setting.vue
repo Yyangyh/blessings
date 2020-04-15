@@ -52,13 +52,16 @@
 			<image class="l_right" src='/static/image/index/go.png' mode="widthFix"></image>
 		</view> 
 		<hr />
+		<!-- #ifdef APP-PLUS -->
 		<view class="line">
 			<view class="l_left">
 				<image src='/static/image/subuser/set-5.png' mode="widthFix"></image>
-				<text>版本</text>
+				<text>版本{{edition}}</text>
 			</view>
-			<view class="l_right"></view>
+			<image class="l_right" src='/static/image/index/go.png' mode="widthFix"></image>
 		</view>
+		<hr />
+		<!-- #endif -->
 		<button @tap="signout">退出登录</button>
 	</view>
 </template>
@@ -69,10 +72,16 @@
 		components:{
 			returns
 		},
+		comments:{
+			edition(){
+				// #ifdef APP-PLUS
+				return plus.runtime.version
+				// #endif
+			}
+		},
 		data(){
 			return{
 				title:'设置',
-				
 			}
 		},
 		methods:{

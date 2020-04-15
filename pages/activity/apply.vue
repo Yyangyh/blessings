@@ -17,14 +17,14 @@
 			</view>
 		</view>
 		<view class="information">
-			<form>
-				<view class=""><text>姓名：</text><input type="text" placeholder="请输入姓名" v-model="name"></view>
+			<!-- <form> -->
+				<view class=""><text>姓名：</text><input type="text" placeholder="请输入姓名" v-model="name" /></view>
 				<hr />
-				<view class=""><text>手机号码：</text><input type="text" placeholder="请输入手机号码" v-model="phone" value></view>
+				<view class=""><text>手机号码：</text><input type="text" placeholder="请输入手机号码" v-model="phone"  /></view>
 				<hr />
-				<view class=""><text>备注：</text><input type="text" v-model="remarks" placeholder="请输入备注"></view>
+				<view class=""><text>备注：</text><input type="text" v-model="remarks" placeholder="请输入备注" /></view>
 				<hr />
-			</form>
+			<!-- </form> -->
 			
 		</view>
 		<!-- 提交成功弹框 -->
@@ -46,7 +46,7 @@
 				
 			</view>
 		</view>
-		<button form-type="submit" @click="register()">提交</button>
+		<button  @click="register()">提交</button>
 		<view class="k">
 			提交成功
 		</view>

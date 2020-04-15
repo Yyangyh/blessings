@@ -75,6 +75,7 @@
 
 <script>
 	import agreement from '../../static/image/login/agreement.jpg'
+	
 	export default{
 		data() {
 			return {
@@ -227,6 +228,11 @@
 			},
 			wx(){
 				let that = this
+				// let url = 'weixin://m.wfjtjy.com/'
+				// console.log(url)
+				// plus.runtime.openURL(url, function(res) {  
+				//    console.log(res);  
+				// });
 				if(!uni.getStorageSync('wx')){
 					that.treaty_show = true
 				}else{

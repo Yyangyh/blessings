@@ -35,7 +35,8 @@
 				<image src='../../static/image/index/index_tab5.png' mode="widthFix"></image>
 				<view class="">早间晨语</view>
 			</view>
-			<view class="tab_list" @tap="jump('/pages/index/home')">
+			<!-- <view class="tab_list" @tap="jump('/pages/index/home')"> -->
+			<view class="tab_list"  @tap="temporary">
 				<image src='../../static/image/index/index_tab6.png' mode="widthFix"></image>
 				<view class="">五福商城</view>
 			</view>

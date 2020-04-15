@@ -2,8 +2,8 @@
     "name" : "五福家庭",
     "appid" : "__UNI__F2D41E0",
     "description" : "",
-    "versionName" : "1.0.0",
-    "versionCode" : "100",
+    "versionName" : "1.0.1",
+    "versionCode" : 101,
     "transformPx" : false,
     /* 5+App特有相关 */
     "app-plus" : {
@@ -88,7 +88,8 @@
                         "appid" : "wxfa6d980de363757f",
                         "UniversalLinks" : "https://wufu.wufu-app.com/app.php/Mw==/"
                     }
-                }
+                },
+                "push" : {}
             },
             "splashscreen" : {
                 "android" : {
