@@ -50,7 +50,7 @@
 					language:(navigator.browserLanguage || navigator.language).toLowerCase()
 				}
 				return browser.versions
-			 }
+			}
 			let brower=getBrower()
 			if(brower.weixin||brower.qq){
 				uni.showToast({

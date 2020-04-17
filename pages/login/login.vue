@@ -74,8 +74,8 @@
 </template>
 
 <script>
-	import agreement from '../../static/image/login/agreement.jpg'
 	
+	import agreement from '../../static/image/login/agreement.jpg'
 	export default{
 		data() {
 			return {

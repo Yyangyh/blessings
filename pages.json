@@ -111,6 +111,15 @@
 			}
 		},
 		{
+			"path": "pages/com_page/share_video",
+			"style": {
+				"navigationBarTitleText": "视频详情",
+				"app-plus":{
+					"titleNView":false
+				}
+			}
+		},
+		{
 			"path": "pages/com_page/introduce",
 			"style": {
 				"navigationBarTitleText": "讲师介绍",

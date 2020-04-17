@@ -367,8 +367,8 @@
 		methods: {
 			share(){
 				let data = this.datas
-				// strShareUrl = data.Url
-				strShareUrl = 'https://www.wufu-app.com/h5/#/pages/login/reg?code='+this.$store.state.user.invite_code
+				strShareUrl = data.Url
+				// strShareUrl = 'https://www.wufu-app.com/h5/#/pages/login/reg?code='+this.$store.state.user.invite_code
 				strShareTitle = data.Title
 				strShareSummary = data.Summary
 				strShareImageUrl = data.ImageUrl

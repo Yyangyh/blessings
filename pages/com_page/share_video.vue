@@ -20,14 +20,12 @@
 				@ended当播放到末尾时  poster视频封面的图片
 		 -->
 		 <block v-if="type == 1">
-			 <view class="" v-if="poster">
+			 <view class="" v-if="play_url">
 			 	<video id="myVideo" :src="play_url"
 			 	:autoplay='true' 
 			 	:controls = 'true'
 			 	:initial-time = 'initial_time'
 			 	@pause='pause' 
-			 	@timeupdate='timeupdate'
-			 	@play='play_start' 
 			 	@ended='play_end'  
 			 	:poster='poster' >
 			 	</video>
@@ -83,12 +81,12 @@
 			<view class="tab_list" v-if="video_data.is_online == 0" :class="{test_show:test_show === 1}" @tap="test_show = 1">
 				目录
 			</view>
-			<view class="tab_list" :class="{test_show:test_show === 2}" @tap="test_show = 2">
+			<!-- <view class="tab_list" :class="{test_show:test_show === 2}" @tap="test_show = 2">
 				评价
 			</view>
 			<view class="tab_list" :class="{test_show:test_show === 3}" @tap="test_show = 3">
 				推荐
-			</view>
+			</view> -->
 		</view>
 		<view v-show="test_show == 0">
 			<view class="video_top">
@@ -113,16 +111,7 @@
 			</view>
 			
 			<view class="video_mid">
-				<view class="discount" v-if="is_free">
-					<view class="dis_one">
-						<image src="../../static/image/com_page/discount.png" mode="widthFix"></image>
-						<text>优惠券</text>
-					</view>
-					<view class="dis_two" @tap="coupon_show = !coupon_show">
-						<text>领券</text>
-						<image src="../../static/image/index/go.png" mode="widthFix"></image>
-					</view>
-				</view>
+				
 				<view class="mid_test">
 					讲师介绍
 				</view>
@@ -164,10 +153,7 @@
 					<image  v-else src="../../static/image/com_page/video.png" mode="widthFix"></image>
 					<text>{{item.name}}</text>
 				</view>
-				<view class="price_status" >
-					<!-- {{item.cou_is_free? '已学习'+item.section_plan : '￥'+item.v_price}} -->
-					{{item.cou_is_free? '已学习'+item.section_plan : '未购买'}}
-				</view>
+				
 			</view>
 		</view>
 		<view v-show="test_show == 2">
@@ -202,10 +188,6 @@
 							{{item.content}}
 						</view>
 					</view>
-					<!-- <view class="content_img">
-						<image v-for="(item,index) in comments.images" :key='index' :src="item" mode=""></image>
-					</view>
-					 -->
 				</view>
 			</view>
 			<view class="lack_img" v-if="comments.length == 0">
@@ -271,45 +253,7 @@
 			<!-- 遮罩层 层级888 -->
 		</view>
 		
-		<view class="coupon_box" :class="coupon_show===false ? 'coupon_none' : coupon_show===true ? 'coupon_show' : ''">
-			<view class="box_top">
-				<text>优惠券</text>
-				<image src="../../static/image/com_page/close.png" mode="widthFix"  @tap="coupon_show = false"></image>
-			</view>
-			<view class="box_mid">
-				领券
-			</view>
-			<view class="coupon_list">
-				<scroll-view  scroll-y="true" class="scroll-y">
-					<view class="list_box" v-for="(item,index) in coupon_data" :key='item.id'>
-						<view class="box_left">
-							<view class="left_top">
-								<view class="top_one">
-									￥{{item.discount_value}}
-								</view>
-								<view class="top_two">
-									<view class="">
-										{{item.name}}
-									</view>
-									<view class="">
-										满减 满{{Number(item.where_order_price)}}减{{Number(item.discount_value)}}
-									</view>
-								</view>
-							</view>
-							<view class="left_bottom" v-if="item.expire_type == 0"> <!--时间戳要10位的秒级时间戳-->
-								有效期：{{service.Test(Date.parse(new Date())/1000)}}至{{service.Test(Date.parse(new Date())/1000 + item.expire_hour*3600)}}
-							</view>
-							<view class="left_bottom" v-else>
-								有效期：{{service.Test(item.fixed_time_start)}}至{{service.Test(item.fixed_time_end)}}
-							</view>
-						</view>
-						<view class="box_right" :class="{receive:!item.c_id}" @tap="getCoupon(item.id,item.c_id,index)">
-							{{item.c_id>0? '已领取' : '立即领取'}}
-						</view>
-					</view>
-				</scroll-view>
-			</view>
-		</view>
+		
 		<!-- <view class="give_box" v-if="give_show">
 			<view class="give_top">
 				赠送说明
@@ -338,9 +282,7 @@
 		
 		<!-- #endif -->
 		<view class="video_bottom">
-			<!-- <view class="bot_left" >
-				￥
-			</view> -->
+			
 			<view class="bot_right">
 				<view class="bot_col" @tap="$jump('./video_give')">
 					<image  src="../../static/image/com_page/give.png" mode="widthFix"></image>
@@ -348,15 +290,9 @@
 						赠送说明
 					</view>
 				</view>
-				<view class="bot_col" @tap="collect()" >
-					<image v-show="collects == 0" src="../../static/image/com_page/collect.png" mode="widthFix"></image>
-					<image v-show="collects == 1" src="../../static/image/com_page/collect_HL.png" mode="widthFix"></image>
-					<view class="">
-						收藏
-					</view>
-				</view>
+				
 				<block  v-if="video_data.is_online == 0">
-					<view class="bot_buy" @tap="order_sn()"    v-if="is_free">
+					<view class="bot_buy" @tap="$jump('../login/reg?code='+code)"  v-if="is_free">
 						<text v-if="is_free">{{'￥'+Number(video_data.v_price)}}</text>立即购买
 					</view>
 					<view class="bot_buy" v-else>
@@ -371,7 +307,6 @@
 </template>
 
 <script>
-	import collect_img from '../../static/image/com_page/collect_HL.png'
 	import integral_img from '../../static/image/com_page/integral.png'
 	import load from '../common/load.vue'
 	import share from'../common/share.vue'
@@ -396,7 +331,6 @@
 				play_url:'',
 				indexs:'',
 				show:false,
-				collects:'',
 				tips_test:'',
 				tips_img:'',
 				coupon_data:'',
@@ -408,7 +342,6 @@
 				record_time:0,
 				load_show:true,
 				duration_time:'',
-				receive_status:false,
 				initial_time:0 ,//指定视频播放初始秒数
 				share_arr:{},
 				code:'',
@@ -427,15 +360,7 @@
 				if(this.video_data.is_free == 1){
 					return false
 				}else if(this.video_data.is_free == 0){
-					if(this.video_data.is_free_vip.indexOf(this.$store.state.user.level_id) == -1){
-						if(this.data.vorder.is_bay_all == 1){
-							return false
-						}else{
-							return true
-						}
-					}else{
-						return false
-					}
+					return true
 				}
 			},
 			timer() {
@@ -461,39 +386,6 @@
 				// this.videoContext.pause()
 				bgAudioMannager.pause()
 				this.status = 1
-			},
-			// 更新进度条
-			Au_timeupdate(e) {  //音频
-				// console.log(e.detail.duration)
-				// console.log( e.detail.currentTime)
-				if(this.lock) return; // 锁
-				// console.log(e)
-				var currentTime,duration;
-				if(e.detail.detail) {
-					currentTime = e.detail.detail.currentTime
-					duration = e.detail.detail.duration
-				}else {
-					currentTime = e.detail.currentTime
-					duration = e.detail.duration
-				}
-				
-				this.duration_time = e.detail.duration
-				if(this.indexs || this.indexs === 0){
-					if(Math.ceil(e.detail.currentTime) % 10 == 0){ //10s记录一次
-						if(Math.ceil(e.detail.currentTime) != this.record_time)	{
-							this.record_time = Math.ceil(e.detail.currentTime)
-							this.record_play(e.detail.currentTime,e.detail.duration) //记录播放进度
-							let speed = Math.round((Math.ceil(e.detail.currentTime)/Math.ceil(e.detail.duration))*100)/100
-							if(speed > 0.8 && this.receive_status == false){ //当播放比例大于百分之80时自动领取章节积分
-								this.receive_int() //自动领取积分
-								this.receive_status = true
-							}
-						}
-					}
-				}
-				
-				this.currentTime = currentTime
-				this.duration = duration
 			},
 			
 			// 拖动进度条
@@ -531,64 +423,10 @@
 				this.$refs.share.share();
 				// #endif
 			},
-			timeupdate(e){ //记录播放进度
-				// console.log(e)
-				this.duration_time = e.detail.duration
-				if(this.indexs || this.indexs === 0){
-					if(Math.ceil(e.detail.currentTime) % 10 == 0){ //10s记录一次
-						if(Math.ceil(e.detail.currentTime) != this.record_time)	{
-							this.record_time = Math.ceil(e.detail.currentTime)
-							this.record_play(e.detail.currentTime,e.detail.duration) //记录播放进度
-							let speed = Math.round((Math.ceil(e.detail.currentTime)/Math.ceil(e.detail.duration))*100)/100
-							if(speed > 0.8 && this.receive_status == false){ //当播放比例大于百分之80时自动领取章节积分
-								this.receive_int() //自动领取积分
-								this.receive_status = true
-							}
-						}
-					}
-				}
-				
-			},
-			record_play(currentTime,duration){//记录播放进度
-				if(isNaN(duration)) return
-				return new Promise((resolve, reject) =>{ //将异步请求变同步
-					this.service.entire(this,'post',this.APIconfig.api_root.com_page.v_playProcess,{
-						video_id:this.id,
-						user_id:this.$store.state.user.id,
-						section_id:this.catalog_data[this.indexs].id,
-						play_time:currentTime,
-						s_process:duration
-					},function(self,res){
-						self.duration_time = 0 //每次记录完都要清空
-						self.catalog_data[self.indexs].section_plan = res.section_plan
-						resolve('suc');
-					})
-				})
-				
-			},
-			receive_int(){ //自动领取积分
-				this.service.entire(this,'post',this.APIconfig.api_root.com_page.v_integral,{
-					video_id:this.id,
-					userid:this.$store.state.user.id,
-					mobile:this.$store.state.user.mobile,
-					section_id:this.catalog_data[this.indexs].id
-				},function(self,res){
-					
-				})
-			},
-			play_start(e){ //添加视频阅读量 
-				// console.log(e)
-				if(this.play_store == false){
-					this.play_store = true
-					this.service.entire(this,'post',this.APIconfig.api_root.com_page.v_playCount,{
-						video_id:this.id,
-						userid:this.$store.state.user.id,
-					},function(self,res){
-						
-					})
-				}
-				
-			},
+			
+			
+			
+			
 			chiose_video(index,cou_is_free,id){ //选择目录播放
 				if(cou_is_free == false){
 					uni.showModal({
@@ -597,7 +435,8 @@
 					    success: res =>{
 					        if (res.confirm) {
 								// this.order_sn(id)
-								this.order_sn()
+								// this.order_sn()
+								this.$jump('../login/reg?code='+this.code)
 							} 
 					    }
 					});
@@ -617,7 +456,8 @@
 						    success: res =>{
 						        if (res.confirm) {
 									// this.order_sn(this.catalog_data[index].id)
-									this.order_sn()
+									// this.order_sn()
+									this.$jump('../login/reg?code='+this.code)
 								}else if (res.cancel) {
 									this.indexs--
 								}
@@ -630,8 +470,6 @@
 				if(this.indexs || this.indexs === 0){ //当宣传视频播放结束时
 					let that = this
 					this.record_time = 0
-					await this.record_play(this.duration_time,this.duration_time)
-					this.receive_status == false ? this.receive_int() : this.receive_status = false //播放结束时再判断一次是否领取积分
 					if(this.indexs === this.catalog_data.length - 1) return//当视频目录最后一个播放完毕时 
 					this.indexs++
 					testing.call(this,this.indexs)
@@ -641,141 +479,53 @@
 				}
 				
 			},
-			collect(){ //视频收藏
 			
-				let times = this.service.loading()
-				this.service.entire(this,'post',this.APIconfig.api_root.com_page.v_collect,{ 
-					video_id:this.id,
-					userid:this.$store.state.user.id,
-					mobile:this.$store.state.user.mobile,
-					c_type:this.collects == 1? 0 : 1
-				},function(self,res){
-					uni.hideLoading()
-					clearTimeout(times)
-					self.tips_test = res.msg
-					self.tips_img = collect_img
-					self.show = true
-					setTimeout(function() {
-						self.show = false
-					}, 1500);
-					if(res.code == 0){
-						self.collects == 1? self.collects = 0 : self.collects = 1
-					}
-				})
-			},
-			play_integral(){ //领取积分
-				let times = this.service.loading()
-				this.service.entire(this,'post',this.APIconfig.api_root.com_page.v_integral,{
-					video_id:this.id,
-					userid:this.$store.state.user.id,
-					mobile:this.$store.state.user.mobile,
-					section_id:1
-				},function(self,res){
-					uni.hideLoading()
-					clearTimeout(times)
-					self.tips_test = res.msg
-					self.tips_img = integral_img
-					self.show = true
-					setTimeout(function() {
-						self.show = false
-					}, 1500)
-				})
-			},
-			getCoupon(id,cid,index){//领取优惠券
-				if(!cid){
-					this.service.entire(this,'post',this.APIconfig.api_root.com_page.v_getCoupon,{ //领取优惠券
-						userid:this.$store.state.user.id,
-						coupon_id:id
-					},function(self,res){
-						uni.showToast({
-							icon:'none',
-							title:res.msg
-						})
-						if(res.code == 0){
-							self.coupon_data[index].c_id = id
-							
-						}
-					})
-				}
-			},
-			order_sn(section_id){ //点击购买时生成订单
-				let s_id = section_id? section_id: 0
-				this.service.entire(this,'post',this.APIconfig.api_root.com_page.v_addOrder,{
-					userid:this.$store.state.user.id,
-					video_id:this.id,
-					section_id:s_id
-				},function(self,res){
-					if(res.code == 0){
-						
-						self.$jump('./v_order?id='+self.id+'&s_id='+s_id+'&order_sn='+res.data.order_sn+'&type='+self.type)
-					}else{
-						uni.showToast({
-							icon:'none',
-							title:res.msg
-						})
-					}
-				})
-			},
+			
 			// initial-time指定视频初始播放位置 
 			// @pause当暂停播放时  @timeupdate播放进度变化时  @play当开始/继续播放时 
 			// @ended当播放到末尾时
 			initAudio(){
 				let that = this
 				let audio = bgAudioMannager 
-				audio.startTime = this.initial_time  //指定视频初始播放位置
+				
 				if(audio.paused){
 					audio.play()
 				}
 				
-				audio.onPlay(function(){ //视频开始播放时
-					that.play_start.call(this)
-				})
-				audio.onTimeUpdate(function(){  //播放进度变化时
-					let duration = audio.duration
-					let currentTime = audio.currentTime
-					let e = {
-						detail:{
-							duration:duration,
-							currentTime:currentTime
-						}
-					}
-					that.Au_timeupdate.apply(this,[e])
-					
-				})
+				
+				
 				audio.onEnded(function(){  //播放结束时
 					that.status = 1
 					that.play_end.call(this)
 				})
 			},
 			async async_n(){ //需同步请求
-				await this.service.asy_entire(this,'post',this.APIconfig.api_root.com_page.VideoDetail,{ //视频详情
-					video_id:this.id,
-					userid:this.$store.state.user.id,
-					mobile:this.$store.state.user.mobile,
+				console.log(this.id)
+				await this.service.asy_entire(this,'post',this.APIconfig.api_root.com_page.ShareVideoDetail,{ //视频详情
+					video_id:this.id
 				},function(self,res){
 					self.data = res.data
-					// console.log(res.data.video.v_url)
+					console.log(res.data.v_url)
 					
-					res.data.video.v_url ? self.play_url = self.service.analysis_url(res.data.video.v_url) : self.indexs = 0
+					res.data.v_url ? self.play_url = self.service.analysis_url(res.data.v_url) : self.indexs = 0
 					
 					
-					self.video_data = res.data.video
+					self.video_data = res.data
 					
-					self.share_arr.Title =  res.data.video.title//分享
-					self.share_arr.Summary =  res.data.video.long_title//分享
-					self.share_arr.ImageUrl = self.$api_img() + res.data.video.v_pic//分享
+					self.share_arr.Title =  res.data.title//分享
+					self.share_arr.Summary =  res.data.long_title//分享
+					self.share_arr.ImageUrl = self.$api_img() + res.data.v_pic//分享
 					
-					let richtext=  res.data.video.video_content
+					let richtext=  res.data.video_content
 					const regex = new RegExp('<img', 'gi');
 					self.video_content = richtext.replace(regex, `<img style="max-width: 100%;"`);
 					
-					self.collects = res.data.video.collect
-					self.poster = res.data.video.screensaver
+					self.poster = res.data.screensaver
 					if(self.video_data.evaluate)self.video_data.stars_num = new Array(Number(self.video_data.evaluate))
 					console.error(self.play_url)
 				})
 				
-				await this.service.asy_entire(this,'post',this.APIconfig.api_root.com_page.catalogue,{ //视频目录
+				await this.service.asy_entire(this,'post',this.APIconfig.api_root.com_page.ShareCatalogue,{ //视频目录
 					video_id:this.id,
 					user_id:this.$store.state.user.id,
 				},function(self,res){
@@ -789,23 +539,10 @@
 						for (let s of data) {//判断目录是否免费
 							s.cou_is_free = false
 						}
-						if(self.data.vorder.is_bay_all == 1){
-							for (let s of data) {
-								s.cou_is_free = true
-							}
-						}else if(self.data.vorder.is_bay_all == 0){
-							for (let s of data) {
-								s.cou_is_free = false
-							}
-						}
+						
 					}
 					
-					if(res.data.video.new_play){  //当用户有历史播放记录时
-						self.indexs = res.play_index
-						self.play_url = self.service.analysis_url(data[res.play_index].video_url)
-						let play_time = res.data.video.new_play.play_time
-						play_time > 10 ? self.initial_time = play_time - 5 : self.initial_time = play_time 
-					}
+					
 					
 					self.catalog_data = data
 					self.load_show = false
@@ -834,17 +571,17 @@
 		},
 		onShow() {
 			
-			this.service.entire(this,'post',this.APIconfig.api_root.com_page.v_evaluate,{ //用户评论
-				userid:this.$store.state.user.id,
-				video_id:this.id,
-				page:1,
-				limit:2
-			},function(self,res){
-				self.comments = res.data.data
-				for (let s of self.comments) {
-					s.rating_num = new Array(Number(s.grade))
-				}	
-			})
+			// this.service.entire(this,'post',this.APIconfig.api_root.com_page.v_evaluate,{ //用户评论
+			// 	userid:this.$store.state.user.id,
+			// 	video_id:this.id,
+			// 	page:1,
+			// 	limit:2
+			// },function(self,res){
+			// 	self.comments = res.data.data
+			// 	for (let s of self.comments) {
+			// 		s.rating_num = new Array(Number(s.grade))
+			// 	}	
+			// })
 		},
 		// onReady: function (res) {
 		// 	this.videoContext = uni.createVideoContext('myVideo')
@@ -852,26 +589,27 @@
 		onLoad(e) {
 			// const music=uni.requireNativePlugin('Html5app-Music');
 			// this.share_arr.Url = 'https://www.wufu-app.com/h5/#/pages/login/reg?code='+this.$store.state.user.invite_code
-			this.share_arr.Url = 'https://www.wufu-app.com/h5/#/pages/com_page/share_video?id='+e.id+'&type='+e.type+'&code='+this.$store.state.user.invite_code
+			console.log(e)
+			this.share_arr.Url = 'https://www.wufu-app.com/h5/#/pages/com_page/video_details?id='+e.id+'&type='+e.type+'&code='+this.$store.state.user.invite_code
 			this.id = e.id
 			this.type = e.type
 			if(e.code) this.code = e.code
 			this.async_n()
-			this.service.entire(this,'post',this.APIconfig.api_root.com_page.v_coupon,{ //优惠券列表
-				userid:this.$store.state.user.id,
-				mobile:this.$store.state.user.mobile,
-			},function(self,res){
-				self.coupon_data = res.data.coupon
-			})
-			this.service.entire(this,'post',this.APIconfig.api_root.com_page.v_recommend,{ //推荐视频
-				userid:this.$store.state.user.id,
-				video_id:e.id,
-				page:1,
-				limit:2,
-				type:1
-			},function(self,res){
-				self.recommend_video = res.data.video_list
-			})
+			// this.service.entire(this,'post',this.APIconfig.api_root.com_page.v_coupon,{ //优惠券列表
+			// 	userid:this.$store.state.user.id,
+			// 	mobile:this.$store.state.user.mobile,
+			// },function(self,res){
+			// 	self.coupon_data = res.data.coupon
+			// })
+			// this.service.entire(this,'post',this.APIconfig.api_root.com_page.v_recommend,{ //推荐视频
+			// 	userid:this.$store.state.user.id,
+			// 	video_id:e.id,
+			// 	page:1,
+			// 	limit:2,
+			// 	type:1
+			// },function(self,res){
+			// 	self.recommend_video = res.data.video_list
+			// })
 		},
 		onHide(){
 			// this.videoContext.pause()
@@ -902,7 +640,13 @@
 
 <style lang="less">
 	.content{
+		/*  #ifdef  H5  */
+		padding-bottom: 200rpx;
+		/*  #endif  */
+		
+		/*  #ifdef  APP-PLUS  */
 		padding-bottom: 120rpx;
+		/*  #endif  */
 	}
 	.content_top{
 		position: fixed;
@@ -984,7 +728,7 @@
 		justify-content: space-between;
 		color: #999;
 		.tab_list{
-			width: 25%;
+			width: 50%;
 			height: 100rpx;
 			line-height: 100rpx;
 			font-size: 32rpx;

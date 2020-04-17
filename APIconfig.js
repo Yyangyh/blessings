@@ -1,6 +1,6 @@
 // const api ='http://192.168.0.108:8990'
-// const api ='https://www.wufu-app.com'
-const api = ''
+const api ='https://www.wufu-app.com'
+// const api = ''
 
 const api_root = {
 	common:{
@@ -37,7 +37,9 @@ const api_root = {
 	com_page:{
 		videoList: api+'/api/videohome/videoList',//幸福时光视频列表
 		VideoDetail: api+'/api/videohome/VideoDetail',//视频详情
+		ShareVideoDetail: api+'/api/videohome/ShareVideoDetail',//分享视频详情
 		catalogue: api+'/api/videohome/catalogue',//视频目录
+		ShareCatalogue: api+'/api/videohome/ShareCatalogue',//分享视频目录
 		v_collect: api+'/api/videohome/collect',//视频收藏
 		v_integral: api+'/api/videohome/integral',//领取积分
 		v_coupon: api+'/api/videohome/coupon',//优惠券列表
