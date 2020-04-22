@@ -27,21 +27,27 @@
 				<image src='../../static/image/index/index_tab3.png' mode="widthFix"></image>
 				<view class="">精彩文章</view>
 			</view>
-			<view class="tab_list" @tap="$jump('../subindex/classify')">
+			<view class="tab_list" @tap="$jump('../subuser/relation/relation')">
+				<image src="../../static/image/index/list2.png" mode="widthFix"></image>
+				<view class="">
+					亲情账号
+				</view>
+			</view>
+			<!-- <view class="tab_list" @tap="$jump('../subindex/classify')">
 				<image src='../../static/image/index/index_tab4.png' mode="widthFix"></image>
 				<view class="">课程分类</view>
-			</view>
+			</view> -->
 			<view class="tab_list" @tap="$jump('/pages/subindex/morning')">
 				<image src='../../static/image/index/index_tab5.png' mode="widthFix"></image>
 				<view class="">早间晨语</view>
 			</view>
-			<!-- <view class="tab_list" @tap="jump('/pages/index/home')"> -->
-			<view class="tab_list"  @tap="temporary">
+			<view class="tab_list" @tap="$jump('../subhome/home_com?title=家风产品')">
+			<!-- <view class="tab_list"  @tap="temporary"> -->
 				<image src='../../static/image/index/index_tab6.png' mode="widthFix"></image>
 				<view class="">五福商城</view>
 			</view>
-			<!-- <view class="tab_list" @tap="$jump('../subindex/evaluating')"> -->
-			<view class="tab_list" @tap="temporary">
+			<view class="tab_list" @tap="$jump('../subindex/evaluating')">
+			<!-- <view class="tab_list" @tap="temporary"> -->
 				<image src='../../static/image/index/index_tab7.png' mode="widthFix"></image>
 				<view class="">幸福测评</view>
 			</view>
@@ -150,7 +156,7 @@
 			</view>
 			
 			<view class="QRcode" @tap="$jump('/pages/subuser/brokerage/invite')">
-				<image src="../../static/image/index/code.png" mode=""></image>
+				<image src="../../static/image/index/list3.png" mode=""></image>
 			</view>
 	</view>
 </template>

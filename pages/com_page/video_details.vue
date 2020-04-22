@@ -77,11 +77,12 @@
 		
 		
 		<view class="video_tab">
-			<view class="tab_list" :class="{test_show:test_show === 0}" @tap="test_show = 0">
-				课程介绍
-			</view>
+			
 			<view class="tab_list" v-if="video_data.is_online == 0" :class="{test_show:test_show === 1}" @tap="test_show = 1">
 				目录
+			</view>
+			<view class="tab_list" :class="{test_show:test_show === 0}" @tap="test_show = 0">
+				课程介绍
 			</view>
 			<view class="tab_list" :class="{test_show:test_show === 2}" @tap="test_show = 2">
 				评价
@@ -391,7 +392,7 @@
 				data:'',
 				video_data:'',
 				video_content:'',
-				test_show:0,
+				test_show:1,
 				catalog_data:'',
 				play_url:'',
 				indexs:'',
@@ -760,9 +761,10 @@
 					
 					
 					self.video_data = res.data.video
+					if(self.video_data.is_online != 0) self.test_show = 0
 					
-					self.share_arr.Title =  res.data.video.title//分享
-					self.share_arr.Summary =  res.data.video.long_title//分享
+					self.share_arr.Title =  res.data.video.long_title//分享
+					self.share_arr.Summary =  res.data.video.short_content//分享
 					self.share_arr.ImageUrl = self.$api_img() + res.data.video.v_pic//分享
 					
 					let richtext=  res.data.video.video_content
@@ -772,7 +774,7 @@
 					self.collects = res.data.video.collect
 					self.poster = res.data.video.screensaver
 					if(self.video_data.evaluate)self.video_data.stars_num = new Array(Number(self.video_data.evaluate))
-					console.error(self.play_url)
+					console.log(self.play_url)
 				})
 				
 				await this.service.asy_entire(this,'post',this.APIconfig.api_root.com_page.catalogue,{ //视频目录

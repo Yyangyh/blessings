@@ -4,9 +4,12 @@
 					
 		</view>
 		<view class="top">
-			<image src="../../static/image/com_page/returns.png" @tap="service.returns()" mode="widthFix"></image>
+			<view class=""  @tap="service.returns()">
+				<image src="../../static/image/com_page/returns.png" mode="widthFix"></image>
+			</view>
 			<text>文章</text>
-			<image @tap="$jump('/pages/subindex/t_search')" src="../../static/image/com_page/search.png" mode="widthFix"></image>
+			<!-- <image @tap="$jump('/pages/subindex/t_search')" src="../../static/image/com_page/search.png" mode="widthFix"></image> -->
+			<text></text>
 		</view>
 		<view class="tab_list">
 			<view class="list_all" @tap="show = !show">
@@ -170,13 +173,17 @@
 			justify-content: space-between;
 			align-items: center;
 			background-color: #FFFFFF;
-			image:first-child{
-				width: 31rpx;
-				height: 31rpx;
+			view{
+				width: 180rpx;
+				image{
+					width: 31rpx;
+					height: 31rpx;
+				}
 			}
-			image:last-child{
-				width: 50rpx;
-				height: 50rpx;
+			
+			text:nth-of-type(2){
+				width: 180rpx;
+				display: inline-block;
 			}
 		 }
 		.tab_list{

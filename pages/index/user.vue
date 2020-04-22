@@ -103,12 +103,12 @@
 						我的同学
 					</view>
 				</view>
-				<view class="tab_list" @tap="$jump('../subuser/relation/relation')">
+				<!-- <view class="tab_list" @tap="$jump('../subuser/relation/relation')">
 					<image src="../../static/image/index/list2.png" mode="widthFix"></image>
 					<view class="">
 						亲情账号
 					</view>
-				</view>
+				</view> -->
 				<view class="tab_list" @tap="$jump('../subuser/brokerage/invite')">
 					<image src="../../static/image/index/list3.png" mode="widthFix"></image>
 					<view class="">
@@ -116,8 +116,8 @@
 					</view>
 				</view>
 				
-				<!-- <view class="tab_list"  @tap="$jump('../subclass/textual')"> -->
-				<view class="tab_list"  @tap="temporary">
+				<view class="tab_list"  @tap="$jump('../subclass/textual')">
+				<!-- <view class="tab_list"  @tap="temporary"> -->
 					<image src="../../static/image/index/tutor.png" mode="widthFix"></image>
 					<view class="">
 						导师考证
@@ -163,8 +163,8 @@
 						我的活动
 					</view>
 				</view>
-				<!-- <view class="tab_list"  @tap="$jump('../subindex/evaluating')"> -->
-				<view class="tab_list"  @tap="temporary">
+				<view class="tab_list"  @tap="$jump('../subindex/evaluating')">
+				<!-- <view class="tab_list"  @tap="temporary"> -->
 					<image src="../../static/image/index/other_img3.png" mode="widthFix"></image>
 					<view class="">
 						我的测评
@@ -224,7 +224,7 @@
 			<view @tap="contact">联系我们</view>
 		</view>
 		<view class="QRcode" @tap="$jump('/pages/subuser/brokerage/invite')">
-			<image src="../../static/image/index/code.png" mode=""></image>
+			<image src="../../static/image/index/list3.png" mode=""></image>
 		</view>
 	</view>
 </template>
@@ -322,7 +322,7 @@
 		height: 300rpx;
 		.back_content{
 			position: absolute;
-			top: 0;
+			top: 30rpx;
 			left: 0;
 			width: 100%;
 			z-index: 100;

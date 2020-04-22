@@ -38,6 +38,11 @@
 						icon:'none',
 						title:res.msg
 					})
+					if(res.code == 0){
+						setTimeout(function(){
+							self.service.returns()
+						},1000)
+					}
 				})
 			},
 		},

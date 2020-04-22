@@ -10,8 +10,7 @@
 		</view>
 		<image class="t_image" src="/static/image/subclass/background.png " mode="widthFix"></image>
 		<view class='t_text'>
-			<view class="text1">学习打卡积分满10000分 </view>
-			<view class="text2">可立即申请证书</view>
+			
 			<button type="default"  @tap="$jump('./applyFor')">立即申请</button>
 		</view>
 		
@@ -103,7 +102,10 @@
 			line-height: 80rpx;
 			border-radius: 40rpx;
 			background:linear-gradient(60deg,rgba(240,62,50,1),rgba(248,119,61,1));
-			margin-top: 442rpx;
+			position: fixed;
+			bottom: 100rpx;
+			left: 50%;
+			transform: translateX(-50%);
 		}
 	}
 </style>

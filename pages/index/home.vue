@@ -35,14 +35,14 @@
 				<view>家风建设</view>
 			</view>
 			<!-- <view class="classify"  @tap="$jump('../subhome/home_com')"> --> 
-			<!-- <view class="classify" :class="{name_show:show == 3}" @tap="show = 3" > -->
-			<view class="classify"  @tap="temporary">
+			<view class="classify" :class="{name_show:show == 3}" @tap="show = 3" >
+			<!-- <view class="classify"  @tap="temporary"> -->
 				<image src="../../static/image/index/product.png"></image>
 				<view>家风产品</view>
 			</view>
 			<!-- <view class="classify" @tap="$jump('../subhome/assemble')"> -->
-			<!-- <view class="classify" :class="{name_show:show == 4}" @tap="show = 4"> -->
-			<view class="classify" @tap="temporary" >
+			<view class="classify" :class="{name_show:show == 4}" @tap="show = 4">
+			<!-- <view class="classify" @tap="temporary" > -->
 				<image src="../../static/image/index/assemble.png"></image>
 				<view>拼团</view>
 			</view>
@@ -183,7 +183,7 @@
 		</view>
 		
 		<view class="QRcode" @tap="$jump('/pages/subuser/brokerage/invite')">
-			<image src="../../static/image/index/code.png" mode=""></image>
+			<image src="../../static/image/index/list3.png" mode=""></image>
 		</view>
 	</view>
 </template>
@@ -624,8 +624,8 @@ res
 					line-height: 60rpx;
 					width: 328rpx;
 					font-size: 28rpx;
-					color: #FFFFFF;
-					background: #FE0000;
+					color: #000;
+					background: #e4e4e4;
 					border-radius: 10rpx;
 					text-align: center;
 				}

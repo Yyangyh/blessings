@@ -12,14 +12,13 @@
 			<image class="l_right" src='/static/image/index/go.png' mode="widthFix"></image>
 		</view>
 		<hr /> -->
-		<view class="line" @tap="$jump('./cellPhone')">
+		<view class="line" @tap="$jump('./cellPhone')" v-if="user.referrer == false">
 			<view class="l_left">
 				<image src='/static/image/subuser/set-1.png' mode="widthFix"></image>
 				<text>修改手机号码</text>
 			</view>
 			<image class="l_right" src='/static/image/index/go.png' mode="widthFix"></image>
 		</view>
-		<hr />
 		<view class="line" @tap="$jump('./password')">
 			<view class="l_left">
 				<image src='/static/image/subuser/set-2.png' mode="widthFix"></image>
@@ -43,7 +42,6 @@
 			</view>
 			<image class="l_right" src='/static/image/index/go.png' mode="widthFix"></image>
 		</view> -->
-		<hr />
 		<view class="line" @tap="$jump('./binding')">
 			<view class="l_left">
 				<image src='/static/image/subuser/bindingSuper.png' mode="widthFix"></image>
@@ -51,7 +49,6 @@
 			</view>
 			<image class="l_right" src='/static/image/index/go.png' mode="widthFix"></image>
 		</view> 
-		<hr />
 		<!-- #ifdef APP-PLUS -->
 		<view class="line">
 			<view class="l_left">
@@ -60,7 +57,6 @@
 			</view>
 			<image class="l_right" src='/static/image/index/go.png' mode="widthFix"></image>
 		</view>
-		<hr />
 		<!-- #endif -->
 		<button @tap="signout">退出登录</button>
 	</view>
@@ -68,16 +64,21 @@
 
 <script>
 	import returns from '../../common/returns.vue'
+	import { mapState } from 'vuex'
 	export default{
 		components:{
 			returns
 		},
-		comments:{
+		
+		computed:{
 			edition(){
 				// #ifdef APP-PLUS
-				return plus.runtime.version
+				return 'plus.runtime.version'
 				// #endif
-			}
+			},
+			...mapState({
+				user:'user'
+			})
 		},
 		data(){
 			return{
@@ -87,7 +88,6 @@
 		methods:{
 			signout(){
 				uni.clearStorage();
-				
 				uni.reLaunch({
 					url:'../../login/login'
 				})
@@ -100,7 +100,7 @@
 	hr{
 		height:1rpx;
 		border: none;
-		border-top:1px solid #F4F4F4;
+		
 		width: 96%;
 		margin: 0 auto;
 	}
@@ -109,6 +109,7 @@
 		align-items: center;
 		justify-content: space-between;
 		padding: 30rpx 20rpx;
+		border-bottom:1px solid #F4F4F4;
 		.l_left{
 			display: flex;
 			align-items: center;

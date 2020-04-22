@@ -21,7 +21,7 @@ Vue.prototype.$jump = function(url){
 Vue.prototype.$api_img = function(){
 	// return 'http://0318.t1.nethhw188.com' 
 	return 'https://www.wufu-app.com' 
-	// return 'http://192.168.0.100:8990' 
+	// return 'http://t.wufu-app.com' 
 }
 
 Vue.config.productionTip = false

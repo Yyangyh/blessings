@@ -36,11 +36,6 @@
 		
 		<block v-else>
 			<view class="audo-video"  v-if="play_url">
-				<!-- <video id="myAudio" :src="play_url" class="hidden" 
-				 :initial-time = 'initial_time' @play='play_start' 
-				@ended='play_end'  @timeupdate="Au_timeupdate" 
-				ref="video" @loadedmetadata="loadedmetadata" 
-				></video> -->
 				<view class="slider">
 					<view class="slider_img">
 						<image :src="poster" mode="widthFix"></image>
@@ -73,14 +68,14 @@
 		</block>
 		
 		
-		
 		<view class="video_tab">
-			<view class="tab_list" :class="{test_show:test_show === 0}" @tap="test_show = 0">
-				课程介绍
-			</view>
 			<view class="tab_list" v-if="video_data.is_online == 0" :class="{test_show:test_show === 1}" @tap="test_show = 1">
 				目录
 			</view>
+			<view class="tab_list" :class="{test_show:test_show === 0}" @tap="test_show = 0">
+				课程介绍
+			</view>
+			
 			<!-- <view class="tab_list" :class="{test_show:test_show === 2}" @tap="test_show = 2">
 				评价
 			</view>
@@ -326,7 +321,7 @@
 				data:'',
 				video_data:'',
 				video_content:'',
-				test_show:0,
+				test_show:1,
 				catalog_data:'',
 				play_url:'',
 				indexs:'',

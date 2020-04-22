@@ -53,10 +53,10 @@
 			}
 			let brower=getBrower()
 			if(brower.weixin||brower.qq){
-				uni.showToast({
-					icon:'none',
-					title:'请在浏览器中打开'
-				})
+				// uni.showToast({
+				// 	icon:'none',
+				// 	title:'请在浏览器中打开'
+				// })
 				return
 			}
 			if(brower.android){

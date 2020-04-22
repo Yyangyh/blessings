@@ -44,9 +44,9 @@
 				</view>
 				<view class="opinion">{{voucher[1].name}}</view>
 				<textarea v-model="opinion_test" name="" id="" cols="30" rows="10"></textarea>
-				<view class="ganxie">
+				<!-- <view class="ganxie">
 					十分感谢您对这次调查的支持！
-				</view>
+				</view> -->
 				<button type="default" @tap="submit">提交问卷</button>
 			</view>
 		</view>

@@ -8,10 +8,15 @@
 				<image src="/static/image/com_page/returns.png" mode="widthFix"></image>
 			</view>
 			<text>早间晨语</text>
+			<!-- #ifdef APP-PLUS -->
 			<view class="screen" @tap="open()">
 				<image src="../../static/image/index/screen.png" mode="widthFix"></image>
 				<text>筛选</text>
 			</view>
+			<!--  #endif -->
+			<!-- #ifdef H5 -->
+			<text></text>
+			<!--  #endif -->
 		</view>
 		<view class="m_box">
 			<view class="box_list" v-for="(item,index) in data" :key="item.id">
@@ -52,7 +57,7 @@
 							文案复制
 						</view>
 					</view>
-					<view class="oper"  @tap="share(index)">
+					<view class="oper"  @tap="share(index,item.id)">
 						<image v-if="item.is_share == 0"  src="../../static/image/index/oper3.png" mode="widthFix"></image>
 						<image v-else src="../../static/image/index/Hoper3.png" mode="widthFix"></image>
 						<view class="">
@@ -349,7 +354,10 @@
 			if(e){
 				data.morning_id = e.id
 			}
-			this.service.entire(this,'post',this.APIconfig.api_root.subindex.getMorningnew,data,function(self,res){
+			let requ_rul 
+			if(e.code) requ_rul = this.APIconfig.api_root.subindex.shareMorningnew
+			e.code ? requ_rul = this.APIconfig.api_root.subindex.shareMorningnew : requ_rul = this.APIconfig.api_root.subindex.getMorningnew
+			this.service.entire(this,'post',requ_rul,data,function(self,res){
 				self.data = res.data
 			})
 			
@@ -373,10 +381,10 @@
 		},
 		
 		methods: {
-				share(index){
-					strShareUrl ='https://www.wufu-app.com/h5/#/pages/login/reg?code='+this.$store.state.user.invite_code
+				share(index,id){
+					strShareUrl ='https://www.wufu-app.com/h5/#/pages/subindex/morning?code='+this.$store.state.user.invite_code+'&id='+id
 					strShareTitle =  this.data[index].name//分享
-					strShareSummary = this.data[index].spoke//分享
+					strShareSummary = this.data[index].formatcontent//分享
 					strShareImageUrl =  this.$api_img() + this.data[index].image//分享
 					nvMask.show()
 					nvImageMenu.show() //5+应支持从底部向上弹出的动画
@@ -429,7 +437,9 @@
 					uni.setClipboardData({
 						data: data,
 						success: function(res) {
+							// #ifdef APP-PLUS
 							that.oper(2,id)
+							// #endif
 							that.data[index].is_copycontent = 1
 							uni.showToast({
 								icon: 'none',
@@ -458,7 +468,9 @@
 						if (status == 200) { //下载成功  
 							plus.gallery.save(download.filename, () => {
 								uni.hideLoading();
+								// #ifdef APP-PLUS
 								that.oper(1,id)
+								// #endif
 								that.data[index].is_downimage = 1
 								uni.showToast({
 									icon: 'none',
@@ -499,6 +511,10 @@
 			align-items: center;
 			height: 100%;
 			width: 180rpx;
+		}
+		text:nth-of-type(2){
+			width: 180rpx;
+			display: inline-block;
 		}
 		.screen{
 			width: 180rpx;	

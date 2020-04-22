@@ -20,12 +20,14 @@
 							<image src="../../static/image/subhome/start.png" mode="widthFix" v-for="(item,index) in dataList.rating_num" :key='index'></image>
 							
 						</view>
-						<view class="time">{{dataList.grade}}</view>
+						<view class="time">{{dataList.grade}}分</view>
 						<view class="time">{{dataList.access_count}}次观看</view>
 					</view>
 				</view>
+				<!--  #ifdef APP-PLUS -->
 				<image v-if="dataList.is_lighten == -1" class="t_right" src="/static/image/com_page/collect.png" mode="widthFix" @tap="collection"></image>
 				<image v-else-if="dataList.is_lighten == 1"  class="t_right" src="../../static/image/com_page/collect_HL.png" mode="widthFix"  @tap="collection" ></image>
+				<!--  #endif -->
 			</view>
 			<view class="rich" v-if="video_content"  @tap="jump">
 				<rich-text :nodes="video_content"></rich-text>
@@ -36,9 +38,18 @@
 			<view class="">
 				用户评论
 			</view>
+			<!--  #ifdef APP-PLUS -->
 			<view class="" @tap="$jump('./comment?id='+ id)"  v-if="data_list.length != 0">
 				全部
 			</view>
+			<!--  #endif -->
+			
+			<!--  #ifdef H5 -->
+			<view class="" @tap="$jump('../login/reg?code='+ code)"  v-if="data_list.length != 0">
+				全部
+			</view>
+			<!--  #endif -->
+			
 		</view>
 		<view class="user_comment" v-for="(item,index) in data_list" :key='item.id' v-if="data_list.length != 0">
 			 <!--  -->
@@ -79,6 +90,7 @@
 		<view class="mask_black" v-show="show"  @tap="show = !show">
 			
 		</view>
+		<!--  #ifdef APP-PLUS -->
 		<view class="com_box" >
 			<view class="box_left" @tap="show = !show">
 				请发表你的评论
@@ -87,6 +99,8 @@
 				发表
 			</view>
 		</view>
+		<!--  #endif -->
+		
 		<view class="write" :class="show?'show':'Noshow'">
 			<view class="w_title">觉得怎么样，打个星吧~</view>
 			<view class="start">
@@ -124,11 +138,12 @@
 					{src:'/static/image/com_page/kongstart.png'}
 				],
 				share_arr:{},
-				
+				code:''
 			}
 		},
 		methods:{
 			jump(){
+				if(this.code) return
 				if(this.dataList.jump_type == 0) return
 				if(this.dataList.jump_type == 1){
 					uni.navigateTo({
@@ -213,14 +228,22 @@
 		},
 		onLoad(e) {
 			this.id = e.id
-			this.share_arr.Url = 'https://www.wufu-app.com/h5/#/pages/login/reg?code='+this.$store.state.user.invite_code
-			this.service.entire(this,'get',this.APIconfig.api_root.subindex.s_getArticleDetail,{//获取文章
+			let requ_url
+			let com_url
+			if(e.code){
+				this.code = e.code
+				requ_url = this.APIconfig.api_root.subindex.s_sharearticledetail
+			}else{
+				requ_url = this.APIconfig.api_root.subindex.s_getArticleDetail
+			}
+			this.share_arr.Url = 'https://www.wufu-app.com/h5/#/pages/subindex/article?id=' + e.id + '&code='+this.$store.state.user.invite_code
+			this.service.entire(this,'get',requ_url,{//获取文章
 				aid:e.id,
 				user_id:this.$store.state.user.id
 			},function(self,res){
 				
 				self.share_arr.Title =  res.data.title//分享
-				// self.share_arr.Summary =  res.data.video.long_title//分享
+				self.share_arr.Summary =  res.data.video.desc//分享
 				self.share_arr.ImageUrl = self.$api_img() + res.data.images[0]//分享
 				
 				self.dataList = res.data
@@ -232,8 +255,13 @@
 				
 				self.dataList.rating_num = new Array(Number(self.dataList.grade))
 			})
-			
-			this.service.entire(this,'get',this.APIconfig.api_root.subindex.s_getCommentByAid,{ //用户评论
+			if(e.code){
+				this.code = e.code
+				com_url = this.APIconfig.api_root.subindex.s_getcommentbyaid
+			}else{
+				com_url = this.APIconfig.api_root.subindex.s_getCommentByAid
+			}
+			this.service.entire(this,'get',com_url,{ //用户评论
 				aid:this.id,
 			},function(self,res){
 				self.data_list = res.data

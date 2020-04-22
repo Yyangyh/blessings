@@ -1,6 +1,6 @@
 // const api ='http://192.168.0.108:8990'
-const api ='https://www.wufu-app.com'
-// const api = ''
+// const api ='https://www.wufu-app.com'
+const api = ''
 
 const api_root = {
 	common:{
@@ -17,7 +17,7 @@ const api_root = {
 		reset: api+'/api/member/reset',//重置密码
 		getProtocol: api+'/api/member/getProtocol',//获取协议内容
 	},
-	index:{
+	index:{   
 		advertise: api+'/api/index/advertise',//首页弹框
 		index: api+'/api/VideoHome/index',//首页
 		good_index: api+'/api/good/index',//商城首页
@@ -178,6 +178,7 @@ const api_root = {
 	},
 	subindex:{
 		getMorningnew:api+'/api/article/getMorningnew',//早间晨语
+		shareMorningnew:api+'/api/article/shareMorningnew',//分享早间晨语
 		satusOfMorningnew:api+'/api/article/satusOfMorningnew',//更改早间晨语的操作状态
 		s_test:api+'/api/test/getPaper',//通过试卷id获取试卷信息
 		s_test_classify:api+'/api/test/getPaperCategory',//幸福评测分类或分类下数据获取
@@ -191,7 +192,9 @@ const api_root = {
 		s_getArticleList:api+'/api/article/getArticleList',//获取文章列表
 		s_article_comment:api+'/api/article/comment',//评价文章
 		s_getCommentByAid:api+'/api/article/getCommentByAid',//获取文章的评论
+		s_getcommentbyaid:api+'/api/article/getcommentbyaid',//获取分享文章的评论
 		s_getArticleDetail:api+'/api/article/getArticleDetail',//文章详情
+		s_sharearticledetail:api+'/api/article/sharearticledetail',//分享文章详情
 		s_favoriteArticle:api+'/api/article/favoriteArticle',//文章收藏/取消
 		
 		a_activity_index:api+'/api/activity/index',//活动列表

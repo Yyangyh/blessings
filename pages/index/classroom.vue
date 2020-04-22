@@ -49,7 +49,8 @@
 										{{items.title}}
 									</view>
 								</view>
-								<view class="title_two">{{items.is_free == 1? '免费' : Number(items.v_price) <= 0? '免费': '￥'+Number(items.v_price)}}</view>
+								<view class="title_two">{{items.is_free == 1 || Number(items.v_price) <= 0 ? '免费' : items.is_free == 0 && items.is_buy == 1 ? '已购' : '￥'+Number(items.v_price)}}</view>
+								<!-- 先判断是否免费，再判断是否已购 -->
 							</view>
 							<view class="long_title">
 								{{items.long_title}}
@@ -74,7 +75,7 @@
 		</view>
 		
 		<view class="QRcode" @tap="$jump('/pages/subuser/brokerage/invite')">
-			<image src="../../static/image/index/code.png" mode=""></image>
+			<image src="../../static/image/index/list3.png" mode=""></image>
 		</view>
 		
 	</view>
@@ -144,10 +145,11 @@
 			}
 		},
 		onLoad() {
-			this.a_sync()
 		},
 		onShow() {
+			this.a_sync()
 			this.service.notice.call(this)
+			
 			// this.service.entire(this,'get',this.APIconfig.api_root.index.felicity_index,{
 			// 	userid:this.$store.state.user.id
 			// },function(self,res){
@@ -177,7 +179,7 @@
 	} 
 	.room_title{
 		background: #fff;
-		padding: 0rpx 20rpx;
+		// padding: 0rpx 20rpx;
 		.title_top{
 			display: flex;
 			justify-content: space-between;
@@ -221,7 +223,7 @@
 				display: inline-block;
 				width: 4rpx;
 				height: 34rpx;
-				background: #000;
+				background: #D80000;
 				margin-right: 8rpx;
 			}
 		}
@@ -315,8 +317,8 @@
 					line-height: 60rpx;
 					width: 328rpx;
 					font-size: 28rpx;
-					color: #FFFFFF;
-					background: #FE0000;
+					color: #000;
+					background: #e4e4e4;
 					border-radius: 10rpx;
 					text-align: center;
 				}
