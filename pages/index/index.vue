@@ -408,7 +408,7 @@
 		padding: 20rpx 20rpx 0 20rpx;
 		margin-top: 10rpx;
 		min-height: 300rpx;
-		background: #e4e4e4;
+		background: #f2f2f2;
 		display: flex;
 		flex-wrap: wrap;
 		justify-content: space-between;
@@ -426,7 +426,7 @@
 		}
 	}
 	.video_box{
-		border-bottom: 20rpx solid #e4e4e4;
+		border-bottom: 20rpx solid #f2f2f2;
 		.vider_content{
 			white-space: nowrap;
 			padding: 0 20rpx;

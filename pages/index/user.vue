@@ -245,7 +245,6 @@
 		  ...mapState({
 			  user:'user'
 		  }),
-		
 		},	
 		methods:{
 			contact(){
@@ -306,7 +305,7 @@
 
 <style lang="scss">
 	page{
-		background: #e4e4e4;
+		background: #f2f2f2;
 	}
 	.content{
 		padding-top: 0;

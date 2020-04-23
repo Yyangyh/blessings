@@ -163,7 +163,7 @@
 <style lang="scss">
 	.content{
 		/* padding-top: 0; */
-		background: #e4e4e4;
+		background: #f2f2f2;
 		// padding-top: var(--status-bar-height);
 	}
 	.swiper_box{
@@ -211,7 +211,7 @@
 		font-size: 28rpx;
 		padding: 0rpx 20rpx 10rpx 20rpx;
 		overflow: hidden;
-		background: #e4e4e4;
+		background: #f2f2f2;
 		.box_one{
 			font-size: 38rpx;
 			margin: 20rpx 0 20rpx 0;
@@ -318,7 +318,7 @@
 					width: 328rpx;
 					font-size: 28rpx;
 					color: #000;
-					background: #e4e4e4;
+					background: #F2F2F2;
 					border-radius: 10rpx;
 					text-align: center;
 				}

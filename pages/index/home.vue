@@ -282,7 +282,7 @@ res
 
 <style lang="scss">
 	page{
-		background: #e4e4e4;
+		background: #f2f2f2;
 	}
 	.content {
 		.swiper{
@@ -519,7 +519,7 @@ res
 		font-size: 28rpx;
 		padding: 0rpx 20rpx 10rpx 20rpx;
 		overflow: hidden;
-		background: #e4e4e4;
+		background: #f2f2f2;
 		.box_one{
 			font-size: 38rpx;
 			margin: 20rpx 0 20rpx 0;
@@ -625,7 +625,7 @@ res
 					width: 328rpx;
 					font-size: 28rpx;
 					color: #000;
-					background: #e4e4e4;
+					background: #f2f2f2;
 					border-radius: 10rpx;
 					text-align: center;
 				}
@@ -637,14 +637,14 @@ res
 		font-size: 28rpx;
 		padding-bottom: 10rpx;
 		overflow: hidden;
-		background: #e4e4e4;
+		background: #f2f2f2;
 		.build_top{
 			color: #FFFD04;
 			font-size: 38rpx;
 			text-align: center;
 			height: 100rpx;
 			line-height: 100rpx;
-			background: #e4e4e4;
+			background: #f2f2f2;
 			font-weight:bold;
 		}
 		.build_box{

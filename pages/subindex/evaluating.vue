@@ -28,27 +28,40 @@
 		</view>
 		<!-- 问卷调查 -->
 		<view class="questionnaire" v-if="cur === 1">
-			<image class="q_image" src="../../static/image/evaluating/back.png"></image>
-			<view class="q_content">
-				<view class="title">{{voucher[0].name}}</view>
-				<view class="line">
-					<view class="question" v-for="(item,index) in voucher[0].answer" @tap="chiose(index)" >
-						<view class="circle" :class="{circle_red:que_show == index}">
-							<view class="circle_entity"  :class="{entity_red:que_show == index}">
+			<block v-if="voucher != ''">
+				
+				<image class="q_image" src="../../static/image/evaluating/back.png"  mode="widthFix"></image>
+				<view class="q_content">
+					<view class="title">{{voucher[0].name}}</view>
+					<view class="line">
+						<view class="question" v-for="(item,index) in voucher[0].answer" @tap="chiose(index)" >
+							<view class="circle" :class="{circle_red:que_show == index}">
+								<view class="circle_entity"  :class="{entity_red:que_show == index}">
+								</view>
 							</view>
+							<text>
+								{{item.name}}
+							</text>
 						</view>
-						<text>
-							{{item.name}}
-						</text>
+					</view>
+					<!-- <view class="opinion">{{voucher[1].name}}</view> -->
+					<textarea v-model="opinion_test" name="" id="" cols="30" rows="10"></textarea>
+					<!-- <view class="ganxie">
+						十分感谢您对这次调查的支持！
+					</view> -->
+					<button type="default" @tap="submit">提交问卷</button>
+				</view>
+			</block>
+			
+			
+			<block v-else>
+				<view class="not">
+					<image src="../../static/image/subhome/no_data.png" mode="widthFix"></image>
+					<view class="">
+						暂无数据
 					</view>
 				</view>
-				<view class="opinion">{{voucher[1].name}}</view>
-				<textarea v-model="opinion_test" name="" id="" cols="30" rows="10"></textarea>
-				<!-- <view class="ganxie">
-					十分感谢您对这次调查的支持！
-				</view> -->
-				<button type="default" @tap="submit">提交问卷</button>
-			</view>
+			</block>
 		</view>
 		<!-- 测评记录 -->
 		<view class="line_record"  v-if="cur === 2"  v-for="(item,index) in record_data" @tap="$jump('./result?id='+item.id)">
@@ -88,14 +101,20 @@
 				data.push(this.voucher[0].answer[this.que_show].psqq_id)
 				data.push(this.opinion_test)
 				this.service.entire(this,'post',this.APIconfig.api_root.subindex.s_qtn_submitQtn,{ //提交问券调查
-					qtn_id :5,
+					qtn_id :this.qtn_id,
 					user_id:this.$store.state.user.id,
 					data:data
 				},function(self,res){
+					
 					uni.showToast({
 						icon:'none',
 						title:res.msg
 					})
+					if(res.code == 0){
+						setTimeout(function() {
+							self.service.returns()
+						}, 1000);
+					}
 				})
 			}
 		},
@@ -109,7 +128,10 @@
 			this.service.entire(this,'post',this.APIconfig.api_root.subindex.s_qtn_getQtn,{//问券调查
 				id:5
 			},function(self,res){
+				self.qtn_id = res.data.id
 				self.voucher = res.data.question
+				console.log(self.voucher[0])
+				
 			})
 			
 			this.service.entire(this,'post',this.APIconfig.api_root.subindex.s_examList,{//获取用户的评测记录列表
@@ -125,10 +147,10 @@
 	
 	.content{
 		width: 100%;
-		background-color: #F6F6F7;
 		.allorder{
 			width: 100%;
 			height: 120upx;
+			background-color: #F6F6F7;
 			display: flex;
 			text-align: center;
 			line-height: 120upx;
@@ -326,17 +348,21 @@
 		.questionnaire{
 			position: relative;
 			width: 100%;
-			height: 1334rpx;
+			.not{
+				color: #BFBFBF;
+				text-align: center;
+				image{
+					width: 50%;
+				}
+			}
 			.q_image{
 				width: 100%;
-				height: 1334rpx;
 				position:absolute ;
 				top:0;
 				left: 0;
 			}
 			.q_content{
 				width: 100%;
-				height:1334rpx ;
 				position: absolute;
 				top:0;
 				left: 0;
