@@ -45,7 +45,7 @@
 		<view class="line" @tap="$jump('./binding')">
 			<view class="l_left">
 				<image src='/static/image/subuser/bindingSuper.png' mode="widthFix"></image>
-				<text>绑定上级</text>
+				<text>添加邀请码</text>
 			</view>
 			<image class="l_right" src='/static/image/index/go.png' mode="widthFix"></image>
 		</view> 

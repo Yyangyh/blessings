@@ -95,13 +95,13 @@
 				    sizeType: ['original', 'compressed'], //可以指定是原图还是压缩图，默认二者都有
 				    sourceType: ['album'], //从相册选择
 				    success: function (res) {
-				        const tempFilePaths = res.tempFilePaths;
+				        // const tempFilePaths = res.tempFilePaths;
 						that.service.upimg(that,'upfile',that.APIconfig.api_root.subuser.threeuser.s_ueditor_index,{
 							action:'uploadimage',
 							'path_type': 'papers',
 							token:that.$store.state.token,
 							user_id:that.$store.state.user.id,
-						},tempFilePaths[0],function(self,res){
+						},res.tempFiles[0].path,function(self,res){
 							self[name] = self.$api_img() + res.data.url
 						})
 				    }

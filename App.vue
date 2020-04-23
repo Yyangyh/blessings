@@ -15,9 +15,7 @@
 				data: req,  
 				success: (res) => {
 					console.log(res)
-					
 					if (res.data.data) {  
-						
 						plus.runtime.openURL(res.data.data);
 					}
 				}  

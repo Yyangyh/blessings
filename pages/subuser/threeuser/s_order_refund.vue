@@ -172,7 +172,7 @@
 						let times = that.service.loading('上传中')
 						uni.uploadFile({
 						    url: that.APIconfig.api_root.subuser.threeuser.s_ueditor_index,
-						    filePath: res.tempFilePaths[0],
+						    filePath: res.tempFiles[0].path,
 						    name: 'upfile',
 						    formData: {
 						      user_id: that.$store.state.user.id,
@@ -185,7 +185,7 @@
 								clearTimeout(times)
 								
 						        if(JSON.parse(ref.data).code == 0){
-									 that.image_list.push(res.tempFilePaths[0])
+									 that.image_list.push(res.tempFiles[0].path)
 									 that.images.push(JSON.parse(ref.data).data.url)
 									 if(that.image_list.length == 3)that.add_show = 2
 								}

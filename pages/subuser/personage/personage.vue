@@ -88,11 +88,12 @@
 					let that = this
 					uni.chooseImage({
 					    success: (chooseImageRes) => {
-					        const tempFilePaths = chooseImageRes.tempFilePaths;
+					        // const tempFilePaths = chooseImageRes.tempFilePaths;
+							// console.log(chooseImageRes.tempFiles[0].path)
 							let times = that.service.loading('上传中')
 					        uni.uploadFile({
 					            url: this.APIconfig.api_root.subuser.s_member, 
-					            filePath: tempFilePaths[0],
+					            filePath: chooseImageRes.tempFiles[0].path,
 					            name: 'file',
 					            formData: {
 					                type:2,
@@ -138,7 +139,7 @@
 			.back_content{
 				z-index: 100;
 				position: absolute;
-				top: 0;
+				top: 30rpx;
 				left: 0;
 				width: 100%;
 				.photo_box{
@@ -162,7 +163,6 @@
 		}
 		.per_box{
 			width:750rpx;
-			height:960rpx;
 			background:rgba(255,255,255,1);
 			border-radius:20rpx 20rpx 0rpx 0rpx;
 			margin-top: -20rpx;

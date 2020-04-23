@@ -5,13 +5,16 @@
 		</view>
 		<view class="content_top">
 			<view class="top_returns" @tap="service.returns()">
-				<image src="/static/image/com_page/returns.png" mode="widthFix"></image>
+				<image src="../../static/image/com_page/returns.png" mode="widthFix"></image>
 			</view>
-			<view class="top_search">
-				{{title}}
+			<view class="top_search" @tap="$jump('/pages/com_page/v_search?type='+req_data.type)">
+				<view class="search_text">
+					请输入关键词搜索
+				</view>
 			</view>
-			<view class="top_img"  @tap="$jump('/pages/com_page/v_search?type='+type)">
-				<image src="/static/image/com_page/search.png" mode="widthFix"></image>
+			<view class="top_img" @click="jump('../com_page/notice')">
+				<image src="/static/image/index/news.png" mode="widthFix"></image>
+				<view v-if="$store.state.notice"></view>
 			</view>
 		</view>
 		
@@ -20,7 +23,7 @@
 				<view class="">
 					{{v_test}}
 				</view>
-				<image class="all_img" :class="show===false ? 'tran_none' : show===true ? 'tran_show' : ''" src="../../static/image/index/down.png" mode="widthFix"></image>
+				<image class="all_img" :class="show===false ? 'tran_none' : show===true ? 'tran_show' : ''" src="/static/image/index/down.png" mode="widthFix"></image>
 			</view>
 			<!-- <view  @tap="condition(1)" :class="{'red':keyword_show === 1}">
 				{{req_data.type == 1?'免费视频':'免费音频'}}
@@ -34,53 +37,65 @@
 			<!-- 遮罩层 层级888 -->
 		</view>
 		<view class="down_box"  :class="show===false ? 'mask_none' : show===true ? 'mask_show' : ''" >
-			<view class="down_list"  @tap="chiose()">
-				全部
+			<view class="list_box">
+				<view class="down_list" @tap="chiose()">
+					全部
+				</view>
 			</view>
-			<view class="down_list" v-for="(item,index) in top_class" :key="item.id"  @tap="chiose(item.id,item.cl_name)">
-				{{item.cl_name}}
+			<view class="list_box"  v-for="(item,index) in top_class" :key="item.id"  @tap="chiose(item.id,item.cl_name)">
+				<view class="down_list">
+					{{item.cl_name}}
+				</view>
 			</view>
 		</view>
 		
 		<view class="vider_content_two">
-			<view class="vider_content">
-				<view class="content_list" v-for="(item,index) in video_list" :key='item.id' @tap="$jump('./video_details?id='+item.id+'&type='+item.type)">
+			<view class="vider_content" v-for="(item,index) in video_list" :key='item.id' v-if="item.list != ''">
+				<view class="v_box_top">
+					<view class="box_left">
+						<text class="red"></text>
+						{{item.head.cl_name}}
+					</view>
+					<view class="box_right"  @tap="$jump('../com_page/video_class?id='+item.head.id+'&title='+item.head.cl_name+'&type='+item.head.type)">
+						全部
+					</view>
+				</view>
+				<view class="content_list" v-for="(items,indexs) in item.list" :key='items.id'  @tap="$jump('../com_page/video_details?id='+items.id+'&type='+items.type)">
 					<view class="list_img_box">
-						<image :src="$api_img()+item.v_pic" mode="scaleToFill"></image>
+						<image :src="$api_img()+items.v_pic" mode="scaleToFill"></image>
 					</view>
 					<view class="list_right">
 						<view class="list_one">
-							{{item.long_title}}
+							{{items.long_title}}
 						</view>
 						<view class="">
 							<view class="list_two">
-								<view class="" v-if="title != '幸福采访' && title != '幸福影片'">
-									{{title == '幸福直播'?service.Test(item.created_at):'共'+item.catalogue_count+'节'}}
+								<view class="">
+									共{{items.catalogue_count}}节
 								</view>
-								<view class="list_mid">
-									<view class="list_vip" v-if="item.free_type > 0">
-										{{item.free_dec}}免费
+								<view class="">
+									<view class="list_vip" v-if="items.free_type > 0">
+										{{items.free_dec}}免费
 									</view>
 									<view class="">
-										{{item.is_free == 1 || Number(item.v_price) <= 0 ? '免费' : item.is_free == 0 && item.is_buy == 1 ? '已购' : '￥'+Number(item.v_price)}}
+										{{items.is_free == 1 || Number(items.v_price) <= 0 ? '免费' : items.is_free == 0 && items.is_buy == 1 ? '已购' : '￥'+Number(items.v_price)}}
 									</view>
 								</view>
 							</view>
 							<view class="list_three">
 								<view class="">
-									{{title == '幸福夜听'?'主播':title == '幸福影片'?'导演':title == '幸福采访'?'嘉宾':'讲师'}}：{{item.techer.name}}
+									讲师：{{items.techer.name}}
 								</view>
 								<view class="">
-									已有{{item.view}}人学习
+									已有{{items.view}}人学习
 								</view>
 							</view>
 						</view>
 					</view>
 				</view>
 			</view>
-		</view>	
-		
-		<uni-load-more :status="more"></uni-load-more>
+		</view>
+		<!-- <uni-load-more :status="more"></uni-load-more> -->
 	</view>
 </template>
 
@@ -93,39 +108,36 @@
 		data() {
 			return {
 				data:'',
-				type:'',
-				show:false,
+				show:0,
 				top_class:'',
-				title:'',
 				video_list:[],
 				more: 'more',
-				page: 1,
 				loadRecord: true,
+				v_pid:'',
 				v_test:'全部',
-				old_id:'',
 				keyword_show:'',
 				req_data:{
 					type:'',
 					limit:10,
-					page:1,
-					v_pid:''
+					page:1
 				}
 			}
 		},
 		methods:{
 			Index(){
-				this.more = 'loading'
+				// this.more = 'loading'
 				this.uni_request(this.req_data)
 			},
-			chiose(v_pid,test){
+			
+			chiose(v_pid,test){ //二级分类选择
+				// this.more = 'loading'
 				this.req_data.page = 1
-				this.more = 'loading'
 				this.loadRecord = true
 				if(v_pid){
 					this.req_data.v_pid = v_pid
 					this.v_test = test
 				}else{
-					this.req_data.v_pid = this.old_id
+					delete this.req_data.v_pid
 					this.v_test = '全部'
 				}
 				this.video_list.length = 0
@@ -133,9 +145,9 @@
 				this.show = false
 			},
 			condition(type){//条件选择
-				this.more = 'loading'
+				// this.more = 'loading'
 				this.req_data.page = 1
-				this.loadRecord = true
+				// this.loadRecord = true
 				this.video_list.length = 0
 				if(this.keyword_show == type){//重复点击取消
 					this.keyword_show = ''
@@ -154,37 +166,33 @@
 				}
 				this.uni_request(this.req_data)//执行分页函数
 			},
-			uni_request(data){//请求接口
-				this.service.entire(this,'get',this.APIconfig.api_root.com_page.videoList,data,function(self,res){
+			uni_request(req_data){
+				this.service.entire(this,'get',this.APIconfig.api_root.com_page.sVideoList,req_data,function(self,res){
 					self.top_class = res.data.top_list
 					let data = self.video_list
 					data.push(...res.data.video_list)
 					self.video_list = data
 					self.req_data.page += 1
-					self.more = 'more'
-					if (res.data.video_list.length < 10) {//判断是否还有下一页
-						self.more = 'noMore'
-						self.loadRecord = false
-						return
-					}
+					// self.more = 'more'
+					// if (res.data.video_list.length < 10) {
+					// 	self.more = 'noMore'
+					// 	self.loadRecord = false
+					// 	return
+					// }
 				})
 			}
 		},
-		onLoad(e) {
-			this.title = e.title
-			this.type = e.type
-			this.req_data.v_pid = e.id
-			this.old_id = e.id
+		onLoad(e) {//
 			this.req_data.type = e.type
-			if(e.v_pid){
-				this.req_data.v_pid = e.v_pid
-				this.v_test = e.v_test
-			}
+			// this.type = e.type
 			this.Index()
 		},
+		onShow() {
+			this.service.notice.call(this)
+		},
 		onReachBottom() {
-			if (this.loadRecord == false) return
-			this.Index()
+			// if (this.loadRecord == false) return
+			// this.Index()
 		},
 	}
 </script>
@@ -205,26 +213,42 @@
 		align-items: center;
 		height: 105rpx;
 		padding: 0 20rpx;
-	}
-	.content_top .top_returns image{
-		height: 31rpx;
-		width: 31rpx;
-		padding-right: 10rpx;
-	}
-	.content_top .top_search{
-		flex-grow: 2;
-		height: 65rpx;
-		line-height: 65rpx;
-		text-align: center;
-		font-weight:500;
-		font-size: 32rpx;
-	}
-	
-	
-	.content_top image{
-		height: 50rpx;
-		width: 50rpx;
-		margin-left: 10rpx;
+		.top_returns image{
+			height: 31rpx;
+			width: 31rpx;
+			padding-right: 10rpx;
+		}
+		.top_search{
+			flex-grow: 2;
+			height: 65rpx;
+			border-radius: 65rpx;
+			display: flex;
+			align-items: center;
+			padding-left: 40rpx;
+			background: #EEEEEE;
+			font-size: 24rpx;
+			color: #999;
+		}
+		view input{
+			font-size: 24rpx;
+		}
+		.top_img{
+			position: relative;
+			view{
+				position: absolute;
+				right: 0;
+				top: 0;
+				height: 10rpx;
+				width: 10rpx;
+				border-radius: 50%;
+				background: #D80000;
+			}
+		}
+		image{
+			height: 50rpx;
+			width: 50rpx;
+			margin-left: 10rpx;
+		}
 	}
 	.tab_list{
 		position: fixed;
@@ -236,24 +260,24 @@
 		background: #F6F6F7;
 		color: #666666;
 		font-size: 28rpx;
-		
+		height: 100rpx;
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
 		padding: 0 50rpx;
-	}
-	.tab_list view{
-		height: 100rpx;
-		line-height: 100rpx;
-	}
-	.tab_list .list_all{
-		display: flex;
-		align-items: center;
-		color: #D80000;
-	}
-	.red{
+		view{
+			height: 100rpx;
+			line-height: 100rpx;
+		}
+		.list_all{
+			display: flex;
+			align-items: center;
 			color: #D80000;
 		}
+		.red{
+			color: #D80000;
+		}
+	}
 	.all_img{
 		transition: .3s;
 	}
@@ -268,21 +292,43 @@
 		width: 19rpx;
 		margin-left: 14rpx;
 	}
+	
 	.down_box{
 		position: fixed;
 		top: calc(var(--status-bar-height) + 205rpx);
 		left: 0;
 		width: 100%;
-		box-sizing: border-box;
 		z-index: 900;
+		box-sizing: border-box;
 		display: flex;
 		flex-wrap: wrap;
-		justify-content: space-between;
+		// justify-content: space-between;
 		transition: .3s;
 		transform: translateY(-100%);
 		background: #FFFFFF;
 		font-size: 28rpx;
 		padding: 40rpx 20rpx;
+		.list_box{
+			width: 33.3%;
+			.down_list{
+				width: 180rpx;
+				height: 60rpx;
+				line-height: 60rpx;
+				border-radius: 60rpx;
+				background: #F1F1F1;
+				text-align: center;
+				margin: 15rpx auto;
+			}
+			&:after {
+			    content: ""; 
+			    width:33.3%;
+			} 
+			&:nth-of-type(1) .down_list{
+				color: #D80000;
+			}
+		}
+		
+		
 	}
 	.mask_none{
 		transform: translateY(-100%);
@@ -290,27 +336,35 @@
 	.mask_show{
 		transform: translateY(0%);
 	}
-	.down_box .down_list{
-		width: 180rpx;
-		height: 60rpx;
-		line-height: 60rpx;
-		border-radius: 60rpx;
-		background: #F1F1F1;
-		text-align: center;
-		margin-bottom: 30rpx;
-	}
-	.down_box:after { 
-	    content: ""; 
-	    width:180rpx;
-	} 
-	.down_box .down_list:nth-of-type(1){
-		color: #D80000;
-	}
 	.vider_content_two{
 		border-bottom: 6rpx solid #F1F1F1;
 		.vider_content{
 			padding: 0 20rpx;
 			font-size: 28rpx;
+			.v_box_top{
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				font-size: 28rpx;
+				margin: 20rpx 0;
+				.box_left{
+					display: flex;
+					align-items: center;
+					font-size: 38rpx;
+					font-weight: bold;
+					.red{
+						display: inline-block;
+						margin-right: 10rpx;
+						height: 38rpx;
+						width: 4rpx;
+						background: #FE0000;
+					}
+				}
+				.box_right{
+					font-size: 28rpx;
+					color: #E9BB00;
+				}
+			}
 			image{
 				width: 268rpx;
 				height: 179rpx;
@@ -336,7 +390,7 @@
 						display: flex;
 						justify-content: space-between;
 						margin-bottom: 10rpx;
-						.list_mid{
+						view:nth-of-type(2){
 							display: flex;
 							color: #D80000;
 							font-size: 28rpx;
@@ -364,4 +418,5 @@
 			}
 		}
 	}
+	
 </style>

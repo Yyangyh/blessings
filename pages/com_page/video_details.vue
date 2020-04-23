@@ -338,6 +338,8 @@
 		</view>
 		
 		<!-- #endif -->
+		
+		<!-- #ifdef APP-PLUS -->
 		<view class="video_bottom">
 			<!-- <view class="bot_left" >
 				￥
@@ -367,6 +369,7 @@
 				
 			</view>
 		</view>
+		<!-- #endif -->
 		<load v-if="load_show"></load>
 	</view>
 </template>
@@ -1125,7 +1128,6 @@
 		line-height: 80rpx;
 		padding: 0 21rpx;
 		text-align: center;
-		color: ;
 	}
 	.video_bottom{
 		width: 100%;

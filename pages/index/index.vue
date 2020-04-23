@@ -15,11 +15,11 @@
 			</swiper>
 		</view>
 		<view class="index_tab">
-			<view class="tab_list"  @tap="$jump('../com_page/index_class?type=1')">
+			<view class="tab_list"  @tap="$jump('../com_page/news_class?type=1')">
 				<image src='../../static/image/index/index_tab1.png'></image>
 				<view class="">课程视频</view>
 			</view>
-			<view class="tab_list"  @tap="$jump('../com_page/index_class?type=2')">
+			<view class="tab_list"  @tap="$jump('../com_page/news_class?type=2')">
 				<image src='../../static/image/index/index_tab2.png' mode="widthFix"></image>
 				<view class="">音频课程</view>
 			</view>

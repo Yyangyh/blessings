@@ -47,7 +47,7 @@
 										<image src="/static/image/subuser/tongxunlu.png" mode="widthFix"></image>
 									</view>
 							</view>
-							<button type="default" @click="invite">邀请好友</button>
+							<button type="default" @click="invite">邀请之后需对方同意生效</button>
 						<!-- </form> -->
 					</view>
 					<block  v-for="(item,index) in invateList" :key='item.id'>
@@ -300,7 +300,7 @@
 				height:760rpx;
 				background:rgba(255,255,255,1);
 				border-radius:25rpx;
-				margin: 50rpx auto;
+				margin: 50rpx auto 0rpx;
 				position: relative;
 				.allorder{
 					width: 100%;
@@ -372,7 +372,7 @@
 					text-align: center;
 					color: #FFFFFF;
 					position: absolute;
-					bottom: 40rpx;
+					bottom: 110rpx;
 					left: 51rpx;
 				}
 			}

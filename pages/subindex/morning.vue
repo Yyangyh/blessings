@@ -67,7 +67,13 @@
 				</view>
 			</view>
 		</view>
+		<!-- #ifdef H5 -->
 		
+		<view class="download" @tap="$jump('../login/reg?code='+code)">
+			下载APP
+		</view>
+		
+		<!-- #endif -->
 		<view>
 		    <uni-calendar 
 		    ref="calendar"
@@ -489,6 +495,9 @@
 </script>
 
 <style lang="scss">
+	.content{
+		padding-bottom: 90rpx;
+	}
 	.top{
 		height: 105rpx;
 		padding: 0 44rpx;
@@ -599,5 +608,19 @@
 				}
 			}
 		}
+	}
+	.download{
+		width: 100%;
+		background: #fff;
+		position: fixed;
+		color: #FE0000;
+		background: #FCCF00;
+		left: 0;
+		bottom: 0rpx;
+		box-sizing: border-box;
+		height: 80rpx;
+		line-height: 80rpx;
+		padding: 0 21rpx;
+		text-align: center;
 	}
 </style>

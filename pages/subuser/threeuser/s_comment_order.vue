@@ -171,7 +171,7 @@
 					success: function(res) {
 						uni.uploadFile({
 							url: that.APIconfig.api_root.subuser.threeuser.s_ueditor_index,
-							filePath: res.tempFilePaths[0],
+							filePath: res.tempFiles[0].path,
 							name: 'upfile',
 							formData: {
 								action:'uploadimage',
@@ -185,12 +185,12 @@
 									if (!that.image_list[i]) { // 如果没有图片 ， 建二维数组
 										var arr = [];
 										var file = []
-										arr.push(res.tempFilePaths[0])
+										arr.push(res.tempFiles[0].path)
 										file.push(JSON.parse(ref.data).data.url)
 										that.image_list[i] = [...arr]
 										that.images[i] = [...file]
 									} else {
-										that.image_list[i].push(res.tempFilePaths[0])
+										that.image_list[i].push(res.tempFiles[0].path)
 										that.images[i].push(JSON.parse(ref.data).data.url)
 									}
 									that.image_list = JSON.parse(JSON.stringify(that.image_list))
