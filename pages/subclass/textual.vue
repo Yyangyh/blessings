@@ -8,7 +8,7 @@
 			<text>导师考证</text>
 			<text @tap="$jump('./certificateList')">我的证书</text>
 		</view>
-		<image class="t_image" src="/static/image/subclass/background.png " mode="widthFix"></image>
+		<image class="t_image" src="/static/image/subclass/background.jpg " mode="widthFix"></image>
 		<view class='t_text'>
 			
 			<button type="default"  @tap="$jump('./applyFor')">立即申请</button>
@@ -45,7 +45,7 @@
 		.top{
 			position: fixed;
 			width: 100%;
-			z-index: 886;
+			z-index: 90;
 			box-sizing: border-box;
 			top: var(--status-bar-height);
 			left: 0;
@@ -74,7 +74,7 @@
 			position: absolute;
 			top:calc(var(--status-bar-height) + 105rpx);
 			left: 0;
-			z-index: 888;
+			z-index: 88;
 		}
 		.t_text{
 			width: 100%;

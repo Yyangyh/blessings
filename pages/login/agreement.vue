@@ -21,7 +21,7 @@
 		},
 		data() {
 			return {
-				title:'用户须知',
+				title:'用户协议',
 				treaty:''
 			}
 		},

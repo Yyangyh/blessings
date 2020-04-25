@@ -410,7 +410,7 @@
 				.three_list{
 					width: 50%;
 					font-size: 28rpx;
-					padding-top: 30rpx;
+					padding-top: 60rpx;
 					text-align: center;
 				}
 			}

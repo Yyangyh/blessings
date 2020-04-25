@@ -338,8 +338,6 @@
 		</view>
 		
 		<!-- #endif -->
-		
-		<!-- #ifdef APP-PLUS -->
 		<view class="video_bottom">
 			<!-- <view class="bot_left" >
 				￥
@@ -369,7 +367,6 @@
 				
 			</view>
 		</view>
-		<!-- #endif -->
 		<load v-if="load_show"></load>
 	</view>
 </template>
@@ -607,8 +604,9 @@
 					});
 				}else{
 					this.indexs = index
-					this.initial_time = 0
 					this.play_url = this.service.analysis_url(this.catalog_data[index].video_url)
+					this.initial_time = this.catalog_data[index].play_time
+					
 				}
 				
 			},
@@ -629,6 +627,7 @@
 						});
 					}else{
 						this.play_url = this.service.analysis_url(this.catalog_data[index].video_url)
+						this.initial_time = this.catalog_data[index].play_time
 					}
 				}
 				if(this.indexs || this.indexs === 0){ //当宣传视频播放结束时
@@ -744,7 +743,6 @@
 						}
 					}
 					that.Au_timeupdate.apply(this,[e])
-					
 				})
 				audio.onEnded(function(){  //播放结束时
 					that.status = 1
@@ -777,7 +775,6 @@
 					self.collects = res.data.video.collect
 					self.poster = res.data.video.screensaver
 					if(self.video_data.evaluate)self.video_data.stars_num = new Array(Number(self.video_data.evaluate))
-					console.log(self.play_url)
 				})
 				
 				await this.service.asy_entire(this,'post',this.APIconfig.api_root.com_page.catalogue,{ //视频目录
@@ -1128,6 +1125,7 @@
 		line-height: 80rpx;
 		padding: 0 21rpx;
 		text-align: center;
+		color: ;
 	}
 	.video_bottom{
 		width: 100%;

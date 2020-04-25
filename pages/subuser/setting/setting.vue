@@ -12,7 +12,7 @@
 			<image class="l_right" src='/static/image/index/go.png' mode="widthFix"></image>
 		</view>
 		<hr /> -->
-		<view class="line" @tap="$jump('./cellPhone')" v-if="user.referrer == false">
+		<view class="line" @tap="$jump('./cellPhone')">
 			<view class="l_left">
 				<image src='/static/image/subuser/set-1.png' mode="widthFix"></image>
 				<text>修改手机号码</text>
@@ -42,7 +42,7 @@
 			</view>
 			<image class="l_right" src='/static/image/index/go.png' mode="widthFix"></image>
 		</view> -->
-		<view class="line" @tap="$jump('./binding')">
+		<view class="line" @tap="$jump('./binding')"  v-if="user.referrer == false">
 			<view class="l_left">
 				<image src='/static/image/subuser/bindingSuper.png' mode="widthFix"></image>
 				<text>添加邀请码</text>
@@ -73,7 +73,7 @@
 		computed:{
 			edition(){
 				// #ifdef APP-PLUS
-				return 'plus.runtime.version'
+				return plus.runtime.version
 				// #endif
 			},
 			...mapState({
@@ -119,7 +119,7 @@
 				margin-right: 10rpx;
 			}
 			text{
-				font-size: 24rpx;
+				font-size: 28rpx;
 			}
 		}
 		.l_right{

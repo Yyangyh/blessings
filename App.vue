@@ -9,17 +9,92 @@
 			var req = { //升级检测数据  
 				"version": plus.runtime.version,
 				'type':uni.getSystemInfoSync().platform == 'android' ? '1': '2'
-			};  
-			uni.request({  
+			}; 
+			console.log(req)
+			let toUpdate = function(data){
+				console.log(data)
+				plus.runtime.getProperty(plus.runtime.appid, function(widgetInfo) {   //这里用 plus.runtime.getProperty() 来获取相关信息。
+					let used_version = widgetInfo.version.split('.').join('')
+					let news_version =  data.version.split('.').join('')
+					uni.showModal({
+					    title: '提示',
+					    content: '新版本'+news_version+',旧版本：'+used_version,
+						showCancel:false,
+					    success: function (ref) {
+					        
+					    }
+					});
+					if(Number(news_version) - Number(used_version) >= 2){
+						plus.runtime.openURL(data.url);
+					}else{
+						uni.showLoading({
+							title: '下载中',
+							mask:true
+						});
+						uni.downloadFile({
+						url: data.hoturl,
+						success: (downloadResult) => {
+							uni.showLoading({
+								title: '安装中',
+								mask:true
+							});
+							if (downloadResult.statusCode === 200) {
+								plus.runtime.install(downloadResult.tempFilePath, {
+									force: true //强制安装
+								}, function() {
+									uni.hideLoading();
+									plus.runtime.restart();
+								}, function(e) {
+									uni.hideLoading();
+									console.log(e)
+								});
+							}
+						}
+						});
+					}
+				});
+			}
+			uni.request({
 				url: this.APIconfig.api_root.common.getNewApk,  
 				data: req,  
 				success: (res) => {
 					console.log(res)
-					if (res.data.data) {  
-						plus.runtime.openURL(res.data.data);
+					if (res.data.data.version != req.version) {  
+						if(res.data.data.ishot == 1){ //是否强制更新
+							uni.showModal({
+							    title: '提示',
+							    content: '检测到新版本，需要更新后才能使用',
+								showCancel:false,
+							    success: function (ref) {
+							        if (ref.confirm) {
+										toUpdate(res.data.data)
+									}
+							    }
+							});									
+						}else{
+							uni.showModal({
+								title: '提示',
+								content: '检测到新版本，是否确定更新？',
+								success: function (ref) {
+									if (ref.confirm) {
+										toUpdate(res.data.data)
+									} else if (ref.cancel) {
+										console.log('用户点击取消');
+									}
+								}
+							});
+						}
 					}
 				}  
-			}) 
+			})
+			
+			
+			
+			
+			
+			
+			
+			 
 			// #endif
 			
 			

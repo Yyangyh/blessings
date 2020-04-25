@@ -10,9 +10,10 @@
 			<view class="top_search">
 				{{title}}
 			</view>
-			<view class="top_img"  @tap="$jump('/pages/com_page/v_search?type='+type)">
+			<!-- <view class="top_img"  @tap="$jump('/pages/com_page/v_search?type='+type)">
 				<image src="/static/image/com_page/search.png" mode="widthFix"></image>
-			</view>
+			</view> -->
+			<text></text>
 		</view>
 		
 		<view class="tab_list">
@@ -226,6 +227,10 @@
 		width: 50rpx;
 		margin-left: 10rpx;
 	}
+	.content_top text{
+		width: 50rpx;
+		display: inline-block;
+	}
 	.tab_list{
 		position: fixed;
 		z-index: 999;
@@ -236,7 +241,6 @@
 		background: #F6F6F7;
 		color: #666666;
 		font-size: 28rpx;
-		
 		display: flex;
 		justify-content: space-between;
 		align-items: center;

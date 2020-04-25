@@ -47,8 +47,25 @@
 										<image src="/static/image/subuser/tongxunlu.png" mode="widthFix"></image>
 									</view>
 							</view>
-							<button type="default" @click="invite">邀请之后需对方同意生效</button>
+							<button  @click="invite">邀请之后需对方同意生效</button>
 						<!-- </form> -->
+						<view class="explain">
+							<view class="">
+								1.所有会员可随意邀请一位亲朋好友，和您共享所购买视频内容。
+							</view>
+							<view class="">
+								2.我们倡导夫妻共同学习，共同成长，建设美好幸福家庭。
+							</view>
+							<view class="">
+								3.也可以邀请您身边最亲近的人成为您亲情好友，和您一起学习。
+							</view>
+							<view class="">
+								4.本人如果已经成为被邀请人，将不在有邀请别人的权限。
+							</view>
+							<view class="">
+								5.邀请前请您认真填写，邀请之后不能随意更换邀请人。
+							</view>
+						</view>
 					</view>
 					<block  v-for="(item,index) in invateList" :key='item.id'>
 						<view class="box" v-show="cur==2">
@@ -96,23 +113,7 @@
 					
 				</view>
 			</view>
-			<view class="explain">
-				<view class="">
-					1.所有会员可随意邀请一位亲朋好友，和您共享所购买视频内容。
-				</view>
-				<view class="">
-					2.我们倡导夫妻共同学习，共同成长，建设美好幸福家庭。
-				</view>
-				<view class="">
-					3.也可以邀请您身边最亲近的人成为您亲情好友，和您一起学习。
-				</view>
-				<view class="">
-					4.本人如果已经成为被邀请人，将不在有邀请别人的权限。
-				</view>
-				<view class="">
-					5.邀请前请您认真填写，邀请之后不能随意更换邀请人。
-				</view>
-			</view>
+			
 		</view>
 	</view>
 </template>
@@ -326,7 +327,7 @@
 					.left_box{
 						display: flex;
 						align-items: center;
-						padding-top: 54rpx;
+						padding-top: 25rpx;
 						// image:first-child{
 						// 	width: 36rpx;
 						// 	height: 36rpx;
@@ -347,7 +348,7 @@
 						display: flex;
 						align-items: center;
 						justify-content: space-between;
-						margin-top: 54rpx;
+						margin-top: 25rpx;
 						text{
 							font-size: 32rpx;
 							color: #333333;
@@ -355,7 +356,7 @@
 						image{
 							width: 33rpx;
 							height: 33rpx;
-							margin-top: 50rpx;
+							margin-top: 25rpx;
 						}
 						input{
 							font-size: 24rpx;
@@ -371,19 +372,20 @@
 					line-height: 80rpx;
 					text-align: center;
 					color: #FFFFFF;
-					position: absolute;
-					bottom: 110rpx;
-					left: 51rpx;
+					margin: 10rpx auto;
+					// position: absolute;
+					
+				}
+				.explain{
+					font-size: 28rpx;
+					padding:  0rpx 10rpx;
+					color: #000;
+					view{
+						margin-top: 4rpx;
+					}
 				}
 			}
-			.explain{
-				font-size: 30rpx;
-				padding:  20rpx;
-				color: #fff;
-				view{
-					margin-top: 10rpx;
-				}
-			}
+			
 		}
 		.bk{
 			width:535rpx;

@@ -226,7 +226,7 @@ res
 						})
 					}else if(type == 'xuetang'){
 						uni.navigateTo({
-							url:'../com_page/video_details?type=1&id='+id
+							url:'../com_page/video_details?'+id
 						})
 					}else if(type == 'pintuan'){
 						uni.navigateTo({
@@ -234,7 +234,7 @@ res
 						})
 					}else{
 						uni.navigateTo({
-							url:'../subhome/h_article?id='+id
+							url:'../subhome/threehome/h_article?id='+id
 						})
 					}
 				}

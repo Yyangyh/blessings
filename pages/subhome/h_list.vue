@@ -6,7 +6,8 @@
 		<view class="top">
 			<image src="../../static/image/com_page/returns.png" @tap="service.returns()" mode="widthFix"></image>
 			<text>{{title}}</text>
-			<image  @tap="$jump('/pages/subhome/h_search?id='+req_data.category_id)" src="../../static/image/com_page/search.png" mode="widthFix"></image>
+			<!-- <image  @tap="$jump('/pages/subhome/h_search?id='+req_data.category_id)" src="../../static/image/com_page/search.png" mode="widthFix"></image> -->
+			<text></text>
 		</view>
 		<view class="texts_boxList" v-for="(item,index) in dataList" :key='item.id'>
 			<view class="t_box" @tap="$jump('./threehome/h_article?id='+item.id)">
@@ -105,6 +106,10 @@
 			image:last-child{
 				width: 50rpx;
 				height: 50rpx;
+			}
+			text:nth-of-type(2){
+				width: 31rpx;
+				display: inline-block;
 			}
 		 }
 		.tran_none{

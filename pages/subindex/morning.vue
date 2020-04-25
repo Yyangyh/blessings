@@ -70,7 +70,7 @@
 		<!-- #ifdef H5 -->
 		
 		<view class="download" @tap="$jump('../login/reg?code='+code)">
-			下载APP
+			下载APP观看精彩内容
 		</view>
 		
 		<!-- #endif -->

@@ -38,6 +38,15 @@
 			}
 		},
 		{
+			"path": "pages/login/prvate",
+			"style": {
+				"navigationBarTitleText": "隐私协议",
+				"app-plus":{
+					"titleNView":false
+				}
+			}
+		},
+		{
 			"path": "pages/index/classroom",
 			"style": {
 				"navigationBarTitleText": "幸福课堂",
@@ -218,15 +227,7 @@
 				}
 			}
 		},
-		{
-			"path": "pages/subhome/h_article",
-			"style": {
-				"navigationBarTitleText": "家风建设",
-				"app-plus":{
-					"titleNView":false
-				}
-			}
-		},
+		
 		
 		{
 			"path": "pages/subhome/threehome/h_article",
@@ -551,14 +552,6 @@
 			"path": "pages/subclass/textual",
 			"style": {
 				"navigationBarTitleText": "导师考证",
-				"app-plus":{
-					"titleNView":false
-				}
-			}
-		},{
-			"path": "pages/subclass/textual.1",
-			"style": {
-				"navigationBarTitleText": "再次申请",
 				"app-plus":{
 					"titleNView":false
 				}

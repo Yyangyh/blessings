@@ -36,6 +36,11 @@
 		
 		<block v-else>
 			<view class="audo-video"  v-if="play_url">
+				<video id="myAudio" :src="play_url" class="hidden"
+				:autoplay='true' 
+				:initial-time = 'initial_time'
+				@ended='play_end'  @timeupdate="Au_timeupdate" 
+				></video>
 				<view class="slider">
 					<view class="slider_img">
 						<image :src="poster" mode="widthFix"></image>
@@ -137,7 +142,7 @@
 				<rich-text :nodes="video_content"></rich-text>
 			</view>
 		</view>
-		<view class="catalog_box" v-show="test_show == 1">
+		<view class="catalog_box" v-show="test_show == 1" v-if="video_data.is_online == 0">
 			<view class="catalog_test">
 				目录
 			</view>
@@ -148,7 +153,6 @@
 					<image  v-else src="../../static/image/com_page/video.png" mode="widthFix"></image>
 					<text>{{item.name}}</text>
 				</view>
-				
 			</view>
 		</view>
 		<view v-show="test_show == 2">
@@ -272,31 +276,11 @@
 		<!-- #ifdef H5 -->
 		
 		<view class="download" @tap="$jump('../login/reg?code='+code)">
-			下载APP
+			下载APP观看精彩内容
 		</view>
 		
 		<!-- #endif -->
-		<view class="video_bottom">
-			
-			<view class="bot_right">
-				<view class="bot_col" @tap="$jump('./video_give')">
-					<image  src="../../static/image/com_page/give.png" mode="widthFix"></image>
-					<view class="">
-						赠送说明
-					</view>
-				</view>
-				
-				<block  v-if="video_data.is_online == 0">
-					<view class="bot_buy" @tap="$jump('../login/reg?code='+code)"  v-if="is_free">
-						<text v-if="is_free">{{'￥'+Number(video_data.v_price)}}</text>立即购买
-					</view>
-					<view class="bot_buy" v-else>
-						{{type == 1?'免费观看' : '免费悦听'}}
-					</view>
-				</block>
-				
-			</view>
-		</view>
+		
 		<load v-if="load_show"></load>
 	</view>
 </template>
@@ -373,13 +357,13 @@
 			// 播放
 			play() {
 				this.status = 2
-				bgAudioMannager.play()
-				// this.videoContext.play()
+				// bgAudioMannager.play()
+				this.videoContext.play()
 			},
 			// 暂停
 			stop() {
-				// this.videoContext.pause()
-				bgAudioMannager.pause()
+				this.videoContext.pause()
+				// bgAudioMannager.pause()
 				this.status = 1
 			},
 			
@@ -418,7 +402,24 @@
 				this.$refs.share.share();
 				// #endif
 			},
-			
+			Au_timeupdate(e) {  //音频
+				// console.log(e.detail.duration)
+				// console.log( e.detail.currentTime)
+				if(this.lock) return; // 锁
+				// console.log(e)
+				var currentTime,duration;
+				if(e.detail.detail) {
+					currentTime = e.detail.detail.currentTime
+					duration = e.detail.detail.duration
+				}else {
+					currentTime = e.detail.currentTime
+					duration = e.detail.duration
+				}
+				
+				this.duration_time = e.detail.duration
+				this.currentTime = currentTime
+				this.duration = duration
+			},
 			
 			
 			
@@ -486,26 +487,22 @@
 				if(audio.paused){
 					audio.play()
 				}
-				
-				
-				
 				audio.onEnded(function(){  //播放结束时
 					that.status = 1
 					that.play_end.call(this)
 				})
 			},
 			async async_n(){ //需同步请求
-				console.log(this.id)
 				await this.service.asy_entire(this,'post',this.APIconfig.api_root.com_page.ShareVideoDetail,{ //视频详情
 					video_id:this.id
 				},function(self,res){
 					self.data = res.data
-					console.log(res.data.v_url)
 					
 					res.data.v_url ? self.play_url = self.service.analysis_url(res.data.v_url) : self.indexs = 0
 					
 					
 					self.video_data = res.data
+					if(self.video_data.is_online == 1) self.test_show = 0
 					
 					self.share_arr.Title =  res.data.title//分享
 					self.share_arr.Summary =  res.data.long_title//分享
@@ -517,7 +514,6 @@
 					
 					self.poster = res.data.screensaver
 					if(self.video_data.evaluate)self.video_data.stars_num = new Array(Number(self.video_data.evaluate))
-					console.error(self.play_url)
 				})
 				
 				await this.service.asy_entire(this,'post',this.APIconfig.api_root.com_page.ShareCatalogue,{ //视频目录
@@ -537,83 +533,57 @@
 						
 					}
 					
-					
-					
 					self.catalog_data = data
 					self.load_show = false
-					if(self.type == 2){
-						// mp3背景音乐
-						// #ifdef APP-PLUS
-						// console.log(self.poster)
-						bgAudioMannager.title = self.video_data.long_title;
-						bgAudioMannager.singer = self.video_data.name;
-						bgAudioMannager.coverImgUrl = self.poster;
-						bgAudioMannager.src = self.play_url
-						self.initAudio()
-						// #endif
-						// mp3背景音乐
-					}
+					// if(self.type == 2){
+					// 	// mp3背景音乐
+					// 	// #ifdef APP-PLUS
+					// 	// console.log(self.poster)
+					// 	bgAudioMannager.title = self.video_data.long_title;
+					// 	bgAudioMannager.singer = self.video_data.name;
+					// 	bgAudioMannager.coverImgUrl = self.poster;
+					// 	bgAudioMannager.src = self.play_url
+					// 	self.initAudio()
+					// 	// #endif
+					// 	// mp3背景音乐
+					// }
 					
 				})
 				
 			}
 		},
 		created() {
-			 // this.videoContext = uni.createVideoContext('myAudio')
+			this.videoContext = uni.createVideoContext('myAudio')
 			//  console.log(this.videoContext)
 			//打开通知栏控制条
-			
+			let ua = navigator.userAgent.toLowerCase();
+			if (ua.match(/MicroMessenger/i) == "micromessenger") {  //判断是否是微信浏览器
+				this.status = 1
+			}
 		},
 		onShow() {
 			
-			// this.service.entire(this,'post',this.APIconfig.api_root.com_page.v_evaluate,{ //用户评论
-			// 	userid:this.$store.state.user.id,
-			// 	video_id:this.id,
-			// 	page:1,
-			// 	limit:2
-			// },function(self,res){
-			// 	self.comments = res.data.data
-			// 	for (let s of self.comments) {
-			// 		s.rating_num = new Array(Number(s.grade))
-			// 	}	
-			// })
 		},
-		// onReady: function (res) {
-		// 	this.videoContext = uni.createVideoContext('myVideo')
-		// },
+		onReady: function (res) {
+			// this.videoContext = uni.createVideoContext('myVideo')
+		},
 		onLoad(e) {
 			// const music=uni.requireNativePlugin('Html5app-Music');
-			// this.share_arr.Url = 'https://www.wufu-app.com/h5/#/pages/login/reg?code='+this.$store.state.user.invite_code
 			console.log(e)
 			this.share_arr.Url = 'https://www.wufu-app.com/h5/#/pages/com_page/video_details?id='+e.id+'&type='+e.type+'&code='+this.$store.state.user.invite_code
 			this.id = e.id
 			this.type = e.type
 			if(e.code) this.code = e.code
 			this.async_n()
-			// this.service.entire(this,'post',this.APIconfig.api_root.com_page.v_coupon,{ //优惠券列表
-			// 	userid:this.$store.state.user.id,
-			// 	mobile:this.$store.state.user.mobile,
-			// },function(self,res){
-			// 	self.coupon_data = res.data.coupon
-			// })
-			// this.service.entire(this,'post',this.APIconfig.api_root.com_page.v_recommend,{ //推荐视频
-			// 	userid:this.$store.state.user.id,
-			// 	video_id:e.id,
-			// 	page:1,
-			// 	limit:2,
-			// 	type:1
-			// },function(self,res){
-			// 	self.recommend_video = res.data.video_list
-			// })
 		},
 		onHide(){
-			// this.videoContext.pause()
-			// this.status = 1
+			this.videoContext.pause()
+			this.status = 1
 			
 		},
 		onUnload(){
-			// this.videoContext.pause()
-			bgAudioMannager.pause()
+			this.videoContext.pause()
+			// bgAudioMannager.pause()
 			this.status = 1
 		}
 	}
@@ -856,7 +826,7 @@
 		color: #FE0000;
 		background: #FCCF00;
 		left: 0;
-		bottom: 120rpx;
+		bottom: 0rpx;
 		box-sizing: border-box;
 		height: 80rpx;
 		line-height: 80rpx;

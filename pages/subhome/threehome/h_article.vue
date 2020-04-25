@@ -26,7 +26,13 @@
 				<rich-text :nodes="video_content"></rich-text>
 			</view>
 		</view>
+		<!-- #ifdef H5 -->
 		
+		<view class="download" @tap="$jump('../../login/reg?code='+code)">
+			下载APP观看精彩内容
+		</view>
+		
+		<!-- #endif -->
 	</view>
 </template>
 
@@ -47,6 +53,7 @@
 				id:'',
 				video_content:'',
 				share_arr:{},
+				code:''
 			}
 		},
 		methods:{
@@ -81,7 +88,8 @@
 		},
 		onLoad(e) {
 			this.id = e.id
-			this.share_arr.Url = 'https://www.wufu-app.com/h5/#/pages/login/reg?code='+this.$store.state.user.invite_code
+			if(e.code) this.code = e.code
+			this.share_arr.Url = 'https://www.wufu-app.com/h5/#/pages/subhome/threehome/h_article?code='+this.$store.state.user.invite_code+'&id='+e.id
 			this.service.entire(this,'post',this.APIconfig.api_root.subhome.f_detail,{//获取文章
 				id:e.id,
 				// user_id:this.$store.state.user.id
@@ -99,11 +107,11 @@
 				
 				self.dataList.rating_num = new Array(Number(self.dataList.grade))
 			})
-			this.service.entire(this,'post',this.APIconfig.api_root.subhome.threehome.g_browse,{//增加文章阅读
-				id:e.id,
-				mid:this.$store.state.user.id
-			},function(self,res){
-			})
+			// this.service.entire(this,'post',this.APIconfig.api_root.subhome.threehome.g_browse,{//增加文章阅读
+			// 	id:e.id,
+			// 	mid:this.$store.state.user.id
+			// },function(self,res){
+			// })
 		}
 	}
 </script>
@@ -182,5 +190,19 @@
 	}
 	.rich{
 		padding: 0 20rpx;
+	}
+	.download{
+		width: 100%;
+		background: #fff;
+		position: fixed;
+		color: #FE0000;
+		background: #FCCF00;
+		left: 0;
+		bottom: 0rpx;
+		box-sizing: border-box;
+		height: 80rpx;
+		line-height: 80rpx;
+		padding: 0 21rpx;
+		text-align: center;
 	}
 </style>

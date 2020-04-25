@@ -46,8 +46,14 @@
 						<image src="../../static/image/login/wx.png" mode="widthFix" @click="wx()"></image>
 					</view>
 					<!-- #endif -->
-					<view class="agreement" @tap="jump('./agreement')">
-						《用户协议和隐私政策》
+					<view class="agreement">
+						<view class="" @tap="jump('./agreement')">
+							用户协议
+						</view>
+						<text></text>
+						<view class="" @tap="jump('./prvate')">
+							隐私政策
+						</view>
 					</view>
 				</view>
 				
@@ -148,7 +154,7 @@
 							
 							uni.setStorageSync('state_user',data.data.memberInfo)
 							uni.setStorageSync('state_token',data.token)
-							
+							that.$store.commit('Amodify_login',1)
 							setTimeout(function(){
 								
 								uni.switchTab({
@@ -198,6 +204,7 @@
 									uni.setStorageSync('state_user',data.data.memberInfo)
 									uni.setStorageSync('state_token',data.token)
 									uni.setStorageSync('wx','wx')
+									that.$store.commit('Amodify_login',1)
 									uni.switchTab({
 										url: '../index/index'
 									});
@@ -209,6 +216,7 @@
 									uni.setStorageSync('openid',loginRes.authResult.openid)
 									uni.setStorageSync('nickname',data.data.nickname)
 									uni.setStorageSync('wx','wx')
+									that.$store.commit('Amodify_login',1)
 									uni.switchTab({
 										url: '../index/index'
 									});
@@ -375,6 +383,17 @@
 		color: #fff;
 		font-size: 28rpx;
 		text-align: center;
+		display: flex;
+		justify-content: center;
+		view{
+			border-bottom: 2rpx solid #fff;
+		}
+		text{
+			display: inline-block;
+			width: 4rpx;
+			background: #fff;
+			margin: 0 20rpx;
+		}
 	}
 	.Mask{
 		position: fixed;

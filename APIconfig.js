@@ -16,6 +16,7 @@ const api_root = {
 		findPassword: api+'/api/member/findPassword',//找回密码验证
 		reset: api+'/api/member/reset',//重置密码
 		getProtocol: api+'/api/member/getProtocol',//获取协议内容
+		getprvate: api+'/api/member/getprvate',//获取隐私协议
 	},
 	index:{   
 		advertise: api+'/api/index/advertise',//首页弹框
