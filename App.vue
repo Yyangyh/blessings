@@ -6,32 +6,16 @@
 			console.log('App Launch')
 			
 			// #ifdef APP-PLUS
-			var req = { //升级检测数据  
-				"version": plus.runtime.version,
-				'type':uni.getSystemInfoSync().platform == 'android' ? '1': '2'
-			}; 
-			console.log(req)
-			let toUpdate = function(data){
-				console.log(data)
-				plus.runtime.getProperty(plus.runtime.appid, function(widgetInfo) {   //这里用 plus.runtime.getProperty() 来获取相关信息。
-					let used_version = widgetInfo.version.split('.').join('')
-					let news_version =  data.version.split('.').join('')
-					uni.showModal({
-					    title: '提示',
-					    content: '新版本'+news_version+',旧版本：'+used_version,
-						showCancel:false,
-					    success: function (ref) {
-					        
-					    }
+			
+			let toUpdate = function(data,update_mode){
+				if(update_mode){
+					plus.runtime.openURL(data.url);
+				}else{
+					uni.showLoading({
+						title: '下载中',
+						mask:true
 					});
-					if(Number(news_version) - Number(used_version) >= 2){
-						plus.runtime.openURL(data.url);
-					}else{
-						uni.showLoading({
-							title: '下载中',
-							mask:true
-						});
-						uni.downloadFile({
+					uni.downloadFile({
 						url: data.hoturl,
 						success: (downloadResult) => {
 							uni.showLoading({
@@ -41,50 +25,57 @@
 							if (downloadResult.statusCode === 200) {
 								plus.runtime.install(downloadResult.tempFilePath, {
 									force: true //强制安装
-								}, function() {
+								}, function(e) {
 									uni.hideLoading();
 									plus.runtime.restart();
 								}, function(e) {
 									uni.hideLoading();
 									console.log(e)
+									console.log("安装文件失败！");  
 								});
 							}
 						}
-						});
-					}
-				});
+					});
+				}
 			}
 			uni.request({
 				url: this.APIconfig.api_root.common.getNewApk,  
-				data: req,  
+				data: {
+					'type':uni.getSystemInfoSync().platform == 'android' ? '1': '2'
+				},  
 				success: (res) => {
-					console.log(res)
-					if (res.data.data.version != req.version) {  
-						if(res.data.data.ishot == 1){ //是否强制更新
-							uni.showModal({
-							    title: '提示',
-							    content: '检测到新版本，需要更新后才能使用',
-								showCancel:false,
-							    success: function (ref) {
-							        if (ref.confirm) {
-										toUpdate(res.data.data)
+					console.log(res) 
+					plus.runtime.getProperty(plus.runtime.appid, function(widgetInfo) {   //这里用 plus.runtime.getProperty() 来获取相关信息。
+						let used_version = widgetInfo.version.split('.').join('')
+						console.log(used_version) 
+						let news_version =  res.data.data.ac_version.split('.').join('')
+						
+						if(used_version != news_version){
+							let update_mode
+							Number(news_version) - Number(used_version) >= 2 ? update_mode = true : update_mode = false
+							if(res.data.data.ishot == 1){ //是否强制更新
+								uni.showModal({
+									title: '提示',
+									content: '检测到新版本，需要更新后才能使用',
+									success: function (ref) {
+										toUpdate(res.data.data,update_mode)
 									}
-							    }
-							});									
-						}else{
-							uni.showModal({
-								title: '提示',
-								content: '检测到新版本，是否确定更新？',
-								success: function (ref) {
-									if (ref.confirm) {
-										toUpdate(res.data.data)
-									} else if (ref.cancel) {
-										console.log('用户点击取消');
+								});									
+							}else if(res.data.data.ishot == 0){
+								uni.showModal({
+									title: '提示',
+									content: '检测到新版本，是否确定更新？',
+									success: function (ref) {
+										if (ref.confirm) {
+											toUpdate(res.data.data,update_mode)
+										} else if (ref.cancel) {
+											console.log('用户点击取消');
+										}
 									}
-								}
-							});
+								});
+							}
 						}
-					}
+					});
 				}  
 			})
 			

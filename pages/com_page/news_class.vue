@@ -18,25 +18,23 @@
 			</view>
 		</view>
 		
-		<view class="tab_list">
+		<!-- <view class="tab_list">
 			<view class="list_all" @tap="show = !show">
 				<view class="">
 					{{v_test}}
 				</view>
 				<image class="all_img" :class="show===false ? 'tran_none' : show===true ? 'tran_show' : ''" src="/static/image/index/down.png" mode="widthFix"></image>
 			</view>
-			<!-- <view  @tap="condition(1)" :class="{'red':keyword_show === 1}">
-				{{req_data.type == 1?'免费视频':'免费音频'}}
-			</view> -->
+			
 			<view  @tap="condition(2)" :class="{'red':keyword_show === 2}">
 				{{req_data.type == 1?'观看更多':'收听更多'}}
 			</view>
-		</view>
+		</view> -->
 		
 		<view class="mask_black" v-show="show == true" @tap="show = false">
 			<!-- 遮罩层 层级888 -->
 		</view>
-		<view class="down_box"  :class="show===false ? 'mask_none' : show===true ? 'mask_show' : ''" >
+		<!-- <view class="down_box"  :class="show===false ? 'mask_none' : show===true ? 'mask_show' : ''" >
 			<view class="list_box">
 				<view class="down_list" @tap="chiose()">
 					全部
@@ -47,7 +45,7 @@
 					{{item.cl_name}}
 				</view>
 			</view>
-		</view>
+		</view> -->
 		
 		<view class="vider_content_two">
 			<view class="vider_content" v-for="(item,index) in video_list" :key='item.id' v-if="item.list != ''">
@@ -199,7 +197,7 @@
 
 <style lang="scss">
 	.content {
-		padding-top: 205rpx;
+		padding-top: 105rpx;
 	}
 	.content_top{
 		position: fixed;

@@ -7,7 +7,7 @@
 		<image class="back" src="../../static/image/login/agreement.jpg" mode=""></image>
 		<view class="treaty" v-if="treaty">
 			<rich-text :nodes="treaty"></rich-text>
-			<button @tap="$jump('./login')">我已阅读并同意</button>
+			<button @tap="service.returns()">我已阅读并同意</button>
 		</view>
 		
 	</view>

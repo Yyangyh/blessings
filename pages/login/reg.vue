@@ -32,7 +32,7 @@
 		
 		<view class="treaty" >
 			<label class="radio"><checkbox style="transform: scale(0.8);" :checked="checked" class="checkbox-3" @click="checked = !checked"></checkbox></label>
-			我已阅读并了解<text  @click="treaty_show = true">【注册须知】</text>
+			我已阅读并了解<text  @tap="jump('./agreement')">【用户协议】</text><text @tap="jump('./prvate')">【隐私协议】</text>
 		</view>
 		
 		<view class="Mask" v-show="treaty_show == true" @click="treaty_show = false">
@@ -88,7 +88,7 @@
 				parent_dis:false,
 				treaty:'',
 				treaty_show:false,
-				checked:false,
+				checked:true,
 				show:false
 			}
 		},

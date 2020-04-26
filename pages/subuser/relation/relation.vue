@@ -212,10 +212,12 @@
 </script>
 
 <style lang="scss">
+	page{
+		background: #FF0000;
+	}
 	.content{
 		width: 100%;
 		position: relative;
-		height: 1229rpx;
 		.top{
 			position: fixed;
 			width: 100%;
@@ -251,14 +253,12 @@
 		.back{
 			width: 100%;
 			position: fixed;
-			height: 1229rpx;
 			top:calc(var(--status-bar-height) + 105rpx);
 			left:0;
 			z-index:0;
 		}
 		.worp{
 			width: 100%;
-			height: 1229rpx;
 			position: absolute;
 			top:calc(var(--status-bar-height) + 105rpx);
 			left: 0;
@@ -298,7 +298,7 @@
 			}
 			.witebox{
 				width:703rpx;
-				height:760rpx;
+				height:830rpx;
 				background:rgba(255,255,255,1);
 				border-radius:25rpx;
 				margin: 50rpx auto 0rpx;
@@ -372,7 +372,7 @@
 					line-height: 80rpx;
 					text-align: center;
 					color: #FFFFFF;
-					margin: 10rpx auto;
+					margin: 40rpx auto;
 					// position: absolute;
 					
 				}

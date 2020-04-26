@@ -202,12 +202,12 @@
 					</view>
 				</view> -->
 				<!-- <view class="tab_list" @tap="$jump('../subuser/member/member')"> -->
-				<view class="tab_list"  @tap="temporary">
+				<!-- <view class="tab_list"  @tap="temporary">
 					<image src="../../static/image/index/member1.png" mode="widthFix"></image>
 					<view class="">
 						会员中心
 					</view>
-				</view>
+				</view> -->
 				<view class="tab_list" @tap="$jump('../subuser/myorder')">
 					<image src="../../static/image/index/order.png" mode="widthFix"></image>
 					<view class="">
