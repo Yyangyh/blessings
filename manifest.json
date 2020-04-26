@@ -20,7 +20,6 @@
             "VideoPlayer" : {},
             "Maps" : {},
             "Payment" : {},
-            "Push" : {},
             "OAuth" : {},
             "Share" : {}
         },
@@ -148,7 +147,47 @@
                 }
             }
         },
-        "nativePlugins" : {}
+        "nativePlugins" : {
+            "JY-JPush" : {
+                "ios_appkey" : "e1aae4a02cd42f22ff74f03f",
+                "ios_channel" : "ios",
+                "android_appkey" : "e1aae4a02cd42f22ff74f03f",
+                "android_channel" : "android",
+                "__plugin_info__" : {
+                    "name" : "JYJPush极光推送插件 - 支持iOS/Android",
+                    "description" : "极光推送Uni版本",
+                    "platforms" : "Android,iOS",
+                    "url" : "https://ext.dcloud.net.cn/plugin?id=741",
+                    "android_package_name" : "uni.UNIF2D41E0",
+                    "ios_bundle_id" : "uni.UNIF2D41E0",
+                    "isCloud" : true,
+                    "bought" : 1,
+                    "pid" : "741",
+                    "parameters" : {
+                        "ios_appkey" : {
+                            "des" : "极光推送的APPKEY",
+                            "key" : "JPUSH_APPKEY",
+                            "value" : ""
+                        },
+                        "ios_channel" : {
+                            "des" : "极光推送的渠道名称",
+                            "key" : "JPUSH_CHANNEL",
+                            "value" : ""
+                        },
+                        "android_appkey" : {
+                            "des" : "极光推送的APPKEY",
+                            "key" : "JPUSH_APPKEY",
+                            "value" : ""
+                        },
+                        "android_channel" : {
+                            "des" : "极光推送的渠道名称",
+                            "key" : "JPUSH_CHANNEL",
+                            "value" : ""
+                        }
+                    }
+                }
+            }
+        }
     },
     /* 快应用特有相关 */
     "quickapp" : {},

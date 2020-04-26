@@ -1,4 +1,5 @@
 <script>
+	const jyJPush = uni.requireNativePlugin('JY-JPush');
 	export default {
 		
 		onLaunch: function() {
@@ -7,6 +8,30 @@
 			
 			// #ifdef APP-PLUS
 			
+			
+			
+			
+			//极光推送    插件搜索： JYJPush极光推送插件
+			jyJPush.addJYJPushReceiveNotificationListener(result => {
+				
+				// console.log(JSON.stringify(result));
+			});
+			
+			jyJPush.addJYJPushReceiveOpenNotificationListener(result => {
+				
+				// console.log(JSON.stringify(result))
+			});
+			
+			
+			jyJPush.getLastPushInfo(result => {
+				// console.log(JSON.stringify(result))
+				
+			});
+			
+			//极光推送
+			
+			
+			//APP更新
 			let toUpdate = function(data,update_mode){
 				if(update_mode){
 					plus.runtime.openURL(data.url);
@@ -79,7 +104,7 @@
 				}  
 			})
 			
-			
+			//APP更新
 			
 			
 			
