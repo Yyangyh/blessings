@@ -12,7 +12,7 @@
 					<view class="logo">
 						<!-- <image src="../../static/logo.png" mode="widthFix"></image> -->
 						<view class="">
-							五福账号登录
+							五福家庭账号登录
 						</view>
 					</view>
 					<view class="box">

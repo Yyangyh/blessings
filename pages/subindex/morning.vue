@@ -350,6 +350,7 @@
 				title: '',
 				data:'',
 				share_arr:{},
+				code:''
 			}
 		},
 		onLoad(e) {
@@ -361,8 +362,12 @@
 				data.morning_id = e.id
 			}
 			let requ_rul 
-			if(e.code) requ_rul = this.APIconfig.api_root.subindex.shareMorningnew
-			e.code ? requ_rul = this.APIconfig.api_root.subindex.shareMorningnew : requ_rul = this.APIconfig.api_root.subindex.getMorningnew
+			if(e.code){
+				requ_rul = this.APIconfig.api_root.subindex.shareMorningnew
+				this.code = e.code
+			}else{
+				requ_rul = this.APIconfig.api_root.subindex.getMorningnew
+			}
 			this.service.entire(this,'post',requ_rul,data,function(self,res){
 				self.data = res.data
 			})

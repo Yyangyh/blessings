@@ -1,5 +1,7 @@
 <script>
+	// #ifdef APP-PLUS
 	const jyJPush = uni.requireNativePlugin('JY-JPush');
+	// #endif
 	export default {
 		
 		onLaunch: function() {

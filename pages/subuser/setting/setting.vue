@@ -73,7 +73,9 @@
 		computed:{
 			edition(){
 				// #ifdef APP-PLUS
-				return plus.runtime.version
+				plus.runtime.getProperty(plus.runtime.appid, function(widgetInfo) {   //这里用 plus.runtime.getProperty() 来获取相关信息。
+					return widgetInfo.version
+				});
 				// #endif
 			},
 			...mapState({
