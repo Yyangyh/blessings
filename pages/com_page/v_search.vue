@@ -36,7 +36,7 @@
 										{{item.free_dec}}免费
 									</view>
 									<view class="">
-										{{item.is_free == 0? '￥'+item.v_price : '免费'}}
+										{{item.is_free == 1 || Number(item.v_price) <= 0 ? '免费' : item.is_free == 0 && item.is_buy == 1 ? '已购' : '￥'+Number(item.v_price)}}
 									</view>
 								</view>
 							</view>
@@ -67,7 +67,7 @@
 		data() {
 			return {
 				test:'',
-				data:'',
+				data:[],
 				page:1,
 				more:'',
 				loadRecord: true
@@ -75,30 +75,41 @@
 		},
 		onReachBottom() {
 			if (this.loadRecord == false) return
+			this.index_all(this.test)
 		},
 		methods:{
 			onKeyInput(){
 				let that = this
 				setTimeout(() => { 
-					if(!that.test)return
-					that.more = 'loading'
+					if(!that.test){
+						that.data = []
+						return
+					}
+					that.page = 1
+					that.data.length = 0
+					that.loadRecord = true
 					that.index_all(that.test)
 				}, 0)
 			},
 			index_all(keywords){
+				this.more = 'loading'
 				this.service.entire(this,'get',this.APIconfig.api_root.com_page.videoList,{
 						keyword:keywords,
 						type:this.s_type,
 						page:this.page,
 						limit:10
 					},function(self,res){
-						self.data = res.data.video_list
+						
+						let data = self.data
+						data.push(...res.data.video_list)
+						self.page += 1
+						self.more = 'more'
+						
 						if (res.data.video_list.length < 10) {
 							self.more = 'noMore'
 							self.loadRecord = false
 							return
 						}
-						self.more = 'more'
 					})
 			},
 		},
@@ -110,7 +121,7 @@
 
 <style scoped lang="scss">
 	.content{
-		padding-top: calc(105rpx + var(--status-bar-height));
+		padding-top: 105rpx;
 	}
 	
 	.sea_top{

@@ -8,8 +8,12 @@ const store = new Vuex.Store({
 		notice:false,
 		login_state:false,
 		login:1,
+		version:''
 	},
     mutations: {
+		state_version(state,data){
+			state.version = data
+		},
 		state_user(state,data){
 			state.user = data
 		},

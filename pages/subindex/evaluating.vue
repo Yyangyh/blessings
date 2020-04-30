@@ -22,7 +22,7 @@
 						<image src="../../static/image/index/go1.png" mode='widthFix'></image>
 					</view>
 				</view>
-				<image class="Image" :src='item.img_url' mode=" aspectFill"></image>
+				<image class="Image" :src='$api_img()+item.img_url' mode=" aspectFill"></image>
 				
 			</view>
 		</view>
@@ -44,7 +44,7 @@
 							</text>
 						</view>
 					</view>
-					<!-- <view class="opinion">{{voucher[1].name}}</view> -->
+					<view class="opinion"  v-if="voucher[1]">{{voucher[1].name}}</view>
 					<textarea v-model="opinion_test" name="" id="" cols="30" rows="10"></textarea>
 					<!-- <view class="ganxie">
 						十分感谢您对这次调查的支持！
@@ -98,7 +98,7 @@
 			},
 			submit(){
 				let data = []
-				data.push(this.voucher[0].answer[this.que_show].psqq_id)
+				data.push(Number(this.voucher[0].answer[this.que_show].id))
 				data.push(this.opinion_test)
 				this.service.entire(this,'post',this.APIconfig.api_root.subindex.s_qtn_submitQtn,{ //提交问券调查
 					qtn_id :this.qtn_id,
@@ -123,6 +123,7 @@
 				
 			},function(self,res){
 				self.dataList =res.data
+				console.log(self.dataList)
 			})
 			
 			this.service.entire(this,'post',this.APIconfig.api_root.subindex.s_qtn_getQtn,{//问券调查
@@ -130,7 +131,6 @@
 			},function(self,res){
 				self.qtn_id = res.data.id
 				self.voucher = res.data.question
-				console.log(self.voucher[0])
 				
 			})
 			

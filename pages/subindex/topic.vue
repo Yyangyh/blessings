@@ -105,7 +105,7 @@
 			.topic{
 				font-size: 32rpx;
 				font-weight: 500%;
-				padding: 191rpx 309rpx 67rpx 107rpx;
+				padding: 140rpx 110rpx 67rpx 107rpx;
 				
 			}
 			.option{
@@ -117,7 +117,7 @@
 				color:#999999;
 				border-radius:40rpx;
 				padding-left: 51rpx;
-				margin: 0 0 30rpx 110rpx;
+				margin: 0 0 20rpx 110rpx;
 			}
 			.option1{
 				width: 337rpx;
@@ -128,7 +128,7 @@
 				color:#999999;
 				border-radius:40rpx;
 				padding-left: 51rpx;
-				margin: 0 0 30rpx 110rpx;
+				margin: 0 0 20rpx 110rpx;
 			}
 			.btn{
 				position: absolute;

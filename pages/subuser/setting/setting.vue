@@ -53,15 +53,27 @@
 		<view class="line">
 			<view class="l_left">
 				<image src='/static/image/subuser/set-5.png' mode="widthFix"></image>
-				<text>版本{{edition}}</text>
+				<text>版本{{version}}</text>
 			</view>
 			<image class="l_right" src='/static/image/index/go.png' mode="widthFix"></image>
 		</view>
 		<!-- #endif -->
 		<button @tap="signout">退出登录</button>
+		
+		
+		<view class="agreement">
+			<view class="" @tap="$jump('../../login/agreement')">
+				用户协议
+			</view>
+			<text></text>
+			<view class="" @tap="$jump('../../login/prvate')">
+				隐私政策
+			</view>
+		</view>
+		
 	</view>
 </template>
-
+ 
 <script>
 	import returns from '../../common/returns.vue'
 	import { mapState } from 'vuex'
@@ -71,15 +83,9 @@
 		},
 		
 		computed:{
-			edition(){
-				// #ifdef APP-PLUS
-				plus.runtime.getProperty(plus.runtime.appid, function(widgetInfo) {   //这里用 plus.runtime.getProperty() 来获取相关信息。
-					return widgetInfo.version
-				});
-				// #endif
-			},
 			...mapState({
-				user:'user'
+				user:'user',
+				version:'version'
 			})
 		},
 		data(){
@@ -139,5 +145,24 @@
 		color:#FFFFFF;
 		text-align: center;
 		margin: 50rpx auto 0;
+	}
+	.agreement{
+		position: fixed;
+		width: 100%;
+		bottom: 40rpx;
+		color: #d80000;
+		font-size: 28rpx;
+		text-align: center;
+		display: flex;
+		justify-content: center;
+		view{
+			border-bottom: 2rpx solid #d80000;
+		}
+		text{
+			display: inline-block;
+			width: 4rpx;
+			background: #d80000;
+			margin: 0 20rpx;
+		}
 	}
 </style>

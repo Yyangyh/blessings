@@ -147,9 +147,8 @@
 				</view>
 			</view>
 			
-			<view class="eject" v-show="eject_show">
+			<view class="eject" v-if="eject_show && eject">
 				<view class="eject_test">
-					
 					<image :src="$api_img() + eject.img" @tap="eject_jump(eject.target,eject.id)" mode="widthFix"></image>
 					<image class="close" src="/static/image/com_page/close.png" mode="widthFix" @click="close()"></image>
 				</view>
@@ -246,6 +245,7 @@
 					// userid:this.$store.state.user.id
 				},function(self,res){
 					self.eject = res.data
+					
 				})
 				
 				await this.service.asy_entire(this,'post',this.APIconfig.api_root.common.UnRead,{

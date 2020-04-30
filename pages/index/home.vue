@@ -90,6 +90,7 @@
 						</view>
 					</view>
 				</view>
+				
 			</view>
 		</view>
 		<view class="vider_content_two" v-show="show == 1">
@@ -417,7 +418,7 @@ res
 				width: 100%;
 				display: flex;
 				flex-wrap:wrap;
-				justify-content: space-around;
+				justify-content: space-between;
 				padding: 0 20rpx;
 				box-sizing: border-box;
 				

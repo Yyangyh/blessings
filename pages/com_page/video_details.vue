@@ -243,7 +243,7 @@
 										{{item.free_dec}}免费
 									</view>
 									<view class="">
-										{{item.is_free == 0? '￥'+item.v_price : '免费'}}
+										{{item.is_free == 1 || Number(item.v_price) <= 0 ? '免费' : item.is_free == 0 && item.is_buy == 1 ? '已购' : '￥'+Number(item.v_price)}}
 									</view>
 								</view>
 							</view>

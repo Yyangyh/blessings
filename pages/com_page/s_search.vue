@@ -46,7 +46,7 @@
 		data() {
 			return {
 				test:'',
-				data:'',
+				data:[],
 				page:1,
 				more:'',
 				loadRecord: true
@@ -54,30 +54,41 @@
 		},
 		onReachBottom() {
 			if (this.loadRecord == false) return
+			this.index_all(this.test)
 		},
 		methods:{
 			onKeyInput(){
 				let that = this
 				setTimeout(() => { 
-					if(!that.test)return
-					that.more = 'loading'
+					if(!that.test){
+						that.data = []
+						return
+					}
+					that.page = 1
+					that.data.length = 0
+					that.loadRecord = true
 					that.index_all(that.test)
-					
 				}, 0)
 				
 			},
 			index_all(keywords){
+				this.more = 'loading'
 				this.service.entire(this,'post',this.APIconfig.api_root.subhome.s_index,{
 						keywords:keywords,
 						page:this.page,
 					},function(self,res){
 						self.data = res.data.data
+						
+						let data = self.data
+						data.push(...res.data.data)
+						self.page += 1
+						self.more = 'more'
+						
 						if (res.data.data.length < 10) {
 							self.more = 'noMore'
 							self.loadRecord = false
 							return
 						}
-						self.more = 'more'
 					})
 			},
 		},
@@ -89,7 +100,7 @@
 
 <style scoped lang="scss">
 	.content{
-		padding-top: calc(105rpx + var(--status-bar-height));
+		padding-top: 105rpx;
 	}
 	
 	.sea_top{
