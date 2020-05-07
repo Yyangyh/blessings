@@ -8,12 +8,16 @@
 				<image src="/static/image/com_page/returns.png" mode="widthFix"></image>
 			</view>
 			<text>早间晨语</text>
+			
+			
 			<!-- #ifdef APP-PLUS -->
 			<view class="screen" @tap="open()">
 				<image src="../../static/image/index/screen.png" mode="widthFix"></image>
 				<text>筛选</text>
 			</view>
 			<!--  #endif -->
+			
+			
 			<!-- #ifdef H5 -->
 			<text></text>
 			<!--  #endif -->
@@ -84,14 +88,14 @@
 			@backtoday='backtoday'
 		     ></uni-calendar>
 		</view>
-		
+		<uni-load-more :status="more"></uni-load-more>
 	</view>
 </template>
 
 <script>
 	import uniCalendar from "../../components/uni-calendar/uni-calendar.vue"
 	import js_sdk from '../../js_sdk/ican-H5Api/ican-H5Api.js'
-	
+	import uniLoadMore from '../../components/uni-load-more/uni-load-more.vue'
 	// #ifdef APP-PLUS
 		var strShareUrl = ""
 		var strShareTitle = ""
@@ -344,33 +348,39 @@
 	export default {
 		components:{
 			uniCalendar,
+			uniLoadMore
 		},
 		data() {
 			return {
 				title: '',
-				data:'',
+				data:[],
 				share_arr:{},
-				code:''
+				requ_rul:'',
+				code:'',
+				req_data:{
+					page:1,
+					user_id:''
+				},
+				more: 'more',
+				loadRecord: true,
 			}
 		},
+		onReachBottom() {
+			if (this.loadRecord == false) return
+			this.Index(this.req_data,this.requ_rul)
+		},
 		onLoad(e) {
-			let data = {
-				page:1,
-				user_id:this.$store.state.user.id,
-			}
+			this.req_data.user_id = this.$store.state.user.id
 			if(e){
-				data.morning_id = e.id
+				this.req_data.morning_id = e.id
 			}
-			let requ_rul 
 			if(e.code){
-				requ_rul = this.APIconfig.api_root.subindex.shareMorningnew
+				this.requ_rul = this.APIconfig.api_root.subindex.shareMorningnew
 				this.code = e.code
 			}else{
-				requ_rul = this.APIconfig.api_root.subindex.getMorningnew
+				this.requ_rul = this.APIconfig.api_root.subindex.getMorningnew
 			}
-			this.service.entire(this,'post',requ_rul,data,function(self,res){
-				self.data = res.data
-			})
+			this.Index(this.req_data,this.requ_rul)
 			
 		},
 		onBackPress() {
@@ -391,107 +401,121 @@
 			}
 		},
 		
-		methods: {
-				share(index,id){
-					strShareUrl ='https://www.wufu-app.com/h5/#/pages/subindex/morning?code='+this.$store.state.user.invite_code+'&id='+id
-					strShareTitle =  this.data[index].name//分享
-					strShareSummary = this.data[index].formatcontent//分享
-					strShareImageUrl =  this.$api_img() + this.data[index].image//分享
-					nvMask.show()
-					nvImageMenu.show() //5+应支持从底部向上弹出的动画
-				},
-				backtoday(e){
-					if(!e){
-						this.service.entire(this,'post',this.APIconfig.api_root.subindex.getMorningnew,{
-							page:1,
-							user_id:this.$store.state.user.id,
-						},function(self,res){
-							self.data = res.data
+		methods:{
+			Index(data,requ_rul){
+				this.more = 'loading'
+				this.service.entire(this,'post',requ_rul,data,function(self,res){
+					let data = self.data
+					data.push(...res.data)
+					self.req_data.page += 1
+					self.more = 'more'
+					if (res.data.length < 10) {
+						self.more = 'noMore'
+						self.loadRecord = false
+						return
+					}
+					
+					
+				})
+			},
+			share(index,id){
+				strShareUrl ='https://www.wufu-app.com/h5/#/pages/subindex/morning?code='+this.$store.state.user.invite_code+'&id='+id
+				strShareTitle =  this.data[index].name//分享
+				strShareSummary = this.data[index].formatcontent//分享
+				strShareImageUrl =  this.$api_img() + this.data[index].image//分享
+				nvMask.show()
+				nvImageMenu.show() //5+应支持从底部向上弹出的动画
+			},
+			backtoday(e){
+				console.log(e)
+				this.data.length = 0
+				this.loadRecord = true
+				this.req_data.page = 1
+				delete this.req_data.start_time
+				if(!e){
+					this.Index(this.req_data,this.requ_rul)
+				}
+			},
+			open(type){
+				this.type = type
+				this.$refs.calendar.open();
+			},
+			tips(index){ //分享
+			 
+				// #ifdef H5
+				uni.showModal({
+					title: '提示',
+					content: '请点击右上角选择分享！',
+					showCancel:false,
+					success: function (res) {
+					   
+					}
+				});
+				// #endif
+				// #ifdef APP-PLUS
+				
+				let that = this
+				
+				
+				// #endif
+			},
+			confirm(e) {  //日历表选择日期时间
+				console.log(e)
+				this.data.length = 0
+				this.loadRecord = true
+				this.req_data.page = 1
+				this.req_data.start_time = new Date(e.fulldate).getTime()/1000
+				this.Index(this.req_data,this.requ_rul)
+			},
+			copy(data,id,index) { //复制文案
+				let that = this
+				uni.setClipboardData({
+					data: data,
+					success: function(res) {
+						// #ifdef APP-PLUS
+						that.oper(2,id)
+						// #endif
+						that.data[index].is_copycontent = 1
+						uni.showToast({
+							icon: 'none',
+							title: '复制成功'
 						})
 					}
-				},
-				open(type){
-					this.type = type
-					this.$refs.calendar.open();
-				},
-				tips(index){ //分享
-				 
-					// #ifdef H5
-					uni.showModal({
-					    title: '提示',
-					    content: '请点击右上角选择分享！',
-						showCancel:false,
-					    success: function (res) {
-					       
-					    }
-					});
-					// #endif
-					// #ifdef APP-PLUS
-					
-					let that = this
-					
-					
-					// #endif
-				},
-				confirm(e) {  //日历表选择日期时间
-					console.log(e)
-					this.service.entire(this,'post',this.APIconfig.api_root.subindex.getMorningnew,{ //
-						page:1,
-						start_time:new Date(e.fulldate).getTime()/1000,
-						user_id:this.$store.state.user.id,
-					},function(self,res){
-						self.data = res.data
-					})
-				},
-				copy(data,id,index) { //复制文案
-					let that = this
-					uni.setClipboardData({
-						data: data,
-						success: function(res) {
+				})
+			},
+			oper(type,id){
+				this.service.entire(this,'post',this.APIconfig.api_root.subindex.satusOfMorningnew,{ //
+					morning_id:id,
+					user_id:this.$store.state.user.id,
+					type:type
+				},function(self,res){
+				})
+			},
+			preservation(Url,id,index) { //保存图片
+				// #ifdef APP-PLUS
+				let that = this
+				//在app内运行
+				Url = this.$api_img() + Url
+				let filename = Math.random() + ".png"
+				plus.downloader.createDownload(Url, {
+					filename: "_downloads/" + filename
+				}, (download, status) => {
+					if (status == 200) { //下载成功  
+						plus.gallery.save(download.filename, () => {
+							uni.hideLoading();
 							// #ifdef APP-PLUS
-							that.oper(2,id)
+							that.oper(1,id)
 							// #endif
-							that.data[index].is_copycontent = 1
+							that.data[index].is_downimage = 1
 							uni.showToast({
 								icon: 'none',
-								title: '复制成功'
-							})
-						}
-					})
-				},
-				oper(type,id){
-					this.service.entire(this,'post',this.APIconfig.api_root.subindex.satusOfMorningnew,{ //
-						morning_id:id,
-						user_id:this.$store.state.user.id,
-						type:type
-					},function(self,res){
-					})
-				},
-				preservation(Url,id,index) { //保存图片
-					// #ifdef APP-PLUS
-					let that = this
-					//在app内运行
-					Url = this.$api_img() + Url
-					let filename = Math.random() + ".png"
-					plus.downloader.createDownload(Url, {
-						filename: "_downloads/" + filename
-					}, (download, status) => {
-						if (status == 200) { //下载成功  
-							plus.gallery.save(download.filename, () => {
-								uni.hideLoading();
-								// #ifdef APP-PLUS
-								that.oper(1,id)
-								// #endif
-								that.data[index].is_downimage = 1
-								uni.showToast({
-									icon: 'none',
-									title: '保存成功！'
-								});
-							})
-						}
-					}).start()
-					// #endif
-				}
+								title: '保存成功！'
+							});
+						})
+					}
+				}).start()
+				// #endif
+			}
 			
 		}
 	}

@@ -330,7 +330,8 @@
 				status: 2, // 1暂停 2播放
 				currentTime: 0,  //当前进度
 				duration: 100, // 总进度
-				videoContext: ''
+				videoContext: '',
+				
 				//mp3
 			}
 		},
@@ -346,7 +347,7 @@
 				return calcTimer(this.currentTime)
 			},
 			overTimer() {
-				return calcTimer(this.duration)
+				return calcTimer(Number(this.video_data.avinfo))
 			}
 		},
 		
@@ -588,6 +589,7 @@
 		}
 	}
 	function calcTimer(timer) {
+	
 		if(timer === 0 || typeof timer !== 'number' || isNaN(timer) || timer < 0) {
 			return '00:00'
 		}
