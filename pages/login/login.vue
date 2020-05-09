@@ -47,6 +47,7 @@
 					</view>
 					<!-- #endif -->
 					<view class="agreement">
+						
 						<view class="" @tap="jump('./agreement')">
 							用户协议
 						</view>
@@ -76,12 +77,33 @@
 				</view>
 			</view>
 		</view>
+		
+		<view class="agreement_box" v-if="agreement_status">
+			<view class="elastic_agreement">
+				<view class="agreement_one">
+					服务协议和隐私政策
+				</view>
+				<view class="agreement_two">
+					请你务必审慎阅读、充分理解”服务协议“和”隐私政策"各条款,包括但不限于:为了向你提供即时通讯、内容分享等服务,我们需要收集你的设备信息、操作日志等个人信忘。
+					<view class="">
+						你可以在“设置”中查看、变更、州除个人信息并管理你的授权。你可阅读<text @tap="jump('./agreement')">《服务协议》</text>和<text @tap="jump('./prvate')">《隐私政策》</text>了解详细信息。如你同意,请点击"同意”开始接受我们的服务。
+					</view>
+				</view>
+				<view class="btm">
+					<view class="btm_one">
+						暂不使用
+					</view>
+					<view class="btm_two" @tap="agreement_status = false">
+						同意
+					</view>
+				</view>
+			</view>
+		</view>
+		
 	</view>
 </template>
 
 <script>
-	
-	import agreement from '../../static/image/login/agreement.jpg'
 	export default{
 		data() {
 			return {
@@ -90,7 +112,7 @@
 				show:0,
 				treaty_show:false,
 				treaty:'',
-				agreement:agreement
+				agreement_status:true
 			}
 		},
 		methods:{
@@ -379,12 +401,13 @@
 		height: 80rpx;
 	}
 	.agreement{
-		margin-top: 30rpx;
+		margin-top: 60rpx;
 		color: #fff;
 		font-size: 28rpx;
 		text-align: center;
 		display: flex;
 		justify-content: center;
+		
 		view{
 			border-bottom: 2rpx solid #fff;
 		}
@@ -459,4 +482,53 @@
 		background: rgb(255, 255, 0);
 		color: #000;
 	}
+	.agreement_box{
+		position: fixed;
+		left: 0;
+		top: 0;
+		height: 100%;
+		width: 100%;
+		z-index: 888;
+		background: rgba(0,0,0,.6);
+		.elastic_agreement{
+			position: absolute;
+			z-index: 999;
+			// height: 800rpx;
+			width: 85%;
+			background: #fff;
+			top: 50%;
+			left: 50%;
+			border-radius: 20rpx;
+			transform: translate(-50%,-50%);
+			padding: 30rpx 0;
+			box-sizing: border-box;
+			.agreement_one{
+				text-align: center;
+				margin-bottom: 10rpx;
+			}
+			.agreement_two{
+				font-size: 32rpx;
+				padding: 0 30rpx 30rpx;
+			}
+			.btm{
+				border-top: 1rpx solid #333333;
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				.btm_two{
+					color: #1D74FF;
+				}
+				view{
+					flex: 1;
+					text-align: center;
+					padding-top: 30rpx;
+				}
+				
+			}
+			text{
+				color: #1D74FF;
+			}
+		}
+	}
+	
 </style>

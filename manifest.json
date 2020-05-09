@@ -89,7 +89,9 @@
                         "UniversalLinks" : "https://wufu.wufu-app.com/app.php/Mw==/"
                     }
                 },
-                "push" : {}
+                "push" : {
+                    "unipush" : {}
+                }
             },
             "splashscreen" : {
                 "android" : {

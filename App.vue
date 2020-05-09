@@ -40,7 +40,7 @@
 						uni.navigateTo({
 							url:'/pages/subhome/threehome/group_products?id='+id
 						})
-					}else{ //文章
+					}else if(type == 'wenzhang'){ //文章
 						uni.navigateTo({
 							url:'/pages/subindex/article?id='+id
 						})
