@@ -77,8 +77,8 @@
 				</view>
 			</view>
 		</view>
-		
-		<view class="agreement_box" v-if="agreement_status">
+		<!-- 应用宝需要 -->
+		<!-- <view class="agreement_box" v-if="agreement_status">
 			<view class="elastic_agreement">
 				<view class="agreement_one">
 					服务协议和隐私政策
@@ -90,7 +90,7 @@
 					</view>
 				</view>
 				<view class="btm">
-					<view class="btm_one">
+					<view class="btm_one" @tap="refuse">
 						暂不使用
 					</view>
 					<view class="btm_two" @tap="agreement_status = false">
@@ -98,7 +98,7 @@
 					</view>
 				</view>
 			</view>
-		</view>
+		</view> -->
 		
 	</view>
 </template>
@@ -120,6 +120,11 @@
 				uni.navigateTo({
 					url:url
 				})
+			},
+			refuse(){
+				// #ifdef APP-PLUS  
+				plus.runtime.quit();  
+				// #endif
 			},
 			login(){
 				let that = this

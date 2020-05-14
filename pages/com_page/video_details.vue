@@ -331,13 +331,7 @@
 			</view>
 			<image  @tap="give_show = false" src="../../static/image/com_page/close.png" mode="widthFix"></image>
 		</view> -->
-		<!-- #ifdef H5 -->
 		
-		<view class="download" @tap="$jump('../login/reg?code='+code)">
-			下载APP
-		</view>
-		
-		<!-- #endif -->
 		<view class="video_bottom">
 			<!-- <view class="bot_left" >
 				￥
@@ -412,7 +406,6 @@
 				receive_status:false,
 				initial_time:0 ,//指定视频播放初始秒数
 				share_arr:{},
-				code:'',
 				
 				//mp3
 				lock: false, // 锁
@@ -519,6 +512,7 @@
 			
 			tips(){ //分享
 				// #ifdef H5
+				console.log(this.$store.state.user.invite_code)
 				uni.showModal({
 				    title: '提示',
 				    content: '请点击右上角选择分享！',
@@ -857,7 +851,6 @@
 			this.share_arr.Url = 'https://www.wufu-app.com/h5/#/pages/com_page/share_video?id='+e.id+'&type='+e.type+'&code='+this.$store.state.user.invite_code
 			this.id = e.id
 			this.type = e.type
-			if(e.code) this.code = e.code
 			this.async_n()
 			this.service.entire(this,'post',this.APIconfig.api_root.com_page.v_coupon,{ //优惠券列表
 				userid:this.$store.state.user.id,

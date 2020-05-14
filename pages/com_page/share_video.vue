@@ -3,7 +3,6 @@
 		<view class="status_bar">
 			
 		</view>
-		<share ref="share" :datas='share_arr'></share>
 		<view class="content_top">
 			<view class="top_returns" @tap="service.returns()">
 				<image src="/static/image/com_page/returns.png" mode="widthFix"></image>
@@ -252,27 +251,6 @@
 			<!-- 遮罩层 层级888 -->
 		</view>
 		
-		
-		<!-- <view class="give_box" v-if="give_show">
-			<view class="give_top">
-				赠送说明
-			</view>
-			<view class="give_text">
-				<view class="">
-					1.请在我的“个人中心”完成亲情号邀请注册。
-				</view>
-				<view class="">
-					2.购买课程后，可通过链接分享给亲情好友。
-				</view>
-				<view class="">
-					3.在亲情号共享资源领取后就能免费观看课程。
-				</view>
-				<view class="">
-					4.邀请您的亲密爱人或其它家人一起学习吧。
-				</view>
-			</view>
-			<image  @tap="give_show = false" src="../../static/image/com_page/close.png" mode="widthFix"></image>
-		</view> -->
 		<!-- #ifdef H5 -->
 		
 		<view class="download" @tap="$jump('../login/reg?code='+code)">
@@ -286,9 +264,7 @@
 </template>
 
 <script>
-	import integral_img from '../../static/image/com_page/integral.png'
 	import load from '../common/load.vue'
-	import share from'../common/share.vue'
 	import Audio from'../../components/wangding-audioQuickPlay/index'
 	const bgAudioMannager = uni.getBackgroundAudioManager();
 	// const music = uni.requireNativePlugin('Html5app-Music');
@@ -322,7 +298,6 @@
 				load_show:true,
 				duration_time:'',
 				initial_time:0 ,//指定视频播放初始秒数
-				share_arr:{},
 				code:'',
 				
 				//mp3
@@ -399,9 +374,7 @@
 				    }
 				});
 				// #endif
-				// #ifdef APP-PLUS
-				this.$refs.share.share();
-				// #endif
+				
 			},
 			Au_timeupdate(e) {  //音频
 				// console.log(e.detail.duration)
@@ -505,9 +478,7 @@
 					self.video_data = res.data
 					if(self.video_data.is_online == 1) self.test_show = 0
 					
-					self.share_arr.Title =  res.data.title//分享
-					self.share_arr.Summary =  res.data.long_title//分享
-					self.share_arr.ImageUrl = self.$api_img() + res.data.v_pic//分享
+				
 					
 					let richtext=  res.data.video_content
 					const regex = new RegExp('<img', 'gi');
@@ -571,7 +542,6 @@
 		onLoad(e) {
 			// const music=uni.requireNativePlugin('Html5app-Music');
 			console.log(e)
-			this.share_arr.Url = 'https://www.wufu-app.com/h5/#/pages/com_page/video_details?id='+e.id+'&type='+e.type+'&code='+this.$store.state.user.invite_code
 			this.id = e.id
 			this.type = e.type
 			if(e.code) this.code = e.code

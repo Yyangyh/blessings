@@ -14,7 +14,7 @@ const entire = function(self,type,url,data,func){
 				self.$store.commit('state_token',res_list.data.token)
 				self.$store.commit('state_user',res_list.data.userinfo)
 				uni.setStorageSync('state_token',res_list.data.token)
-				// console.log(self.$store.state.user)
+				console.log(res_list)
 				entire(self,type,url,data,func)
 			}else if(res_list.code == 10){
 				

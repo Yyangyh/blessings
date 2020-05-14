@@ -310,7 +310,6 @@
 					nickname:uni.getStorageSync('nickname'),
 					parent_id:0
 				}
-				console.log(data)
 				this.service.entire(this,'post',this.APIconfig.api_root.index.bindPhone,data,function(self,res){
 					uni.showToast({
 						icon:'none',
