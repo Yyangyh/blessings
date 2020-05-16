@@ -10,47 +10,61 @@
 			
 			// #ifdef APP-PLUS
 			
-			
-			
-			
-			//极光推送    插件搜索： JYJPush极光推送插件
-			jyJPush.addJYJPushReceiveNotificationListener(result => { //监听消息通知事件（后台发送后，会触发）
-				
-				// console.log(JSON.stringify(result));
+			jyJPush.getRegistrationID(
+			//  返回的数据会有registrationID，errorCode
+			result => {
+				console.log(JSON.stringify(result))
 			});
 			
-			jyJPush.addJYJPushReceiveOpenNotificationListener(result => { //监听点击通知栏消息事件（点击通知栏的消息，或者悬浮框，会触发；做事件跳转，需要用到这个接口，如：后台发了一个新闻，消息里面会含有新闻的链接，点击消息就需要获取这个链接，然后跳转）
-				if(result.notificationExtras != ''){
-					let data = JSON.parse(result.notificationExtras)
-					let type = data.type
-					let id = data.id
-					if(type == 'shangpin'){//商品
-						uni.navigateTo({
-							url:'/pages/subhome/details?id='+id
-						})
-					}else if(type == 'shipin'){ //视频
-						uni.navigateTo({
-							url:'/pages/com_page/video_details?'+id
-						})
-					}else if(type == 'huodong'){ //活动
-						uni.navigateTo({
-							url:'/pages/activity/particulars?id='+id
-						})
-					}else if(type == 'pintuan'){ //拼团
-						uni.navigateTo({
-							url:'/pages/subhome/threehome/group_products?id='+id
-						})
-					}else if(type == 'wenzhang'){ //文章
-						uni.navigateTo({
-							url:'/pages/subindex/article?id='+id
-						})
-					}
+			
+			
+			
+			jyJPush.addJYJPushReceiveOpenNotificationListener(result => { //监听在线点击通知栏消息事件（点击通知栏的消息，或者悬浮框，会触发；做事件跳转，需要用到这个接口，如：后台发了一个新闻，消息里面会含有新闻的链接，点击消息就需要获取这个链接，然后跳转）
+				console.log(result)
+				if(result.msg) return
+				console.log(JSON.parse(result))
+				let result_data = JSON.parse(result)
+				if(result_data.n_extras != ''){
+					result_jump(result_data.n_extras)
 				}
-				
-				// console.log(result)
 			});
 			
 			
+			jyJPush.getLastPushInfo(result => { //监听离线点击通知栏消息事件（点击通知栏的消息，或者悬浮框，会触发；做事件跳转，需要用到这个接口，如：后台发了一个新闻，消息里面会含有新闻的链接，点击消息就需要获取这个链接，然后跳转）
+				if(result.msg) return
+				let result_data = JSON.parse(result.data.lastPush)
+				if(result_data.n_extras != ''){
+					setTimeout(function(){ //定时器解决视频返回白屏的问题
+						result_jump(result_data.n_extras)
+					},1000)
+				}
+			});
+			
+			let result_jump = function(result){
+				let type = result.type
+				let id = result.id
+				if(type == 'shangpin'){//商品
+					uni.navigateTo({
+						url:'/pages/subhome/details?id='+id
+					})
+				}else if(type == 'shipin'){ //视频
+					uni.navigateTo({
+						url:'/pages/com_page/video_details?'+id
+					})
+				}else if(type == 'huodong'){ //活动
+					uni.navigateTo({
+						url:'/pages/activity/particulars?id='+id
+					})
+				}else if(type == 'pintuan'){ //拼团
+					uni.navigateTo({
+						url:'/pages/subhome/threehome/group_products?id='+id
+					})
+				}else if(type == 'wenzhang'){ //文章
+					uni.navigateTo({
+						url:'/pages/subindex/article?id='+id
+					})
+				}
+			}
 			
 			
 			//极光推送
@@ -205,6 +219,10 @@
 		},
 		onShow: function() {
 			// #ifdef APP-PLUS
+			
+			
+			
+			
 			// H5调起APP
 			// var args= plus.runtime.arguments;  
 			// if(args){

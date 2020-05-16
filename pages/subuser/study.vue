@@ -14,7 +14,7 @@
 				<image class="l_left" :src="$api_img()+item.v_pic" mode="scaleToFill"></image>
 				<view class="l_right">
 					<view> {{item.long_title}}</view>
-					<view class="middle">{{item.view}}次观看</view>
+					<view class="middle">{{service.NumEllipsis(item.view)}}次观看</view>
 					<view>已学习{{item.plan}}</view>
 				</view>
 			</view>

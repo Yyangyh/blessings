@@ -44,7 +44,7 @@
 				</view>
 				<view class="b_right">
 					<view>{{item.title}}</view>
-					<view>{{item.access_count}}次阅读</view>
+					<view>{{service.NumEllipsis(item.access_count)}}次阅读</view>
 				</view>
 			</view>
 		</view>

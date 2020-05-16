@@ -69,7 +69,21 @@
 				});
 				// #endif
 				// #ifdef APP-PLUS
-				this.$refs.share.share();
+				if(this.$store.state.user.invite_code == undefined){  //判断是否有邀请码
+									this.service.entire(this,'post',this.APIconfig.api_root.index.u_token,{
+										id:this.$store.state.user.id
+					},function(self,res){
+						if(res.code == 0){
+							self.$store.commit('state_user',res.data.user_info)
+							self.$store.commit('state_token',res.data.token)
+							uni.setStorageSync('state_user',res.data.user_info)
+							uni.setStorageSync('state_token',res.data.token)
+							self.$refs.share.share()
+						}
+					})
+				}else{
+					this.$refs.share.share()
+				}
 				// #endif
 			},
 			collection(){

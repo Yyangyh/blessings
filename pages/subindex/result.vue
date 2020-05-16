@@ -28,7 +28,7 @@
 							{{item.long_title}}
 						</view>
 						<view class="list_two">
-							{{item.view}}次观看
+							{{service.NumEllipsis(item.view)}}次观看
 						</view>
 						<view class="list_three">
 							<view class="">

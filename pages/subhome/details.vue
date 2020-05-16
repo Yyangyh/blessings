@@ -248,7 +248,7 @@
 					this.num++
 				}
 			},
-			choose(index, indexs) { //选择规格
+			choose(index, indexs) { //选择规格  如有BUG建议重写
 				// console.log(this.index_list,index)
 				
 				let data = this.choose_list

@@ -1,4 +1,5 @@
 const entire = function(self,type,url,data,func){
+	
 	if(self.$store.state.token){
 		 data.token = self.$store.state.token
 	}
@@ -217,6 +218,17 @@ const loading = function(title){ //加载层
 	return times
 }
 
+const NumEllipsis = function(num){
+	
+	let ret_num
+	if(num > 10000){
+		ret_num = Math.floor(num / 10000)
+		return ret_num+'W+'
+	}else{
+		return num
+	}
+}
+
 const debounce = function(fn, wait){ //
 	// console.log(this.timeout)
 	// console.log(new Date().getTime() - this.timeout)
@@ -252,5 +264,6 @@ export default{
 	Test,
 	loading,
 	notice,
+	NumEllipsis,
 	debounce
 }

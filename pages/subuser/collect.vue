@@ -25,7 +25,7 @@
 				</view>
 				<view class="l_right"  @tap="$jump('/pages/com_page/video_details?id='+item.video_id+'&type='+item.type)">
 					<view>{{item.long_title}}</view>
-					<view class="middle">{{item.view}}次观看</view>
+					<view class="middle">{{service.NumEllipsis(item.view)}}次观看</view>
 					<view>￥99</view>
 				</view>
 			</view>
@@ -40,7 +40,7 @@
 				</view>
 				<view class="l_right"  @tap="$jump('/pages/subindex/article?id='+item.id)">
 					<view>{{item.title}}</view>
-					<view class="article">{{item.access_count}}次阅读</view>
+					<view class="article">{{service.NumEllipsis(item.access_count)}}次阅读</view>
 					<!-- <view>￥99</view> -->
 				</view>
 			</view>

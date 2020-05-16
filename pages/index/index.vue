@@ -97,7 +97,7 @@
 											共{{items.catalogue_count}}节
 										</view>
 										<view class="">
-											已有{{items.view}}人学习
+											已有{{service.NumEllipsis(items.view)}}人学习
 										</view>
 									</view>
 								</view>
@@ -126,7 +126,7 @@
 						<text style="color: #E9BB00;">{{item.yell_four}}</text>
 					</view>
 					<view class="two_btm">
-						已有{{item.showCount}}人学习
+						已有{{service.NumEllipsis(item.showCount)}}人学习
 					</view>
 				</view>
 			</view>

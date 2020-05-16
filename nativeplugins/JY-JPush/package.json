@@ -1,0 +1,109 @@
+{
+	"name": "JY极光推送",
+	"id": "JY-JPush",
+	"version": "1.5.0",
+	"description": "JYJPushUni 极光推送Uni版本",
+	"_dp_type": "nativeplugin",
+	"_dp_nativeplugin": {
+		"ios": {
+			"plugins": [{
+				"type": "module",
+				"name": "JY-JPush",
+				"class": "JYJPushUniModule"
+			}],
+			"integrateType": "library",
+			"hooksClass": "JYJPushUniProxy",
+			"deploymentTarget": "9.0",
+			"frameworks": [
+				"CFNetwork.framework",
+				"CoreFoundation.framework",
+				"CoreTelephony.framework",
+				"libz.tbd",
+				"libresolv.tbd",
+				"UserNotifications.framework"
+			],
+			"capabilities": {
+				"entitlements": {
+					"aps-environment": "development"
+				}
+			},
+			"parameters": {
+				"ios_appkey": {
+					"des": "极光推送的APPKEY",
+					"key": "JPUSH_APPKEY"
+				},
+				"ios_channel": {
+					"des": "极光推送的渠道名称",
+					"key": "JPUSH_CHANNEL"
+				}
+			}
+		},
+		"android": {
+			"plugins": [{
+				"type": "module",
+				"name": "JY-JPush",
+				"class": "com.jiyi.jy_jpush.JYJPushWXModule"
+			}],
+			"hooksClass": "com.jiyi.jy_jpush.JYJPushAppProxy",
+			"integrateType": "aar",
+			"permissions": [
+				"android.permission.RECEIVE_USER_PRESENT",
+				"android.permission.ACCESS_WIFI_STATE",
+				"android.permission.INTERNET",
+				"android.permission.READ_PHONE_STATE",
+				"android.permission.WRITE_EXTERNAL_STORAGE",
+				"android.permission.READ_EXTERNAL_STORAGE",
+				"android.permission.MOUNT_UNMOUNT_FILESYSTEMS",
+				"android.permission.ACCESS_NETWORK_STATE",
+				"${applicationId}.permission.JPUSH_MESSAGE",
+				"${applicationId}.permission.JPUSH_MESSAGE"
+			],
+			"parameters": {
+				"android_appkey": {
+					"des": "极光推送的APPKEY",
+					"key": "JPUSH_APPKEY"
+				},
+				"android_channel": {
+					"des": "极光推送的渠道名称",
+					"key": "JPUSH_CHANNEL"
+				},
+                "MEIZU_APPKEY": {
+                    "des": "魅族APPKEY，以'MZ-'开头",
+                    "key": "MEIZU_APPKEY"
+                },
+                "MEIZU_APPID": {
+                    "des": "魅族APPID，以'MZ-'开头",
+                    "key": "MEIZU_APPID"
+                },
+                "VIVO_APPID": {
+                    "des": "VIVO的APPID",
+                    "key": "com.vivo.push.app_id"
+                },
+                "VIVO_APPKEY": {
+                    "des": "VIVO的APPKEY",
+                    "key": "com.vivo.push.api_key"
+                },
+                "XIAOMI_APPKEY": {
+                    "des": "小米的APPKEY，以'MI-'开头",
+                    "key": "XIAOMI_APPKEY"
+                },
+                "XIAOMI_APPID": {
+                    "des": "小米的APPID，以'MI-'开头",
+                    "key": "XIAOMI_APPID"
+                },
+                "OPPO_APPID": {
+                    "des": "OPPO的APPID，以'OP-'开头",
+                    "key": "OPPO_APPID"
+                },
+                "OPPO_APPKEY": {
+                    "des": "OPPO的APPKEY，以'OP-'开头",
+                    "key": "OPPO_APPKEY"
+                },
+                "OPPO_APPSECRET": {
+                    "des": "OPPO的APPSECRET，以'OP-'开头",
+                    "key": "OPPO_APPSECRET"
+                }
+			}
+		}
+	}
+}

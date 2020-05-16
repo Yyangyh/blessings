@@ -65,9 +65,9 @@
 									共{{item.catalogue_count}}节
 								</view>
 								<view class="">
-									<view class="list_vip" v-if="item.free_type > 0">
+									<!-- <view class="list_vip" v-if="item.free_type > 0">
 										{{item.free_dec}}免费
-									</view>
+									</view> -->
 									<view class="">
 										{{item.is_free == 1 || Number(item.v_price) <= 0 ? '免费' : item.is_free == 0 && item.is_buy == 1 ? '已购' : '￥'+Number(item.v_price)}}
 									</view>
@@ -78,7 +78,7 @@
 									讲师：{{item.techer.name}}
 								</view>
 								<view class="">
-									已有{{item.view}}人学习
+									已有{{service.NumEllipsis(item.view)}}人学习
 								</view>
 							</view>
 						</view>

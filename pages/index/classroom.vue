@@ -66,7 +66,7 @@
 							主讲：{{items.techer.name}}&nbsp;导师
 						</view>
 						<view class="btn_right">
-							{{items.is_online == 0?'已有' + items.view + '人学习':'了解更多'}}
+							{{items.is_online == 0?'已有' + service.NumEllipsis(items.view) + '人学习':'了解更多'}}
 						</view>
 					</view>
 					

@@ -14,7 +14,7 @@
 				<view><image :src="$api_img() + item.cover" mode="scaleToFill"></image></view>
 				<view class="b_right">
 					<view>{{item.title}}</view>
-					<view>{{item.browse_count}}次阅读</view>
+					<view>{{service.NumEllipsis(item.browse_count)}}次阅读</view>
 				</view>
 			</view>
 		</view>

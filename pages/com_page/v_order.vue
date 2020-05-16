@@ -20,7 +20,7 @@
 						{{data.long_title}}
 					</view>
 					<view class="list_two">
-						{{data.view}}次{{data.type == 1? '观看':'收听'}}
+						{{service.NumEllipsis(data.view)}}次{{data.type == 1? '观看':'收听'}}
 					</view>
 					<view class="list_three">
 						￥{{data.v_price}}
