@@ -1,0 +1,17 @@
+<template name="trigger">
+  <view id="trigger" 
+  wx:if="{{trigger.show}}" 
+  animation="{{animationData}}" 
+  bind:transitionend="handleTransitionend" 
+  bind:touchstart="handleTouchstart" 
+  bind:touchmove="handleTouchmove" 
+  style="right:{{trigger.style.right}};top:{{trigger.style.top}};" 
+  class="trigger {{trigger.class}}">
+    <view bindtap="navigateToWeb">
+      <image class="img" mode="widthFix" src="{{trigger.imageUrl}}" alt="" />
+    </view>
+    <icon bindtap="handleTouchTap" type="clear" size="{{trigger.iconSize}}" color="#000" class="ma-close"></icon>
+  </view>
+</template>
+
+<template is="{{componentName}}" data="{{trigger,animationData}}" />

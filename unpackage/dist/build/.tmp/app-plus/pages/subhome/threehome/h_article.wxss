@@ -31,7 +31,8 @@
   position: fixed;
   width: 100%;
   z-index: 886;
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
   top: var(--status-bar-height);
   left: 0;
   display: -webkit-box;
@@ -49,12 +50,12 @@
   background-color: #FFFFFF;
 }
 .top image:first-child {
-    width: 31rpx;
-    height: 31rpx;
+  width: 31rpx;
+  height: 31rpx;
 }
 .top image:last-child {
-    width: 50rpx;
-    height: 50rpx;
+  width: 50rpx;
+  height: 50rpx;
 }
 ._hr {
   border: none;
@@ -75,45 +76,60 @@
   margin-bottom: 20rpx;
 }
 .title_top .title {
-    font-size: 28rpx;
-    padding: 33rpx 20rpx 20rpx 20rpx;
+  font-size: 28rpx;
+  padding: 33rpx 20rpx 20rpx 20rpx;
 }
 .title_top .times {
-    font-size: 24rpx;
-    color: #999999;
-    margin: 0 0 25rpx 0;
-    padding-left: 20rpx;
+  font-size: 24rpx;
+  color: #999999;
+  margin: 0 0 25rpx 0;
+  padding-left: 20rpx;
 }
 .title_top .graded {
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: flex;
-    -webkit-box-align: center;
-    -webkit-align-items: center;
-            align-items: center;
-    padding-left: 20rpx;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+          align-items: center;
+  padding-left: 20rpx;
 }
 .title_top .graded .start {
-      display: -webkit-box;
-      display: -webkit-flex;
-      display: flex;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
 }
 .title_top .graded .start image {
-        width: 25rpx;
-        height: 25rpx;
-        margin-right: 12rpx;
+  width: 25rpx;
+  height: 25rpx;
+  margin-right: 12rpx;
 }
 .title_top .graded .time {
-      font-size: 24rpx;
-      color: #999999;
-      margin-right: 30rpx;
+  font-size: 24rpx;
+  color: #999999;
+  margin-right: 30rpx;
 }
 .title_top .t_right {
-    width: 44rpx;
-    height: 44rpx;
-    margin: 80rpx 30rpx 0 0;
+  width: 44rpx;
+  height: 44rpx;
+  margin: 80rpx 30rpx 0 0;
 }
 .rich {
   padding: 0 20rpx;
+}
+.download {
+  width: 100%;
+  background: #fff;
+  position: fixed;
+  color: #FE0000;
+  background: #FCCF00;
+  left: 0;
+  bottom: 0rpx;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  height: 80rpx;
+  line-height: 80rpx;
+  padding: 0 21rpx;
+  text-align: center;
 }
 

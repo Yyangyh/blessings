@@ -40,125 +40,125 @@ page {
   margin: 0 0 30rpx 0;
 }
 .worp ._hr {
-    height: 1rpx;
-    border: none;
-    border-top: 1px solid #F4F4F4;
-    width: 97%;
-    margin: 0 auto;
+  height: 1rpx;
+  border: none;
+  border-top: 1px solid #F4F4F4;
+  width: 97%;
+  margin: 0 auto;
 }
 .worp image {
-    width: 100%;
-    height: 364rpx;
+  width: 100%;
+  height: 364rpx;
 }
 .worp .theme {
-    font-size: 24rpx;
-    color: #333333;
-    margin: 20rpx 0 20rpx 23rpx;
+  font-size: 24rpx;
+  color: #333333;
+  margin: 20rpx 0 20rpx 23rpx;
 }
 .worp .line {
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: flex;
-    -webkit-box-align: center;
-    -webkit-align-items: center;
-            align-items: center;
-    margin-left: 23rpx;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+          align-items: center;
+  margin-left: 23rpx;
 }
 .worp .line image {
-      width: 32rpx;
-      height: 32rpx;
-      margin-right: 28rpx;
+  width: 32rpx;
+  height: 32rpx;
+  margin-right: 28rpx;
 }
 .worp .line text {
-      font-size: 28rpx;
-      color: #666666;
-      margin-right: 20rpx;
+  font-size: 28rpx;
+  color: #666666;
+  margin-right: 20rpx;
 }
 .worp .line .theme1 {
-      font-size: 24rpx;
-      color: #333333;
-      margin: 20rpx 10rpx 20rpx 0rpx;
+  font-size: 24rpx;
+  color: #333333;
+  margin: 20rpx 10rpx 20rpx 0rpx;
 }
 .worp .price {
-    font-size: 25rpx;
-    font-weight: bold;
-    color: #D80000;
-    margin: 20rpx 0 0 23rpx;
-    letter-spacing: 3rpx;
+  font-size: 25rpx;
+  font-weight: bold;
+  color: #D80000;
+  margin: 20rpx 0 0 23rpx;
+  letter-spacing: 3rpx;
 }
 .worp .countdown {
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: flex;
-    margin-left: 23rpx;
-    -webkit-box-align: center;
-    -webkit-align-items: center;
-            align-items: center;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  margin-left: 23rpx;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+          align-items: center;
 }
 .worp .countdown text {
-      font-size: 26rpx;
-      color: #F2221F;
+  font-size: 26rpx;
+  color: #F2221F;
 }
 .worp .countdown view {
-      width: 44rpx;
-      height: 44rpx;
-      text-align: center;
-      font-size: 21rpx;
-      color: #FFFFFF;
-      line-height: 44rpx;
-      background-color: #D80000;
-      border-radius: 5rpx;
-      margin: 10rpx 0;
+  width: 44rpx;
+  height: 44rpx;
+  text-align: center;
+  font-size: 21rpx;
+  color: #FFFFFF;
+  line-height: 44rpx;
+  background-color: #D80000;
+  border-radius: 5rpx;
+  margin: 10rpx 0;
 }
 .worp .top {
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: flex;
-    -webkit-box-pack: justify;
-    -webkit-justify-content: space-between;
-            justify-content: space-between;
-    -webkit-box-align: center;
-    -webkit-align-items: center;
-            align-items: center;
-    margin: 0 23rpx;
-    padding: 20rpx 0;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+          justify-content: space-between;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+          align-items: center;
+  margin: 0 23rpx;
+  padding: 20rpx 0;
 }
 .worp .top text:first-child {
-      font-size: 27rpx;
-      color: #000000;
+  font-size: 27rpx;
+  color: #000000;
 }
 .worp .top text:last-child {
-      font-size: 23rpx;
-      color: #EF7C38;
+  font-size: 23rpx;
+  color: #EF7C38;
 }
 .worp .personnel-list {
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: flex;
-    /* justify-content: space-around; */
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  /* justify-content: space-around; */
 }
 .worp .personnel-list .list {
-      width: 20%;
-      text-align: center;
-      display: -webkit-box;
-      -webkit-box-orient: vertical;
-      -webkit-line-clamp: 1;
-      overflow: hidden;
+  width: 20%;
+  text-align: center;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  overflow: hidden;
 }
 .worp .personnel-list .list .l_img {
-        width: 96rpx;
-        height: 96rpx;
-        border-radius: 50%;
-        overflow: hidden;
-        display: inline-block;
+  width: 96rpx;
+  height: 96rpx;
+  border-radius: 50%;
+  overflow: hidden;
+  display: inline-block;
 }
 .worp .personnel-list .list image {
-        width: 100%;
-        height: 100%;
+  width: 100%;
+  height: 100%;
 }
 .worp .personnel-list .list view {
-        font-size: 23rpx;
-        text-align: center;
+  font-size: 23rpx;
+  text-align: center;
 }
 .p-t {
   font-size: 28rpx;
@@ -184,28 +184,28 @@ page {
   height: 140rpx;
 }
 .underway button:first-child {
-    width: 250rpx;
-    height: 80rpx;
-    font-size: 30rpx;
-    color: #FFFFFF;
-    text-align: center;
-    line-height: 80rpx;
-    background-color: #D80000;
-    border: none;
-    border-radius: 40rpx;
-    letter-spacing: 10rpx;
+  width: 250rpx;
+  height: 80rpx;
+  font-size: 30rpx;
+  color: #FFFFFF;
+  text-align: center;
+  line-height: 80rpx;
+  background-color: #D80000;
+  border: none;
+  border-radius: 40rpx;
+  letter-spacing: 10rpx;
 }
 .underway button:last-child {
-    width: 250rpx;
-    height: 80rpx;
-    font-size: 30rpx;
-    color: #FFFFFF;
-    text-align: center;
-    line-height: 80rpx;
-    background-color: #EF7C38;
-    border: none;
-    border-radius: 40rpx;
-    letter-spacing: 10rpx;
+  width: 250rpx;
+  height: 80rpx;
+  font-size: 30rpx;
+  color: #FFFFFF;
+  text-align: center;
+  line-height: 80rpx;
+  background-color: #EF7C38;
+  border: none;
+  border-radius: 40rpx;
+  letter-spacing: 10rpx;
 }
 /* 	结束按钮 */
 .finish {
@@ -224,16 +224,16 @@ page {
   /* display: none; */
 }
 .finish button {
-    width: 600rpx;
-    height: 80rpx;
-    font-size: 30rpx;
-    color: #FFFFFF;
-    text-align: center;
-    line-height: 80rpx;
-    background-color: #999999;
-    border: none;
-    border-radius: 40rpx;
-    letter-spacing: 10rpx;
+  width: 600rpx;
+  height: 80rpx;
+  font-size: 30rpx;
+  color: #FFFFFF;
+  text-align: center;
+  line-height: 80rpx;
+  background-color: #999999;
+  border: none;
+  border-radius: 40rpx;
+  letter-spacing: 10rpx;
 }
 /* 	} */
 

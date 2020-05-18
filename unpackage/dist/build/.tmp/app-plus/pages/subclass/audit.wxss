@@ -28,15 +28,15 @@
   width: 100%;
 }
 .content image {
-    display: block;
-    width: 293rpx;
-    height: 293rpx;
-    padding-top: 130rpx;
-    margin: 0 auto;
+  display: block;
+  width: 293rpx;
+  height: 293rpx;
+  padding-top: 130rpx;
+  margin: 0 auto;
 }
 .content view {
-    font-size: 24rpx;
-    text-align: center;
-    margin-top: 25rpx;
+  font-size: 24rpx;
+  text-align: center;
+  margin-top: 25rpx;
 }
 

@@ -31,173 +31,173 @@ page {
   position: relative;
 }
 .content .mSg {
-    font-size: 28rpx;
-    color: #333333;
+  font-size: 28rpx;
+  color: #333333;
 }
 .content .sign1 {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 105rpx;
-    left: 50%;
-    -webkit-transform: translateX(-50%);
-            transform: translateX(-50%);
-    z-index: 1;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 105rpx;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  z-index: 1;
 }
 .content .integral {
-    color: #FFFFFF;
-    text-align: center;
-    margin-top: 60rpx;
-    z-index: 199;
-    position: relative;
+  color: #FFFFFF;
+  text-align: center;
+  margin-top: 60rpx;
+  z-index: 199;
+  position: relative;
 }
 .content .integral view:first-child {
-      font-size: 44rpx;
+  font-size: 44rpx;
 }
 .content .integral view:last-child {
-      font-size: 24rpx;
-      margin-top: 10rpx;
+  font-size: 24rpx;
+  margin-top: 10rpx;
 }
 .content .singnBox {
-    height: 532rpx;
-    background: white;
-    border-radius: 10rpx;
-    z-index: 199;
-    position: relative;
-    top: 50rpx;
-    margin: 0 20rpx;
-    padding-top: 30rpx;
+  height: 532rpx;
+  background: white;
+  border-radius: 10rpx;
+  z-index: 199;
+  position: relative;
+  top: 50rpx;
+  margin: 0 20rpx;
+  padding-top: 30rpx;
 }
 .content .singnBox .state {
-      font-size: 40rpx;
-      color: #010101;
-      text-align: center;
-      margin-top: 60rpx;
-      padding: 30rpx auto;
+  font-size: 40rpx;
+  color: #010101;
+  text-align: center;
+  margin-top: 60rpx;
+  padding: 30rpx auto;
 }
 .content .singnBox .state text {
-        color: #FE0000;
+  color: #FE0000;
 }
 .content .singnBox .sign2 {
-      width: 296rpx;
-      height: 232rpx;
-      position: absolute;
-      top: 85rpx;
-      left: 192rpx;
+  width: 296rpx;
+  height: 232rpx;
+  position: absolute;
+  top: 85rpx;
+  left: 192rpx;
 }
 .content .singnBox .times {
-      position: absolute;
-      top: 204rpx;
-      left: 300rpx;
-      color: #FF533A;
+  position: absolute;
+  top: 204rpx;
+  left: 300rpx;
+  color: #FF533A;
 }
 .content .singnBox .times text:first-child {
-        font-size: 60rpx;
-        margin-right: 10rpx;
+  font-size: 60rpx;
+  margin-right: 10rpx;
 }
 .content .singnBox .times text:last-child {
-        font-size: 30rpx;
+  font-size: 30rpx;
 }
 .content .singnBox .time {
-      display: -webkit-box;
-      display: -webkit-flex;
-      display: flex;
-      margin: 60rpx 0 0 30rpx;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  margin: 60rpx 0 0 30rpx;
 }
 .content .singnBox .time .timebox {
-        display: -webkit-box;
-        display: -webkit-flex;
-        display: flex;
-        -webkit-box-orient: vertical;
-        -webkit-box-direction: normal;
-        -webkit-flex-direction: column;
-                flex-direction: column;
-        -webkit-box-align: center;
-        -webkit-align-items: center;
-                align-items: center;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+          align-items: center;
 }
 .content .singnBox .time .timebox image {
-          width: 48rpx;
-          height: 48rpx;
+  width: 48rpx;
+  height: 48rpx;
 }
 .content .singnBox .time .timebox view {
-          font-size: 24rpx;
-          color: #8F8F8F;
+  font-size: 24rpx;
+  color: #8F8F8F;
 }
 .content .singnBox .time .gang {
-        width: 33rpx;
-        height: 2rpx;
-        background-color: #ECECEC;
-        margin-top: 25rpx;
+  width: 33rpx;
+  height: 2rpx;
+  background-color: #ECECEC;
+  margin-top: 25rpx;
 }
 .content .singnBox button {
-      width: 487rpx;
-      height: 80rpx;
-      background: #FE0000;
-      border-radius: 40rpx;
-      color: #FFFF6F;
-      font-size: 28rpx;
-      margin: 50rpx auto;
+  width: 487rpx;
+  height: 80rpx;
+  background: #FE0000;
+  border-radius: 40rpx;
+  color: #FFFF6F;
+  font-size: 28rpx;
+  margin: 50rpx auto;
 }
 .content .singnBox .look {
-      font-size: 28rpx;
-      color: #FE0000;
-      text-align: center;
+  font-size: 28rpx;
+  color: #FE0000;
+  text-align: center;
 }
 .content .bk {
-    width: 100%;
-    position: fixed;
-    left: 50%;
-    -webkit-transform: translateX(-50%);
-            transform: translateX(-50%);
-    top: 300rpx;
-    z-index: 900;
+  width: 100%;
+  position: fixed;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  top: 300rpx;
+  z-index: 900;
 }
 .content .bk image {
-      width: 650rpx;
-      height: 304rpx;
-      display: block;
-      margin: 0 auto;
-      position: relative;
+  width: 650rpx;
+  height: 304rpx;
+  display: block;
+  margin: 0 auto;
+  position: relative;
 }
 .content .bk .bk_text {
-      position: absolute;
-      width: 100%;
-      text-align: center;
-      top: 240rpx;
-      left: 50%;
-      -webkit-transform: translateX(-50%);
-              transform: translateX(-50%);
+  position: absolute;
+  width: 100%;
+  text-align: center;
+  top: 240rpx;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
 }
 .content .bk .bk_text .msg1 {
-        font-size: 40rpx;
-        color: #010101;
+  font-size: 40rpx;
+  color: #010101;
 }
 .content .bk .bk_text .msg2 {
-        color: #FFFFFF;
-        font-size: 28rpx;
-        margin-top: 160rpx;
+  color: #FFFFFF;
+  font-size: 28rpx;
+  margin-top: 160rpx;
 }
 .content .bk .bk_text .msg3 {
-        color: #666666;
-        font-size: 32rpx;
-        margin-top: 20rpx;
-        margin-bottom: 60rpx;
+  color: #666666;
+  font-size: 32rpx;
+  margin-top: 20rpx;
+  margin-bottom: 60rpx;
 }
 .content .bk .bk_text button {
-        margin-top: 30rpx;
-        font-size: 34rpx;
-        height: 80rpx;
-        line-height: 80rpx;
-        border-radius: 80rpx;
-        color: #FFFF6F;
-        background: #FE0000;
-        margin: 0 80rpx;
+  margin-top: 30rpx;
+  font-size: 34rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  border-radius: 80rpx;
+  color: #FFFF6F;
+  background: #FE0000;
+  margin: 0 80rpx;
 }
 .content .back_btm {
-    width: 710rpx;
-    position: relative;
-    top: 70rpx;
-    margin: 0 20rpx;
+  width: 710rpx;
+  position: relative;
+  top: 70rpx;
+  margin: 0 20rpx;
 }
 

@@ -67,7 +67,7 @@ page {
   bottom: 135rpx;
 }
 .QRcode image {
-    width: 60rpx;
-    height: 60rpx;
+  width: 60rpx;
+  height: 60rpx;
 }
 

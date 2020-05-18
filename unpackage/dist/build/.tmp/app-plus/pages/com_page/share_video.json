@@ -1,0 +1,8 @@
+{
+  "navigationBarTitleText": "五福家庭",
+  "titleNView": false,
+  "usingComponents": {
+    "load": "/pages/common/load",
+    "audio": "/components/wangding-audioQuickPlay/index"
+  }
+}

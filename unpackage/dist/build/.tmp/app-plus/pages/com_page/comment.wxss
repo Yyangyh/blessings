@@ -31,8 +31,8 @@
   color: #999;
 }
 .lack_img image {
-    height: 310rpx;
-    width: 310rpx;
+  height: 310rpx;
+  width: 310rpx;
 }
 .user_comment {
   background: #fff;
@@ -40,71 +40,71 @@
   padding: 20rpx 30rpx;
 }
 .user_comment .user {
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: flex;
-    -webkit-box-pack: justify;
-    -webkit-justify-content: space-between;
-            justify-content: space-between;
-    margin: 20rpx 0;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+          justify-content: space-between;
+  margin: 20rpx 0;
 }
 .user_comment .user .user_one {
-      display: -webkit-box;
-      display: -webkit-flex;
-      display: flex;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
 }
 .user_comment .user .user_one .img_box {
-        width: 90rpx;
-        height: 90rpx;
-        border-radius: 50%;
-        overflow: hidden;
+  width: 90rpx;
+  height: 90rpx;
+  border-radius: 50%;
+  overflow: hidden;
 }
 .user_comment .user .user_one .img_box .user_img {
-          width: 100%;
-          height: 100%;
+  width: 100%;
+  height: 100%;
 }
 .user_comment .user .user_one .user_img {
-        width: 90rpx;
-        height: 90rpx;
-        border-radius: 50%;
+  width: 90rpx;
+  height: 90rpx;
+  border-radius: 50%;
 }
 .user_comment .user .user_one .user_test {
-        margin: 0 20rpx;
-        font-size: 32rpx;
+  margin: 0 20rpx;
+  font-size: 32rpx;
 }
 .user_comment .user .user_one .user_test view {
-          font-weight: bold;
-          color: #333333;
-          font-size: 28rpx;
+  font-weight: bold;
+  color: #333333;
+  font-size: 28rpx;
 }
 .user_comment .user .user_star {
-      -webkit-align-self: flex-start;
-              align-self: flex-start;
-      font-size: 24rpx;
-      color: #333333;
+  -webkit-align-self: flex-start;
+          align-self: flex-start;
+  font-size: 24rpx;
+  color: #333333;
 }
 .user_comment .user .user_star image {
-        height: 26rpx;
-        width: 26rpx;
+  height: 26rpx;
+  width: 26rpx;
 }
 .user_comment .user .user_star text {
-        font-size: 24rpx;
-        color: #999999;
+  font-size: 24rpx;
+  color: #999999;
 }
 .user_comment .com_content .content_test view {
-    font-size: 24rpx;
-    color: #666666;
+  font-size: 24rpx;
+  color: #666666;
 }
 .user_comment .com_content .content_img image {
-    height: 120rpx;
-    width: 120rpx;
-    margin-right: 16rpx;
-    margin-top: 30rpx;
+  height: 120rpx;
+  width: 120rpx;
+  margin-right: 16rpx;
+  margin-top: 30rpx;
 }
 .user_comment .com_content .more {
-    font-size: 32rpx;
-    color: #666666;
-    margin: 20rpx 0;
+  font-size: 32rpx;
+  color: #666666;
+  margin: 20rpx 0;
 }
 .com_box {
   position: fixed;
@@ -121,32 +121,34 @@
           align-content: center;
   font-size: 24rpx;
   padding: 0 20rpx;
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
   height: 120rpx;
   border-top: 2rpx solid #F2F2F2;
   padding-top: 20rpx;
 }
 .com_box .box_left {
-    -webkit-box-flex: 2;
-    -webkit-flex-grow: 2;
-            flex-grow: 2;
-    border: 2rpx solid #999999;
-    height: 60rpx;
-    line-height: 60rpx;
-    border-radius: 60rpx;
-    padding: 0 31rpx;
-    color: #999999;
+  -webkit-box-flex: 2;
+  -webkit-flex-grow: 2;
+          flex-grow: 2;
+  border: 2rpx solid #999999;
+  height: 60rpx;
+  line-height: 60rpx;
+  border-radius: 60rpx;
+  padding: 0 31rpx;
+  color: #999999;
 }
 .com_box .box_right {
-    background: -webkit-linear-gradient(left, #f74c4a, #f56e6a);
-    background: linear-gradient(90deg, #f74c4a, #f56e6a);
-    border-radius: 10rpx;
-    width: 100rpx;
-    text-align: center;
-    line-height: 60rpx;
-    height: 60rpx;
-    color: #fff;
-    margin-left: 44rpx;
+  background: -webkit-gradient(linear, left top, right top, from(#f74c4a), to(#f56e6a));
+  background: -webkit-linear-gradient(left, #f74c4a, #f56e6a);
+  background: linear-gradient(90deg, #f74c4a, #f56e6a);
+  border-radius: 10rpx;
+  width: 100rpx;
+  text-align: center;
+  line-height: 60rpx;
+  height: 60rpx;
+  color: #fff;
+  margin-left: 44rpx;
 }
 .write {
   position: fixed;
@@ -163,41 +165,42 @@
   transition: .3s;
 }
 .write .w_title {
-    font-size: 24rpx;
-    color: #666666;
+  font-size: 24rpx;
+  color: #666666;
 }
 .write .start {
-    margin-top: 20rpx;
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: flex;
+  margin-top: 20rpx;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
 }
 .write .start image {
-      width: 41rpx;
-      height: 41rpx;
-      margin: 20rpx 10rpx;
+  width: 41rpx;
+  height: 41rpx;
+  margin: 20rpx 10rpx;
 }
 .write textarea {
-    font-size: 24rpx;
-    color: #999999;
-    padding: 10rpx;
-    width: 690rpx;
-    height: 170rpx;
-    background-color: #FFFFFF;
-    border: 1rpx solid #999999;
-    margin-top: 20rpx;
+  font-size: 24rpx;
+  color: #999999;
+  padding: 10rpx;
+  width: 690rpx;
+  height: 170rpx;
+  background-color: #FFFFFF;
+  border: 1rpx solid #999999;
+  margin-top: 20rpx;
 }
 .write button {
-    width: 120rpx;
-    height: 60rpx;
-    background: -webkit-linear-gradient(left, #f74c4a, #f56e6a);
-    background: linear-gradient(90deg, #f74c4a, #f56e6a);
-    border-radius: 10rpx;
-    color: #FFFFFF;
-    font-size: 24rpx;
-    line-height: 60rpx;
-    text-align: center;
-    margin: 20rpx 0 0 600rpx;
+  width: 120rpx;
+  height: 60rpx;
+  background: -webkit-gradient(linear, left top, right top, from(#f74c4a), to(#f56e6a));
+  background: -webkit-linear-gradient(left, #f74c4a, #f56e6a);
+  background: linear-gradient(90deg, #f74c4a, #f56e6a);
+  border-radius: 10rpx;
+  color: #FFFFFF;
+  font-size: 24rpx;
+  line-height: 60rpx;
+  text-align: center;
+  margin: 20rpx 0 0 600rpx;
 }
 .show {
   -webkit-transform: translateY(0);

@@ -3,7 +3,8 @@ textarea{
 	width: 590rpx;
 	height: 162rpx;
 	color: #CCCCCC;
-	box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	        box-sizing: border-box;
 	padding:0 6rpx 6rpx 6rpx;
 	font-size: 28rpx;
 }

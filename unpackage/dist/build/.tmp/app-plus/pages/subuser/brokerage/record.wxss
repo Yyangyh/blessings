@@ -38,28 +38,28 @@
           align-items: center;
 }
 .line .b_left .tops {
-    font-size: 28rpx;
-    margin-top: -5rpx;
+  font-size: 28rpx;
+  margin-top: -5rpx;
 }
 .line .b_left .middles {
-    font-size: 24rpx;
-    color: #999999;
-    margin: 20rpx 0 30rpx 0;
+  font-size: 24rpx;
+  color: #999999;
+  margin: 20rpx 0 30rpx 0;
 }
 .line .b_left .bottoms {
-    font-size: 24rpx;
-    color: #666666;
+  font-size: 24rpx;
+  color: #666666;
 }
 .line .b_right {
-    text-align: right;
+  text-align: right;
 }
 .line .b_right view:first-child {
-      font-size: 28rpx;
-      color: #F2221F;
+  font-size: 28rpx;
+  color: #F2221F;
 }
 .line .b_right view:last-child {
-      font-size: 24rpx;
-      color: #FF9749;
-      margin-top: 10rpx;
+  font-size: 24rpx;
+  color: #FF9749;
+  margin-top: 10rpx;
 }
 

@@ -1,6 +1,7 @@
 <script>
 	// #ifdef APP-PLUS
-	const jyJPush = uni.requireNativePlugin('JY-JPush');
+	const jyJPush = uni.requireNativePlugin('JY-JPush'); //极光推送参考：https://ext.dcloud.net.cn/plugin?id=741
+	const masdk = require('./wxcomponents/index'); //数商云参考：https://blog.csdn.net/haishangfeie/article/details/102880897
 	// #endif
 	export default {
 		
@@ -9,7 +10,9 @@
 			console.log('App Launch')
 			
 			// #ifdef APP-PLUS
+			this.masdkInit()  //数商云
 			
+			//极光推送
 			jyJPush.getRegistrationID(
 			//  返回的数据会有registrationID，errorCode
 			result => {
@@ -156,47 +159,7 @@
 			
 			
 			// #ifdef H5
-			// H5调起APP
-			// let url = window.location.href.split('https://')[1]
-			// let getBrower=function(){
-			// 	let browser={
-			// 	  versions:function(){
-			// 			var u = navigator.userAgent, app = navigator.appVersion;
-			// 			  return {
-			// 				  weixin: u.indexOf('MicroMessenger') > -1, //是否微信 （2015-01-22新增）
-			// 				  qq: u.match(/\sQQ/i) == " qq" //是否QQ
-			// 		  };
-			// 	  }(),
-			// 		language:(navigator.browserLanguage || navigator.language).toLowerCase()
-			// 	}
-			// 	return browser.versions
-			// }
-			// let brower=getBrower()
-			// if(brower.weixin||brower.qq){
-			// 	// uni.showToast({
-			// 	// 	icon:'none',
-			// 	// 	title:'请在浏览器中打开'
-			// 	// })
-			// 	return
-			// }
-			// if(brower.android){
-			//     let startTime=Date.now();
-			//     let ifr = document.createElement('iframe');
-			// 	ifr.src = 'wufu://'+url;//这里是唤起App的协议，有Android可爱的同事提供
-			// 	ifr.style.display = 'none';
-			// 	document.body.appendChild(ifr);
-			// 	setTimeout(function(){
-			// 		document.body.removeChild(ifr);
-			// 		// window.open("唤起失败跳转的链接");
-			// 		window.location.href = 'https://ios.8396048.com/0318/packet/wufu.apk'
-			// 	},3000)
-			// }else{
-			// 	//ios使用这个打开
-			// 	window.location.href = 'wufu://'+url; //唤起协议，由iOS小哥哥提供
-			// 	setTimeout(function(){
-			// 		window.location.href = 'https://ios.8396048.com/0318/packet/manifest.plist';
-			// 	},3000)
-			// }
+			
 			// H5调起APP
 			//在页面加载时读取sessionStorage里的状态信息
 			if (uni.getStorageSync("store")) {  //防止用户刷新页面导致vuex数据丢失
@@ -217,6 +180,26 @@
 				this.$store.commit('state_token',uni.getStorageSync('state_token'))
 			}
 		},
+		methods: {
+		    // 初始化数商云sdk
+		    masdkInit () {
+		      //初始化sdk,应该在小程序打开的时候就初始化。
+		      masdk.init({
+		        appKey: "7fe8e836921493cba9afc767c65c7233",//应用key,必填
+		        appSecret: "1f4279f517a8d007cbafff0942bfe6d2",//应用secret,必填
+		        debug: true,//是否开启debug模式，选填，默认为fasle
+		        // domain: '服务器地址',//服务器地址，一般不用配置此项，此项只针对私有化部署客户 
+		        webviewUrl: '/pages/webview/index',//用来打开活动的页面，选填，默认值是组件提供的webview页面:miniprogram_npm/shushangyun-masdk/pages/webview，如果有需要，此项指针对需要使用自己定义的页面去打开活动的开发者
+		      })
+			 
+			 
+		    },
+		},
+		globalData: {
+		   // 一般的全局变量使用vuex实现，现在我遇到一个问题，数商云对象masdk无法在小程序自定义组件和普通页面公用，因此采用此种方式实现
+		   masdk:masdk
+		},
+		
 		onShow: function() {
 			// #ifdef APP-PLUS
 			

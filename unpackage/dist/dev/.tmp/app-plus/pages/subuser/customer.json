@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "联系客服",
+  "titleNView": false,
+  "usingComponents": {
+    "returns": "/pages/common/returns"
+  }
+}

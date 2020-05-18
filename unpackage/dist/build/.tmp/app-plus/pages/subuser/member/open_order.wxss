@@ -32,21 +32,21 @@ page {
   padding: 30rpx 40rpx;
 }
 .o_msg ._hr {
-    border: none;
-    height: 1rpx;
-    border-bottom: 1rpx solid #EEEEEE;
+  border: none;
+  height: 1rpx;
+  border-bottom: 1rpx solid #EEEEEE;
 }
 .o_msg .title {
-    font-size: 32rpx;
+  font-size: 32rpx;
 }
 .o_msg .msgs {
-    font-size: 28rpx;
-    color: #999999;
-    margin: 20rpx 0;
+  font-size: 28rpx;
+  color: #999999;
+  margin: 20rpx 0;
 }
 .o_msg text {
-    font-size-adjust: 29rpx;
-    color: #D80000;
+  font-size-adjust: 29rpx;
+  color: #D80000;
 }
 .payment {
   font-size: 28rpx;
@@ -54,46 +54,46 @@ page {
   background: #fff;
 }
 .payment image {
-    height: 52rpx;
-    width: 52rpx;
+  height: 52rpx;
+  width: 52rpx;
 }
 .payment .pa_test {
-    padding: 18rpx 0;
+  padding: 18rpx 0;
 }
 .payment .pa_box .box_list {
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: flex;
-    position: relative;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  position: relative;
 }
 .payment .pa_box .box_list .list_top {
-      display: -webkit-box;
-      display: -webkit-flex;
-      display: flex;
-      -webkit-box-align: center;
-      -webkit-align-items: center;
-              align-items: center;
-      font-weight: 500;
-      width: 100%;
-      height: 100rpx;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+          align-items: center;
+  font-weight: 500;
+  width: 100%;
+  height: 100rpx;
 }
 .payment .pa_box .box_list .list_top image {
-        margin-right: 38rpx;
+  margin-right: 38rpx;
 }
 .payment .pa_box .box_list .list_top view {
-        -webkit-box-flex: 2;
-        -webkit-flex-grow: 2;
-                flex-grow: 2;
-        height: 100rpx;
-        line-height: 100rpx;
-        border-bottom: 2rpx solid #F1F1F1;
+  -webkit-box-flex: 2;
+  -webkit-flex-grow: 2;
+          flex-grow: 2;
+  height: 100rpx;
+  line-height: 100rpx;
+  border-bottom: 2rpx solid #F1F1F1;
 }
 .payment .pa_box .box_list .choice {
-      position: absolute;
-      right: 20rpx;
-      top: 30rpx;
-      height: 36rpx !important;
-      width: 36rpx !important;
+  position: absolute;
+  right: 20rpx;
+  top: 30rpx;
+  height: 36rpx !important;
+  width: 36rpx !important;
 }
 button {
   margin: 40rpx;

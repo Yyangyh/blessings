@@ -43,9 +43,9 @@ page {
   font-weight: bold;
 }
 .allorder text {
-    -webkit-box-flex: 1;
-    -webkit-flex: 1;
-            flex: 1;
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+          flex: 1;
 }
 .active {
   color: #D80000;
@@ -56,47 +56,47 @@ page {
   padding-top: 0 !important;
 }
 .boxs .worp ._hr {
-    height: 1rpx;
-    border: none;
-    border-top: 1px solid #F4F4F4;
-    width: 97%;
-    margin: 0 auto;
+  height: 1rpx;
+  border: none;
+  border-top: 1px solid #F4F4F4;
+  width: 97%;
+  margin: 0 auto;
 }
 .boxs .worp image {
-    width: 100%;
-    height: 364rpx;
+  width: 100%;
+  height: 364rpx;
 }
 .boxs .worp .theme {
-    font-size: 24rpx;
-    color: #333333;
-    margin: 20rpx 0 20rpx 23rpx;
+  font-size: 24rpx;
+  color: #333333;
+  margin: 20rpx 0 20rpx 23rpx;
 }
 .boxs .worp .line {
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: flex;
-    -webkit-box-align: center;
-    -webkit-align-items: center;
-            align-items: center;
-    margin-left: 23rpx;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+          align-items: center;
+  margin-left: 23rpx;
 }
 .boxs .worp .line image {
-      width: 32rpx;
-      height: 32rpx;
-      margin-right: 28rpx;
+  width: 32rpx;
+  height: 32rpx;
+  margin-right: 28rpx;
 }
 .boxs .worp .line text {
-      font-size: 28rpx;
-      color: #666666;
-      margin-right: 28rpx;
+  font-size: 28rpx;
+  color: #666666;
+  margin-right: 28rpx;
 }
 .boxs .worp .price {
-    font-size: 25rpx;
-    font-weight: bold;
-    color: #D80000;
-    margin: 20rpx 0 20rpx 23rpx;
-    padding-bottom: 20rpx;
-    letter-spacing: 3rpx;
+  font-size: 25rpx;
+  font-weight: bold;
+  color: #D80000;
+  margin: 20rpx 0 20rpx 23rpx;
+  padding-bottom: 20rpx;
+  letter-spacing: 3rpx;
 }
 /* 	} */
 

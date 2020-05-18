@@ -36,38 +36,38 @@
   font-size: 28rpx;
 }
 .w-top .t-left text:first-child {
-    color: #666666;
+  color: #666666;
 }
 .w-top .t-left text:last-child {
-    color: #D80000;
+  color: #D80000;
 }
 .w-top .t-right {
-    color: #EF7C38;
+  color: #EF7C38;
 }
 .worp .line {
   padding: 30rpx 22rpx;
 }
 .worp .line .l-top {
-    font-size: 24rpx;
-    margin-bottom: 10rpx;
+  font-size: 24rpx;
+  margin-bottom: 10rpx;
 }
 .worp .line .l-bottom {
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: flex;
-    -webkit-box-align: center;
-    -webkit-align-items: center;
-            align-items: center;
-    font-size: 28rpx;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+          align-items: center;
+  font-size: 28rpx;
 }
 .worp .line .l-bottom text {
-      margin-right: 20rpx;
+  margin-right: 20rpx;
 }
 .worp .line .l-bottom input {
-      font-size: 28rpx;
-      -webkit-box-flex: 2;
-      -webkit-flex-grow: 2;
-              flex-grow: 2;
+  font-size: 28rpx;
+  -webkit-box-flex: 2;
+  -webkit-flex-grow: 2;
+          flex-grow: 2;
 }
 .worp button {
   display: block;
@@ -99,43 +99,43 @@
   padding: 0 22rpx;
 }
 .worp .means .line {
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: flex;
-    padding: 30rpx 20rpx;
-    -webkit-box-align: center;
-    -webkit-align-items: center;
-            align-items: center;
-    border-top: 2rpx solid #F4F4F4;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  padding: 30rpx 20rpx;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+          align-items: center;
+  border-top: 2rpx solid #F4F4F4;
 }
 .worp .means .line text {
-      font-size: 24rpx;
-      margin-right: 20rpx;
+  font-size: 24rpx;
+  margin-right: 20rpx;
 }
 .worp .means .line input {
-      font-size: 24rpx;
-      -webkit-box-flex: 2;
-      -webkit-flex-grow: 2;
-              flex-grow: 2;
+  font-size: 24rpx;
+  -webkit-box-flex: 2;
+  -webkit-flex-grow: 2;
+          flex-grow: 2;
 }
 .worp .means .choice {
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: flex;
-    -webkit-box-align: center;
-    -webkit-align-items: center;
-            align-items: center;
-    font-size: 28rpx;
-    padding: 22rpx 0;
-    color: #333333;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+          align-items: center;
+  font-size: 28rpx;
+  padding: 22rpx 0;
+  color: #333333;
 }
 .worp .means .choice image {
-      width: 52rpx;
-      height: 52rpx;
-      margin-right: 20rpx;
+  width: 52rpx;
+  height: 52rpx;
+  margin-right: 20rpx;
 }
 .worp .means image {
-    width: 30rpx;
-    height: 30rpx;
+  width: 30rpx;
+  height: 30rpx;
 }
 

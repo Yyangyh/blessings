@@ -1,25 +1,25 @@
 
-.order.data-v-69c38657 {
+.order.data-v-2d91f137 {
 	margin-top: 20rpx;
 	background: #FFFFFF;
 	color: #333333;
 	padding: 24rpx 20rpx;
 }
-.order .order_num.data-v-69c38657 {
+.order .order_num.data-v-2d91f137 {
 	display: -webkit-box;
 	display: -webkit-flex;
 	display: flex;
 	font-size: 28rpx;
 	position: relative;
 }
-.order .order_num .num_two.data-v-69c38657{
+.order .order_num .num_two.data-v-2d91f137{
 	display: -webkit-box;
 	-webkit-box-orient: vertical;
 	-webkit-line-clamp: 3;
 	overflow: hidden;
 	height: 120rpx;
 }
-.order .order_num .num_two .specs.data-v-69c38657 {
+.order .order_num .num_two .specs.data-v-2d91f137 {
 	color: #808080;
 	display: -webkit-box;
 	display: -webkit-flex;
@@ -33,7 +33,7 @@
 	-webkit-flex-wrap: wrap;
 	        flex-wrap: wrap;
 }
-.order .order_num .num_two .specs text.data-v-69c38657 {
+.order .order_num .num_two .specs text.data-v-2d91f137 {
 	margin-right: 10rpx;
 	margin-bottom: 10rpx;
 	font-size: 24rpx;
@@ -41,29 +41,29 @@
 	padding: 10rpx 8rpx;
 	background: #F1F1F1;
 }
-.order .order_num .num_three.data-v-69c38657 {
+.order .order_num .num_three.data-v-2d91f137 {
 	margin-left: 20rpx;
 }
-.order .order_num .num_three view.data-v-69c38657 {
+.order .order_num .num_three view.data-v-2d91f137 {
 	white-space: nowrap;
 }
-.order .order_num .num_three view.data-v-69c38657:nth-of-type(2) {
+.order .order_num .num_three view.data-v-2d91f137:nth-of-type(2) {
 	font-size: 24rpx;
 	color: #999999;
 }
-.order image.data-v-69c38657 {
+.order image.data-v-2d91f137 {
 	width: 220rpx;
 	height: 142rpx;
 	margin-right: 24rpx;
 }
-.order .order_handle.data-v-69c38657 {
+.order .order_handle.data-v-2d91f137 {
 	text-align: right;
 	padding-bottom: 20rpx;
 	position: absolute;
 	right: 0;
 	bottom: 0;
 }
-.order .order_handle text.data-v-69c38657 {
+.order .order_handle text.data-v-2d91f137 {
 	display: inline-block;
 	text-align: center;
 	width: 160rpx;
@@ -74,7 +74,7 @@
 	border-radius: 66rpx;
 	line-height: 66rpx;
 }
-.order .order_total.data-v-69c38657 {
+.order .order_total.data-v-2d91f137 {
 	display: -webkit-box;
 	display: -webkit-flex;
 	display: flex;
@@ -85,10 +85,10 @@
 	border-top: 2rpx solid #F1F1F1;
 	padding: 30rpx 0 10rpx 0;
 }
-.order .order_total .total_two.data-v-69c38657 {
+.order .order_total .total_two.data-v-2d91f137 {
 	color: #FF431D;
 }
-.refund_chiose.data-v-69c38657{
+.refund_chiose.data-v-2d91f137{
 	
 	padding: 0 20rpx;
 	display: -webkit-box;
@@ -100,28 +100,28 @@
 	font-size: 28rpx;
 	color: #333333;
 }
-.refund_chiose .chiose_one.data-v-69c38657{
+.refund_chiose .chiose_one.data-v-2d91f137{
 	width: 43%;
 	border: 2rpx solid #eee;
 	padding: 20rpx 20rpx;
 }
-.picker.data-v-69c38657{
+.picker.data-v-2d91f137{
 	-webkit-box-flex: 2;
 	-webkit-flex-grow: 2;
 	        flex-grow: 2;
 }
-.refund_chiose .chiose_one view.data-v-69c38657:nth-of-type(1){
+.refund_chiose .chiose_one view.data-v-2d91f137:nth-of-type(1){
 	text-align: center;
 }
-.refund_chiose .chiose_explain.data-v-69c38657{
+.refund_chiose .chiose_explain.data-v-2d91f137{
 	font-size: 24rpx;
 	color: #999999;
 }
-.refund_form.data-v-69c38657{
+.refund_form.data-v-2d91f137{
 	font-size: 32rpx;
 	padding: 0 20rpx;
 }
-.refund_form .from_one.data-v-69c38657{
+.refund_form .from_one.data-v-2d91f137{
 	display: -webkit-box;
 	display: -webkit-flex;
 	display: flex;
@@ -131,15 +131,15 @@
 	border-bottom: 2rpx solid #F1F1F1;
 	height: 100rpx;
 }
-.refund_form .from_one view.data-v-69c38657:nth-of-type(1){
+.refund_form .from_one view.data-v-2d91f137:nth-of-type(1){
 	margin-right: 20rpx;
 }
-.refund_form .from_one input.data-v-69c38657{
+.refund_form .from_one input.data-v-2d91f137{
 	-webkit-box-flex: 2;
 	-webkit-flex-grow: 2;
 	        flex-grow: 2;
 }
-.from_money.data-v-69c38657{
+.from_money.data-v-2d91f137{
 	display: -webkit-box;
 	display: -webkit-flex;
 	display: flex;
@@ -148,7 +148,7 @@
 	        align-items: center;
 	color: #FF431D;
 }
-.from_num.data-v-69c38657{
+.from_num.data-v-2d91f137{
 	display: -webkit-box;
 	display: -webkit-flex;
 	display: flex;
@@ -156,10 +156,10 @@
 	-webkit-align-items: center;
 	        align-items: center;
 }
-.from_num view.data-v-69c38657{
+.from_num view.data-v-2d91f137{
 	margin-left: 20rpx;
 }
-.from_num text.data-v-69c38657{
+.from_num text.data-v-2d91f137{
 	display: inline-block;
 	width: 45rpx;
 	height: 45rpx;
@@ -169,14 +169,14 @@
 	text-align: center;
 	line-height: 22px;
 }
-.refund_form .from_two.data-v-69c38657{
+.refund_form .from_two.data-v-2d91f137{
 	padding-top: 20rpx;
 	border-bottom: 2rpx solid #F1F1F1;
 }
-.refund_form .from_two textarea.data-v-69c38657{
+.refund_form .from_two textarea.data-v-2d91f137{
 	font-size: 28rpx;
 }
-.image_list.data-v-69c38657{
+.image_list.data-v-2d91f137{
 	display: -webkit-box;
 	display: -webkit-flex;
 	display: flex;
@@ -187,7 +187,7 @@
 	        flex-wrap: wrap;
 	margin-top: 20rpx;
 }
-.image_list .add.data-v-69c38657{
+.image_list .add.data-v-2d91f137{
 	background: #F1F1F1;
 	color: #CCCCCC;
 	font-size: 120rpx;
@@ -196,27 +196,27 @@
 	line-height: 230rpx;
 	text-align: center;
 }
-.image_list .image_box.data-v-69c38657{
+.image_list .image_box.data-v-2d91f137{
 	position: relative;
 }
-.image_list .img.data-v-69c38657{
+.image_list .img.data-v-2d91f137{
 	height: 230rpx;
 	width: 230rpx;
 }
-.image_list .close.data-v-69c38657{
+.image_list .close.data-v-2d91f137{
 	height: 40rpx;
 	width: 40rpx;
 	position: absolute;
 	top: 5rpx;
 	right: 5rpx;
 }
-.show.data-v-69c38657{
+.show.data-v-2d91f137{
 	border-color: #FF431D !important;
 }
-.add_show.data-v-69c38657{
+.add_show.data-v-2d91f137{
 	display: none;
 }
-button.data-v-69c38657{
+button.data-v-2d91f137{
 	background: #1D74FF;
 	color: #FFFFFF;
 	height: 80rpx;

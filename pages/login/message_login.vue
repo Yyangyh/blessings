@@ -106,17 +106,13 @@
 							
 							uni.setStorageSync('state_user',data.data.memberInfo)
 							uni.setStorageSync('state_token',data.token)
-							// #ifdef H5
-							// 	先判断是否在h5打开，再判断是否是在微信浏览器打开
-								let ua = navigator.userAgent.toLowerCase();
-								if (ua.match(/MicroMessenger/i) == "micromessenger") {
-									//微信H5端
-									// window.location.href = that.service.api_root.login.WeatchInfo+'?token='+data.data.token
-									return
-								}
-								
-							// #endif
-							
+							that.$store.commit('Amodify_login',1)
+							masdk.infosUser({ //数商云注入用户信息
+							  userid: data.data.memberInfo.id,
+							  // sex: "男",
+							  // province: "广东省",
+							  //具体字段以商家自定义的用户表决定。
+							});
 							setTimeout(function(){
 								
 								uni.switchTab({

@@ -3,14 +3,18 @@
     "pages/login/white",
     "pages/index/index",
     "pages/login/login",
+    "pages/login/agreement",
+    "pages/login/prvate",
     "pages/index/classroom",
     "pages/index/home",
     "pages/index/user",
     "pages/com_page/notice",
     "pages/com_page/video_give",
     "pages/com_page/index_class",
+    "pages/com_page/news_class",
     "pages/com_page/video_class",
     "pages/com_page/video_details",
+    "pages/com_page/share_video",
     "pages/com_page/introduce",
     "pages/com_page/shopp_cart",
     "pages/com_page/v_order",
@@ -21,7 +25,6 @@
     "pages/subhome/assemble",
     "pages/subhome/h_search",
     "pages/subhome/h_list",
-    "pages/subhome/h_article",
     "pages/subhome/threehome/h_article",
     "pages/subhome/threehome/group_products",
     "pages/subhome/threehome/my_group",
@@ -32,6 +35,7 @@
     "pages/subuser/assemble_order",
     "pages/subuser/s_order",
     "pages/subuser/address",
+    "pages/subuser/customer",
     "pages/subuser/myorder",
     "pages/subuser/s_refund",
     "pages/subuser/course_order",
@@ -58,7 +62,6 @@
     "pages/activity/apply",
     "pages/subhome/details",
     "pages/subclass/textual",
-    "pages/subclass/textual.1",
     "pages/subclass/applyFor",
     "pages/subclass/audit",
     "pages/subclass/repetition",
@@ -83,6 +86,7 @@
     "pages/subuser/personage/alter",
     "pages/subuser/collect",
     "pages/subuser/setting/setting",
+    "pages/subuser/setting/binding",
     "pages/subuser/setting/cellPhone",
     "pages/subuser/setting/password",
     "pages/subuser/conversion/conversion",
@@ -104,7 +108,8 @@
     "pages/com_page/comment",
     "pages/subindex/comment",
     "pages/subindex/t_search",
-    "pages/subuser/distribution/agreement"
+    "pages/subuser/distribution/agreement",
+    "pages/webview/index"
   ],
   "window": {
     "navigationBarTextStyle": "black",
@@ -153,8 +158,10 @@
     "autoclose": true
   },
   "appname": "五福家庭",
-  "compilerVersion": "2.6.5",
+  "compilerVersion": "2.6.16",
   "usingComponents": {
+    "banner": "/wxcomponents/components/banner",
+    "trigger": "/wxcomponents/components/trigger",
     "load": "/pages/common/load"
   }
 }

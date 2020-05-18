@@ -7,7 +7,7 @@ const api_root = {
 		UnRead: api+'/api/message/UnRead',//消息未读总数
 		getWxLogin: api+'/api/member/getWxLogin',//微信登录
 		getNewApk: api+'/api/user/getNewApk',//版本更新
-	},
+	}, 
 	login:{
 		register: api+'/api/member/register',//注册
 		sendPhone: api+'/api/member/sendPhone',//发送验证码
@@ -17,7 +17,7 @@ const api_root = {
 		reset: api+'/api/member/reset',//重置密码
 		getProtocol: api+'/api/member/getProtocol',//获取协议内容
 		getprvate: api+'/api/member/getprvate',//获取隐私协议
-	},
+	}, 
 	index:{   
 		advertise: api+'/api/index/advertise',//首页弹框
 		index: api+'/api/VideoHome/index',//首页

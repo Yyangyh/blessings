@@ -28,6 +28,6 @@
   padding: 10rpx 15rpx;
 }
 .give_box .give_top {
-    text-align: center;
+  text-align: center;
 }
 

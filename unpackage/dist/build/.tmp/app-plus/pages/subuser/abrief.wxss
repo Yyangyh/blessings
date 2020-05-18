@@ -31,17 +31,17 @@ video {
   padding: 0 17rpx 0 24rpx;
 }
 .recommend .title {
-    font-size: 32rpx;
-    padding: 37rpx 0;
+  font-size: 32rpx;
+  padding: 37rpx 0;
 }
 .recommend .particulars {
-    font-size: 24rpx;
-    color: #666666;
-    line-height: 50rpx;
+  font-size: 24rpx;
+  color: #666666;
+  line-height: 50rpx;
 }
 .recommend image {
-    width: 689rpx;
-    height: 277rpx;
-    margin-top: 30rpx;
+  width: 689rpx;
+  height: 277rpx;
+  margin-top: 30rpx;
 }
 

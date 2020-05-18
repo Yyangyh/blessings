@@ -44,7 +44,8 @@
 	height: 75rpx;
 	border-radius: 40rpx;
 	border: 2rpx solid #1D9DFF;
-	box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	        box-sizing: border-box;
 	font-size: 28rpx;
 	color: #1D9DFF;
 	line-height: 75rpx;
@@ -54,7 +55,8 @@
 	width: 100%;
 	height: 120rpx;
 	padding: 0 20rpx;
-	box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	        box-sizing: border-box;
 	display: -webkit-box;
 	display: -webkit-flex;
 	display: flex;
@@ -99,7 +101,8 @@
 	color: #333333;
 	font-size: 24rpx;
 	border-radius: 30rpx;
-	box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	        box-sizing: border-box;
 	border: 2rpx solid #333333;
 }
 

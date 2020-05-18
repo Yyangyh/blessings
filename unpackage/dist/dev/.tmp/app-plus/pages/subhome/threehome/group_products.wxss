@@ -32,7 +32,8 @@
   position: fixed;
   width: 100%;
   z-index: 886;
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
   top: var(--status-bar-height);
   left: 0;
   display: -webkit-box;
@@ -50,12 +51,12 @@
   background-color: #FFFFFF;
 }
 .top image.data-v-49ca08c2:first-child {
-    width: 31rpx;
-    height: 31rpx;
+  width: 31rpx;
+  height: 31rpx;
 }
 .top image.data-v-49ca08c2:last-child {
-    width: 50rpx;
-    height: 50rpx;
+  width: 50rpx;
+  height: 50rpx;
 }
 .top_img.data-v-49ca08c2 {
   width: 100%;
@@ -63,8 +64,8 @@
   position: relative;
 }
 .top_img image.data-v-49ca08c2 {
-    width: 100%;
-    height: 100%;
+  width: 100%;
+  height: 100%;
 }
 .product_price.data-v-49ca08c2 {
   background: #fff;
@@ -73,85 +74,85 @@
   margin-bottom: 20rpx;
 }
 .product_price .pr_top.data-v-49ca08c2 {
-    /* font-weight: bold; */
-    font-size: 32rpx;
-    padding: 20rpx;
+  /* font-weight: bold; */
+  font-size: 32rpx;
+  padding: 20rpx;
 }
 .product_price .price.data-v-49ca08c2 {
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: flex;
-    -webkit-box-pack: justify;
-    -webkit-justify-content: space-between;
-            justify-content: space-between;
-    padding: 20rpx;
-    border-bottom: 2rpx solid #F4F4F4;
-    color: #999;
-    font-size: 30rpx;
-    -webkit-box-align: center;
-    -webkit-align-items: center;
-            align-items: center;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+          justify-content: space-between;
+  padding: 20rpx;
+  border-bottom: 2rpx solid #F4F4F4;
+  color: #999;
+  font-size: 30rpx;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+          align-items: center;
 }
 .product_price .price view.data-v-49ca08c2 {
-      display: -webkit-box;
-      display: -webkit-flex;
-      display: flex;
-      -webkit-box-align: center;
-      -webkit-align-items: center;
-              align-items: center;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+          align-items: center;
 }
 .product_price .price image.data-v-49ca08c2 {
-      height: 34rpx;
-      width: 34rpx;
-      margin: 0 20rpx 0 30rpx;
+  height: 34rpx;
+  width: 34rpx;
+  margin: 0 20rpx 0 30rpx;
 }
 .product_price .price view text.data-v-49ca08c2:nth-of-type(1) {
-      font-weight: bold;
-      color: #FF431D;
-      font-size: 36rpx;
+  font-weight: bold;
+  color: #FF431D;
+  font-size: 36rpx;
 }
 .product_price .price view text.data-v-49ca08c2:nth-of-type(2) {
-      font-size: 28rpx;
+  font-size: 28rpx;
 }
 .product_price .price .sell.data-v-49ca08c2 {
-      font-size: 24rpx;
+  font-size: 24rpx;
 }
 .product_price .pr_bottom.data-v-49ca08c2 {
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: flex;
-    -webkit-box-pack: justify;
-    -webkit-justify-content: space-between;
-            justify-content: space-between;
-    padding: 20rpx;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+          justify-content: space-between;
+  padding: 20rpx;
 }
 .product_price .pr_bottom image.data-v-49ca08c2 {
-      width: 32rpx;
-      height: 32rpx;
+  width: 32rpx;
+  height: 32rpx;
 }
 .product_price .pr_bottom .pr_coupon.data-v-49ca08c2 {
-      display: -webkit-box;
-      display: -webkit-flex;
-      display: flex;
-      -webkit-box-align: center;
-      -webkit-align-items: center;
-              align-items: center;
-      color: #333333;
-      font-size: 30rpx;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+          align-items: center;
+  color: #333333;
+  font-size: 30rpx;
 }
 .product_price .pr_bottom .pr_coupon image.data-v-49ca08c2 {
-      margin-right: 20rpx;
+  margin-right: 20rpx;
 }
 .product_price .pr_bottom .receive_co.data-v-49ca08c2 {
-      display: -webkit-box;
-      display: -webkit-flex;
-      display: flex;
-      -webkit-box-align: center;
-      -webkit-align-items: center;
-              align-items: center;
-      text-align: right;
-      color: #999;
-      font-size: 24rpx;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+          align-items: center;
+  text-align: right;
+  color: #999;
+  font-size: 24rpx;
 }
 .pro_img .img_test.data-v-49ca08c2 {
   text-align: center;
@@ -181,46 +182,47 @@
   bottom: 0;
   left: 0;
   width: 100%;
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
 }
 .bottom_tab .tab_list.data-v-49ca08c2 {
-    text-align: center;
-    color: #999999;
+  text-align: center;
+  color: #999999;
 }
 .bottom_tab .tab_list image.data-v-49ca08c2 {
-      height: 44rpx;
-      width: 44rpx;
+  height: 44rpx;
+  width: 44rpx;
 }
 .bottom_tab .tab_right.data-v-49ca08c2 {
-    font-size: 32rpx;
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: flex;
-    -webkit-box-pack: justify;
-    -webkit-justify-content: space-between;
-            justify-content: space-between;
-    width: 100%;
+  font-size: 32rpx;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+          justify-content: space-between;
+  width: 100%;
 }
 .bottom_tab .tab_right .single.data-v-49ca08c2 {
-      background: #D80000;
-      color: #fff;
-      font-size: 24rpx;
-      width: 250rpx;
-      height: 80rpx;
-      border-radius: 80rpx;
+  background: #D80000;
+  color: #fff;
+  font-size: 24rpx;
+  width: 250rpx;
+  height: 80rpx;
+  border-radius: 80rpx;
 }
 .bottom_tab .tab_right .single view.data-v-49ca08c2:nth-of-type(1) {
-        font-size: 30rpx;
+  font-size: 30rpx;
 }
 .bottom_tab .tab_right .group.data-v-49ca08c2 {
-      background: #EF7C38;
-      color: #fff;
-      font-size: 24rpx;
-      width: 250rpx;
-      height: 80rpx;
-      border-radius: 80rpx;
+  background: #EF7C38;
+  color: #fff;
+  font-size: 24rpx;
+  width: 250rpx;
+  height: 80rpx;
+  border-radius: 80rpx;
 }
 .bottom_tab .tab_right .group view.data-v-49ca08c2:nth-of-type(1) {
-        font-size: 30rpx;
+  font-size: 30rpx;
 }
 

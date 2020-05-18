@@ -36,16 +36,17 @@
   background-color: #F6F6F7;
 }
 .allorder text {
-    -webkit-box-flex: 1;
-    -webkit-flex: 1;
-            flex: 1;
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+          flex: 1;
 }
 .active {
   color: #D80000;
 }
 .article {
   padding: 20rpx;
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
   display: -webkit-box;
   display: -webkit-flex;
   display: flex;
@@ -54,13 +55,13 @@
   font-size: 28rpx;
 }
 .article .a_list {
-    width: 50%;
-    text-align: center;
-    margin-bottom: 20rpx;
+  width: 50%;
+  text-align: center;
+  margin-bottom: 20rpx;
 }
 .article .a_list image {
-      width: 210rpx;
-      height: 103rpx;
+  width: 210rpx;
+  height: 103rpx;
 }
 .boxs {
   display: -webkit-box;
@@ -69,39 +70,39 @@
   background-color: #FFFFFF;
 }
 .boxs .allorders {
-    width: 25%;
-    line-height: 100rpx;
-    font-size: 28rpx;
-    background-color: #F6F6F7;
-    border-bottom: 1rpx solid #EEEEEE;
-    text-align: center;
-    color: #333333;
+  width: 25%;
+  line-height: 100rpx;
+  font-size: 28rpx;
+  background-color: #F6F6F7;
+  border-bottom: 1rpx solid #EEEEEE;
+  text-align: center;
+  color: #333333;
 }
 .boxs .actives {
-    color: #D80000;
-    background-color: #FFFFFF;
+  color: #D80000;
+  background-color: #FFFFFF;
 }
 .boxs .b_right {
-    background-color: #FFFFFF;
-    width: 75%;
-    height: 100%;
-    padding: 20rpx;
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: flex;
-    -webkit-flex-wrap: wrap;
-            flex-wrap: wrap;
+  background-color: #FFFFFF;
+  width: 75%;
+  height: 100%;
+  padding: 20rpx;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-wrap: wrap;
+          flex-wrap: wrap;
 }
 .boxs .b_right .b_list {
-      width: 50%;
-      text-align: center;
-      margin-bottom: 20rpx;
+  width: 50%;
+  text-align: center;
+  margin-bottom: 20rpx;
 }
 .boxs .b_right .b_list view {
-        font-size: 28rpx;
+  font-size: 28rpx;
 }
 .boxs .b_right .b_list image {
-        width: 210rpx;
-        height: 103rpx;
+  width: 210rpx;
+  height: 103rpx;
 }
 

@@ -33,7 +33,8 @@ page {
 .top {
   position: fixed;
   width: 100%;
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
   top: var(--status-bar-height);
   left: 0;
   z-index: 99;
@@ -51,30 +52,31 @@ page {
   font-size: 32rpx;
   color: #333333;
   background: #fff;
-  box-shadow: 0px 2rpx 4rpx 0px rgba(0, 0, 0, 0.1);
+  -webkit-box-shadow: 0px 2rpx 4rpx 0px rgba(0, 0, 0, 0.1);
+          box-shadow: 0px 2rpx 4rpx 0px rgba(0, 0, 0, 0.1);
 }
 .top .top_enlarge {
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: flex;
-    -webkit-box-align: center;
-    -webkit-align-items: center;
-            align-items: center;
-    height: 100%;
-    width: 180rpx;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+          align-items: center;
+  height: 100%;
+  width: 180rpx;
 }
 .top image {
-    height: 30rpx;
-    width: 30rpx;
+  height: 30rpx;
+  width: 30rpx;
 }
 .top text:nth-of-type(2) {
-    /* width: 40rpx; */
-    font-size: 28rpx;
-    color: #666;
-    font-weight: 400;
-    display: inline-block;
-    width: 180rpx;
-    text-align: right;
+  /* width: 40rpx; */
+  font-size: 28rpx;
+  color: #666;
+  font-weight: 400;
+  display: inline-block;
+  width: 180rpx;
+  text-align: right;
 }
 .line {
   display: -webkit-box;
@@ -92,36 +94,37 @@ page {
   margin-bottom: 30rpx;
 }
 .line .l_left {
-    font-size: 28rpx;
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: flex;
-    -webkit-box-align: center;
-    -webkit-align-items: center;
-            align-items: center;
-    height: 110rpx;
+  font-size: 28rpx;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+          align-items: center;
+  height: 110rpx;
 }
 .line .l_right {
-    font-size: 24rpx;
-    color: #666666;
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: flex;
-    -webkit-box-align: center;
-    -webkit-align-items: center;
-            align-items: center;
+  font-size: 24rpx;
+  color: #666666;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+          align-items: center;
 }
 .line .l_right image {
-      width: 11rpx;
-      height: 20rpx;
-      margin-left: 23rpx;
+  width: 11rpx;
+  height: 20rpx;
+  margin-left: 23rpx;
 }
 .tab_delete {
   position: fixed;
   bottom: 0;
   left: 0;
   width: 100%;
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
   display: -webkit-box;
   display: -webkit-flex;
   display: flex;
@@ -142,25 +145,25 @@ page {
   transition: .3s;
 }
 .tab_delete .alls {
-    font-size: 34rpx;
+  font-size: 34rpx;
 }
 .tab_delete .alls .radio {
-      display: -webkit-box;
-      display: -webkit-flex;
-      display: flex;
-      -webkit-box-align: center;
-      -webkit-align-items: center;
-              align-items: center;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+          align-items: center;
 }
 .tab_delete button {
-    background: #D80000;
-    color: #fff;
-    width: 224rpx;
-    height: 90rpx;
-    line-height: 90rpx;
-    border-radius: 90rpx;
-    margin-left: 20rpx;
-    margin-right: 0rpx;
+  background: #D80000;
+  color: #fff;
+  width: 224rpx;
+  height: 90rpx;
+  line-height: 90rpx;
+  border-radius: 90rpx;
+  margin-left: 20rpx;
+  margin-right: 0rpx;
 }
 .show {
   -webkit-transform: translateY(0);

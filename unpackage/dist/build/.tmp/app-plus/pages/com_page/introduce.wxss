@@ -34,21 +34,21 @@
   margin: 38rpx 20rpx;
 }
 .top_top image {
-    width: 88rpx;
-    height: 88rpx;
-    border-radius: 50rpx;
+  width: 88rpx;
+  height: 88rpx;
+  border-radius: 50rpx;
 }
 .top_top .t_right {
-    margin-left: 27rpx;
-    margin-top: 20rpx;
+  margin-left: 27rpx;
+  margin-top: 20rpx;
 }
 .top_top .t_right view:first-child {
-      font-size: 28rpx;
+  font-size: 28rpx;
 }
 .top_top .t_right view:last-child {
-      font-size: 24rpx;
-      color: #999999;
-      margin-top: 20rpx;
+  font-size: 24rpx;
+  color: #999999;
+  margin-top: 20rpx;
 }
 .in_text {
   padding: 0 20rpx;

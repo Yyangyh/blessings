@@ -1,0 +1,27 @@
+<swiper wx:if="{{banners.length > 1}}"
+class="masdk banner slider </slider> {{positionKey}}"
+indicator-dots="{{options.indicatorDots}}"
+indicator-color="{{options.indicatorColor}}"
+indicator-active-color="{{options.indicatorActiveColor}}"
+autoplay="{{options.autoplay}}"
+current="{{options.current}}"
+current-item-id="{{options.currentItemId}}"
+interval="{{options.interval}}"
+duration="{{options.duration}}"
+circular="{{options.circular}}"
+vertical="{{opeions.vertical}}"
+previous-margin="{{options.previousMargin}}"
+next-margin="{{options.nextMargin}}"
+display-multiple-items="{{options.displayMultipleItems}}"
+skip-hidden-item-layout="{{options.skipHiddenItemLayout}}"
+bindchange="bindchange"
+bindtransition="bindtransition"
+bindanimationfinish="bindanimationfinish">
+  <block wx:for="{{banners}}" wx:key="{{item}}">
+    <swiper-item class="swiper_item" bindtap="navigateToWeb" data-url="{{item.url}}">
+      <image mode="widthFix" src="{{item.image}}" class="slide-image"/>
+    </swiper-item>
+  </block>
+</swiper>
+
+<image mode="widthFix" wx:if="{{banners.length == 1}}" class="masdk banner image {{positionKey}}" src="{{banners[0].image}}" bindtap="navigateToWeb" data-url="{{banners[0].url}}"></image>

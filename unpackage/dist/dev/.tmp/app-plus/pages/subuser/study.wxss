@@ -37,9 +37,9 @@
   background: #F6F6F7;
 }
 .allorder text {
-    -webkit-box-flex: 1;
-    -webkit-flex: 1;
-            flex: 1;
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+          flex: 1;
 }
 .active {
   color: #D80000;
@@ -55,21 +55,21 @@
           align-items: center;
 }
 .line .l_left {
-    width: 268rpx;
-    height: 179rpx;
-    margin-right: 30rpx;
+  width: 268rpx;
+  height: 179rpx;
+  margin-right: 30rpx;
 }
 .line .l_right view:first-child {
-    font-size: 24rpx;
+  font-size: 24rpx;
 }
 .line .l_right .middle {
-    font-size: 24rpx;
-    color: #999999;
-    margin: 10rpx 0;
+  font-size: 24rpx;
+  color: #999999;
+  margin: 10rpx 0;
 }
 .line .l_right view:last-child {
-    font-size: 28rpx;
-    color: #D80000;
-    font-weight: 500;
+  font-size: 28rpx;
+  color: #D80000;
+  font-weight: 500;
 }
 

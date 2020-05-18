@@ -28,108 +28,109 @@
   position: relative;
 }
 .content .integralback {
-    position: absolute;
-    top: 106rpx;
-    left: 0;
-    width: 100%;
-    height: 370rpx;
+  position: absolute;
+  top: 106rpx;
+  left: 0;
+  width: 100%;
+  height: 370rpx;
 }
 .content .back_text {
-    position: absolute;
-    top: 106rpx;
-    left: 0;
-    width: 100%;
+  position: absolute;
+  top: 106rpx;
+  left: 0;
+  width: 100%;
 }
 .content .back_text .rightjio {
-      width: 201rpx;
-      height: 53rpx;
-      border: 1rpx solid #FFFFFF;
-      border-radius: 27px;
-      display: -webkit-box;
-      display: -webkit-flex;
-      display: flex;
-      -webkit-box-align: center;
-      -webkit-align-items: center;
-              align-items: center;
-      padding-left: 20rpx;
-      margin: 36rpx 0 0 522rpx;
+  width: 201rpx;
+  height: 53rpx;
+  border: 1rpx solid #FFFFFF;
+  border-radius: 27px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+          align-items: center;
+  padding-left: 20rpx;
+  margin: 36rpx 0 0 522rpx;
 }
 .content .back_text .rightjio image {
-        width: 32rpx;
-        height: 32rpx;
-        margin-right: 20rpx;
+  width: 32rpx;
+  height: 32rpx;
+  margin-right: 20rpx;
 }
 .content .back_text .rightjio text {
-        font-size: 28rpx;
-        color: #FFFFFF;
+  font-size: 28rpx;
+  color: #FFFFFF;
 }
 .content .back_text .t-text1 {
-      font-size: 84rpx;
-      color: #FFFFFF;
-      text-align: center;
+  font-size: 84rpx;
+  color: #FFFFFF;
+  text-align: center;
 }
 .content .back_text .t-text2 {
-      font-size: 32rpx;
-      color: #FFFFFF;
-      text-align: center;
-      margin-bottom: 30rpx;
+  font-size: 32rpx;
+  color: #FFFFFF;
+  text-align: center;
+  margin-bottom: 30rpx;
 }
 .content .allorder {
-    background-color: #FFFFFF;
-    box-shadow: 1rpx 1rpx 6rpx 0rpx rgba(177, 65, 65, 0.27);
-    border-radius: 10rpx;
-    width: 100%;
-    height: 100rpx;
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: flex;
-    text-align: center;
-    line-height: 100rpx;
-    font-size: 28rpx;
-    position: absolute;
-    top: 390rpx;
-    left: 0;
-    border-bottom: 1rpx solid #E9E9E9;
+  background-color: #FFFFFF;
+  -webkit-box-shadow: 1rpx 1rpx 6rpx 0rpx rgba(177, 65, 65, 0.27);
+          box-shadow: 1rpx 1rpx 6rpx 0rpx rgba(177, 65, 65, 0.27);
+  border-radius: 10rpx;
+  width: 100%;
+  height: 100rpx;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  text-align: center;
+  line-height: 100rpx;
+  font-size: 28rpx;
+  position: absolute;
+  top: 390rpx;
+  left: 0;
+  border-bottom: 1rpx solid #E9E9E9;
 }
 .content .allorder text {
-      -webkit-box-flex: 1;
-      -webkit-flex: 1;
-              flex: 1;
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+          flex: 1;
 }
 .content .active {
-    color: #D80000;
-    border-bottom: 1rpx solid #D80000;
+  color: #D80000;
+  border-bottom: 1rpx solid #D80000;
 }
 .content .box {
-    width: 100%;
-    position: absolute;
-    top: 490rpx;
-    left: 0;
+  width: 100%;
+  position: absolute;
+  top: 490rpx;
+  left: 0;
 }
 .content .box .line {
-      display: -webkit-box;
-      display: -webkit-flex;
-      display: flex;
-      -webkit-box-align: center;
-      -webkit-align-items: center;
-              align-items: center;
-      -webkit-box-pack: justify;
-      -webkit-justify-content: space-between;
-              justify-content: space-between;
-      padding: 31rpx;
-      border-bottom: 1rpx solid #E9E9E9;
-      background-color: #FFFFFF;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+          justify-content: space-between;
+  padding: 31rpx;
+  border-bottom: 1rpx solid #E9E9E9;
+  background-color: #FFFFFF;
 }
 .content .box .line .l_left view:first-child {
-        font-size: 28rpx;
-        color: #343434;
+  font-size: 28rpx;
+  color: #343434;
 }
 .content .box .line .l_left view:last-child {
-        font-size: 24rpx;
-        color: #A1A1A1;
+  font-size: 24rpx;
+  color: #A1A1A1;
 }
 .content .box .line .l_right {
-        font-size: 36rpx;
-        color: #EA5656;
+  font-size: 36rpx;
+  color: #EA5656;
 }
 

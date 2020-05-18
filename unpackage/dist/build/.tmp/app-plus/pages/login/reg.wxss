@@ -24,13 +24,13 @@
 /* 垂直间距 */
 /* 透明度 */
 /* 文章场景相关 */
-.content.data-v-1f0787bf {
+.content.data-v-96e6d7fe {
   overflow: hidden;
 }
-.uni-input-placeholder.data-v-1f0787bf {
+.uni-input-placeholder.data-v-96e6d7fe {
   color: #999;
 }
-.ipt.data-v-1f0787bf {
+.ipt.data-v-96e6d7fe {
   display: -webkit-box;
   display: -webkit-flex;
   display: flex;
@@ -38,24 +38,24 @@
   border-bottom: 2rpx solid #EEEEEE;
   padding: 20rpx 20rpx;
 }
-.ipt image.data-v-1f0787bf {
+.ipt image.data-v-96e6d7fe {
   margin-right: 20rpx;
   width: 35rpx;
   height: 45rpx;
 }
-.ipt input.data-v-1f0787bf {
+.ipt input.data-v-96e6d7fe {
   -webkit-box-flex: 2;
   -webkit-flex-grow: 2;
           flex-grow: 2;
   font-size: 30rpx;
 }
-.ipt text.data-v-1f0787bf {
+.ipt text.data-v-96e6d7fe {
   font-size: 32rpx;
   width: 160rpx;
   text-align: center;
   white-space: nowrap;
 }
-.Mask.data-v-1f0787bf {
+.Mask.data-v-96e6d7fe {
   position: fixed;
   left: 0;
   top: 0;
@@ -64,7 +64,7 @@
   z-index: 888;
   background: rgba(0, 0, 0, 0.6);
 }
-.treaty.data-v-1f0787bf {
+.treaty.data-v-96e6d7fe {
   background: #fff;
   display: -webkit-box;
   display: -webkit-flex;
@@ -76,10 +76,10 @@
   padding: 0 20rpx;
   font-size: 30rpx;
 }
-.treaty text.data-v-1f0787bf {
+.treaty text.data-v-96e6d7fe {
   color: #1D74FF;
 }
-.treaty_box.data-v-1f0787bf {
+.treaty_box.data-v-96e6d7fe {
   position: fixed;
   z-index: 999;
   height: 800rpx;
@@ -90,74 +90,75 @@
   -webkit-transform: translate(-50%, -50%);
           transform: translate(-50%, -50%);
 }
-.treaty_box .t_conent.data-v-1f0787bf {
-    position: absolute;
-    width: 100%;
-    height: 800rpx;
-    top: 0;
-    left: 0;
-    z-index: 100;
-    box-sizing: border-box;
-    padding: 20rpx;
+.treaty_box .t_conent.data-v-96e6d7fe {
+  position: absolute;
+  width: 100%;
+  height: 800rpx;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  padding: 20rpx;
 }
-.treaty_box .t_conent .box_top.data-v-1f0787bf {
-      text-align: center;
-      font-size: 36rpx;
+.treaty_box .t_conent .box_top.data-v-96e6d7fe {
+  text-align: center;
+  font-size: 36rpx;
 }
-.treaty_box .t_conent .box_conent.data-v-1f0787bf {
-      margin: 20rpx 0;
-      height: 600rpx;
+.treaty_box .t_conent .box_conent.data-v-96e6d7fe {
+  margin: 20rpx 0;
+  height: 600rpx;
 }
-.treaty_box .t_conent button.data-v-1f0787bf {
-      position: absolute;
-      width: 90%;
-      height: 80rpx;
-      bottom: 20rpx;
-      font-size: 30rpx;
-      left: 50%;
-      margin: 0;
-      background: yellow;
-      -webkit-transform: translateX(-50%);
-              transform: translateX(-50%);
+.treaty_box .t_conent button.data-v-96e6d7fe {
+  position: absolute;
+  width: 90%;
+  height: 80rpx;
+  bottom: 20rpx;
+  font-size: 30rpx;
+  left: 50%;
+  margin: 0;
+  background: yellow;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
 }
-.treaty_box image.data-v-1f0787bf {
-    z-index: 98;
-    width: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
+.treaty_box image.data-v-96e6d7fe {
+  z-index: 98;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
 }
-button.data-v-1f0787bf {
+button.data-v-96e6d7fe {
   /* width: 100%; */
   margin: 34rpx 34rpx 30rpx 34rpx;
 }
-.test.data-v-1f0787bf {
+.test.data-v-96e6d7fe {
   text-align: center;
   font-size: 32rpx;
 }
-.download.data-v-1f0787bf {
+.download.data-v-96e6d7fe {
   padding: 20rpx;
 }
-.download .down_top.data-v-1f0787bf {
-    margin: 20rpx 0;
-    font-size: 34rpx;
+.download .down_top.data-v-96e6d7fe {
+  margin: 20rpx 0;
+  font-size: 34rpx;
 }
-.download .down_box.data-v-1f0787bf {
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: flex;
-    -webkit-box-pack: justify;
-    -webkit-justify-content: space-between;
-            justify-content: space-between;
+.download .down_box.data-v-96e6d7fe {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+          justify-content: space-between;
 }
-.download .down_box view.data-v-1f0787bf {
-      width: 240rpx;
-      height: 80rpx;
-      line-height: 80rpx;
-      text-align: center;
-      background: #D80000;
-      font-size: 30rpx;
-      color: #fff;
-      border-radius: 20rpx;
+.download .down_box view.data-v-96e6d7fe {
+  width: 240rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  text-align: center;
+  background: #D80000;
+  font-size: 30rpx;
+  color: #fff;
+  border-radius: 20rpx;
 }
 

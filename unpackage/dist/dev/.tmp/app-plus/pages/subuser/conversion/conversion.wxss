@@ -38,9 +38,9 @@
   padding-top: 20rpx;
 }
 .allorder text {
-    -webkit-box-flex: 1;
-    -webkit-flex: 1;
-            flex: 1;
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+          flex: 1;
 }
 .box {
   width: 256rpx;
@@ -69,9 +69,9 @@
   color: #666666;
 }
 .state text {
-    -webkit-box-flex: 1;
-    -webkit-flex: 1;
-            flex: 1;
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+          flex: 1;
 }
 .actives {
   color: #D80000;
@@ -93,69 +93,69 @@
           justify-content: space-between;
 }
 .quan .q_left {
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: flex;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-    -webkit-flex-direction: column;
-            flex-direction: column;
-    margin-left: 20rpx;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+          flex-direction: column;
+  margin-left: 20rpx;
 }
 .quan .q_left .l_top {
-      display: -webkit-box;
-      display: -webkit-flex;
-      display: flex;
-      -webkit-box-align: center;
-      -webkit-align-items: center;
-              align-items: center;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+          align-items: center;
 }
 .quan .q_left .l_top .t_left {
-        color: #D80000;
-        margin-right: 20rpx;
+  color: #D80000;
+  margin-right: 20rpx;
 }
 .quan .q_left .l_top .t_left text:first-child {
-          font-size: 28rpx;
+  font-size: 28rpx;
 }
 .quan .q_left .l_top .t_left text:last-child {
-          font-size: 48rpx;
+  font-size: 48rpx;
 }
 .quan .q_left .l_top .t_right {
-        color: #FFFFFF;
+  color: #FFFFFF;
 }
 .quan .q_left .l_top .t_right view:first-child {
-          font-size: 28rpx;
-          margin: 10rpx;
+  font-size: 28rpx;
+  margin: 10rpx;
 }
 .quan .q_left .l_top .t_right view:last-child {
-          font-size: 24rpx;
+  font-size: 24rpx;
 }
 .quan .q_left .l_top .t_right view:last-child text {
-            margin-right: 5rpx;
+  margin-right: 5rpx;
 }
 .quan .q_left .l_bottom {
-      color: #FFFFFF;
-      font-size: 24rpx;
-      margin-top: 20rpx;
+  color: #FFFFFF;
+  font-size: 24rpx;
+  margin-top: 20rpx;
 }
 .quan .q_right {
-    font-size: 28rpx;
-    color: #FFFFFF;
-    margin-right: 80rpx;
+  font-size: 28rpx;
+  color: #FFFFFF;
+  margin-right: 80rpx;
 }
 .quan .e_right {
-    font-size: 26rpx;
-    color: #FFFFFF;
-    margin-right: 50rpx;
-    width: 125rpx;
-    text-align: center;
-    height: 50rpx;
-    line-height: 50rpx;
-    padding: 0 10rpx;
-    border-radius: 50rpx;
+  font-size: 26rpx;
+  color: #FFFFFF;
+  margin-right: 50rpx;
+  width: 125rpx;
+  text-align: center;
+  height: 50rpx;
+  line-height: 50rpx;
+  padding: 0 10rpx;
+  border-radius: 50rpx;
 }
 .quan .receive {
-    background: #D80000;
+  background: #D80000;
 }
 .back {
   width: 147rpx;

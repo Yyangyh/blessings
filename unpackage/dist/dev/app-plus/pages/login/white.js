@@ -1,0 +1,2 @@
+setCssToHead([".",[1],"jump{ height: ",[0,50],"; line-height: ",[0,50],"; width: ",[0,90],"; border-radius: ",[0,50],"; border: ",[0,2]," solid #ccc; font-size: ",[0,28],"; position: fixed; background: #fff; z-index: 111; padding: 0 ",[0,10],"; top: calc(",[0,20]," + var(--status-bar-height)); right: ",[0,20],"; }\n",],undefined,{path:"./pages/login/white.wxss"})();
+document.dispatchEvent(new CustomEvent("generateFuncReady", { detail: { generateFunc: $gwx('./pages/login/white.wxml') } }));

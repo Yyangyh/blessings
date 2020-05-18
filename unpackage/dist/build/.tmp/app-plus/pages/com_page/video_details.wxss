@@ -8,7 +8,8 @@
   left: 0;
   width: 100%;
   background: #FFFFFF;
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
   display: -webkit-box;
   display: -webkit-flex;
   display: flex;
@@ -231,13 +232,30 @@
 .rich {
   padding: 20rpx;
 }
+.download {
+  width: 100%;
+  background: #fff;
+  position: fixed;
+  color: #FE0000;
+  background: #FCCF00;
+  left: 0;
+  bottom: 120rpx;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  height: 80rpx;
+  line-height: 80rpx;
+  padding: 0 21rpx;
+  text-align: center;
+  color: ;
+}
 .video_bottom {
   width: 100%;
   background: #fff;
   position: fixed;
   left: 0;
   bottom: 0;
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
   height: 120rpx;
   padding: 0 21rpx;
   display: -webkit-box;
@@ -365,7 +383,8 @@ video {
 .coupon_box {
   position: fixed;
   width: 100%;
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
   padding: 20rpx;
   bottom: 0;
   left: 0;
@@ -464,7 +483,8 @@ video {
   left: 50%;
   font-size: 32rpx;
   padding: 20rpx;
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
   -webkit-transform: translate(-50%, -15%);
           transform: translate(-50%, -15%);
 }
@@ -636,7 +656,8 @@ video {
   font-size: 24rpx;
   color: #FFFFFF;
   padding: 5rpx 10rpx;
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
   border-radius: 20rpx;
   margin-right: 10rpx;
 }

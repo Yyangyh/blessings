@@ -2,6 +2,7 @@
   "navigationBarTitleText": "早间晨语",
   "titleNView": false,
   "usingComponents": {
-    "uni-calendar": "/components/uni-calendar/uni-calendar"
+    "uni-calendar": "/components/uni-calendar/uni-calendar",
+    "uni-load-more": "/components/uni-load-more/uni-load-more"
   }
 }

@@ -6,7 +6,7 @@
 		<search :type='3'></search>
 		
 		<view class="swiper_box">
-			<swiper class="swiper" :indicator-dots="indicatorDots" :autoplay="autoplay" :interval="interval" :duration="duration">
+			<swiper class="swiper1" :indicator-dots="indicatorDots" :autoplay="autoplay" :interval="interval" :duration="duration">
 				<swiper-item v-for="(item,index) in swiper_list" :key='item.id'  @tap="Tjump(item.event_value)">
 					<view class="swiper-item uni-bg-red">
 						<image :src="$api_img() + item.images_url" mode="widthFix"></image>
@@ -58,115 +58,131 @@
 		</view>
 		
 		
+		<view class="video_box" v-for="(item,index) in class_top" :key='item.id'>
+			<view class="v_box_top">
+				
+				<view class="box_left">
+					<text class="red"></text>
+					{{item.cl_name}}
+				</view>
+				<view class="box_right"  @tap="$jump('../com_page/video_class?id='+item.id+'&title='+item.cl_name+'&type='+item.type)">
+					全部
+				</view>
+			</view> 
+			<view class="vider_content">
+				<scroll-view  scroll-x="true" class="scroll-Y">
+					<view class="content_list" v-for="(items,indexs) in item.video_list" :key='items.id' @tap="$jump('../com_page/video_details?id='+items.id + '&type='+items.type)">
+						<view class="list_img_box">
+							<image :src="$api_img()+items.v_pic" mode="widthFix"></image>
+						</view>
+						<view class="list_box">
+							<view class="list_one">
+								<view class="">
+									{{items.long_title}}
+								</view>
+								<view class="">
+									{{items.is_free == 0? '￥'+Number(items.v_price) : '免费'}}
+								</view>
+							</view>
+							<view class="list_box2">
+								<view class="list_two">
+									<view class="">
+										讲师：{{items.techer.name}}
+									</view>
+									
+								</view>
+								<view class="list_three">
+									<view class="">
+										共{{items.catalogue_count}}节
+									</view>
+									<view class="">
+										已有{{service.NumEllipsis(items.view)}}人学习
+									</view>
+								</view>
+							</view>
+						</view>
+					</view>
+				</scroll-view>
+				
+			</view>
+		</view>
 		
-			<view class="video_box" v-for="(item,index) in class_top" :key='item.id'>
-				<view class="v_box_top">
-					
-					<view class="box_left">
-						<text class="red"></text>
+		<view class="vider_content_two" >
+			<view class="two_list" v-for="(item,index) in class_list" :key='item.id'   @tap="$jump('../com_page/video_class?id='+item.id+'&title='+item.cl_name+'&type='+item.type)"  v-if="index != 0">
+				<view class="two_img">
+					<image :src="$api_img()+item.cl_image" mode="scaleToFill"></image>
+				</view>
+				<view class="two_text">
+					<view class="">
 						{{item.cl_name}}
 					</view>
-					<view class="box_right"  @tap="$jump('../com_page/video_class?id='+item.id+'&title='+item.cl_name+'&type='+item.type)">
-						全部
+					<view class="">
+						{{item.is_free == 0? '[付费]' : '[免费]'}}
 					</view>
 				</view>
-				<view class="vider_content">
-					<scroll-view  scroll-x="true" class="scroll-Y">
-						<view class="content_list" v-for="(items,indexs) in item.video_list" :key='items.id' @tap="$jump('../com_page/video_details?id='+items.id + '&type='+items.type)">
-							<view class="list_img_box">
-								<image :src="$api_img()+items.v_pic" mode="widthFix"></image>
-							</view>
-							<view class="list_box">
-								<view class="list_one">
-									<view class="">
-										{{items.long_title}}
-									</view>
-									<view class="">
-										{{items.is_free == 0? '￥'+Number(items.v_price) : '免费'}}
-									</view>
-								</view>
-								<view class="list_box2">
-									<view class="list_two">
-										<view class="">
-											讲师：{{items.techer.name}}
-										</view>
-										
-									</view>
-									<view class="list_three">
-										<view class="">
-											共{{items.catalogue_count}}节
-										</view>
-										<view class="">
-											已有{{service.NumEllipsis(items.view)}}人学习
-										</view>
-									</view>
-								</view>
-							</view>
-						</view>
-					</scroll-view>
-					
+				<view class="two_mid">
+					<text style="color: #FE0000;">{{item.red_four}}</text>
+					<text style="color: #E9BB00;">{{item.yell_four}}</text>
+				</view>
+				<view class="two_btm">
+					已有{{service.NumEllipsis(item.showCount)}}人学习
 				</view>
 			</view>
-			
-			<view class="vider_content_two" >
-				<view class="two_list" v-for="(item,index) in class_list" :key='item.id'   @tap="$jump('../com_page/video_class?id='+item.id+'&title='+item.cl_name+'&type='+item.type)"  v-if="index != 0">
-					<view class="two_img">
-						<image :src="$api_img()+item.cl_image" mode="scaleToFill"></image>
-					</view>
-					<view class="two_text">
-						<view class="">
-							{{item.cl_name}}
-						</view>
-						<view class="">
-							{{item.is_free == 0? '[付费]' : '[免费]'}}
-						</view>
-					</view>
-					<view class="two_mid">
-						<text style="color: #FE0000;">{{item.red_four}}</text>
-						<text style="color: #E9BB00;">{{item.yell_four}}</text>
-					</view>
-					<view class="two_btm">
-						已有{{service.NumEllipsis(item.showCount)}}人学习
-					</view>
+		</view>
+		<!--  #ifdef  APP-PLUS -->
+		<view class="video_box" >
+			<view class="v_box_top">
+				<view class="box_left">
+					<text class="red"></text>
+					活动专区
 				</view>
+			</view> 
+			<view class="banner">
+				<banner position-key="luck" :swiper-options="swiperOptoins" default-image=""/>
 			</view>
-			<view class="mask_black1" v-if="openid">
-				<view class="binding">
-					<view class="bind_top">
-						绑定手机
-					</view>
-					<input class="input" v-model="accounts" type="text" placeholder="请输入新手机号">
-					<view class="verification">
-						<input type="text" v-model="verify" value="" placeholder="请输入验证码" />
-						<text @tap="obtain" >{{verification}}</text>
-					</view>
-					<input class="input" password="true" v-model="pwd" type="text" placeholder="设置密码">
-					<input class="input" password="true" v-model="re_pwd" type="text" placeholder="确认密码">
-					
-					<button @click="config">完成</button>
+		</view>
+		<!-- 数商云后台设置的key -->
+		
+		<!--  #endif -->
+		<view class="mask_black1" v-if="openid">
+			<view class="binding">
+				<view class="bind_top">
+					绑定手机
 				</view>
-			</view>
-			
-			<view class="eject" v-if="eject_show && eject">
-				<view class="eject_test">
-					<image :src="$api_img() + eject.img" @tap="eject_jump(eject.target,eject.id)" mode="widthFix"></image>
-					<image class="close" src="/static/image/com_page/close.png" mode="widthFix" @click="close()"></image>
+				<input class="input" v-model="accounts" type="text" placeholder="请输入新手机号">
+				<view class="verification">
+					<input type="text" v-model="verify" value="" placeholder="请输入验证码" />
+					<text @tap="obtain" >{{verification}}</text>
 				</view>
+				<input class="input" password="true" v-model="pwd" type="text" placeholder="设置密码">
+				<input class="input" password="true" v-model="re_pwd" type="text" placeholder="确认密码">
+				
+				<button @click="config">完成</button>
 			</view>
-			
-			<view class="QRcode" @tap="$jump('/pages/subuser/brokerage/invite')">
-				<image src="../../static/image/index/list3.png" mode=""></image>
+		</view>
+		
+		<view class="eject" v-if="eject_show && eject">
+			<view class="eject_test">
+				<image :src="$api_img() + eject.img" @tap="eject_jump(eject.target,eject.id)" mode="widthFix"></image>
+				<image class="close" src="/static/image/com_page/close.png" mode="widthFix" @click="close()"></image>
 			</view>
+		</view>
+		
+		<view class="QRcode" @tap="$jump('/pages/subuser/brokerage/invite')">
+			<image src="../../static/image/index/list3.png" mode=""></image>
+		</view>
 	</view>
 </template>
 
 <script>
-
+	// #ifdef  APP-PLUS
+	const masdk = require('../../wxcomponents/index');
+	// #endif
 	import { mapState } from 'vuex'
 	import search from '../common/index_search.vue'
 	export default {
 		components:{
-			search
+			search  
 		},
 		data() {
 			return {
@@ -185,7 +201,12 @@
 				verify:'',
 				eject_show:'',
 				eject:'',
-				openid:''
+				openid:'',
+				swiperOptoins: { //投放组件轮播图的配置，配置项请参考小程序的swiper组件
+					indicatorDots: true,
+					displayMultipleItems: 1,
+					interval:3000
+				}
 			}
 		},
 		// computed: {
@@ -201,7 +222,13 @@
 				this.openid = uni.getStorageSync('openid')
 				uni.hideTabBar()
 			}
-			
+			console.log(this.$store.state.user)
+			masdk.infosUser({ //数商云注入用户信息
+			  userid: this.$store.state.user.id,
+			  // sex: "男",
+			  // province: "广东省",
+			  //具体字段以商家自定义的用户表决定。
+			});
 		},
 		onShow() {
 			if(uni.getStorageSync('notice') == ''){  //
@@ -221,8 +248,8 @@
 		methods: {
 			jump(url){
 				uni.switchTab({
-					url:url
-				})
+					url:url 
+				}) 
 			},
 			Tjump(data){
 				if(data){
@@ -389,15 +416,16 @@
 	.content {
 		// padding-top: var(--status-bar-height);
 	}
+	
 	.swiper_box{
 		padding: 0 20rpx;
 		background: #fff;
-		.swiper{
-			height:350rpx;
+		.swiper1{
+			height:350rpx; 
 		}
 		image{
 			width: 100%;
-			height: 250rpx;
+			height: 350rpx;
 		}
 	} 
 	
@@ -509,6 +537,7 @@
 		font-size: 30rpx;
 		// text-align: center;
 		padding: 0rpx 20rpx 10rpx 20rpx;
+		border-bottom: 20rpx solid #f2f2f2;
 		.two_list{
 			margin-top: 40rpx;
 			.two_img{
@@ -636,8 +665,13 @@
 				margin-top: 20rpx;
 			}
 		}
-		
-		
+	} 
+	.banner{
+		box-sizing: border-box;
+		padding: 0 10rpx 10rpx 10rpx;
+		height: 350rpx;
 	}
-
+	// .banner image{
+	// 	width: 100%; 
+	// }
 </style>

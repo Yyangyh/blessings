@@ -53,7 +53,8 @@
   width: 100%;
   padding: 40rpx;
   margin: 30rpx 0;
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
 }
 .content .information ._hr {
   height: 1rpx;

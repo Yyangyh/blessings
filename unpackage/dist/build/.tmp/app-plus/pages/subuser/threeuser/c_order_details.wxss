@@ -45,12 +45,13 @@ page.data-v-05cd10e6 {
   color: #FFFFFF;
   height: 200rpx;
   padding: 0 72rpx;
+  background: -webkit-gradient(linear, left top, right top, from(#E41217), to(#FD7160));
   background: -webkit-linear-gradient(left, #E41217, #FD7160);
   background: linear-gradient(90deg, #E41217, #FD7160);
 }
 .order_top image.data-v-05cd10e6 {
-    height: 144rpx;
-    width: 214rpx;
+  height: 144rpx;
+  width: 214rpx;
 }
 .order_position.data-v-05cd10e6 {
   display: -webkit-box;
@@ -69,13 +70,13 @@ page.data-v-05cd10e6 {
   color: #333;
 }
 .order_position text.data-v-05cd10e6:nth-of-type(2) {
-    color: #999999;
-    margin-left: 32rpx;
+  color: #999999;
+  margin-left: 32rpx;
 }
 .order_position image.data-v-05cd10e6 {
-    height: 41rpx;
-    width: 31rpx;
-    margin-right: 30rpx;
+  height: 41rpx;
+  width: 31rpx;
+  margin-right: 30rpx;
 }
 .order.data-v-05cd10e6 {
   margin-top: 20rpx;
@@ -84,50 +85,50 @@ page.data-v-05cd10e6 {
   padding: 24rpx 20rpx;
 }
 .order .order_num.data-v-05cd10e6 {
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: flex;
-    font-size: 28rpx;
-    position: relative;
-    height: 228rpx;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  font-size: 28rpx;
+  position: relative;
+  height: 228rpx;
 }
 .order .order_num .num_two.data-v-05cd10e6 {
-      -webkit-box-flex: 2;
-      -webkit-flex-grow: 2;
-              flex-grow: 2;
+  -webkit-box-flex: 2;
+  -webkit-flex-grow: 2;
+          flex-grow: 2;
 }
 .order .order_num .num_two .test_one.data-v-05cd10e6 {
-        display: -webkit-box;
-        -webkit-box-orient: vertical;
-        -webkit-line-clamp: 1;
-        overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  overflow: hidden;
 }
 .order .order_num .num_two .test_two.data-v-05cd10e6 {
-        display: -webkit-box;
-        -webkit-box-orient: vertical;
-        -webkit-line-clamp: 3;
-        overflow: hidden;
-        font-size: 24rpx;
-        color: #666;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
+  font-size: 24rpx;
+  color: #666;
 }
 .order image.data-v-05cd10e6 {
-    width: 220rpx;
-    height: 142rpx;
-    margin-right: 24rpx;
+  width: 220rpx;
+  height: 142rpx;
+  margin-right: 24rpx;
 }
 .order .order_total.data-v-05cd10e6 {
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: flex;
-    -webkit-box-pack: justify;
-    -webkit-justify-content: space-between;
-            justify-content: space-between;
-    font-size: 28rpx;
-    border-top: 2rpx solid #F1F1F1;
-    padding: 30rpx 0 10rpx 0;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+          justify-content: space-between;
+  font-size: 28rpx;
+  border-top: 2rpx solid #F1F1F1;
+  padding: 30rpx 0 10rpx 0;
 }
 .order .order_total .total_two.data-v-05cd10e6 {
-      color: #FF431D;
+  color: #FF431D;
 }
 .order_news.data-v-05cd10e6 {
   background: #FFFFFF;
@@ -136,25 +137,25 @@ page.data-v-05cd10e6 {
   padding: 0 20rpx;
 }
 .order_news .news_one.data-v-05cd10e6 {
-    padding: 30rpx 0;
+  padding: 30rpx 0;
 }
 .order_news .news_two.data-v-05cd10e6 {
-    margin-bottom: 20rpx;
-    color: #808080;
+  margin-bottom: 20rpx;
+  color: #808080;
 }
 .order_news .news_three.data-v-05cd10e6 {
-    font-size: 24rpx;
-    color: #808080;
-    margin-bottom: 30rpx;
-    padding-bottom: 20rpx;
+  font-size: 24rpx;
+  color: #808080;
+  margin-bottom: 30rpx;
+  padding-bottom: 20rpx;
 }
 .order_news text.data-v-05cd10e6 {
-    font-size: 24rpx;
+  font-size: 24rpx;
 }
 .order_news image.data-v-05cd10e6 {
-    height: 38rpx;
-    width: 40rpx;
-    margin-right: 10rpx;
+  height: 38rpx;
+  width: 40rpx;
+  margin-right: 10rpx;
 }
 .order_bottom.data-v-05cd10e6 {
   display: -webkit-box;
@@ -171,21 +172,22 @@ page.data-v-05cd10e6 {
   bottom: 0;
   left: 0;
   width: 100%;
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
 }
 .order_bottom text.data-v-05cd10e6 {
-    display: inline-block;
-    width: 160rpx;
-    height: 66rpx;
-    line-height: 66rpx;
-    border-radius: 66rpx;
-    text-align: center;
-    border: 2rpx solid #666666;
-    margin-left: 26rpx;
+  display: inline-block;
+  width: 160rpx;
+  height: 66rpx;
+  line-height: 66rpx;
+  border-radius: 66rpx;
+  text-align: center;
+  border: 2rpx solid #666666;
+  margin-left: 26rpx;
 }
 .order_bottom .or_pay.data-v-05cd10e6 {
-    color: #1D74FF;
-    border-color: #1D74FF;
+  color: #1D74FF;
+  border-color: #1D74FF;
 }
 .mask.data-v-05cd10e6 {
   height: 100%;
@@ -203,7 +205,8 @@ page.data-v-05cd10e6 {
   background: #fff;
   height: 640rpx;
   padding: 20rpx;
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
   -webkit-transition: .3s;
   transition: .3s;
   -webkit-transform: translateY(100%);
@@ -237,35 +240,35 @@ page.data-v-05cd10e6 {
   font-size: 28rpx;
 }
 .box_list .list_top.data-v-05cd10e6 {
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: flex;
-    -webkit-box-align: center;
-    -webkit-align-items: center;
-            align-items: center;
-    font-weight: 500;
-    width: 100%;
-    height: 100rpx;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+          align-items: center;
+  font-weight: 500;
+  width: 100%;
+  height: 100rpx;
 }
 .box_list .list_top image.data-v-05cd10e6 {
-      margin-right: 38rpx;
-      height: 52rpx;
-      width: 52rpx;
+  margin-right: 38rpx;
+  height: 52rpx;
+  width: 52rpx;
 }
 .box_list .list_top view.data-v-05cd10e6 {
-      -webkit-box-flex: 2;
-      -webkit-flex-grow: 2;
-              flex-grow: 2;
-      height: 100rpx;
-      line-height: 100rpx;
-      border-bottom: 2rpx solid #F1F1F1;
+  -webkit-box-flex: 2;
+  -webkit-flex-grow: 2;
+          flex-grow: 2;
+  height: 100rpx;
+  line-height: 100rpx;
+  border-bottom: 2rpx solid #F1F1F1;
 }
 .box_list .choice.data-v-05cd10e6 {
-    position: absolute;
-    right: 20rpx;
-    top: 30rpx;
-    height: 36rpx;
-    width: 36rpx;
+  position: absolute;
+  right: 20rpx;
+  top: 30rpx;
+  height: 36rpx;
+  width: 36rpx;
 }
 button.data-v-05cd10e6 {
   position: absolute;

@@ -29,59 +29,59 @@
   height: 100%;
 }
 .content .msg {
-    background: #FFFFFF;
-    width: 100%;
-    border-bottom: 10rpx solid #F6F6F7;
+  background: #FFFFFF;
+  width: 100%;
+  border-bottom: 10rpx solid #F6F6F7;
 }
 .content .msg .top {
-      display: -webkit-box;
-      display: -webkit-flex;
-      display: flex;
-      -webkit-box-align: center;
-      -webkit-align-items: center;
-              align-items: center;
-      -webkit-box-pack: justify;
-      -webkit-justify-content: space-between;
-              justify-content: space-between;
-      padding: 25rpx 24rpx 25rpx 24rpx;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+          justify-content: space-between;
+  padding: 25rpx 24rpx 25rpx 24rpx;
 }
 .content .msg .top .t_top {
-        display: -webkit-box;
-        display: -webkit-flex;
-        display: flex;
-        -webkit-box-align: center;
-        -webkit-align-items: center;
-                align-items: center;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+          align-items: center;
 }
 .content .msg .top .t_top image {
-          width: 38rpx;
-          height: 38rpx;
-          margin-right: 20rpx;
+  width: 38rpx;
+  height: 38rpx;
+  margin-right: 20rpx;
 }
 .content .msg .top .t_top text {
-          font-size: 28rpx;
+  font-size: 28rpx;
 }
 .content .msg .top .t_right {
-        width: 25rpx;
-        height: 25rpx;
-        border-radius: 50rpx;
-        font-size: 24rpx;
-        color: #FFFFFF;
-        text-align: center;
-        line-height: 25rpx;
-        background-color: #D80000;
+  width: 25rpx;
+  height: 25rpx;
+  border-radius: 50rpx;
+  font-size: 24rpx;
+  color: #FFFFFF;
+  text-align: center;
+  line-height: 25rpx;
+  background-color: #D80000;
 }
 .content .msg .news {
-      font-size: 24rpx;
-      color: #333333;
-      padding: 0 31rpx 0 81rpx;
+  font-size: 24rpx;
+  color: #333333;
+  padding: 0 31rpx 0 81rpx;
 }
 .content .msg .news text {
-        margin-left: 10rpx;
+  margin-left: 10rpx;
 }
 .content .msg .times {
-      font-size: 24rpx;
-      color: #CCCCCC;
-      padding: 24rpx 0 24rpx 82rpx;
+  font-size: 24rpx;
+  color: #CCCCCC;
+  padding: 24rpx 0 24rpx 82rpx;
 }
 

@@ -41,12 +41,12 @@
   padding-right: 60rpx;
 }
 .verification input {
-    font-size: 24rpx;
-    padding: 30rpx 0 30rpx 60rpx;
+  font-size: 24rpx;
+  padding: 30rpx 0 30rpx 60rpx;
 }
 .verification text {
-    font-size: 26rpx;
-    color: #32A6FF;
+  font-size: 26rpx;
+  color: #32A6FF;
 }
 ._hr {
   height: 1rpx;

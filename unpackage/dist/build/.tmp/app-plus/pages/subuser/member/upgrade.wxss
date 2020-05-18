@@ -31,29 +31,29 @@
   background-color: #F6F6F7;
 }
 .content .ug_top {
-    height: 232rpx;
-    background-color: #FFFFFF;
-    text-align: center;
+  height: 232rpx;
+  background-color: #FFFFFF;
+  text-align: center;
 }
 .content .ug_top view:first-child {
-      font-size: 24rpx;
-      padding-top: 73rpx;
+  font-size: 24rpx;
+  padding-top: 73rpx;
 }
 .content .ug_top view:last-child {
-      font-size: 40rpx;
-      color: #D80000;
-      margin-top: 41rpx;
+  font-size: 40rpx;
+  color: #D80000;
+  margin-top: 41rpx;
 }
 .content button {
-    width: 680rpx;
-    height: 80rpx;
-    background: #d80000;
-    border-radius: 40rpx;
-    color: #FFFFFF;
-    font-size: 32rpx;
-    text-align: center;
-    letter-spacing: 2rpx;
-    line-height: 80rpx;
-    margin-top: 50rpx;
+  width: 680rpx;
+  height: 80rpx;
+  background: #d80000;
+  border-radius: 40rpx;
+  color: #FFFFFF;
+  font-size: 32rpx;
+  text-align: center;
+  letter-spacing: 2rpx;
+  line-height: 80rpx;
+  margin-top: 50rpx;
 }
 

@@ -1,0 +1,2 @@
+setCssToHead(["@charset \x22UTF-8\x22;\n.",[1],"give_box { padding: ",[0,10]," ",[0,15],"; }\n.",[1],"give_box .",[1],"give_top { text-align: center; }\n",],undefined,{path:"./pages/com_page/video_give.wxss"})();
+document.dispatchEvent(new CustomEvent("generateFuncReady", { detail: { generateFunc: $gwx('./pages/com_page/video_give.wxml') } }));

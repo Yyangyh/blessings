@@ -28,59 +28,59 @@
   position: relative;
 }
 .content image {
-    width: 100%;
-    height: 1229rpx;
-    position: absolute;
-    z-index: 0;
-    left: 0;
-    top: calc(var(--status-bar-height) + 105rpx);
+  width: 100%;
+  height: 1229rpx;
+  position: absolute;
+  z-index: 0;
+  left: 0;
+  top: calc(var(--status-bar-height) + 105rpx);
 }
 .content .worp {
-    width: 100%;
-    height: 1229rpx;
-    position: absolute;
-    top: calc(var(--status-bar-height) + 105rpx);
-    left: 0;
+  width: 100%;
+  height: 1229rpx;
+  position: absolute;
+  top: calc(var(--status-bar-height) + 105rpx);
+  left: 0;
 }
 .content .worp .topic {
-      font-size: 32rpx;
-      font-weight: 500%;
-      padding: 191rpx 309rpx 67rpx 107rpx;
+  font-size: 32rpx;
+  font-weight: 500%;
+  padding: 140rpx 110rpx 67rpx 107rpx;
 }
 .content .worp .option {
-      width: 337rpx;
-      height: 80rpx;
-      line-height: 80rpx;
-      border: 1px solid #aaaaaa;
-      font-size: 28rpx;
-      color: #999999;
-      border-radius: 40rpx;
-      padding-left: 51rpx;
-      margin: 0 0 30rpx 110rpx;
+  width: 337rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  border: 1px solid #aaaaaa;
+  font-size: 28rpx;
+  color: #999999;
+  border-radius: 40rpx;
+  padding-left: 51rpx;
+  margin: 0 0 20rpx 110rpx;
 }
 .content .worp .option1 {
-      width: 337rpx;
-      height: 80rpx;
-      line-height: 80rpx;
-      background: #1B1B1B;
-      font-size: 28rpx;
-      color: #999999;
-      border-radius: 40rpx;
-      padding-left: 51rpx;
-      margin: 0 0 30rpx 110rpx;
+  width: 337rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  background: #1B1B1B;
+  font-size: 28rpx;
+  color: #999999;
+  border-radius: 40rpx;
+  padding-left: 51rpx;
+  margin: 0 0 20rpx 110rpx;
 }
 .content .worp .btn {
-      position: absolute;
-      width: 187rpx;
-      height: 70rpx;
-      border: 1rpx solid #D80000;
-      font-size: 28rpx;
-      color: #D80000;
-      line-height: 70rpx;
-      text-align: center;
-      border-radius: 40rpx;
-      position: absolute;
-      bottom: 295rpx;
-      left: 400rpx;
+  position: absolute;
+  width: 187rpx;
+  height: 70rpx;
+  border: 1rpx solid #D80000;
+  font-size: 28rpx;
+  color: #D80000;
+  line-height: 70rpx;
+  text-align: center;
+  border-radius: 40rpx;
+  position: absolute;
+  bottom: 295rpx;
+  left: 400rpx;
 }
 
