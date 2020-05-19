@@ -22,8 +22,7 @@
 						<image src="../../static/image/index/go1.png" mode='widthFix'></image>
 					</view>
 				</view>
-				<image class="Image" :src='$api_img()+item.img_url' mode=" aspectFill"></image>
-				
+				<image class="Image" :src='$api_img()+item.img_url' mode="widthFix"></image>
 			</view>
 		</view>
 		<!-- 问卷调查 -->
@@ -174,8 +173,8 @@
 				position: relative;
 				z-index: 80;
 				.Image{
-					width: 710rpx;
-					height: 170rpx;
+					width: 100%;
+					height: 350rpx;
 					top:0;
 					left: 0;
 					position: absolute;

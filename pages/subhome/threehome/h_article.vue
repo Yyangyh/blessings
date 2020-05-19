@@ -103,7 +103,7 @@
 		onLoad(e) {
 			this.id = e.id
 			if(e.code) this.code = e.code
-			this.share_arr.Url = 'https://www.wufu-app.com/h5/#/pages/subhome/threehome/h_article?code='+this.$store.state.user.invite_code+'&id='+e.id
+			this.share_arr.Url = 'https://www.wufu-app.com/h5/#/pages/subhome/threehome/h_article?id='+e.id
 			this.service.entire(this,'post',this.APIconfig.api_root.subhome.f_detail,{//获取文章
 				id:e.id,
 				// user_id:this.$store.state.user.id

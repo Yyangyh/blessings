@@ -367,12 +367,42 @@
 		methods: {
 			share(){
 				let data = this.datas
-				strShareUrl = data.Url
-				strShareTitle = data.Title
-				strShareSummary = data.Summary
-				strShareImageUrl = data.ImageUrl
-				nvMask.show()
-				nvImageMenu.show() //5+应支持从底部向上弹出的动画
+				if(this.$store.state.user.invite_code == undefined){  //判断是否有邀请码
+					this.service.entire(this,'post',this.APIconfig.api_root.index.u_token,{
+						id:this.$store.state.user.id
+					},function(self,res){
+						if(res.code == 0){
+							self.$store.commit('state_user',res.data.user_info)
+							self.$store.commit('state_token',res.data.token)
+							uni.setStorageSync('state_user',res.data.user_info)
+							uni.setStorageSync('state_token',res.data.token)
+							if(data.Url.split('?').length == 2){
+								data.Url = data.Url+'&code='+self.$store.state.user.invite_code
+							}else{
+								data.Url = data.Url+'?code='+self.$store.state.user.invite_code
+							}
+							strShareUrl = data.Url
+							strShareTitle = data.Title
+							strShareSummary = data.Summary
+							strShareImageUrl = data.ImageUrl
+							nvMask.show()
+							nvImageMenu.show() //5+应支持从底部向上弹出的动画
+						}
+					})
+				}else{
+					if(data.Url.split('?').length == 2){
+						data.Url = data.Url+'&code='+this.$store.state.user.invite_code
+					}else{
+						data.Url = data.Url+'?code='+this.$store.state.user.invite_code
+					}
+					strShareUrl = data.Url
+					strShareTitle = data.Title
+					strShareSummary = data.Summary
+					strShareImageUrl = data.ImageUrl
+					nvMask.show()
+					nvImageMenu.show() //5+应支持从底部向上弹出的动画
+				}
+				
 			}
 		}
 	}

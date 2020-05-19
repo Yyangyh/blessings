@@ -18,9 +18,20 @@
 			result => {
 				console.log(JSON.stringify(result))
 			});
+			jyJPush.setJYJPushAlias({
+				userAlias: 'testAlias111'
+				}, result=> {
+				//  设置成功或者失败，都会通过这个result回调返回数据；数据格式保持极光返回的安卓/iOS数据一致
+				//  注：若没有返回任何数据，考虑是否初始化完成
+				console.log(JSON.stringify(result))
+			});
 			
 			
 			
+			jyJPush.addJYJPushReceiveNotificationListener(result=> {
+			//  监听成功后，若收到推送，会在result返回对应的数据；数据格式保持极光返回的安卓/iOS数据一致
+				console.log(JSON.stringify(result))
+			});
 			
 			jyJPush.addJYJPushReceiveOpenNotificationListener(result => { //监听在线点击通知栏消息事件（点击通知栏的消息，或者悬浮框，会触发；做事件跳转，需要用到这个接口，如：后台发了一个新闻，消息里面会含有新闻的链接，点击消息就需要获取这个链接，然后跳转）
 				console.log(result)
@@ -180,6 +191,7 @@
 				this.$store.commit('state_token',uni.getStorageSync('state_token'))
 			}
 		},
+		// #ifdef APP-PLUS
 		methods: {
 		    // 初始化数商云sdk
 		    masdkInit () {
@@ -199,7 +211,7 @@
 		   // 一般的全局变量使用vuex实现，现在我遇到一个问题，数商云对象masdk无法在小程序自定义组件和普通页面公用，因此采用此种方式实现
 		   masdk:masdk
 		},
-		
+		// #endif
 		onShow: function() {
 			// #ifdef APP-PLUS
 			

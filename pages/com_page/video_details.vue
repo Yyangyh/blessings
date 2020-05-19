@@ -523,22 +523,7 @@
 				});
 				// #endif
 				// #ifdef APP-PLUS
-				
-				if(this.$store.state.user.invite_code == undefined){  //判断是否有邀请码
-					this.service.entire(this,'post',this.APIconfig.api_root.index.u_token,{
-						id:this.$store.state.user.id
-					},function(self,res){
-						if(res.code == 0){
-							self.$store.commit('state_user',res.data.user_info)
-							self.$store.commit('state_token',res.data.token)
-							uni.setStorageSync('state_user',res.data.user_info)
-							uni.setStorageSync('state_token',res.data.token)
-							self.$refs.share.share()
-						}
-					})
-				}else{
-					this.$refs.share.share()
-				}
+				this.$refs.share.share()
 				// #endif
 			},
 			timeupdate(e){ //记录播放进度
@@ -863,7 +848,7 @@
 		onLoad(e) {
 			// const music=uni.requireNativePlugin('Html5app-Music');
 			// this.share_arr.Url = 'https://www.wufu-app.com/h5/#/pages/login/reg?code='+this.$store.state.user.invite_code
-			this.share_arr.Url = 'https://www.wufu-app.com/h5/#/pages/com_page/share_video?id='+e.id+'&type='+e.type+'&code='+this.$store.state.user.invite_code
+			this.share_arr.Url = 'https://www.wufu-app.com/h5/#/pages/com_page/share_video?id='+e.id+'&type='+e.type
 			this.id = e.id
 			this.type = e.type
 			this.async_n()

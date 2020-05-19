@@ -104,6 +104,9 @@
 </template>
 
 <script>
+	// #ifdef  APP-PLUS
+	const masdk = require('../../wxcomponents/index');
+	// #endif
 	export default{
 		data() {
 			return {
@@ -182,6 +185,14 @@
 							uni.setStorageSync('state_user',data.data.memberInfo)
 							uni.setStorageSync('state_token',data.token)
 							that.$store.commit('Amodify_login',1)
+							// #ifdef  APP-PLUS
+							masdk.infosUser({ //数商云注入用户信息
+								userid: data.data.memberInfo.id,
+							  // sex: "男",
+							  // province: "广东省",
+							  //具体字段以商家自定义的用户表决定。
+							});
+							// #endif
 							setTimeout(function(){
 								
 								uni.switchTab({
@@ -223,31 +234,39 @@
 								uni.hideLoading()
 								clearTimeout(times)
 								let data = res.data
-								if(data.code == 0){
-									uni.removeStorageSync('openid')
-									uni.removeStorageSync('nickname')
+								
+								if(data.code == 0 || data.code == 1){
 									that.$store.commit('state_user',data.data.memberInfo)
 									that.$store.commit('state_token',data.token)
 									uni.setStorageSync('state_user',data.data.memberInfo)
 									uni.setStorageSync('state_token',data.token)
 									uni.setStorageSync('wx','wx')
 									that.$store.commit('Amodify_login',1)
-									uni.switchTab({
-										url: '../index/index'
+									// #ifdef  APP-PLUS
+									masdk.infosUser({ //数商云注入用户信息
+										userid: data.data.memberInfo.id,
+									  // sex: "男",
+									  // province: "广东省",
+									  //具体字段以商家自定义的用户表决定。
 									});
-								}else if(data.code == 1){
-									that.$store.commit('state_user',data.data.memberInfo)
-									that.$store.commit('state_token',data.token)
-									uni.setStorageSync('state_user',data.data.memberInfo)
-									uni.setStorageSync('state_token',data.token)
-									uni.setStorageSync('openid',loginRes.authResult.openid)
-									uni.setStorageSync('nickname',data.data.nickname)
-									uni.setStorageSync('wx','wx')
-									that.$store.commit('Amodify_login',1)
-									uni.switchTab({
-										url: '../index/index'
-									});
+									// #endif
+									
+									if(data.code == 0){
+										uni.removeStorageSync('openid')
+										uni.removeStorageSync('nickname')
+										uni.switchTab({
+											url: '../index/index'
+										});
+									}else if(data.code == 1){
+										uni.setStorageSync('openid',loginRes.authResult.openid)
+										uni.setStorageSync('nickname',data.data.nickname)
+										uni.switchTab({
+											url: '../index/index'
+										});
+									}
 								}
+								
+								
 							}
 						})
 					    

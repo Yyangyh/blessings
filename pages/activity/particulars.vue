@@ -4,6 +4,7 @@
 			
 		</view>
 		<returns :titles='title'></returns>
+		<share ref="share" :datas='share_arr'></share>
 		<view class="worp" >
 			<image :src="$api_img()+dataList.cover" mode="widthFix"></image>
 			<view class="theme">{{dataList.title}}</view>
@@ -60,13 +61,25 @@
 		</view>
 		<view class="p-t">活动详情</view>
 		<image class="image" v-for="(item,index) in detail_img" :src='$api_img()+item.images' mode="widthFix"></image>
+		
+		<!-- #ifdef APP-PLUS -->
 		<view class="underway" v-if="ends == true">
 			<button type="default" @tap="confirm(id,dataList.limit,dataList.sign_number)">立即报名</button>
-			<button type="default">邀请好友</button>
+			<button type="default" @tap="tips">邀请好友</button>
 		</view>
 		<view class="finish" v-else>
 			<button>活动已结束</button>
 		</view>
+		<!-- #endif -->
+		
+		<!-- #ifdef H5 -->
+		
+		<view class="download" @tap="$jump('../login/reg?code='+code)">
+			下载APP观看精彩内容
+		</view>
+		
+		<!-- #endif -->
+		
 		<load v-if="load_show"></load>
 	</view>
 </template>
@@ -74,10 +87,12 @@
 <script>
 	import returns from '../common/returns.vue'
 	import load from '../common/load.vue'
+	import share from'../common/share.vue'
 	export default{
 		components:{
 			returns,
-			load
+			load,
+			share
 		},
 		data(){
 			return{
@@ -91,10 +106,41 @@
 				sec:'',
 				timer:'',
 				load_show:true,
-				detail_img:''
+				detail_img:'',
+				share_arr:{},
 			}
 		},
 		methods:{
+			tips(){ //分享
+				// #ifdef H5
+				uni.showModal({
+				    title: '提示',
+				    content: '请点击右上角选择分享！',
+					showCancel:false,
+				    success: function (res) {
+				       
+				    }
+				});
+				// #endif
+				// #ifdef APP-PLUS
+				if(this.$store.state.user.invite_code == undefined){  //判断是否有邀请码
+					this.service.entire(this,'post',this.APIconfig.api_root.index.u_token,{
+						id:this.$store.state.user.id
+					},function(self,res){
+						if(res.code == 0){
+							self.$store.commit('state_user',res.data.user_info)
+							self.$store.commit('state_token',res.data.token)
+							uni.setStorageSync('state_user',res.data.user_info)
+							uni.setStorageSync('state_token',res.data.token)
+							self.$refs.share.share()
+						}
+					})
+				}else{
+					this.$refs.share.share()
+				}
+				// #endif
+			},
+			
 		   countdown: function (msec) {
 			  if(msec < 0){
 				  msec = 0
@@ -134,6 +180,11 @@
 			this.service.entire(this,'post',this.APIconfig.api_root.subindex.a_activity_detail,{
 				id:this.id
 			},function(self,res){
+				
+				self.share_arr.Title =  res.data.title//分享
+				self.share_arr.Summary =  res.data.desc//分享
+				self.share_arr.ImageUrl = self.$api_img() + res.data.cover//分享
+				
 				self.dataList = res.data.data
 				self.sign_user = res.data.data.sign_user
 				if(self.sign_user.length > 5) self.sign_user.length = 5
@@ -149,6 +200,7 @@
 		},
 		onLoad(e) {
 			this.id = e.id
+			this.share_arr.Url = 'https://www.wufu-app.com/h5/#/pages/activity/particulars?id=' + e.id
 		},
 	}
 </script>
@@ -340,6 +392,20 @@
 				border-radius: 40rpx;
 				letter-spacing: 10rpx;
 			}
+		}
+		.download{
+			width: 100%;
+			background: #fff;
+			position: fixed;
+			color: #FE0000;
+			background: #FCCF00;
+			left: 0;
+			bottom: 0rpx;
+			box-sizing: border-box;
+			height: 80rpx;
+			line-height: 80rpx;
+			padding: 0 21rpx;
+			text-align: center;
 		}
 /* 	} */
 </style>

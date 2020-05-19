@@ -168,7 +168,7 @@
 		},
 		onLoad(options) {
 			this.id = options.id 
-			this.share_arr.Url = 'https://wx.huanqiutongmall.com/h5/#/pages/login/reg?code='+this.$store.state.user.invite_code
+			this.share_arr.Url = 'https://wx.huanqiutongmall.com/h5/#/pages/login/reg'
 		},
 		onShow() {
 			this.service.entire(this,'get',this.APIconfig.api_root.subhome.threehome.g_TeamsDetail,{

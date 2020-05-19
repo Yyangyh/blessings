@@ -1,7 +1,7 @@
 <template>
 <uni-shadow-root class="components-banner"><swiper v-if="banners.length > 1" :class="'masdk banner slider </slider> '+(positionKey)" :indicator-dots="options.indicatorDots" :indicator-color="options.indicatorColor" :indicator-active-color="options.indicatorActiveColor" :autoplay="options.autoplay" :current="options.current" :current-item-id="options.currentItemId" :interval="options.interval" :duration="options.duration" :circular="options.circular" :vertical="opeions.vertical" :previous-margin="options.previousMargin" :next-margin="options.nextMargin" :display-multiple-items="options.displayMultipleItems" :skip-hidden-item-layout="options.skipHiddenItemLayout" @change="bindchange" @transition="bindtransition" @animationfinish="bindanimationfinish">
   <block v-for="(item,index) in (banners)" :key="item">
-    <swiper-item @click="navigateToWeb" :data-url="item.url">
+    <swiper-item class="swiper_item" @click="navigateToWeb" :data-url="item.url">
       <image mode="widthFix" :src="item.image" class="slide-image"></image>
     </swiper-item>
   </block>
@@ -50,6 +50,7 @@ Component({
           options: options
         })
       }
+
       masdk.banner({
         positionKey: this.properties.positionKey,
         conditions: this.properties.conditions
@@ -147,6 +148,10 @@ Component({
 export default global['__wxComponents']['components/banner']
 </script>
 <style platform="mp-weixin">
+.swiper_item{
+	height: 100%;
+	width: 100%;
+}
 .slide-image{
   width: 100%
 }

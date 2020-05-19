@@ -175,9 +175,7 @@
 </template>
 
 <script>
-	// #ifdef  APP-PLUS
-	const masdk = require('../../wxcomponents/index');
-	// #endif
+
 	import { mapState } from 'vuex'
 	import search from '../common/index_search.vue'
 	export default {
@@ -222,13 +220,7 @@
 				this.openid = uni.getStorageSync('openid')
 				uni.hideTabBar()
 			}
-			console.log(this.$store.state.user)
-			masdk.infosUser({ //数商云注入用户信息
-			  userid: this.$store.state.user.id,
-			  // sex: "男",
-			  // province: "广东省",
-			  //具体字段以商家自定义的用户表决定。
-			});
+			
 		},
 		onShow() {
 			if(uni.getStorageSync('notice') == ''){  //

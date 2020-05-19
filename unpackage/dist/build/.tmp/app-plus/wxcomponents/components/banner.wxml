@@ -18,10 +18,10 @@ bindchange="bindchange"
 bindtransition="bindtransition"
 bindanimationfinish="bindanimationfinish">
   <block wx:for="{{banners}}" wx:key="{{item}}">
-    <swiper-item bindtap="navigateToWeb" data-url="{{item.url}}">
-      <image src="{{item.image}}" class="slide-image"/>
+    <swiper-item class="swiper_item" bindtap="navigateToWeb" data-url="{{item.url}}">
+      <image mode="widthFix" src="{{item.image}}" class="slide-image"/>
     </swiper-item>
   </block>
 </swiper>
 
-<image wx:if="{{banners.length == 1}}" class="masdk banner image {{positionKey}}" src="{{banners[0].image}}" bindtap="navigateToWeb" data-url="{{banners[0].url}}"></image>
+<image mode="widthFix" wx:if="{{banners.length == 1}}" class="masdk banner image {{positionKey}}" src="{{banners[0].image}}" bindtap="navigateToWeb" data-url="{{banners[0].url}}"></image>

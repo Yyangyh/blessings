@@ -4,6 +4,7 @@
 
 		</view>
 		<returns :titles='title'></returns>
+		<share ref="share" :datas='share_arr'></share>
 		<view class="allorder">
 			<text @click="cur=0" class="one" :class="{active:cur==0}">近期活动</text>
 			<text @click="cur=1" class="two" :class="{active:cur==1}">往期活动</text>

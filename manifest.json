@@ -22,7 +22,7 @@
             "Payment" : {},
             "OAuth" : {},
             "Share" : {},
-            "Push" : {}
+            "Speech" : {}
         },
         /* 应用发布信息 */
         "distribute" : {
@@ -89,7 +89,10 @@
                         "UniversalLinks" : "https://wufu.wufu-app.com/app.php/Mw==/"
                     }
                 },
-                "push" : {}
+                "push" : {},
+                "speech" : {
+                    "ifly" : {}
+                }
             },
             "splashscreen" : {
                 "android" : {
@@ -150,10 +153,10 @@
         },
         "nativePlugins" : {
             "JY-JPush" : {
-                "VIVO_APPKEY" : "",
+                "VIVO_APPKEY" : "d8598100-24fa-4680-bb9c-9ff3734c9529",
                 "MEIZU_APPKEY" : "MZ-2993f3e67a724313908b7b36b7e04423",
                 "OPPO_APPSECRET" : "OP-362314e4705d4d6abc1c3c45c20de512",
-                "VIVO_APPID" : "",
+                "VIVO_APPID" : "20980",
                 "android_appkey" : "e1aae4a02cd42f22ff74f03f",
                 "OPPO_APPID" : "OP-30258470",
                 "android_channel" : "android",

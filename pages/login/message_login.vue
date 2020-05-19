@@ -26,6 +26,9 @@
 </template>
 
 <script>
+	// #ifdef  APP-PLUS
+	const masdk = require('../../wxcomponents/index');
+	// #endif
 	export default{
 		data() {
 			return {
@@ -107,12 +110,14 @@
 							uni.setStorageSync('state_user',data.data.memberInfo)
 							uni.setStorageSync('state_token',data.token)
 							that.$store.commit('Amodify_login',1)
+							// #ifdef  APP-PLUS
 							masdk.infosUser({ //数商云注入用户信息
-							  userid: data.data.memberInfo.id,
+								userid: data.data.memberInfo.id,
 							  // sex: "男",
 							  // province: "广东省",
 							  //具体字段以商家自定义的用户表决定。
 							});
+							// #endif
 							setTimeout(function(){
 								
 								uni.switchTab({

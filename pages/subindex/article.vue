@@ -259,7 +259,7 @@
 			}else{
 				requ_url = this.APIconfig.api_root.subindex.s_getArticleDetail
 			}
-			this.share_arr.Url = 'https://www.wufu-app.com/h5/#/pages/subindex/article?id=' + e.id + '&code='+this.$store.state.user.invite_code
+			this.share_arr.Url = 'https://www.wufu-app.com/h5/#/pages/subindex/article?id=' + e.id
 			this.service.entire(this,'get',requ_url,{//获取文章
 				aid:e.id,
 				user_id:this.$store.state.user.id

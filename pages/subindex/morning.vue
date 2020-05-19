@@ -419,12 +419,30 @@
 				})
 			},
 			share(index,id){
-				strShareUrl ='https://www.wufu-app.com/h5/#/pages/subindex/morning?code='+this.$store.state.user.invite_code+'&id='+id
-				strShareTitle =  this.data[index].name//分享
-				strShareSummary = this.data[index].formatcontent//分享
-				strShareImageUrl =  this.$api_img() + this.data[index].image//分享
-				nvMask.show()
-				nvImageMenu.show() //5+应支持从底部向上弹出的动画
+				
+				if(this.$store.state.user.invite_code == undefined){  //判断是否有邀请码
+					this.service.entire(this,'post',this.APIconfig.api_root.index.u_token,{
+						id:this.$store.state.user.id
+					},function(self,res){
+						if(res.code == 0){
+							strShareUrl ='https://www.wufu-app.com/h5/#/pages/subindex/morning?code='+self.$store.state.user.invite_code+'&id='+id
+							strShareTitle =  self.data[index].name//分享
+							strShareSummary = self.data[index].formatcontent//分享
+							strShareImageUrl =  self.$api_img() + self.data[index].image//分享
+							nvMask.show()
+							nvImageMenu.show() //5+应支持从底部向上弹出的动画
+						}
+					})
+				}else{
+					strShareUrl ='https://www.wufu-app.com/h5/#/pages/subindex/morning?code='+this.$store.state.user.invite_code+'&id='+id
+					strShareTitle =  this.data[index].name//分享
+					strShareSummary = this.data[index].formatcontent//分享
+					strShareImageUrl =  this.$api_img() + this.data[index].image//分享
+					nvMask.show()
+					nvImageMenu.show() //5+应支持从底部向上弹出的动画
+				}
+				
+				
 			},
 			backtoday(e){
 				console.log(e)
