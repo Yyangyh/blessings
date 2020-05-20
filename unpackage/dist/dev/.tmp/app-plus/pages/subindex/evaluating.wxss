@@ -54,7 +54,7 @@
           box-sizing: border-box;
 }
 .content .box .tergum {
-  height: 170rpx;
+  height: 350rpx;
   margin-bottom: 33rpx;
   position: relative;
   z-index: 80;

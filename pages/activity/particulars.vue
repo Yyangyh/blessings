@@ -108,6 +108,7 @@
 				load_show:true,
 				detail_img:'',
 				share_arr:{},
+				code:''
 			}
 		},
 		methods:{
@@ -180,11 +181,10 @@
 			this.service.entire(this,'post',this.APIconfig.api_root.subindex.a_activity_detail,{
 				id:this.id
 			},function(self,res){
-				
-				self.share_arr.Title =  res.data.title//分享
-				self.share_arr.Summary =  res.data.desc//分享
-				self.share_arr.ImageUrl = self.$api_img() + res.data.cover//分享
-				
+				self.share_arr.Title =  res.data.data.title//分享
+				self.share_arr.Summary =  res.data.data.desc//分享
+				self.share_arr.ImageUrl = self.$api_img() + res.data.data.cover//分享
+				console.log(self.share_arr)
 				self.dataList = res.data.data
 				self.sign_user = res.data.data.sign_user
 				if(self.sign_user.length > 5) self.sign_user.length = 5
@@ -199,6 +199,7 @@
 			})
 		},
 		onLoad(e) {
+			if(e.code)this.code = e.code
 			this.id = e.id
 			this.share_arr.Url = 'https://www.wufu-app.com/h5/#/pages/activity/particulars?id=' + e.id
 		},

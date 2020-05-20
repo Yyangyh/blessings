@@ -1,5 +1,5 @@
 // const api ='http://192.168.0.108:8990'
-// const api ='https://www.wufu-app.com' 
+// const api ='https://www.wufu-app.com'
 const api = ''  
 
 const api_root = {
@@ -25,7 +25,7 @@ const api_root = {
 		felicity_index: api+'/api/felicity/index',//幸福课堂首页数据 
 		xfClassList: api+'/api/felicity/xfClassList',//幸福课堂分类数据	
 		u_token: api+'/api/common/refresh_token',//刷新用户信息 
-		bindPhone: api+'/api/Member/bindPhone',//首页绑定手机号 
+		bindPhone: api+'/api/Member/bindPhone',//首页绑定手机号  
 		category: api+'/api/familystyle/category',//获取家风建设分类 
 	},
 	subclass:{

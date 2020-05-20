@@ -108,29 +108,39 @@
 		</view>
 		
 		<view class="vider_content_two" >
-			<view class="two_list" v-for="(item,index) in class_list" :key='item.id'   @tap="$jump('../com_page/video_class?id='+item.id+'&title='+item.cl_name+'&type='+item.type)"  v-if="index != 0">
-				<view class="two_img">
-					<image :src="$api_img()+item.cl_image" mode="scaleToFill"></image>
+			<view class="v_box_top">
+				<view class="box_left">
+					<text class="red"></text>
+					福利专区
 				</view>
-				<view class="two_text">
-					<view class="">
-						{{item.cl_name}}
+			</view> 
+			<view class="two_list_box">
+				<view class="two_list" v-for="(item,index) in class_list" :key='item.id'   @tap="$jump('../com_page/video_class?id='+item.id+'&title='+item.cl_name+'&type='+item.type)"  v-if="index != 0">
+					<view class="two_img">
+						<image :src="$api_img()+item.cl_image" mode="scaleToFill"></image>
 					</view>
-					<view class="">
-						{{item.is_free == 0? '[付费]' : '[免费]'}}
+					<view class="two_text">
+						<view class="">
+							{{item.cl_name}}
+						</view>
+						<view class="">
+							{{item.is_free == 0? '[付费]' : '[免费]'}}
+						</view>
 					</view>
-				</view>
-				<view class="two_mid">
-					<text style="color: #FE0000;">{{item.red_four}}</text>
-					<text style="color: #E9BB00;">{{item.yell_four}}</text>
-				</view>
-				<view class="two_btm">
-					已有{{service.NumEllipsis(item.showCount)}}人学习
+					<view class="two_mid">
+						<text style="color: #FE0000;">{{item.red_four}}</text>
+						<text style="color: #E9BB00;">{{item.yell_four}}</text>
+					</view>
+					<view class="two_btm">
+						已有{{service.NumEllipsis(item.showCount)}}人学习
+					</view>
 				</view>
 			</view>
+			
 		</view>
 		<!--  #ifdef  APP-PLUS -->
-		<view class="video_box" >
+		<!-- 数商云放置页面 -->
+		<!-- <view class="video_box" >
 			<view class="v_box_top">
 				<view class="box_left">
 					<text class="red"></text>
@@ -140,7 +150,7 @@
 			<view class="banner">
 				<banner position-key="luck" :swiper-options="swiperOptoins" default-image=""/>
 			</view>
-		</view>
+		</view> -->
 		<!-- 数商云后台设置的key -->
 		
 		<!--  #endif -->
@@ -524,46 +534,51 @@
 	}
 	
 	.vider_content_two{
-		display: flex;
-		flex-wrap: wrap;
+		
 		font-size: 30rpx;
 		// text-align: center;
-		padding: 0rpx 20rpx 10rpx 20rpx;
-		border-bottom: 20rpx solid #f2f2f2;
-		.two_list{
-			margin-top: 40rpx;
-			.two_img{
-				width: 344rpx;
-				height: 210rpx;
-				border-radius: 10rpx;
-				overflow: hidden;
-				image{
-					width: 100%;
-					height: 100%;
-				}
-			}
-			.two_text{
-				margin:10rpx 0 ;
-				display: flex;
-				justify-content: space-between;
-				view{
-					&:nth-of-type(2){
-						color: #FE0000;
+		
+		.two_list_box{
+			display: flex;
+			flex-wrap: wrap;
+			padding: 0rpx 20rpx 10rpx 20rpx;
+			border-bottom: 20rpx solid #f2f2f2;
+			.two_list{
+				margin-bottom: 40rpx;
+				.two_img{
+					width: 344rpx;
+					height: 210rpx;
+					border-radius: 10rpx;
+					overflow: hidden;
+					image{
+						width: 100%;
+						height: 100%;
 					}
 				}
-			}
-			.two_mid{
-				font-size: 28rpx;
-				margin-bottom: 10rpx;
-			}
-			.two_btm{
-				font-size: 28rpx;
-				color: #666666;
-			}
-			&:nth-of-type(odd){
-				margin-right: 20rpx;
+				.two_text{
+					margin:10rpx 0 ;
+					display: flex;
+					justify-content: space-between;
+					view{
+						&:nth-of-type(2){
+							color: #FE0000;
+						}
+					}
+				}
+				.two_mid{
+					font-size: 28rpx;
+					margin-bottom: 10rpx;
+				}
+				.two_btm{
+					font-size: 28rpx;
+					color: #666666;
+				}
+				&:nth-of-type(odd){
+					margin-right: 20rpx;
+				}
 			}
 		}
+		
 		
 	}
 	.list_three{

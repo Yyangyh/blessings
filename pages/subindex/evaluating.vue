@@ -11,7 +11,7 @@
 		</view
 		<!-- 幸福测评 -->
 		<view class="box" v-if="cur === 0">
-			<view class="tergum" v-for="(item,index) in dataList" :key='item.id' @tap="$jump('./listbox?id='+item.id+'&name='+item.name)">
+			<view class="tergum" v-for="(item,index) in dataList" :key='item.id' @tap="$jump('./listbox?id='+item.id+'&name='+item.name+'&img='+item.list_url)">
 				<view class="worp">
 					<view class="terLeft">
 						<view>{{item.name}}</view>
@@ -167,7 +167,7 @@
 			padding: 20rpx 20rpx 0 20rpx;
 			box-sizing: border-box;
 			.tergum{
-				height: 170rpx;
+				height: 350rpx;
 				
 				margin-bottom: 33rpx;
 				position: relative;

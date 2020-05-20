@@ -2,6 +2,7 @@
   "navigationBarTitleText": "测评列表",
   "titleNView": false,
   "usingComponents": {
-    "returns": "/pages/common/returns"
+    "returns": "/pages/common/returns",
+    "share": "/pages/common/share"
   }
 }
