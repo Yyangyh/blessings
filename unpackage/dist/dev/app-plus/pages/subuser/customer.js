@@ -1,2 +1,0 @@
-setCssToHead(["@charset \x22UTF-8\x22;\n.",[1],"box { padding: ",[0,15],"; }\n",],undefined,{path:"./pages/subuser/customer.wxss"})();
-document.dispatchEvent(new CustomEvent("generateFuncReady", { detail: { generateFunc: $gwx('./pages/subuser/customer.wxml') } }));

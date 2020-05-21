@@ -29,6 +29,10 @@
 }
 .content .allorder {
   width: 100%;
+  position: fixed;
+  top: calc(105rpx + var(--status-bar-height));
+  z-index: 888;
+  left: 0;
   height: 120rpx;
   background-color: #F6F6F7;
   display: -webkit-box;
@@ -54,14 +58,14 @@
           box-sizing: border-box;
 }
 .content .box .tergum {
-  height: 170rpx;
+  height: 350rpx;
   margin-bottom: 33rpx;
   position: relative;
   z-index: 80;
 }
 .content .box .tergum .Image {
-  width: 710rpx;
-  height: 170rpx;
+  width: 100%;
+  height: 350rpx;
   top: 0;
   left: 0;
   position: absolute;
@@ -270,6 +274,7 @@
 .content .questionnaire {
   position: relative;
   width: 100%;
+  top: 105rpx;
 }
 .content .questionnaire .not {
   color: #BFBFBF;
@@ -280,19 +285,36 @@
 }
 .content .questionnaire .q_image {
   width: 100%;
-  position: absolute;
-  top: 0;
+  position: fixed;
+  top: 220rpx;
   left: 0;
 }
-.content .questionnaire .q_content {
+.content .questionnaire .q_box {
+  font-size: 28rpx;
+  position: relative;
+  width: 90%;
+  min-height: 280rpx;
+  margin: 20rpx auto;
+  top: 305rpx;
+}
+.content .questionnaire .q_box .q_box_img {
   width: 100%;
   position: absolute;
+  height: 100%;
   top: 0;
   left: 0;
+  z-index: 80;
 }
-.content .questionnaire .title {
-  font-size: 28rpx;
-  padding: 375rpx 0 0 128rpx;
+.content .questionnaire .q_box .q_content {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  padding: 20rpx;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 90;
 }
 .content .questionnaire .line {
   display: -webkit-box;
@@ -306,7 +328,7 @@
           justify-content: space-between;
   -webkit-flex-wrap: wrap;
           flex-wrap: wrap;
-  margin: 30rpx 158rpx 0 127rpx;
+  margin-top: 20rpx;
 }
 .content .questionnaire .line .question {
   display: -webkit-box;
@@ -359,14 +381,13 @@
 }
 .content .questionnaire .opinion {
   font-size: 28rpx;
-  margin: 190rpx 0 0 54rpx;
 }
 .content .questionnaire textarea {
   background-color: #FFFFFF;
   display: block;
-  margin: 20rpx 0 0 50rpx;
-  width: 650rpx;
-  height: 280rpx;
+  margin: 20rpx auto;
+  width: 96%;
+  height: 180rpx;
   padding: 20rpx;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
@@ -389,6 +410,6 @@
   text-align: center;
   line-height: 80rpx;
   color: #FFFFFF;
-  margin-top: 40rpx;
+  margin: 345rpx auto 50rpx;
 }
 

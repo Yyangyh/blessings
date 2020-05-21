@@ -160,8 +160,6 @@
   "appname": "五福家庭",
   "compilerVersion": "2.6.16",
   "usingComponents": {
-    "banner": "/wxcomponents/components/banner",
-    "trigger": "/wxcomponents/components/trigger",
     "load": "/pages/common/load"
   }
 }

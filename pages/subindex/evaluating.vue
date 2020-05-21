@@ -30,26 +30,35 @@
 			<block v-if="voucher != ''">
 				
 				<image class="q_image" src="../../static/image/evaluating/back.png"  mode="widthFix"></image>
-				<view class="q_content">
-					<view class="title">{{voucher[0].name}}</view>
-					<view class="line">
-						<view class="question" v-for="(item,index) in voucher[0].answer" @tap="chiose(index)" >
-							<view class="circle" :class="{circle_red:que_show == index}">
-								<view class="circle_entity"  :class="{entity_red:que_show == index}">
+				<view class="q_box"  v-for="(item,index) in voucher" >
+					<image class="q_box_img" src="../../static/image/evaluating/conten_back.png" mode="scaleToFill"></image>
+					<view class="q_content">
+						<block v-if="item.type == 1">
+							<view class="title">{{item.name}}</view>
+							<view class="line" >
+								<view class="question" v-for="(items,indexs) in item.answer" @tap="chiose(index,indexs)" >
+									<view class="circle" :class="{circle_red:item.index == indexs}">
+										<view class="circle_entity"  :class="{entity_red:item.index == indexs}">
+										</view>
+									</view>
+									<text>
+										{{items.name}}
+									</text>
 								</view>
 							</view>
-							<text>
-								{{item.name}}
-							</text>
-						</view>
+						</block>
+						<block v-else v-if="item.type == 2">
+							<view class="opinion"  >{{item.name}}</view>
+							<textarea @input="bindInput($event,index)" name="" id="" cols="30" rows="10"></textarea>
+						</block>
+						
+						<!-- <view class="ganxie">
+							十分感谢您对这次调查的支持！
+						</view> -->
 					</view>
-					<view class="opinion"  v-if="voucher[1]">{{voucher[1].name}}</view>
-					<textarea v-model="opinion_test" name="" id="" cols="30" rows="10"></textarea>
-					<!-- <view class="ganxie">
-						十分感谢您对这次调查的支持！
-					</view> -->
-					<button type="default" @tap="submit">提交问卷</button>
 				</view>
+				
+				<button  @tap="submit">提交问卷</button>
 			</block>
 			
 			
@@ -84,7 +93,6 @@
 				title:'我的测评',
 				cur:0,
 				dataList:[],
-				que_show:0,
 				voucher:'',
 				opinion_test:'',
 				record_data:'',
@@ -92,19 +100,27 @@
 			}
 		},
 		methods:{
-			chiose(index){
-				this.que_show = index
+			bindInput: function(e, index, indexs) {
+				this.voucher[index].index = e.target.value
+			},
+			chiose(index,indexs){
+				this.voucher[index].index = indexs
+				this.voucher = JSON.parse(JSON.stringify(this.voucher))
 			},
 			submit(){
 				let data = []
-				data.push(Number(this.voucher[0].answer[this.que_show].id))
-				data.push(this.opinion_test)
+				for (let s of this.voucher) {
+					if(s.type == 1){
+						data.push(s.answer[s.index].id)
+					}else{
+						data.push(s.index)
+					}
+				}
 				this.service.entire(this,'post',this.APIconfig.api_root.subindex.s_qtn_submitQtn,{ //提交问券调查
 					qtn_id :this.qtn_id,
 					user_id:this.$store.state.user.id,
 					data:data
 				},function(self,res){
-					
 					uni.showToast({
 						icon:'none',
 						title:res.msg
@@ -122,7 +138,6 @@
 				
 			},function(self,res){
 				self.dataList =res.data
-				console.log(self.dataList)
 			})
 			
 			this.service.entire(this,'post',this.APIconfig.api_root.subindex.s_qtn_getQtn,{//问券调查
@@ -130,7 +145,10 @@
 			},function(self,res){
 				self.qtn_id = res.data.id
 				self.voucher = res.data.question
-				
+				console.log(self.voucher)
+				for (let s of self.voucher) {
+					s.index = 0
+				}
 			})
 			
 			this.service.entire(this,'post',this.APIconfig.api_root.subindex.s_examList,{//获取用户的评测记录列表
@@ -148,12 +166,16 @@
 		width: 100%;
 		.allorder{
 			width: 100%;
-			height: 120upx;
+			position: fixed;
+			top: calc(105rpx + var(--status-bar-height));
+			z-index: 888;
+			left: 0;
+			height: 120rpx;
 			background-color: #F6F6F7;
 			display: flex;
 			text-align: center;
-			line-height: 120upx;
-			font-size: 28upx;
+			line-height: 120rpx;
+			font-size: 28rpx;
 			text{
 				flex: 1;
 			}
@@ -347,6 +369,7 @@
 		.questionnaire{
 			position: relative;
 			width: 100%;
+			top: 105rpx;
 			.not{
 				color: #BFBFBF;
 				text-align: center;
@@ -356,29 +379,46 @@
 			}
 			.q_image{
 				width: 100%;
-				position:absolute ;
-				top:0;
+				position:fixed ;
+				top:220rpx;
 				left: 0;
 			}
-			.q_content{
-				width: 100%;
-				position: absolute;
-				top:0;
-				left: 0;
+			.q_box{
+				font-size: 28rpx;
+				position: relative;
+				width: 90%;
+				min-height: 280rpx;
+				margin: 20rpx auto;
+				top: 305rpx;
+				.q_box_img{
+					width: 100%;
+					position: absolute;
+					height: 100%;
+					top:0;
+					left: 0;
+					z-index: 80;
+				}
+				.q_content{
+					box-sizing: border-box;
+					padding: 20rpx;	
+					width: 100%;
+					height: 100%;
+					position: absolute;
+					top:0;
+					left: 0;
+					z-index: 90;
+				}
 			}
+			
 			// background: url(../../static/image/evaluating/back.png) no-repeat;
 			// background-size: 100% 100%;
-			.title{
-				font-size: 28rpx;
-				padding: 375rpx 0 0 128rpx;
-				
-			}
+			
 			.line{
 				display: flex;
 				align-items: center;
 				justify-content: space-between;
 				flex-wrap: wrap;
-				margin: 30rpx 158rpx 0 127rpx;
+				margin-top: 20rpx;
 				// width: 100%;
 				.question{
 					display: flex;
@@ -421,14 +461,13 @@
 			}
 			.opinion{
 				font-size: 28rpx;
-				margin: 190rpx 0 0 54rpx;
 			}
 			textarea{
 				background-color: #FFFFFF;
 				display: block;
-				margin: 20rpx 0 0 50rpx;
-				width: 650rpx;
-				height: 280rpx;
+				margin: 20rpx auto;
+				width: 96%;
+				height: 180rpx;
 				padding: 20rpx;
 				box-sizing: border-box;
 			}
@@ -447,7 +486,7 @@
 				text-align:center;
 				line-height: 80rpx;
 				color:#FFFFFF;
-				margin-top: 40rpx;
+				margin: 345rpx auto 50rpx; 
 			}
 		}
 	}

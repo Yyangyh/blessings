@@ -222,6 +222,7 @@
 					uni.login({
 					  provider: 'weixin',
 					  success: function (loginRes) {
+						  console.log(loginRes)
 						uni.request({
 							url:that.APIconfig.api_root.common.getWxLogin,
 							method:'get',
@@ -230,7 +231,7 @@
 								openid:loginRes.authResult.openid,
 							},
 							success(res) {
-								
+								console.log(res)
 								uni.hideLoading()
 								clearTimeout(times)
 								let data = res.data

@@ -3,6 +3,7 @@
   "titleNView": false,
   "usingComponents": {
     "load": "/pages/common/load",
-    "returns": "/pages/common/returns"
+    "returns": "/pages/common/returns",
+    "share": "/pages/common/share"
   }
 }

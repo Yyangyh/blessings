@@ -19,7 +19,7 @@
 				console.log(JSON.stringify(result))
 			});
 			jyJPush.setJYJPushAlias({
-				userAlias: 'testAlias111'
+				userAlias: 'tes12333'
 				}, result=> {
 				//  设置成功或者失败，都会通过这个result回调返回数据；数据格式保持极光返回的安卓/iOS数据一致
 				//  注：若没有返回任何数据，考虑是否初始化完成
@@ -32,6 +32,15 @@
 			//  监听成功后，若收到推送，会在result返回对应的数据；数据格式保持极光返回的安卓/iOS数据一致
 				console.log(JSON.stringify(result))
 			});
+			
+			setTimeout(function() {
+				const jyJPush = uni.requireNativePlugin('JY-JPush');
+				jyJPush.getLastPushInfo(result => {
+					if (result != null) {
+						console.log('last' + JSON.stringify(result))
+					}
+					});
+			}, 500);
 			
 			jyJPush.addJYJPushReceiveOpenNotificationListener(result => { //监听在线点击通知栏消息事件（点击通知栏的消息，或者悬浮框，会触发；做事件跳转，需要用到这个接口，如：后台发了一个新闻，消息里面会含有新闻的链接，点击消息就需要获取这个链接，然后跳转）
 				console.log(result)
