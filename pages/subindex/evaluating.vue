@@ -387,7 +387,7 @@
 				font-size: 28rpx;
 				position: relative;
 				width: 90%;
-				min-height: 280rpx;
+				min-height: 240rpx;
 				margin: 20rpx auto;
 				top: 305rpx;
 				.q_box_img{
@@ -403,7 +403,7 @@
 					padding: 20rpx;	
 					width: 100%;
 					height: 100%;
-					position: absolute;
+					position: relative;
 					top:0;
 					left: 0;
 					z-index: 90;
